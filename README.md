@@ -4,6 +4,22 @@ An interactive, scrubable reconstruction of the 2017 NotPetya cyberattack
 (`index.html`), plus a generalized generator that turns the same concept into a
 reusable tool.
 
+## ai-menu.html · front page
+
+The entry point for the AI-risk session: links to the visual talk
+(`ai-talk.html`, recommended on stage), the full documentary (`ai.html`), the
+first French iteration (`ai-fr.html`) and the OpenAI / Hugging Face deep dives
+(`OAHF*.html`). Offline like the rest.
+
+## ai-talk.html · Out of the Sandbox, the talk
+
+The same 40-minute story told like a TED talk: one idea per screen, big words
+and numbers, pictograms, flow diagrams, maps and video clips. Long text stays
+only where it is needed (quotes, the advice). Everything the presenter says
+is in the presenter view (`P`), with facts and sources for questions in the
+notes; `S` shows it as subtitles. Same chapters, media files and controls as
+`ai.html`.
+
 ## ai.html · Out of the Sandbox
 
 A 40-minute interactive documentary for an AI-risk awareness session in front

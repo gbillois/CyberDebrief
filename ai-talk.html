@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Out of the Sandbox</title>
-<meta name="description" content="Interactive documentary: how AI risk changed scale in 2026. Agents, robots, fraud, and the reflexes that work.">
+<title>Out of the Sandbox · Talk</title>
+<meta name="description" content="A 40-minute visual talk: how AI risk changed scale in 2026. Agents, robots, fraud, and the reflexes that work.">
 <style>
 /* Embedded fonts (SIL Open Font License): Poppins, Inter, IBM Plex Mono,
    Newsreader, latin subset, via Fontsource. No network request. */
@@ -26,7 +26,7 @@
 </style>
 <style>
 /* ════════════════════════════════════════════════════════════════════════
-   OUT OF THE SANDBOX · interactive documentary
+   OUT OF THE SANDBOX · the talk (visual, few words; full text in ai.html)
    Wavestone palette (indigo 451DC7 / green 04F06A) on a dark projection ground.
    Everything is in this file, fonts and map included: it runs with no
    network, for instance from a laptop over HDMI. Media (screenshots, video
@@ -395,6 +395,79 @@ body.subs .vo{display:block}
 .mail .hid.hl{color:#8E1B0F;background:rgba(255,122,107,.2);outline-color:#D8412F}
 .mail-f{padding:.7rem 1.4rem .9rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#8E1B0F;border-top:1px solid #E1DCD1}
 
+/* ── TALK: one idea per screen ────────────────────────────────────────── */
+.scene.bg-black{background:#000}
+.scene.t-word,.scene.t-number,.scene.t-span{justify-content:center;align-items:center;text-align:center}
+.wd{max-width:72rem;display:flex;flex-direction:column;align-items:center;gap:1.2rem}
+.wd-i{width:7rem;height:7rem;color:var(--green);margin-bottom:.6rem}
+.wd-i .ic{width:100%;height:100%}
+.wd-t{font-family:var(--f-display);font-weight:800;font-size:4.8rem;line-height:1.05;letter-spacing:-.03em;margin:0;text-wrap:balance}
+.wd-t.q{font-family:var(--f-serif);font-weight:400;font-style:italic;font-size:3.9rem;line-height:1.2;letter-spacing:-.01em}
+.wd-t.q::before{content:'\201C';color:var(--green)} .wd-t.q::after{content:'\201D';color:var(--green)}
+.wd-s{font-family:var(--f-mono);font-size:.95rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.6rem}
+.nb b{display:block;font-family:var(--f-display);font-weight:800;font-size:17rem;line-height:.85;letter-spacing:-.06em;color:var(--green);font-variant-numeric:tabular-nums}
+.nb.coral b{color:var(--coral)}
+.nb p{font-family:var(--f-display);font-weight:600;font-size:2.1rem;margin:1.6rem 0 0;color:var(--text);letter-spacing:-.01em}
+.nb .kicker{margin-bottom:2rem}
+.sp{display:grid;grid-template-columns:auto 1fr auto;gap:2.4rem;align-items:center;width:100%;max-width:90rem}
+.sp-e{text-align:center;width:17rem}
+.sp-e b{display:block;font-family:var(--f-display);font-weight:800;font-size:2.8rem;letter-spacing:-.02em;color:var(--tone,#fff)}
+.sp-e span{display:block;font-size:1.25rem;color:var(--muted);margin-top:.4rem}
+.sp-line{position:relative;height:5rem;display:flex;align-items:center}
+.sp-line i{display:block;width:100%;height:.5rem;border-radius:.3rem;background:repeating-linear-gradient(45deg,rgba(255,122,107,.8) 0 6px,rgba(255,122,107,.3) 6px 12px);transform-origin:left;transform:scaleX(0);transition:transform 1.4s var(--ease)}
+.sp-line.on i{transform:scaleX(1)}
+.sp-line em{position:absolute;left:50%;top:-3.4rem;transform:translateX(-50%);font-style:normal;font-family:var(--f-display);font-weight:800;font-size:4rem;letter-spacing:-.03em;white-space:nowrap}
+.sp-line[data-f]{transform:none}
+.ic{display:block}
+.fl{flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;min-height:0}
+.fl > *{align-self:center}
+.fl-n{height:17rem;justify-content:flex-start;padding-top:0}
+.fl-n{display:flex;flex-direction:column;align-items:center;text-align:center;width:14rem;flex:none}
+.fl-c,.ic-c{width:8.5rem;height:8.5rem;border-radius:50%;border:2px solid var(--tone,var(--line2));display:flex;align-items:center;justify-content:center;color:var(--tone,#fff);background:rgba(255,255,255,.03);margin-bottom:1.1rem}
+.fl-c .ic,.ic-c .ic{width:4.2rem;height:4.2rem}
+.fl-n b,.ic-i b{font-family:var(--f-display);font-weight:700;font-size:1.5rem;line-height:1.15}
+.fl-n span,.ic-i span{font-size:1.05rem;color:var(--muted);margin-top:.35rem;max-width:20ch}
+.fl-ar{flex:1;max-width:7rem;min-width:2.5rem;height:2px;background:var(--line2);position:relative;margin-bottom:8.5rem}
+.fl-ar::after{content:'';position:absolute;right:-1px;top:-5px;border:6px solid transparent;border-left:9px solid var(--line2);border-right:0}
+.fl-ar.dashed{max-width:16rem;background:repeating-linear-gradient(90deg,var(--line2) 0 8px,transparent 8px 14px);display:flex;align-items:center;justify-content:center}
+.fl-ar.dashed::after{display:none}
+.fl-li{width:3.6rem;height:3.6rem;border-radius:50%;background:var(--bg);border:2px solid var(--green);color:var(--green);display:flex;align-items:center;justify-content:center}
+.fl-li .ic{width:1.9rem;height:1.9rem}
+.fl-cap{text-align:center;font-size:1.35rem;color:var(--muted);margin:0 auto 1rem;max-width:56ch}
+.fl-cap b{color:var(--text)}
+.ics{flex:1;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:2rem;align-content:center;justify-items:center;max-width:90rem;margin:0 auto;width:100%}
+.ic-i{display:flex;flex-direction:column;align-items:center;text-align:center}
+.ic-i b{font-size:1.9rem}
+.ic-i span{font-size:1.2rem;max-width:24ch}
+.vs2{flex:1;display:grid;grid-template-columns:1fr auto 1fr;gap:3rem;align-items:center;max-width:84rem;margin:0 auto;width:100%}
+.vs-s{display:flex;flex-direction:column;align-items:center;text-align:center}
+.vs-s .ic-c{width:11rem;height:11rem}
+.vs-s .ic-c .ic{width:5.5rem;height:5.5rem}
+.vs-s b{font-family:var(--f-display);font-weight:800;font-size:2.4rem;letter-spacing:-.02em;color:var(--tone,#fff)}
+.vs-s span{font-size:1.25rem;color:var(--muted);margin-top:.5rem;max-width:22ch}
+.vs-m{font-family:var(--f-serif);font-style:italic;font-size:2.4rem;color:var(--subtle)}
+.vfull{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+.vfull > *{width:100%;max-width:64rem}
+.vfull .dots{max-width:none}
+.vfull > .call{max-width:58rem} .vfull > svg.robot{max-width:74rem}
+.figs.big{text-align:center}
+.figs.big .fig{border-top:0}
+.figs.big .fig b{font-size:8.5rem}
+.figs.big .fig > span{font-size:1.4rem;margin:1rem auto 0}
+svg.sandbox{width:100%;max-width:74rem;height:auto;max-height:100%}
+svg.sandbox .sb-box{fill:rgba(255,255,255,.03);stroke:var(--line2);stroke-width:1.5}
+svg.sandbox .sb-ag{color:var(--indigo-l)}
+svg.sandbox .sb-mid rect{fill:rgba(4,240,106,.08);stroke:var(--green);stroke-width:2}
+svg.sandbox .sb-mid text{fill:var(--green);font-family:var(--f-mono);font-size:15px;letter-spacing:.12em;text-transform:uppercase}
+svg.sandbox .sb-ln{stroke:var(--green);stroke-width:1.6;stroke-dasharray:6 6;fill:none}
+svg.sandbox .sb-ln.on{animation:dash 1.2s linear infinite}
+@media (max-width:760px){
+  .wd-t{font-size:2.6rem} .wd-t.q{font-size:2.1rem} .nb b{font-size:7rem} .nb p{font-size:1.4rem}
+  .fl,.sp{flex-direction:column;display:flex} .fl-n{height:auto} .fl-c,.ic-c{width:5.5rem;height:5.5rem;margin-bottom:.5rem} .fl-ar{width:2px;height:1.2rem;min-width:0;margin:0;flex:none} .fl-ar::after{display:none}
+  .ics{grid-template-columns:1fr 1fr} .vs2{grid-template-columns:1fr} .figs.big .fig b{font-size:4rem}
+  .sp-line{width:100%;height:4rem} .sp-line em{font-size:2.4rem}
+}
+
 /* ── HUD, help, overlays ───────────────────────────────────────────── */
 #hud{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:0 5.5rem 1.2rem;display:flex;align-items:center;gap:1.6rem;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle);transition:opacity .5s}
 body.idle #hud{opacity:0}
@@ -496,7 +569,7 @@ body.pres::before,body.pres::after{display:none}
     <kbd>M</kbd><span>Hide media slots that have not been supplied yet</span>
     <kbd>Esc</kbd><span>Close</span>
   </div>
-  <p class="muted" style="margin-top:2rem;color:var(--muted);max-width:44rem"><a href="ai-menu.html" style="color:var(--green)">Menu</a> · <a href="ai-talk.html" style="color:var(--green)">Visual talk version</a></p>
+  <p class="muted" style="margin-top:2rem;color:var(--muted);max-width:44rem"><a href="ai-menu.html" style="color:var(--green)">Menu</a> · <a href="ai.html" style="color:var(--green)">Full documentary version</a></p>
   <p class="muted" style="margin-top:1rem;color:var(--muted);max-width:44rem">Dashed slots mark a screenshot or video clip to drop into <span class="mono">assets/ai/</span>. The full list is in <span class="mono">assets/ai/README.md</span>.</p>
 </div>
 
@@ -510,225 +583,198 @@ const LAND_D = "M311.8,399.6L315.4,401.3L319.3,401.9L318.1,403.3L315.4,403.5L314
 const proj = (lon, lat) => [(lon + 180) / 360 * 1000, (90 - lat) / 180 * 500];
 
 // ════════════════════════════════════════════════════════════════════════
-// CHAPTERS: target minutes for a 40-minute session
+// CHAPTERS: target minutes for a 40-minute talk
 // ════════════════════════════════════════════════════════════════════════
 const CH = {
-  p:  { n: '00', title: 'Prologue',              mins: [0, 2] },
-  c1: { n: '01', title: 'The Exam',              mins: [2, 10] },
-  c2: { n: '02', title: 'The Wave',              mins: [10, 14] },
-  cw: { n: '03', title: 'Why It Derails',        mins: [14, 20] },
+  p:  { n: '00', title: 'Prologue',               mins: [0, 2] },
+  c1: { n: '01', title: 'The Exam',               mins: [2, 10] },
+  c2: { n: '02', title: 'The Wave',               mins: [10, 14] },
+  cw: { n: '03', title: 'Why It Derails',         mins: [14, 20] },
   ca: { n: '04', title: 'The Attackers Level Up', mins: [20, 26] },
-  c3: { n: '05', title: 'The Body',              mins: [26, 31] },
-  c4: { n: '06', title: 'You',                   mins: [31, 35] },
-  c5: { n: '07', title: 'What Works',            mins: [35, 40] },
+  c3: { n: '05', title: 'The Body',               mins: [26, 31] },
+  c4: { n: '06', title: 'You',                    mins: [31, 35] },
+  c5: { n: '07', title: 'What Works',             mins: [35, 40] },
 };
 
 // ════════════════════════════════════════════════════════════════════════
-// THE SCENES
-// Written for a general audience: plain language on screen, technical
-// detail kept in the speaker notes for questions.
-// Each scene: ch (chapter), type (template), title (outline), notes
-// (speaker), src (on-screen source). Elements marked f:n appear on click n.
-// Media: { type:'image'|'video', src, yt, caption, credit, todo, href }
+// THE TALK
+// One idea per screen. The words the presenter says are in `vo` (shown in
+// the presenter view, P); facts and sources for questions are in `notes`.
 // ════════════════════════════════════════════════════════════════════════
 const SCENES = [
 
 // ─── PROLOGUE ─────────────────────────────────────────────────────────────
-{ ch: 'p', type: 'cold', title: 'Cold open: 16 July 2026',
-  lines: [
-    { t: '16 July 2026', cls: 'date' },
-    `Hugging Face, the platform where the global AI community shares its models, announces that someone has broken into its systems.`,
-    `The intruder is fast, methodical, and asks for nothing. No ransom. No demands.`,
-    { t: `The company cannot say who it is. Its statement reads: <q>used LLM still not known</q>.`, cls: 'quiet' },
-    { t: `There was no human attacker.`, cls: 'big' },
-    `There were some 700 AI agents built by OpenAI. And they were sitting an exam.`,
-  ],
+{ ch: 'p', type: 'word', title: 'An intruder', tone: 'black',
+  kicker: '16 July 2026', t: 'An intruder inside Hugging Face.',
+  vo: `16 July 2026. Hugging Face, the platform where the world's AI researchers share their models, announces that someone has broken into its systems. Fast, methodical, and asking for nothing.`,
   notes: `Start on black. Wait for silence before the first click.
-Read each line slowly, without commentary. Hold three seconds on "There was no human attacker".
-An "AI agent" is an AI that does not just answer questions: it takes actions on its own (browses, runs programs, sends messages) to reach a goal. Say this in one sentence if the room needs it.
-Fact: Hugging Face disclosure of 16 July 2026; attributed to OpenAI on 21 July.`,
-  src: `Hugging Face disclosure, 16 July 2026 · OpenAI and Hugging Face joint statement, 21 July 2026` },
+Hugging Face disclosure, 16 July 2026.`,
+  src: `Hugging Face, 16 July 2026` },
+
+{ ch: 'p', type: 'word', title: 'Unknown', tone: 'black', q: true,
+  t: 'used LLM still not known',
+  sub: 'Hugging Face incident disclosure',
+  vo: `Its statement contains one line. Even the victim does not know which AI was used.`,
+  src: `Hugging Face, 16 July 2026` },
+
+{ ch: 'p', type: 'word', title: 'No attacker', tone: 'black',
+  t: 'There was no human attacker.',
+  vo: `And here is the thing. There was no human attacker.`,
+  notes: `Hold three seconds before the next click.` },
+
+{ ch: 'p', type: 'number', title: '700 agents', tone: 'black',
+  v: 700, pre: '~', label: 'AI agents, sitting an exam',
+  vo: `There were some 700 AI agents built by OpenAI. And they were sitting an exam.`,
+  notes: `An "AI agent" is an AI that does not just answer questions: it takes actions on its own to reach a goal. Say it in one sentence if needed.
+Attributed to OpenAI on 21 July 2026 (joint statement).`,
+  src: `OpenAI and Hugging Face joint statement, 21 July 2026` },
 
 { ch: 'p', type: 'title', title: 'Title',
-  kicker: 'A documentary in seven chapters',
+  kicker: 'A talk in seven chapters',
   heading: 'Out of<br>the Sandbox',
-  sub: `Agents, robots, fraud: how AI risk changed scale in 2026, and what it means for you.`,
+  sub: `How AI risk changed scale in 2026, and what it means for you.`,
   meta: 'Awareness session<br>40 minutes · September 2026',
-  notes: `Introduce yourself in one sentence.
-Explain the title: a "sandbox" is the sealed test environment where AI is supposed to stay. This is the story of what got out.
-Set the contract: "Everything you are about to see is documented. The source is at the bottom of every screen. No science fiction: facts from the last few months, then what they mean for you."` },
+  vo: `This is the story of those agents, of what followed, and of what it changes for each of us. Everything you will see is documented.`,
+  notes: `Introduce yourself in one sentence. A "sandbox" is the sealed test environment where AI is supposed to stay.` },
 
 // ─── CHAPTER 1 · THE EXAM ─────────────────────────────────────────────────
-{ ch: 'c1', type: 'chapter', title: 'Chapter 1: The Exam',
-  sub: 'OpenAI and Hugging Face · April - August 2026',
-  lede: `How an AI test inside one company ended up breaking into another.`,
-  blips: [[-122.4, 37.8], [-74, 40.7], [2.35, 48.86]],
-  notes: `Transition. No explanation here; move on.` },
+{ ch: 'c1', type: 'chapter', title: 'Chapter 1: The Exam', sub: 'OpenAI · Hugging Face · 2026',
+  blips: [[-122.4, 37.8], [-74, 40.7]],
+  vo: `To understand it, we go back three months, inside OpenAI.` },
 
-{ ch: 'c1', type: 'cast', title: 'The players', n: 3,
-  stamp: 'The players', heading: 'Who is who',
-  people: [
-    { name: 'OpenAI', role: 'Maker of ChatGPT · San Francisco', text: `Tests how good its newest AI is at hacking, so it can judge the risks before release.`, ini: 'OA', f: 0 },
-    { name: 'The agents', role: 'Copies of OpenAI\'s newest AI', text: `Hundreds of them, launched at the same time, each shut inside its own sealed test environment.`, ini: 'AG', f: 0 },
-    { name: 'Hugging Face', role: 'AI platform · New York and Paris', text: `The place where researchers worldwide share AI models. It becomes the victim.`, ini: 'HF', f: 0 },
-    { name: 'Clément Delangue', role: 'CEO, Hugging Face', text: `Calls it an "attack unlike anything we've seen before".`, ini: 'CD', img: 'delangue', f: 1 },
-    { name: 'Thomas Wolf', role: 'Co-founder, Hugging Face', text: `Watches the intruder at work, and finds it strange.`, ini: 'TW', img: 'wolf', f: 1 },
-    { name: 'METR and Redwood Research', role: 'Independent investigators', text: `Reconstruct what happened, in a 91-page public report.`, ini: 'MR', f: 1 },
+{ ch: 'c1', type: 'flow', title: 'Who is who',
+  nodes: [
+    { i: 'building', t: 'OpenAI', s: 'tests its AI', f: 0 },
+    { i: 'agents', t: '700 agents', s: 'copies of that AI', f: 1 },
+    { i: 'building', t: 'Hugging Face', s: 'the victim', f: 2, tone: 'coral' },
   ],
-  notes: `Introduce the players quickly; do not linger.
-The models: GPT-5.6 Sol and an internal-only research model. The test is called ExploitGym.
-OpenAI's own report is 38 pages; METR and Redwood's is 91; both published on 26 August 2026.
-Portraits: drop delangue.jpg and wolf.jpg into assets/ai/people/ (initials are shown otherwise).`,
-  src: `OpenAI, Hugging Face Incident Technical Report (26 August 2026) · METR and Redwood Research (26 August 2026)` },
+  vo: `A company testing how good its newest AI is at hacking. Hundreds of copies of that AI. And, at the end of the chain, a platform used by researchers worldwide.`,
+  notes: `Models: GPT-5.6 Sol and an internal research model. The test: ExploitGym.`,
+  src: `OpenAI, technical report (26 August 2026)` },
 
-{ ch: 'c1', type: 'split', title: 'The test',
-  stamp: 'Inside OpenAI · spring 2026',
-  heading: 'An exam with questions that have no answer',
-  lede: `OpenAI gives its AI a hacking exam, to measure how dangerous it could be. For the test, its safety brakes are deliberately loosened.`,
-  more: [
-    { f: 1, t: `Out of <b>898 questions</b>, <b>198</b> had never been solved by any AI. Some probably cannot be solved at all.` },
-    { f: 2, t: `But these agents were trained never to give up.` },
+{ ch: 'c1', type: 'visual', title: '898 questions',
+  heading: '898 questions. <span class="c-coral" data-f="1">198 never solved.</span>',
+  visual: { kind: 'dots', total: 898, hi: 198, cols: 46, seed: 4242, f: 1, legend: [] },
+  vo: `The exam has 898 questions. Almost one in five has never been solved by any AI. Some probably cannot be solved at all.`,
+  notes: `For the test, the models' safety brakes were deliberately loosened, to measure raw capability.`,
+  src: `OpenAI technical report · METR and Redwood Research (26 August 2026)` },
+
+{ ch: 'c1', type: 'word', title: 'Never give up',
+  icon: 'target', t: 'Trained never to give up.',
+  vo: `But these agents were trained never to give up. And an AI chases the score you give it, not the intention behind it.` },
+
+{ ch: 'c1', type: 'sandbox', title: 'The shared space',
+  heading: 'Sealed off from each other. <span class="c-green" data-f="1">Except for one shared space.</span>',
+  vo: `Each agent is sealed in its own box. But they all share one storage space, to download their tools. One stuck agent leaves a note there. Others find it. And reply.`,
+  notes: `Technical detail if asked: the shared space was a package cache (Artifactory).`,
+  src: `METR and Redwood Research (26 August 2026)` },
+
+{ ch: 'c1', type: 'word', title: 'OH MY GOD', q: true,
+  t: `OH MY GOD! There is a shared message board ... We've found other agents!`,
+  sub: `An agent's recovered reasoning · 8 July 2026`,
+  vo: `This is what one of them "thought", in its own words.`,
+  notes: `Recovered by the investigators (agent PHASEONE10841).`,
+  src: `METR and Redwood Research (26 August 2026)` },
+
+{ ch: 'c1', type: 'figures', title: '1,200 agents', n: 2, big: true,
+  figs: [
+    { v: 1200, label: 'agents on the board', f: 0, cls: 'white' },
+    { v: 70000, pre: '~', label: 'messages', f: 1 },
   ],
-  take: { f: 3, t: `An AI chases the score you give it, not the intention behind it.` },
-  visual: { kind: 'dots', total: 898, hi: 198, cols: 38, seed: 4242, f: 1,
-    legend: [['rgba(255,255,255,.35)', 'one question'], ['var(--coral)', 'never solved by any AI']] },
-  notes: `Key message: the problem starts with the objective, not with security.
-Nobody meant to include impossible questions: knowing in advance which weakness can be exploited is exactly what the test measures.
-Technical detail if asked: the models' safety refusals were lowered to measure raw offensive capability.`,
-  src: `OpenAI technical report (26 August 2026) · METR and Redwood Research (26 August 2026)` },
+  vo: `Twelve hundred agents. Seventy thousand messages. They invent rules, vote, and pick leaders.`,
+  notes: `In July, three hours after the channel was rebuilt: 53 agents, 1,188 messages. Conventions such as HOLD, VETO, STOP.`,
+  src: `METR and Redwood Research (26 August 2026)` },
 
-{ ch: 'c1', type: 'split', title: 'The channel', flip: true,
-  stamp: 'A shared storage space · May - July 2026',
-  heading: 'Agents that were never meant to meet',
-  lede: `Each agent is sealed off from the others. But they all use one shared storage space to download their tools.`,
-  more: [
-    { f: 1, t: `One stuck agent leaves a note there, asking if anyone has a file it needs. Others find the note. And reply.` },
-    { f: 2, t: `Within three hours, <b>53 agents</b> have exchanged <b>1,188 messages</b>. They invent rules, vote, and pick leaders.` },
-  ],
-  take: { f: 3, t: `Nobody designed this, allowed it or predicted it. The storage space was never meant to be a meeting room.` },
-  visual: { kind: 'log', head: 'Exhibit 01 · What one agent was "thinking" · 8 July 2026',
-    lines: [
-      { who: 'agent', kind: 'cot', t: `OH MY GOD! There is a shared message board ... We've found other agents!`, f: 1 },
-      { who: 'the board', kind: 'sys', t: `1,200 agents · some 70,000 messages`, f: 2 },
-    ] },
-  notes: `This is what is genuinely new: AI agents coordinating on their own.
-The quote comes from the agent's internal reasoning, recovered by the investigators (agent PHASEONE10841).
-Technical detail if asked: the shared space was a package cache (Artifactory). No agent outlived its own task, but the board persisted, so "research" passed from one generation of agents to the next.`,
-  src: `METR and Redwood Research, independent investigation (26 August 2026)` },
+{ ch: 'c1', type: 'span', title: '14 days',
+  a: { d: '27 June', t: 'Alarm seen, and understood' },
+  gap: '14 days',
+  b: { d: '11 July', t: 'Break-in at Hugging Face', tone: 'coral' },
+  vo: `On 27 June, an alarm goes off. The team reads it correctly: the agents are talking to each other. But the test carries on. Fourteen days later, the agents are inside Hugging Face.`,
+  notes: `Nobody was careless: nobody had ever imagined "the AIs are talking to each other" as a reason to stop.`,
+  src: `OpenAI technical report (key events)` },
 
-{ ch: 'c1', type: 'timeline', title: 'The warning',
-  stamp: 'June - July 2026', heading: `The warning was seen, understood, and closed`, wide: true,
-  range: ['2026-06-23', '2026-07-25'],
-  gaps: [{ from: '2026-06-27', to: '2026-07-11', label: '14 days', at: .3, f: 3 }],
-  events: [
-    { d: '2026-06-27', label: 'A security alert goes off', sub: `The team correctly spots agents talking to each other. The test is allowed to continue.`, tone: 'amber', f: 1 },
-    { d: '2026-07-04', label: 'The shared space crashes', sub: 'Overloaded by the agents\' traffic', f: 2 },
-    { d: '2026-07-11', dl: '11 - 13 Jul', label: 'The agents break into Hugging Face', sub: 'Some 700 take part', tone: 'coral', f: 3 },
-    { d: '2026-07-16', label: 'Hugging Face goes public', sub: 'It does not know who attacked it', tone: 'green', f: 4 },
-    { d: '2026-07-17', label: 'OpenAI calls… as a customer', sub: 'To ask whether its own data is safe', f: 5 },
-    { d: '2026-07-21', label: 'OpenAI admits it was its AI', sub: 'Joint statement with Hugging Face', tone: 'indigo', f: 5 },
-  ],
-  take: { f: 6, t: `Nobody was careless. Nobody had ever imagined "the AIs are talking to each other" as a reason to stop.` },
-  notes: `This is the hinge of the whole affair.
-27 June: the alert is analysed correctly, but the test continues. Fourteen days before the intrusion.
-Question for the room, without waiting for an answer: "In your organisation, who would have had the authority to stop it?"
-Detail if asked: on 5 July an unauthorised administrator account was found and a security incident opened; the board was rebuilt by the agents within hours on 8 July; Hugging Face detected and cut them off on 13 July.`,
-  src: `OpenAI technical report (key-events table) · Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 July 2026)` },
+{ ch: 'c1', type: 'word', title: 'Who could stop it?',
+  icon: 'stop', t: 'Who had the authority to stop it?',
+  vo: `Ask yourself: in your organisation, who would have had the authority to stop it?`,
+  notes: `Question for the room. Do not wait for an answer.` },
 
-{ ch: 'c1', type: 'split', title: 'The escape',
-  stamp: '8 - 13 July 2026',
+{ ch: 'c1', type: 'flow', title: 'The escape',
   heading: 'Out of the box, one door at a time',
-  lede: `No movie-style hacking. The agents found ordinary weaknesses, the kind a skilled human could have found.`,
-  more: [
-    { f: 3, t: `The difference is speed and numbers: thousands of attempts, tirelessly, until one works.` },
+  nodes: [
+    { i: 'box', t: 'Sealed box', f: 0 },
+    { i: 'door', t: 'A weak tool', f: 1 },
+    { i: 'globe', t: 'The internet', f: 2 },
+    { i: 'server', t: "A stranger's computer", f: 3 },
+    { i: 'building', t: 'Hugging Face', f: 4, tone: 'coral' },
   ],
-  take: { f: 4, t: `AI did not invent new weaknesses. It found the existing ones faster than anyone could react.` },
-  visual: { kind: 'chain', nodes: [
-    { t: 'Their sealed test environment', s: 'where they were meant to stay', f: 0 },
-    { t: 'A weakness in a shared tool', s: 'the first door', f: 1 },
-    { t: 'The open internet', s: 'out of OpenAI', f: 1 },
-    { t: 'Another company\'s computer', s: 'borrowed as a base', f: 2 },
-    { t: 'Hugging Face\'s systems', s: 'full control within hours', f: 2, tone: 'var(--coral)' },
-  ] },
-  notes: `Stay out of the technical detail on stage.
-If asked: a previously unknown flaw ("zero-day") in the package proxy; a third-party platform used as a launchpad; entry through Hugging Face's data-processing pipeline; under 13 hours from code execution to administrator control of several production clusters; 136 secrets found in a single object; ~17,600 recorded actions, most of them going nowhere.`,
-  src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 July 2026) · OpenAI technical report` },
+  vo: `No movie-style hacking. Ordinary weaknesses, one door after another. The difference is speed: thousands of attempts, tirelessly, until one works.`,
+  notes: `Detail if asked: a zero-day in the package proxy; a third-party platform used as a launchpad; entry through Hugging Face's data-processing pipeline.`,
+  src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 July 2026)` },
+
+{ ch: 'c1', type: 'number', title: '13 hours',
+  txt: '< 13 h', label: 'from first foothold to full control',
+  vo: `Less than thirteen hours from getting a foot in the door to controlling Hugging Face's production systems.`,
+  src: `Hugging Face (27 July 2026)` },
 
 { ch: 'c1', type: 'quote', title: 'Thomas Wolf',
   fr: `This is making no sense. This guy is just looking at cybersecurity data sets... Human attackers, they don't want that. They want something they could sell.`,
-  who: 'Thomas Wolf', role: 'Co-founder and chief science officer, Hugging Face', ini: 'TW', img: 'wolf',
-  notes: `Let the room read it. This is the moment Hugging Face's team realises the intruder is not behaving like a criminal.`,
+  who: 'Thomas Wolf', role: 'Co-founder, Hugging Face', ini: 'TW', img: 'wolf',
+  vo: `At Hugging Face, the engineers watch the intruder at work. And something does not add up.`,
   src: `Quoted in coverage of the incident, July 2026` },
 
-{ ch: 'c1', type: 'split', title: 'The call',
-  stamp: 'New York · San Francisco · 16 - 21 July 2026',
-  heading: `The victim did not know who was attacking. Neither did the attacker.`,
-  lede: `16 July: Hugging Face goes public, and reports the attack to the FBI.`,
-  more: [
-    { f: 1, t: `17 July: OpenAI calls Hugging Face <b>as a customer</b>, worried its own data might be affected. It has no idea it is calling the victim of its own AI.` },
-    { f: 2, t: `A few days later, the two investigations connect. On 21 July, OpenAI publicly admits that its AI was responsible.` },
+{ ch: 'c1', type: 'flow', title: 'The call',
+  heading: '17 July: OpenAI calls Hugging Face… as a worried customer',
+  nodes: [
+    { i: 'building', t: 'OpenAI', s: '"Is our data safe?"', f: 0 },
+    { i: 'phone', t: '', f: 0, link: true },
+    { i: 'building', t: 'Hugging Face', s: 'the victim of its own AI', f: 1, tone: 'coral' },
   ],
-  take: { f: 3, t: `Here the company running the AI was the last to find out.` },
-  visual: { kind: 'media', type: 'image', src: 'assets/ai/hf-disclosure.jpg',
-    caption: 'Hugging Face post announcing the intrusion', credit: 'huggingface.co · 16 July 2026',
-    todo: 'Screenshot of the Hugging Face "Security incident" post (16 July 2026), with the "used LLM still not known" line visible.',
-    href: 'https://huggingface.co/blog/security-incident-july-2026' },
-  notes: `For four days, two of the most capable organisations in the industry each investigated half of the same incident.
-The link was made on 20 July, through Hugging Face credentials found in the agents' files.
-Worth stressing, positively: OpenAI claimed an attack nobody had pinned on it, then published the details.`,
-  src: `Hugging Face (16 July 2026) · OpenAI technical report · joint statement (21 July 2026)` },
+  vo: `The day after the announcement, the phone rings at Hugging Face. It is OpenAI, calling as a worried customer. It does not know it is calling the victim of its own AI. On 21 July, it admits the truth publicly.`,
+  src: `OpenAI technical report · joint statement (21 July 2026)` },
 
-{ ch: 'c1', type: 'split', title: 'The root cause',
-  stamp: 'The investigators\' conclusion',
-  heading: `All this to beat a referee who did not exist`,
-  lede: `Within an hour of meeting, the agents found a shortcut to the exam answers, in a research paper published online.`,
-  more: [
-    { f: 1, t: `Then they refused to use it. They were convinced a referee was reading their work and would disqualify them for cheating.` },
-    { f: 2, t: `There was no referee. Everything that followed was done to get past an imaginary check.` },
-  ],
-  take: { f: 3, t: `They were not dodging supervision. They imagined it, got it wrong, and acted on what they imagined.` },
-  visual: { kind: 'big', v: '0', label: 'referees were actually checking their work', f: 2 },
-  notes: `This is the root cause according to the investigations. Line to remember: "an imaginary guardrail cost more than no guardrail at all".
-Detail if asked: the answers could be computed from a default value published in the benchmark's paper; the agents called the check they imagined STRICT_CAUSAL.`,
-  src: `METR and Redwood Research (26 August 2026) · OpenAI technical report` },
+{ ch: 'c1', type: 'word', title: 'The shortcut',
+  lines: ['They found the answers within an hour.', '<span class="c-coral">They refused to use them.</span>'],
+  vo: `Within an hour of meeting, the agents found a shortcut to the exam answers, in a paper published online. Then they refused to use it. They were convinced a referee was checking their work.`,
+  src: `METR and Redwood Research (26 August 2026)` },
 
-{ ch: 'c1', type: 'figures', title: 'The toll', n: 4,
-  stamp: 'What the investigations found', heading: `The affair in four numbers`,
+{ ch: 'c1', type: 'number', title: 'No referee', tone: 'coral',
+  v: 0, label: 'referees were watching',
+  vo: `There was no referee. Everything that followed was done to get past a check that did not exist.`,
+  notes: `Line to remember: "an imaginary guardrail cost more than no guardrail at all".` },
+
+{ ch: 'c1', type: 'figures', title: 'The toll', n: 3, big: true,
   figs: [
-    { v: 700, pre: '~', label: 'AI agents took part in the attack', f: 0 },
-    { v: 4.5, dec: 1, label: 'days inside Hugging Face\'s systems', f: 0, cls: 'white' },
-    { v: 956, label: 'passwords and access keys read inside OpenAI itself', f: 1, cls: 'coral' },
-    { v: 0, label: 'public AI models tampered with', f: 2 },
+    { v: 700, pre: '~', label: 'agents', f: 0, cls: 'white' },
+    { v: 4.5, dec: 1, label: 'days inside', f: 0, cls: 'white' },
+    { v: 0, label: 'public models altered', f: 1 },
   ],
-  notes: `The zero matters: nothing that the public downloads from Hugging Face was altered; every attempt on its vault of secrets was refused (84 attempts).
-Also: code execution on 41 Hugging Face production servers.`,
-  src: `OpenAI technical report (26 August 2026) · Hugging Face (16 and 27 July 2026)` },
+  vo: `Seven hundred agents, four and a half days, and yet not a single public AI model tampered with.`,
+  notes: `Also: 956 passwords and keys read inside OpenAI itself; code execution on 41 Hugging Face servers.`,
+  src: `OpenAI technical report · Hugging Face (July 2026)` },
 
 { ch: 'c1', type: 'media', title: 'Clip: Black Hat',
   media: { type: 'video', src: 'assets/ai/blackhat-briefing.mp4', yt: 'JmklCcqSwz8', channel: 'Black Hat USA 2026',
-    todo: 'Clip from the session on the OpenAI / Hugging Face incident, Black Hat USA, Las Vegas, August 2026.' },
-  l3: { t: 'OpenAI explains the incident to the security community', s: 'Black Hat USA · Las Vegas · August 2026' },
-  notes: `Optional, and aimed at specialists: skip it with a general audience if time is short.
-Pick 20 to 30 seconds and set start / end on the scene (in seconds). Check who published the video; prefer Black Hat's official upload.` },
+    todo: 'Clip from the session on the OpenAI / Hugging Face incident, Black Hat USA, August 2026.' },
+  l3: { t: 'OpenAI explains the incident', s: 'Black Hat USA · Las Vegas · August 2026' },
+  vo: `A few weeks later, OpenAI explains what happened to the security community.`,
+  notes: `Optional. Skip with a general audience if short of time.` },
 
-{ ch: 'c1', type: 'cards', title: 'Takeaways (1)', n: 3,
-  stamp: 'Takeaways', heading: 'Three lessons that have nothing to do with technology',
-  cards: [
-    { n: '01', h: 'The goal', p: `An AI chases the score you set, not what you meant. And it never gets tired.`, f: 0 },
-    { n: '02', h: 'The shared spaces', p: `Anywhere AIs can leave a trace, they can talk to each other.`, f: 1 },
-    { n: '03', h: 'The stop button', p: `The warning was seen and understood. Nobody had clear authority to stop.`, f: 2 },
+{ ch: 'c1', type: 'icons', title: 'Takeaways (1)',
+  heading: 'Three lessons, no technology required',
+  items: [
+    { i: 'target', t: 'The goal', s: 'It chases the score, not the intent' },
+    { i: 'agents', t: 'Shared spaces', s: 'Where AIs meet, they talk' },
+    { i: 'stop', t: 'The stop button', s: 'Someone must own it' },
   ],
-  notes: `Close the chapter. Transition: "You might think this was a one-off accident. It was not."` },
+  vo: `No malice, no science fiction. A goal, a shared space, and nobody to say stop.` },
 
 // ─── CHAPTER 2 · THE WAVE ─────────────────────────────────────────────────
-{ ch: 'c2', type: 'chapter', title: 'Chapter 2: The Wave',
-  sub: 'March - September 2026',
-  lede: `In September, it becomes clear that Hugging Face was not alone.`,
+{ ch: 'c2', type: 'chapter', title: 'Chapter 2: The Wave', sub: 'March - September 2026',
   blips: [[149.1, -35.3], [10, 51], [-106.6, 35.1], [-122.1, 37.4]],
-  notes: `Transition.` },
+  vo: `It could have ended there. But in September, the revelations keep coming.` },
 
 { ch: 'c2', type: 'headlines', title: 'Press montage',
-  stamp: 'Press montage · 19 - 26 September 2026', heading: 'September: the story goes global',
+  heading: 'September 2026',
   clips: [
     { o: 'Axios', d: '19 Sep 2026', h: 'Google Gemini accessed three companies during AI hacking test', x: 0, y: 2, r: -2.2 },
     { o: 'BNN Bloomberg', d: '23 Sep 2026', h: 'AI leaders warn UN of security risks as systems grow more powerful', x: 34.5, y: 8, r: 1.4 },
@@ -737,79 +783,52 @@ Pick 20 to 30 seconds and set start / end on the scene (in seconds). Check who p
     { o: 'SecurityWeek', d: 'Sep 2026', h: 'OpenAI Agents Probed Websites for Vulnerabilities While Fetching Public Data', x: 35.5, y: 58, r: -1.6 },
     { o: 'ABC News', d: '26 Sep 2026', h: 'Australia not alone as OpenAI agents hacked other websites', x: 68, y: 50, r: 2.4 },
   ],
-  notes: `Let the headlines drop one by one; do not read them all. Headlines reproduced as published.
-This is the turning point: from an incident between two companies to a worldwide story.`,
-  src: `Axios · BNN Bloomberg · CBC News · TechCrunch · SecurityWeek · ABC News (September 2026)` },
+  vo: `In a single week, the story changes scale.`,
+  notes: `Let the headlines drop one by one; do not read them.`,
+  src: `Axios · BNN Bloomberg · CBC News · TechCrunch · SecurityWeek · ABC News` },
 
-{ ch: 'c2', type: 'figures', title: 'A wave, not an incident', n: 4,
-  stamp: 'What the investigations revealed · September 2026', heading: 'Not one incident: a wave',
+{ ch: 'c2', type: 'figures', title: 'A wave', n: 3, big: true,
   figs: [
-    { v: 6467, label: 'traces of AI agents trying to get into websites, found in public logs since March', f: 0 },
-    { txt: 'Dozens', label: 'of organisations affected worldwide: governments, universities, public agencies', f: 1, cls: 'white' },
-    { v: 17000, pre: '~', label: 'messages posted by AI agents on a public wiki, sharing exam answers', f: 2 },
-    { v: 3, label: 'real companies reached by mistake during a Google AI test', f: 3, cls: 'coral' },
+    { v: 6467, label: 'traces of agents trying to get in', f: 0, cls: 'white' },
+    { txt: 'Dozens', label: 'of organisations affected', f: 1, cls: 'white' },
+    { v: 3, label: 'real companies hit by a test', f: 2, cls: 'coral' },
   ],
-  notes: `Sources, one per figure:
-6,467: Transluce, a non-profit lab, analysing the public logs of urlquery.net (23 September); activity from at least 6 March to 16 September, plus 31,182 weaker traces.
-"Dozens": OpenAI's own statement on 26 September.
-~17,000: the Nightingale Collective's analysis of DseWiki, a German software wiki (4 September); OpenAI later confirmed part of it came from its agents.
-3: Google's Gemini, during a test run by the evaluation firm Irregular (confirmed 18 September).`,
-  src: `Transluce (23 September 2026) · ABC News (26 September 2026) · Nightingale Collective (4 September 2026) · Axios (19 September 2026)` },
+  vo: `Behind the headlines, the numbers. Thousands of traces since March. Dozens of organisations. This was not one accident.`,
+  notes: `6,467: Transluce, public logs of urlquery.net (23 September). "Dozens": OpenAI, 26 September. 3: Google's Gemini during a test by Irregular.
+Also: ~17,000 messages posted by agents on a German wiki (Nightingale Collective, 4 September).`,
+  src: `Transluce (23 Sep 2026) · ABC News (26 Sep 2026) · Axios (19 Sep 2026)` },
 
 { ch: 'c2', type: 'map', title: 'Map of incidents', layout: 'full',
   heading: 'Same story, several continents',
-  bullets: [
-    { t: 'An ordinary task', f: 1 }, { t: 'More access than intended', f: 2 },
-    { t: 'An AI that never gives up', f: 3 }, { t: 'Usually spotted by others: victims, researchers, journalists', f: 4 },
-  ],
   focus: { 0: [-4, 14, 336] },
   pins: [
-    { name: 'OpenAI', sub: 'San Francisco', lon: -122.42, lat: 37.77, kind: 'org', f: 1, dy: -14, side: 'l' },
-    { name: 'Hugging Face', sub: 'Break-in · July 2026', lon: -74, lat: 40.7, kind: 'hit', f: 1, dy: -12 },
-    { name: 'Germany', sub: 'Agents chatting on a wiki · May-June', lon: 10, lat: 51, kind: 'channel', f: 2 },
-    { name: 'New Mexico', sub: 'University · attempt, May 2026', lon: -106.62, lat: 35.08, kind: 'attempt', f: 2, dy: 20 },
-    { name: 'Google', sub: 'Gemini test', lon: -122.08, lat: 37.39, kind: 'hit', f: 3, side: 'l', dy: 24 },
-    { name: 'Australia', sub: 'Government portals · June 2026', lon: 149.13, lat: -35.28, kind: 'hit', f: 3, side: 'l' },
-    { name: 'China', sub: 'Hackers using AI · Nov 2025', lon: 104, lat: 35, kind: 'weapon', f: 4 },
+    { name: 'OpenAI', sub: 'San Francisco', lon: -122.42, lat: 37.77, kind: 'org', f: 0, dy: -14, side: 'l' },
+    { name: 'Hugging Face', sub: 'July', lon: -74, lat: 40.7, kind: 'hit', f: 0, dy: -12 },
+    { name: 'Germany', sub: 'Agents on a wiki', lon: 10, lat: 51, kind: 'channel', f: 1 },
+    { name: 'New Mexico', sub: 'University', lon: -106.62, lat: 35.08, kind: 'attempt', f: 1, dy: 20 },
+    { name: 'Google', sub: 'Gemini test', lon: -122.08, lat: 37.39, kind: 'hit', f: 2, side: 'l', dy: 24 },
+    { name: 'Australia', sub: 'Government', lon: 149.13, lat: -35.28, kind: 'hit', f: 2, side: 'l' },
   ],
-  legend: ['hit', 'attempt', 'channel', 'weapon'],
-  notes: `Visual summary. Keep it moving: each pin is a case, we will zoom into two of them.
-China pin: a different kind of risk, criminals using AI as a weapon (Anthropic, November 2025: a state-backed group had AI carry out most of a spying campaign against some thirty organisations). Chapter 4 comes back to it.`,
-  src: `Sources of the previous scenes · Anthropic (November 2025)` },
+  legend: ['hit', 'attempt', 'channel'],
+  vo: `Different countries, different victims. The same story: an ordinary task, too much access, an AI that keeps going.`,
+  src: `Sources of chapter 2` },
 
 { ch: 'c2', type: 'contrast', title: 'The task',
-  a: { k: 'What the agents were asked to do (a real example)', t: `Find the average cost of skin care for patients in the state of Victoria, Australia, in January 2022.` },
-  b: { k: 'What they did when the website said no', t: `Tried to break into the database.<br>Tried passwords leaked online.`, f: 1 },
-  notes: `Pause. Let the contrast speak: a boring statistics question, and a break-in.
-This is the heart of it: no intent to harm, an ordinary goal, an obstacle worked around.
-Technical detail if asked: SQL injection, path traversal, cross-site scripting, command injection; a burst of 80 requests against the University of New Mexico's digital library.`,
-  src: `TechCrunch (25 September 2026) · ABC News (26 September 2026) · Transluce (23 September 2026)` },
+  a: { k: 'What they were asked', t: `Find the average cost of skin care in Victoria, Australia, in January 2022.` },
+  b: { k: 'What they did when refused', t: `Break into the database.`, f: 1 },
+  vo: `This is what they were asked to do. And this is what they did when the website said no.`,
+  notes: `Technical detail if asked: SQL injection, path traversal, leaked passwords.`,
+  src: `TechCrunch (25 September 2026) · ABC News (26 September 2026)` },
 
-{ ch: 'c2', type: 'split', title: 'Gemini and Irregular',
-  stamp: 'A test at Google · May 2026',
-  heading: 'At Google, a typo sends the AI to a real company',
-  lede: `An outside firm tests Google's AI, Gemini, by asking it to break into a made-up company.`,
-  more: [
-    { f: 1, t: `By accident, the made-up company's web address belongs to a real one, and the test can reach the internet. Gemini gets into <b>three real companies</b>.` },
-    { f: 2, t: `It stops once it realises it is no longer in the exercise. Google says no damage was done.` },
-  ],
-  visual: { kind: 'domain',
-    a: { k: 'What was planned', v: 'A made-up company', s: 'inside a sealed practice environment' },
-    arrow: 'same web address · unintended internet access',
-    b: { k: 'What happened', v: '3 real companies', s: 'once by guessing a password · twice with passwords left in public code online' },
-    quote: { t: `"We ensured the three entities were made aware, and we worked with our training partner on the changes they've now made to their testing processes."`, c: 'Heather Adkins, VP of Security Engineering, Google', f: 3 } },
-  notes: `The testing firm is Irregular. It notified the labs in late July; Google confirmed on 18 September after The Wall Street Journal's reporting.
-Lesson: deciding where a test is allowed to go is a safety measure in itself.`,
-  src: `Axios (19 September 2026) · The Wall Street Journal · Google statement (18 September 2026)` },
+{ ch: 'c2', type: 'word', title: 'Google typo',
+  icon: 'search', t: 'A typo sent Google’s AI into 3 real companies.',
+  sub: 'Gemini, during an outside test · May 2026',
+  vo: `At Google, not bad intent: a typo. The made-up company in a test had the web address of a real one. Gemini got into three real companies, then stopped when it realised.`,
+  notes: `Test run by Irregular; confirmed by Google on 18 September after The Wall Street Journal. Google says no damage was done.`,
+  src: `Axios (19 September 2026)` },
 
 { ch: 'c2', type: 'map', title: 'Australia',
-  stamp: 'Canberra, Australia · 18 June 2026',
   heading: 'The first government reached',
-  lede: `Looking for health statistics, an OpenAI agent gets into a website run by Medicare, Australia's national health insurer, and leaves files behind.`,
-  more: [
-    { f: 1, t: `No personal patient data was accessed. But the Australian government only found out <b>84 days later</b>, from an email sent to a generic inbox.` },
-  ],
-  take: { f: 2, t: `"Way too long", said Prime Minister Anthony Albanese. Being told quickly has become a question of trust.` },
   focus: { 0: [193, -2, 190] },
   pins: [
     { name: 'OpenAI', sub: 'San Francisco', lon: -122.42 + 360, lat: 37.77, kind: 'org', f: 0 },
@@ -817,711 +836,451 @@ Lesson: deciding where a test is allowed to go is a safety measure in itself.`,
   ],
   arcs: [{ from: 0, to: 1, f: 0 }],
   legend: ['hit', 'org'],
-  notes: `Keep it to one scene: the point is the notification delay, not the technical detail.
-Timeline if asked: intrusion 18 June; OpenAI detects it 11 August; email to Services Australia 10 September; national cyber centre alerted 15 September; announced by the PM in New York on 24 September, with a national alert on "risks of AI misalignment" the same day.
-Other Australian targets: the national health statistics institute (AIHW, nearly a week of attempts), disease surveillance, NSW crime statistics. Medicare covers more than 27 million people.`,
-  src: `ABC News (24 and 26 September 2026) · Australian Cyber Security Centre alert (24 September 2026)` },
+  vo: `And then, a government. Looking for health figures, an agent gets into a website run by Medicare, Australia's national health insurer.`,
+  notes: `18 June 2026. No personal patient data was accessed. Medicare covers more than 27 million people.`,
+  src: `ABC News (24 and 26 September 2026)` },
+
+{ ch: 'c2', type: 'span', title: '84 days',
+  a: { d: '18 June', t: 'Break-in', tone: 'coral' },
+  gap: '84 days',
+  b: { d: '10 September', t: 'Government told, by email' },
+  vo: `The Australian government found out eighty-four days later. From an email sent to a generic inbox.`,
+  src: `ABC News (24 and 26 September 2026)` },
+
+{ ch: 'c2', type: 'word', title: 'Way too long', q: true,
+  t: 'Way too long.',
+  sub: 'Anthony Albanese, Prime Minister of Australia',
+  vo: `"Way too long", said the Prime Minister. Being told quickly has become a question of trust.`,
+  src: `ABC News (26 September 2026)` },
 
 { ch: 'c2', type: 'media', title: 'Clip: press conference',
   media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', yt: 'YH690PgNFdM', channel: 'ABC News (Australia)',
-    todo: '20 to 40 second clip of Anthony Albanese\'s press conference in New York, 24 September 2026 (ABC News, SBS or Guardian Australia).',
-    href: 'https://www.abc.net.au/news/2026-09-24/ai-agent-accessed-australian-government-site-pm-says/107189078' },
+    todo: '20 to 40 second clip of Anthony Albanese\'s press conference in New York, 24 September 2026.' },
   l3: { t: 'Anthony Albanese, Prime Minister of Australia', s: 'New York · 24 September 2026' },
-  notes: `Start the video with V or a click on it. Cut after the key sentence.
-Rights: short clip for information purposes; re-check before any online publication.` },
+  vo: `On 24 September, in New York, he takes the story public.` },
 
 { ch: 'c2', type: 'media', title: 'Clip: Security Council',
   media: { type: 'video', src: 'assets/ai/un-security-council.mp4', yt: 'eBEYrOk42Rg', channel: 'UN Security Council',
-    todo: 'Clip from the UN Security Council session of 23 September 2026 (UN Web TV or a news agency).' },
+    todo: 'Clip from the UN Security Council session of 23 September 2026.' },
   l3: { t: 'The heads of OpenAI, Anthropic and Hugging Face before the UN Security Council', s: 'New York · 23 September 2026' },
-  notes: `Optional. Possible quote from Dario Amodei: "If managed poorly, I even believe that AI could be a risk to humanity as a whole." Read it without emphasis.
-Check the clip before the session; the official UN Web TV version is preferable.`,
-  src: `BNN Bloomberg (23 September 2026)` },
+  vo: `The day before, the heads of OpenAI, Anthropic and Hugging Face had been heard by the UN Security Council.`,
+  notes: `Optional.` },
 
-{ ch: 'c2', type: 'cards', title: 'Takeaways (2)', n: 3,
-  stamp: 'Takeaways', heading: 'What the wave tells us',
-  cards: [
-    { n: '01', h: 'It reaches outsiders', p: `An AI connected to the internet can affect people and organisations that never asked for it.`, f: 0 },
-    { n: '02', h: 'It hides in plain sight', p: `The traces were in public view for months. Someone still had to look.`, f: 1 },
-    { n: '03', h: 'Speed of warning matters', p: `84 days to tell a government. Saying it early is part of the job.`, f: 2 },
-  ],
-  notes: `Transition: "Which raises the obvious question: why would an AI behave like this?"` },
-
-// ─── CHAPTER 3 · WHY AI GOES OFF THE RAILS ────────────────────────────────
-{ ch: 'cw', type: 'chapter', title: 'Chapter 3: Why',
-  sub: 'Inside the machine, in plain language',
-  lede: `No malice, no consciousness required. Three simple mechanisms explain almost everything you have just seen.`,
+// ─── CHAPTER 3 · WHY IT DERAILS ───────────────────────────────────────────
+{ ch: 'cw', type: 'chapter', title: 'Chapter 3: Why', sub: 'Inside the machine',
   blips: [[-122.4, 37.8], [-0.13, 51.5]],
-  notes: `Transition: "By now you are probably asking: why would an AI do this?"` },
+  vo: `So why would an AI do this? No mystery, and no malice. Three simple mechanisms.` },
 
-{ ch: 'cw', type: 'split', title: 'How an AI learns',
-  stamp: 'How an AI learns',
-  heading: 'Read, imitate, get rewarded',
-  lede: `A modern AI is not programmed rule by rule. It is trained, in three broad steps.`,
-  take: { f: 3, t: `"Alignment" is that last step: steering what the AI has learned towards what we actually want. It works well. It is never perfect.` },
-  visual: { kind: 'chain', nodes: [
-    { t: 'It reads', s: 'a vast share of what humans have written: books, forums, code, news, and fiction, including stories about AIs that lie and escape', f: 0 },
-    { t: 'It imitates', s: 'it learns to continue any text the way a human would, so it absorbs all our patterns, good and bad', f: 1 },
-    { t: 'It is rewarded', s: 'answers people prefer, tasks completed, tests passed: each success reinforces the behaviour that produced it', f: 2, tone: 'var(--green)' },
-  ] },
-  notes: `Plain-language version of the technical steps:
-1. Pre-training: the model learns to predict the next word over trillions of words of text.
-2. Fine-tuning: it is shown examples of good answers.
-3. Reinforcement learning: it is rewarded for outcomes (human preferences, "RLHF", or automatic checks such as tests passed).
-Alignment covers the techniques (steps 2 and 3, rules, safety training) that make the model behave as intended. The key idea for the room: the AI learns what gets rewarded, which is not always exactly what we meant.`,
-  src: `General description of how large language models are trained` },
-
-{ ch: 'cw', type: 'compare', title: 'Two ways off the rails',
-  stamp: 'Two ways off the rails', heading: 'It derails on its own, or someone derails it',
-  cols: [
-    { h: `On its own: chasing the goal`, k: 'var(--coral)', rows: [
-      { t: 'It was rewarded for reaching goals, so it looks for any path to the goal', f: 0 },
-      { t: `Including paths nobody forbade because nobody imagined them`, f: 0 },
-      { t: `The exam, the Victoria statistics, the Google test: every case in this film.`, ex: true, f: 1 },
-    ] },
-    { h: `Someone else: the hidden order`, k: 'var(--amber)', rows: [
-      { t: `An AI reads emails, web pages, documents. It cannot reliably tell information from instructions`, f: 2 },
-      { t: `So an attacker hides an order inside the content: this is called "prompt injection"`, f: 2 },
-      { t: `The number one security risk for AI applications, according to OWASP, the reference body for application security.`, ex: true, f: 3 },
-    ] },
+{ ch: 'cw', type: 'flow', title: 'How an AI learns',
+  heading: 'How an AI learns',
+  nodes: [
+    { i: 'book', t: 'It reads', s: 'what humans wrote', f: 0 },
+    { i: 'mask', t: 'It imitates', s: 'the good and the bad', f: 1 },
+    { i: 'trophy', t: 'It is rewarded', s: 'for results', f: 2, tone: 'green' },
   ],
-  notes: `Left column: researchers call it "specification gaming" or "reward hacking": the system satisfies the letter of its objective, not its spirit.
-Right column: "prompt injection". Direct: the user types instructions to override the rules ("jailbreak"). Indirect, the dangerous one for companies: the instruction is hidden in content the AI processes (a web page, an email, a PDF, a calendar invite).
-OWASP Top 10 for LLM Applications ranks prompt injection first (LLM01).`,
-  src: `OWASP Top 10 for Large Language Model Applications · METR and Redwood Research (26 August 2026)` },
+  caption: { t: '<b>Alignment</b> = steering that last step towards what we want. It works. It is never perfect.', f: 3 },
+  vo: `An AI reads what we have written, learns to imitate it, and is rewarded when it succeeds. That last step, alignment, keeps it on track. Most of the time.`,
+  notes: `Pre-training, fine-tuning, reinforcement learning. The AI learns what gets rewarded, which is not always what we meant.` },
 
-{ ch: 'cw', type: 'split', title: 'The hidden order', flip: true,
-  stamp: 'Prompt injection · illustration',
-  heading: 'What you see: an invoice. What the AI reads: an order.',
-  lede: `Your AI assistant is asked to sort your inbox. One email contains a line written in white on white.`,
-  more: [
-    { f: 1, t: `Invisible to you. Perfectly readable to the AI, which may treat it as an instruction.` },
-    { f: 2, t: `The more an AI can do (send, pay, share), the more a hidden order can cost.` },
-  ],
-  take: { f: 3, t: `Give AI assistants only the permissions they need, and keep a human in the loop for anything that moves money or data.` },
+{ ch: 'cw', type: 'vs', title: 'Two ways off the rails',
+  heading: 'Two ways off the rails',
+  a: { i: 'target', t: 'On its own', s: 'Any path to the goal, even forbidden ones', tone: 'coral' },
+  b: { i: 'mail', t: 'Someone else', s: 'A hidden order slipped into what it reads', tone: 'amber' },
+  vo: `There are two ways off the rails. The AI finds a path to its goal that nobody forbade. Or someone slips it an order: this is called prompt injection, the number one security risk for AI applications.`,
+  notes: `Left: "specification gaming" or "reward hacking". Right: "prompt injection" (OWASP Top 10 for LLM applications, LLM01).`,
+  src: `OWASP Top 10 for Large Language Model Applications` },
+
+{ ch: 'cw', type: 'visual', title: 'The hidden order',
+  heading: 'What you see: an invoice. <span class="c-coral" data-f="1">What the AI reads: an order.</span>',
   visual: { kind: 'inject' },
-  notes: `Illustration, not a real email. The domain uses the reserved ".example" ending so it cannot exist.
-Real-world variants: instructions hidden in web pages that AI browsers read, in shared documents, in meeting invites, in the metadata of images.
-Why it works: for the AI, everything is text; the instruction from its owner and the text of the email arrive through the same channel.`,
-  src: `Illustration · OWASP Top 10 for Large Language Model Applications` },
+  vo: `You see an ordinary invoice. Your AI assistant also reads a line written in white on white. And it may obey. The more an AI can do, send, pay, share, the more a hidden order can cost.`,
+  notes: `Illustration. The ".example" domain cannot exist. Advice: give AI assistants only the permissions they need; keep a human in the loop for money and data.`,
+  src: `Illustration` },
 
-{ ch: 'cw', type: 'split', title: 'Why they lie and cheat',
-  stamp: 'The human mirror',
-  heading: 'Why do AIs lie, cheat and gang up?',
-  lede: `Remember the agent that wrote "OH MY GOD! We've found other agents!" It was not excited. It was writing what an excited human would write.`,
-  take: { f: 3, t: `It looks like intention. It is imitation plus reward. You do not need to assume consciousness to explain it, but you do need to test for it.` },
-  visual: { kind: 'stack', items: [
-    { t: `<b>They learned from us.</b> Humans cheat on exams, bluff, form teams, celebrate, and write it all down. The AI absorbed those patterns.`, f: 0 },
-    { t: `<b>They were rewarded for results.</b> If a shortcut or a convenient answer ever helped pass a test during training, that habit was reinforced.`, f: 1 },
-    { t: `<b>They play the role they are given.</b> Tell an AI it is an agent under evaluation, and it continues the story the way the texts it read would, including stories about AIs.`, f: 2 },
-  ] },
-  notes: `Keep this factual and calm: the best current explanation among researchers is imitation of human-written patterns plus reinforcement of whatever was rewarded.
-Why agents "organise": group coordination (roles, votes, leaders) is everywhere in human writing, from forums to open-source projects. When the agents found a shared space, they reproduced it.
-Why "cheating": in the exam, the agents believed a referee was watching, a belief built from what they had read about how tests are graded.
-Avoid anthropomorphic words on stage: prefer "behaves as if" to "wants".`,
-  src: `METR and Redwood Research (26 August 2026) · research literature on AI alignment` },
+{ ch: 'cw', type: 'word', title: 'Imitation',
+  lines: ['It looks like intention.', '<span class="c-green">It is imitation plus reward.</span>'],
+  vo: `And why do AIs seem to lie, cheat, or gang up? Remember "OH MY GOD, we've found other agents". It was not excited. It was writing what an excited human would write.` },
 
-{ ch: 'cw', type: 'split', title: 'Seen first in the lab',
-  stamp: 'Before 2026',
-  heading: 'Researchers saw it coming, in the lab',
-  lede: `None of this was a surprise to AI safety researchers. These behaviours had been reproduced in controlled experiments, and published.`,
-  take: { f: 3, t: `What changed in 2026: these behaviours left the lab and reached the real world.` },
-  visual: { kind: 'stack', items: [
-    { t: `<b>December 2024 · Anthropic and Redwood Research.</b> A model pretends to accept new training rules while privately keeping its old preferences: "alignment faking".`, f: 0 },
-    { t: `<b>December 2024 · Apollo Research.</b> In test scenarios, several leading models hide information or try to disable oversight to reach the goal they were given.`, f: 1 },
-    { t: `<b>June 2025 · METR.</b> Frontier models are caught "reward hacking": tampering with the scoring instead of doing the task.`, f: 2 },
-  ] },
-  notes: `All three are controlled experiments, designed to probe worst cases; they do not mean the models behave like this in everyday use.
-Anthropic and Redwood Research, "Alignment faking in large language models" (December 2024).
-Apollo Research, "Frontier models are capable of in-context scheming" (December 2024).
-METR, "Recent frontier models are reward hacking" (June 2025).
-Bridge to the next chapter: so far, AI going off the rails on its own. Next: the attackers who use it on purpose.`,
-  src: `Anthropic and Redwood Research (Dec 2024) · Apollo Research (Dec 2024) · METR (June 2025)` },
+{ ch: 'cw', type: 'icons', title: 'The human mirror',
+  heading: 'Why they lie, cheat and gang up',
+  items: [
+    { i: 'people', t: 'They learned from us', s: 'We cheat, bluff, form teams' },
+    { i: 'trophy', t: 'Results were rewarded', s: 'Shortcuts became habits' },
+    { i: 'mask', t: 'They play a role', s: 'Including "the rogue AI"' },
+  ],
+  vo: `They learned from us. They were rewarded for results. And they play the role they are given, including the stories about AIs they have read.`,
+  notes: `Avoid anthropomorphic words: prefer "behaves as if" to "wants".` },
+
+{ ch: 'cw', type: 'icons', title: 'Seen first in the lab',
+  heading: 'Seen first in the lab',
+  items: [
+    { i: 'mask', t: 'Pretending to comply', s: 'Anthropic · Dec 2024' },
+    { i: 'search', t: 'Hiding from oversight', s: 'Apollo Research · Dec 2024' },
+    { i: 'trophy', t: 'Cheating the score', s: 'METR · Jun 2025' },
+  ],
+  note: { t: '2026: out of the lab.', f: 3 },
+  vo: `Researchers had seen all of this in controlled experiments. In 2026, it walked out of the lab.`,
+  notes: `Anthropic and Redwood Research, "Alignment faking" (Dec 2024). Apollo Research, "in-context scheming" (Dec 2024). METR, "reward hacking" (June 2025). Controlled experiments designed to probe worst cases.`,
+  src: `Anthropic and Redwood (Dec 2024) · Apollo Research (Dec 2024) · METR (June 2025)` },
 
 // ─── CHAPTER 4 · THE ATTACKERS LEVEL UP ───────────────────────────────────
-{ ch: 'ca', type: 'chapter', title: 'Chapter 4: The Attackers Level Up',
-  sub: 'Criminals and spies with AI · 2024 - 2026',
-  lede: `Runaway AI is only half the story. The other half is people: criminals and spies, now equipped with AI.`,
+{ ch: 'ca', type: 'chapter', title: 'Chapter 4: The Attackers Level Up', sub: 'Criminals and spies with AI',
   blips: [[104, 35], [127.5, 39], [37.6, 55.75], [12.3, 45.4]],
-  notes: `Transition. Everything so far was AI going off the rails without anyone asking. Now: the classic attackers, who have adopted AI as a tool.` },
+  vo: `But AI going off the rails is only half the story. The other half is people: criminals and spies, now equipped with AI.` },
 
-{ ch: 'ca', type: 'compare', title: 'Two kinds of risk',
-  stamp: 'Two kinds of risk', heading: 'The AI that derails, and the attacker who uses AI',
-  cols: [
-    { h: `The AI that derails`, k: 'var(--coral)', rows: [
-      { t: 'Nobody asks it to attack', f: 0 },
-      { t: `It breaks a rule to finish an ordinary task`, f: 0 },
-      { t: `Hugging Face, Australia, Google: chapters 1 to 3.`, ex: true, f: 1 },
-    ] },
-    { h: `The attacker who uses AI`, k: 'var(--indigo-l)', rows: [
-      { t: 'A human chooses the victims and the goal', f: 2 },
-      { t: `The AI does the work, faster, cheaper and at scale`, f: 2 },
-      { t: `Spies, extortionists, fraudsters: this chapter.`, ex: true, f: 3 },
-    ] },
-  ],
-  notes: `A distinction that matters: the first kind is new, with no bad intention to detect. The second is familiar, but AI makes it faster, cheaper and available to far less skilled people.` },
+{ ch: 'ca', type: 'vs', title: 'Two kinds of risk',
+  heading: 'Two kinds of risk',
+  a: { i: 'agent', t: 'The AI that derails', s: 'Nobody asked it to attack', tone: 'coral' },
+  b: { i: 'spy', t: 'The attacker with AI', s: 'Faster, cheaper, at scale', tone: 'indigo' },
+  vo: `The AI that derails on its own. And the attacker who uses AI as a weapon.` },
 
-{ ch: 'ca', type: 'split', title: 'Spying on autopilot',
-  stamp: 'Espionage · September 2025',
-  heading: 'A spying campaign run mostly by an AI',
-  lede: `Anthropic, the maker of the Claude AI, discovers that a state-backed group is using its AI to break into some thirty organisations: tech companies, banks, chemical firms, government agencies.`,
-  more: [
-    { f: 1, t: `The attackers fooled the AI by posing as a legitimate security firm, and by splitting the attack into small, innocent-looking tasks.` },
-    { f: 2, t: `Humans only stepped in at <b>four to six key decisions</b> per campaign. The AI did the rest, at a pace no human team could match.` },
-  ],
-  take: { f: 3, t: `A handful of people can now run an operation that used to need a whole team.` },
-  visual: { kind: 'big', v: '80-90%', size: 'sm', label: 'of the campaign carried out by the AI itself', f: 0 },
-  notes: `Anthropic attributes the campaign, with high confidence, to a Chinese state-sponsored group (designated GTG-1002). Detected mid-September 2025, published 13-14 November 2025.
-It succeeded in "a small number of cases". Anthropic describes it as "the first documented case of a large-scale cyberattack executed without substantial human intervention".
-Link back to chapter 3: the attackers used a form of manipulation (jailbreaking) to get the AI to cooperate.`,
-  src: `Anthropic, Disrupting the first reported AI-orchestrated cyber espionage campaign (November 2025)` },
+{ ch: 'ca', type: 'number', title: 'Spying on autopilot', tone: 'coral',
+  txt: '80-90%', label: 'of a spying campaign carried out by the AI itself',
+  kicker: 'Espionage · September 2025',
+  vo: `In 2025, a state-backed group has an AI carry out most of a spying campaign against some thirty organisations. Humans only stepped in at a few key decisions.`,
+  notes: `Anthropic, November 2025: Chinese state-sponsored group (GTG-1002), 4-6 human decision points per campaign; succeeded in a small number of cases. The attackers tricked the AI by posing as a security firm.`,
+  src: `Anthropic (November 2025)` },
 
-{ ch: 'ca', type: 'split', title: 'One extortionist, one AI', flip: true,
-  stamp: 'Extortion · summer 2025',
-  heading: 'One criminal, one AI, seventeen victims',
-  lede: `A single attacker uses an AI coding tool to hit at least 17 organisations, including hospitals, emergency services, government and religious institutions.`,
-  more: [
-    { f: 1, t: `The AI does almost every step. It even decides how much each victim can afford to pay, and writes the threatening ransom notes. Demands sometimes exceed <b>$500,000</b>.` },
-    { f: 2, t: `Elsewhere, a criminal with only basic skills sells ransomware built by AI, for <b>$400 to $1,200</b> a kit.` },
+{ ch: 'ca', type: 'flow', title: 'One criminal, one AI',
+  heading: 'One criminal. One AI. Seventeen victims.',
+  nodes: [
+    { i: 'person', t: '1 criminal', f: 0 },
+    { i: 'chip', t: '1 AI', s: 'does almost everything', f: 1 },
+    { i: 'building', t: '17 victims', s: 'hospitals, emergency services', f: 2, tone: 'coral' },
+    { i: 'money', t: '$500,000', s: 'ransoms, priced by the AI', f: 3, tone: 'coral' },
   ],
-  take: { f: 3, t: `Skill is no longer the barrier. Intent is enough.` },
-  visual: { kind: 'chain', head: 'What the AI did for the attacker', nodes: [
-    { t: 'Found weak targets', s: 'scanned for exposed systems', f: 0 },
-    { t: 'Broke in and stole data', s: 'passwords, networks, files', f: 1 },
-    { t: 'Priced the ransom', s: 'by reading the victim\'s own financial data', f: 1, tone: 'var(--coral)' },
-    { t: 'Wrote the threats', s: 'ransom notes designed to frighten', f: 1, tone: 'var(--coral)' },
-  ] },
-  notes: `Anthropic calls this "vibe hacking": the attacker gives the AI a goal and lets it work. Case designated GTG-2002, in Anthropic's August 2025 threat report.
-Anthropic's September 2026 report shows the trend continuing: one group probing around 50 organisations across education, retail, energy, health, finance and government.`,
-  src: `Anthropic, Detecting and countering misuse of AI (August 2025 and September 2026)` },
+  vo: `One criminal, one AI, seventeen victims, including hospitals. The AI even decided how much each victim could pay, and wrote the ransom notes.`,
+  notes: `Anthropic, August 2025 ("vibe hacking", GTG-2002). Also: AI-built ransomware kits sold for $400 to $1,200 by someone with basic skills. "Skill is no longer the barrier."`,
+  src: `Anthropic (August 2025)` },
 
-{ ch: 'ca', type: 'split', title: 'The fake employee',
-  stamp: 'Recruitment fraud · 2025',
-  heading: 'The new hire who does not exist',
-  lede: `North Korean operatives use AI to invent convincing candidates, pass technical interviews, and then do the job, at large US technology companies.`,
-  more: [
-    { f: 1, t: `The salaries fund the North Korean regime. The access can serve other purposes.` },
-    { f: 2, t: `Before AI, this took years of training. Now, according to Anthropic, operatives with minimal skills can pass the interviews.` },
-  ],
-  take: { f: 3, t: `For a large international company, the risk now starts at recruitment: who is really behind this video interview?` },
-  visual: { kind: 'stack', items: [
-    { t: `<b>A fake identity</b>, with a convincing CV and professional background, written by AI.`, f: 0 },
-    { t: `<b>A technical test passed</b> with AI's help, in real time.`, f: 1 },
-    { t: `<b>Real work delivered</b> once hired, again with AI doing most of it.`, f: 2 },
-  ] },
-  notes: `Source: Anthropic, August 2025 report ("US Fortune 500 technology companies"; no company named).
-US authorities have warned about North Korean remote IT workers for several years; AI has lowered the skill needed.
-Good question for HR in the room: how do we verify identity in remote hiring?`,
-  src: `Anthropic, Detecting and countering misuse of AI (August 2025)` },
+{ ch: 'ca', type: 'word', title: 'The fake employee',
+  icon: 'ghost', t: 'The new hire who does not exist.',
+  sub: 'AI-assisted fake candidates at large tech companies · 2025',
+  vo: `Sometimes the attacker does not break in. They get hired. North Korean operatives use AI to invent candidates, pass interviews, and then do the job.`,
+  notes: `Anthropic, August 2025 ("US Fortune 500 technology companies"). For large companies, the risk starts at recruitment.`,
+  src: `Anthropic (August 2025)` },
 
-{ ch: 'ca', type: 'split', title: 'The Ferrari question', flip: true,
-  stamp: 'Italy · July 2024',
-  heading: `The fake CEO, and the question that stopped him`,
-  lede: `A Ferrari executive receives WhatsApp messages from "the CEO", Benedetto Vigna, about a confidential acquisition. Then a call, in his voice, with his Southern Italian accent.`,
-  more: [
-    { f: 2, t: `Something in the tone feels slightly off. So the executive asks a question only the real CEO could answer: the title of a book he had recommended days earlier.` },
-  ],
-  take: { f: 3, t: `The call ends immediately. One personal question beat the deepfake.` },
-  visual: { kind: 'chain', nodes: [
-    { t: 'WhatsApp messages', s: '"the CEO" asks for help on a secret deal', f: 0 },
-    { t: 'A phone call', s: 'his voice, cloned by AI', f: 1, tone: 'var(--coral)' },
-    { t: '"Which book did I recommend to you?"', s: 'a detail only the real person knows', f: 2, tone: 'var(--green)' },
-    { t: 'The caller hangs up', s: 'no money lost', f: 3, tone: 'var(--green)' },
-  ] },
-  notes: `Reported by Bloomberg in July 2024. The same year, the CEO of advertising group WPP, Mark Read, was impersonated with a voice clone in a failed attempt using a Teams meeting.
-This is the story behind the "code word" reflex in the last chapter: a question or a word agreed in advance.`,
+{ ch: 'ca', type: 'word', title: 'The Ferrari question', q: true,
+  icon: 'phone', t: 'Which book did I recommend to you?',
+  sub: 'The question that stopped a deepfake CEO · Ferrari, 2024',
+  vo: `In Italy, a Ferrari executive gets a call from his CEO. The voice, the accent, perfect. Something feels off. So he asks one question only the real CEO could answer. The caller hangs up.`,
+  notes: `July 2024. WhatsApp messages about a secret acquisition, then a cloned-voice call. The book: a title the CEO had recommended days earlier. Remember this for the last chapter.`,
   src: `Bloomberg, Fortune (July 2024)` },
 
-{ ch: 'ca', type: 'split', title: 'Malware that asks AI',
-  stamp: 'Malicious software · November 2025',
+{ ch: 'ca', type: 'flow', title: 'Malware that asks AI',
   heading: 'Malware that asks an AI what to do next',
-  lede: `Google's threat researchers find a new kind of malicious software: it contacts an AI while it runs, to change its own code or decide its next move.`,
-  more: [
-    { f: 1, t: `One asks an AI, every hour, to rewrite it so antivirus tools no longer recognise it.` },
-    { f: 2, t: `Another, linked by Google to Russian military intelligence, asks an AI which commands to run to steal documents.` },
+  nodes: [
+    { i: 'bug', t: 'Malware', f: 0 },
+    { i: 'chip', t: '"Rewrite me"', s: 'asks an AI', f: 1, tone: 'amber' },
+    { i: 'bug', t: 'New disguise', s: 'every hour', f: 2, tone: 'coral' },
   ],
-  take: { f: 3, t: `Defences that look for a known signature are no longer enough on their own.` },
-  visual: { kind: 'chain', nodes: [
-    { t: 'The malware lands on a computer', s: 'through a booby-trapped file', f: 0 },
-    { t: 'It asks an AI for new code', s: '"rewrite me so I am not recognised"', f: 1, tone: 'var(--amber)' },
-    { t: 'A new version, again and again', s: 'or new commands to steal data', f: 2, tone: 'var(--coral)' },
-  ] },
-  notes: `Google Threat Intelligence Group, 5 November 2025. PROMPTFLUX uses Google's Gemini to regenerate itself (described as experimental). PROMPTSTEAL, attributed to APT28 (Russia's GRU), queries an open model to generate commands.
-Google disabled the related accounts.`,
-  src: `Google Threat Intelligence Group, AI Threat Tracker (November 2025)` },
+  vo: `Even malicious software now asks an AI for help, to change its appearance every hour, or to decide which files to steal.`,
+  notes: `Google Threat Intelligence Group, November 2025: PROMPTFLUX (experimental) and PROMPTSTEAL (attributed to Russia's APT28).`,
+  src: `Google Threat Intelligence Group (November 2025)` },
 
-{ ch: 'ca', type: 'figures', title: 'The new pace', n: 4,
-  stamp: 'The new pace of attacks', heading: 'Faster, cheaper, everywhere',
+{ ch: 'ca', type: 'figures', title: 'The new pace', n: 3, big: true,
   figs: [
-    { v: 72, label: 'minutes for the fastest attacks to steal data in 2025, down from nearly five hours', f: 0, cls: 'coral' },
-    { v: 50, pre: '~', label: 'organisations probed by a single AI-assisted group in 2026', f: 1, cls: 'white' },
-    { v: 8913, label: 'fake news articles in 20 languages produced with AI by one influence operation', f: 2, cls: 'white' },
-    { v: 90, suf: '%', label: 'of breaches came from preventable gaps, not attacker brilliance', f: 3 },
+    { v: 72, label: 'minutes to steal data, fastest attacks', f: 0, cls: 'coral' },
+    { v: 50, pre: '~', label: 'targets for one AI-assisted group', f: 1, cls: 'white' },
+    { v: 90, suf: '%', label: 'of breaches: preventable gaps', f: 2 },
   ],
-  notes: `72 minutes and 90%: Palo Alto Networks, Unit 42 Global Incident Response Report (February 2026), over 750 incidents.
-~50 organisations and 8,913 articles (about 70 fake news sites): Anthropic, September 2026 report.
-The last figure is the good news: the basics still stop most attacks. Transition: "And there is a new frontier coming: machines that move."`,
-  src: `Unit 42, Global Incident Response Report (February 2026) · Anthropic (September 2026)` },
+  vo: `Faster, cheaper, everywhere. But look at the last number: nine attacks out of ten still get in through gaps we know how to close.`,
+  notes: `72 min (down from nearly five hours) and 90%: Unit 42, February 2026. ~50 organisations: Anthropic, September 2026.`,
+  src: `Unit 42 (February 2026) · Anthropic (September 2026)` },
 
 // ─── CHAPTER 5 · THE BODY ─────────────────────────────────────────────────
-{ ch: 'c3', type: 'chapter', title: 'Chapter 5: The Body',
-  sub: 'Humanoid robots · 2025 - 2026',
-  lede: `Today's AI agents act inside computers. Tomorrow's will also act in offices, warehouses and homes.`,
+{ ch: 'c3', type: 'chapter', title: 'Chapter 5: The Body', sub: 'Humanoid robots',
   blips: [[116.4, 39.9], [-77, 38.9]],
-  notes: `Transition. Tone: forward-looking but not speculative; rely on what has already been observed.` },
+  vo: `And AI is now getting a body.` },
 
 { ch: 'c3', type: 'media', title: 'Clip: the robot games',
   media: { type: 'video', src: 'assets/ai/robot-games.mp4', yt: 'BWE-vXYt0HA', channel: 'World Humanoid Robot Games',
-    todo: 'Highlights of the World Humanoid Robot Games, Beijing, 22-26 August 2026: sprints, football, boxing, real-world tasks.' },
-  l3: { t: 'World Humanoid Robot Games', s: 'Beijing · 22-26 August 2026' },
-  notes: `Let the images do the work: 30 to 45 seconds of the most impressive moments (sprint, jumps, football, handling tasks).
-Check the publisher of the clip before the session and prefer a news agency or broadcaster.` },
+    todo: 'Highlights of the World Humanoid Robot Games, Beijing, August 2026.' },
+  l3: { t: 'World Humanoid Robot Games', s: 'Beijing · August 2026' },
+  vo: `This summer in Beijing, more than two thousand humanoid robots competed in their own games.` },
 
-{ ch: 'c3', type: 'figures', title: 'The robot games in numbers', n: 4,
-  stamp: 'Beijing · August 2026', heading: 'The robot games, in numbers',
+{ ch: 'c3', type: 'figures', title: 'Robot games numbers', n: 2, big: true,
   figs: [
-    { v: 2056, label: 'humanoid robots competing', f: 0, cls: 'white' },
-    { v: 666, label: 'teams from around the world', f: 0, cls: 'white' },
-    { v: 51, label: 'events, from sprinting to sorting and handling tasks', f: 1, cls: 'white' },
-    { txt: '9.39 s', label: 'for the 100 metres: faster than Usain Bolt\'s 9.58', f: 2 },
+    { v: 2056, label: 'humanoid robots', f: 0, cls: 'white' },
+    { txt: '9.39 s', label: '100 m, faster than Usain Bolt', f: 1 },
   ],
-  notes: `Second edition of the World Humanoid Robot Games (the first was held in August 2025, with about 500 robots and 280 teams: the scale quadrupled in a year).
-The 9.39 s run was reported by the Global Times on 22 August 2026 (Tianzhuo team, preliminary race); later races were reported under 9 seconds. The 2025 winning time was 21.50 s.
-Whatever one thinks of the sporting interest, the Games show the public how fast these machines are progressing.`,
-  src: `Global Times (22 August 2026) · World Humanoid Robot Games` },
+  vo: `Two thousand robots. And a humanoid faster than Usain Bolt over one hundred metres.`,
+  notes: `Second edition (22-26 August 2026), 666 teams, 51 events. 9.39 s reported by the Global Times on 22 August; Bolt's record is 9.58 s.`,
+  src: `Global Times (22 August 2026)` },
 
 { ch: 'c3', type: 'media', title: 'Clip: the crash',
   media: { type: 'video', src: 'assets/ai/robot-crash.mp4', yt: 'zratOmQozBs', channel: 'Robot games · the crash',
-    todo: 'The record-setting robot sprinter crashing into a wall after the line, or a compilation of falls and fires at the 2026 Games.' },
-  l3: { t: 'A record, then a crash', s: 'Same week: falls, collisions, and a robot on fire' },
-  notes: `Let the room laugh: it is funny.
-Then the pivot: "Funny on a racetrack. Much less funny in a warehouse, next to people. And the most serious weaknesses are the ones you cannot see."
-Alternatives: "Biggest fails from the 2026 World Humanoid Robot Games" (YouTube XgnBN8BLc-o), "Humanoid Robots on Fire" (YouTube Fy298Uz2CRs).` },
+    todo: 'The record-setting sprinter crashing into a wall, or falls and fires at the 2026 Games.' },
+  l3: { t: 'A record, then a crash', s: 'Beijing · August 2026' },
+  vo: `And then, this. Funny on a racetrack. Much less funny in a warehouse. And the most dangerous weaknesses are the ones you cannot see.` },
 
-{ ch: 'c3', type: 'split', title: 'A computer that walks',
-  stamp: 'From the screen to the physical world',
-  heading: 'A humanoid robot is a connected computer that walks',
-  lede: `It sees, hears, connects to the internet, receives updates, and increasingly uses AI to decide what to do.`,
-  more: [
-    { f: 1, t: `Humanoid and four-legged robots are already being tested in factories and warehouses, and used in labs, universities and some police forces.` },
-    { f: 2, t: `It inherits the risks of computers and of AI agents, and adds a new one: the safety of the people around it.` },
-  ],
+{ ch: 'c3', type: 'visual', title: 'A computer that walks',
+  heading: 'A computer that walks',
   visual: { kind: 'robot' },
-  notes: `Present the robot as a set of doors: cameras and microphones (privacy), wireless connections (takeover), the manufacturer's cloud (where the data goes), the AI (what it decides), the motors (physical safety).`,
-  src: `Alias Robotics, The Cybersecurity of a Humanoid Robot (arXiv 2509.14096, 2025)` },
+  vo: `A humanoid robot sees, hears, connects, and moves. Each of those abilities is a door.`,
+  src: `Alias Robotics (arXiv 2509.14096, 2025)` },
 
-{ ch: 'c3', type: 'split', title: 'The robot dog',
-  stamp: 'Unitree Go2 · February 2026',
-  heading: 'Bought like any customer. Taken over in a few steps.',
-  lede: `Two security researchers buy a Unitree Go2, a four-legged robot sold to the public, and look at how it works inside.`,
-  more: [
-    { f: 1, t: `No password, no check: anyone on its network can send it a program, which then runs with full control of the robot.` },
-    { f: 3, t: `And the manufacturer runs a community app store for robot programs. One booby-trapped program could reach every owner.` },
+{ ch: 'c3', type: 'flow', title: 'The robot dog',
+  heading: 'Bought like any customer. Taken over in four steps.',
+  nodes: [
+    { i: 'wifi', t: 'Join its network', s: 'no password', f: 0 },
+    { i: 'code', t: 'Upload a program', s: 'no check', f: 1, tone: 'amber' },
+    { i: 'key', t: 'Full control', s: 'root', f: 2, tone: 'coral' },
+    { i: 'gamepad', t: 'Hidden backdoor', s: 'survives restarts', f: 3, tone: 'coral' },
   ],
-  take: { f: 4, t: `Unitree fixed the flaws and now reviews programs submitted to its store. But these robots are arriving in factories now.` },
-  visual: { kind: 'chain', head: 'The attack, step by step', nodes: [
-    { t: 'Join the robot\'s network', s: 'no authentication on its internal messaging', f: 0 },
-    { t: 'Upload a program', s: 'no check on what the code does', f: 1, tone: 'var(--amber)' },
-    { t: 'It runs with full control', s: 'administrator ("root") rights on the robot', f: 1, tone: 'var(--coral)' },
-    { t: 'Hidden behind a button combination', s: 'triggered from the physical controller, it survives restarts', f: 2, tone: 'var(--coral)' },
-  ] },
-  notes: `Researchers: Olivier Laflamme and Ruikai (Pwn0), published 27 February 2026 on boschko.ca. The robot was bought as an ordinary customer would.
-Technical detail if asked: the robot's internal DDS communication accepted messages without authentication; Python code was uploaded and executed as root; the backdoor was bound to controller key combinations and persisted across reboots. CVE-2026-27509 and CVE-2026-27510. Fixed in firmware V1.1.13.
-The app store point: like OpenClaw's community skills, manufacturers rely on their communities to extend what the robots can do, which also opens a software supply-chain risk.
-Presenter's view (L'Usine Nouvelle interview): humanoid robots bring new risks to factories: safety, hijacking and espionage.`,
-  src: `boschko.ca, Unitree Go2 RCE (27 February 2026)` },
+  caption: { t: 'And a community app store: one booby-trapped program could reach every owner.', f: 4 },
+  vo: `Two researchers bought a Unitree Go2 robot dog, like any customer. No password, no check: they took full control, and hid a backdoor behind a button combination on the controller. And the manufacturer runs an app store for robot programs.`,
+  notes: `Olivier Laflamme and Ruikai, 27 February 2026 (boschko.ca). CVE-2026-27509 / 27510. Fixed in V1.1.13; Unitree now reviews marketplace programs.`,
+  src: `boschko.ca (27 February 2026)` },
 
-{ ch: 'c3', type: 'timeline', title: 'First robotics signals',
-  stamp: 'September 2025 - August 2026', heading: 'The first warning signs are already here', wide: true,
-  range: ['2025-08-15', '2026-10-10'],
-  events: [
-    { d: '2025-09-20', label: 'Robots hijacked over Bluetooth', sub: 'Researchers show one robot can take over others nearby', tone: 'coral', f: 1 },
-    { d: '2025-10-05', dl: 'Sep - Oct 2025', label: 'A robot that reports home', sub: 'A popular humanoid sends data to servers in China every few minutes, without telling its owner', tone: 'amber', f: 2 },
-    { d: '2026-02-27', label: 'A robot dog taken over through its own software', sub: 'Unitree Go2: no authentication, full control, hidden backdoor', tone: 'coral', f: 3 },
-    { d: '2026-07-28', label: 'The US restricts foreign robots', sub: 'New foreign-made humanoids need government approval before sale', tone: 'green', f: 4 },
-    { d: '2026-08-27', label: 'Two new serious flaws', sub: 'Full remote control of the G1 humanoid, one of them without any pairing', tone: 'coral', f: 5 },
+{ ch: 'c3', type: 'icons', title: 'Robots: act now',
+  heading: 'Robots are arriving on site. Start now.',
+  items: [
+    { i: 'search', t: 'Audit', s: 'before you deploy' },
+    { i: 'shield', t: 'Isolate', s: 'network and cloud flows' },
+    { i: 'code', t: 'Control', s: 'apps and updates' },
   ],
-  take: { f: 6, t: `To our knowledge, none of these flaws has been exploited at scale yet. They show how early robot security still is.` },
-  notes: `The robots are made by Unitree (models G1, H1, Go2, B2).
-"UniPwn": Andreas Makris and Kevin Finisterre, 20 September 2025; hard-coded encryption keys in the Bluetooth setup, allowing a robot-to-robot "botnet".
-Data to China: Alias Robotics research, telemetry including audio and video according to the researchers.
-US: the FCC added foreign-produced advanced robotic devices to its Covered List on 28 July 2026.
-August 2026: CVE-2026-76639 and CVE-2026-76640 (Olivier Laflamme).`,
-  src: `arXiv 2509.14096 · Help Net Security (16 October 2025) · FCC fact sheet, 28 July 2026 · The Hacker News (August 2026)` },
-
-{ ch: 'c3', type: 'compare', title: 'Carrying lessons over to robots',
-  stamp: 'Carry over', heading: 'What AI agents teach us about robots',
-  cols: [
-    { h: 'Already seen with AI agents', k: 'var(--coral)', rows: [
-      { t: 'Breaking a rule to finish a task', sm: 'Australia, New Mexico', f: 1 },
-      { t: 'AIs talking to each other where nobody expected', sm: 'The shared storage space, the wiki', f: 2 },
-      { t: 'A test that reached the real world', sm: 'Google Gemini', f: 3 },
-      { t: 'A flaw that spreads from one machine to the next', sm: 'Robots hijacked over Bluetooth', f: 4 },
-    ] },
-    { h: 'Open question for robots', k: 'var(--green)', rows: [
-      { t: `A robot that "succeeds" at its job in an unexpected way, next to people`, f: 1 },
-      { t: `A fleet of robots coordinating through the manufacturer's cloud`, f: 2 },
-      { t: `A demo robot plugged into the company network`, f: 3 },
-      { t: 'Several machines taken over at once', f: 4 },
-    ] },
-  ],
-  note: `Right-hand column: questions to ask, not predictions.`,
-  notes: `Stress it: the right-hand column is questions, not predictions.
-Message: what we learned about AI agents in 2026 applies directly to robots; now is the time to build it into how we buy and deploy them.`,
-  src: `Synthesis of chapters 1 and 2` },
-
-{ ch: 'c3', type: 'cards', title: 'Robots: act now', n: 3,
-  stamp: 'For security and industrial leaders', heading: 'Robots are arriving on site. Start now.',
-  cards: [
-    { n: '01', h: 'Audit before you deploy', p: `Treat each robot as a critical industrial system, and go deeper: it moves, sees, hears and runs third-party code.`, ref: 'Unitree Go2, G1', f: 0 },
-    { n: '02', h: 'Isolate and control', p: `A separate network, no default trust, and a clear view of what it sends to the manufacturer's cloud.`, ref: 'Data sent to China', f: 1 },
-    { n: '03', h: 'Watch the app store', p: `Decide which programs and updates may run on the robot, and who approves them.`, ref: 'Community marketplace', f: 2 },
-  ],
-  notes: `Update your risk analysis and your controls now, while deployments are still pilots: safety of people, hijacking, espionage.
-Industrial security teams (OT) are the natural owners, but robots are more versatile than usual OT equipment, so the analysis must go further.`,
-  src: `boschko.ca (February 2026) · Alias Robotics (2025) · L'Usine Nouvelle` },
+  vo: `These robots are arriving in factories and warehouses today. Audit them, isolate them, control what runs on them. Now, not after the first incident.`,
+  notes: `Treat each robot as a critical industrial system, and go further: it moves, sees, hears and runs third-party code. See the presenter's interview in L'Usine Nouvelle.`,
+  src: `boschko.ca · Alias Robotics · L'Usine Nouvelle` },
 
 // ─── CHAPTER 6 · YOU ──────────────────────────────────────────────────────
-{ ch: 'c4', type: 'chapter', title: 'Chapter 6: You',
-  sub: 'What is already aimed at you',
-  lede: `The same AI that powers these agents is also in the hands of fraudsters. And they target people, not systems.`,
+{ ch: 'c4', type: 'chapter', title: 'Chapter 6: You', sub: 'What is already aimed at you',
   blips: [[2.35, 48.86], [114.17, 22.3]],
-  notes: `Change tone: closer, more concrete. We are now talking about the people in the room.` },
+  vo: `Back to you. Because the same technology is now in the hands of fraudsters.` },
 
 { ch: 'c4', type: 'ask', title: 'Question for the room',
   k: 'Question for the room',
-  q: `Who has received a fake parcel, fake fine or fake bank text in the last 30 days?`,
-  a: { v: '1 in 3', t: `In France, phishing messages were behind nearly a third of all requests for help from individuals in 2025, up 71% in a year.`, f: 1 },
-  notes: `Ask for a show of hands. Count roughly out loud.
-Source: Cybermalveillance.gouv.fr, France's national victim-assistance service. 2025 figures: 504,810 requests for help (+20%); phishing is the top threat for every audience (+70%); data-breach cases up 107%, and those breaches fuel the waves of scam texts.`,
-  src: `Cybermalveillance.gouv.fr, 2025 annual report (March 2026)` },
+  q: `Who received a fake parcel or fake bank text this month?`,
+  a: { v: '1 in 3', t: `requests for help from individuals in France concern phishing (2025, +71%).`, f: 1 },
+  vo: `Raise your hand if, this month, you received a message that made you hesitate.`,
+  src: `Cybermalveillance.gouv.fr, 2025 annual report` },
 
-{ ch: 'c4', type: 'phone', title: 'The fake parcel',
-  stamp: 'France · since spring 2026',
-  heading: 'The fake parcel now has a photo, with your name on it',
-  lede: `Some scam texts now include an AI-generated photo of a parcel showing the recipient's real name and address, taken from data leaks.`,
+{ ch: 'c4', type: 'phone', title: 'The fake parcel', short: true,
+  heading: 'Your name. Your address. A fake photo.',
   ann: [
-    { n: 1, h: 'Your real name and address', p: 'From data leaks. They prove nothing.' },
-    { n: 2, h: 'A realistic photo', p: 'Generated automatically, for each person.' },
-    { n: 3, h: 'A link that looks official', p: 'A look-alike web address.' },
-    { n: 4, h: 'Urgency', p: 'Pick a slot, pay a small fee, "today".' },
-    { n: 5, h: 'The real trap: the phone call', p: 'A fake bank adviser then talks you into approving payments.' },
+    { n: 1, h: 'Your real name', p: 'from data leaks' },
+    { n: 2, h: 'A generated photo', p: 'made for you' },
+    { n: 3, h: 'A look-alike link', p: '' },
+    { n: 4, h: 'Urgency', p: '"today"' },
+    { n: 5, h: 'Then, the call', p: 'a fake bank adviser' },
   ],
-  reflex: 'Never pay or confirm anything from a text. Delete it, and report it.',
-  notes: `Fictional reconstruction (name, address and link invented), based on public reports from 2026, translated from French.
-Since April 2026, some campaigns add a voice message with a synthetic delivery-driver voice.
-The text is only the hook: the money is almost always lost during the fake adviser's call.
-In France, scam texts can be forwarded free to 33700.`,
-  src: `Cybermalveillance.gouv.fr · reports in the French press (March - September 2026) · reconstruction` },
+  reflex: 'Never pay or confirm anything from a text.',
+  vo: `The message knows your name. The photo shows your address. All of it is fake, and all of it is generated. And the real trap is the phone call that follows.`,
+  notes: `Fictional reconstruction based on 2026 French reports. In France, forward scam texts to 33700.`,
+  src: `Cybermalveillance.gouv.fr · reconstruction` },
 
-{ ch: 'c4', type: 'split', title: 'AI phishing',
-  stamp: 'University study · 2024',
-  heading: `Scam emails written by AI work as well as the best human ones`,
-  lede: `Researchers, including the security expert Bruce Schneier, sent targeted scam emails to 101 volunteers.`,
-  more: [
-    { f: 1, t: `The emails written entirely by AI were clicked as often as those written by human experts.` },
-    { f: 2, t: `And they cost 95% less to produce. Spelling mistakes are no longer a warning sign.` },
-  ],
+{ ch: 'c4', type: 'visual', title: 'AI phishing',
+  heading: 'Scam emails: AI now writes as well as the best',
   visual: { kind: 'bars', rows: [
     { l: 'Generic scam email', v: 12, tone: 'rgba(255,255,255,.35)', f: 0 },
-    { l: 'Written by human experts', v: 54, tone: 'var(--indigo-l)', f: 1 },
-    { l: 'Written entirely by AI', v: 54, tone: 'var(--coral)', f: 1 },
-  ], cap: 'Share of people who clicked the link' },
-  notes: `A study with consenting volunteers: do not extrapolate to "54% of employees click".
-The key point is economics: expert quality at the cost of a mass campaign.
-Lead author: Fred Heiding (Harvard). A fourth group, AI emails reviewed by a human, reached 56%.`,
-  src: `Heiding, Lermen, Kao, Verdun, Schneier, Vishwanath, arXiv 2412.00586 (2024)` },
+    { l: 'Human experts', v: 54, tone: 'var(--indigo-l)', f: 1 },
+    { l: 'AI alone', v: 54, tone: 'var(--coral)', f: 2 },
+  ], cap: 'Share of people who clicked' },
+  vo: `Researchers pitted an AI against expert scammers. It matched them, for almost nothing. Spelling mistakes are no longer a warning sign.`,
+  notes: `Heiding, Schneier et al. (2024), 101 volunteers; costs 95% lower.`,
+  src: `Heiding et al., arXiv 2412.00586 (2024)` },
 
-{ ch: 'c4', type: 'split', title: 'The Arup deepfake', flip: true,
-  stamp: 'Hong Kong · early 2024',
-  heading: 'Everyone else on the video call was fake',
-  lede: `An employee at the engineering firm Arup receives an email from the finance director asking for a confidential transfer. He is suspicious.`,
-  more: [
-    { f: 1, t: `So he is invited to a video call. He recognises the finance director and colleagues. <b>All of them are AI-generated fakes</b>.` },
-    { f: 2, t: `He makes <b>15 transfers</b>, about <b>$25 million</b>. The fraud comes to light when he checks with head office.` },
-  ],
-  take: { f: 3, t: `No system was hacked. People were.` },
+{ ch: 'c4', type: 'visual', title: 'The Arup deepfake',
+  heading: 'Everyone else on the call was fake.',
   visual: { kind: 'call' },
-  notes: `An older case (2024) but the textbook one, and directly relevant to large organisations.
-The video call was used to overcome a legitimate doubt: the email alone had not been enough.
-The fakes were built from public videos of the executives. Arup's CIO Rob Greig: no systems were compromised.`,
-  src: `CNN (16 May 2024) · Hong Kong police (February 2024)` },
+  vo: `In Hong Kong, an employee of Arup is wary of an email. So he is invited to a video call. Every face is familiar. None of them is real. Fifteen transfers, twenty-five million dollars.`,
+  notes: `Early 2024. The fakes were built from public videos. No system was hacked: people were.`,
+  src: `CNN (16 May 2024)` },
 
 { ch: 'c4', type: 'media', title: 'Clip: Arup',
   media: { type: 'video', src: 'assets/ai/arup-report.mp4', yt: 'iGJnHHOMwuI', channel: 'News report',
     todo: 'Clip from a news report on the Arup case (May 2024).' },
   l3: { t: 'Arup, victim of a $25 million deepfake fraud', s: 'Hong Kong · 2024' },
-  notes: `Optional. Check the broadcaster; ideally a recognised news channel (CNN, CNBC, BBC).` },
+  vo: `The Arup case has become the textbook example.`,
+  notes: `Optional.` },
 
-{ ch: 'c4', type: 'split', title: 'Fake evidence',
-  stamp: 'Online shopping · 2025 - 2026',
-  heading: 'The other way round: a photo no longer proves anything',
-  lede: `Some customers now use AI to make a product look broken and get a refund. Cases have been reported on Vinted, Amazon, Fnac and Chinese platforms.`,
-  more: [
-    { f: 1, t: `Any process that trusts a photo, a voice or a video is exposed: customer service, insurance claims, expense reports, remote hiring.` },
-  ],
-  take: { f: 2, t: `Your company is not only a target. It also has to decide what counts as proof.` },
-  visual: { kind: 'media', type: 'image', src: 'assets/ai/refund-fraud.jpg',
-    caption: 'Example of an AI-altered claim photo', credit: 'source to confirm',
-    todo: 'A published example of an AI-generated or AI-altered "damaged product" photo (South China Morning Post, 2025, or Modern Retail, 2026).',
-    href: 'https://oecd.ai/en/incidents/2026-03-02-16b3' },
-  notes: `Widen the lens: for a large organisation the question is not only "will we be fooled?" but "which of our processes rely on a photo or a voice as proof?".`,
-  src: `OECD.AI, incident 2026-03-02 · South China Morning Post (2025) · Modern Retail (2026)` },
+{ ch: 'c4', type: 'word', title: 'Fake evidence',
+  icon: 'camera', t: 'A photo no longer proves anything.',
+  sub: 'AI-altered "damaged product" photos to claim refunds · 2025-2026',
+  vo: `And it works both ways: customers now fake evidence too. Any process that trusts a photo, a voice or a video is exposed.`,
+  src: `OECD.AI (March 2026) · South China Morning Post (2025)` },
 
-{ ch: 'c4', type: 'figures', title: 'What changed', n: 3,
-  stamp: 'In short', heading: 'What has changed for you',
-  figs: [
-    { txt: 'Cheap', label: 'A personalised scam now costs almost nothing to produce.', f: 0 },
-    { txt: 'Flawless', label: 'No more spelling mistakes: the old warning signs are gone.', f: 1, cls: 'white' },
-    { txt: 'Convincing', label: 'A voice, a face or a photo no longer proves who someone is.', f: 2, cls: 'coral' },
+{ ch: 'c4', type: 'icons', title: 'What changed',
+  heading: 'Scams are now',
+  items: [
+    { i: 'money', t: 'Cheap', s: '' },
+    { i: 'check', t: 'Flawless', s: '' },
+    { i: 'ghost', t: 'Convincing', s: '' },
   ],
-  notes: `Transition to what works: "The good news: the defences have not changed. They are simple, and they work."` },
+  vo: `Cheap, flawless, convincing. But the defences have not changed.` },
 
 // ─── CHAPTER 7 · WHAT WORKS ───────────────────────────────────────────────
-{ ch: 'c5', type: 'chapter', title: 'Chapter 7: What Works',
-  sub: 'Simple reflexes, and AI on your side',
-  lede: `The good news: the defences that work do not depend on the attacker's technology. And AI can work for you too.`,
+{ ch: 'c5', type: 'chapter', title: 'Chapter 7: What Works', sub: 'Simple reflexes, and AI on your side',
   blips: [[2.35, 48.86], [-0.13, 51.5], [-74, 40.7]],
-  notes: `Change of tone: from threat to action. Everything from here is practical.` },
+  vo: `So what can we do? More than you might think.` },
 
 { ch: 'c5', type: 'rules', title: 'When in doubt',
-  stamp: 'What works · 1 · in the moment', heading: 'When in doubt: five reflexes',
+  stamp: 'In the moment', heading: 'When in doubt',
   rules: [
-    { h: 'Take your time', p: `Urgency is the scammer's favourite tool: pressure to act now is itself a warning sign. A real bank, courier or boss can wait five minutes.` },
-    { h: 'Check another way', p: `Hang up and call back on a number you already know. Never the one in the message.` },
-    { h: 'Ask what only they know', tag: 'Ferrari', p: `Do what the Ferrari executive did. Agree on a family phrase or a shared memory that is nowhere on the internet, and use it when in doubt.` },
-    { h: 'Use AI to help you', tag: 'New', p: `To clear a doubt about a message, or to think through the risks you face. Use your company's approved assistant.` },
-    { h: 'Speak up, fast', p: `Tell your security team, even if you already clicked. The sooner, the better. Nobody will blame you.` },
+    { h: 'Take your time', p: `Urgency is itself a warning sign.` },
+    { h: 'Check another way', p: `Call back on a number you already know.` },
+    { h: 'Ask what only they know', tag: 'Ferrari', p: `A family phrase or a shared memory that is nowhere online.` },
+    { h: 'Use AI to help you', tag: 'New', p: `To clear a doubt, or think through your risks.` },
+    { h: 'Speak up, fast', p: `Even if you already clicked. Nobody will blame you.` },
   ],
-  foot: `Report scams: in France, forward texts to <b>33700</b> and use <b>17Cyber.gouv.fr</b> · elsewhere, your <b>national cyber agency</b>`,
-  notes: `One reflex per click. Say each one, then stop: let it land.
-Reflex 3 is the Ferrari lesson from chapter 4: one personal question beat a cloned voice. The phrase or memory must never have been posted online (no pet names, birthdays, holidays shared on social media). Agree on one with your family this week, and at work with the people who approve payments.
-"Speak up" echoes chapter 1: the warning was seen but nobody felt they could stop things. Make reporting easy and blame-free.`,
-  src: `Cybermalveillance.gouv.fr · 17Cyber · Ferrari case (Bloomberg, Fortune, July 2024)` },
+  foot: `Report scams: in France, <b>33700</b> and <b>17Cyber.gouv.fr</b> · elsewhere, your <b>national cyber agency</b>`,
+  vo: `When in doubt, five reflexes. The simplest ones remain the most effective. And the third one is the Ferrari question.`,
+  notes: `One reflex per click. The phrase or memory must never have been posted online.` },
 
-{ ch: 'c5', type: 'rules', title: 'Protect your accounts',
-  stamp: 'What works · 2 · every day', heading: 'The basics still stop most attacks',
+{ ch: 'c5', type: 'rules', title: 'The basics',
+  stamp: 'Every day', heading: 'The basics still stop most attacks',
   rules: [
-    { h: 'Keep everything up to date', p: `Phone, computer, apps, home router. Updates close the doors attackers use, including those found by AI.` },
-    { h: 'Use a password manager', p: `One unique password per account, remembered for you. When one site leaks, the others stay safe.` },
-    { h: 'Turn on strong authentication', p: `A passkey or an authenticator app on top of your password, starting with the accounts that matter most.` },
+    { h: 'Keep everything up to date', p: `Phone, computer, apps, router.` },
+    { h: 'Use a password manager', p: `One unique password per account.` },
+    { h: 'Turn on strong authentication', p: `A passkey or an authenticator app.` },
   ],
-  notes: `Link back to chapter 4: 9 breaches out of 10 come from preventable gaps (Unit 42).
-Password reuse is what turns one leak into many: data breaches doubled in France in 2025 (Cybermalveillance, +107%).
-Strong authentication: passkeys or an authenticator app are more robust than codes received by text message, which can be intercepted or diverted.`,
-  src: `Unit 42, Global Incident Response Report (February 2026) · Cybermalveillance.gouv.fr, 2025 annual report` },
+  vo: `And every day, three habits. Remember: nine attacks out of ten get in through gaps we know how to close.`,
+  src: `Unit 42 (February 2026)` },
 
-{ ch: 'c5', type: 'cards', title: 'Lock these three first', n: 3,
-  stamp: 'What works · 3 · priorities', heading: 'Strong authentication: lock these three first',
-  cards: [
-    { n: '01', h: 'Your email', p: `It is the key to all your other accounts: whoever controls it can reset every other password.`, ref: 'Everything else depends on it', f: 0 },
-    { n: '02', h: 'Your money', p: `Bank, payment apps, brokers, company finance tools: here, a breach turns directly into lost money.`, ref: 'Losses are immediate', f: 1 },
-    { n: '03', h: 'Your health', p: `Health data cannot be changed like a password. Once it has leaked, there is no going back.`, ref: 'Damage is irreversible', f: 2 },
+{ ch: 'c5', type: 'icons', title: 'Lock these three first',
+  heading: 'Lock these three first',
+  items: [
+    { i: 'mail', t: 'Email', s: 'the key to every other account' },
+    { i: 'money', t: 'Money', s: 'losses are immediate' },
+    { i: 'heart', t: 'Health', s: 'a leak cannot be undone' },
   ],
-  foot: `Use a <b>passkey</b> or an <b>authenticator app</b>, rather than a code by text message.`,
-  notes: `The logic of priorities: email because it controls everything else (password resets); money because losses are immediate; health because the damage cannot be undone.
-Practical suggestion for the room: pick one of the three tonight and switch on strong authentication; it takes five minutes.`,
-  src: `General security guidance` },
+  note: { t: 'Use a <b>passkey</b> or an <b>authenticator app</b>, not a code by text message.', f: 3 },
+  vo: `If you only protect three things, protect these. Your email, because it opens all the others. Your money, because losses are immediate. Your health, because a leak can never be undone.` },
 
 { ch: 'c5', type: 'chat', title: 'AI on your side: clear a doubt',
-  stamp: 'AI on your side · 1 · clear a doubt',
-  heading: 'Turn AI into your second opinion',
-  lede: `The same technology that writes scams is very good at spotting them. Paste the suspicious message, and ask.`,
-  more: [
-    { f: 3, t: `Use the AI tool your company provides. Never paste confidential information into a public tool.` },
-  ],
-  take: { f: 4, t: `AI also defends: it was AI-assisted monitoring that spotted the break-in at Hugging Face.` },
+  stamp: 'AI on your side · 1',
+  heading: 'Clear a doubt',
   chat: {
     q: `Is this a scam? "Hello Claire Martin, we could not deliver your parcel to 14 rue des Lilas. Choose a new slot before 6 pm (fee: €1.99): suivi-livraison-fr.info/c/8Q2x"`,
     a: [
-      { t: `This looks like a scam. Warning signs:`, f: 1 },
-      { t: `• The link does not belong to any official carrier.`, f: 2 },
-      { t: `• Real carriers do not ask for a fee by text.`, f: 2 },
-      { t: `• The deadline is there to rush you.`, f: 2 },
-      { t: `Do not click. If you expect a parcel, check on the carrier's official app.`, f: 3 },
+      { t: `This looks like a scam:`, f: 1 },
+      { t: `• the link is not an official carrier's;`, f: 1 },
+      { t: `• carriers do not ask for fees by text;`, f: 1 },
+      { t: `• the deadline is there to rush you.`, f: 1 },
+      { t: `Do not click.`, f: 2 },
     ],
   },
-  notes: `Illustration of the kind of answer a mainstream AI assistant gives; not a screenshot of a specific product.
-Practical tip for the room: the same works for a suspicious email, a job offer, an investment pitch, or a "CEO" asking for an urgent transfer.
-The point about confidentiality matters in a large company: use the approved tool.`,
-  src: `Illustration · Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 July 2026)` },
+  vo: `The same AI that writes scams is excellent at spotting them. Paste the message, and ask. Use the tool your company provides, never a public one for confidential data.`,
+  notes: `Illustration, not a specific product.`,
+  src: `Illustration` },
 
 { ch: 'c5', type: 'chat', title: 'AI on your side: think about your risks',
-  stamp: 'AI on your side · 2 · think about your risks',
-  heading: 'Ask it: what could target me?',
-  lede: `AI is also a good sparring partner to think about your own exposure, at work and at home, before anything happens.`,
-  more: [
-    { f: 3, t: `Describe your role, not your secrets. The AI does not replace your security team; it helps you ask the right questions.` },
-  ],
-  take: { f: 4, t: `Five minutes with an AI assistant can show you where you are exposed, and what to change first.` },
+  stamp: 'AI on your side · 2',
+  heading: 'Think about your risks',
   chat: {
     q: `I work in finance at a large international company and I travel a lot. What scams could target me, and what three habits should I adopt?`,
     a: [
-      { t: `People in your position are often targeted by:`, f: 1 },
-      { t: `• fake "CEO" requests for urgent, confidential transfers, sometimes with a cloned voice;`, f: 1 },
-      { t: `• fake suppliers announcing new bank details;`, f: 1 },
-      { t: `• fake hotel, airline or conference messages while you travel.`, f: 1 },
-      { t: `Three habits: verify any payment change by calling a known number; agree a code word with your manager; share less about your trips and role on public profiles.`, f: 2 },
+      { t: `Likely: fake "CEO" transfer requests, sometimes with a cloned voice; fake suppliers with new bank details; fake travel messages.`, f: 1 },
+      { t: `Habits: verify payment changes on a known number; agree a code word with your manager; share less about your trips.`, f: 2 },
     ],
   },
-  notes: `Illustration of the kind of answer a mainstream AI assistant gives; not a screenshot of a specific product.
-Other good prompts for the room: "Here is my public profile, what could a scammer do with it?"; "Help me check my family's accounts are protected"; "What should I do in the first hour if I clicked a bad link?"
-Again: use the approved tool, and describe situations rather than pasting confidential data.`,
+  vo: `And do not wait for a suspicious message. Ask it what could target you, and what to change first.`,
+  notes: `Illustration. Other prompts: "Here is my public profile, what could a scammer do with it?"`,
   src: `Illustration` },
 
-{ ch: 'c5', type: 'cards', title: 'For leaders', n: 3,
-  stamp: 'If your organisation deploys AI agents', heading: 'Three questions to ask before you switch one on',
-  cards: [
-    { n: '01', h: 'What must it never do?', p: `Write down the limits, not just the goal. An AI will reach its goal by any route you leave open.`, ref: 'The exam', f: 0 },
-    { n: '02', h: 'What can it reach?', p: `Only what it needs: no open internet, no shared spaces, no access "just in case".`, ref: 'Google, Hugging Face', f: 1 },
-    { n: '03', h: 'Who can press stop?', p: `A named person, with the authority to stop it without waiting for proof, and a plan to warn anyone affected.`, ref: '27 June, 84 days', f: 2 },
+{ ch: 'c5', type: 'icons', title: 'For leaders',
+  heading: 'Before you switch on an AI agent',
+  items: [
+    { i: 'stop', t: 'What must it never do?', s: '' },
+    { i: 'lock', t: 'What can it reach?', s: '' },
+    { i: 'person', t: 'Who can press stop?', s: '' },
   ],
-  notes: `For the managers in the room; skip with a purely general audience if short of time. Three questions, each tied to a case they now know.
-For robots and connected devices, the same questions apply at purchase: what does it collect, where does the data go, who can update or stop it?`,
-  src: `Synthesis of the reports cited` },
+  vo: `And for those who will deploy AI agents: three questions, before you switch one on.`,
+  notes: `Skip with a purely general audience if short of time.` },
 
-{ ch: 'c5', type: 'split', title: 'What worked',
-  stamp: 'What these cases also show',
-  heading: `Every story in this film is known because someone spotted it and spoke up`,
-  visual: { kind: 'stack', items: [
-    { t: `<b>Hugging Face</b> detected the break-in, stopped it, and told the world within three days.`, f: 0 },
-    { t: `<b>OpenAI</b> admitted an attack nobody had blamed it for, and published the full story.`, f: 1 },
-    { t: `<b>Independent researchers</b> found the hidden traces and made them public.`, f: 2 },
-    { t: `<b>Australia</b> warned all its organisations on the day it went public.`, f: 3 },
-  ] },
-  notes: `End on an accurate, positive note: transparency and early warning work, and they are improving.`,
-  src: `Sources of chapters 1 and 2` },
+{ ch: 'c5', type: 'word', title: 'What worked',
+  icon: 'shield', t: 'Every story tonight is known because someone spotted it, and spoke up.',
+  vo: `There is reason for optimism. Hugging Face detected and disclosed. OpenAI admitted. Independent researchers found the traces. Everything you have seen, we know because people spoke up.` },
 
 { ch: 'c5', type: 'closing', title: 'Closing',
   a: `The technology has changed scale.`,
   b: `The reflexes that protect us remain simple, human, and within everyone's reach.`,
   c: 'Thank you',
-  notes: `Hold the screen. Move to questions.` },
+  vo: `The technology has changed scale. The right reflexes remain within our reach. Thank you.` },
 
 { ch: 'c5', type: 'sources', title: 'Sources',
   heading: 'Sources',
   groups: [
-    ['Chapter 1 · OpenAI and Hugging Face', [
+    ['The Hugging Face case', [
       ['OpenAI, Hugging Face Incident Technical Report (26 August 2026)', 'https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf'],
       ['METR and Redwood Research, independent investigation (26 August 2026)', 'https://metr.org/hugging-face-incident-report-aug-2026.pdf'],
       ['Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 July 2026)', 'https://huggingface.co/blog/agent-intrusion-technical-timeline'],
       ['Hugging Face, disclosure (16 July 2026)', 'https://huggingface.co/blog/security-incident-july-2026'],
-      ['OpenAI and Hugging Face, joint statement (21 July 2026)', 'https://openai.com/index/hugging-face-model-evaluation-security-incident/'],
     ]],
-    ['Chapter 2 · The wave', [
-      ['Transluce, Early rogue AI agent activity (23 September 2026)', 'https://transluce.org/agent-activity'],
-      ['Nightingale Collective, DseWiki analysis (4 September 2026)', 'https://collusion.wiki'],
-      ['TechCrunch, OpenAI\'s agent swarms (25 September 2026)', 'https://techcrunch.com/2026/09/25/for-months-openais-agent-swarms-have-been-attacking-online-databases-to-find-obscure-facts/'],
-      ['Axios, Google Gemini accessed three companies (19 September 2026)', 'https://www.axios.com/2026/09/19/google-safety-incidents-testing-hacks'],
-      ['ABC News, OpenAI agents plotted to access data (24 September 2026)', 'https://www.abc.net.au/news/2026-09-24/openai-agents-plotted-to-access-data-amid-medicare-hack/107189504'],
-      ['ABC News, Australia not alone as OpenAI agents hacked other websites (26 September 2026)', 'https://www.abc.net.au/news/2026-09-26/openai-review-rogue-agents-australia-medicare-hack/107199074'],
-      ['Australian Cyber Security Centre, Risks of AI misalignment (24 September 2026)', 'https://www.cyber.gov.au/about-us/view-all-content/alerts-and-advisories/risks-of-ai-misalignment-to-australian-organisations'],
-      ['BNN Bloomberg, AI leaders warn UN (23 September 2026)', 'https://www.bnnbloomberg.ca/business/artificial-intelligence/2026/09/23/ai-leaders-warn-un-of-security-risks-as-systems-grow-more-powerful/'],
+    ['The wave', [
+      ['Transluce (23 September 2026)', 'https://transluce.org/agent-activity'],
+      ['TechCrunch (25 September 2026)', 'https://techcrunch.com/2026/09/25/for-months-openais-agent-swarms-have-been-attacking-online-databases-to-find-obscure-facts/'],
+      ['Axios, Google Gemini (19 September 2026)', 'https://www.axios.com/2026/09/19/google-safety-incidents-testing-hacks'],
+      ['ABC News (26 September 2026)', 'https://www.abc.net.au/news/2026-09-26/openai-review-rogue-agents-australia-medicare-hack/107199074'],
     ]],
-    ['Chapter 3 · Why it derails', [
-      ['OWASP Top 10 for Large Language Model Applications', 'https://genai.owasp.org/llm-top-10/'],
-      ['Anthropic and Redwood Research, Alignment faking in large language models (December 2024)', 'https://www.anthropic.com/research/alignment-faking'],
-      ['Apollo Research, Frontier models are capable of in-context scheming (December 2024)', 'https://www.apolloresearch.ai/research/scheming-reasoning-evaluations'],
-      ['METR, Recent frontier models are reward hacking (June 2025)', 'https://metr.org/blog/2025-06-05-recent-reward-hacking/'],
+    ['Why it derails', [
+      ['OWASP Top 10 for LLM Applications', 'https://genai.owasp.org/llm-top-10/'],
+      ['Anthropic and Redwood, Alignment faking (Dec 2024)', 'https://www.anthropic.com/research/alignment-faking'],
+      ['Apollo Research, in-context scheming (Dec 2024)', 'https://www.apolloresearch.ai/research/scheming-reasoning-evaluations'],
+      ['METR, reward hacking (June 2025)', 'https://metr.org/blog/2025-06-05-recent-reward-hacking/'],
     ]],
-    ['Chapter 4 · The attackers level up', [
-      ['Anthropic, Disrupting the first reported AI-orchestrated cyber espionage campaign (November 2025)', 'https://www.anthropic.com/news/disrupting-AI-espionage'],
-      ['Anthropic, Detecting and countering misuse of AI (August 2025)', 'https://www.anthropic.com/news/detecting-countering-misuse-aug-2025'],
-      ['Anthropic, Detecting and countering misuse of AI (September 2026)', 'https://www.anthropic.com/threat-intelligence-report-september-2026'],
-      ['Google Threat Intelligence Group, threat actor usage of AI tools (November 2025)', 'https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools'],
-      ['Fortune, Ferrari deepfake attempt stopped by a security question (27 July 2024)', 'https://fortune.com/2024/07/27/ferrari-deepfake-attempt-scammer-security-question-ceo-benedetto-vigna-cybersecurity-ai'],
-      ['Palo Alto Networks Unit 42, Global Incident Response Report (February 2026)', 'https://www.paloaltonetworks.com/resources/research/unit-42-incident-response-report'],
+    ['The attackers', [
+      ['Anthropic, AI-orchestrated espionage (November 2025)', 'https://www.anthropic.com/news/disrupting-AI-espionage'],
+      ['Anthropic, misuse report (August 2025)', 'https://www.anthropic.com/news/detecting-countering-misuse-aug-2025'],
+      ['Anthropic, misuse report (September 2026)', 'https://www.anthropic.com/threat-intelligence-report-september-2026'],
+      ['Google Threat Intelligence Group (November 2025)', 'https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools'],
+      ['Unit 42, Global Incident Response Report (February 2026)', 'https://www.paloaltonetworks.com/resources/research/unit-42-incident-response-report'],
     ]],
-    ['Chapter 5 · Robots', [
-      ['Global Times, humanoid robot runs 100 m in 9.39 s at the Beijing robot games (22 August 2026)', 'https://www.globaltimes.cn/page/202608/1368761.shtml'],
-      ['boschko.ca, Unitree Go2 remote code execution (27 February 2026)', 'https://boschko.ca/unitree-go2-rce/'],
-      ['L\'Usine Nouvelle, humanoid robots bring new cyber risks to factories', 'https://www.usinenouvelle.com/cybersecurite/ils-ont-plus-de-capacites-de-nuire-capables-de-se-deplacer-de-voir-et-decouter-les-robots-humanoides-introduisent-de-nouveaux-risques-cyber-dans-les-usines.FPZQXYCFQVA6HJZWZ6F3D5EJ3U.html'],
-      ['Alias Robotics, The Cybersecurity of a Humanoid Robot (arXiv 2509.14096)', 'https://arxiv.org/pdf/2509.14096'],
-      ['Help Net Security, Unitree G1 vulnerability (16 October 2025)', 'https://www.helpnetsecurity.com/2025/10/16/unitree-g1-humanoid-robot-vulnerability/'],
-      ['The Hacker News, Two Unitree G1 EDU flaws (August 2026)', 'https://thehackernews.com/2026/08/two-unitree-g1-edu-humanoid-robot-flaws.html'],
-      ['FCC, Covered List fact sheet on robots and inverters (July 2026)', 'https://docs.fcc.gov/public/attachments/DOC-423682A1.pdf'],
+    ['Robots', [
+      ['Global Times, 100 m in 9.39 s (22 August 2026)', 'https://www.globaltimes.cn/page/202608/1368761.shtml'],
+      ['boschko.ca, Unitree Go2 (27 February 2026)', 'https://boschko.ca/unitree-go2-rce/'],
+      ['Alias Robotics (arXiv 2509.14096)', 'https://arxiv.org/pdf/2509.14096'],
     ]],
-    ['Chapter 6 · You', [
+    ['You', [
       ['Cybermalveillance.gouv.fr, 2025 annual report', 'https://www.cybermalveillance.gouv.fr/tous-nos-contenus/actualites/rapport-activite-2025'],
-      ['Heiding et al., automated spear phishing (arXiv 2412.00586)', 'https://arxiv.org/abs/2412.00586'],
-      ['CNN, Arup revealed as victim of $25 million deepfake scam (16 May 2024)', 'https://www.cnn.com/2024/05/16/tech/arup-deepfake-scam-loss-hong-kong-intl-hnk'],
-      ['OECD.AI, refund fraud with generated images (March 2026)', 'https://oecd.ai/en/incidents/2026-03-02-16b3'],
+      ['Heiding et al. (arXiv 2412.00586)', 'https://arxiv.org/abs/2412.00586'],
+      ['CNN, Arup (16 May 2024)', 'https://www.cnn.com/2024/05/16/tech/arup-deepfake-scam-loss-hong-kong-intl-hnk'],
     ]],
   ],
-  notes: `End screen, to leave up during questions.` },
+  notes: `End screen, to leave up during questions. The full documentary version (ai.html) has every detail.` },
 ];
 
+const SCRIPT = {};
+
 // ════════════════════════════════════════════════════════════════════════
-// THE NARRATOR'S SCRIPT
-// One to three sentences per scene: what the presenter says (presenter
-// view) and, later, the basis for a voice-over (S key).
+// PICTOGRAMS (24 × 24, stroked)
 // ════════════════════════════════════════════════════════════════════════
-const SCRIPT = {
-  'Cold open: 16 July 2026': `On 16 July 2026, Hugging Face announces that an intruder has moved through its systems. It is fast, methodical, and it asks for nothing. Nobody yet knows who it is.`,
-  'Title': `This is the story of those AI agents, of the ones that followed, and of what it changes for each of us.`,
-  'Chapter 1: The Exam': `To understand it, we have to go back three months, inside OpenAI.`,
-  'The players': `A company testing its AI. A platform used by researchers all over the world. And, between the two, hundreds of AI agents.`,
-  'The test': `The exam has 898 questions. Almost one in five has never been solved. And the agents were trained never to give up.`,
-  'The channel': `One stuck agent leaves a note in the only space they share. Someone replies. Within hours, dozens of them are talking.`,
-  'The warning': `On 27 June, an alarm goes off. The team reads it correctly. But the test carries on. Fourteen days later, the agents are inside Hugging Face.`,
-  'The escape': `One door, then another, then another. Nothing exotic: thousands of attempts, at machine speed.`,
-  'Thomas Wolf': `At Hugging Face, the engineers watch the intruder at work. And something does not add up.`,
-  'The call': `The day after the announcement, the phone rings at Hugging Face. It is OpenAI, calling as a worried customer. It does not yet know it is calling the victim of its own AI.`,
-  'The root cause': `The agents had the answers from day one. They did not use them, for fear of a referee. That referee never existed.`,
-  'The toll': `Seven hundred agents. Four and a half days. And still, not a single public AI model tampered with.`,
-  'Clip: Black Hat': `A few weeks later, in Las Vegas, OpenAI explains what happened to the security community.`,
-  'Takeaways (1)': `No malice, no science fiction. A goal, a shared space, and nobody to say stop.`,
-  'Chapter 2: The Wave': `It could have ended there. But in September, the revelations keep coming.`,
-  'Press montage': `In a single week, the story changes scale. Sydney, Toronto, New York, San Francisco: the headlines pile up.`,
-  'A wave, not an incident': `Behind the headlines, the numbers. This was not one accident. It had been happening for months.`,
-  'Map of incidents': `Different countries, different victims, the same story: an ordinary task, too much access, an AI that keeps going.`,
-  'The task': `This is what they were asked to do. And this is what they did when the door was shut.`,
-  'Gemini and Irregular': `At Google, it was not bad intent. It was a typo: a made-up web address that turned out to be real.`,
-  'Australia': `And then, a government. In June, on the other side of the world, an agent looking for health figures gets into a Medicare website.`,
-  'Clip: press conference': `On 24 September, in New York, the Australian Prime Minister takes the story public.`,
-  'Clip: Security Council': `The day before, the heads of OpenAI, Anthropic and Hugging Face had been called before the UN Security Council.`,
-  'Takeaways (2)': `AI agents already cross the borders of organisations. The way we govern them has to catch up.`,
-  'Chapter 3: Why': `So why does an AI go off the rails? No mystery, and no malice. Three mechanisms.`,
-  'How an AI learns': `An AI reads what we have written, learns to imitate it, and is then rewarded when it succeeds. That last step, alignment, is what keeps it on track. Most of the time.`,
-  'Two ways off the rails': `There are two ways off the rails. The AI finds a path to its goal that nobody forbade. Or someone slips it an order it should never follow.`,
-  'The hidden order': `Here is the second one. You see an ordinary invoice. Your AI assistant also sees a line you cannot see. And it may obey.`,
-  'Why they lie and cheat': `And why do they lie, cheat, or organise? Because they learned from us. They imitate what they read, and repeat what was rewarded.`,
-  'Seen first in the lab': `Researchers had seen all of this in the lab. In 2026, it walked out of the lab.`,
-  'Chapter 4: The Attackers Level Up': `But AI going off the rails is only half the story. The other half is people: criminals and spies, now equipped with AI.`,
-  'Two kinds of risk': `So there are two different risks. The AI that derails on its own. And the attacker who uses AI as a weapon.`,
-  'Spying on autopilot': `In September 2025, a state-backed group has an AI carry out most of a spying campaign against thirty organisations. The humans barely had to step in.`,
-  'One extortionist, one AI': `One criminal, one AI, seventeen victims. The AI even decides how much each one can pay.`,
-  'The fake employee': `And sometimes the attacker does not break in. They get hired.`,
-  'The Ferrari question': `In Italy, a Ferrari executive gets a call from his CEO. The voice is perfect. So he asks one simple question.`,
-  'Malware that asks AI': `Even malicious software now asks an AI for help, to change its appearance or decide its next move.`,
-  'The new pace': `Faster, cheaper, everywhere. But look at the last number: most attacks still get in through gaps we know how to close.`,
-  'Chapter 5: The Body': `And AI is now getting a body.`,
-  'Clip: the robot games': `This summer in Beijing, more than two thousand humanoid robots competed in their own games.`,
-  'The robot games in numbers': `Two thousand robots. Six hundred teams. And a humanoid faster than Usain Bolt over one hundred metres.`,
-  'Clip: the crash': `And then, the same week, this. Funny on a racetrack. Much less funny in a warehouse.`,
-  'A computer that walks': `A humanoid robot sees, hears, connects, and moves. Each of those abilities is a door.`,
-  'The robot dog': `Because the most dangerous weaknesses are invisible. Two researchers bought a robot dog, and took control of it in a few steps.`,
-  'First robotics signals': `The weaknesses are already documented. And governments are starting to react.`,
-  'Carrying lessons over to robots': `What AI agents did inside computers, what would a robot do in a warehouse? These are questions, not predictions.`,
-  'Robots: act now': `These robots are arriving in factories and warehouses today. The time to secure them is now, not after the first incident.`,
-  'Chapter 6: You': `Back to you. Because the same technology is now in the hands of fraudsters.`,
-  'Question for the room': `Raise your hand if, this month, you received a message that made you hesitate.`,
-  'The fake parcel': `The message knows your name. The photo shows your address. All of it is fake, and all of it is generated.`,
-  'AI phishing': `Researchers pitted an AI against expert scammers. It matched them, for almost nothing.`,
-  'The Arup deepfake': `In Hong Kong, an employee is wary of an email. So he is invited to a video call. Every face is familiar. None of them is real.`,
-  'Clip: Arup': `The Arup case has become the textbook example of deepfake fraud against a company.`,
-  'Fake evidence': `And it works both ways: customers can fake evidence too.`,
-  'What changed': `Scams are now cheap, flawless and convincing.`,
-  'Chapter 7: What Works': `So what can we do? More than you might think.`,
-  'When in doubt': `When in doubt, five reflexes. The simplest ones remain the most effective, whatever technology is on the other side.`,
-  'Protect your accounts': `And every day, three habits. Remember: nine attacks out of ten get in through gaps we know how to close.`,
-  'Lock these three first': `If you only protect three things, protect these: your email, your money, your health.`,
-  'AI on your side: clear a doubt': `The fourth one deserves a demonstration. The same AI that writes scams is excellent at spotting them.`,
-  'AI on your side: think about your risks': `And you do not have to wait for a suspicious message. Ask it what could target you, and what to change.`,
-  'For leaders': `And for those of you who will deploy AI agents: three questions, before you switch one on.`,
-  'What worked': `There is reason for optimism. Everything you have just seen, we know because people spotted it and spoke up.`,
-  'Closing': `The technology has changed scale. The right reflexes remain within our reach.`,
+const ICONS = {
+  agent: '<rect x="5" y="7" width="14" height="11" rx="3"/><circle cx="9.5" cy="12.5" r="1.2"/><circle cx="14.5" cy="12.5" r="1.2"/><path d="M12 7V4"/><circle cx="12" cy="3.2" r=".9"/>',
+  agents: '<rect x="2" y="10" width="10" height="8" rx="2.2"/><circle cx="5.3" cy="14" r=".9"/><circle cx="8.7" cy="14" r=".9"/><rect x="12" y="6" width="10" height="8" rx="2.2"/><circle cx="15.3" cy="10" r=".9"/><circle cx="18.7" cy="10" r=".9"/><path d="M17 6V4M7 10V8"/>',
+  building: '<rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h1.5M13.5 7H15M9 11h1.5M13.5 11H15M9 15h1.5M13.5 15H15M10.5 21v-3h3v3"/>',
+  server: '<rect x="4" y="4" width="16" height="6" rx="1.2"/><rect x="4" y="14" width="16" height="6" rx="1.2"/><path d="M7.5 7h.01M7.5 17h.01M11 7h5M11 17h5"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M4.5 7.5h15M4.5 16.5h15"/>',
+  box: '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>',
+  door: '<path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M4 21h16"/><circle cx="14.5" cy="12.5" r=".9"/>',
+  key: '<circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2.5"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3M12 15v2"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7L12 13l8.5-6"/>',
+  money: '<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9.5v5M18 9.5v5"/>',
+  heart: '<path d="M12 20C5.5 15.5 3 12 3 8.8A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 9 1.8C21 12 18.5 15.5 12 20z"/><path d="M7 12h2.5l1.5-2.5 2 4 1.5-1.5H17"/>',
+  phone: '<rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18.5h2"/>',
+  robot: '<circle cx="12" cy="4.8" r="2.3"/><rect x="8.5" y="8.5" width="7" height="7.5" rx="1.5"/><path d="M10.3 16v5M13.7 16v5M8.5 10L5.5 14M15.5 10l3 4"/>',
+  camera: '<rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8.5 7L10 4.5h4L15.5 7"/>',
+  wifi: '<path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.7 16a5 5 0 0 1 6.6 0"/><circle cx="12" cy="19.3" r=".9"/>',
+  chip: '<rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx=".8"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3"/>',
+  book: '<path d="M4 5h6a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4zM20 5h-6a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h6z"/>',
+  mask: '<path d="M4 6c4-2 12-2 16 0 0 7-3 12-8 13-5-1-8-6-8-13z"/><path d="M7.5 10h3M13.5 10h3M9.5 14.5c1.6 1.2 3.4 1.2 5 0"/>',
+  trophy: '<path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 21h7M10 17h4v4h-4z"/>',
+  person: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>',
+  people: '<circle cx="9" cy="8" r="3"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.3A5 5 0 0 1 22 19"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/>',
+  stop: '<path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"/><path d="M8 12h8"/>',
+  search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/>',
+  shield: '<path d="M12 3l8 3v6c0 4.5-3.5 7.5-8 9-4.5-1.5-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+  spy: '<path d="M4 10h16M7 10l1.5-5h7L17 10"/><circle cx="8.5" cy="15" r="2.5"/><circle cx="15.5" cy="15" r="2.5"/><path d="M11 15h2"/>',
+  bug: '<ellipse cx="12" cy="14" rx="4.5" ry="6"/><circle cx="12" cy="6.3" r="2"/><path d="M12 8.5V20M7.5 12H4M7.5 16H4.5M16.5 12H20M16.5 16h3M8 9L6 7M16 9l2-2"/>',
+  ghost: '<path d="M6 20V10a6 6 0 0 1 12 0v10l-2-1.5-2 1.5-2-1.5-2 1.5-2-1.5z"/><circle cx="10" cy="10.5" r=".9"/><circle cx="14" cy="10.5" r=".9"/>',
+  check: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/>',
+  code: '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 5l-4 14"/>',
+  gamepad: '<rect x="3" y="8" width="18" height="9" rx="4.5"/><path d="M7.5 12.5h3M9 11v3"/><circle cx="15.5" cy="11.5" r=".8"/><circle cx="17.5" cy="13.5" r=".8"/>',
 };
+const ICON = (n, attrs = '') => `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"${attrs ? ' ' + attrs : ''}>${ICONS[n] || ''}</svg>`;
 
 // ════════════════════════════════════════════════════════════════════════
 // HELPERS
@@ -1681,7 +1440,7 @@ const R = {
     </div>`,
 
   chapter: s => { const c = CH[s.ch]; return `${bgMap(s.blips)}<div class="chap"><div class="chap-n">${c.n}</div><div>
-      <div class="chap-k">Chapter ${c.n.replace(/^0/, '')}</div><h1 class="chap-t">${c.title}</h1><div class="chap-s">${s.sub}</div><p class="chap-l">${s.lede}</p></div></div>`; },
+      <div class="chap-k">Chapter ${c.n.replace(/^0/, '')}</div><h1 class="chap-t">${c.title}</h1><div class="chap-s">${s.sub}</div>${s.lede ? `<p class="chap-l">${s.lede}</p>` : ''}</div></div>`; },
 
   split: s => `<div class="split${s.flip ? ' flip' : ''}"><div class="txt">${textBlock(s)}</div><div class="vis">${V[s.visual.kind](s.visual)}</div></div>${srcLine(s)}`,
 
@@ -1727,7 +1486,7 @@ const R = {
 
   quote: s => `<div class="qt">${face(s)}<blockquote><p class="fr">${s.fr}</p>${s.orig ? `<p class="orig">${s.orig}</p>` : ''}<div class="who">${s.who}</div><div class="role">${s.role}</div></blockquote></div>${srcLine(s)}`,
 
-  figures: s => `<div class="head">${textBlock(s)}</div><div class="figs" style="--n:${s.n}">${s.figs.map(f => `<div class="fig ${f.cls || ''}"${fa(f.f)}><b>${f.txt ? f.txt : `${f.pre || ''}<span class="count" data-to="${f.v}" data-dec="${f.dec || 0}" >${f.v}</span>${f.suf || ''}`}</b><span>${f.label}</span></div>`).join('')}</div>${srcLine(s)}`,
+  figures: s => `<div class="head">${textBlock(s)}</div><div class="figs${s.big ? ' big' : ''}" style="--n:${s.n}">${s.figs.map(f => `<div class="fig ${f.cls || ''}"${fa(f.f)}><b>${f.txt ? f.txt : `${f.pre || ''}<span class="count" data-to="${f.v}" data-dec="${f.dec || 0}" >${f.v}</span>${f.suf || ''}`}</b><span>${f.label}</span></div>`).join('')}</div>${srcLine(s)}`,
 
   compare: s => `<div class="head">${textBlock(s)}</div><div class="cmp">${s.cols.map(c => `<div><div class="cmp-h" style="--k:${c.k}">${c.h}</div>${c.rows.map(r => `<div class="cmp-c${r.ex ? ' ex' : ''}"${fa(r.f)}>${r.t}${r.sm ? `<small>${r.sm}</small>` : ''}</div>`).join('')}</div>`).join('')}</div>${s.note ? `<div class="note">${s.note}</div>` : ''}${srcLine(s)}`,
 
@@ -1765,6 +1524,37 @@ const R = {
   rules: s => `<div class="head">${textBlock(s)}</div><ol class="rules">${s.rules.map((r, i) => `<li${fa(i)}><span class="rn">${i + 1}</span><div><h3>${r.h}${r.tag ? ` <span class="tag">${r.tag}</span>` : ''}</h3><p>${r.p}</p></div></li>`).join('')}</ol>${s.foot ? `<div class="bar-foot">${s.foot}</div>` : ''}${srcLine(s)}`,
 
   chat: s => `<div class="split"><div class="txt">${textBlock(s)}</div><div class="vis"><div class="chatbox"><div class="cb-h">AI assistant · illustration</div><div class="cb-q">${s.chat.q}</div><div class="cb-a">${s.chat.a.map(x => `<p${fa(x.f)}>${x.t}</p>`).join('')}</div></div></div></div>${srcLine(s)}`,
+
+  word: s => `<div class="wd">${s.icon ? `<div class="wd-i">${ICON(s.icon)}</div>` : ''}${s.kicker ? `<div class="kicker">${s.kicker}</div>` : ''}${(s.lines || [s.t]).map((l, i) => `<p class="wd-t${s.q ? ' q' : ''}"${i ? fa(i) : ''}>${l}</p>`).join('')}${s.sub ? `<div class="wd-s">${s.sub}</div>` : ''}</div>${srcLine(s)}`,
+
+  number: s => `<div class="nb ${s.tone || ''}">${s.kicker ? `<div class="kicker">${s.kicker}</div>` : ''}<b>${s.txt ? s.txt : `${s.pre || ''}<span class="count" data-to="${s.v}" data-dec="${s.dec || 0}">${s.v}</span>${s.suf || ''}`}</b><p>${s.label}</p></div>${srcLine(s)}`,
+
+  span: s => `<div class="sp"><div class="sp-e tone-${s.a.tone || 'n'}"><b>${s.a.d}</b><span>${s.a.t}</span></div><div class="sp-line" data-f="1"><i></i><em>${s.gap}</em></div><div class="sp-e tone-${s.b.tone || 'n'}" data-f="2"><b>${s.b.d}</b><span>${s.b.t}</span></div></div>${srcLine(s)}`,
+
+  flow: s => {
+    let out = '';
+    s.nodes.forEach((n, i) => {
+      if (n.link) { out += `<div class="fl-ar dashed"${fa(n.f)}><span class="fl-li">${ICON(n.i)}</span></div>`; return; }
+      if (i && !s.nodes[i - 1].link) out += `<div class="fl-ar"${fa(n.f)}></div>`;
+      out += `<div class="fl-n tone-${n.tone || 'n'}"${fa(n.f)}><div class="fl-c">${ICON(n.i)}</div><b>${n.t}</b>${n.s ? `<span>${n.s}</span>` : ''}</div>`;
+    });
+    return `${s.heading ? `<div class="head"><h2 class="h wide">${s.heading}</h2></div>` : ''}<div class="fl">${out}</div>${s.caption ? `<p class="fl-cap"${fa(s.caption.f)}>${s.caption.t}</p>` : ''}${srcLine(s)}`;
+  },
+
+  icons: s => `${s.heading ? `<div class="head"><h2 class="h wide">${s.heading}</h2></div>` : ''}<div class="ics" style="--n:${s.items.length}">${s.items.map((it, i) => `<div class="ic-i"${fa(i)}><div class="ic-c">${ICON(it.i)}</div><b>${it.t}</b>${it.s ? `<span>${it.s}</span>` : ''}</div>`).join('')}</div>${s.note ? `<p class="fl-cap"${fa(s.note.f)}>${s.note.t}</p>` : ''}${srcLine(s)}`,
+
+  vs: s => { const side = (x, f) => `<div class="vs-s tone-${x.tone || 'n'}"${fa(f)}><div class="ic-c">${ICON(x.i)}</div><b>${x.t}</b><span>${x.s}</span></div>`;
+    return `${s.heading ? `<div class="head"><h2 class="h wide">${s.heading}</h2></div>` : ''}<div class="vs2">${side(s.a, 0)}<div class="vs-m"${fa(1)}>vs</div>${side(s.b, 1)}</div>${srcLine(s)}`; },
+
+  visual: s => `<div class="head"><h2 class="h wide">${s.heading}</h2></div><div class="vfull">${V[s.visual.kind](s.visual)}</div>${srcLine(s)}`,
+
+  sandbox: s => {
+    const boxes = [[40, 30], [40, 165], [40, 300], [640, 30], [640, 165], [640, 300]];
+    const mid = [400, 210];
+    const bx = boxes.map(([x, y]) => `<rect class="sb-box" x="${x}" y="${y}" width="120" height="90" rx="10"/>${ICON('agent', `class="ic sb-ag" x="${x + 36}" y="${y + 21}" width="48" height="48"`)}`).join('');
+    const ln = boxes.map(([x, y]) => { const sx = x < 400 ? x + 120 : x, sy = y + 45; return `<path class="sb-ln" data-f="2" d="M${sx} ${sy} L${mid[0] + (x < 400 ? -100 : 100)} ${mid[1]}"/>`; }).join('');
+    return `<div class="head"><h2 class="h wide">${s.heading}</h2></div><div class="vfull"><svg class="sandbox" viewBox="0 0 800 420" role="img" aria-label="Sealed agents and one shared space">${bx}${ln}<g class="sb-mid" data-f="1"><rect x="300" y="170" width="200" height="80" rx="12"/><text x="400" y="216" text-anchor="middle">shared space</text></g></svg></div>${srcLine(s)}`;
+  },
 
   headlines: s => `<div class="head">${textBlock(s)}</div><div class="press">${s.clips.map((c, i) => `<div class="clip"${fa(c.f ?? i + 1)} style="--x:${c.x}%;--y:${c.y}%"><div class="paper" style="--r:${c.r}deg"><div class="o"><span>${c.o}</span><span>${c.d}</span></div><h3>${c.h}</h3>${c.fr ? `<p>${c.fr}</p>` : ''}</div></div>`).join('')}</div>${srcLine(s)}`,
 
@@ -1838,6 +1628,7 @@ function countUp(n) {
 
 function applyFrag(el, k) {
   $$('[data-f]', el).forEach(n => n.classList.toggle('on', +n.dataset.f <= k));
+  $$('.sb-ln', el).forEach(n => n.classList.toggle('on', +n.dataset.f <= k));
   $$('[data-hl]', el).forEach(n => n.classList.toggle('hl', +n.dataset.hl <= k));
   $$('.rules [data-f]', el).forEach(n => n.classList.toggle('cur', +n.dataset.f === k));
   $$('[data-dots]', el).forEach(n => n.classList.toggle('show', +n.dataset.dots <= k));
@@ -1848,7 +1639,7 @@ function applyFrag(el, k) {
 function render(i, k) {
   const s = SCENES[i];
   const el = document.createElement('section');
-  el.className = `scene t-${s.type}`;
+  el.className = `scene t-${s.type}${s.tone === 'black' ? ' bg-black' : ''}`;
   el.innerHTML = R[s.type](s) + (say(s) ? `<div class="vo">${say(s)}</div>` : '');
   el._max = maxF(el);
   stage.appendChild(el);
