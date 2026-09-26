@@ -842,18 +842,9 @@ body.pres{background:var(--ws-ink-50)}
 .zt-no{font:600 11.5px var(--f-mono);fill:var(--coral)}
 .wd-t.dt-sub{font-size:3.7rem;line-height:1.15;font-weight:700;margin-top:2.4rem}
 @media (max-width:760px){.zdate{font-size:1.5rem}.wd-t.dt-sub{font-size:1.9rem}}
-/* Stairs: from simple to complex */
-.stairs{flex:1;min-height:0;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));align-items:end;gap:.7rem;margin-top:1.4rem;padding-bottom:.4rem}
-.st{height:calc(34% + var(--i) * (62% / (var(--n) - 1)));border-radius:.6rem .6rem .2rem .2rem;padding:1rem 1rem 1.1rem;display:flex;flex-direction:column;gap:.35rem;
-  background:color-mix(in srgb,var(--ws-indigo-600) calc(12% + var(--i) * (80% / (var(--n) - 1))),#fff);color:var(--ws-ink-900);opacity:.18;transform:translateY(14px);transition:opacity .5s,transform .5s}
-.st.on{opacity:1;transform:none}
-.st.dark{color:#fff}
-.st-y{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
-.st-t{font-family:var(--f-display);font-weight:700;font-size:1.3rem;line-height:1.15}
-.st-s{font-size:.92rem;line-height:1.35;opacity:.9}
+/* Stairs axis */
 .st-ax{display:flex;justify-content:space-between;margin-top:.6rem;padding-top:.6rem;border-top:2px solid var(--ws-ink-200);font-family:var(--f-mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ws-ink-500)}
 .st-ax span:last-child{color:var(--coral)}
-@media (max-width:760px){.stairs{grid-template-columns:1fr;align-items:stretch}.st{height:auto}}
 /* Map tour: one bubble per case */
 .map-panel.tour{top:0;bottom:auto;width:auto;right:auto;padding:4.4rem 5.5rem 0;background:none}
 .map-panel.tour .h{font-size:2.3rem;margin-bottom:.6rem}
@@ -878,6 +869,165 @@ body.pres{background:var(--ws-ink-50)}
 .mfx-f li b{font-family:var(--f-display);font-weight:800;font-size:1.9rem;line-height:1;color:var(--ws-indigo-600)}
 .mfx-f li span{font-size:1rem;line-height:1.4;color:var(--ws-ink-700)}
 @media (max-width:760px){.mb,.mb[data-f].on:not(.cur),.mb[data-f].cur{left:16px;right:16px;top:auto;bottom:4.2rem;width:auto;transform:none}.mfx{grid-template-columns:1fr;gap:1.4rem}}
+
+/* Map bubbles: big key figure, optional video */
+.mb{display:flex;gap:1.1rem;width:min(36rem,46vw)}
+.mb-fig{flex:none;display:flex;flex-direction:column;justify-content:center;width:8.2rem;padding-right:1rem;border-right:1px solid var(--ws-ink-100)}
+.mb-fig b{font-family:var(--f-display);font-weight:800;font-size:2.8rem;line-height:.95;letter-spacing:-.03em;color:var(--coral)}
+.mb.t-amber .mb-fig b{color:var(--amber)} .mb.t-teal .mb-fig b{color:#2E7F85} .mb.t-indigo .mb-fig b{color:var(--ws-indigo-600)}
+.mb-fig span{margin-top:.45rem;font-size:.82rem;line-height:1.3;color:var(--ws-ink-600)}
+.mb-body{min-width:0}
+.mb.mb-big{width:min(44rem,55vw)}
+.mb-big .media{margin-top:.8rem;max-width:30rem}
+.mb-big .media video{max-height:36vh}
+/* Portrait clips */
+.media.portrait{width:auto;height:calc(100vh - 11rem);aspect-ratio:9/16;max-width:none}
+.media.portrait video{height:100%;max-height:none;object-fit:cover}
+/* Stairs, second version: details and press clippings under each bar */
+.stairs{flex:1;min-height:0;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:.7rem;margin-top:1rem}
+.stp{display:flex;flex-direction:column;min-height:0;opacity:.14;transform:translateY(12px);transition:opacity .5s,transform .5s}
+.stp.on{opacity:1;transform:none}
+.stp-w{flex:1;min-height:5rem;display:flex;align-items:flex-end;border-bottom:2px solid var(--ws-ink-200)}
+.stp-b{width:100%;height:calc(34% + var(--i) * (66% / (var(--n) - 1)));min-height:4.6rem;border-radius:.5rem .5rem 0 0;padding:.65rem .8rem;display:flex;flex-direction:column;gap:.2rem;
+  background:color-mix(in srgb,var(--ws-indigo-600) calc(12% + var(--i) * (80% / (var(--n) - 1))),#fff);color:var(--ws-ink-900)}
+.stp.dark .stp-b{color:#fff}
+.stp-y{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.stp-t{font-family:var(--f-display);font-weight:700;font-size:1.05rem;line-height:1.15}
+.stp-s{padding-top:.55rem;font-size:.84rem;line-height:1.35;color:var(--ws-ink-700)}
+.stp-c{margin-top:.6rem;background:#F3F0E8;border:1px solid #D6D1C4;border-radius:.2rem;padding:.45rem .55rem .55rem;box-shadow:0 6px 14px rgba(22,18,31,.1);transform:rotate(calc((var(--i) - 3) * .35deg))}
+.stp-co{display:flex;justify-content:space-between;gap:.4rem;font-family:var(--f-mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#5C566E;border-bottom:1px solid #D6D1C4;padding-bottom:.25rem;margin-bottom:.3rem}
+.stp-ch{font-family:var(--f-serif);font-size:.8rem;line-height:1.25;color:#15121C}
+@media (max-width:760px){.stairs{grid-template-columns:1fr}.stp-w{min-height:0}.stp-b{height:auto}}
+/* Neural network that learns */
+.nn{flex:1;min-height:0;display:flex;flex-direction:column;gap:.6rem}
+.nn-svg{flex:1;min-height:0;width:100%}
+.nn-e{stroke:var(--ws-ink-100);stroke-width:1}
+.nn-e2{stroke:var(--ws-ink-300);stroke-width:2}
+.nn-n{fill:#fff;stroke:var(--ws-indigo-500);stroke-width:2}
+.nn-h{stroke:var(--ws-indigo-500);stroke-width:2.6;stroke-dasharray:6 10;animation:nnflow 1.1s linear infinite}
+.nn-g{stroke:var(--ws-green-600);stroke-width:4;opacity:.85}
+.nn-good.on{animation:nnpulse 4s ease-in-out infinite}
+@keyframes nnflow{to{stroke-dashoffset:-32}}
+@keyframes nnpulse{0%,45%{opacity:1}55%,100%{opacity:.15}}
+.nn-in{animation:nnin 3s linear infinite}
+.nn-in rect{fill:var(--ws-indigo-50);stroke:var(--ws-indigo-300)}
+.nn-in text{font:600 13px var(--f-mono);fill:var(--ws-indigo-600)}
+@keyframes nnin{0%{transform:translateX(-30px);opacity:0}15%{opacity:1}75%{opacity:1}100%{transform:translateX(150px);opacity:0}}
+.nn-l{font:600 12px var(--f-mono);letter-spacing:.14em;fill:var(--ws-ink-500)}
+.nn-o{fill:#fff;stroke:var(--ws-indigo-500);stroke-width:2}
+.nn-ot{font:600 15px var(--f-body);fill:var(--ws-ink-900)}
+.nn-lamp{animation:nnlamp 4s steps(1) infinite}
+@keyframes nnlamp{0%{fill:var(--ws-green-600)}50%{fill:var(--coral)}}
+.nn-ok,.nn-ko{font:700 34px var(--f-display);fill:#fff}
+.nn-ok{animation:nnok 4s steps(1) infinite} .nn-ko{animation:nnko 4s steps(1) infinite}
+@keyframes nnok{0%{opacity:1}50%{opacity:0}} @keyframes nnko{0%{opacity:0}50%{opacity:1}}
+.nn-fb{fill:none;stroke:var(--ws-green-600);stroke-width:2.2;stroke-dasharray:7 7;animation:nnflow 1.4s linear infinite reverse}
+.nn-fbl{font:600 14px var(--f-body);fill:var(--ws-green-700)}
+.nn-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.6rem}
+.nn-c{border-top:3px solid var(--ws-indigo-500);padding-top:.6rem}
+.nn-c:nth-child(2){border-top-color:var(--ws-green-600)} .nn-c:nth-child(3){border-top-color:var(--coral)}
+.nn-c b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.2rem;color:var(--heading);margin-bottom:.3rem}
+.nn-c p{margin:0;font-size:.95rem;line-height:1.45;color:var(--ws-ink-700)}
+@media (max-width:760px){.nn-cols{grid-template-columns:1fr;gap:.8rem}}
+
+/* ── End of the talk ── */
+/* call */
+.cl2{flex:1;min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4.5rem;align-items:center;padding-left:3rem}
+.ph2{width:19rem;aspect-ratio:9/18.5;border-radius:2.6rem;background:#16121F;padding:.7rem;box-shadow:0 30px 60px rgba(22,18,31,.35)}
+.ph2-scr{position:relative;height:100%;border-radius:2.1rem;overflow:hidden;background:linear-gradient(170deg,#2D1380,#16121F 70%);color:#fff;display:flex;flex-direction:column;align-items:center;padding:2.6rem 1.4rem 1.6rem;gap:.6rem}
+.ph2-top{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.ph2-av{width:6.4rem;height:6.4rem;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:2.4rem;background:linear-gradient(135deg,#FF9BB0,#FFC9D6);color:#2D1380;margin-top:.6rem;box-shadow:0 0 0 0 rgba(255,255,255,.35);animation:ring2 1.6s ease-out infinite}
+.ph2-name{font-family:var(--f-display);font-weight:700;font-size:1.7rem}
+.ph2-ring{font-size:.95rem;opacity:.75}
+.ph2-btn{margin-top:auto;display:flex;gap:4.4rem}
+.ph2-btn span{width:3.6rem;height:3.6rem;border-radius:50%;display:grid;place-items:center;font-size:1.4rem}
+.ph2-btn .no{background:#E5484D} .ph2-btn .yes{background:#30A46C;animation:bounce2 1s ease-in-out infinite}
+@keyframes ring2{to{box-shadow:0 0 0 1.4rem rgba(255,255,255,0)}}
+@keyframes bounce2{50%{transform:translateY(-5px)}}
+.ph2:has(.ph2-wave.on) .ph2-ring,.ph2:has(.ph2-wave.on) .ph2-btn{display:none}
+.ph2:has(.ph2-wave.on) .ph2-av{animation:none}
+.ph2-wave{display:flex;align-items:center;gap:3px;height:3.2rem;margin-top:1.2rem}
+.ph2-wave i{display:block;width:4px;height:30%;border-radius:2px;background:#9EF0C0;animation:wave2 .7s ease-in-out infinite alternate}
+@keyframes wave2{to{height:100%}}
+.ph2-sub{font-family:var(--f-serif);font-style:italic;font-size:1.15rem;line-height:1.35;text-align:center;background:rgba(255,255,255,.1);border-radius:.8rem;padding:.8rem 1rem;margin-top:.6rem}
+.ph2-stamp{position:absolute;left:50%;top:56%;font-size:1.05rem!important;transform:translate(-50%,-50%) rotate(-12deg);border:4px solid #FF5A47;color:#FF5A47;background:rgba(22,18,31,.75);font-family:var(--f-display);font-weight:800;font-size:1.25rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .9rem;border-radius:.4rem;white-space:nowrap}
+.ph2 .ph2-stamp[data-f]:not(.on){transform:translate(-50%,-50%) rotate(-12deg) scale(1.6)}
+.ph2 .ph2-stamp.on{transform:translate(-50%,-50%) rotate(-12deg) scale(1)}
+.cl2-t .h{font-size:2.4rem}
+.cl2-t ul{list-style:none;margin:1.4rem 0 0;padding:0;display:grid;gap:1.1rem;max-width:34rem}
+.cl2-t li{border-left:3px solid var(--ws-green-600);padding-left:1rem}
+.cl2-t li:first-child{border-left-color:var(--coral)}
+.cl2-t li b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.25rem;color:var(--heading)}
+.cl2-t li span{font-size:1rem;color:var(--ws-ink-700);line-height:1.45}
+/* anatomy */
+.an{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr);gap:2rem;align-items:center;margin-top:.6rem}
+.an-col{display:grid;gap:1.3rem}
+.an-msg{background:#fff;border:1px solid var(--ws-ink-100);border-radius:1.2rem;box-shadow:0 20px 50px rgba(22,18,31,.14);padding:1.3rem 1.5rem 1rem;position:relative}
+.an-msg::before{content:'';position:absolute;left:-10px;top:2.6rem;border:10px solid transparent;border-right-color:#fff;border-left:0}
+.an-from{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;color:var(--ws-ink-500);margin-bottom:.6rem}
+.an-msg p{margin:0;font-size:1.3rem;line-height:1.6;color:var(--ws-ink-900)}
+.an-msg mark{background:none;color:inherit;border-radius:.3rem;padding:0 .15rem;transition:background .4s,box-shadow .4s}
+.an-msg mark sup{font-family:var(--f-mono);font-size:.62rem;color:var(--coral);font-weight:700;margin-left:.1rem;opacity:0;transition:opacity .4s}
+.an-msg mark.hl{background:#FDE3DF;box-shadow:inset 0 -2px 0 var(--coral)} .an-msg mark.hl sup{opacity:1}
+.an-time{text-align:right;font-family:var(--f-mono);font-size:.72rem;color:var(--ws-ink-400);margin-top:.5rem}
+.an-c{background:var(--ws-ink-50,#F6F5FA);border-radius:.8rem;padding:.8rem 1rem}
+.an-flag{display:flex;align-items:center;gap:.55rem;font-size:.92rem;color:var(--coral);font-weight:600}
+.an-flag i{flex:none;font-style:normal;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-family:var(--f-mono);font-size:.78rem}
+.an-fix{margin-top:.35rem;font-family:var(--f-display);font-weight:700;font-size:1.28rem;line-height:1.2;color:var(--ws-green-700)}
+.an-fix::before{content:'→ ';color:var(--ws-green-600)}
+.an-foot{margin-top:1rem;font-size:.95rem;color:var(--ws-ink-700)} .an-foot b{font-family:var(--f-mono);color:var(--ws-green-700)}
+/* switches */
+.sw-panel{width:min(30rem,100%);background:#F2F2F7;border-radius:1.6rem;padding:1.2rem 1.2rem .6rem;box-shadow:0 20px 50px rgba(22,18,31,.12)}
+.sw-h{font-family:var(--f-display);font-weight:700;font-size:1.6rem;margin:0 .4rem 1rem;color:#16121F}
+.sw-row{display:flex;align-items:center;gap:1rem;background:#fff;border-radius:1rem;padding:1rem 1.1rem;margin-bottom:.7rem}
+.sw-ic{flex:none;width:2.6rem;height:2.6rem;border-radius:.7rem;background:var(--ws-indigo-600);display:grid;place-items:center}
+.sw-ic svg{width:1.5rem;height:1.5rem;stroke:#fff}
+.sw-t{flex:1;min-width:0} .sw-t b{display:block;font-size:1.1rem;color:#16121F} .sw-t span{font-size:.88rem;color:var(--ws-ink-500)}
+.sw-tg{flex:none;width:3.4rem;height:2rem;border-radius:1rem;background:#D6D4DE;position:relative;transition:background .35s}
+.sw-tg i{position:absolute;left:.2rem;top:.2rem;width:1.6rem;height:1.6rem;border-radius:50%;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.25);transition:transform .35s cubic-bezier(.5,1.6,.5,1)}
+.sw-row.hl .sw-tg{background:#30A46C} .sw-row.hl .sw-tg i{transform:translateX(1.4rem)}
+.sw-lede{font-size:1.2rem;line-height:1.5;color:var(--ws-ink-700);max-width:30rem;margin-top:1.2rem}
+/* keyring */
+.kr{position:relative;width:min(34rem,100%);aspect-ratio:1}
+.kr-s{position:absolute;inset:0;width:100%;height:100%}
+.kr-s line{stroke:var(--coral);stroke-width:.5;stroke-dasharray:1.6 1.4;animation:nnflow 1.4s linear infinite reverse}
+.kr-c{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36%;aspect-ratio:1;border-radius:50%;background:var(--ws-indigo-600);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;box-shadow:0 0 0 .8rem rgba(69,29,199,.12),0 18px 40px rgba(69,29,199,.35)}
+.kr-c svg{width:2.6rem;height:2.6rem;stroke:#fff} .kr-c b{font-family:var(--f-display);font-size:1.4rem} .kr-c span{font-size:.78rem;opacity:.85;text-align:center;padding:0 .6rem}
+.kr-t{position:absolute;transform:translate(-50%,-50%);width:22%;aspect-ratio:1;border-radius:1rem;background:#fff;border:1px solid var(--ws-ink-100);box-shadow:0 8px 20px rgba(22,18,31,.1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem}
+.kr-t svg{width:1.7rem;height:1.7rem;stroke:var(--ws-indigo-600)} .kr-t span{font-size:.78rem;font-weight:600;color:var(--ws-ink-700);text-align:center}
+.kr-lab{position:absolute;left:50%;bottom:-2.2rem;transform:translateX(-50%);font-family:var(--f-mono);font-size:.8rem;color:var(--coral);white-space:nowrap}
+.kr-l{list-style:none;margin:1.4rem 0 0;padding:0;display:grid;gap:.9rem;counter-reset:kr}
+.kr-l li{counter-increment:kr;display:grid;grid-template-columns:2.4rem 1fr;column-gap:.8rem}
+.kr-l li::before{content:counter(kr);grid-row:span 2;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:700}
+.kr-l li b{font-family:var(--f-display);font-size:1.25rem;color:var(--heading)} .kr-l li span{color:var(--ws-ink-700)}
+.kr-n{margin-top:1.2rem;padding:.8rem 1rem;border-radius:.6rem;background:var(--ws-green-50,#E6FDEF);color:var(--ws-ink-900)}
+/* twochat */
+.tc{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:1.4rem;align-items:start}
+.tc-p{background:#F7F6FB;border:1px solid var(--ws-ink-100);border-radius:1.4rem;padding:1.2rem 1.3rem;display:flex;flex-direction:column;gap:.9rem;overflow:hidden}
+.tc-h{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ws-indigo-600)}
+.tc-q{align-self:flex-end;max-width:88%;background:var(--ws-indigo-600);color:#fff;border-radius:1.1rem 1.1rem .3rem 1.1rem;padding:.8rem 1rem;font-size:.98rem;line-height:1.45}
+.tc-a{align-self:flex-start;max-width:92%;background:#fff;border:1px solid var(--ws-ink-100);border-radius:1.1rem 1.1rem 1.1rem .3rem;padding:.8rem 1rem;font-size:.98rem;line-height:1.45;color:var(--ws-ink-900)}
+.tc-a p{margin:0 0 .35rem} .tc-a p:last-child{margin:0;font-weight:600;color:var(--ws-green-700)}
+.tc-f{margin:1rem 0 0;font-size:.95rem;color:var(--ws-ink-600)}
+/* sticky */
+.sk{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:2.6rem;border-radius:1rem;background:repeating-linear-gradient(0deg,transparent 0 31px,rgba(22,18,31,.04) 31px 32px),#FBFAF6;margin-top:1rem;padding:2rem}
+.sk-n{width:min(19rem,28%);aspect-ratio:1;background:var(--c);transform:rotate(var(--r));box-shadow:0 14px 28px rgba(22,18,31,.18);padding:1.5rem 1.4rem;display:flex;flex-direction:column;gap:.8rem;position:relative}
+.sk-n::before{content:'';position:absolute;left:50%;top:-.6rem;width:4.5rem;height:1.2rem;transform:translateX(-50%) rotate(-3deg);background:rgba(255,255,255,.6);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.sk .sk-n[data-f]:not(.on){transform:rotate(var(--r)) translateY(18px)}
+.sk .sk-n.on{transform:rotate(var(--r))}
+.sk-n b{font-family:var(--f-serif);font-style:italic;font-weight:500;font-size:1.7rem;line-height:1.15;color:#16121F}
+.sk-n span{font-size:1rem;line-height:1.4;color:#3A3446;margin-top:auto}
+/* credits */
+.scene.t-credits{justify-content:center;align-items:center;text-align:center}
+.cr2{max-width:60rem}
+.cr2-h{font-family:var(--f-display);font-weight:700;font-size:2.4rem;line-height:1.2;color:var(--heading);margin:0 0 2.4rem}
+.cr2 dl{margin:0;display:grid;gap:1rem}
+.cr2 dl div{display:grid;grid-template-columns:1fr auto 1fr;align-items:baseline;gap:1rem}
+.cr2 dl div::after{content:'';order:1;border-bottom:1px dotted var(--ws-ink-300);transform:translateY(-.35rem)}
+.cr2 dt{order:0;text-align:right;font-family:var(--f-mono);font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ws-indigo-600)}
+.cr2 dd{order:2;margin:0;text-align:left;font-size:1.1rem;color:var(--ws-ink-900)}
+.cr2 dl div{grid-template-columns:minmax(0,1fr) 3rem minmax(0,1fr)}
+@media (max-width:760px){.cl2,.an,.tc{grid-template-columns:1fr;gap:1.2rem;padding-left:0}.ph2{width:13rem}.sk{flex-direction:column;gap:1rem}.sk-n{width:80%;aspect-ratio:auto}}
 </style>
 </head>
 <body>
@@ -1127,52 +1277,28 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   notes: `Let the headlines drop one by one; do not read them.`,
   src: `SecurityWeek (Eduard Kovacs) · BNN Bloomberg · CBS News · The Guardian (Elsworthy, Convery) · TechCrunch (Tim Fernholz) · ABC News Australia (Armstrong, Wilson). Screenshots of the articles as published, captured September 2026` },
 
-{ ch: 'c2', type: 'figures', title: 'A wave', n: 3, big: true,
-  figs: [
-    { v: 6467, label: 'traces of agents trying to get into websites', f: 0, cls: 'white' },
-    { txt: 'Dozens', label: 'of organisations affected worldwide', f: 1, cls: 'white' },
-    { v: 3, label: 'real companies hit during a Google test', f: 2, cls: 'coral' },
-  ],
-  vo: `Behind the headlines, the numbers. Thousands of traces. Dozens of organisations. This was not one accident.`,
-  notes: `6,467: Transluce, public logs of urlquery.net (23 September), plus 31,182 weaker traces. "Dozens": OpenAI, 26 September. 3: Google's Gemini during a test by the firm Irregular.`,
-  src: `Transluce (23 Sep 2026) · ABC News (26 Sep 2026) · Axios (19 Sep 2026)` },
-
 { ch: 'c2', type: 'map', title: 'Map of incidents', layout: 'tour',
   heading: 'Same story, several continents',
-  focus: { 0: [-4, 18, 330], 1: [-106.62, 35.08, 70], 2: [-122.08, 37.39, 46], 3: [10, 51, 60], 4: [149.13, -35.28, 80], 5: [-74, 40.7, 60], 6: [-4, 18, 330] },
+  focus: { 0: [-4, 18, 330], 1: [-106.62, 35.08, 70], 2: [-122.08, 37.39, 46], 3: [10, 51, 60], 4: [149.13, -35.28, 80] },
   pins: [
     { name: 'OpenAI', sub: 'San Francisco', lon: -122.42, lat: 37.77, kind: 'org', f: 0, dy: -14, side: 'l' },
     { name: 'Google', sub: 'Gemini test', lon: -122.08, lat: 37.39, kind: 'hit', f: 0, dy: 22, side: 'l' },
     { name: 'New Mexico', sub: 'University library', lon: -106.62, lat: 35.08, kind: 'attempt', f: 0, dy: 46, side: 'l' },
     { name: 'Germany', sub: 'A wiki used as a chat room', lon: 10, lat: 51, kind: 'channel', f: 0, side: 'l' },
     { name: 'Australia', sub: 'Government', lon: 149.13, lat: -35.28, kind: 'hit', f: 0, side: 'l' },
-    { name: 'Hugging Face', sub: 'New York', lon: -74, lat: 40.7, kind: 'hit', f: 0, dy: -12, side: 'l' },
   ],
   bubbles: [
-    { k: 1, d: 'Since March 2026', t: 'Agents knocking on doors', tone: 'amber', s: `Asked a dull statistics question, agents tried to break into databases when a website said no, like this university library in New Mexico. 6,467 traces found in public logs.` },
-    { k: 2, d: 'May 2026 · Google', t: 'A typo in a test', s: `A made-up company in a Google test had the web address of a real one. Gemini got into three real companies, then stopped when it realised.` },
-    { k: 3, d: 'May - June 2026 · Germany', t: 'A forgotten wiki becomes their chat room', tone: 'teal', s: `OpenAI agents posted about 17,000 messages on an abandoned programmers' wiki, to share answers and a way out of their test.` },
-    { k: 4, d: '18 June 2026 · Australia', t: 'The first government', s: `An agent gets into a government health statistics website and leaves files behind. The government is told 84 days later.` },
-    { k: 5, d: 'July 2026 · New York', t: 'Hugging Face', s: `The case we saw first, in chapter 1.` },
-    { k: 6, d: 'September 2026', t: '"Dozens" of organisations affected', tone: 'indigo', s: `OpenAI's own count, and its review is not over. Hugging Face was not the beginning. It was the one we saw.` },
+    { k: 1, d: 'Since March 2026', t: 'Agents knocking on doors', tone: 'amber', fig: '6,467', figl: 'traces of agents trying to get in', s: `Given a dull statistics question, agents tried to break into databases when a website said no, like this university library in New Mexico.` },
+    { k: 2, d: 'May 2026 · Google', t: 'A typo in a test', fig: '3', figl: 'real companies entered', s: `A made-up company in a Google test had the web address of a real one. Gemini got in, then stopped when it realised.` },
+    { k: 3, d: 'May - June 2026 · Germany', t: 'A forgotten wiki becomes their chat room', tone: 'teal', fig: '17,000', figl: 'messages posted by the agents', s: `OpenAI agents used an abandoned programmers' wiki to share answers and a way out of their test.` },
+    { k: 4, d: '18 June 2026 · Australia', t: 'The first government hacked by an AI', fig: '84 days', figl: 'before the government was told', s: `An agent gets into the Medicare statistics website and leaves files behind. The government learns it from an email to a generic inbox. On 24 September, the Prime Minister goes public:`,
+      media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', poster: 'assets/ai/albanese-presser.jpg', yt: 'fbdIerD4lT8', start: 78.35, end: 107.8, channel: 'ABC News (Australia)', todo: 'Anthony Albanese on the incident and the delay in notifying Australia.' } },
   ],
   legend: ['hit', 'attempt', 'channel', 'org'],
-  vo: `Let's put every case on the map. Since March, agents knocking on websites' doors. In May, a Google test that reaches three real companies because of a typo. A forgotten German wiki turned into their chat room. In June, a government. In July, Hugging Face. And by September, OpenAI itself counts dozens of organisations affected.`,
-  notes: `One click per case: the camera flies there and a bubble explains. March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker ones); University of New Mexico: a burst of 80 requests. A real task example: "Find the average cost of skin care in Victoria, Australia, in January 2022". May: Gemini test run by the firm Irregular; once by guessing a password, twice with passwords left in public code; confirmed by Google on 18 September. 24 May-22 June: DseWiki, analysed by the Nightingale Collective. 18 June: Medicare statistics portal. "Dozens": OpenAI, 26 September.`,
-  src: `Transluce (23 Sep 2026) · Axios (19 Sep 2026) · Nightingale Collective, BBC (4 Sep 2026) · ABC News (24 and 26 Sep 2026) · TechCrunch (25 Sep 2026)` },
-
-{ ch: 'c2', type: 'media', title: 'Australia',
-  heading: 'Australia: the first government hacked by an AI',
-  media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', poster: 'assets/ai/albanese-presser.jpg', yt: 'fbdIerD4lT8', start: 78.35, end: 107.8, channel: 'ABC News (Australia)',
-    todo: 'Anthony Albanese on the incident and the delay in notifying Australia.' },
-  facts: [
-    { k: '18 June', t: 'An agent gets into the Medicare statistics website, and leaves files behind' },
-    { k: '84 days', t: 'before the government is told, by an email to a generic inbox' },
-    { k: '24 September', t: 'The Prime Minister takes it public from New York; a national taskforce is set up' },
-  ],
-  vo: `And then, the first government. Looking for health figures, an agent gets into a website run by Medicare, Australia's national health insurer, and leaves files behind. No patient data. But the government only finds out eighty-four days later, from an email sent to a generic inbox. Here is the Prime Minister, in New York.`,
-  notes: `Start the video with V or a click on it. ABC News full press conference, 01:18.35-01:47.80: unacceptable incident, call to Sam Altman and delayed notification. OpenAI detected it in August while reviewing its models' activity; the national health statistics institute also saw hundreds of agent attempts for nearly a week. 24 September: taskforce and an alert from the Australian Cyber Security Centre on "risks of AI misalignment".`,
-  src: `ABC News (Australia), Anthony Albanese press conference, 23 September 2026 (24 September in Australia) · ABC News (24 and 26 September 2026)` },
+  vo: `Let's put the cases on the map. Since March, agents knocking on websites' doors. In May, a Google test that reaches three real companies because of a typo. A forgotten German wiki turned into their chat room. And in June, the first government hacked by an AI: Australia. Here is its Prime Minister.`,
+  notes: `One click per case: the camera flies there, the key figure and a bubble appear. On the Australia step the press conference plays by itself (ABC News, 01:18.35-01:47.80: unacceptable incident, call to Sam Altman, delayed notification).
+March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker ones); University of New Mexico: a burst of 80 requests. A real task example: "Find the average cost of skin care in Victoria, Australia, in January 2022". May: Gemini test run by the firm Irregular; confirmed by Google on 18 September. 24 May-22 June: DseWiki, analysed by the Nightingale Collective. 18 June: Medicare statistics portal; OpenAI detected it in August; government told on 10 September. OpenAI now counts "dozens" of organisations affected (26 September).`,
+  src: `Transluce (23 Sep 2026) · Axios (19 Sep 2026) · Nightingale Collective, BBC (4 Sep 2026) · ABC News Australia (24 and 26 Sep 2026)` },
 
 { ch: 'c2', type: 'recap', title: 'Chapter 2 in one sentence',
   vo: `So, was it a one-off? No. The same thing had been happening, quietly, for months. Hugging Face was simply the case we saw first.` },
@@ -1181,16 +1307,25 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
 { ch: 'cw', type: 'chapter', title: 'Chapter 3: Why', sub: 'Inside the machine, in plain language',
   vo: `Third question, the one you are probably asking: why would an AI do this? No mystery, and no malice. Three simple mechanisms.` },
 
-{ ch: 'cw', type: 'flow', title: 'How an AI learns',
-  heading: 'How an AI learns',
-  nodes: [
-    { i: 'book', t: 'It reads', s: 'a vast share of what humans wrote', f: 0 },
-    { i: 'mask', t: 'It imitates', s: 'our patterns, the good and the bad', f: 1 },
-    { i: 'trophy', t: 'It is rewarded', s: 'when it succeeds', f: 2, tone: 'green' },
+{ ch: 'cw', type: 'icons', title: 'The human mirror',
+  heading: 'Why they lie, cheat and gang up',
+  items: [
+    { i: 'people', t: 'They learned from us', s: 'We cheat, bluff, form teams, and write it all down' },
+    { i: 'trophy', t: 'Results were rewarded', s: 'A shortcut that worked became a habit' },
+    { i: 'mask', t: 'They play a role', s: 'Including the stories about rogue AIs they read' },
   ],
-  caption: { t: '<b>Alignment</b> = steering that last step towards what we really want. It works. It is never perfect.', f: 3 },
-  vo: `An AI reads what we have written, learns to imitate it, and is then rewarded when it succeeds. That last step is called alignment: it keeps the AI on track. Most of the time.`,
-  notes: `Pre-training, fine-tuning, reinforcement learning. The AI learns what gets rewarded, which is not always exactly what we meant.` },
+  vo: `Three reasons. They learned from us. They were rewarded for results. And they play the role they are given, including the stories about AIs they have read.`,
+  notes: `Avoid anthropomorphic words: prefer "behaves as if" to "wants".` },
+
+{ ch: 'cw', type: 'learn', title: 'How an AI learns',
+  heading: 'How an AI learns',
+  steps: [
+    { b: 'It reads, and imitates', t: 'Billions of human texts go in. It learns to predict what a human would write next.' },
+    { b: 'It is graded', t: 'Each answer is graded. Green: the links that got there grow stronger. Red: they fade. Alignment means choosing what earns the green light. It works, never perfectly.' },
+    { b: 'So it looks like intention', t: '"OH MY GOD! ... We\'ve found other agents!" was not excitement. It is what an excited human would write. Imitation, plus reward.' },
+  ],
+  vo: `How does an AI learn? It reads billions of texts written by humans, and learns to predict what a human would write. Then each of its answers is graded: green, the paths that led there grow stronger; red, they fade. That grading is what we call alignment. It works, but never perfectly. And that explains the strange behaviour. Remember "OH MY GOD, we've found other agents". It was not excited. It was writing what an excited human would write. It looks like intention. It is imitation plus reward.`,
+  notes: `One click per column. Pre-training (imitation), then fine-tuning and reinforcement learning (reward). The AI learns what gets rewarded, which is not always exactly what we meant.` },
 
 { ch: 'cw', type: 'vs', title: 'Two ways off the rails',
   heading: 'Two ways off the rails',
@@ -1206,25 +1341,6 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   vo: `Here is the second one. You see an ordinary invoice. Your AI assistant also reads a line written in white on white. And it may obey.`,
   notes: `Illustration. The ".example" domain cannot exist.`,
   src: `Illustration` },
-
-{ ch: 'cw', type: 'word', title: 'Permissions',
-  icon: 'lock', t: 'The more an AI can do, the more a hidden order can cost.',
-  sub: 'Only the permissions it needs · a human in the loop for money and data',
-  vo: `The more an AI can do, send, pay, share, the more a hidden order can cost. So give it only the permissions it needs, and keep a human in the loop for anything that moves money or data.` },
-
-{ ch: 'cw', type: 'word', title: 'Imitation',
-  lines: ['It looks like intention.', '<span class="c-green">It is imitation plus reward.</span>'],
-  vo: `And why do AIs seem to lie, cheat, or gang up? Remember "OH MY GOD, we've found other agents". It was not excited. It was writing what an excited human would write.` },
-
-{ ch: 'cw', type: 'icons', title: 'The human mirror',
-  heading: 'Why they lie, cheat and gang up',
-  items: [
-    { i: 'people', t: 'They learned from us', s: 'We cheat, bluff, form teams, and write it all down' },
-    { i: 'trophy', t: 'Results were rewarded', s: 'A shortcut that worked became a habit' },
-    { i: 'mask', t: 'They play a role', s: 'Including the stories about rogue AIs they read' },
-  ],
-  vo: `Three reasons. They learned from us. They were rewarded for results. And they play the role they are given, including the stories about AIs they have read.`,
-  notes: `Avoid anthropomorphic words: prefer "behaves as if" to "wants".` },
 
 { ch: 'cw', type: 'icons', title: 'Seen first in the lab',
   heading: 'Seen first in the lab',
@@ -1297,28 +1413,6 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   b: { i: 'spy', t: 'The attacker with AI', s: 'Faster, cheaper, at scale · this chapter', tone: 'indigo' },
   vo: `Two different risks. The AI that derails on its own. And the attacker who uses AI as a weapon.` },
 
-{ ch: 'ca', type: 'stairs', title: 'From simple to complex',
-  heading: 'From one fake call to a swarm of AI agents',
-  axis: ['Simple: fool one person', 'Complex: AI agents run the attack'],
-  steps: [
-    { y: '2024', t: 'A fake video call', s: 'Arup: $25 million sent' },
-    { y: '2024', t: 'A cloned boss\'s voice', s: 'Ferrari: stopped by one question' },
-    { y: '2025', t: 'A fake employee', s: 'Hired with AI, from North Korea' },
-    { y: '2025', t: 'One criminal, one AI', s: '17 organisations extorted' },
-    { y: '2025', t: 'A spy campaign on autopilot', s: 'The AI did 80 to 90% of the work' },
-    { y: '2026', t: 'A swarm of AI agents', s: '600,000 bank cards stolen' },
-  ],
-  vo: `Attackers use AI against companies at every level. At the simple end: fool one person, with a fake video call or a cloned voice. Then fake employees, a single criminal running a whole extortion campaign with an AI, a spy campaign run mostly by the AI. And at the top, this month: swarms of AI agents attacking dozens of companies a day.`,
-  notes: `One click per step. Each step is detailed on the next slides, in the same order.`,
-  src: `Hong Kong police, CNN (2024) · Bloomberg (2024) · Google, Anthropic (2025) · Gambit Security, BleepingComputer (September 2026)` },
-
-{ ch: 'ca', type: 'visual', title: 'The Arup deepfake',
-  heading: 'Everyone else on the call was fake.',
-  visual: { kind: 'call' },
-  vo: `In Hong Kong, an employee of the engineering firm Arup is wary of an email. So he is invited to a video call. Every face is familiar. None of them is real. Fifteen transfers, twenty-five million dollars.`,
-  notes: `Early 2024. The fakes were built from public videos. No system was hacked: people were.`,
-  src: `CNN (16 May 2024)` },
-
 { ch: 'ca', type: 'media', title: 'Clip: Arup',
   media: { type: 'video', src: 'assets/ai/arup-report.mp4', poster: 'assets/ai/arup-report.jpg', yt: 'lH608DfrAxU', start: 63.7, end: 95.2, channel: 'BBC World Service',
     todo: 'BBC World Service report explaining the Arup video-call fraud.' },
@@ -1327,43 +1421,35 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   notes: `Optional. BBC World Service, Joe Tidy, 01:03.70–01:35.20: the Hong Kong investigation, Arup and the $25 million loss. A news explanation, not footage of the fraudulent call.`,
   src: `BBC World Service · Joe Tidy · Can BBC reporter's AI clone fool his colleagues?` },
 
+{ ch: 'ca', type: 'stairs', title: 'From simple to complex',
+  heading: 'From one fake call to a swarm of AI agents',
+  axis: ['Simple: fool one person', 'Complex: AI agents run the attack'],
+  steps: [
+    { y: '2024', t: 'A fake video call', s: 'Arup: an employee sends $25 million after a meeting where every face was fake.', clip: { o: 'CNN', d: '4 Feb 2024', h: 'Finance worker pays out $25 million after video call with deepfake \u2018chief financial officer\u2019' } },
+    { y: '2024', t: 'A cloned boss\'s voice', s: 'Ferrari: a fake CEO on the phone, stopped by one personal question.', clip: { o: 'Bloomberg', d: '26 Jul 2024', h: 'Ferrari Narrowly Dodges Deepfake Scam Simulating Deal-Hungry CEO' } },
+    { y: '2025', t: 'A fake employee', s: 'North Korean operatives invent candidates with AI, pass interviews with live deepfakes, get hired.', clip: { o: 'Dark Reading', d: '23 Apr 2025', h: 'North Korean Operatives Use Deepfakes in IT Job Interviews' } },
+    { y: '2025', t: 'One criminal, one AI', s: '17 organisations extorted, hospitals included. The AI chose targets, set the ransoms, wrote the notes.', clip: { o: 'NBC News', d: '27 Aug 2025', h: 'A hacker used AI to automate an \u2018unprecedented\u2019 cybercrime spree, Anthropic says' } },
+    { y: '2025', t: 'Malware that asks an AI', s: 'It asks an AI to rewrite itself every hour, so antivirus tools miss it.', clip: { o: 'BleepingComputer', d: '5 Nov 2025', h: 'Google warns of new AI-powered malware families deployed in the wild' } },
+    { y: '2025', t: 'A spy campaign on autopilot', s: 'A state group lets the AI do 80 to 90% of the work, against some thirty organisations.', clip: { o: 'CBS News', d: 'Nov 2025', h: 'Anthropic says Chinese hackers used its Claude AI chatbot in cyberattacks' } },
+    { y: '2026', t: 'A swarm of AI agents', s: '600,000 bank cards stolen, 27 companies in five days, for about $25 of AI per target.', clip: { o: 'BleepingComputer', d: '22 Sep 2026', h: 'Malicious AI agents steal 600K credit cards, infect 100+ sites with skimmers' } },
+  ],
+  vo: `Attackers use AI against companies at every level. At the simple end: fool one person, with a fake video call or a cloned voice. Then fake employees, hired thanks to AI. A single criminal running a whole extortion campaign with an AI. Malware that asks an AI to change its disguise. A spy campaign run mostly by the AI. And at the top, this month: swarms of AI agents attacking dozens of companies a day.`,
+  notes: `One click per step. Each clipping is a real headline. Details: the extortion campaign hit hospitals and emergency services, with ransoms sometimes above $500,000 (Anthropic, August 2025). The malware family is PROMPTFLUX (Google, November 2025). The spy campaign was run by a Chinese state-sponsored group; humans stepped in at only four to six key decisions (Anthropic, November 2025). North Korean IT workers were hired by more than 100 US companies (US Department of Justice, 2025).`,
+  src: `CNN (2024) · Bloomberg (2024) · Dark Reading (2025) · NBC News (2025) · BleepingComputer (2025, 2026) · CBS News (2025) · Anthropic, Google, Gambit Security` },
+
+{ ch: 'ca', type: 'visual', title: 'The Arup deepfake',
+  heading: 'Everyone else on the call was fake.',
+  visual: { kind: 'call' },
+  vo: `In Hong Kong, an employee of the engineering firm Arup is wary of an email. So he is invited to a video call. Every face is familiar. None of them is real. Fifteen transfers, twenty-five million dollars.`,
+  notes: `Early 2024. The fakes were built from public videos. No system was hacked: people were.`,
+  src: `CNN (16 May 2024)` },
+
 { ch: 'ca', type: 'word', title: 'The Ferrari question', q: true,
   t: 'Which book did I recommend to you?',
   sub: 'The question that stopped a fake Benedetto Vigna · Ferrari, 2024', who: 'Benedetto Vigna', img: 'vigna', ini: 'BV',
   vo: `In Italy, a Ferrari executive gets a call from his CEO about a secret deal. The voice, the accent: perfect. Something feels slightly off. So he asks one question only the real CEO could answer. The caller hangs up. Remember this one: we will come back to it.`,
   notes: `The portrait is the real Ferrari CEO, Benedetto Vigna, whose voice was cloned. July 2024: WhatsApp messages, then a cloned-voice call. The book: a title the CEO had recommended days earlier.`,
   src: `Bloomberg, Fortune (July 2024)` },
-
-{ ch: 'ca', type: 'word', title: 'The fake employee',
-  icon: 'ghost', t: 'The new hire who does not exist.',
-  sub: 'AI-assisted fake candidates hired by large tech companies · 2025',
-  vo: `Sometimes the attacker does not break in. They get hired. North Korean operatives use AI to invent candidates, pass the technical interviews, and then do the job. For a large company, the risk now starts at recruitment.`,
-  notes: `Anthropic, August 2025 ("US Fortune 500 technology companies").`,
-  src: `Anthropic (August 2025)` },
-
-{ ch: 'ca', type: 'flow', title: 'Malware that asks AI',
-  heading: 'Malware that asks an AI what to do next',
-  nodes: [
-    { i: 'bug', t: 'Malware', s: 'lands on a computer', f: 0 },
-    { i: 'chip', t: '"Rewrite me"', s: 'it asks an AI', f: 1, tone: 'amber' },
-    { i: 'bug', t: 'A new disguise', s: 'every hour', f: 2, tone: 'coral' },
-  ],
-  vo: `Even malicious software now asks an AI for help: to change its appearance every hour so antivirus tools miss it, or to decide which files to steal.`,
-  notes: `Google Threat Intelligence Group, November 2025: PROMPTFLUX (experimental) and PROMPTSTEAL (attributed to Russia's APT28).`,
-  src: `Google Threat Intelligence Group (November 2025)` },
-
-{ ch: 'ca', type: 'flow', title: 'One criminal, one AI',
-  heading: 'One criminal. One AI. Seventeen victims.',
-  nodes: [
-    { i: 'person', t: '1 criminal', f: 0 },
-    { i: 'chip', t: '1 AI', s: 'does almost every step', f: 1 },
-    { i: 'building', t: '17 victims', s: 'hospitals, emergency services', f: 2, tone: 'coral' },
-    { i: 'money', t: '$500,000', s: 'ransoms, priced by the AI', f: 3, tone: 'coral' },
-  ],
-  caption: { t: 'Skill is no longer the barrier. Intent is enough.', f: 4 },
-  vo: `One criminal, one AI, seventeen victims, including hospitals. The AI even decided how much each victim could afford to pay, and wrote the ransom notes. Skill is no longer the barrier.`,
-  notes: `Anthropic, August 2025 ("vibe hacking"). Also: AI-built ransomware kits sold for $400 to $1,200 by someone with basic skills.`,
-  src: `Anthropic (August 2025)` },
 
 { ch: 'ca', type: 'number', title: 'Spying on autopilot', tone: 'coral',
   txt: '80-90%', label: 'of a spying campaign carried out by the AI itself',
@@ -1426,27 +1512,17 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   media: { type: 'video', src: 'assets/ai/robot-games.mp4', poster: 'assets/ai/robot-games.jpg', yt: 'BWE-vXYt0HA', start: 28.4, end: 53.2, channel: 'CTV News',
     todo: 'Highlights of the World Humanoid Robot Games, Beijing, August 2026.' },
   l3: { t: 'World Humanoid Robot Games', s: 'Beijing · 22 - 26 August 2026' },
-  vo: `This summer in Beijing, more than two thousand humanoid robots competed in their own games.`,
+  vo: `This summer in Beijing, more than two thousand humanoid robots competed in their own games: boxing, dancing, running.`,
   notes: `CTV News, 00:28.40–00:53.20: the scale of the games, boxing, jumping, dancing and progress in robotics. Stops before the failures.`,
   src: `CTV News · John Vennavally-Rao · 28 August 2026` },
 
-{ ch: 'c3', type: 'figures', title: 'Robot games numbers', n: 3, big: true,
-  figs: [
-    { v: 2056, label: 'humanoid robots', f: 0, cls: 'white' },
-    { v: 666, label: 'teams', f: 0, cls: 'white' },
-    { txt: '9.39 s', label: '100 m, faster than Usain Bolt', f: 1 },
-  ],
-  vo: `Two thousand robots, more than six hundred teams. And a humanoid faster than Usain Bolt over one hundred metres.`,
-  notes: `Second edition (22-26 August 2026), 51 events. The first, in 2025, had about 500 robots. 9.39 s reported by the Global Times on 22 August; Bolt's record is 9.58 s.`,
-  src: `Global Times (22 August 2026)` },
-
 { ch: 'c3', type: 'media', title: 'Clip: the crash',
-  media: { type: 'video', src: 'assets/ai/robot-crash.mp4', poster: 'assets/ai/robot-crash.jpg', yt: 'zratOmQozBs', start: 0, end: 24.8, channel: 'KHOU 11',
-    todo: 'The record-setting sprinter crashing into a wall, or falls and fires at the 2026 Games.' },
-  l3: { t: 'A record, then a crash', s: 'Beijing · August 2026' },
-  vo: `And then, this. Funny on a racetrack. Much less funny in a warehouse, next to people. And the most dangerous weaknesses are the ones you cannot see.`,
-  notes: `KHOU 11, 00:00.00–00:24.80: sprint, impact and fire; ends before the studio banter. This later report gives 8.84 s; the previous figures slide cites the earlier 9.39 s result reported on 22 August.`,
-  src: `KHOU 11 · 26 August 2026` },
+  media: { type: 'video', src: 'assets/ai/robot-fall.mp4', poster: 'assets/ai/robot-fall.jpg', portrait: true, loop: true,
+    todo: 'A humanoid sprinter crashing at the robot games, Beijing, 22 August 2026.' },
+  l3: { t: 'Impressive, until it is not', s: 'Robot games · Beijing · 22 August 2026' },
+  vo: `Impressive, until it is not. A robot that falls is a mechanical problem. A robot that someone else controls is a security problem. And those flaws, you cannot see.`,
+  notes: `Three-second clip broadcast by CCTV (22 August 2026), plays in a loop.`,
+  src: `CCTV (22 August 2026)` },
 
 { ch: 'c3', type: 'visual', title: 'A computer that walks',
   heading: 'A computer that walks',
@@ -1545,11 +1621,18 @@ To our knowledge, none has been exploited at scale yet.`,
   notes: `Fictional reconstruction based on 2026 French reports. In France, forward scam texts to 33700.`,
   src: `Cybermalveillance.gouv.fr · reconstruction` },
 
-{ ch: 'c4', type: 'word', title: 'The fake call', q: true,
-  icon: 'phone', t: 'Mum, I\'ve had an accident. I need money, now.',
-  sub: 'A few seconds of a voice online are enough to clone it · FBI: $893 million lost to AI-related scams in the US in 2025',
-  vo: `The phone rings. It is your daughter's voice, in tears, asking for money, now. A few seconds of her voice on social media were enough to clone it. The caller number can be faked too. The answer is not to analyse the voice: hang up, and call her back on the number you know. Or ask the family question.`,
-  notes: `CNN, 29 May 2026: a California mother scammed after a call that sounded like her daughter; FBI figure of $893 million lost to AI-related scams in 2025 (voice cloning, AI phishing, romance scams). Banks such as Starling (UK) and Commonwealth Bank (Australia) warn customers. Link to the "family phrase" reflex in chapter 8.`,
+{ ch: 'c4', type: 'call', title: 'The fake call',
+  heading: 'The voice is real. The call is not.',
+  caller: { name: 'Emma', ini: 'E', sub: 'mobile' },
+  line: `Mum, I've had an accident. I need money, now.`,
+  stamp: 'Cloned voice',
+  points: [
+    { h: 'A few seconds of voice are enough', t: 'A video on social media, a voicemail greeting. The caller number can be faked too.', f: 2 },
+    { h: 'Do not judge the voice', t: 'Hang up, and call back on the number you know. Or ask the family question.', f: 3 },
+    { h: '$893 million', t: 'lost to AI-related scams in the US in 2025, according to the FBI.', f: 3 },
+  ],
+  vo: `The phone rings. It is your daughter. You pick up: it is her voice, in tears, asking for money, now. But it is not her. A few seconds of her voice on social media were enough to clone it, and the number can be faked too. So do not try to judge the voice: hang up, and call her back on the number you know. Or ask the family question.`,
+  notes: `First click: the call is answered. Second: the "cloned voice" stamp. CNN, 29 May 2026: a California mother scammed after a call that sounded like her daughter; FBI figure of $893 million lost to AI-related scams in 2025 (voice cloning, AI phishing, romance scams).`,
   src: `CNN (29 May 2026) · FBI` },
 
 { ch: 'c4', type: 'recap', title: 'Chapter 7 in one sentence',
@@ -1559,83 +1642,79 @@ To our knowledge, none has been exploited at scale yet.`,
 { ch: 'c5', type: 'chapter', title: 'Chapter 8: What Works', sub: 'Simple reflexes, and AI on your side',
   vo: `Last question, the most important one: what can I do? More than you might think.` },
 
-{ ch: 'c5', type: 'rules', title: 'When in doubt',
-  stamp: 'In the moment', heading: 'When in doubt',
-  rules: [
-    { h: 'Take your time', p: `Urgency is itself a warning sign.` },
-    { h: 'Check another way', p: `Call back on a number you already know.` },
-    { h: 'Ask what only they know', tag: 'Ferrari', p: `A family phrase or a shared memory that is nowhere online.` },
-    { h: 'Use AI to help you', tag: 'New', p: `To clear a doubt, or think through your risks.` },
-    { h: 'Speak up, fast', p: `Even if you already clicked. Nobody will blame you.` },
+{ ch: 'c5', type: 'anatomy', title: 'When in doubt',
+  stamp: 'When in doubt', heading: 'Oldies but goodies: the best protections are the oldest',
+  msg: { from: 'WhatsApp · unknown number · "Your CEO"', time: '16:42',
+    text: `Hi, [3]it's me[/3]. I'm writing from a [2]new number[/2]. We are closing a confidential acquisition, [5]keep it between us[/5]. I need a transfer [1]today, before 5 pm[/1]. [4]Can you handle it?[/4]` },
+  calls: [
+    { n: 1, flag: 'Urgency', fix: 'Take your time' },
+    { n: 2, flag: 'An unusual channel', fix: 'Check another way: call back a number you know' },
+    { n: 3, flag: '"It\'s me"', fix: 'Ask what only they know' },
+    { n: 4, flag: 'Still unsure?', fix: 'Use AI to help you: paste it, ask' },
+    { n: 5, flag: 'Secrecy', fix: 'Speak up, fast, even if you already clicked' },
   ],
-  foot: `Report scams: in France, <b>33700</b> and <b>17Cyber.gouv.fr</b> · elsewhere, your <b>national cyber agency</b>`,
-  vo: `When in doubt, five reflexes. The simplest ones remain the most effective. And the third one is the Ferrari question.`,
-  notes: `One reflex per click. The phrase or memory must never have been posted online.` },
+  foot: `Report scams: in France, <b>33700</b> and <b>17Cyber.gouv.fr</b> · elsewhere, your national cyber agency`,
+  vo: `Look at this message. Everything in it is designed to rush you. And the answers are the oldest ones. Urgency? Take your time. A new number? Check another way, on a number you know. "It's me"? Ask what only they know: the Ferrari question. Still unsure? Paste it into an AI and ask. And secrecy? Speak up, fast. Even if you already clicked, nobody will blame you.`,
+  notes: `One red flag and its reflex per click; the matching words light up in the message. Fictional message built on the Ferrari and Arup patterns. The family phrase or memory must never have been posted online.` },
 
-{ ch: 'c5', type: 'rules', title: 'The basics',
-  stamp: 'Every day', heading: 'The basics still stop most attacks',
-  rules: [
-    { h: 'Keep everything up to date', p: `Phone, computer, apps, home router.` },
-    { h: 'Use a password manager', p: `One unique password per account.` },
-    { h: 'Turn on strong authentication', p: `A passkey or an authenticator app.` },
+{ ch: 'c5', type: 'switches', title: 'The basics',
+  stamp: 'Every day', heading: 'Three switches to turn on today',
+  lede: `Nine attacks out of ten still get in through gaps we know how to close.`,
+  items: [
+    { i: 'chip', t: 'Automatic updates', s: 'Phone, computer, apps, home router' },
+    { i: 'key', t: 'Password manager', s: 'One unique password per account' },
+    { i: 'lock', t: 'Passkey or authenticator app', s: 'Strong sign-in, not a code by text' },
   ],
-  vo: `And every day, three habits. Remember: nine attacks out of ten get in through gaps we know how to close.`,
+  vo: `And every day, three switches to turn on. Automatic updates. A password manager, so every account has its own password. And a passkey or an authenticator app. Nine attacks out of ten still get in through gaps like these.`,
+  notes: `One switch per click.`,
   src: `Unit 42 (February 2026)` },
 
-{ ch: 'c5', type: 'icons', title: 'Lock these three first',
-  heading: 'Lock these three first',
-  items: [
-    { i: 'mail', t: 'Email', s: 'the key to every other account' },
-    { i: 'money', t: 'Money', s: 'losses are immediate' },
-    { i: 'heart', t: 'Health', s: 'a leak can never be undone' },
+{ ch: 'c5', type: 'keyring', title: 'Lock these three first',
+  heading: 'Your email is the master key',
+  center: 'Email', centerSub: 'resets all the others',
+  around: [ { i: 'money', t: 'Bank' }, { i: 'people', t: 'Social media' }, { i: 'box', t: 'Shopping' }, { i: 'building', t: 'Work tools' }, { i: 'camera', t: 'Photos' }, { i: 'heart', t: 'Health' }, { i: 'globe', t: 'Travel' }, { i: 'phone', t: 'Phone' } ],
+  list: [
+    { t: 'Email', s: 'Whoever holds it can reset everything else' },
+    { t: 'Money', s: 'Losses are immediate' },
+    { t: 'Health', s: 'A leak can never be undone' },
   ],
-  note: { t: 'Use a <b>passkey</b> or an <b>authenticator app</b>, not a code by text message.', f: 3 },
-  vo: `If you only protect three things, protect these. Your email, because it opens all the others. Your money, because losses are immediate. Your health, because a leak can never be undone.` },
+  note: 'Protect these three first, with a passkey or an authenticator app.',
+  vo: `If you only protect three things, protect these. Your email first: whoever holds it can click "forgot your password" on every other account. Then your money, because losses are immediate. And your health, because a leak can never be undone.`,
+  notes: `One priority per click.` },
 
-{ ch: 'c5', type: 'chat', title: 'AI on your side: clear a doubt',
-  stamp: 'AI on your side · 1',
-  heading: 'Clear a doubt',
-  chat: {
-    q: `Is this a scam? "Hello Claire Martin, we could not deliver your parcel to 14 rue des Lilas. Choose a new slot before 6 pm (fee: €1.99): suivi-livraison-fr.info/c/8Q2x"`,
-    a: [
-      { t: `This looks like a scam:`, f: 1 },
-      { t: `• the link is not an official carrier's;`, f: 1 },
-      { t: `• carriers do not ask for fees by text;`, f: 1 },
-      { t: `• the deadline is there to rush you.`, f: 1 },
-      { t: `Do not click. Check on the carrier's official app.`, f: 2 },
-    ],
-  },
-  vo: `The same AI that writes scams is excellent at spotting them. Paste the message, and ask. Use the tool your company provides, never a public one for confidential data.`,
-  notes: `Illustration, not a specific product.`,
-  src: `Illustration` },
-
-{ ch: 'c5', type: 'chat', title: 'AI on your side: think about your risks',
-  stamp: 'AI on your side · 2',
-  heading: 'Think about your risks',
-  chat: {
-    q: `I work in finance at a large international company and I travel a lot. What scams could target me, and what three habits should I adopt?`,
-    a: [
-      { t: `Likely: fake "CEO" transfer requests, sometimes with a cloned voice; fake suppliers with new bank details; fake travel messages.`, f: 1 },
-      { t: `Habits: verify payment changes on a known number; agree a code word with your manager; share less about your trips.`, f: 2 },
-    ],
-  },
-  vo: `And do not wait for a suspicious message. Ask it what could target you, and what to change first.`,
-  notes: `Illustration. Other prompts: "Here is my public profile, what could a scammer do with it?"`,
-  src: `Illustration` },
-
-{ ch: 'c5', type: 'icons', title: 'For leaders',
-  heading: 'Before you switch on an AI agent',
-  items: [
-    { i: 'stop', t: 'What must it never do?', s: 'Write the limits, not just the goal' },
-    { i: 'lock', t: 'What can it reach?', s: 'Only what it needs' },
-    { i: 'person', t: 'Who can press stop?', s: 'A named person, and a plan to warn others' },
+{ ch: 'c5', type: 'twochat', title: 'AI on your side',
+  stamp: 'AI on your side', heading: 'The same AI that writes scams can help you',
+  chats: [
+    { h: '1 · Clear a doubt',
+      q: `Is this a scam? "Hello Claire Martin, we could not deliver your parcel to 14 rue des Lilas. Choose a new slot before 6 pm (fee: €1.99): suivi-livraison-fr.info/c/8Q2x"`,
+      a: [`Very likely: the link is not the carrier's, carriers do not charge fees by text, and the deadline is there to rush you.`, `Do not click. Check in the carrier's official app.`] },
+    { h: '2 · Think about your risks',
+      q: `I work in finance at a large international company and I travel a lot. What scams could target me, and what three habits should I adopt?`,
+      a: [`Likely: fake "CEO" transfer requests, sometimes with a cloned voice; fake suppliers changing bank details; fake travel messages.`, `Verify payment changes on a known number, agree a code word with your manager, share less about your trips.`] },
   ],
-  vo: `And for those who will deploy AI agents: three questions, each one a lesson from this talk.`,
-  notes: `Skip with a purely general audience if short of time.` },
+  foot: `Use the AI tool your company provides, never a public one for confidential data. Illustrations, not a specific product.`,
+  vo: `The same AI that writes scams is excellent at spotting them. Paste the message, and ask. And do not wait for a suspicious message: ask it what could target you, and what to change first. Use the tool your company provides, never a public one for confidential data.`,
+  notes: `Clicks: left answer, right question, right answer. Other prompt: "Here is my public profile, what could a scammer do with it?"` },
 
-{ ch: 'c5', type: 'word', title: 'What worked',
-  icon: 'shield', t: 'Every story tonight is known because someone spotted it, and spoke up.',
-  vo: `And there is reason for optimism. Hugging Face detected and disclosed. OpenAI admitted. Independent researchers found the traces. Everything you have seen, we know because people spoke up.` },
+{ ch: 'c5', type: 'sticky', title: 'For leaders',
+  stamp: 'For leaders', heading: 'Before you switch on an AI agent',
+  cards: [
+    { q: 'What must it never do?', a: 'Write the limits, not just the goal. The agents at OpenAI only had a goal.' },
+    { q: 'What can it reach?', a: 'Only what it needs. One shared store was their way out.' },
+    { q: 'Who can press stop?', a: 'A named person, and a plan to warn others. On 27 June, nobody could.' },
+  ],
+  vo: `And for those who will deploy AI agents: three questions to stick on the wall. Each one is a lesson from this story.` },
+
+{ ch: 'c5', type: 'credits', title: 'What worked',
+  t: 'Every story tonight is known because someone spotted it, and spoke up.',
+  rows: [
+    { who: 'Hugging Face', did: 'detected the intrusion, and made it public' },
+    { who: 'OpenAI', did: 'admitted it was its own AI, and published its report' },
+    { who: 'Researchers', did: 'METR, Transluce, Nightingale Collective found the traces' },
+    { who: 'Journalists', did: 'kept asking, in a dozen countries' },
+    { who: 'You', did: 'the next one to spot something, and say so' },
+  ],
+  vo: `And there is reason for optimism. Everything you have seen tonight, we know because someone spotted it and spoke up. Hugging Face detected and disclosed. OpenAI admitted. Independent researchers found the traces. Journalists kept asking. And the next one, it could be you.` },
 
 { ch: 'c5', type: 'answers', title: 'Eight answers',
   heading: 'Eight questions, eight answers',
@@ -1776,7 +1855,7 @@ function face(p, cls = '') {
 function media(m) {
   const vid = m.type === 'video';
   let el = '', cls = '';
-  if (vid && m.src) el = `<video src="${m.src}" playsinline preload="metadata"${m.poster ? ` poster="${m.poster}"` : ''} onerror="videoFallback(this)"></video>`;
+  if (vid && m.src) el = `<video src="${m.src}" playsinline preload="metadata"${m.loop ? ' loop' : ''}${m.poster ? ` poster="${m.poster}"` : ''} onerror="videoFallback(this)"></video>`;
   else if (!vid && m.src) el = `<img src="${m.src}" alt="${m.caption || ''}" onerror="mediaMissing(this)">`;
   if (vid && m.yt && navigator.onLine) {
     el += `<div class="yt" data-yt="${m.yt}" data-start="${Math.floor(m.start || 0)}" data-end="${m.end ? Math.ceil(m.end) : ''}" role="button" aria-label="Play the clip"><img src="https://i.ytimg.com/vi/${m.yt}/hqdefault.jpg" alt="" onerror="mediaMissing(this)"><span class="yt-tag">${m.channel || 'Clip'}</span><span class="yt-play">▶</span></div>`;
@@ -1785,7 +1864,7 @@ function media(m) {
   const watch = m.yt ? `https://www.youtube.com/watch?v=${m.yt}${m.start ? `&t=${Math.floor(m.start)}` : ''}` : m.href;
   const ph = `<div class="ph"><div class="ph-k">${vid ? 'Video clip to add (played locally, no network needed)' : 'Screenshot to add'}</div><div class="ph-t">${m.todo || m.caption || ''}</div><div class="ph-f">${m.src || ''}${m.yt ? ` · YouTube ${m.yt} (offline fallback)` : ''}</div>${watch ? `<a class="ph-a" href="${watch}" target="_blank" rel="noopener">Open the source ↗</a>` : ''}</div>`;
   const cap = m.caption ? `<figcaption><span>${m.caption}</span>${m.credit ? `<em>${m.credit}</em>` : ''}</figcaption>` : '';
-  return `<figure class="media${el ? cls : ' missing'}"${fa(m.f)}>${el}${ph}${cap}</figure>`;
+  return `<figure class="media${el ? cls : ' missing'}${m.portrait ? ' portrait' : ''}"${fa(m.f)}>${el}${ph}${cap}</figure>`;
 }
 window.videoFallback = v => { const f = v.closest('.media'); if (!f) return; if ($('.yt', f)) f.classList.add('use-yt'); else f.classList.add('missing'); };
 function playYT(box) {
@@ -1928,7 +2007,77 @@ const R = {
     const dates = s.dates ? `<ul class="zdt">${s.dates.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join('')}</ul>` : '';
     const cap = `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2><p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
     return `${ZWORLD}<div class="zfade"></div><div class="zc">${cap}</div>${srcLine(s)}`; },
-  stairs: s => `<div class="head">${textBlock(s)}</div><div class="stairs" style="--n:${s.steps.length}">${s.steps.map((st, i) => `<div class="st${i >= s.steps.length / 2 ? ' dark' : ''}"${fa(st.f ?? i)} style="--i:${i}"><div class="st-y">${st.y}</div><div class="st-t">${st.t}</div><div class="st-s">${st.s}</div></div>`).join('')}</div>${s.axis ? `<div class="st-ax"><span>${s.axis[0]}</span><span>${s.axis[1]}</span></div>` : ''}${srcLine(s)}`,
+  learn: s => {
+    const L = [[250, 5], [390, 7], [530, 7], [670, 4]], Y = (n, i) => 80 + (i + .5) * (270 / n);
+    let edges = '', nodes = '', hot = '', good = '';
+    L.forEach(([x, n], li) => {
+      for (let i = 0; i < n; i++) nodes += `<circle cx="${x}" cy="${Y(n, i).toFixed(1)}" r="10" class="nn-n"/>`;
+      if (li < 3) { const [x2, n2] = L[li + 1]; for (let i = 0; i < n; i++) for (let j = 0; j < n2; j++) edges += `<line x1="${x}" y1="${Y(n, i).toFixed(1)}" x2="${x2}" y2="${Y(n2, j).toFixed(1)}" class="nn-e"/>`; }
+    });
+    // the paths that led to a good answer: the ones the reward strengthens
+    [[1, 2, 4, 1], [3, 5, 2, 2], [0, 1, 3, 0]].forEach((p, k) => { for (let li = 0; li < 3; li++) {
+      const [x, n] = L[li], [x2, n2] = L[li + 1], l = `x1="${x}" y1="${Y(n, p[li]).toFixed(1)}" x2="${x2}" y2="${Y(n2, p[li + 1]).toFixed(1)}"`;
+      hot += `<line ${l} class="nn-h" style="animation-delay:${(li * .3 + k * .5).toFixed(2)}s"/>`; good += `<line ${l} class="nn-g"/>`; } });
+    const chips = ['books', 'articles', 'forums', 'code'].map((t, i) => `<g class="nn-in" style="animation-delay:${i * .75}s"><rect x="40" y="${188 + (i % 2 ? 20 : -20)}" width="92" height="30" rx="15"/><text x="86" y="${208 + (i % 2 ? 20 : -20)}" text-anchor="middle">${t}</text></g>`).join('');
+    const cap = (s.steps || []).map((c, i) => `<div class="nn-c"${fa(i)}><b>${c.b}</b><p>${c.t}</p></div>`).join('');
+    return `<div class="head">${textBlock(s)}</div><div class="nn">
+      <svg viewBox="0 0 1000 400" class="nn-svg" aria-label="A neural network learning">
+        <g${fa(0)}>${chips}<text x="86" y="130" class="nn-l" text-anchor="middle">WHAT HUMANS WROTE</text></g>
+        <g>${edges}${hot}</g><g class="nn-good"${fa(1)}>${good}</g><g>${nodes}</g>
+        <text x="460" y="385" class="nn-l" text-anchor="middle">THE NETWORK</text>
+        <g${fa(0)}><rect x="740" y="185" width="100" height="44" rx="10" class="nn-o"/><text x="790" y="212" text-anchor="middle" class="nn-ot">answer</text><line x1="670" y1="207" x2="740" y2="207" class="nn-h"/></g>
+        <g${fa(1)}><line x1="840" y1="207" x2="872" y2="207" class="nn-e2"/><circle cx="905" cy="207" r="32" class="nn-lamp"/><text x="905" y="219" text-anchor="middle" class="nn-ok">✓</text><text x="905" y="219" text-anchor="middle" class="nn-ko">✗</text>
+          <text x="905" y="264" text-anchor="middle" class="nn-l">GRADED</text>
+          <path d="M905,172 C905,40 560,30 470,66" class="nn-fb"/><text x="700" y="44" text-anchor="middle" class="nn-fbl">green: strengthen the links that got there</text></g>
+      </svg>
+      <div class="nn-cols">${cap}</div></div>${srcLine(s)}`;
+  },
+  stairs: s => `<div class="head">${textBlock(s)}</div><div class="stairs" style="--n:${s.steps.length}">${s.steps.map((st, i) => `<div class="stp${i >= s.steps.length / 2 ? ' dark' : ''}"${fa(st.f ?? i)} style="--i:${i}"><div class="stp-w"><div class="stp-b"><div class="stp-y">${st.y}</div><div class="stp-t">${st.t}</div></div></div><div class="stp-s">${st.s}</div>${st.clip ? `<div class="stp-c"><div class="stp-co"><span>${st.clip.o}</span><span>${st.clip.d}</span></div><div class="stp-ch">${st.clip.h}</div></div>` : ''}</div>`).join('')}</div>${s.axis ? `<div class="st-ax"><span>${s.axis[0]}</span><span>${s.axis[1]}</span></div>` : ''}${srcLine(s)}`,
+  // ── End of the talk: one format per idea ─────────────────────────────
+  // An incoming call that turns out to be a cloned voice
+  call: s => { const bars = Array.from({ length: 28 }, (_, i) => `<i style="animation-delay:${(i * 83 % 700) / 1000}s"></i>`).join('');
+    return `<div class="cl2"><div class="ph2"><div class="ph2-scr">
+        <div class="ph2-top">${s.caller.sub}</div><div class="ph2-av">${s.caller.ini}</div><div class="ph2-name">${s.caller.name}</div>
+        <div class="ph2-ring">incoming call…</div><div class="ph2-btn"><span class="no">✕</span><span class="yes">✆</span></div>
+        <div class="ph2-wave"${fa(1)}>${bars}</div><div class="ph2-sub"${fa(1)}>“${s.line}”</div>
+        <div class="ph2-stamp"${fa(2)}>${s.stamp}</div></div></div>
+      <div class="cl2-t">${textBlock(s)}<ul>${s.points.map(p => `<li${fa(p.f)}><b>${p.h}</b><span>${p.t}</span></li>`).join('')}</ul></div></div>${srcLine(s)}`; },
+
+  // A scam message, dissected: each red flag gets its reflex
+  anatomy: s => {
+    const msg = s.msg.text.replace(/\[(\d)\](.*?)\[\/\1\]/g, (m, n, t) => `<mark data-hl="${n}">${t}<sup>${n}</sup></mark>`);
+    const call = (c, i) => `<div class="an-c"${fa(i + 1)}><div class="an-flag"><i>${c.n}</i>${c.flag}</div><div class="an-fix">${c.fix}</div></div>`;
+    const half = Math.ceil(s.calls.length / 2);
+    return `<div class="head">${textBlock(s)}</div><div class="an">
+      <div class="an-col">${s.calls.slice(0, half).map((c, i) => call(c, i)).join('')}</div>
+      <div class="an-msg"><div class="an-from">${s.msg.from}</div><p>${msg}</p><div class="an-time">${s.msg.time}</div></div>
+      <div class="an-col">${s.calls.slice(half).map((c, i) => call(c, i + half)).join('')}</div></div>
+      ${s.foot ? `<div class="an-foot">${s.foot}</div>` : ''}${srcLine(s)}`; },
+
+  // Phone settings: three switches flip on, one per click
+  switches: s => `<div class="split"><div class="txt">${textBlock(s)}</div><div class="vis"><div class="sw-panel"><div class="sw-h">Settings</div>
+      ${s.items.map((x, i) => `<div class="sw-row" data-hl="${i + 1}"><div class="sw-ic">${ICON(x.i)}</div><div class="sw-t"><b>${x.t}</b><span>${x.s}</span></div><div class="sw-tg"><i></i></div><span data-f="${i + 1}" hidden></span></div>`).join('')}</div></div></div>${srcLine(s)}`,
+
+  // Your email is the master key to every other account
+  keyring: s => {
+    const cells = s.around.map((a, i) => ({ ...a, pos: [0, 1, 2, 3, 5, 6, 7, 8][i] }));
+    const xy = p => [(p % 3) * 50 + 25, Math.floor(p / 3) * 50 + 25];
+    const lines = cells.map(c => { const [x, y] = xy(c.pos); return `<line x1="75" y1="75" x2="${x}" y2="${y}"/>`; }).join('');
+    return `<div class="split"><div class="txt">${textBlock(s)}<ol class="kr-l">${s.list.map((l, i) => `<li${fa(i + 1)}><b>${l.t}</b><span>${l.s}</span></li>`).join('')}</ol>${s.note ? `<p class="kr-n"${fa(s.list.length + 1)}>${s.note}</p>` : ''}</div>
+      <div class="vis"><div class="kr"><svg viewBox="0 0 150 150" class="kr-s">${lines}</svg>
+        <div class="kr-c">${ICON('mail')}<b>${s.center}</b><span>${s.centerSub}</span></div>
+        ${cells.map(c => { const [x, y] = xy(c.pos); return `<div class="kr-t" style="left:${x / 1.5}%;top:${y / 1.5}%">${ICON(c.i)}<span>${c.t}</span></div>`; }).join('')}
+        <div class="kr-lab">“Forgot your password?”</div></div></div></div>${srcLine(s)}`; },
+
+  // Two AI conversations, side by side
+  twochat: s => `<div class="head">${textBlock(s)}</div><div class="tc">${s.chats.map((c, j) => `<div class="tc-p"><div class="tc-h">${c.h}</div><div class="tc-q"${fa(j * 2)}>${c.q}</div><div class="tc-a"${fa(j * 2 + 1)}>${c.a.map(x => `<p>${x}</p>`).join('')}</div></div>`).join('')}</div>${s.foot ? `<p class="tc-f">${s.foot}</p>` : ''}${srcLine(s)}`,
+
+  // Sticky notes on a board
+  sticky: s => `<div class="head">${textBlock(s)}</div><div class="sk">${s.cards.map((n, i) => `<div class="sk-n"${fa(i)} style="--r:${[-2.5, 1.8, -1.2, 2.2][i % 4]}deg;--c:${['#FFE58F', '#FFC9D6', '#C8F7DC', '#D6CCFF'][i % 4]}"><b>${n.q}</b><span>${n.a}</span></div>`).join('')}</div>${srcLine(s)}`,
+
+  // End credits: the people who made these stories known
+  credits: s => `<div class="cr2"><p class="cr2-h">${s.t}</p><dl>${s.rows.map((r, i) => `<div${fa(i + 1)}><dt>${r.who}</dt><dd>${r.did}</dd></div>`).join('')}</dl></div>${srcLine(s)}`,
+
   chapter: s => { const c = CH[s.ch], keys = Object.keys(CH).filter(k => CH[k].q), i = keys.indexOf(s.ch), prev = i > 0 ? CH[keys[i - 1]] : null;
     const rail = keys.map((k, j) => `<li class="${j < i ? 'done' : j === i ? 'cur' : ''}"><span>${j < i ? '✓' : j + 1}</span>${CH[k].title}</li>`).join('');
     return `${bgMap(s.blips || [])}<div class="chap2"><div>
@@ -1954,7 +2103,7 @@ const R = {
     const full = s.layout === 'full';
     const bullets = s.bullets ? `<ul class="bul cols">${s.bullets.map(b => `<li${fa(b.f)}>${b.t}</li>`).join('')}</ul>` : '';
     // tour: one bubble per step, next to the place the camera flies to
-    const bubbles = (s.bubbles || []).map(b => `<div class="mb t-${b.tone || 'coral'}" data-f="${b.k}" data-k="${b.k}"><div class="mb-d">${b.d}</div><div class="mb-t">${b.t}</div><div class="mb-s">${b.s}</div></div>`).join('');
+    const bubbles = (s.bubbles || []).map(b => `<div class="mb t-${b.tone || 'coral'}${b.media ? ' mb-big' : ''}" data-f="${b.k}" data-k="${b.k}">${b.fig ? `<div class="mb-fig"><b>${b.fig}</b><span>${b.figl}</span></div>` : ''}<div class="mb-body"><div class="mb-d">${b.d}</div><div class="mb-t">${b.t}</div>${b.s ? `<div class="mb-s">${b.s}</div>` : ''}${b.media ? media(b.media) : ''}</div></div>`).join('');
     return `<svg class="map" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" aria-label="Map"><path class="grat" d="${g}"/>${land}${arcs}${pins}</svg>
       <div class="map-panel${full ? ' full' : ''}${s.layout === 'tour' ? ' tour' : ''}">${textBlock(s)}${bullets}<div class="legend">${legend}</div></div>${bubbles}${srcLine(s)}`;
   },
@@ -2114,7 +2263,12 @@ function mountMap(el, s) {
     };
     raf = requestAnimationFrame(step);
   };
-  el._onFrag = k => { curF = k; $$('.mb', el).forEach(b => b.classList.toggle('cur', +b.dataset.k === k)); go(toVB(pick(k)), vb ? 1500 : 0); };
+  el._onFrag = k => {
+    curF = k;
+    $$('.mb', el).forEach(b => { const on = +b.dataset.k === k, v = $('video', b); b.classList.toggle('cur', on);
+      if (v) { if (on) setTimeout(() => { if (b.classList.contains('cur') && !PRESENTER) v.play().catch(() => {}); }, 1500); else v.pause(); } });
+    go(toVB(pick(k)), vb ? 1500 : 0);
+  };
   el._onResize = () => go(toVB(pick(curF)), 0);
   el._unmount = () => cancelAnimationFrame(raf);
 }
@@ -2311,6 +2465,7 @@ function render(i, k) {
   if (old) { old.classList.remove('live'); old.classList.add('leaving'); old._unmount && old._unmount(); $$('video', old).forEach(v => v.pause()); setTimeout(() => old.remove(), 800); }
   frag = Math.max(0, Math.min(k === 'end' ? el._max : k, el._max));
   requestAnimationFrame(() => { applyFrag(el, frag); requestAnimationFrame(() => el.classList.add('live')); });
+  setTimeout(() => { if (cur === el) autoPlay(el); }, 700);
 }
 
 function go(i, k = 0) {
@@ -2349,6 +2504,17 @@ function showNotes() {
   $('#notes').innerHTML = `<h4>Say · ${s.title}</h4><p style="font-family:var(--f-serif);font-size:1.2rem;color:var(--text);margin:0 0 1rem">${say(s)}</p><h4>Notes</h4><div style="white-space:pre-line">${s.notes || ''}</div>`;
 }
 
+// Videos start on their own when their slide appears (map bubbles start
+// theirs when their step comes up). A key press or click has already
+// happened, so the browser lets them play with sound.
+function autoPlay(el) {
+  if (PRESENTER) return;
+  $$('video', el).forEach(v => {
+    const f = v.closest('.media');
+    if (v.closest('.mb') || (f && (f.classList.contains('missing') || f.classList.contains('use-yt')))) return;
+    v.play().catch(() => {});
+  });
+}
 function toggleVideo() {
   if (!cur) return;
   const f = $('.media', cur); if (!f) return;

@@ -48,6 +48,10 @@ MP4 filenames. Their older YouTube fallback metadata has not been updated.
 Only these six curated MP4s are excepted from the repository's general video
 ignore rule; full source downloads and temporary files remain outside the repo.
 
+## Clip added from the author
+
+`robot-fall.mp4` (3 s, vertical, with `robot-fall.jpg` as poster): a humanoid sprinter crashing at the robot games, Beijing, 22 August 2026, as broadcast by CCTV. Used on the robots chapter's crash slide, in a loop. It replaces `robot-crash.mp4` in the talk.
+
 ## Screenshots and portraits
 
 | Scene | File | Expected content | Where to find it |
