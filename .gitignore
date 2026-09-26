@@ -8,3 +8,11 @@ video/build/*.wav
 video/build/vo/
 
 *.mp4
+
+# Short, curated clips used by the AI presentations.
+!assets/ai/blackhat-briefing.mp4
+!assets/ai/albanese-presser.mp4
+!assets/ai/un-security-council.mp4
+!assets/ai/robot-games.mp4
+!assets/ai/robot-crash.mp4
+!assets/ai/arup-report.mp4

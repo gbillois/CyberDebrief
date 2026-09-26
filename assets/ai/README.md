@@ -1,6 +1,6 @@
-# Media for `ai.html` (Out of the Sandbox)
+# Media for `ai-talk.html` and `ai.html` (Out of the Sandbox)
 
-`ai.html` (English) and `ai-fr.html` (French) are self-contained: fonts, map and
+`ai-talk.html` (visual talk), `ai.html` (English) and `ai-fr.html` (French) are self-contained: fonts, map and
 code are inside the file. They run with no network, for instance from a laptop
 over HDMI. The only external items are the media below, dropped **next to the
 file**, in this `assets/ai/` folder; both language versions use the same files.
@@ -10,27 +10,43 @@ key hides them during a rehearsal.
 To take the presentation with you: copy `ai.html` (or `ai-fr.html`) together
 with the `assets/ai/` folder (USB key, local disk). Nothing else is needed.
 
-## Video clips (local MP4 files)
+## Video clips (included, prepared 26 September 2026)
 
-Scene numbers refer to the English version (`ai.html`).
+The six MP4s and their JPG posters are included. They play locally, including
+from `file://` with the network disabled. Press `V` to play or pause.
+The corrected online fallbacks in `ai-talk.html` use the same source intervals,
+rounded outward to whole seconds for YouTube. Local files already start at
+the cut: do not seek them to the source timecode again.
 
-With no network, only local videos play. If the computer is online and a file is
-missing, the page offers the matching YouTube clip, loaded on click: that is a
-fallback, not the version to use in the room.
+Scene numbers below refer to **`ai-talk.html`**, not the documentary variants.
 
-| Scene | File to add | Content | Identified source |
-|---|---|---|---|
-| 14 · Black Hat (optional) | `blackhat-briefing.mp4` | Session on the OpenAI / Hugging Face incident, Black Hat USA, August 2026 | [YouTube JmklCcqSwz8](https://www.youtube.com/watch?v=JmklCcqSwz8) (check the channel) |
-| 23 · Press conference | `albanese-presser.mp4` | Anthony Albanese announces the intrusion, New York, 24 September 2026 | [ABC News, YH690PgNFdM](https://www.youtube.com/watch?v=YH690PgNFdM) · full version [fbdIerD4lT8](https://www.youtube.com/watch?v=fbdIerD4lT8) |
-| 25 · Security Council (optional) | `un-security-council.mp4` | Sam Altman, Dario Amodei, Clément Delangue before the Security Council, 23 September 2026 | [YouTube eBEYrOk42Rg](https://www.youtube.com/watch?v=eBEYrOk42Rg), or UN Web TV |
-| 42 · Robot games | `robot-games.mp4` | Highlights of the World Humanoid Robot Games, Beijing, 22-26 August 2026 (sprints, football, handling tasks) | [YouTube BWE-vXYt0HA](https://www.youtube.com/watch?v=BWE-vXYt0HA) (check the channel) |
-| 44 · The crash | `robot-crash.mp4` | Record-setting sprinter crashing into a wall, or falls and fires at the 2026 Games | [YouTube zratOmQozBs](https://www.youtube.com/watch?v=zratOmQozBs) · alternatives [XgnBN8BLc-o](https://www.youtube.com/watch?v=XgnBN8BLc-o), [Fy298Uz2CRs](https://www.youtube.com/watch?v=Fy298Uz2CRs) |
-| 55 · Arup (optional) | `arup-report.mp4` | News report on the Arup deepfake fraud (2024) | [YouTube iGJnHHOMwuI](https://www.youtube.com/watch?v=iGJnHHOMwuI) (check the channel) |
+| Talk scene | File | Source interval | Length | Selection and source |
+|---|---|---|---|---|
+| 19 · Black Hat (optional) | `blackhat-briefing.mp4` | 00:28.50–00:57.00 | 28.50 s | Eric Wallace describes the autonomous attack and OpenAI's responsibility. [Official Black Hat recording](https://www.youtube.com/watch?v=87DyyMV0kCY&t=28) |
+| 31 · Press conference | `albanese-presser.mp4` | 01:18.35–01:47.80 | 29.45 s | Albanese calls the incident unacceptable and criticises the notification delay. [ABC News full press conference](https://www.youtube.com/watch?v=fbdIerD4lT8&t=78) |
+| 33 · Security Council (optional) | `un-security-council.mp4` | 19:04.35–19:41.05 | 36.70 s | Dario Amodei explains global risks and ends on the warning about humanity. [Sky News](https://www.youtube.com/watch?v=eBEYrOk42Rg&t=1144) |
+| 55 · Robot games | `robot-games.mp4` | 00:28.40–00:53.20 | 24.80 s | Scale of the games, boxing, jumping, dancing and progress; ends before the failures. [CTV News](https://www.youtube.com/watch?v=BWE-vXYt0HA&t=28) |
+| 57 · The crash | `robot-crash.mp4` | 00:00.00–00:24.80 | 24.80 s | Sprint, collision and fire, before the studio banter. [KHOU 11](https://www.youtube.com/watch?v=zratOmQozBs) |
+| 68 · Arup (optional) | `arup-report.mp4` | 01:03.70–01:35.20 | 31.50 s | Joe Tidy explains the Arup call and the $25 million fraud. News illustrations, not footage of the actual fraudulent call. [BBC World Service](https://www.youtube.com/watch?v=lH608DfrAxU&t=63) |
 
-Recommended format: MP4 (H.264 + AAC), 1080p, a clip of 20 to 40 seconds already
-trimmed. Obtain the files from a source that allows downloading (the
-broadcaster's press office, UN Web TV, a request to the channel); the YouTube
-IDs are there to locate the right footage.
+All files: 1920 × 1080, 30 fps, H.264 / YUV420p, AAC stereo at 48 kHz,
+MP4 fast-start. Actual duration can differ by one video frame at the cut.
+The six clips total about 2 min 56 s and 52 MiB. Sources, precise cuts,
+checksums and encoding settings are recorded in `clips.json`.
+
+Source corrections made during preparation:
+
+- `JmklCcqSwz8` was a third-party commentary, replaced by the official Black Hat recording.
+- `YH690PgNFdM` was an ABC correspondent's report, replaced by footage of Albanese himself.
+- `iGJnHHOMwuI` was a third-party narration, replaced by BBC World Service reporting.
+- The UN excerpt features Amodei; the caption now identifies the actual speaker.
+- The ABC upload is dated 23 September in New York, corresponding to 24 September in Australia.
+- KHOU reports a later 8.84 s sprint; the earlier 9.39 s figure in the talk refers to the 22 August result.
+
+The existing `ai.html` and `ai-fr.html` references also load these same local
+MP4 filenames. Their older YouTube fallback metadata has not been updated.
+Only these six curated MP4s are excepted from the repository's general video
+ignore rule; full source downloads and temporary files remain outside the repo.
 
 ## Screenshots and portraits
 
