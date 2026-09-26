@@ -1281,6 +1281,16 @@ svg.robot .ai-last text{fill:var(--coral)} svg.robot .ai-last .ld{stroke:var(--c
 .fin-card p{font-size:1.38rem!important;line-height:1.3!important;margin-top:.7rem!important;padding-top:.7rem!important}
 .fin-card{padding:1.2rem 1.35rem!important}
 @media (max-width:760px){.insets{position:static;margin-top:1rem}.rc-vs{flex-direction:column}.sk.grouped,.sk-row{flex-direction:column}.sk-g + .sk-g{padding-left:0;border-left:0}.fl-n.has-ph,.fl-ph{width:100%}}
+.phone-wrap{position:relative}
+.phone-shot{display:none}
+.phone-wrap.has-shot .phone-shot{display:block;max-height:calc(100vh - 12rem);width:auto;border-radius:1.6rem;box-shadow:0 30px 60px rgba(22,18,31,.25);border:1px solid var(--ws-ink-100)}
+.phone-wrap.has-shot .phone{display:none}
+.bub.img img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:.8rem}
+.msk{display:inline-block;width:3.2em;height:.9em;vertical-align:-.1em;background:#6B6680;border-radius:.2rem}
+.bub .hot{font-weight:600;background:rgba(216,65,47,.45);color:#fff;border-radius:.2rem;padding:0 .15rem}
+.ann .an{display:grid;grid-template-columns:1.9rem 1fr;gap:.8rem;align-items:start;flex:none;margin:0}
+.phone-wrap .recon{white-space:nowrap;text-align:center}
+.phone-top .av svg{width:60%;height:60%;stroke:#fff}
 /* Zoom: old labels vanish at once, new ones wait for the camera */
 .zw .zlb{transition:opacity .5s ease 1.5s}
 .zw .zlb.off{transition:opacity .12s ease 0s}
@@ -1778,18 +1788,23 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
 
 { ch: 'c4', type: 'phone', title: 'The fake parcel',
   heading: 'Your name. Your address. A fake photo.',
+  sms: {
+    num: '+33 7 69 07 22 24', time: 'Message texte · SMS<br>Aujourd\'hui 11:06', photo: 'assets/ai/photos/parcel-van.jpg',
+    shot: 'assets/ai/press/fake-parcel-sms.jpg',
+    text: `Bonjour c'est le chauffeur-transporteur, j'ai tenté de vous remettre votre carton pour <span class="msk"></span> Olivier au <span class="msk"></span>[1] mais impossible à rentrer dans la boite-aux-lettres, j'ai désormais <b class="hot">au plus vite</b>[4] besoin d'une nouvelle consigne:<br><span class="lnk">https://<span class="msk"></span>Olivier.ml-7546.pro</span>[3]<br>BRD-24849087`,
+    label: 'Real text received in France, 2026 · name and address hidden',
+  },
   ann: [
     { n: 1, h: 'Your real name and address', p: 'from data leaks' },
-    { n: 2, h: 'A generated photo', p: 'made for you' },
-    { n: 3, h: 'A look-alike link', p: 'not the real carrier' },
-    { n: 4, h: 'Urgency', p: '"today"' },
+    { n: 2, h: 'A photo of "your" parcel', p: 'staged, or generated' },
+    { n: 3, h: 'A look-alike link', p: 'with your name in it, not the carrier' },
+    { n: 4, h: 'Urgency', p: '"au plus vite": as soon as possible' },
     { n: 5, h: 'Then, the phone call', p: 'a fake bank adviser' },
   ],
   reflex: 'Never pay or confirm anything from a text.',
-  vo: `The message knows your name. The photo shows your address. All of it is fake, and all of it is generated. And the real trap is the phone call that follows, from a fake bank adviser.`,
-  notes: `Fictional reconstruction based on 2026 French reports. In France, forward scam texts to 33700.`,
-  src: `Cybermalveillance.gouv.fr · reconstruction` },
-
+  vo: `This text was really received in France. "Hello, it's the delivery driver. I tried to hand you your parcel, but it would not fit in the letterbox. I need a new instruction as soon as possible." It knows the name and the address. The photo shows a van full of parcels. The link even contains the first name. All of it is fake. And the real trap is the phone call that follows, from a fake bank adviser.`,
+  notes: `Real SMS shared by the presenter (2026); the name and address are hidden on screen. Translation: "Hello, this is the delivery driver, I tried to deliver your box for [name] at [address] but it would not fit in the letterbox, I now need a new instruction as soon as possible: https://[...]Olivier.ml-7546.pro BRD-24849087". The photo on the rebuilt screen is a stand-in (Unsplash, Claudio Schwarz). In France, forward scam texts to 33700.`,
+  src: `Real SMS, France (2026) · Cybermalveillance.gouv.fr · Photo: Claudio Schwarz on Unsplash` },
 { ch: 'c4', type: 'call', title: 'The fake call',
   heading: 'The voice is real. The call is not.',
   caller: { name: 'Emma', ini: 'E', sub: 'mobile' },
@@ -2392,22 +2407,17 @@ const R = {
     : `${media(s.media)}${s.l3 ? `<div class="lower3"><b>${s.l3.t}</b><span>${s.l3.s}</span></div>` : ''}${s.inset ? `<div class="insets">${s.inset.map(x => `<figure class="inset"${fa(x.f)}><img src="${x.src}" alt="" onerror="this.parentNode.remove()"><figcaption><b>${x.t}</b><span>${x.s}</span></figcaption></figure>`).join('')}</div>` : ''}${srcLine(s)}`,
 
   phone: s => {
-    const parcel = `<svg viewBox="0 0 240 170" aria-label="Generated parcel photo"><defs><linearGradient id="pk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C79A64"/><stop offset="1" stop-color="#9C7445"/></linearGradient></defs>
-      <rect width="240" height="170" fill="#5B5563"/><rect y="118" width="240" height="52" fill="#4A4450"/>
-      <path d="M40 60 L150 40 L210 62 L100 84 Z" fill="#D8AE78"/><path d="M40 60 L100 84 L100 150 L40 124 Z" fill="url(#pk)"/><path d="M100 84 L210 62 L210 128 L100 150 Z" fill="#B3854F"/>
-      <path d="M95 50 L155 73 L155 139" stroke="#E8D3A8" stroke-width="7" fill="none" opacity=".8"/>
-      <g transform="translate(118 90) skewY(-11)"><rect width="74" height="42" rx="2" fill="#F4F1EA"/><rect x="5" y="5" width="30" height="4" fill="#333"/>
-      <text x="5" y="19" font-size="7" font-family="Arial" font-weight="700" fill="#222">CLAIRE MARTIN</text><text x="5" y="28" font-size="5.5" font-family="Arial" fill="#333">14 RUE DES LILAS</text><text x="5" y="35" font-size="5.5" font-family="Arial" fill="#333">69003 LYON</text>
-      <g fill="#222"><rect x="52" y="23" width="1.5" height="14"/><rect x="55" y="23" width="3" height="14"/><rect x="60" y="23" width="1" height="14"/><rect x="63" y="23" width="2.5" height="14"/><rect x="67" y="23" width="1.2" height="14"/></g></g></svg>`;
-    const mk = (n, st) => `<span class="mk"${fa(n)} style="${st}">${n}</span>`;
+    const m = s.sms, mk = (n, st) => `<span class="mk"${fa(n)} style="${st}">${n}</span>`;
+    const text = m.text.replace(/\[(\d)\]/g, (x, n) => mk(+n, 'position:relative;display:inline-grid;vertical-align:middle;margin:0 .2rem'));
     return `<div class="phone-l">
       <div class="txt">${textBlock(s)}<div class="take"${fa(6)}>${s.reflex}</div></div>
-      <div><div class="phone"><div class="phone-top"><div class="av">?</div><div class="num">+33 7 56 12 48 90</div></div>
-        <div class="phone-body"><div class="phone-t">Today 09:14</div>
-          <div class="bub img">${parcel}${mk(2, 'left:-.6rem;top:-.6rem')}${mk(1, 'right:-.6rem;bottom:1.2rem')}</div>
-          <div class="bub">Hello Claire Martin, we could not deliver your parcel to 14 rue des Lilas. Choose a new slot before 6 pm (fee: €1.99):<br><span class="lnk">https://suivi-livraison-fr.info/c/8Q2x</span>${mk(3, 'right:-.6rem;bottom:.4rem')}${mk(4, 'right:-.6rem;top:-.6rem')}</div>
+      <div class="phone-wrap">${m.shot ? `<img class="phone-shot" src="${m.shot}" alt="The text message as received" onload="this.parentNode.classList.add('has-shot')" onerror="this.remove()">` : ''}
+        <div class="phone"><div class="phone-top"><div class="av">${ICON('person')}</div><div class="num">${m.num}</div></div>
+        <div class="phone-body"><div class="phone-t">${m.time}</div>
+          <div class="bub img"><img src="${m.photo}" alt="" onerror="this.remove()">${mk(2, 'left:-.6rem;top:-.6rem')}</div>
+          <div class="bub">${text}</div>
           <div class="phone-t" ${fa(5)} style="margin-top:.8rem">Incoming call · "Your bank's security team"</div>
-        </div></div><div class="recon">Reconstruction · fictional data · translated</div></div>
+        </div></div><div class="recon">${m.label}</div></div>
       <div class="ann">${s.ann.map(a => `<div class="an"${fa(a.n)}><span class="mk">${a.n}</span><div><h4>${a.h}</h4><p>${a.p}</p></div></div>`).join('')}</div>
     </div>${srcLine(s)}`;
   },
