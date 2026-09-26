@@ -22,17 +22,17 @@ Object.assign(PHOTO, {
   'maranello': 'Daniele Fotia on Unsplash',
   'pyongyang': 'Thomas Evans on Unsplash',
   'kyiv': 'Glib Albovsky on Unsplash',
-  'beijing': 'chen zy on Unsplash',
   'taipei': 'Mark Huang on Unsplash',
   'earth-side': 'Carl Wang on Unsplash',
   'san-francisco': 'Jamie Street on Unsplash',
   'payment': 'rupixen on Unsplash',
   'new-mexico': 'Andreas Rasmussen on Unsplash',
   'germany': 'Stephan Widua on Unsplash',
+  'robot-dog': 'Mika Baumeister on Unsplash',
 });
 
 const PH = (id, mode, pos) => ({ src: `assets/ai/photos/${FILE[id] || id}.jpg`, id, mode, pos });
-const FILE = { go2: 'unitree-go2', unsc: 'un-chamber' };
+const FILE = { unsc: 'un-chamber' };
 const PHOTOSET = {
   'Title':                              { bg: PH('racks', 'brand') },
   'Chapter 1: The Exam':                { bg: PH('exam', 'brand') },
@@ -45,7 +45,7 @@ const PHOTOSET = {
   'Chapter 5: The Attackers Level Up':  { bg: PH('keyboard', 'brand') },
   'Chapter 5 in one sentence':          { bg: PH('hong-kong', 'side') },
   'Chapter 6: The Body':                { bg: PH('humanoid', 'brand') },
-  'Chapter 6 in one sentence':          { bg: PH('go2', 'side', '78% 50%') },
+  'Chapter 6 in one sentence':          { bg: PH('robot-dog', 'side', '45% 50%') },
   'Chapter 7: You':                     { bg: PH('phone', 'brand') },
   'Chapter 7 in one sentence':          { bg: PH('phone-side', 'side') },
   'Chapter 8: What Works':              { bg: PH('padlock', 'brand') },
@@ -55,7 +55,7 @@ const PHOTOSET = {
   } },
   'Attackers on the map': { bubbles: {
     1: PH('hong-kong'), 2: PH('maranello'), 3: PH('pyongyang'), 4: PH('kyiv'), 5: PH('racks'),
-    6: PH('taipei'), 7: PH('san-francisco'), 8: PH('payment'), 9: PH('earth-side'),
+    6: PH('taipei'), 7: PH('san-francisco'), 8: PH('payment'),
   } },
 };
 

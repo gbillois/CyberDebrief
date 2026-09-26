@@ -1360,6 +1360,23 @@ svg.robot .ai-last text{fill:var(--coral)} svg.robot .ai-last .ld{stroke:var(--c
 .sk.grouped .sk-n b{font-size:1.35rem!important}
 .sk.grouped .sk-n span{font-size:.92rem!important}
 @media (max-width:760px){.trio,.ph3,.kr2{grid-template-columns:1fr}.ph-after,.ph-after ol{grid-template-columns:1fr}.ph3-s b{font-size:5rem}}
+/* Round of 26 September, late */
+.hk-circ{position:absolute;z-index:3;border:.3rem solid var(--coral);border-radius:50%;box-shadow:0 0 0 .5rem rgba(216,65,47,.18)}
+.hk-ph.shot .hk-red{background:radial-gradient(16% 30% at 87% 24%,rgba(216,65,47,.4),rgba(216,65,47,0) 70%)}
+.kr-med{position:absolute;right:2.2rem;bottom:3.4rem;z-index:4;width:30rem;zoom:.72;filter:drop-shadow(0 20px 40px rgba(22,18,31,.25))}
+.kr-med .gs-cap{text-align:right}
+.kr-sp .kr{width:min(44rem,100%,calc(100vh - 14rem))}
+.kr-sp .vis{justify-content:flex-start}
+.tc-h{font-family:var(--f-display)!important;font-weight:800;font-size:1.9rem!important;letter-spacing:-.01em!important;text-transform:none!important;color:var(--heading)!important}
+.scene.t-sticky.bgm-dark .stamp{color:var(--ws-green-400)}
+.scene.t-sticky.bgm-dark .sk.grouped{background:transparent;backdrop-filter:none;border:0}
+.scene.t-sticky.bgm-dark .sk-h{color:#CFC4FF}
+.scene.t-sticky.bgm-dark .sk-g + .sk-g{border-left-color:rgba(255,255,255,.25)}
+.sk.grouped .sk-n{width:10.8rem!important;padding:.9rem .85rem!important;gap:.4rem}
+.sk.grouped .sk-n b{font-size:1.15rem!important}
+.sk.grouped .sk-n span{font-size:.8rem!important}
+.sk.grouped .sk-n::before{width:3rem;height:.9rem}
+@media (max-width:760px){.kr-med{position:static;zoom:1;width:auto;margin-top:1rem}}
 /* Zoom: old labels vanish at once, new ones wait for the camera */
 .zw .zlb{transition:opacity .5s ease 1.5s}
 .zw .zlb.off{transition:opacity .12s ease 0s}
@@ -1739,7 +1756,7 @@ March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker o
 
 { ch: 'ca', type: 'map', title: 'Attackers on the map', layout: 'tour',
   heading: 'From one fake call to swarms of AI agents',
-  focus: { 0: [5, 25, 330], 1: [114.17, 22.32, 40], 2: [10.87, 44.53, 30], 3: [125.75, 39.03, 40], 4: [34, 53, 40], 5: [-122.42, 37.77, 30], 6: [121.56, 25.03, 26], 7: [-121.96, 37.35, 26], 8: [-92, 38, 60], 9: [5, 25, 330] },
+  focus: { 0: [5, 25, 330], 1: [114.17, 22.32, 40], 2: [10.87, 44.53, 30], 3: [125.75, 39.03, 40], 4: [34, 53, 40], 5: [-122.42, 37.77, 30], 6: [121.56, 25.03, 26], 7: [-121.96, 37.35, 26], 8: [-92, 38, 60] },
   pins: [
     { name: 'Hong Kong', sub: 'Arup', lon: 114.17, lat: 22.32, kind: 'hit', f: 0, side: 'l', dy: 20 },
     { name: 'Italy', sub: 'Ferrari', lon: 10.87, lat: 44.53, kind: 'attempt', f: 0, side: 'l', dy: 16 },
@@ -1761,12 +1778,11 @@ March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker o
     { k: 6, d: 'Jul 2026 · Taiwan', t: 'A swarm against a government', fig: '8', figl: 'AI agents, coordinated', s: `In four days: 21 government systems mapped, 85 accounts cracked, 2,500 personnel records taken. Almost no human at the controls.` },
     { k: 7, d: 'Sep 2026 · Palo Alto Networks', t: 'Two weeks of attack in ten hours', fig: '< 10 h', figl: 'instead of about two weeks', s: `A human attacker hands the intrusion to AI agents: over 50 techniques, monitored and re-planned in real time.` },
     { k: 8, d: 'Jul - Sep 2026 · online shops', t: 'One attacker, a swarm of AI agents', fig: '600,000', figl: 'bank cards stolen', s: `Open-source AI agents find the flaws, break in and plant card skimmers: 119 websites, a US airline among the victims, about $25 of AI per target.` },
-    { k: 9, d: 'Everywhere · 2025 - 2026', t: 'Faster, cheaper, everywhere', tone: 'indigo', fig: '72 min', figl: 'to steal data, for the fastest attacks', s: `Attacks four times faster in a year. Photos faked to claim refunds. And yet nine breaches in ten still go through gaps we know how to close.` },
   ],
   legend: ['hit', 'attempt', 'weapon', 'org'],
-  vo: `Let's put the attackers on the map, from the simplest to the most advanced. Hong Kong: a fake video call, twenty-five million dollars. Italy: a cloned voice at Ferrari, stopped by one personal question. Remember that one. North Korea: fake employees, hired by 136 US companies. Ukraine: malware that asks an AI what to do next. Then this summer: the first ransomware run end to end by an AI. Eight AI agents against Taiwan's government. Two weeks of attack compressed into ten hours. And a swarm of agents stealing six hundred thousand bank cards. Faster, cheaper, everywhere. But nine breaches in ten still go through gaps we know how to close.`,
+  vo: `Let's put the attackers on the map, from the simplest to the most advanced. Hong Kong: a fake video call, twenty-five million dollars. Italy: a cloned voice at Ferrari, stopped by one personal question. Remember that one. North Korea: fake employees, hired by 136 US companies. Ukraine: malware that asks an AI what to do next. Then this summer: the first ransomware run end to end by an AI. Eight AI agents against Taiwan's government. Two weeks of attack compressed into ten hours. And a swarm of agents stealing six hundred thousand bank cards. Faster, cheaper, everywhere.`,
   notes: `One click per case: the camera flies there and the key figure appears.
-Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp messages then a cloned-voice call (Bloomberg). North Korea: US Department of Justice, 14 November 2025, schemes affecting 136 US companies. PROMPTSTEAL (also called LameHug): reported by CERT-UA in July 2025, attributed to APT28; Google calls it the first malware seen querying a language model in live operations. PROMPTFLUX: experimental, rewrites itself hourly (Google, November 2025). JadePuffer: Sysdig, reported 4 July 2026; victim not disclosed. Taiwan: July 2026, found by the Israeli firm Dream, reported by CNN on 13 August 2026; attribution not confirmed. Unit 42: 2 September 2026, victim not disclosed, "compressed weeks of methodical intrusion tradecraft into less than 10 hours". Swarm: Gambit Security via BleepingComputer, 22 September 2026, active since July; victims include a Fortune 500 hospitality company and a major US airline. 72 minutes, 4x faster, 90% preventable: Unit 42, February 2026. Refund photos: OECD.AI (March 2026).`,
+Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp messages then a cloned-voice call (Bloomberg). North Korea: US Department of Justice, 14 November 2025, schemes affecting 136 US companies. PROMPTSTEAL (also called LameHug): reported by CERT-UA in July 2025, attributed to APT28; Google calls it the first malware seen querying a language model in live operations. PROMPTFLUX: experimental, rewrites itself hourly (Google, November 2025). JadePuffer: Sysdig, reported 4 July 2026; victim not disclosed. Taiwan: July 2026, found by the Israeli firm Dream, reported by CNN on 13 August 2026; attribution not confirmed. Unit 42: 2 September 2026, victim not disclosed, "compressed weeks of methodical intrusion tradecraft into less than 10 hours". Swarm: Gambit Security via BleepingComputer, 22 September 2026, active since July; victims include a Fortune 500 hospitality company and a major US airline.`,
   src: `CNN (2024, 2026) · Bloomberg (2024) · US DOJ (2025) · Google (2025) · Sysdig (2026) · Unit 42 (2026) · Gambit Security, BleepingComputer (2026)` },
 
 { ch: 'ca', type: 'recap', title: 'Chapter 5 in one sentence',
@@ -1796,13 +1812,13 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
     todo: 'A humanoid sprinter crashing at the robot games, Beijing, 22 August 2026.' },
   l3: { t: 'Impressive, until it is not', s: 'Robot games · Beijing · 22 August 2026' },
   punch: { t: 'That could derail.', f: 4 },
-  vo: `Impressive, until it is not. A robot that falls is a mechanical problem. A robot that someone else controls is a security problem. Because a humanoid robot is a computer that walks. It sees and hears. It connects. It moves. And, above all, an AI model decides what it does. That could derail. And these robots are already being tested in factories and warehouses.`,
-  notes: `Right: three-second clip broadcast by CCTV (22 August 2026), plays by itself in a loop. Left: one click per layer, the AI model comes last, then "That could derail."`,
+  vo: `A humanoid robot is a computer that walks. It sees and hears. It connects. It moves. And, above all, an AI model decides what it does. That could derail. Look: impressive, until it is not. A robot that falls is a mechanical problem. A robot that someone else controls is a security problem. And these robots are already being tested in factories and warehouses.`,
+  notes: `Left: one click per layer, the AI model comes last, then "That could derail." The clip on the right (CCTV, 22 August 2026, three seconds, in a loop) starts only on that last click.`,
   src: `CCTV (22 August 2026) · Alias Robotics (arXiv 2509.14096, 2025)` },
 
 { ch: 'c3', type: 'hack', title: 'The robot dog',
   heading: 'Bought like any customer. Taken over in four steps.',
-  photo: { src: 'assets/ai/press/unitree-amazon.jpg', alt: 'Unitree robots on sale on Amazon', ratio: '1200/626', marks: { line: 'M9 90 Q20 60 36 34', root: [29, 3], pad: [4, 6], lap: 'br', tags: 'none' } },
+  photo: { src: 'assets/ai/press/unitree-amazon.jpg', alt: 'Unitree robots on sale on Amazon', ratio: '1200/626', marks: { circle: [74.2, 6, 25.4, 37], root: [68, 38], pad: [3, 7], tags: 'none' } },
   tags: ['Unitree Go2', 'Two researchers', 'Oct 2025 - Feb 2026'],
   steps: [
     { c: 'join DDS domain 0', t: 'Talk to its brain', s: 'Its internal messaging accepts any device on its network. No authentication.', tone: 'amber' },
@@ -1959,7 +1975,8 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
   notes: `Clicks: left answer, right question, right answer. Other prompt: "Here is my public profile, what could a scammer do with it?"` },
 
 { ch: 'c5', type: 'sticky', title: 'For leaders',
-  stamp: 'Good practice', heading: 'What are the good practices when I use AI?', world: true,
+  stamp: 'Good practice', heading: 'What are the good practices when I use AI?',
+  bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
   groups: [
     { h: 'When I use AI', cards: [
       { q: 'Never share work or private data on a public AI', a: 'What you paste can be stored, reused, or leak.' },
@@ -2278,6 +2295,7 @@ const PHOTO = {
   openaihq: 'OpenAI offices, Mission Bay (former Uber campus, 2020): HaeB, CC BY-SA 4.0',
   hfhq: '20 Jay Street, Brooklyn: Jim Henderson, CC BY-SA 4.0',
   go2: 'Unitree Go2: HotNews Romania, CC BY 3.0',
+  earthnight: 'Earth at night: NASA on Unsplash',
 };
 const photoCredits = s => { const ids = [s.img, s.photo && s.photo.id, ...(s.nodes || []).map(n => n.photo && n.photo.id), ...(s.people || []).map(p => p.img), ...(s.voices || []).map(p => p.img)].filter(k => k && PHOTO[k]);
   return ids.length ? `Photo${ids.length > 1 ? 's' : ''}: ${[...new Set(ids)].map(k => PHOTO[k]).join(' · ')}, via Wikimedia Commons` : ''; };
@@ -2361,16 +2379,23 @@ const R = {
 
   // Your email is the master key to every other account
   keyring: s => {
+    const cells = s.around.map((a, i) => ({ ...a, pos: [0, 1, 2, 3, 5, 6, 7, 8][i] }));
+    const xy = p => [(p % 3) * 50 + 25, Math.floor(p / 3) * 50 + 25];
+    const lines = cells.map(c => { const [x, y] = xy(c.pos); return `<line x1="75" y1="75" x2="${x}" y2="${y}"/>`; }).join('');
+    const n = s.list.length + 1;
     const row = (i, t, sub, on, hl) => `<div class="gs-row"${hl ? ` data-hl="${hl}"` : ''}><div class="gs-ic">${ICON(i)}</div><div class="gs-tx"><b>${t}</b><span>${sub}</span></div><i class="gs-tg${on ? ' on' : ''}"><u></u></i></div>`;
-    return `<div class="kr2"><div class="kr2-l">${textBlock(s)}<ol class="kr-l">${s.list.map((l, i) => `<li${fa(i + 1)}><b>${l.t}</b><span>${l.s}</span></li>`).join('')}</ol>
-        ${s.reco ? `<div class="kr2-reco"${fa(s.list.length + 1)}><b>${s.reco.t}</b><span>${s.reco.s}</span></div>` : ''}</div>
-      <div class="kr2-r"${fa(s.list.length + 1)}><div class="gs"><div class="gs-top"><span class="gs-logo">G</span><b>Google Account</b><em>Security</em></div>
+    return `<div class="split kr-sp"><div class="txt">${textBlock(s)}<ol class="kr-l">${s.list.map((l, i) => `<li${fa(i + 1)}><b>${l.t}</b><span>${l.s}</span></li>`).join('')}</ol>
+        ${s.reco ? `<div class="kr2-reco"${fa(n)}><b>${s.reco.t}</b><span>${s.reco.s}</span></div>` : ''}</div>
+      <div class="vis"><div class="kr"><svg viewBox="0 0 150 150" class="kr-s">${lines}</svg>
+        <div class="kr-c">${ICON('mail')}<b>${s.center}</b><span>${s.centerSub}</span></div>
+        ${cells.map(c => { const [x, y] = xy(c.pos); return `<div class="kr-t" style="left:${x / 1.5}%;top:${y / 1.5}%">${ICON(c.i)}<span>${c.t}</span></div>`; }).join('')}
+        <div class="kr-lab">“Forgot your password?”</div></div></div></div>
+      <div class="kr-med"${fa(n)}><div class="gs"><div class="gs-top"><span class="gs-logo">G</span><b>Google Account</b><em>Security</em></div>
         <div class="gs-sec"><h5>How you sign in to Google</h5>
-          ${row('lock', '2-Step Verification', '<em class="gs-off">Off</em><em class="gs-onx">On since today</em>', 0, s.list.length + 1)}
+          ${row('lock', '2-Step Verification', '<em class="gs-off">Off</em><em class="gs-onx">On since today</em>', 0, n)}
           ${row('key', 'Passkeys and security keys', '1 passkey on this phone', 1)}
           ${row('phone', 'Authenticator app', 'Added', 1)}
-          ${row('mail', 'Recovery email', 'a•••@••••.com', 1)}
-        </div></div><div class="gs-cap">Illustration · Google Account › Security › 2-Step Verification</div></div></div>${srcLine(s)}`; },
+        </div></div><div class="gs-cap">Illustration · Google Account › Security</div></div>${srcLine(s)}`; },
 
   // Two AI conversations, side by side
   twochat: s => `<div class="head">${textBlock(s)}</div><div class="tc">${s.chats.map((c, j) => `<div class="tc-p"><div class="tc-h">${c.h}</div><div class="tc-q"${fa(j * 2)}>${c.q}</div><div class="tc-a"${fa(j * 2 + 1)}>${c.a.map(x => `<p>${x}</p>`).join('')}</div></div>`).join('')}</div>${s.foot ? `<p class="tc-f">${s.foot}</p>` : ''}${srcLine(s)}`,
@@ -2397,14 +2422,14 @@ const R = {
   forum: s => `<img class="fo-bg" src="${s.photo.src}" alt="" onerror="this.remove()"><div class="fo-sh"></div><div class="fo"><div>${textBlock(s)}</div>${s.media ? `<div class="fo-m">${media(s.media)}</div>` : ''}<div class="fo-v">${s.voices.map((v, i) => `<figure class="fo-c"${fa(v.f ?? i)}>${face(v, 'sm')}<div><blockquote>${v.q}</blockquote><figcaption><b>${v.who}</b> · ${v.role}</figcaption></div></figure>`).join('')}</div></div>${srcLine(s)}`,
 
   // Schematic on the left, video on the right
-  robotvid: s => `<div class="rv"><div class="rv-l"><h2 class="h">${s.heading}</h2><div class="rv-v">${V[s.visual.kind](s.visual)}</div>${s.punch ? `<p class="rv-msg"${fa(s.punch.f)}>${s.punch.t}</p>` : ''}</div><div class="rv-r">${media(s.media)}${s.l3 ? `<div class="rv-l3"><b>${s.l3.t}</b><span>${s.l3.s}</span></div>` : ''}</div></div>${srcLine(s)}`,
+  robotvid: s => `<div class="rv"><div class="rv-l"><h2 class="h">${s.heading}</h2><div class="rv-v">${V[s.visual.kind](s.visual)}</div>${s.punch ? `<p class="rv-msg"${fa(s.punch.f)}>${s.punch.t}</p>` : ''}</div><div class="rv-r" data-wait>${media(s.media)}${s.l3 ? `<div class="rv-l3"><b>${s.l3.t}</b><span>${s.l3.s}</span></div>` : ''}</div></div>${srcLine(s)}`,
 
   // A real photo, the intrusion drawn on it, the steps as a console
   hack: s => `<div class="head">${textBlock(s)}</div><div class="hk">
       <figure class="hk-ph${s.photo.marks ? ' shot' : ''}" style="aspect-ratio:${s.photo.ratio || '960/628'}"><img src="${s.photo.src}" alt="${s.photo.alt}" onerror="this.remove()">
         ${(s.photo.marks || {}).tags === 'none' ? '' : `<div class="hk-tags">${s.tags.map(t => `<span>${t}</span>`).join('')}</div>`}
-        <svg class="hk-ln" viewBox="0 0 100 100" preserveAspectRatio="none"${fa(0)}><path d="${(s.photo.marks || {}).line || 'M12 84 Q30 50 50 34'}"/></svg>
-        <div class="hk-lap"${fa(0)}>${ICON('code')}<span>Researchers' laptop</span></div>
+        ${(s.photo.marks || {}).circle ? `<div class="hk-circ"${fa(0)} style="left:${s.photo.marks.circle[0]}%;top:${s.photo.marks.circle[1]}%;width:${s.photo.marks.circle[2]}%;height:${s.photo.marks.circle[3]}%"></div>` : `<svg class="hk-ln" viewBox="0 0 100 100" preserveAspectRatio="none"${fa(0)}><path d="M12 84 Q30 50 50 34"/></svg>
+        <div class="hk-lap"${fa(0)}>${ICON('code')}<span>Researchers' laptop</span></div>`}
         <div class="hk-red"${fa(2)}></div>
         <div class="hk-root"${fa(2)}${s.photo.marks ? ` style="left:${s.photo.marks.root[0]}%;top:${s.photo.marks.root[1]}%"` : ''}>ROOT</div>
         <div class="hk-pad"${fa(3)}${s.photo.marks ? ` style="right:${s.photo.marks.pad[0]}%;bottom:${s.photo.marks.pad[1]}%"` : ''}>${ICON('gamepad')}<span>R1 + Y</span></div>
@@ -2804,6 +2829,8 @@ function render(i, k) {
   el._max = maxF(el);
   stage.appendChild(el);
   if (s.type === 'map') mountMap(el, s);
+  // a video that waits for the last click of the scene
+  if ($('[data-wait] video', el)) el._onFrag = k => { const v = $('[data-wait] video', el); if (k >= el._max && !PRESENTER) v.play().catch(() => {}); else { v.pause(); v.currentTime = 0; } };
   if (s.type === 'zoom') mountZoom(el, s);
   if (s.type === 'timeline') {
     const tl = $('.tl', el), rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -2861,7 +2888,7 @@ function autoPlay(el) {
   if (PRESENTER) return;
   $$('video', el).forEach(v => {
     const f = v.closest('.media');
-    if (v.closest('.mb') || (f && (f.classList.contains('missing') || f.classList.contains('use-yt')))) return;
+    if (v.closest('.mb,[data-wait]') || (f && (f.classList.contains('missing') || f.classList.contains('use-yt')))) return;
     v.play().catch(() => {});
   });
 }
@@ -2945,17 +2972,17 @@ Object.assign(PHOTO, {
   'maranello': 'Daniele Fotia on Unsplash',
   'pyongyang': 'Thomas Evans on Unsplash',
   'kyiv': 'Glib Albovsky on Unsplash',
-  'beijing': 'chen zy on Unsplash',
   'taipei': 'Mark Huang on Unsplash',
   'earth-side': 'Carl Wang on Unsplash',
   'san-francisco': 'Jamie Street on Unsplash',
   'payment': 'rupixen on Unsplash',
   'new-mexico': 'Andreas Rasmussen on Unsplash',
   'germany': 'Stephan Widua on Unsplash',
+  'robot-dog': 'Mika Baumeister on Unsplash',
 });
 
 const PH = (id, mode, pos) => ({ src: `assets/ai/photos/${FILE[id] || id}.jpg`, id, mode, pos });
-const FILE = { go2: 'unitree-go2', unsc: 'un-chamber' };
+const FILE = { unsc: 'un-chamber' };
 const PHOTOSET = {
   'Title':                              { bg: PH('racks', 'brand') },
   'Chapter 1: The Exam':                { bg: PH('exam', 'brand') },
@@ -2968,7 +2995,7 @@ const PHOTOSET = {
   'Chapter 5: The Attackers Level Up':  { bg: PH('keyboard', 'brand') },
   'Chapter 5 in one sentence':          { bg: PH('hong-kong', 'side') },
   'Chapter 6: The Body':                { bg: PH('humanoid', 'brand') },
-  'Chapter 6 in one sentence':          { bg: PH('go2', 'side', '78% 50%') },
+  'Chapter 6 in one sentence':          { bg: PH('robot-dog', 'side', '45% 50%') },
   'Chapter 7: You':                     { bg: PH('phone', 'brand') },
   'Chapter 7 in one sentence':          { bg: PH('phone-side', 'side') },
   'Chapter 8: What Works':              { bg: PH('padlock', 'brand') },
@@ -2978,7 +3005,7 @@ const PHOTOSET = {
   } },
   'Attackers on the map': { bubbles: {
     1: PH('hong-kong'), 2: PH('maranello'), 3: PH('pyongyang'), 4: PH('kyiv'), 5: PH('racks'),
-    6: PH('taipei'), 7: PH('san-francisco'), 8: PH('payment'), 9: PH('earth-side'),
+    6: PH('taipei'), 7: PH('san-francisco'), 8: PH('payment'),
   } },
 };
 
