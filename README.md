@@ -20,8 +20,8 @@ English version; `ai-fr.html` keeps the first French iteration.
 | 03 | Why It Derails | 14 - 20 | How an AI learns and what alignment is; derailing on its own vs. prompt injection, with a hidden-instruction email; why AIs seem to lie, cheat and organise; what researchers had already seen in the lab |
 | 04 | The Attackers Level Up | 20 - 26 | Classic attackers using AI: a spying campaign run mostly by AI, one extortionist and 17 victims, fake employees, the Ferrari deepfake stopped by one question, malware that asks an AI, the new pace of attacks |
 | 05 | The Body | 26 - 31 | The 2026 robot games (impressive clips, then the crash), the robot as a computer that walks, the Unitree Go2 takeover and its app store, warning signs, what security leaders should do now |
-| 06 | You | 31 - 36 | Fake parcels with generated photos, AI-written scam emails, the Arup deepfake, fake evidence |
-| 07 | What Works | 36 - 40 | Five reflexes; AI on your side, to clear a doubt and to think about your risks; three questions for leaders; what worked |
+| 06 | You | 31 - 35 | Fake parcels with generated photos, AI-written scam emails, the Arup deepfake, fake evidence |
+| 07 | What Works | 35 - 40 | When in doubt (take your time, check another way, ask what only they know as at Ferrari, use AI, speak up); everyday basics (updates, password manager, strong authentication); lock email, money and health first; AI on your side; three questions for leaders; what worked |
 
 Written for a general audience: plain language on screen, technical detail in
 the speaker notes for questions.

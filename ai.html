@@ -518,8 +518,8 @@ const CH = {
   cw: { n: '03', title: 'Why It Derails',        mins: [14, 20] },
   ca: { n: '04', title: 'The Attackers Level Up', mins: [20, 26] },
   c3: { n: '05', title: 'The Body',              mins: [26, 31] },
-  c4: { n: '06', title: 'You',                   mins: [31, 36] },
-  c5: { n: '07', title: 'What Works',            mins: [36, 40] },
+  c4: { n: '06', title: 'You',                   mins: [31, 35] },
+  c5: { n: '07', title: 'What Works',            mins: [35, 40] },
 };
 
 // ════════════════════════════════════════════════════════════════════════
@@ -1283,20 +1283,44 @@ The fakes were built from public videos of the executives. Arup's CIO Rob Greig:
   blips: [[2.35, 48.86], [-0.13, 51.5], [-74, 40.7]],
   notes: `Change of tone: from threat to action. Everything from here is practical.` },
 
-{ ch: 'c5', type: 'rules', title: 'Five reflexes',
-  stamp: 'What works', heading: 'Five reflexes to keep',
+{ ch: 'c5', type: 'rules', title: 'When in doubt',
+  stamp: 'What works · 1 · in the moment', heading: 'When in doubt: five reflexes',
   rules: [
-    { h: 'Pause', p: `Urgency is the scammer's favourite tool. A real bank, courier or colleague can wait five minutes.` },
+    { h: 'Take your time', p: `Urgency is the scammer's favourite tool: pressure to act now is itself a warning sign. A real bank, courier or boss can wait five minutes.` },
     { h: 'Check another way', p: `Hang up and call back on a number you already know. Never the one in the message.` },
-    { h: 'Agree on a code word', p: `With your family, and at work for payments. A familiar voice or face is no longer proof.` },
+    { h: 'Ask what only they know', tag: 'Ferrari', p: `Do what the Ferrari executive did. Agree on a family phrase or a shared memory that is nowhere on the internet, and use it when in doubt.` },
     { h: 'Use AI to help you', tag: 'New', p: `To clear a doubt about a message, or to think through the risks you face. Use your company's approved assistant.` },
     { h: 'Speak up, fast', p: `Tell your security team, even if you already clicked. The sooner, the better. Nobody will blame you.` },
   ],
   foot: `Report scams: in France, forward texts to <b>33700</b> and use <b>17Cyber.gouv.fr</b> · elsewhere, your <b>national cyber agency</b>`,
   notes: `One reflex per click. Say each one, then stop: let it land.
-The code word is the simplest defence against voice and video cloning: remember the Ferrari question.
+Reflex 3 is the Ferrari lesson from chapter 4: one personal question beat a cloned voice. The phrase or memory must never have been posted online (no pet names, birthdays, holidays shared on social media). Agree on one with your family this week, and at work with the people who approve payments.
 "Speak up" echoes chapter 1: the warning was seen but nobody felt they could stop things. Make reporting easy and blame-free.`,
-  src: `Cybermalveillance.gouv.fr · 17Cyber` },
+  src: `Cybermalveillance.gouv.fr · 17Cyber · Ferrari case (Bloomberg, Fortune, July 2024)` },
+
+{ ch: 'c5', type: 'rules', title: 'Protect your accounts',
+  stamp: 'What works · 2 · every day', heading: 'The basics still stop most attacks',
+  rules: [
+    { h: 'Keep everything up to date', p: `Phone, computer, apps, home router. Updates close the doors attackers use, including those found by AI.` },
+    { h: 'Use a password manager', p: `One unique password per account, remembered for you. When one site leaks, the others stay safe.` },
+    { h: 'Turn on strong authentication', p: `A passkey or an authenticator app on top of your password, starting with the accounts that matter most.` },
+  ],
+  notes: `Link back to chapter 4: 9 breaches out of 10 come from preventable gaps (Unit 42).
+Password reuse is what turns one leak into many: data breaches doubled in France in 2025 (Cybermalveillance, +107%).
+Strong authentication: passkeys or an authenticator app are more robust than codes received by text message, which can be intercepted or diverted.`,
+  src: `Unit 42, Global Incident Response Report (February 2026) · Cybermalveillance.gouv.fr, 2025 annual report` },
+
+{ ch: 'c5', type: 'cards', title: 'Lock these three first', n: 3,
+  stamp: 'What works · 3 · priorities', heading: 'Strong authentication: lock these three first',
+  cards: [
+    { n: '01', h: 'Your email', p: `It is the key to all your other accounts: whoever controls it can reset every other password.`, ref: 'Everything else depends on it', f: 0 },
+    { n: '02', h: 'Your money', p: `Bank, payment apps, brokers, company finance tools: here, a breach turns directly into lost money.`, ref: 'Losses are immediate', f: 1 },
+    { n: '03', h: 'Your health', p: `Health data cannot be changed like a password. Once it has leaked, there is no going back.`, ref: 'Damage is irreversible', f: 2 },
+  ],
+  foot: `Use a <b>passkey</b> or an <b>authenticator app</b>, rather than a code by text message.`,
+  notes: `The logic of priorities: email because it controls everything else (password resets); money because losses are immediate; health because the damage cannot be undone.
+Practical suggestion for the room: pick one of the three tonight and switch on strong authentication; it takes five minutes.`,
+  src: `General security guidance` },
 
 { ch: 'c5', type: 'chat', title: 'AI on your side: clear a doubt',
   stamp: 'AI on your side · 1 · clear a doubt',
@@ -1351,7 +1375,7 @@ Again: use the approved tool, and describe situations rather than pasting confid
     { n: '02', h: 'What can it reach?', p: `Only what it needs: no open internet, no shared spaces, no access "just in case".`, ref: 'Google, Hugging Face', f: 1 },
     { n: '03', h: 'Who can press stop?', p: `A named person, with the authority to stop it without waiting for proof, and a plan to warn anyone affected.`, ref: '27 June, 84 days', f: 2 },
   ],
-  notes: `For the managers in the room. Three questions, each tied to a case they now know.
+  notes: `For the managers in the room; skip with a purely general audience if short of time. Three questions, each tied to a case they now know.
 For robots and connected devices, the same questions apply at purchase: what does it collect, where does the data go, who can update or stop it?`,
   src: `Synthesis of the reports cited` },
 
@@ -1488,7 +1512,9 @@ const SCRIPT = {
   'Fake evidence': `And it works both ways: customers can fake evidence too.`,
   'What changed': `Scams are now cheap, flawless and convincing.`,
   'Chapter 7: What Works': `So what can we do? More than you might think.`,
-  'Five reflexes': `Five reflexes. Simple, and they work, whatever technology is on the other side.`,
+  'When in doubt': `When in doubt, five reflexes. The simplest ones remain the most effective, whatever technology is on the other side.`,
+  'Protect your accounts': `And every day, three habits. Remember: nine attacks out of ten get in through gaps we know how to close.`,
+  'Lock these three first': `If you only protect three things, protect these: your email, your money, your health.`,
   'AI on your side: clear a doubt': `The fourth one deserves a demonstration. The same AI that writes scams is excellent at spotting them.`,
   'AI on your side: think about your risks': `And you do not have to wait for a suspicious message. Ask it what could target you, and what to change.`,
   'For leaders': `And for those of you who will deploy AI agents: three questions, before you switch one on.`,
