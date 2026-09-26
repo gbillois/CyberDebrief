@@ -468,6 +468,11 @@ svg.sandbox .sb-ln.on{animation:dash 1.2s linear infinite}
   .sp-line{width:100%;height:4rem} .sp-line em{font-size:2.4rem}
 }
 
+.scene.t-date{justify-content:center;align-items:center;text-align:center}
+.dt-big{font-family:var(--f-display);font-weight:800;font-size:10.5rem;line-height:.9;letter-spacing:-.045em;color:var(--ws-indigo-600,#451DC7)}
+.dt-sub{font-size:2.6rem;margin-top:2.2rem;color:var(--ws-ink-900,#16121F)}
+@media (max-width:760px){.dt-big{font-size:4.2rem}.dt-sub{font-size:1.6rem}}
+
 /* ── HUD, help, overlays ───────────────────────────────────────────── */
 #hud{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:0 5.5rem 1.2rem;display:flex;align-items:center;gap:1.6rem;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle);transition:opacity .5s}
 body.idle #hud{opacity:0}
@@ -545,6 +550,173 @@ body.pres::before,body.pres::after{display:none}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition-duration:.01ms!important}
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   WAVESTONE THEME · white ground, indigo headings, green accent
+   Tokens from the Wavestone design system
+   (https://gbillois.github.io/HowToWavestone/wavestonedesign.css), inlined so
+   the file stays offline. Title, chapter and closing cards use the signature
+   indigo brand surface; every other screen is white.
+   ════════════════════════════════════════════════════════════════════════ */
+:root{
+  --ws-indigo-50:#F1EEFB; --ws-indigo-100:#D1CAF2; --ws-indigo-300:#A18FE3; --ws-indigo-500:#5A2BE0;
+  --ws-indigo-600:#451DC7; --ws-indigo-700:#36169B; --ws-indigo-800:#2D1380; --ws-indigo-900:#1E0D57;
+  --ws-green-50:#E1FDED; --ws-green-400:#04F06A; --ws-green-600:#06B854; --ws-green-700:#088A42;
+  --ws-ink-50:#F5F4F9; --ws-ink-100:#E6E4EE; --ws-ink-200:#CFCCDC; --ws-ink-300:#A8A4B8; --ws-ink-400:#817C95;
+  --ws-ink-500:#6B6580; --ws-ink-600:#514C63; --ws-ink-700:#3A3550; --ws-ink-900:#16121F;
+  --ws-gradient-brand:radial-gradient(120% 120% at 25% 15%, #5226E0 0%, #451DC7 38%, #2D1380 100%);
+  --ws-shadow-sm:0 1px 3px rgba(22,18,31,.08),0 1px 2px rgba(22,18,31,.06);
+  --ws-shadow-lg:0 12px 28px rgba(22,18,31,.12);
+
+  --bg:#FFFFFF; --bg2:var(--ws-ink-50); --panel:var(--ws-ink-50); --panel2:var(--ws-ink-100);
+  --line:var(--ws-ink-100); --line2:var(--ws-ink-200);
+  --text:var(--ws-ink-900); --muted:var(--ws-ink-600); --subtle:var(--ws-ink-400);
+  --indigo:var(--ws-indigo-500); --indigo6:var(--ws-indigo-600); --indigo-l:var(--ws-indigo-500); --indigo-d:var(--ws-indigo-800);
+  --green:var(--ws-green-700); --green-neon:var(--ws-green-400);
+  --coral:#D8412F; --amber:#C8861A; --teal:#228D95;
+  --heading:var(--ws-indigo-600);
+  --land:var(--ws-ink-100); --land-line:var(--ws-ink-200);
+  --f-serif:'Inter',system-ui,sans-serif;
+}
+html,body{background:#fff}
+body::before,body::after{display:none}
+
+/* type */
+.h,.doc-title,.chap-t,.cl-a,.ask-q,.wd-t,.card h3,.who-c h3,.an h4{color:var(--heading)}
+.h{letter-spacing:-.02em}
+.lede{font-family:var(--f-body);font-size:1.3rem;line-height:1.55;color:var(--ws-ink-700)}
+.p b,.lede b{color:var(--ws-ink-900)}
+.stamp::before{background:var(--green-neon)}
+.kicker,.ask-k,.chap-k,.cold-l.date{color:var(--green)}
+.take{border-left-color:var(--green-neon);background:var(--ws-green-50);color:var(--ws-indigo-900)}
+.tag{background:var(--ws-ink-100);color:var(--ws-ink-600)}
+.c-green{color:var(--green)}
+
+/* brand surfaces: title, chapters, closing */
+.scene.t-title,.scene.t-chapter,.scene.t-closing{background:var(--ws-gradient-brand);color:#fff;
+  --text:#fff; --muted:rgba(255,255,255,.78); --subtle:rgba(255,255,255,.55); --line:rgba(255,255,255,.22);
+  --green:var(--ws-green-400); --heading:#fff}
+.scene.t-title .doc-title,.scene.t-chapter .chap-t,.scene.t-closing .cl-a{color:#fff}
+.chap-n{-webkit-text-stroke:2px rgba(255,255,255,.4)}
+.chap-l,.doc-sub,.cl-b{font-family:var(--f-body)}
+.bgmap{opacity:1}
+.bgmap .land{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.12)}
+.bgmap .blip{fill:var(--ws-green-400)} .bgmap .blip-r{stroke:var(--ws-green-400)}
+body.brand #hud,body.brand #hud .ch{color:rgba(255,255,255,.7)}
+body.brand #prog div{background:rgba(255,255,255,.2)}
+body.brand #hint{color:rgba(255,255,255,.6)}
+
+/* cold open and quiet screens stay white */
+.scene.t-cold,.scene.bg-black{background:#fff}
+.cold-l{font-family:var(--f-body);color:var(--ws-ink-700)}
+.cold-l.big{color:var(--heading)}
+
+/* quotes, Wavestone-style: Poppins, indigo, green marks */
+.qt .fr,.wd-t.q{font-family:var(--f-display);font-style:normal;font-weight:600;color:var(--heading);letter-spacing:-.015em}
+.qt .fr::before,.qt .fr::after,.wd-t.q::before,.wd-t.q::after{color:var(--ws-green-600)}
+.qt .orig{font-family:var(--f-body)}
+.pull{font-family:var(--f-display);font-weight:600;color:var(--heading)}
+.quote-card{font-family:var(--f-body);color:var(--ws-ink-900);border-left-color:var(--ws-indigo-600)}
+.ctr-a{font-family:var(--f-display);font-weight:600;color:var(--heading)}
+
+/* numbers */
+.fig b,.nb b,.ask-a b{color:var(--ws-indigo-600)}
+.fig.coral b,.nb.coral b,.big > b{color:var(--coral)}
+.fig.white b{color:var(--ws-ink-900)}
+.figs.big .fig b{color:var(--ws-indigo-600)} .figs.big .fig.coral b{color:var(--coral)} .figs.big .fig.white b{color:var(--ws-ink-900)}
+.rules .rn{color:var(--ws-green-600)}
+.rules h3{color:var(--heading)}
+.rules h3 .tag{background:var(--ws-green-400);color:var(--ws-indigo-900)}
+
+/* cards and panels */
+.card,.st,.dom-box{background:#fff;border-color:var(--ws-ink-100);box-shadow:var(--ws-shadow-sm)}
+.st{border-left-color:var(--ws-green-400)}
+.dom-box.real{background:#FDF1EF;border-color:rgba(216,65,47,.4)}
+.who-c .role{color:var(--green)}
+.cmp-c{color:var(--ws-ink-900)}
+.face span{color:#fff}
+
+/* timeline */
+.ev-card{background:#fff;border-color:var(--ws-ink-100);box-shadow:var(--ws-shadow-sm);border-top-color:var(--tone,var(--ws-ink-600))}
+.ev-dot{background:#fff;border-color:var(--tone,var(--ws-ink-600))}
+.ev::before{background:linear-gradient(var(--tone,var(--ws-ink-400)),transparent)}
+.ev-d{color:var(--tone,var(--ws-ink-600))}
+.ev-l{color:var(--ws-ink-900)}
+.gap span{color:var(--ws-ink-900);background:#fff}
+.tone-green{--tone:var(--ws-green-600)} .tone-indigo{--tone:var(--ws-indigo-600)}
+
+/* maps */
+svg.map .land{fill:var(--ws-ink-100);stroke:var(--ws-ink-200)}
+svg.map .grat{stroke:rgba(22,18,31,.05)}
+.pin text{fill:var(--ws-ink-900);stroke:#fff}
+.pin text.sub{fill:var(--ws-ink-600)}
+.arc{stroke:var(--ws-indigo-500)}
+.k-org{--k:var(--ws-ink-700)} .k-event{--k:var(--ws-green-600)}
+.map-panel{background:linear-gradient(90deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.94) 62%,rgba(255,255,255,0) 100%)}
+.map-panel.full{width:100%;padding-right:40%;background:linear-gradient(0deg,rgba(255,255,255,.98) 30%,rgba(255,255,255,.8) 70%,rgba(255,255,255,0))}
+.wd-t.dt-sub{color:var(--ws-ink-900)}
+
+/* visuals */
+.dots i{background:var(--ws-ink-200)}
+.dots.show i.hi{background:var(--coral)}
+.bar-t{background:var(--ws-ink-100)}
+.log{background:var(--ws-ink-50);border-color:var(--ws-ink-100)}
+.log-h{color:var(--ws-ink-500);border-bottom-color:var(--ws-ink-100)}
+.log-l{border-bottom-color:var(--ws-ink-100)}
+.log-w{color:var(--green)} .log-t,.log-l.cot .log-t{color:var(--ws-indigo-900)} .log-l.sys .log-t{color:#9A6410}
+.log-tr{font-family:var(--f-body);color:var(--ws-ink-500)}
+.cn-i{background:#fff}
+.cn-t{color:var(--ws-ink-900)}
+svg.robot g[fill]{fill:var(--ws-indigo-50);stroke:var(--ws-indigo-300)}
+svg.robot rect[fill="#0E0A1F"]{fill:var(--ws-indigo-700)}
+svg.robot .ld{stroke:var(--ws-green-600)} svg.robot .dt{fill:var(--ws-green-600)}
+.call{color:#fff}
+.call-b{color:rgba(255,255,255,.7)}
+.chatbox{background:var(--ws-ink-50);border-color:var(--ws-ink-100)}
+.cb-q{background:var(--ws-indigo-600)}
+.cb-a{background:#fff;border-left-color:var(--ws-green-400);box-shadow:var(--ws-shadow-sm);color:var(--ws-ink-900)}
+.paper{box-shadow:0 14px 30px rgba(22,18,31,.16);border:1px solid var(--ws-ink-100)}
+.mail{box-shadow:0 14px 30px rgba(22,18,31,.16);border:1px solid var(--ws-ink-100)}
+.phone{box-shadow:0 24px 48px rgba(22,18,31,.22)}
+.mk{background:var(--ws-green-400);color:var(--ws-indigo-900);box-shadow:0 0 0 .25rem rgba(4,240,106,.25)}
+.yt-tag{color:#fff}
+.media img,.media video{border-color:var(--ws-ink-100)}
+.lower3{background:var(--ws-indigo-800);color:#fff;border-left-color:var(--ws-green-400);box-shadow:var(--ws-shadow-lg)}
+.lower3 span{color:rgba(255,255,255,.75)}
+svg.sandbox .sb-box{fill:var(--ws-ink-50);stroke:var(--ws-ink-200)}
+svg.sandbox .sb-ag{color:var(--ws-indigo-600)}
+svg.sandbox .sb-mid rect{fill:var(--ws-green-50);stroke:var(--ws-green-600)}
+svg.sandbox .sb-mid text{fill:var(--green)}
+svg.sandbox .sb-ln{stroke:var(--ws-green-600)}
+.fl-c,.ic-c{background:#fff;color:var(--tone,var(--ws-indigo-600));border-color:var(--tone,var(--ws-indigo-100));box-shadow:var(--ws-shadow-sm)}
+.fl-n b,.ic-i b{color:var(--ws-ink-900)}
+.fl-li{background:#fff;border-color:var(--ws-green-600);color:var(--ws-green-600)}
+.wd-i{color:var(--ws-indigo-600)}
+.sp-e b{color:var(--tone,var(--ws-indigo-600))}
+.sp-line em{color:var(--ws-ink-900)}
+.vs-s b{color:var(--tone,var(--ws-indigo-600))}
+.vs-m{font-family:var(--f-body);font-style:normal;font-weight:600;color:var(--ws-ink-300)}
+.fl-cap b{color:var(--ws-ink-900)}
+
+/* HUD, overlays, presenter view */
+#prog div{background:var(--ws-ink-100)}
+#prog div i{background:var(--ws-indigo-600)}
+.ov{background:rgba(255,255,255,.98)}
+.ov h2{color:var(--heading)}
+.ov-g button{background:#fff;border-color:var(--ws-ink-100);color:var(--ws-ink-900)}
+.ov-g button.cur{border-color:var(--ws-indigo-600);background:var(--ws-indigo-50)}
+#notes{background:#fff;border-top-color:var(--ws-ink-200);box-shadow:0 -12px 28px rgba(22,18,31,.1)}
+.keys kbd{background:var(--ws-ink-50);border-color:var(--ws-ink-200)}
+body.pres{background:var(--ws-ink-50)}
+.pv h1{color:var(--heading)}
+.pv .say{color:var(--ws-ink-900);border-left-color:var(--ws-green-400)}
+.pv .nt,.pv .box{background:#fff;border-color:var(--ws-ink-100)}
+.pv .nt{color:var(--ws-ink-700)}
+.pv .fr i{background:var(--ws-ink-200)} .pv .fr i.on{background:var(--ws-indigo-600)}
+.pv .btns button{background:#fff;border-color:var(--ws-ink-200)}
+.pv .btns button.pri{background:var(--ws-indigo-600);color:#fff;border-color:var(--ws-indigo-600)}
+.pv .clock{color:var(--heading)}
+.srcs h4{color:var(--green)}
 </style>
 </head>
 <body>
@@ -604,25 +776,34 @@ const CH = {
 const SCENES = [
 
 // ─── PROLOGUE ─────────────────────────────────────────────────────────────
-{ ch: 'p', type: 'word', title: 'An intruder', tone: 'black',
-  kicker: '16 July 2026', t: 'An intruder inside Hugging Face.',
-  vo: `16 July 2026. Hugging Face, the platform where the world's AI researchers share their models, announces that someone has broken into its systems. Fast, methodical, and asking for nothing.`,
-  notes: `Start on black. Wait for silence before the first click.
+{ ch: 'p', type: 'date', title: '16 July 2026',
+  t: '16 July 2026',
+  sub: 'Hugging Face announces a break-in.',
+  vo: `16 July 2026. Hugging Face, the platform where the world's AI researchers share their models, announces that someone has broken into its systems.`,
+  notes: `Open on the date. Pause. Second click: the announcement.
 Hugging Face disclosure, 16 July 2026.`,
   src: `Hugging Face, 16 July 2026` },
 
-{ ch: 'p', type: 'word', title: 'Unknown', tone: 'black', q: true,
-  t: 'used LLM still not known',
-  sub: 'Hugging Face incident disclosure',
-  vo: `Its statement contains one line. Even the victim does not know which AI was used.`,
+{ ch: 'p', type: 'quote', title: 'Not a normal attacker',
+  fr: `This is making no sense. This guy is just looking at cybersecurity data sets... Human attackers, they don't want that. They want something they could sell.`,
+  who: 'Thomas Wolf', role: 'Co-founder, Hugging Face', ini: 'TW', img: 'wolf',
+  vo: `Inside Hugging Face, the engineers watch the intruder at work. And they quickly realise: this is not a normal attacker.`,
+  notes: `The intruder is fast and methodical, but it steals nothing worth selling and asks for no ransom.`,
+  src: `Quoted in coverage of the incident, July 2026` },
+
+{ ch: 'p', type: 'word', title: 'Unlike anything', q: true,
+  t: `An attack unlike anything we've seen before.`,
+  sub: 'Clément Delangue, CEO, Hugging Face',
+  vo: `Its CEO calls it an attack unlike anything they have seen before. And in its statement, the company admits it does not even know which AI was used.`,
+  notes: `Hugging Face's disclosure reads: "used LLM still not known".`,
   src: `Hugging Face, 16 July 2026` },
 
-{ ch: 'p', type: 'word', title: 'No attacker', tone: 'black',
+{ ch: 'p', type: 'word', title: 'No attacker',
   t: 'There was no human attacker.',
-  vo: `And here is the thing. There was no human attacker.`,
+  vo: `Here is the thing. There was no human attacker.`,
   notes: `Hold three seconds before the next click.` },
 
-{ ch: 'p', type: 'number', title: '700 agents', tone: 'black',
+{ ch: 'p', type: 'number', title: '700 agents',
   v: 700, pre: '~', label: 'AI agents, sitting an exam',
   vo: `There were some 700 AI agents built by OpenAI. And they were sitting an exam.`,
   notes: `An "AI agent" is an AI that does not just answer questions: it takes actions on its own to reach a goal. Say it in one sentence if needed.
@@ -638,9 +819,9 @@ Attributed to OpenAI on 21 July 2026 (joint statement).`,
   notes: `Introduce yourself in one sentence. A "sandbox" is the sealed test environment where AI is supposed to stay.` },
 
 // ─── CHAPTER 1 · THE EXAM ─────────────────────────────────────────────────
-{ ch: 'c1', type: 'chapter', title: 'Chapter 1: The Exam', sub: 'OpenAI · Hugging Face · 2026',
+{ ch: 'c1', type: 'chapter', title: 'Chapter 1: The Exam', sub: 'Three months earlier · inside OpenAI',
   blips: [[-122.4, 37.8], [-74, 40.7]],
-  vo: `To understand it, we go back three months, inside OpenAI.` },
+  vo: `Let's take a step back. To understand what happened, we have to go back three months, inside OpenAI.` },
 
 { ch: 'c1', type: 'flow', title: 'Who is who',
   nodes: [
@@ -716,12 +897,6 @@ Attributed to OpenAI on 21 July 2026 (joint statement).`,
   vo: `Less than thirteen hours from getting a foot in the door to controlling Hugging Face's production systems.`,
   src: `Hugging Face (27 July 2026)` },
 
-{ ch: 'c1', type: 'quote', title: 'Thomas Wolf',
-  fr: `This is making no sense. This guy is just looking at cybersecurity data sets... Human attackers, they don't want that. They want something they could sell.`,
-  who: 'Thomas Wolf', role: 'Co-founder, Hugging Face', ini: 'TW', img: 'wolf',
-  vo: `At Hugging Face, the engineers watch the intruder at work. And something does not add up.`,
-  src: `Quoted in coverage of the incident, July 2026` },
-
 { ch: 'c1', type: 'flow', title: 'The call',
   heading: '17 July: OpenAI calls Hugging Face… as a worried customer',
   nodes: [
@@ -729,7 +904,7 @@ Attributed to OpenAI on 21 July 2026 (joint statement).`,
     { i: 'phone', t: '', f: 0, link: true },
     { i: 'building', t: 'Hugging Face', s: 'the victim of its own AI', f: 1, tone: 'coral' },
   ],
-  vo: `The day after the announcement, the phone rings at Hugging Face. It is OpenAI, calling as a worried customer. It does not know it is calling the victim of its own AI. On 21 July, it admits the truth publicly.`,
+  vo: `Back to July. The day after the announcement, the phone rings at Hugging Face. It is OpenAI, calling as a worried customer. It does not know it is calling the victim of its own AI. On 21 July, it admits the truth publicly.`,
   src: `OpenAI technical report · joint statement (21 July 2026)` },
 
 { ch: 'c1', type: 'word', title: 'The shortcut',
@@ -1073,7 +1248,7 @@ Also: ~17,000 messages posted by agents on a German wiki (Nightingale Collective
 { ch: 'c4', type: 'visual', title: 'AI phishing',
   heading: 'Scam emails: AI now writes as well as the best',
   visual: { kind: 'bars', rows: [
-    { l: 'Generic scam email', v: 12, tone: 'rgba(255,255,255,.35)', f: 0 },
+    { l: 'Generic scam email', v: 12, tone: '#A8A4B8', f: 0 },
     { l: 'Human experts', v: 54, tone: 'var(--indigo-l)', f: 1 },
     { l: 'AI alone', v: 54, tone: 'var(--coral)', f: 2 },
   ], cap: 'Share of people who clicked' },
@@ -1527,6 +1702,8 @@ const R = {
 
   word: s => `<div class="wd">${s.icon ? `<div class="wd-i">${ICON(s.icon)}</div>` : ''}${s.kicker ? `<div class="kicker">${s.kicker}</div>` : ''}${(s.lines || [s.t]).map((l, i) => `<p class="wd-t${s.q ? ' q' : ''}"${i ? fa(i) : ''}>${l}</p>`).join('')}${s.sub ? `<div class="wd-s">${s.sub}</div>` : ''}</div>${srcLine(s)}`,
 
+  date: s => `<div class="wd"><div class="dt-big">${s.t}</div><p class="wd-t dt-sub" data-f="1">${s.sub}</p></div>${srcLine(s)}`,
+
   number: s => `<div class="nb ${s.tone || ''}">${s.kicker ? `<div class="kicker">${s.kicker}</div>` : ''}<b>${s.txt ? s.txt : `${s.pre || ''}<span class="count" data-to="${s.v}" data-dec="${s.dec || 0}">${s.v}</span>${s.suf || ''}`}</b><p>${s.label}</p></div>${srcLine(s)}`,
 
   span: s => `<div class="sp"><div class="sp-e tone-${s.a.tone || 'n'}"><b>${s.a.d}</b><span>${s.a.t}</span></div><div class="sp-line" data-f="1"><i></i><em>${s.gap}</em></div><div class="sp-e tone-${s.b.tone || 'n'}" data-f="2"><b>${s.b.d}</b><span>${s.b.t}</span></div></div>${srcLine(s)}`,
@@ -1640,6 +1817,7 @@ function render(i, k) {
   const s = SCENES[i];
   const el = document.createElement('section');
   el.className = `scene t-${s.type}${s.tone === 'black' ? ' bg-black' : ''}`;
+  document.body.classList.toggle('brand', ['title', 'chapter', 'closing'].includes(s.type));
   el.innerHTML = R[s.type](s) + (say(s) ? `<div class="vo">${say(s)}</div>` : '');
   el._max = maxF(el);
   stage.appendChild(el);

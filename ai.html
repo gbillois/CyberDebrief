@@ -472,6 +472,173 @@ body.pres::before,body.pres::after{display:none}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition-duration:.01ms!important}
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   WAVESTONE THEME · white ground, indigo headings, green accent
+   Tokens from the Wavestone design system
+   (https://gbillois.github.io/HowToWavestone/wavestonedesign.css), inlined so
+   the file stays offline. Title, chapter and closing cards use the signature
+   indigo brand surface; every other screen is white.
+   ════════════════════════════════════════════════════════════════════════ */
+:root{
+  --ws-indigo-50:#F1EEFB; --ws-indigo-100:#D1CAF2; --ws-indigo-300:#A18FE3; --ws-indigo-500:#5A2BE0;
+  --ws-indigo-600:#451DC7; --ws-indigo-700:#36169B; --ws-indigo-800:#2D1380; --ws-indigo-900:#1E0D57;
+  --ws-green-50:#E1FDED; --ws-green-400:#04F06A; --ws-green-600:#06B854; --ws-green-700:#088A42;
+  --ws-ink-50:#F5F4F9; --ws-ink-100:#E6E4EE; --ws-ink-200:#CFCCDC; --ws-ink-300:#A8A4B8; --ws-ink-400:#817C95;
+  --ws-ink-500:#6B6580; --ws-ink-600:#514C63; --ws-ink-700:#3A3550; --ws-ink-900:#16121F;
+  --ws-gradient-brand:radial-gradient(120% 120% at 25% 15%, #5226E0 0%, #451DC7 38%, #2D1380 100%);
+  --ws-shadow-sm:0 1px 3px rgba(22,18,31,.08),0 1px 2px rgba(22,18,31,.06);
+  --ws-shadow-lg:0 12px 28px rgba(22,18,31,.12);
+
+  --bg:#FFFFFF; --bg2:var(--ws-ink-50); --panel:var(--ws-ink-50); --panel2:var(--ws-ink-100);
+  --line:var(--ws-ink-100); --line2:var(--ws-ink-200);
+  --text:var(--ws-ink-900); --muted:var(--ws-ink-600); --subtle:var(--ws-ink-400);
+  --indigo:var(--ws-indigo-500); --indigo6:var(--ws-indigo-600); --indigo-l:var(--ws-indigo-500); --indigo-d:var(--ws-indigo-800);
+  --green:var(--ws-green-700); --green-neon:var(--ws-green-400);
+  --coral:#D8412F; --amber:#C8861A; --teal:#228D95;
+  --heading:var(--ws-indigo-600);
+  --land:var(--ws-ink-100); --land-line:var(--ws-ink-200);
+  --f-serif:'Inter',system-ui,sans-serif;
+}
+html,body{background:#fff}
+body::before,body::after{display:none}
+
+/* type */
+.h,.doc-title,.chap-t,.cl-a,.ask-q,.wd-t,.card h3,.who-c h3,.an h4{color:var(--heading)}
+.h{letter-spacing:-.02em}
+.lede{font-family:var(--f-body);font-size:1.3rem;line-height:1.55;color:var(--ws-ink-700)}
+.p b,.lede b{color:var(--ws-ink-900)}
+.stamp::before{background:var(--green-neon)}
+.kicker,.ask-k,.chap-k,.cold-l.date{color:var(--green)}
+.take{border-left-color:var(--green-neon);background:var(--ws-green-50);color:var(--ws-indigo-900)}
+.tag{background:var(--ws-ink-100);color:var(--ws-ink-600)}
+.c-green{color:var(--green)}
+
+/* brand surfaces: title, chapters, closing */
+.scene.t-title,.scene.t-chapter,.scene.t-closing{background:var(--ws-gradient-brand);color:#fff;
+  --text:#fff; --muted:rgba(255,255,255,.78); --subtle:rgba(255,255,255,.55); --line:rgba(255,255,255,.22);
+  --green:var(--ws-green-400); --heading:#fff}
+.scene.t-title .doc-title,.scene.t-chapter .chap-t,.scene.t-closing .cl-a{color:#fff}
+.chap-n{-webkit-text-stroke:2px rgba(255,255,255,.4)}
+.chap-l,.doc-sub,.cl-b{font-family:var(--f-body)}
+.bgmap{opacity:1}
+.bgmap .land{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.12)}
+.bgmap .blip{fill:var(--ws-green-400)} .bgmap .blip-r{stroke:var(--ws-green-400)}
+body.brand #hud,body.brand #hud .ch{color:rgba(255,255,255,.7)}
+body.brand #prog div{background:rgba(255,255,255,.2)}
+body.brand #hint{color:rgba(255,255,255,.6)}
+
+/* cold open and quiet screens stay white */
+.scene.t-cold,.scene.bg-black{background:#fff}
+.cold-l{font-family:var(--f-body);color:var(--ws-ink-700)}
+.cold-l.big{color:var(--heading)}
+
+/* quotes, Wavestone-style: Poppins, indigo, green marks */
+.qt .fr,.wd-t.q{font-family:var(--f-display);font-style:normal;font-weight:600;color:var(--heading);letter-spacing:-.015em}
+.qt .fr::before,.qt .fr::after,.wd-t.q::before,.wd-t.q::after{color:var(--ws-green-600)}
+.qt .orig{font-family:var(--f-body)}
+.pull{font-family:var(--f-display);font-weight:600;color:var(--heading)}
+.quote-card{font-family:var(--f-body);color:var(--ws-ink-900);border-left-color:var(--ws-indigo-600)}
+.ctr-a{font-family:var(--f-display);font-weight:600;color:var(--heading)}
+
+/* numbers */
+.fig b,.nb b,.ask-a b{color:var(--ws-indigo-600)}
+.fig.coral b,.nb.coral b,.big > b{color:var(--coral)}
+.fig.white b{color:var(--ws-ink-900)}
+.figs.big .fig b{color:var(--ws-indigo-600)} .figs.big .fig.coral b{color:var(--coral)} .figs.big .fig.white b{color:var(--ws-ink-900)}
+.rules .rn{color:var(--ws-green-600)}
+.rules h3{color:var(--heading)}
+.rules h3 .tag{background:var(--ws-green-400);color:var(--ws-indigo-900)}
+
+/* cards and panels */
+.card,.st,.dom-box{background:#fff;border-color:var(--ws-ink-100);box-shadow:var(--ws-shadow-sm)}
+.st{border-left-color:var(--ws-green-400)}
+.dom-box.real{background:#FDF1EF;border-color:rgba(216,65,47,.4)}
+.who-c .role{color:var(--green)}
+.cmp-c{color:var(--ws-ink-900)}
+.face span{color:#fff}
+
+/* timeline */
+.ev-card{background:#fff;border-color:var(--ws-ink-100);box-shadow:var(--ws-shadow-sm);border-top-color:var(--tone,var(--ws-ink-600))}
+.ev-dot{background:#fff;border-color:var(--tone,var(--ws-ink-600))}
+.ev::before{background:linear-gradient(var(--tone,var(--ws-ink-400)),transparent)}
+.ev-d{color:var(--tone,var(--ws-ink-600))}
+.ev-l{color:var(--ws-ink-900)}
+.gap span{color:var(--ws-ink-900);background:#fff}
+.tone-green{--tone:var(--ws-green-600)} .tone-indigo{--tone:var(--ws-indigo-600)}
+
+/* maps */
+svg.map .land{fill:var(--ws-ink-100);stroke:var(--ws-ink-200)}
+svg.map .grat{stroke:rgba(22,18,31,.05)}
+.pin text{fill:var(--ws-ink-900);stroke:#fff}
+.pin text.sub{fill:var(--ws-ink-600)}
+.arc{stroke:var(--ws-indigo-500)}
+.k-org{--k:var(--ws-ink-700)} .k-event{--k:var(--ws-green-600)}
+.map-panel{background:linear-gradient(90deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.94) 62%,rgba(255,255,255,0) 100%)}
+.map-panel.full{width:100%;padding-right:40%;background:linear-gradient(0deg,rgba(255,255,255,.98) 30%,rgba(255,255,255,.8) 70%,rgba(255,255,255,0))}
+.wd-t.dt-sub{color:var(--ws-ink-900)}
+
+/* visuals */
+.dots i{background:var(--ws-ink-200)}
+.dots.show i.hi{background:var(--coral)}
+.bar-t{background:var(--ws-ink-100)}
+.log{background:var(--ws-ink-50);border-color:var(--ws-ink-100)}
+.log-h{color:var(--ws-ink-500);border-bottom-color:var(--ws-ink-100)}
+.log-l{border-bottom-color:var(--ws-ink-100)}
+.log-w{color:var(--green)} .log-t,.log-l.cot .log-t{color:var(--ws-indigo-900)} .log-l.sys .log-t{color:#9A6410}
+.log-tr{font-family:var(--f-body);color:var(--ws-ink-500)}
+.cn-i{background:#fff}
+.cn-t{color:var(--ws-ink-900)}
+svg.robot g[fill]{fill:var(--ws-indigo-50);stroke:var(--ws-indigo-300)}
+svg.robot rect[fill="#0E0A1F"]{fill:var(--ws-indigo-700)}
+svg.robot .ld{stroke:var(--ws-green-600)} svg.robot .dt{fill:var(--ws-green-600)}
+.call{color:#fff}
+.call-b{color:rgba(255,255,255,.7)}
+.chatbox{background:var(--ws-ink-50);border-color:var(--ws-ink-100)}
+.cb-q{background:var(--ws-indigo-600)}
+.cb-a{background:#fff;border-left-color:var(--ws-green-400);box-shadow:var(--ws-shadow-sm);color:var(--ws-ink-900)}
+.paper{box-shadow:0 14px 30px rgba(22,18,31,.16);border:1px solid var(--ws-ink-100)}
+.mail{box-shadow:0 14px 30px rgba(22,18,31,.16);border:1px solid var(--ws-ink-100)}
+.phone{box-shadow:0 24px 48px rgba(22,18,31,.22)}
+.mk{background:var(--ws-green-400);color:var(--ws-indigo-900);box-shadow:0 0 0 .25rem rgba(4,240,106,.25)}
+.yt-tag{color:#fff}
+.media img,.media video{border-color:var(--ws-ink-100)}
+.lower3{background:var(--ws-indigo-800);color:#fff;border-left-color:var(--ws-green-400);box-shadow:var(--ws-shadow-lg)}
+.lower3 span{color:rgba(255,255,255,.75)}
+svg.sandbox .sb-box{fill:var(--ws-ink-50);stroke:var(--ws-ink-200)}
+svg.sandbox .sb-ag{color:var(--ws-indigo-600)}
+svg.sandbox .sb-mid rect{fill:var(--ws-green-50);stroke:var(--ws-green-600)}
+svg.sandbox .sb-mid text{fill:var(--green)}
+svg.sandbox .sb-ln{stroke:var(--ws-green-600)}
+.fl-c,.ic-c{background:#fff;color:var(--tone,var(--ws-indigo-600));border-color:var(--tone,var(--ws-indigo-100));box-shadow:var(--ws-shadow-sm)}
+.fl-n b,.ic-i b{color:var(--ws-ink-900)}
+.fl-li{background:#fff;border-color:var(--ws-green-600);color:var(--ws-green-600)}
+.wd-i{color:var(--ws-indigo-600)}
+.sp-e b{color:var(--tone,var(--ws-indigo-600))}
+.sp-line em{color:var(--ws-ink-900)}
+.vs-s b{color:var(--tone,var(--ws-indigo-600))}
+.vs-m{font-family:var(--f-body);font-style:normal;font-weight:600;color:var(--ws-ink-300)}
+.fl-cap b{color:var(--ws-ink-900)}
+
+/* HUD, overlays, presenter view */
+#prog div{background:var(--ws-ink-100)}
+#prog div i{background:var(--ws-indigo-600)}
+.ov{background:rgba(255,255,255,.98)}
+.ov h2{color:var(--heading)}
+.ov-g button{background:#fff;border-color:var(--ws-ink-100);color:var(--ws-ink-900)}
+.ov-g button.cur{border-color:var(--ws-indigo-600);background:var(--ws-indigo-50)}
+#notes{background:#fff;border-top-color:var(--ws-ink-200);box-shadow:0 -12px 28px rgba(22,18,31,.1)}
+.keys kbd{background:var(--ws-ink-50);border-color:var(--ws-ink-200)}
+body.pres{background:var(--ws-ink-50)}
+.pv h1{color:var(--heading)}
+.pv .say{color:var(--ws-ink-900);border-left-color:var(--ws-green-400)}
+.pv .nt,.pv .box{background:#fff;border-color:var(--ws-ink-100)}
+.pv .nt{color:var(--ws-ink-700)}
+.pv .fr i{background:var(--ws-ink-200)} .pv .fr i.on{background:var(--ws-indigo-600)}
+.pv .btns button{background:#fff;border-color:var(--ws-ink-200)}
+.pv .btns button.pri{background:var(--ws-indigo-600);color:#fff;border-color:var(--ws-indigo-600)}
+.pv .clock{color:var(--heading)}
+.srcs h4{color:var(--green)}
 </style>
 </head>
 <body>
@@ -591,7 +758,7 @@ Portraits: drop delangue.jpg and wolf.jpg into assets/ai/people/ (initials are s
   ],
   take: { f: 3, t: `An AI chases the score you give it, not the intention behind it.` },
   visual: { kind: 'dots', total: 898, hi: 198, cols: 38, seed: 4242, f: 1,
-    legend: [['rgba(255,255,255,.35)', 'one question'], ['var(--coral)', 'never solved by any AI']] },
+    legend: [['#A8A4B8', 'one question'], ['var(--coral)', 'never solved by any AI']] },
   notes: `Key message: the problem starts with the objective, not with security.
 Nobody meant to include impossible questions: knowing in advance which weakness can be exploited is exactly what the test measures.
 Technical detail if asked: the models' safety refusals were lowered to measure raw offensive capability.`,
@@ -1223,7 +1390,7 @@ In France, scam texts can be forwarded free to 33700.`,
     { f: 2, t: `And they cost 95% less to produce. Spelling mistakes are no longer a warning sign.` },
   ],
   visual: { kind: 'bars', rows: [
-    { l: 'Generic scam email', v: 12, tone: 'rgba(255,255,255,.35)', f: 0 },
+    { l: 'Generic scam email', v: 12, tone: '#A8A4B8', f: 0 },
     { l: 'Written by human experts', v: 54, tone: 'var(--indigo-l)', f: 1 },
     { l: 'Written entirely by AI', v: 54, tone: 'var(--coral)', f: 1 },
   ], cap: 'Share of people who clicked the link' },
@@ -1849,6 +2016,7 @@ function render(i, k) {
   const s = SCENES[i];
   const el = document.createElement('section');
   el.className = `scene t-${s.type}`;
+  document.body.classList.toggle('brand', ['title', 'chapter', 'closing'].includes(s.type));
   el.innerHTML = R[s.type](s) + (say(s) ? `<div class="vo">${say(s)}</div>` : '');
   el._max = maxF(el);
   stage.appendChild(el);

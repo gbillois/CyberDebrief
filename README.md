@@ -6,6 +6,13 @@ reusable tool.
 
 ## ai-menu.html · front page
 
+All the AI-risk pages (`ai-menu.html`, `ai-talk.html`, `ai.html`, `ai-fr.html`)
+use the Wavestone design system on a white ground: indigo `451DC7` headings,
+green `04F06A` accents, Poppins / Inter / IBM Plex Mono, and the indigo brand
+surface for title, chapter and closing cards. Tokens are inlined from
+<https://gbillois.github.io/HowToWavestone/wavestonedesign.css> so the files
+stay offline.
+
 The entry point for the AI-risk session: links to the visual talk
 (`ai-talk.html`, recommended on stage), the full documentary (`ai.html`), the
 first French iteration (`ai-fr.html`) and the OpenAI / Hugging Face deep dives
@@ -13,7 +20,9 @@ first French iteration (`ai-fr.html`) and the OpenAI / Hugging Face deep dives
 
 ## ai-talk.html · Out of the Sandbox, the talk
 
-The same 40-minute story told like a TED talk: one idea per screen, big words
+The same 40-minute story told like a TED talk. It opens on the date and on
+Hugging Face realising this is not a normal attacker, then steps back three
+months to tell the whole story. One idea per screen: big words
 and numbers, pictograms, flow diagrams, maps and video clips. Long text stays
 only where it is needed (quotes, the advice). Everything the presenter says
 is in the presenter view (`P`), with facts and sources for questions in the
