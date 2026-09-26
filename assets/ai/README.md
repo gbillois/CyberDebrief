@@ -75,6 +75,15 @@ the portrait, and in the Sources scene.
 | `people/altman.jpg` | Sam Altman, CEO, OpenAI | Office of the Prime Minister of Japan, CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Meeting_with_Masayoshi_Son_and_Sam_Altman_(February_3,_2025)_(3x4_cropped_on_Altman).jpg) |
 | `people/vigna.jpg` | Benedetto Vigna, CEO, Ferrari (whose voice was cloned) | Rossini TV, CC BY 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Benedetto_Vigna_-_Universit%C3%A0_Urbino.jpg) |
 
+### Photos (included, openly licensed)
+
+Used by the talk (`ai-talk.html`) and its photo edition (`ai-talk-photos.html`). Credits are shown on screen.
+
+| File | What | Author, licence | Source |
+|---|---|---|---|
+| `photos/un-chamber.jpg` | UN Security Council chamber, New York | James D. Forrester, CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:United_Nations_Headquarters_-_Security_Council_chamber,_straight-on_view.jpg) |
+| `photos/unitree-go2.jpg` | Unitree Go2 robot dog | HotNews Romania (Adi Iacob, Ovidiu Popica), CC BY 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Unitree_Go2_of_Salvamont_side_view.jpg) |
+
 ### Press screenshots (included)
 
 `press/*.jpg`: screenshots of the articles shown in the two press montages
