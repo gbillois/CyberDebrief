@@ -4,31 +4,31 @@ An interactive, scrubable reconstruction of the 2017 NotPetya cyberattack
 (`index.html`), plus a generalized generator that turns the same concept into a
 reusable tool.
 
-## ai.html · Hors du bac à sable
+## ai.html · Out of the Sandbox
 
-Un documentaire interactif de 30 minutes, en français, pour une séance de
-sensibilisation aux risques de l'IA devant de grandes organisations. Le
-présentateur avance au clic ; aucune voix off n'est nécessaire.
+A 30-minute interactive documentary for an AI-risk awareness session in front
+of large organisations, told the way an investigative TV magazine would: the
+presenter clicks through, no voice-over required. `ai.html` is the English
+version; `ai-fr.html` keeps the French one.
 
-| # | Chapitre | Minutes | Contenu |
-|---|----------|---------|---------|
-| 00 | Prologue | 0 - 2 | Ouverture au noir sur la divulgation de Hugging Face (16 juillet 2026) |
-| 01 | L'examen | 2 - 10 | L'affaire OpenAI / Hugging Face : l'objectif, le canal entre agents, l'alerte classée, la cause |
-| 02 | Les répliques | 10 - 18 | DseWiki, Medicare en Australie, Transluce, Gemini et Irregular, carte des incidents |
-| 03 | Le corps | 18 - 22 | Robotique humanoïde : surfaces d'attaque, Unitree, FCC, leçons transposables |
-| 04 | Vous | 22 - 28 | Faux colis avec photo générée, hameçonnage par IA, deepfake Arup, fausses preuves |
-| 05 | Les réflexes | 28 - 30 | Réflexes individuels, leçons pour les organisations, ce qui a fonctionné |
+| # | Chapter | Minutes | Content |
+|---|---------|---------|---------|
+| 00 | Prologue | 0 - 2 | Cold open on Hugging Face's disclosure (16 July 2026) |
+| 01 | The Exam | 2 - 10 | OpenAI / Hugging Face: the objective, the channel between agents, the closed warning, the root cause |
+| 02 | Aftershocks | 10 - 19 | Press montage, DseWiki, Medicare in Australia, what we know, Transluce, Gemini and Irregular, map of incidents |
+| 03 | The Body | 19 - 22 | Humanoid robotics: attack surfaces, Unitree, the FCC, lessons that carry over |
+| 04 | You | 22 - 28 | Fake parcels with generated photos, AI phishing, the Arup deepfake, fake evidence |
+| 05 | What Works | 28 - 30 | Personal reflexes, lessons for organisations, what worked |
 
-Chaque scène porte sa source à l'écran et des notes d'orateur (minutage, faits,
-précautions de formulation). Commandes : `→` / `←` (ou télécommande),
-`P` vue présentateur synchronisée dans une seconde fenêtre (notes, minuteur,
-scène suivante), `N` notes à l'écran, `O` plan, `B` écran noir, `F` plein
-écran, `V` vidéo, `M` masquer les médias manquants, `?` aide.
+Every scene carries its source on screen, a narrator's script (what to say, and
+the basis for a later voice-over) and speaker notes. Controls: `→` / `←` (or a
+remote), `P` synced presenter view in a second window (script, notes, timer,
+next scene), `N` notes on screen, `S` script as subtitles, `O` outline, `B`
+black screen, `F` full screen, `V` video, `M` hide missing media, `?` help.
 
-La carte du monde est incluse dans le fichier : la page fonctionne hors ligne,
-seules les polices viennent de Google Fonts. Les captures, extraits vidéo et
-portraits se déposent dans `assets/ai/` ; la liste des plans attendus est dans
-`assets/ai/README.md`.
+Fully offline: fonts and the world map are embedded, so it runs from a laptop
+over HDMI with no network. Screenshots, video clips and portraits go into
+`assets/ai/`; the shot list and the HDMI checklist are in `assets/ai/README.md`.
 
 ## OAHF-zoom.html — the animated zoom-out
 

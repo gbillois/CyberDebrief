@@ -1,65 +1,66 @@
-# Médias de `ai.html` (Hors du bac à sable)
+# Media for `ai.html` (Out of the Sandbox)
 
-`ai.html` est autonome : polices, carte et code sont dans le fichier. Il se joue
-sans réseau, par exemple sur un portable branché en HDMI. Les seuls éléments
-externes sont les médias ci-dessous, à déposer **à côté du fichier**, dans ce
-dossier `assets/ai/`. Chaque emplacement vide s'affiche en pointillés avec la
-description du plan attendu ; la touche `M` les masque pendant une répétition.
+`ai.html` (English) and `ai-fr.html` (French) are self-contained: fonts, map and
+code are inside the file. They run with no network, for instance from a laptop
+over HDMI. The only external items are the media below, dropped **next to the
+file**, in this `assets/ai/` folder; both language versions use the same files.
+Each empty slot shows as a dashed frame describing the shot it expects; the `M`
+key hides them during a rehearsal.
 
-Pour emporter la présentation : copier `ai.html` et le dossier `assets/ai/`
-ensemble (clé USB, disque local). Rien d'autre n'est nécessaire.
+To take the presentation with you: copy `ai.html` (or `ai-fr.html`) together
+with the `assets/ai/` folder (USB key, local disk). Nothing else is needed.
 
-## Vidéos (fichiers MP4 locaux)
+## Video clips (local MP4 files)
 
-Sans réseau, seules les vidéos locales sont lues. Si l'ordinateur est en ligne et
-qu'un fichier manque, la page propose l'extrait YouTube correspondant, chargé au
-clic : c'est une solution de secours, pas la version de salle.
+With no network, only local videos play. If the computer is online and a file is
+missing, the page offers the matching YouTube clip, loaded on click: that is a
+fallback, not the version to use in the room.
 
-| Scène | Fichier à déposer | Contenu | Source identifiée |
+| Scene | File to add | Content | Identified source |
 |---|---|---|---|
-| 13 · Black Hat (facultatif) | `blackhat-briefing.mp4` | Session sur l'incident OpenAI / Hugging Face, Black Hat USA, août 2026 | [YouTube JmklCcqSwz8](https://www.youtube.com/watch?v=JmklCcqSwz8) (chaîne à vérifier) |
-| 21 · Conférence de presse | `albanese-presser.mp4` | Anthony Albanese annonce l'intrusion, New York, 24 septembre 2026 | [ABC News, YH690PgNFdM](https://www.youtube.com/watch?v=YH690PgNFdM) · version intégrale [fbdIerD4lT8](https://www.youtube.com/watch?v=fbdIerD4lT8) |
-| 26 · Conseil de sécurité (facultatif) | `un-security-council.mp4` | Sam Altman, Dario Amodei, Clément Delangue devant le Conseil de sécurité, 23 septembre 2026 | [YouTube eBEYrOk42Rg](https://www.youtube.com/watch?v=eBEYrOk42Rg), ou UN Web TV |
-| 33 · UniPwn (facultatif) | `unipwn-demo.mp4` | Démonstration de prise de contrôle d'un robot Unitree | [YouTube ALIHl4-nVAg](https://www.youtube.com/watch?v=ALIHl4-nVAg) (chaîne à vérifier) |
-| 39 · Arup (facultatif) | `arup-report.mp4` | Reportage sur la fraude par deepfake chez Arup (2024) | [YouTube iGJnHHOMwuI](https://www.youtube.com/watch?v=iGJnHHOMwuI) (chaîne à vérifier) |
+| 13 · Black Hat (optional) | `blackhat-briefing.mp4` | Session on the OpenAI / Hugging Face incident, Black Hat USA, August 2026 | [YouTube JmklCcqSwz8](https://www.youtube.com/watch?v=JmklCcqSwz8) (check the channel) |
+| 21 · Press conference | `albanese-presser.mp4` | Anthony Albanese announces the intrusion, New York, 24 September 2026 | [ABC News, YH690PgNFdM](https://www.youtube.com/watch?v=YH690PgNFdM) · full version [fbdIerD4lT8](https://www.youtube.com/watch?v=fbdIerD4lT8) |
+| 26 · Security Council (optional) | `un-security-council.mp4` | Sam Altman, Dario Amodei, Clément Delangue before the Security Council, 23 September 2026 | [YouTube eBEYrOk42Rg](https://www.youtube.com/watch?v=eBEYrOk42Rg), or UN Web TV |
+| 33 · UniPwn (optional) | `unipwn-demo.mp4` | Demonstration of a Unitree robot takeover | [YouTube ALIHl4-nVAg](https://www.youtube.com/watch?v=ALIHl4-nVAg) (check the channel) |
+| 39 · Arup (optional) | `arup-report.mp4` | News report on the Arup deepfake fraud (2024) | [YouTube iGJnHHOMwuI](https://www.youtube.com/watch?v=iGJnHHOMwuI) (check the channel) |
 
-Format conseillé : MP4 (H.264 + AAC), 1080p, extrait de 20 à 40 secondes déjà
-coupé. Pour obtenir les fichiers, passez par une source qui autorise le
-téléchargement (espace presse du diffuseur, UN Web TV, demande à la chaîne) ;
-les identifiants YouTube servent à repérer le bon extrait.
+Recommended format: MP4 (H.264 + AAC), 1080p, a clip of 20 to 40 seconds already
+trimmed. Obtain the files from a source that allows downloading (the
+broadcaster's press office, UN Web TV, a request to the channel); the YouTube
+IDs are there to locate the right footage.
 
-## Captures et portraits
+## Screenshots and portraits
 
-| Scène | Fichier | Contenu attendu | Où le trouver |
+| Scene | File | Expected content | Where to find it |
 |---|---|---|---|
-| 10 · L'appel | `hf-disclosure.jpg` | Capture du billet de Hugging Face du 16 juillet 2026, mention « used LLM still not known » visible | huggingface.co/blog/security-incident-july-2026 |
-| 18 · DseWiki | `dsewiki.jpg` | Capture de l'analyse du Nightingale Collective | collusion.wiki |
-| 40 · Fausses preuves | `refund-fraud.jpg` | Exemple publié de photo de produit « abîmé » générée ou retouchée par IA | South China Morning Post (2025), Modern Retail (2026) |
-| 4, 9 · Portraits | `people/delangue.jpg`, `people/wolf.jpg` | Portraits carrés de Clément Delangue et Thomas Wolf | photos de presse Hugging Face |
+| 10 · The call | `hf-disclosure.jpg` | Screenshot of Hugging Face's 16 July 2026 post, with "used LLM still not known" visible | huggingface.co/blog/security-incident-july-2026 |
+| 18 · DseWiki | `dsewiki.jpg` | Screenshot of the Nightingale Collective analysis | collusion.wiki |
+| 40 · Fake evidence | `refund-fraud.jpg` | A published example of an AI-generated or AI-altered "damaged product" photo | South China Morning Post (2025), Modern Retail (2026) |
+| 4, 9 · Portraits | `people/delangue.jpg`, `people/wolf.jpg` | Square portraits of Clément Delangue and Thomas Wolf | Hugging Face press photos |
 
-Captures en PNG ou JPG, 1920 px de large au plus. Sans portrait, la page affiche
-les initiales.
+Screenshots as PNG or JPG, 1920 px wide at most. Without a portrait, the page
+shows initials.
 
-## En salle, en HDMI
+## In the room, over HDMI
 
-1. Brancher le portable sur le projecteur en **écran étendu** (pas en miroir).
-2. Ouvrir `ai.html` dans Chrome, Edge ou Firefox.
-3. Appuyer sur `P` : la vue présentateur (texte à dire, notes, minuteur, scène
-   suivante) s'ouvre dans une seconde fenêtre. La garder sur l'écran du portable.
-4. Glisser la fenêtre principale sur le projecteur, puis `F` pour le plein écran.
-5. Avancer avec `→`, `Espace` ou une télécommande de présentation, depuis l'une
-   ou l'autre fenêtre. `B` met le projecteur au noir.
+1. Connect the laptop to the projector as an **extended display** (not mirrored).
+2. Open `ai.html` in Chrome, Edge or Firefox.
+3. Press `P`: the presenter view (script, notes, timer, next scene) opens in a
+   second window. Keep it on the laptop screen.
+4. Drag the main window onto the projector, then press `F` for full screen.
+5. Advance with `→`, `Space` or a presentation remote, from either window. `B`
+   blacks out the projector.
 
-Tester une fois avant la séance avec le Wi-Fi coupé.
+Rehearse once beforehand with Wi-Fi turned off.
 
-## Ajouter un plan
+## Adding a shot
 
-Chaque objet `visual` ou `media` du tableau `SCENES` accepte :
+Each `visual` or `media` object in the `SCENES` array accepts:
 
 ```js
-{ kind: 'media', type: 'image', src: 'assets/ai/fichier.jpg', caption: '…', credit: '…', todo: '…', href: '…' }
-{ type: 'video', src: 'assets/ai/extrait.mp4', poster: 'assets/ai/extrait.jpg', yt: 'IDENTIFIANT', start: 42, end: 75 }
+{ kind: 'media', type: 'image', src: 'assets/ai/file.jpg', caption: '…', credit: '…', todo: '…', href: '…' }
+{ type: 'video', src: 'assets/ai/clip.mp4', poster: 'assets/ai/clip.jpg', yt: 'VIDEO_ID', start: 42, end: 75 }
 ```
 
-Pour une diffusion publique ultérieure (avec voix off), revalider les droits de
-chaque extrait.
+For any later public release (with a voice-over), re-check the rights to every
+clip.
