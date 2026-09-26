@@ -14,11 +14,15 @@ version; `ai-fr.html` keeps the French one.
 | # | Chapter | Minutes | Content |
 |---|---------|---------|---------|
 | 00 | Prologue | 0 - 2 | Cold open on Hugging Face's disclosure (16 July 2026) |
-| 01 | The Exam | 2 - 10 | OpenAI / Hugging Face: the objective, the channel between agents, the closed warning, the root cause |
-| 02 | Aftershocks | 10 - 19 | Press montage, DseWiki, Medicare in Australia, what we know, Transluce, Gemini and Irregular, map of incidents |
-| 03 | The Body | 19 - 22 | Humanoid robotics: attack surfaces, Unitree, the FCC, lessons that carry over |
-| 04 | You | 22 - 28 | Fake parcels with generated photos, AI phishing, the Arup deepfake, fake evidence |
-| 05 | What Works | 28 - 30 | Personal reflexes, lessons for organisations, what worked |
+| 01 | The Exam | 2 - 10 | OpenAI / Hugging Face in plain language: the goal, agents talking to each other, the warning nobody acted on, the imaginary referee |
+| 02 | The Wave | 10 - 17 | Press montage, the numbers behind it, a world map, the mechanism (an ordinary task, a break-in), Google, then Australia and the 84-day delay |
+| 03 | The Body | 17 - 20 | Humanoid robots: the doors they open, first warning signs, lessons that carry over |
+| 04 | You | 20 - 26 | Fake parcels with generated photos, AI-written scam emails, the Arup deepfake, fake evidence |
+| 05 | What Works | 26 - 30 | Five reflexes (including "use AI to help you", shown in a demo), three questions for leaders, what worked |
+
+Written for a general audience: plain language on screen, technical detail in
+the speaker notes for questions. `ai-fr.html` is the earlier French iteration
+(first structure).
 
 Every scene carries its source on screen, a narrator's script (what to say, and
 the basis for a later voice-over) and speaker notes. Controls: `→` / `←` (or a
