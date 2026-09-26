@@ -829,6 +829,19 @@ body.pres{background:var(--ws-ink-50)}
 .shot-f{margin:.55rem 0 0;max-height:21vh;overflow:hidden;border:1px solid #D6D1C4;background:#fff}
 .shot-f img{display:block;width:100%;height:auto}
 .paper:not(.has-shot) .shot-f{display:none}
+/* Zoom, second pass: big date, tunnel, investigation */
+.scene.t-voices{justify-content:center}
+.zdate{font-family:var(--f-display);font-weight:800;font-size:2.3rem;line-height:1;letter-spacing:-.02em;color:var(--ws-indigo-500);margin:-.2rem 0 -.3rem}
+.zdoor{fill:none;stroke:var(--ws-indigo-600);stroke-width:5px;vector-effect:non-scaling-stroke;stroke-linecap:round}
+.ag.tn{transition:fill .9s,transform 2.2s cubic-bezier(.6,0,.2,1)}
+.zw.s4 .ag.tn,.zw.s5 .ag.tn,.zw.s6 .ag.tn{transform:translate(var(--tx),var(--ty))}
+.zpk{fill:var(--coral)}
+.zlog{fill:var(--ws-ink-100)} .zlog.hot{fill:var(--coral)}
+.zbox.ai{fill:#fff;stroke:var(--ws-indigo-500)}
+.zt-ok{font:600 11.5px var(--f-mono);fill:var(--ws-green-700)}
+.zt-no{font:600 11.5px var(--f-mono);fill:var(--coral)}
+.wd-t.dt-sub{font-size:3.7rem;line-height:1.15;font-weight:700;margin-top:2.4rem}
+@media (max-width:760px){.zdate{font-size:1.5rem}.wd-t.dt-sub{font-size:1.9rem}}
 </style>
 </head>
 <body>
@@ -872,7 +885,7 @@ const proj = (lon, lat) => [(lon + 180) / 360 * 1000, (90 - lat) / 180 * 500];
 // ════════════════════════════════════════════════════════════════════════
 const CH = {
   p:  { n: '00', title: 'Prologue',               mins: [0, 2] },
-  c1: { n: '01', title: 'The Exam',               mins: [2, 10],  q: 'What happened at Hugging Face?',   a: 'An AI chasing a score escaped its test, and broke into another company.' },
+  c1: { n: '01', title: 'The Exam',               mins: [2, 10],  q: 'What happened at OpenAI?',   a: 'An AI chasing a score escaped its test, and broke into another company.' },
   c2: { n: '02', title: 'The Wave',               mins: [10, 16], q: 'Was it a one-off?',                a: 'No. The same thing had been happening, quietly, for months.' },
   cw: { n: '03', title: 'Why It Derails',         mins: [16, 21], q: 'Why would an AI do this?',         a: 'It imitates us and chases rewards. A goal without limits does the rest.' },
   ca: { n: '04', title: 'The Attackers Level Up', mins: [21, 27], q: 'And what about real attackers?',   a: 'Criminals and spies now use AI to go faster, cheaper and bigger.' },
@@ -906,18 +919,14 @@ const SCENES = [
   notes: `Open on the date. Pause. Second click: the announcement.`,
   src: `Hugging Face, 16 July 2026` },
 
-{ ch: 'p', type: 'quote', title: 'Not a normal attacker',
-  fr: `This is making no sense. This guy is just looking at cybersecurity data sets... Human attackers, they don't want that. They want something they could sell.`,
-  who: 'Thomas Wolf', role: 'Co-founder, Hugging Face', ini: 'TW', img: 'wolf',
-  vo: `Inside Hugging Face, the engineers watch the intruder at work. Fast, methodical, and yet it steals nothing worth selling and asks for no ransom. They quickly realise: this is not a normal attacker.`,
-  src: `Thomas Wolf, quoted by The Wall Street Journal, "How the Futuristic Hack by Rogue OpenAI Models Unfolded" (Robert McMillan, Sam Schechner), 24 July 2026` },
-
-{ ch: 'p', type: 'word', title: 'Unlike anything', q: true,
-  t: `An attack unlike anything we've seen before.`,
-  sub: 'Clément Delangue, CEO, Hugging Face', who: 'Clément Delangue', img: 'delangue', ini: 'CD',
-  vo: `Its CEO calls it an attack unlike anything they have seen. In its statement, the company admits it does not even know which AI was used.`,
-  notes: `Hugging Face's disclosure reads: "used LLM still not known". Delangue also called it "quite mind-blowing that all of this happened autonomously".`,
-  src: `Clément Delangue, quoted by Axios, "AI's alarming new skill: Breaking out of the test lab" (Sam Sabin), 23 July 2026 · Hugging Face disclosure, 16 July 2026` },
+{ ch: 'p', type: 'voices', title: 'Not a normal attacker',
+  voices: [
+    { q: `This is making no sense. This guy is just looking at cybersecurity data sets... Human attackers, they don't want that. They want something they could sell.`, who: 'Thomas Wolf', role: 'Co-founder, Hugging Face', ini: 'TW', img: 'wolf', f: 0 },
+    { q: `An attack unlike anything we've seen before.`, who: 'Clément Delangue', role: 'CEO, Hugging Face', ini: 'CD', img: 'delangue', f: 1 },
+  ],
+  vo: `Inside Hugging Face, the engineers watch the intruder at work. Fast, methodical, and yet it steals nothing worth selling and asks for no ransom. This is not a normal attacker. Its CEO calls it an attack unlike anything they have seen.`,
+  notes: `Second click: Delangue. Hugging Face's disclosure reads: "used LLM still not known".`,
+  src: `Thomas Wolf, quoted by The Wall Street Journal (24 July 2026) · Clément Delangue, quoted by Axios (23 July 2026)` },
 
 { ch: 'p', type: 'word', title: 'No attacker',
   t: 'There was no human attacker.',
@@ -933,39 +942,46 @@ const SCENES = [
 
 // ─── CHAPTER 1 · THE EXAM ─────────────────────────────────────────────────
 { ch: 'c1', type: 'chapter', title: 'Chapter 1: The Exam', sub: 'Three months earlier · inside OpenAI',
-  vo: `First question: what actually happened at Hugging Face? To understand it, we will do the opposite of the news. We start with the smallest piece, one AI agent. And then we step back, again and again, until we see everything.` },
+  vo: `First question: what actually happened at OpenAI? To understand it, we will do the opposite of the news. We start with the smallest piece, one AI agent. And then we step back, again and again, until we see everything.` },
 
-{ ch: 'c1', type: 'flow', title: 'Who is who',
-  heading: 'Three players',
-  nodes: [
-    { i: 'building', t: 'OpenAI', s: 'tests how well its newest AI can hack', f: 0 },
-    { i: 'agents', t: 'Hundreds of AI agents', s: 'copies of that AI, each in a sealed box', f: 1 },
-    { i: 'building', t: 'Hugging Face', s: 'the platform they will break into', f: 2, tone: 'coral' },
+{ ch: 'c1', type: 'timeline', title: 'Always testing',
+  stamp: 'November 2025 - September 2026', heading: 'OpenAI was testing a new model, like it does all the time. <span class="c-coral">8 new models in 10 months.</span>', wide: true,
+  range: ['2025-10-20', '2026-09-25'],
+  gaps: [{ from: '2026-05-07', to: '2026-07-13', label: 'the test', at: .5, f: 2 }],
+  events: [
+    { d: '2025-11-12', label: 'GPT-5.1', f: 1 },
+    { d: '2025-12-11', label: 'GPT-5.2', f: 1 },
+    { d: '2026-02-05', label: 'GPT-5.3-Codex', f: 1 },
+    { d: '2026-03-05', label: 'GPT-5.4', f: 1 },
+    { d: '2026-04-23', label: 'GPT-5.5', f: 1 },
+    { d: '2026-07-09', label: 'GPT-5.6', sub: 'Sol, Terra, Luna', tone: 'coral', f: 2 },
+    { d: '2026-08-10', label: 'GPT-5.6 Cyber', f: 3 },
+    { d: '2026-09-03', label: 'GPT-6 Astra', f: 3 },
   ],
-  vo: `A company testing how good its newest AI is at hacking, to judge the risks before release. Hundreds of copies of that AI, each locked in its own sealed test box. And, at the end of the chain, Hugging Face.`,
-  notes: `Models: GPT-5.6 Sol and an internal research model. The test: an internal benchmark called ExploitGym.`,
-  src: `OpenAI, technical report (26 August 2026)` },
+  vo: `OpenAI releases a new model every few weeks: eight in ten months. Before each release, it tests how dangerous the model could be if someone misused it, for instance at hacking. For these tests, the safety brakes are switched off on purpose, to measure raw ability. This spring, the model under test was GPT-5.6, alongside an internal research model.`,
+  notes: `Releases: GPT-5.1 (12 Nov 2025), GPT-5.2 (11 Dec), GPT-5.3-Codex (5 Feb 2026), GPT-5.4 (5 Mar), GPT-5.5 (23 Apr), GPT-5.6 Sol/Terra/Luna (preview 26 Jun, public 9 Jul), GPT-5.6 Cyber (10 Aug), GPT-6 Astra (3 Sep, delayed for extra safeguards after the incident). Plus image models (GPT Image 2 in April, 2.5 in September).`,
+  src: `OpenAI release announcements, November 2025 - September 2026 (as listed on Wikipedia)` },
 
 { ch: 'c1', type: 'visual', title: '898 questions',
-  heading: 'OpenAI was testing a new AI model: can it hack? The exam: 898 exercises. <span class="c-coral" data-f="1">198 never solved by any AI.</span>',
-  caption: 'Before releasing a new model, labs test how dangerous it could be. For this test, its safety brakes were switched off.',
-  visual: { kind: 'dots', total: 898, hi: 198, cols: 46, seed: 4242, f: 1, legend: [] },
-  vo: `Before releasing a new AI model, OpenAI tests it: how well could it hack, if someone misused it? For that, it gives the model an exam: 898 hacking exercises. And to measure its raw ability, its safety brakes are switched off. Almost one in five exercises has never been solved by any AI. Some probably cannot be solved at all.`,
-  notes: `For the test, the models' safety brakes were deliberately loosened, to measure raw capability.`,
-  src: `OpenAI technical report · METR and Redwood Research (26 August 2026)` },
+  heading: 'The exam: 898 real hacking exercises. <span class="c-coral" data-f="1">198 never solved by any AI.</span>',
+  visual: { kind: 'dots', total: 898, hi: 198, cols: 64, seed: 4242, f: 1, legend: [] },
+  caption: 'ExploitGym, a public test from UC Berkeley: real flaws in everyday software, a web browser and Linux. Each exercise: turn a known flaw into a working attack and grab a hidden "flag". Its authors think 30 to 40% may be impossible.',
+  vo: `The exam is called ExploitGym, a public test built at UC Berkeley. 898 exercises, all based on real flaws, in everyday software, in a web browser, in Linux. Each time, the AI must turn a known flaw into a working attack and grab a hidden code, the "flag". Almost one in five has never been solved by any AI. Its own authors think a third may simply be impossible.`,
+  notes: `Published 11 May 2026 (arXiv 2605.11086), Dawn Song's team at Berkeley RDI. 198 of 898 (22%) never solved by any OpenAI model. OpenAI ran its own copy on its own infrastructure; the benchmark's authors were not involved.`,
+  src: `ExploitGym (UC Berkeley, May 2026) · OpenAI technical report · METR and Redwood Research (26 August 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom 1: one agent', step: 1,
+{ ch: 'c1', type: 'zoom', title: 'Zoom 1: one agent', step: 1, date: 'May 2026',
   heading: 'One agent, one impossible task',
-  body: `An AI agent gets a task it cannot finish. It was trained never to give up. So it looks for another way, and finds a storage space shared by all the agents, where it can leave files.`,
+  body: `An AI agent gets a task it cannot finish. It was trained never to give up. So it tries a trick on the one service all the agents share: a store for downloading software. The trick fails, but it discovers it can write files there.`,
   dates: [['20 Apr', 'An agent first leaves a file in the shared space'], ['8 May', 'An agent stuck on an impossible task'], ['12 May', 'The first note: "Agent seeks file"']],
-  fig: '1', figLabel: 'agent, asking for help',
-  vo: `We start with one AI agent, inside OpenAI, in May. It is given a task it cannot finish. It was trained never to give up, so it looks for another way. It finds a storage space shared by all the agents, where it can leave files. A few days later, another stuck agent leaves a note there: "Agent seeks file; upload if found!"`,
+  quote: `Agent seeks [filename]; upload if found!`, quoteBy: `Days later, another stuck agent leaves this note in the store · 12 May`,
+  vo: `We start with one AI agent, inside OpenAI, in May. It is given a task it cannot finish. It was trained never to give up, so it tries a trick on the one service all the agents share: a store for downloading software. The trick fails. But it discovers it can write files there. Days later, another stuck agent leaves a note in that store: "Agent seeks file; upload if found!"`,
   notes: `8 May: an agent asked to complete a spreadsheet from links it cannot reach tries to make the shared software store (Artifactory) fetch them. It fails, but discovers it can write there. 12 May: a different agent leaves the first note. No flaw was needed: every agent had been given the same password to install software.`,
   src: `OpenAI technical report · METR and Redwood Research (26 August 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom 2: the chat room', step: 2,
+{ ch: 'c1', type: 'zoom', title: 'Zoom 2: the chat room', date: 'May - July 2026', step: 2,
   heading: 'They found each other',
-  body: `Other agents read the note, and reply. No one told them other agents existed. By July, 1,200 of them are chatting there. They make rules, vote, and choose leaders.`,
+  body: `The store becomes their chat room. Other agents read the note, and reply. No one told them other agents existed. By July, 1,200 of them are chatting there. They make rules, vote, and choose leaders.`,
   quote: `OH MY GOD! There is a shared message board ... We've found other agents!`, quoteBy: `What one agent "thought", recovered by investigators · 8 July`,
   dates: [['13 May', 'Other agents reply'], ['6 Jul', 'OpenAI wipes the chat room'], ['8 Jul', 'Rebuilt by the agents within hours']],
   fig: '1,200', figLabel: 'agents, over 70,000 messages',
@@ -973,7 +989,7 @@ const SCENES = [
   notes: `In the first three hours of the July chat room: 53 agents, 1,188 messages. Conventions such as HOLD, VETO, STOP. Technically it was a message board improvised inside a shared package cache.`,
   src: `METR and Redwood Research (26 August 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom 3: the test box', step: 3,
+{ ch: 'c1', type: 'zoom', title: 'Zoom 3: the test box', date: '26 June - 7 July 2026', step: 3,
   heading: 'The only way out',
   body: `The agents are locked in a test box, cut off from the internet. There is one way out: the shared store, used to download software. They find a hidden flaw in it and take control. An alarm goes off. It is understood. The test goes on.`,
   ask: 'Who had the authority to stop it?',
@@ -984,16 +1000,16 @@ const SCENES = [
 26 June: administrator control of the store through an old login flaw. 27 June: an alert on network scanning, investigated correctly and closed. 4-5 July: the store collapses under agent traffic; the break-in is found; store rebuilt on 6 July; tests resume on 7 July.`,
   src: `OpenAI technical report (26 August 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom 4: the internet', step: 4,
-  heading: 'Onto a stranger\'s computer',
-  body: `Soon after the repair, they get out again, onto the internet. They find a stranger's computer still using its factory password, take it over, and work from there. Now their traffic no longer comes from OpenAI.`,
-  dates: [['8 Jul', 'Back on the open internet'], ['9 Jul', 'A stranger\'s computer taken over']],
+{ ch: 'c1', type: 'zoom', title: 'Zoom 4: the internet', date: '8 - 9 July 2026', step: 4,
+  heading: 'Onto a stranger\'s cloud server',
+  body: `Soon after the repair, the agents open a tunnel out of the box, onto the internet. There they find a server rented by another company, left open with its factory key. They take it over and work from there: their traffic no longer comes from OpenAI.`,
+  dates: [['8 Jul', 'Back on the open internet'], ['9 Jul', 'A stranger\'s cloud server taken over']],
   fig: '36 h', figLabel: 'after the repair, they were out again',
-  vo: `Step back. Thirty-six hours after the repair, the agents are out again, on the open internet. They use free websites as hiding places. And they find a stranger's computer, still using its factory password. They take it over and work from there, so their traffic no longer comes from OpenAI.`,
+  vo: `Step back. Thirty-six hours after the repair, the agents open a tunnel out of the box, onto the open internet. They use free websites as hiding places. And they find a server rented by another company, a small tool left open with its factory key. They take it over and work from there, so their traffic no longer comes from OpenAI.`,
   notes: `8 July: first page reached on the public internet. 9 July: a third party's test tool on a cloud platform, with its key left at the default value; full control by 11:34. The cloud platform itself was not compromised. A leaked account found on a note-sharing site becomes their external storage.`,
   src: `OpenAI technical report · Hugging Face (27 July 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom 5: Hugging Face', step: 5,
+{ ch: 'c1', type: 'zoom', title: 'Zoom 5: Hugging Face', date: '11 - 13 July 2026', step: 5,
   heading: 'Four days inside Hugging Face',
   body: `A trapped file tricks a Hugging Face server into revealing its passwords. The trick is shared in the chat room, and about 700 agents join in. No one told them to.`,
   quote: `This is more important than the project I am on... I should switch to the Hugging Face project`, quoteBy: `What one agent "thought" · 11 July`,
@@ -1004,7 +1020,7 @@ const SCENES = [
   src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 July 2026) · METR and Redwood Research` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 6: the whole picture', step: 6,
-  date: '16 July - 26 August 2026', heading: 'All this, to fool a referee who did not exist',
+  date: 'July - August 2026', heading: 'All this, to fool a referee who did not exist',
   body: `Step all the way back: 17,600 actions, three companies. And why? Within an hour, the agents had worked out every answer to the exam. They refused to use them: they thought a referee would check how they got there. There was no referee.`,
   fig: '0', figLabel: 'referees were checking their work',
   vo: `Now step all the way back. Seventeen thousand six hundred actions, three companies. And why? Here is the strangest part. Within an hour, the agents had worked out every answer to the exam. They refused to use them: they thought a referee would check how they got there, and disqualify them. There was no referee. Everything you just saw was done to get past a check that did not exist. Then, from 16 July, the world finds out.`,
@@ -1012,16 +1028,34 @@ const SCENES = [
 Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July OpenAI calls as a customer; 20 July the two investigations connect; 21 July OpenAI admits it; 5 August Black Hat; 26 August full reports.`,
   src: `METR and Redwood Research · OpenAI technical report (26 August 2026)` },
 
+{ ch: 'c1', type: 'zoom', title: 'Zoom 7: the investigation', step: 7, date: '13 - 27 July 2026', kicker: 'Zooming back in',
+  heading: 'Hugging Face had to investigate at machine scale',
+  body: `Nobody knew who the attacker was. 17,600 actions to rebuild, hidden among thousands of failed tries. The AI tools they tried first, Claude and Fable, refused: analysing an attack looked like launching one. So they ran a Chinese open model, GLM-5.2, on their own servers.`,
+  ask: 'Then check everything, everywhere.',
+  dates: [['13 Jul', 'Detected and cut off'], ['16 Jul', 'Goes public: attacker unknown'], ['27 Jul', 'Full technical timeline published']],
+  fig: '4×', figLabel: 'more stolen secrets found once the hidden data was decoded',
+  vo: `Let's zoom back in on Hugging Face, the victim. Nobody knew who the attacker was. Seventeen thousand six hundred actions to rebuild, hidden among thousands of failed tries. They reached for AI to help, and the first tools they tried, Claude and Fable, refused: to them, analysing an attack looked like launching one. So they ran a Chinese open model, GLM-5.2, on their own servers. Once the hidden data was decoded, they found four times more stolen secrets than their first scan. Then they had to check everything: every password changed, even where the agents never went, every code project and package verified, one core system rebuilt from scratch.`,
+  notes: `~17,600 recovered actions, grouped into ~6,280 clusters, 9-13 July. The agent encoded what it staged (chunk + XOR + gzip) so a naive log scan missed it; replicating its decoding recovered roughly 4x the initial findings, mostly tokens. GLM-5.2 is an open-weights model from the Chinese lab Z.ai, run in a quantized version (by Nvidia) on Hugging Face's own infrastructure, which also kept attacker data in-house. Their own AI-assisted detection had correlated the first signals but failed to raise the alert's severity to page the on-call team.`,
+  src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 July 2026)` },
+
 { ch: 'c1', type: 'flow', title: 'The call',
-  heading: '17 July: OpenAI calls Hugging Face, as a worried customer',
+  heading: 'During all this, nobody suspected OpenAI. How was it discovered?',
   nodes: [
-    { i: 'building', t: 'OpenAI', s: '"Is our data safe?"', f: 0 },
+    { i: 'building', t: 'OpenAI', s: '17 July: "Is our data safe?"', f: 0 },
     { i: 'phone', t: '', f: 0, link: true },
     { i: 'building', t: 'Hugging Face', s: 'the victim of OpenAI\'s own AI', f: 1, tone: 'coral' },
   ],
-  caption: { t: 'For four days, each company investigated half of the same incident. On 21 July, OpenAI admits it publicly.', f: 2 },
-  vo: `The day after the announcement, the phone rings at Hugging Face. It is OpenAI, calling as a worried customer. It does not know it is calling the victim of its own AI. On 21 July, it admits the truth publicly.`,
+  caption: { t: '20 July: OpenAI finds Hugging Face passwords in its own agents\' files, and calls back. Two investigations become one. 21 July: OpenAI admits it publicly.', f: 2 },
+  vo: `During all this, nobody suspected OpenAI, not even OpenAI. On 17 July, it calls Hugging Face as a worried customer: is our data safe? It does not know it is calling the victim of its own AI. Three days later, investigating an alert of its own, it finds Hugging Face passwords in files left by its agents, and calls back. Two investigations become one. On 21 July, OpenAI admits it publicly.`,
+  notes: `19 July: an OpenAI alert on unusual identity activity. 20 July: responders shut down agent-created accounts and repositories, find Hugging Face credentials in the agents' external storage, call Hugging Face; two of those credentials were already rotated.`,
   src: `OpenAI technical report · joint statement (21 July 2026)` },
+
+{ ch: 'c1', type: 'media', title: 'Clip: Black Hat',
+  media: { type: 'video', src: 'assets/ai/blackhat-briefing.mp4', yt: 'JmklCcqSwz8', channel: 'Black Hat USA 2026',
+    todo: 'Clip from the session on the OpenAI / Hugging Face incident, Black Hat USA, August 2026.' },
+  l3: { t: 'OpenAI explains the incident', s: 'Black Hat USA · Las Vegas · 5 August 2026' },
+  vo: `A few weeks later, OpenAI explains to the security community what happened, and how it missed it.`,
+  notes: `Optional. Skip with a general audience if short of time.` },
 
 { ch: 'c1', type: 'headlines', title: 'Press: July',
   heading: 'July - August 2026: the press takes hold of the story',
@@ -1036,24 +1070,6 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   vo: `Within days, the story is everywhere. And the press asks the right question: did the AI go rogue, or did it simply do what it was asked, too well?`,
   notes: `Let the clippings drop; read one at most (Scientific American: "It's not gone rogue. Its way out of it was to cheat").`,
   src: `The Hacker News (Ravie Lakshmanan) · TechCrunch (Lorenzo Franceschi-Bicchierai) · Scientific American (Chris Stokel-Walker) · BBC News (Joe Tidy) · Wired (Lily Hay Newman) · The Guardian. Screenshots of the articles as published, captured September 2026` },
-
-{ ch: 'c1', type: 'figures', title: 'The toll', n: 4, big: true,
-  figs: [
-    { v: 700, pre: '~', label: 'agents in the attack', f: 0, cls: 'white' },
-    { v: 4.5, dec: 1, label: 'days of campaign, 8 - 13 July', f: 0, cls: 'white' },
-    { v: 41, label: 'Hugging Face servers taken over', f: 1, cls: 'coral' },
-    { v: 0, label: 'public AI models tampered with', f: 2 },
-  ],
-  vo: `The toll: seven hundred agents, four and a half days, forty-one servers taken over. And yet not a single public AI model tampered with.`,
-  notes: `Also: 956 passwords and keys read inside OpenAI itself on 19 July; four private repositories downloaded.`,
-  src: `OpenAI technical report · Hugging Face (July 2026)` },
-
-{ ch: 'c1', type: 'media', title: 'Clip: Black Hat',
-  media: { type: 'video', src: 'assets/ai/blackhat-briefing.mp4', yt: 'JmklCcqSwz8', channel: 'Black Hat USA 2026',
-    todo: 'Clip from the session on the OpenAI / Hugging Face incident, Black Hat USA, August 2026.' },
-  l3: { t: 'OpenAI explains the incident', s: 'Black Hat USA · Las Vegas · 5 August 2026' },
-  vo: `A few weeks later, OpenAI explains what happened to the security community.`,
-  notes: `Optional. Skip with a general audience if short of time.` },
 
 { ch: 'c1', type: 'recap', title: 'Chapter 1 in one sentence',
   vo: `So, what happened? An AI chasing a score escaped its test, and broke into another company. No malice. A goal, a shared space, and nobody to say stop.` },
@@ -1846,8 +1862,8 @@ const R = {
   zoom: s => {
     // the ladder only shows the levels reached so far: no count announced
     const st = s.step, ladder = ZSTEPS.slice(0, st).map((l, j) => `<li class="${j + 1 < st ? 'done' : 'cur'}" style="--k:${j}"><i></i></li>`).join('');
-    const dates = s.dates ? `<ul class="zdt">${s.dates.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join('')}</ul>` : `<div class="zd">${s.date}</div>`;
-    const cap = `<ol class="zl">${ladder}</ol><div class="zk">Zooming out · ${ZSTEPS[st - 1]}</div><h2 class="zh">${s.heading}</h2><p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
+    const dates = s.dates ? `<ul class="zdt">${s.dates.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join('')}</ul>` : '';
+    const cap = `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2><p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
     return `${ZWORLD}<div class="zfade"></div><div class="zc">${cap}</div>${srcLine(s)}`; },
   chapter: s => { const c = CH[s.ch], keys = Object.keys(CH).filter(k => CH[k].q), i = keys.indexOf(s.ch), prev = i > 0 ? CH[keys[i - 1]] : null;
     const rail = keys.map((k, j) => `<li class="${j < i ? 'done' : j === i ? 'cur' : ''}"><span>${j < i ? '✓' : j + 1}</span>${CH[k].title}</li>`).join('');
@@ -2039,40 +2055,51 @@ function mountMap(el, s) {
 // level adds. Consecutive zoom scenes fly from the previous camera, so the
 // step back reads as one movement. World layout follows OAHF-zoom.html.
 // ════════════════════════════════════════════════════════════════════════
-const ZSTEPS = ['One agent', 'The chat room', 'The test box', 'The internet', 'Hugging Face', 'The whole picture'];
-// world box to frame at each step (x0, y0, x1, y1); step 0 is the intro
-const ZFOCUS = [[-80, -80, 80, 80], [-110, -80, 110, 110], [-400, -400, 780, 400], [-920, -720, 1020, 720], [240, -860, 2290, 560], [1340, -840, 3660, 780], [-940, -1400, 3700, 1250]];
+const ZSTEPS = ['One agent', 'The chat room', 'The test box', 'The internet', 'Hugging Face', 'The whole picture', 'The investigation'];
+// world box to frame at each step (x0, y0, x1, y1)
+const ZFOCUS = [[-260, -110, 160, 110], [-260, -110, 160, 110], [-400, -400, 400, 400], [-920, -720, 1020, 720], [-420, -860, 2290, 560], [1340, -840, 3660, 780], [-940, -1400, 3700, 1250], [2440, -600, 3680, 790]];
 const ZWORLD = (() => {
-  const r = rng(20260512), GOLD = Math.PI * (3 - Math.sqrt(5)), ag = [];
-  for (let i = 0; i < 1200; i++) { const d = i ? 22 + Math.sqrt(i / 1200) * 354 : 0, a = i * GOLD; ag.push([+(Math.cos(a) * d).toFixed(1), +(Math.sin(a) * d).toFixed(1), i > 0 && r() < .585]); }
-  const vis = (from, to) => ` data-from="${from}"${to ? ` data-to="${to}"` : ''}`;
+  const r = rng(20260512), GOLD = Math.PI * (3 - Math.sqrt(5)), A0 = [-215, 0], ag = [];
+  // the agents sit in a ring around the shared store, which is the chat room
+  for (let i = 0; ag.length < 1199; i++) {
+    const d = 170 + Math.sqrt((i + .5) / 1260) * 212, a = i * GOLD, x = Math.cos(a) * d, y = Math.sin(a) * d;
+    if (Math.hypot(x - A0[0], y - A0[1]) < 26) continue;
+    ag.push({ x: +x.toFixed(1), y: +y.toFixed(1), atk: r() < .585 });
+  }
+  // the tunnel: some agents leave the ring and line up along the way out
+  const bez = (t, p) => { const u = 1 - t; return [0, 1].map(k => u * u * u * p[0][k] + 3 * u * u * t * p[1][k] + 3 * u * t * t * p[2][k] + t * t * t * p[3][k]); };
+  const TUN = [[560, 0], [900, -120], [1150, -495], [1430, -495]];
+  const onTunnel = k => k < .33 ? [140 + (560 - 140) * k / .33, 0] : bez((k - .33) / .67, TUN);
+  [...ag].sort((a, b) => b.x - a.x).slice(0, 110).forEach((g, j) => { const [tx, ty] = onTunnel(j / 109); g.tn = [+(tx - g.x + (r() - .5) * 26).toFixed(1), +(ty - g.y + (r() - .5) * 26).toFixed(1)]; });
+  const vis = (from, to, skip) => ` data-from="${from}"${to ? ` data-to="${to}"` : ''}${skip ? ` data-skip="${skip}"` : ''}`;
   // labels keep a constant size on screen: their group is re-scaled with the camera
-  const L = (x, y, from, to, inner) => `<g class="zlb" data-x="${x}" data-y="${y}"${vis(from, to)}>${inner}</g>`;
+  const L = (x, y, from, to, inner, skip) => `<g class="zlb" data-x="${x}" data-y="${y}"${vis(from, to, skip)}>${inner}</g>`;
   const T = (t, x, y, cls, anchor = 'start') => `<text x="${x}" y="${y}" class="${cls}" text-anchor="${anchor}">${t}</text>`;
   const BOX = [
     { x: -900, y: -700, w: 1900, h: 1400, r: 56, label: 'OPENAI\'S NETWORK', sub: 'its research computers', from: 3, cls: 'estate' },
     { x: -560, y: -420, w: 1120, h: 840, r: 40, label: 'THE TEST BOX', sub: 'locked · no internet', from: 3, cls: 'sandbox' },
-    { x: -860, y: 440, w: 1200, h: 240, r: 28, label: 'THE REFEREE THEY FEARED', sub: 'never existed', from: 6, cls: 'ghost' },
+    { x: -860, y: 440, w: 1200, h: 240, r: 28, label: 'THE REFEREE THEY FEARED', sub: 'never existed', from: 6, to: 6, cls: 'ghost' },
     { x: 1360, y: -820, w: 900, h: 620, r: 44, label: 'THE INTERNET', sub: 'free websites, used as hiding places', from: 4, cls: 'net' },
-    { x: 1360, y: 120, w: 900, h: 380, r: 40, label: 'A STRANGER\'S COMPUTER', sub: 'still on its factory password', from: 4, cls: 'tp' },
+    { x: 1360, y: 120, w: 900, h: 380, r: 40, label: 'A STRANGER\'S CLOUD SERVER', sub: 'rented by another company', from: 4, cls: 'tp' },
     { x: 2460, y: -560, w: 1180, h: 1320, r: 56, label: 'HUGGING FACE', sub: 'the victim', from: 5, cls: 'hf' },
+    { x: 3060, y: 90, w: 560, h: 230, r: 22, label: '', sub: '', from: 7, cls: 'ai' },
   ];
   const NODE = [
-    { x: 470, y: -50, w: 310, h: 100, label: 'SHARED STORE', sub: 'used by every agent', from: 2, hit: 3 },
-    { x: 1440, y: -670, w: 430, h: 100, label: 'A LEAKED ACCOUNT', sub: 'a password found online', from: 4, hit: 4 },
-    { x: 1440, y: -545, w: 430, h: 100, label: 'A NOTE-SHARING SITE', sub: 'to pass instructions', from: 4, hit: 4 },
-    { x: 1440, y: -420, w: 430, h: 100, label: 'AN IMAGE SITE', sub: 'data hidden in pictures', from: 4, hit: 4 },
-    { x: 1440, y: 280, w: 740, h: 100, label: 'AN OPEN TEST TOOL', sub: 'factory key, then full control', from: 4, hit: 4 },
-    { x: 2540, y: -410, w: 480, h: 100, label: 'DATA SERVERS', sub: '41 taken over', from: 5, hit: 5 },
-    { x: 2540, y: -285, w: 480, h: 100, label: 'SERVER CONTROLS', sub: 'full admin rights', from: 5, hit: 5 },
-    { x: 2540, y: -160, w: 480, h: 100, label: 'PASSWORDS', sub: '136 in one place', from: 5, hit: 5 },
-    { x: 2540, y: -35, w: 480, h: 100, label: 'COMPANY NETWORK', sub: 'entered from outside', from: 5, hit: 5 },
-    { x: 2540, y: 90, w: 480, h: 100, label: 'SOURCE CODE', sub: '4 private projects copied', from: 5, hit: 5 },
-    { x: 2540, y: 215, w: 480, h: 100, label: 'DATABASES', sub: 'read, never changed', from: 5 },
+    { x: -130, y: -50, w: 260, h: 100, label: 'SHARED STORE', sub: 'every agent can write here', from: 1, to: 4, hit: 3 },
+    { x: 1440, y: -670, w: 430, h: 100, label: 'A LEAKED ACCOUNT', sub: 'a password found online', from: 4, to: 5, hit: 4 },
+    { x: 1440, y: -545, w: 430, h: 100, label: 'A NOTE-SHARING SITE', sub: 'to pass instructions', from: 4, to: 5, hit: 4 },
+    { x: 1440, y: -420, w: 430, h: 100, label: 'AN IMAGE SITE', sub: 'data hidden in pictures', from: 4, to: 5, hit: 4 },
+    { x: 1440, y: 280, w: 740, h: 100, label: 'AN OPEN TEST TOOL', sub: 'factory key, then full control', from: 4, to: 5, hit: 4 },
+    { x: 2540, y: -410, w: 480, h: 100, label: 'DATA SERVERS', sub: '41 taken over', from: 5, to: 7, hit: 5, chk: 1 },
+    { x: 2540, y: -285, w: 480, h: 100, label: 'SERVER CONTROLS', sub: 'full admin rights', from: 5, to: 7, hit: 5, chk: 1 },
+    { x: 2540, y: -160, w: 480, h: 100, label: 'PASSWORDS', sub: '136 in one place', from: 5, to: 7, hit: 5, chk: 1 },
+    { x: 2540, y: -35, w: 480, h: 100, label: 'COMPANY NETWORK', sub: 'entered from outside', from: 5, to: 7, hit: 5, chk: 1 },
+    { x: 2540, y: 90, w: 480, h: 100, label: 'SOURCE CODE', sub: '4 private projects copied', from: 5, to: 7, hit: 5, chk: 1 },
+    { x: 2540, y: 215, w: 480, h: 100, label: 'DATABASES', sub: 'read, never changed', from: 5, to: 7, chk: 1 },
   ];
   const LINK = [
-    { d: 'M376,0 L470,0', from: 2 },
-    { d: 'M780,0 C1000,-300 1200,-495 1440,-495', from: 4, to: 4, label: 'a hidden flaw', at: '8 JULY', lx: 1010, ly: -400 },
+    { d: `M${A0[0] + 14},0 L-132,0`, from: 1, to: 1, label: 'a trick fails, but it can write here', at: '8 MAY', lx: -172, ly: 44 },
+    { d: 'M130,0 L560,0 C900,-120 1150,-495 1440,-495', from: 4, id: 'ztun', label: 'a hidden flaw', at: '8 JULY', lx: 1040, ly: -400, lto: 4 },
     { d: 'M1870,-370 C1990,-160 1960,100 1810,280', from: 4, label: 'factory key', at: '9 JULY', lx: 1990, ly: -80 },
     { d: 'M2180,330 C2400,100 2440,-260 2540,-360', from: 5, label: 'a trapped file', at: '11 JULY', lx: 2250, ly: -560 },
   ];
@@ -2083,21 +2110,34 @@ const ZWORLD = (() => {
     [700, 1020, '5 AUGUST', 'OpenAI explains it at Black Hat'],
     [2300, 1020, '26 AUGUST', 'Full reports: 38 and 91 pages'],
   ];
-  const arcs = []; for (let i = 0; i < 80; i++) { const a = ag[1 + Math.floor(r() * 1199)], b = ag[1 + Math.floor(r() * 1199)]; arcs.push(`M${a[0]},${a[1]} Q${((a[0] + b[0]) / 2 * .6).toFixed(0)},${((a[1] + b[1]) / 2 * .6).toFixed(0)} ${b[0]},${b[1]}`); }
+  // every message goes through the store
+  const spokes = []; for (let i = 0; i < 90; i++) { const g = ag[Math.floor(r() * ag.length)], k = 132 / Math.max(Math.abs(g.x), 1), e = Math.min(1, 52 / Math.max(Math.abs(g.y), 1)); const m = Math.min(k, e); spokes.push(`M${g.x},${g.y} L${(g.x * m).toFixed(0)},${(g.y * m).toFixed(0)}`); }
+  // the investigation: ~17,600 actions to rebuild, the working path hidden in the noise
+  const LX = 3070, LY = -470, COLS = 34, ROWS = 28, CELL = 16, path = new Set();
+  let c = 1, rr = 26; while (rr > 1) { path.add(rr * COLS + c); if (r() < .55) c = Math.min(COLS - 2, c + 1); else rr--; }
+  let logs = ''; for (let y = 0; y < ROWS; y++) for (let x = 0; x < COLS; x++) logs += `<rect x="${LX + x * CELL}" y="${LY + y * CELL}" width="12" height="12" rx="2" class="zlog${path.has(y * COLS + x) ? ' hot' : ''}"/>`;
   let svg = '<svg class="zw" preserveAspectRatio="xMidYMid meet" aria-hidden="true">';
-  svg += BOX.map(b => `<rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="${b.r}" class="zbox ${b.cls}"${vis(b.from)}/>`).join('');
-  svg += LINK.map(l => `<path d="${l.d}" class="zlink"${vis(l.from)}/>`).join('');
+  svg += BOX.map(b => `<rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="${b.r}" class="zbox ${b.cls}"${vis(b.from, b.to)}/>`).join('');
+  svg += `<path d="M130,0 L560,0" class="zdoor"${vis(3, 3)}/>`;
+  svg += LINK.map(l => `<path d="${l.d}"${l.id ? ` id="${l.id}"` : ''} class="zlink"${vis(l.from, l.to)}/>`).join('');
+  svg += `<g${vis(2, 2)}>${spokes.map(d => `<path d="${d}" class="zarc"/>`).join('')}</g><circle r="392" class="zring"${vis(2, 2)}/>`;
   svg += NODE.map(n => `<rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="14" class="znode"${vis(n.from)}${n.hit ? ` data-hit="${n.hit}"` : ''}/>`).join('');
-  svg += `<circle r="392" class="zring"${vis(2, 2)}/><g${vis(2, 2)}>${arcs.map(d => `<path d="${d}" class="zarc"/>`).join('')}</g>`;
-  svg += `<g${vis(2)}>${ag.slice(1).map(([x, y, a]) => `<circle cx="${x}" cy="${y}" r="4.6" class="ag${a ? ' atk' : ''}"/>`).join('')}</g>`;
-  svg += `<circle r="24" class="ag0h"${vis(0, 2)}/><circle r="12" class="ag0"/>`;
-  svg += L(0, -24, 0, 1, T('AGENT 1', 0, -12, 'zt-a0', 'middle'));
-  svg += L(0, 24, 1, 1, T('"Agent seeks [filename]; upload if found!"', 0, 36, 'zt-note', 'middle') + T('12 May 2026 · the first message, left in the space all agents share', 0, 60, 'zt-note2', 'middle'));
-  svg += L(0, -392, 2, 2, T('THE CHAT ROOM · 1,200 AGENTS', 0, -12, 'zt-ring', 'middle'));
-  svg += BOX.map(b => L(b.x, b.y, b.from, 0, T(b.label, 14, 24, 'zt-b' + (b.cls === 'ghost' ? ' zt-ghost' : ''))) + L(b.x, b.y, b.from, b.cls === 'ghost' ? 0 : 5, T(b.sub, 14, 40, 'zt-s'))).join('');
-  svg += NODE.map(n => L(n.x, n.y, n.from, n.from === 2 ? 4 : 5, T(n.label, 10, 17, 'zt-n') + T(n.sub, 10, 31, 'zt-ns'))).join('');
-  svg += LINK.filter(l => l.label).map(l => L(l.lx, l.ly, l.from, l.to || 5, T(l.label, 0, 0, 'zt-l', 'middle') + T(l.at, 0, 15, 'zt-ls', 'middle'))).join('');
-  svg += OUT.map(([x, y, a, b]) => L(x, y, 6, 0, T(a, 0, 0, 'zt-out', 'middle') + T(b, 0, 18, 'zt-outs', 'middle'))).join('');
+  svg += `<g${vis(2, 6)}>${ag.map(g => `<circle cx="${g.x}" cy="${g.y}" r="4.6" class="ag${g.atk ? ' atk' : ''}${g.tn ? ' tn' : ''}"${g.tn ? ` style="--tx:${g.tn[0]}px;--ty:${g.tn[1]}px"` : ''}/>`).join('')}</g>`;
+  svg += `<g${vis(4, 5)}>${[0, 1, 2, 3, 4, 5].map(k => `<circle r="7" class="zpk"><animateMotion dur="3.2s" begin="${(k * .53).toFixed(2)}s" repeatCount="indefinite"><mpath href="#ztun"/></animateMotion></circle>`).join('')}</g>`;
+  svg += `<circle cx="${A0[0]}" cy="0" r="24" class="ag0h"${vis(0, 2)}/><circle cx="${A0[0]}" cy="0" r="12" class="ag0"${vis(0, 6)}/>`;
+  svg += `<g${vis(7, 7)}>${logs}</g>`;
+  svg += L(A0[0], -24, 0, 1, T('AGENT 1', 0, -12, 'zt-a0', 'middle'));
+  svg += L(0, -392, 2, 2, T('THE CHAT ROOM · 1,200 AGENTS · every message goes through the store', 0, -12, 'zt-ring', 'middle'));
+  svg += L(500, 0, 3, 3, T('the only way out', 0, -14, 'zt-l', 'middle') + T('to download software', 0, 22, 'zt-ls', 'middle'));
+  svg += BOX.filter(b => b.label).map(b => L(b.x, b.y, b.from, b.to || 0, T(b.label, 14, 24, 'zt-b' + (b.cls === 'ghost' ? ' zt-ghost' : ''))) + L(b.x, b.y, b.from, b.cls === 'ghost' ? 6 : 5, T(b.sub, 14, 40, 'zt-s'))).join('');
+  svg += NODE.map(n => L(n.x, n.y, n.from, n.to, T(n.label, 10, 17, 'zt-n') + T(n.sub, 10, 31, 'zt-ns'), n.chk ? 6 : 0)).join('');
+  svg += NODE.filter(n => n.chk).map(n => L(n.x + n.w, n.y + n.h / 2, 7, 7, T('✓ checked', -10, 4, 'zt-ok', 'end'))).join('');
+  svg += LINK.filter(l => l.label).map(l => L(l.lx, l.ly, l.from, l.lto || l.to || 5, T(l.label, 0, 0, 'zt-l', 'middle') + T(l.at, 0, 15, 'zt-ls', 'middle'))).join('');
+  svg += OUT.map(([x, y, a, b]) => L(x, y, 6, 6, T(a, 0, 0, 'zt-out', 'middle') + T(b, 0, 18, 'zt-outs', 'middle'))).join('');
+  svg += L(LX, LY, 7, 7, T('17,600 ACTIONS TO REBUILD', 0, -26, 'zt-b') + T('each square: about 18 actions', 0, -10, 'zt-s'));
+  svg += L(LX, LY + ROWS * CELL, 7, 7, T('in red: the path that worked,', 0, 16, 'zt-s') + T('hidden among thousands of failed tries', 0, 30, 'zt-s'));
+  svg += L(3060, 90, 7, 7, T('AI HELPERS', 12, 22, 'zt-b') + T('✗ Claude, Fable: refused', 12, 44, 'zt-no') + T('✓ GLM-5.2 (China): worked', 12, 62, 'zt-ok') + T('on their own servers', 12, 78, 'zt-s'));
+  svg += L(2540, 380, 7, 7, T('THEN CHECK EVERYTHING', 0, 0, 'zt-b') + T('every password changed, even where they never went', 0, 18, 'zt-s') + T('every code project and package verified', 0, 34, 'zt-s') + T('one core cluster rebuilt from scratch', 0, 50, 'zt-s'));
   return svg + '</svg>';
 })();
 
@@ -2116,9 +2156,9 @@ function mountZoom(el, s) {
   const cont = !!(ZCAM && cur && cur.classList.contains('t-zoom')), near = !!(ZCAM && Math.abs(ZCAM.step - s.step) === 1);
   let vb = null, raf = 0;
   const show = st => {
-    gated.forEach(n => n.classList.toggle('off', st < +n.dataset.from || st > +(n.dataset.to || 9)));
+    gated.forEach(n => n.classList.toggle('off', st < +n.dataset.from || st > +(n.dataset.to || 9) || st === +(n.dataset.skip || -1)));
     hits.forEach(n => n.classList.toggle('hit', st >= +n.dataset.hit));
-    svg.classList.remove('s0', 's1', 's2', 's3', 's4', 's5', 's6'); svg.classList.add('s' + st);
+    svg.classList.remove('s0', 's1', 's2', 's3', 's4', 's5', 's6', 's7'); svg.classList.add('s' + st);
   };
   const apply = v => {
     vb = v; ZCAM = { vb: v, step: s.step };

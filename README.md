@@ -30,7 +30,9 @@ replays all seven.
 Chapter 1 tells the Hugging Face case the way `OAHF-zoom.html` does: one
 world, one camera that keeps stepping back (one agent, the chat room, the test
 box, the internet, Hugging Face, the whole picture), in plain words, with the
-key dates of each step, and ending on the referee that never existed.
+key dates of each step and the referee that never existed, then zooms back in
+on Hugging Face's investigation. It is preceded by how often OpenAI ships and
+tests new models, and the exam itself.
 Consecutive zoom slides fly from one framing to the next, so the step back
 reads as one movement. The press montages show real screenshots of the
 articles (`assets/ai/press/`).
