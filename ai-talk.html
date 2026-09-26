@@ -1093,6 +1093,7 @@ body.pres{background:var(--ws-ink-50)}
 .rv-v svg.robot{width:100%;max-height:100%}
 .rv-r{position:relative;height:100%;display:flex;align-items:center}
 .rv-r .media.portrait{height:calc(100vh - 10.5rem)}
+.rv-msg{margin:.4rem 0 0;font-family:var(--f-display);font-weight:800;font-size:2.4rem;letter-spacing:-.02em;color:var(--coral)}
 .rv-l3{position:absolute;left:-1.4rem;bottom:2rem;background:rgba(7,5,15,.9);border-left:.3rem solid var(--green-neon);padding:.8rem 1.1rem;max-width:18rem}
 .rv-l3 b{display:block;color:#fff;font-family:var(--f-display);font-size:1.25rem;line-height:1.15} .rv-l3 span{display:block;margin-top:.3rem;font-family:var(--f-mono);font-size:.72rem;color:#C9C4DA}
 svg.robot .ai-last text{fill:var(--coral)} svg.robot .ai-last .ld{stroke:var(--coral)} svg.robot .ai-last .dt{fill:var(--coral)}
@@ -1669,8 +1670,9 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
   media: { type: 'video', src: 'assets/ai/robot-fall.mp4', poster: 'assets/ai/robot-fall.jpg', portrait: true, loop: true,
     todo: 'A humanoid sprinter crashing at the robot games, Beijing, 22 August 2026.' },
   l3: { t: 'Impressive, until it is not', s: 'Robot games · Beijing · 22 August 2026' },
-  vo: `Impressive, until it is not. A robot that falls is a mechanical problem. A robot that someone else controls is a security problem. Because a humanoid robot is a computer that walks. It sees and hears. It connects. It moves. And, above all, an AI model decides what it does. Each of those is a door, and these robots are already being tested in factories and warehouses.`,
-  notes: `Right: three-second clip broadcast by CCTV (22 August 2026), plays in a loop. Left: one click per layer, the AI model comes last.`,
+  punch: { t: 'That could derail.', f: 4 },
+  vo: `A humanoid robot is a computer that walks. It sees and hears. It connects. It moves. And, above all, an AI model decides what it does. That could derail. Look: impressive, until it is not. A robot that falls is a mechanical problem. A robot that someone else controls is a security problem. And these robots are already being tested in factories and warehouses.`,
+  notes: `Left: one click per layer, the AI model comes last, then "That could derail." The clip on the right (CCTV, 22 August 2026, three seconds, in a loop) starts only on that last click.`,
   src: `CCTV (22 August 2026) · Alias Robotics (arXiv 2509.14096, 2025)` },
 
 { ch: 'c3', type: 'hack', title: 'The robot dog',
@@ -2241,7 +2243,7 @@ const R = {
   forum: s => `<img class="fo-bg" src="${s.photo.src}" alt="" onerror="this.remove()"><div class="fo-sh"></div><div class="fo"><div>${textBlock(s)}</div><div class="fo-v">${s.voices.map((v, i) => `<figure class="fo-c"${fa(v.f ?? i)}>${face(v, 'sm')}<div><blockquote>${v.q}</blockquote><figcaption><b>${v.who}</b> · ${v.role}</figcaption></div></figure>`).join('')}</div></div>${srcLine(s)}`,
 
   // Schematic on the left, video on the right
-  robotvid: s => `<div class="rv"><div class="rv-l"><h2 class="h">${s.heading}</h2><div class="rv-v">${V[s.visual.kind](s.visual)}</div></div><div class="rv-r">${media(s.media)}${s.l3 ? `<div class="rv-l3"><b>${s.l3.t}</b><span>${s.l3.s}</span></div>` : ''}</div></div>${srcLine(s)}`,
+  robotvid: s => `<div class="rv"><div class="rv-l"><h2 class="h">${s.heading}</h2><div class="rv-v">${V[s.visual.kind](s.visual)}</div>${s.punch ? `<p class="rv-msg"${fa(s.punch.f)}>${s.punch.t}</p>` : ''}</div><div class="rv-r" data-wait>${media(s.media)}${s.l3 ? `<div class="rv-l3"><b>${s.l3.t}</b><span>${s.l3.s}</span></div>` : ''}</div></div>${srcLine(s)}`,
 
   // A real photo, the intrusion drawn on it, the steps as a console
   hack: s => `<div class="head">${textBlock(s)}</div><div class="hk">
@@ -2652,6 +2654,8 @@ function render(i, k) {
   el._max = maxF(el);
   stage.appendChild(el);
   if (s.type === 'map') mountMap(el, s);
+  // a video that waits for the last click of the scene
+  if ($('[data-wait] video', el)) el._onFrag = k => { const v = $('[data-wait] video', el); if (k >= el._max && !PRESENTER) v.play().catch(() => {}); else { v.pause(); v.currentTime = 0; } };
   if (s.type === 'zoom') mountZoom(el, s);
   if (s.type === 'timeline') {
     const tl = $('.tl', el), rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -2709,7 +2713,7 @@ function autoPlay(el) {
   if (PRESENTER) return;
   $$('video', el).forEach(v => {
     const f = v.closest('.media');
-    if (v.closest('.mb') || (f && (f.classList.contains('missing') || f.classList.contains('use-yt')))) return;
+    if (v.closest('.mb,[data-wait]') || (f && (f.classList.contains('missing') || f.classList.contains('use-yt')))) return;
     v.play().catch(() => {});
   });
 }
