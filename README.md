@@ -30,7 +30,7 @@ replays all eight. The flow: the Hugging Face case, the wave of similar
 cases, why an AI derails, the debate on AI rules, then the other half of the
 problem, attackers using AI: against companies, as a ladder from one fake
 video call (Arup) to swarms of AI agents, then against each of us (phishing,
-fake parcels, cloned voices of loved ones, fake intimate images), robots in
+fake parcels, cloned voices of loved ones), robots in
 between, and what works.
 Chapter 1 tells the Hugging Face case the way `OAHF-zoom.html` does: one
 world, one camera that keeps stepping back (one agent, the chat room, the test
