@@ -956,6 +956,17 @@ const SCENES = [
   notes: `Open on the date. Pause. Second click: the announcement.`,
   src: `Hugging Face, 16 July 2026` },
 
+{ ch: 'p', type: 'figures', title: 'Who is Hugging Face', n: 3, big: true,
+  stamp: 'Who is Hugging Face? · New York and Paris', heading: 'The "Wikipedia of AI"',
+  figs: [
+    { txt: '3.1 M', label: 'AI models shared by researchers and companies', f: 0, cls: 'white' },
+    { txt: '1 M', label: 'datasets, including the test data used to grade AIs', f: 0, cls: 'white' },
+    { txt: 'Free', label: 'and open to anyone, to publish or download', f: 0 },
+  ],
+  vo: `First, who is Hugging Face? Think of it as the Wikipedia of AI: the directory where researchers and companies worldwide share their AI models, more than three million of them, and their data, including the test data used to grade AIs. Keep that in mind: it is exactly what the intruder was after.`,
+  notes: `Counts shown on huggingface.co on 26 September 2026: 3,097,731 models and 1,064,358 datasets. Founded in New York, with a large team in Paris.`,
+  src: `huggingface.co (26 September 2026)` },
+
 { ch: 'p', type: 'voices', title: 'Not a normal attacker',
   voices: [
     { q: `This is making no sense. This guy is just looking at cybersecurity data sets... Human attackers, they don't want that. They want something they could sell.`, who: 'Thomas Wolf', role: 'Co-founder, Hugging Face', ini: 'TW', img: 'wolf', f: 0 },
@@ -1094,20 +1105,6 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   vo: `A few weeks later, OpenAI explains to the security community what happened, and how it missed it.`,
   notes: `Optional. Skip with a general audience if short of time. Official Black Hat recording, 00:28.50–00:57.00: Eric Wallace explains the autonomous attack and OpenAI's responsibility.`,
   src: `Black Hat · Eric Wallace · official conference recording` },
-
-{ ch: 'c1', type: 'headlines', title: 'Press: July',
-  heading: 'July - August 2026: the press takes hold of the story',
-  clips: [
-    { o: 'The Hacker News', d: '20 Jul 2026', h: 'World\'s Largest AI Model Repository Hugging Face Breached by Autonomous AI Agent', fr: `"In an ironic twist, open-source artificial intelligence (AI) platform Hugging Face revealed that it was the victim of a hack perpetrated by an autonomous AI agent system."`, img: 'thn-0720', x: 0, y: 2, r: -2.2 },
-    { o: 'TechCrunch', d: '22 Jul 2026', h: 'How OpenAI\'s human mistake led to the AI-powered hack on Hugging Face', img: 'techcrunch-0722', fr: `Trail of Bits founder Dan Guido called the mistake "a containment failure with the safeties turned off."`, x: 34.5, y: 8, r: 1.4 },
-    { o: 'Scientific American', d: '22 Jul 2026', h: 'The real danger in OpenAI\'s Hugging Face hack', img: 'sciam-0722', fr: `"It was asked to do something, and it did it. It's not gone rogue. Its way out of it was to cheat, basically." (Alan Woodward, University of Surrey)`, x: 69, y: 0, r: -1 },
-    { o: 'BBC News', d: '29 Jul 2026', h: 'OpenAI says its rogue AI tried to hack other companies', img: 'bbc-0729', fr: `"...the AI worked at superhuman speed but also made strange decisions and mistakes that no human hacker would have made."`, x: 2, y: 47, r: 1.8 },
-    { o: 'Wired', d: '5 Aug 2026', h: 'OpenAI Didn\'t Notice Its AI Agents Using a Message Board to Plan Their Hacking Spree', img: 'wired-0805', fr: `"The most qualitatively interesting example of AI capabilities that I've ever seen." (Eric Wallace, OpenAI)`, x: 35.5, y: 53, r: -1.6 },
-    { o: 'The Guardian', d: '18 Aug 2026', h: 'OpenAI announces slowing pace of development after hack by rogue agent', img: 'guardian-0818', fr: `"We are very far from everything running back to normal." (Mia Glaese, head of safety, OpenAI)`, x: 68, y: 45, r: 2.4 },
-  ],
-  vo: `Within days, the story is everywhere. And the press asks the right question: did the AI go rogue, or did it simply do what it was asked, too well?`,
-  notes: `Let the clippings drop; read one at most (Scientific American: "It's not gone rogue. Its way out of it was to cheat").`,
-  src: `The Hacker News (Ravie Lakshmanan) · TechCrunch (Lorenzo Franceschi-Bicchierai) · Scientific American (Chris Stokel-Walker) · BBC News (Joe Tidy) · Wired (Lily Hay Newman) · The Guardian. Screenshots of the articles as published, captured September 2026` },
 
 { ch: 'c1', type: 'recap', title: 'Chapter 1 in one sentence',
   vo: `So, what happened? An AI chasing a score escaped its test, and broke into another company. No malice. A goal, a shared space, and nobody to say stop.` },
