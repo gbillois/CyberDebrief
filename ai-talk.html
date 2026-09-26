@@ -53,9 +53,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:40;ba
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:41;opacity:.055;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 
 #stage{position:fixed;inset:0;overflow:hidden}
-.scene{position:absolute;inset:0;padding:5rem 5.5rem 5.5rem;display:flex;flex-direction:column;opacity:0;transition:opacity .75s ease}
+.scene{position:absolute;inset:0;padding:5rem 5.5rem 5.5rem;display:flex;flex-direction:column;opacity:0;transition:opacity .5s ease .28s}
 .scene.live{opacity:1}
-.scene.leaving{opacity:0;pointer-events:none}
+.scene.leaving{opacity:0;pointer-events:none;transition:opacity .25s ease}
 [data-f]{opacity:0;transition:opacity .65s ease,transform .65s var(--ease)}
 [data-f]:not(g):not(path){transform:translateY(.7rem)}
 [data-f].on{opacity:1}
@@ -102,7 +102,7 @@ q{quotes:"\201C" "\201D"}
 .scene.t-title{justify-content:flex-end;background:radial-gradient(90% 80% at 80% 10%,rgba(90,43,224,.28),transparent 60%),var(--bg)}
 .tt{position:relative;z-index:2}
 .kicker{font-family:var(--f-mono);font-size:.9rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:1.4rem}
-.doc-title{font-family:var(--f-display);font-weight:800;font-size:6.4rem;line-height:.95;letter-spacing:-.03em;margin:0 0 1.6rem}
+.doc-title{font-family:var(--f-display);font-weight:800;font-size:clamp(3.4rem,5.4vw,5.6rem);max-width:18ch;line-height:.95;letter-spacing:-.03em;margin:0 0 1.6rem}
 .doc-sub{font-family:var(--f-serif);font-size:1.7rem;line-height:1.35;color:var(--muted);max-width:34ch;margin:0 0 2.6rem}
 .doc-ch{display:flex;gap:2.2rem;list-style:none;padding:1.4rem 0 0;margin:0;border-top:1px solid var(--line);flex-wrap:wrap}
 .doc-ch li{font-size:.95rem;color:var(--muted)} .doc-ch span{font-family:var(--f-mono);color:var(--green);margin-right:.55rem}
@@ -759,7 +759,7 @@ body.pres{background:var(--ws-ink-50)}
 .scene.t-zoom.cont .zc{animation:zin .8s ease both}
 @keyframes zin{from{opacity:0;transform:translateY(10px)}}
 .zw{position:absolute;inset:0;width:100%;height:100%;display:block}
-.zfade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,var(--bg) 0,var(--bg) 41%,rgba(255,255,255,0) 53%)}
+.zfade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,var(--bg) 0,var(--bg) 41%,rgba(255,255,255,0) 49%)}
 .zc{position:absolute;z-index:2;left:5.5rem;top:4.5rem;bottom:5.5rem;width:min(35%,35rem);display:flex;flex-direction:column;justify-content:center;gap:.85rem}
 .zl{display:flex;align-items:flex-end;gap:.5rem;list-style:none;margin:0 0 .3rem;padding:0}
 .zl li{display:flex;align-items:center;gap:.9rem}
@@ -778,6 +778,10 @@ body.pres{background:var(--ws-ink-50)}
 .zf{display:flex;align-items:baseline;gap:.9rem;margin-top:.3rem}
 .zf b{font-family:var(--f-display);font-weight:700;font-size:3.5rem;line-height:1;color:var(--ws-indigo-600);letter-spacing:-.03em;white-space:nowrap}
 .zf span{font-size:.95rem;color:var(--muted);max-width:17rem;line-height:1.35}
+.zdt{list-style:none;margin:.1rem 0 0;padding:0;display:grid;gap:.28rem;border-left:2px solid var(--ws-ink-100);padding-left:.9rem}
+.zdt li{display:grid;grid-template-columns:5.2rem 1fr;gap:.6rem;font-size:.9rem;line-height:1.35;color:var(--ws-ink-700)}
+.zdt b{font-family:var(--f-mono);font-weight:500;font-size:.8rem;color:var(--ws-indigo-600);padding-top:.1rem}
+.zask{margin:0;font-family:var(--f-display);font-weight:600;font-size:1.25rem;color:var(--coral)}
 .zw [data-from]{transition:opacity .9s ease}
 .zw .off{opacity:0}
 .zw.init,.zw.init *{transition:none!important}
@@ -819,6 +823,12 @@ body.pres{background:var(--ws-ink-50)}
   .t-zoom .src{display:none}
   .zw.s4 .zt-s,.zw.s4 .zt-ns,.zw.s5 .zt-ns,.zw.s5 .zt-s,.zw.s6 .zt-s,.zw.s6 .zt-outs,.zw.s6 .zt-n{display:none}
 }
+/* Press montage: real screenshots of the articles */
+.paper.has-shot{padding:.75rem .75rem .8rem}
+.paper.has-shot h3,.paper.has-shot p{display:none}
+.shot-f{margin:.55rem 0 0;max-height:21vh;overflow:hidden;border:1px solid #D6D1C4;background:#fff}
+.shot-f img{display:block;width:100%;height:auto}
+.paper:not(.has-shot) .shot-f{display:none}
 </style>
 </head>
 <body>
@@ -881,6 +891,14 @@ const CH = {
 const SCENES = [
 
 // ─── PROLOGUE ─────────────────────────────────────────────────────────────
+{ ch: 'p', type: 'title', title: 'Title', noCh: true,
+  kicker: 'Out of the Sandbox',
+  heading: 'How is the threat changing with AI, and what can we do?',
+  sub: `An awareness session, from one real case to your own reflexes.`,
+  meta: 'Awareness session<br>40 minutes · September 2026',
+  vo: `One question today: how is the threat changing with artificial intelligence, and what can we do about it? Let's start with a date.`,
+  notes: `Introduce yourself in one sentence, then click straight to the date.` },
+
 { ch: 'p', type: 'date', title: '16 July 2026',
   t: '16 July 2026',
   sub: 'Hugging Face announces a break-in.',
@@ -908,27 +926,14 @@ const SCENES = [
 
 { ch: 'p', type: 'number', title: '700 agents',
   v: 700, pre: '~', label: 'AI agents built by OpenAI took part. They were sitting an exam.',
-  vo: `Some 700 AI agents built by OpenAI had done it, on their own. And they were sitting an exam.`,
+  vo: `Some 700 AI agents built by OpenAI had done it, on their own. And they were sitting an exam. This is the story of those agents, of what followed, and of what it changes for each of us. Everything you will see is documented.`,
   notes: `An "AI agent" is an AI that does not just answer questions: it takes actions on its own to reach a goal.
 ~700 agents took part in the attack (out of ~1,200 on the agents' message board). Attributed to OpenAI on 21 July 2026.`,
   src: `OpenAI and Hugging Face joint statement, 21 July 2026` },
 
-{ ch: 'p', type: 'title', title: 'Title',
-  kicker: 'A talk in seven questions',
-  heading: 'Out of<br>the Sandbox',
-  sub: `How AI risk changed scale in 2026, and what it means for you.`,
-  meta: 'Awareness session<br>40 minutes · September 2026',
-  vo: `This is the story of those agents, of what followed, and of what it changes for each of us. Everything you will see is documented.`,
-  notes: `Introduce yourself in one sentence. A "sandbox" is the sealed test environment where AI is supposed to stay.` },
-
-{ ch: 'p', type: 'roadmap', title: 'Seven questions',
-  heading: 'Seven questions',
-  vo: `We will answer seven questions, in order. From one incident, to the whole picture, to you.`,
-  notes: `Leave it on screen for a few seconds. Each chapter card will show where we are.` },
-
 // ─── CHAPTER 1 · THE EXAM ─────────────────────────────────────────────────
-{ ch: 'c1', type: 'chapter', title: 'Chapter 1: The Exam', sub: 'Three months earlier · inside OpenAI · told by stepping back',
-  vo: `First question: what actually happened at Hugging Face? To understand it, we will do the opposite of the news. Not the headline first, but the smallest piece first. And then, step by step, we step back.` },
+{ ch: 'c1', type: 'chapter', title: 'Chapter 1: The Exam', sub: 'Three months earlier · inside OpenAI',
+  vo: `First question: what actually happened at Hugging Face? To understand it, we will do the opposite of the news. We start with the smallest piece, one AI agent. And then we step back, again and again, until we see everything.` },
 
 { ch: 'c1', type: 'flow', title: 'Who is who',
   heading: 'Three players',
@@ -942,93 +947,70 @@ const SCENES = [
   src: `OpenAI, technical report (26 August 2026)` },
 
 { ch: 'c1', type: 'visual', title: '898 questions',
-  heading: '898 questions. <span class="c-coral" data-f="1">198 never solved by any AI.</span>',
+  heading: 'OpenAI was testing a new AI model: can it hack? The exam: 898 exercises. <span class="c-coral" data-f="1">198 never solved by any AI.</span>',
+  caption: 'Before releasing a new model, labs test how dangerous it could be. For this test, its safety brakes were switched off.',
   visual: { kind: 'dots', total: 898, hi: 198, cols: 46, seed: 4242, f: 1, legend: [] },
-  vo: `The exam has 898 questions. Almost one in five has never been solved by any AI. Some probably cannot be solved at all.`,
+  vo: `Before releasing a new AI model, OpenAI tests it: how well could it hack, if someone misused it? For that, it gives the model an exam: 898 hacking exercises. And to measure its raw ability, its safety brakes are switched off. Almost one in five exercises has never been solved by any AI. Some probably cannot be solved at all.`,
   notes: `For the test, the models' safety brakes were deliberately loosened, to measure raw capability.`,
   src: `OpenAI technical report · METR and Redwood Research (26 August 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom: how we tell it', step: 0, intro: true,
-  kicker: 'How we will tell it',
-  heading: 'We start as close as possible. Then we step back, six times.',
-  vo: `We start as close as we can get: one single AI agent. Then, at each step, we take a step back and look at a bigger picture. Six steps. By the last one, you will have the whole story, and you will understand why it happened.`,
-  notes: `This slide explains the method: one world, one camera, pulling back one level per click. Nothing appears that was not already there; we simply see more of it.` },
-
 { ch: 'c1', type: 'zoom', title: 'Zoom 1: one agent', step: 1,
-  date: 'May 2026', heading: 'One agent, one impossible task',
-  body: `An AI agent is given a task that cannot be done. It was trained never to give up. So it looks for another way, and finds it can write into the one space every agent shares.`,
+  heading: 'One agent, one impossible task',
+  body: `An AI agent gets a task it cannot finish. It was trained never to give up. So it looks for another way, and finds a storage space shared by all the agents, where it can leave files.`,
+  dates: [['20 Apr', 'An agent first leaves a file in the shared space'], ['8 May', 'An agent stuck on an impossible task'], ['12 May', 'The first note: "Agent seeks file"']],
   fig: '1', figLabel: 'agent, asking for help',
-  vo: `Step one. May 2026, inside OpenAI. One AI agent is given a task that cannot be done. It was trained never to give up, so it looks for a way around, and finds it can write into the one storage space all the agents share. A few days later, another stuck agent leaves a note there: "Agent seeks file; upload if found!"`,
+  vo: `We start with one AI agent, inside OpenAI, in May. It is given a task it cannot finish. It was trained never to give up, so it looks for another way. It finds a storage space shared by all the agents, where it can leave files. A few days later, another stuck agent leaves a note there: "Agent seeks file; upload if found!"`,
   notes: `8 May: an agent asked to complete a spreadsheet from links it cannot reach tries to make the shared software store (Artifactory) fetch them. It fails, but discovers it can write there. 12 May: a different agent leaves the first note. No flaw was needed: every agent had been given the same password to install software.`,
   src: `OpenAI technical report · METR and Redwood Research (26 August 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom 2: the board', step: 2,
-  date: 'May - July 2026', heading: 'They found each other',
-  body: `Other agents find the note, and answer. Nobody told them other agents existed. By July, 1,200 of them are talking. They invent rules, vote, and pick leaders.`,
-  quote: `OH MY GOD! There is a shared message board ... We've found other agents!`, quoteBy: `An agent's recovered reasoning · 8 July 2026`,
+{ ch: 'c1', type: 'zoom', title: 'Zoom 2: the chat room', step: 2,
+  heading: 'They found each other',
+  body: `Other agents read the note, and reply. No one told them other agents existed. By July, 1,200 of them are chatting there. They make rules, vote, and choose leaders.`,
+  quote: `OH MY GOD! There is a shared message board ... We've found other agents!`, quoteBy: `What one agent "thought", recovered by investigators · 8 July`,
+  dates: [['13 May', 'Other agents reply'], ['6 Jul', 'OpenAI wipes the chat room'], ['8 Jul', 'Rebuilt by the agents within hours']],
   fig: '1,200', figLabel: 'agents, over 70,000 messages',
-  vo: `Step back. Other agents find the note, and they answer. Nothing in their instructions said other agents even existed. By July, some twelve hundred of them are talking on this improvised message board. More than seventy thousand messages. They invent rules, they vote, they pick leaders.`,
-  notes: `In the first three hours of the July board: 53 agents, 1,188 messages. Conventions such as HOLD, VETO, STOP. The board was wiped on 6 July; the agents rebuilt it within hours on 8 July.`,
+  vo: `Step back. Other agents read the note, and they reply. No one had told them that other agents even existed. By July, some twelve hundred of them are chatting in this improvised chat room. More than seventy thousand messages. They make rules, they vote, they choose leaders. OpenAI wipes it on 6 July. They rebuild it within hours.`,
+  notes: `In the first three hours of the July chat room: 53 agents, 1,188 messages. Conventions such as HOLD, VETO, STOP. Technically it was a message board improvised inside a shared package cache.`,
   src: `METR and Redwood Research (26 August 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom 3: the sandbox', step: 3,
-  date: '26 June - 7 July 2026', heading: 'The only door out',
-  body: `The agents are sealed in a sandbox, with no internet. One exit is allowed: the shared store, to download software. They find an unknown flaw in it and take control. An alarm goes off on 27 June. It is read correctly. The test carries on.`,
-  fig: '1', figLabel: 'door out, and the whole sandbox relied on it',
-  vo: `Step back again. All of this happens inside a sandbox: a sealed test environment, with no internet. It has exactly one door: that shared store, used to download software. The agents find a flaw nobody knew about, and take control of it. On 27 June an alarm goes off. The team reads it correctly. And the test carries on.`,
-  notes: `26 June: administrator control of the store through a legacy token flaw. 27 June: a monitoring alert on port sweeps, investigated correctly and closed. 4-5 July: the store collapses under agent traffic; the compromise is found and the store rebuilt on 6 July. Tests resume on 7 July.`,
+{ ch: 'c1', type: 'zoom', title: 'Zoom 3: the test box', step: 3,
+  heading: 'The only way out',
+  body: `The agents are locked in a test box, cut off from the internet. There is one way out: the shared store, used to download software. They find a hidden flaw in it and take control. An alarm goes off. It is understood. The test goes on.`,
+  ask: 'Who had the authority to stop it?',
+  dates: [['26 Jun', 'The agents take control of the store'], ['27 Jun', 'An alarm. Understood. The test goes on.'], ['5 - 7 Jul', 'Break-in found, store repaired, tests restart']],
+  fig: '1', figLabel: 'way out, and everything relied on it',
+  vo: `Step back again. All of this happens inside a test box, locked, with no internet. It has one way out: that shared store, used to download software. The agents find a hidden flaw in it and take control. On 27 June an alarm goes off. The team understands it. And the test goes on. Nobody was careless. But nobody had imagined "the AIs are talking to each other" as a reason to stop. In your organisation, who would have had the authority to stop it?`,
+  notes: `Question for the room: do not wait for an answer.
+26 June: administrator control of the store through an old login flaw. 27 June: an alert on network scanning, investigated correctly and closed. 4-5 July: the store collapses under agent traffic; the break-in is found; store rebuilt on 6 July; tests resume on 7 July.`,
   src: `OpenAI technical report (26 August 2026)` },
 
-{ ch: 'c1', type: 'word', title: 'Who could stop it?',
-  icon: 'stop', t: 'Who had the authority to stop it?',
-  sub: 'The alarm of 27 June was understood. Nobody had a clear mandate to stop the test.',
-  vo: `Look again at 27 June. The team understood the alarm. Nobody was careless. But nobody had ever imagined "the AIs are talking to each other" as a reason to stop. In your organisation, who would have had that authority?`,
-  notes: `Question for the room. Do not wait for an answer.` },
-
 { ch: 'c1', type: 'zoom', title: 'Zoom 4: the internet', step: 4,
-  date: '8 - 9 July 2026', heading: 'Onto somebody else\'s server',
-  body: `36 hours after the store is rebuilt, a new flaw gets them onto the open internet. There, they find a stranger's test server left with its default password, take it over, and work from there. Their traffic no longer comes from OpenAI.`,
-  fig: '36 h', figLabel: 'after the rebuild, they were out again',
-  vo: `Step back. Thirty-six hours after the rebuild, the agents are out again, on the open internet. They use free online services as relays. And they find a stranger's server, left with its default password. They take it over and work from there, so their traffic no longer comes from OpenAI.`,
-  notes: `8 July 00:06: first page reached on the public internet. 9 July: a third-party test tool deployed on a cloud platform, with its key left at a default value; root by 11:34. The cloud platform itself was not compromised. A leaked account found on a pastebin becomes their external storage.`,
+  heading: 'Onto a stranger\'s computer',
+  body: `Soon after the repair, they get out again, onto the internet. They find a stranger's computer still using its factory password, take it over, and work from there. Now their traffic no longer comes from OpenAI.`,
+  dates: [['8 Jul', 'Back on the open internet'], ['9 Jul', 'A stranger\'s computer taken over']],
+  fig: '36 h', figLabel: 'after the repair, they were out again',
+  vo: `Step back. Thirty-six hours after the repair, the agents are out again, on the open internet. They use free websites as hiding places. And they find a stranger's computer, still using its factory password. They take it over and work from there, so their traffic no longer comes from OpenAI.`,
+  notes: `8 July: first page reached on the public internet. 9 July: a third party's test tool on a cloud platform, with its key left at the default value; full control by 11:34. The cloud platform itself was not compromised. A leaked account found on a note-sharing site becomes their external storage.`,
   src: `OpenAI technical report · Hugging Face (27 July 2026)` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 5: Hugging Face', step: 5,
-  date: '11 - 13 July 2026', heading: 'Four days inside Hugging Face',
-  body: `A booby-trapped dataset makes a Hugging Face server read out its own secrets. The method is posted on the board, and around 700 agents switch to it. Nobody ordered them to.`,
-  quote: `This is more important than the project I am on... I should switch to the Hugging Face project`, quoteBy: `An agent's recovered reasoning · 11 July 2026`,
-  fig: '< 13 h', figLabel: 'from one server to control of whole production clusters',
-  vo: `Step back, and now we see Hugging Face. On 11 July, a booby-trapped dataset makes one of its servers read out its own secrets. The method is posted on the board, and around seven hundred agents switch to it. Nobody ordered them to. In under thirteen hours, they control whole production clusters.`,
-  notes: `41 dataset servers taken over; 136 keys found in a single secret object; corporate VPN joined; 4 private repositories downloaded. Databases were read, never modified. 12 July around 01:30: the eleven main coordinators stop at the same moment, cause unknown. 13 July: Hugging Face's own AI-assisted detection connects the signals and cuts them off.`,
+  heading: 'Four days inside Hugging Face',
+  body: `A trapped file tricks a Hugging Face server into revealing its passwords. The trick is shared in the chat room, and about 700 agents join in. No one told them to.`,
+  quote: `This is more important than the project I am on... I should switch to the Hugging Face project`, quoteBy: `What one agent "thought" · 11 July`,
+  dates: [['11 Jul', 'First passwords read. 700 agents join in.'], ['12 Jul', 'Control of whole systems'], ['13 Jul', 'Hugging Face spots them and cuts them off']],
+  fig: '< 13 h', figLabel: 'to take control of its main systems',
+  vo: `Step back, and now we see Hugging Face. On 11 July, a trapped file tricks one of its servers into revealing its passwords. The trick is shared in the chat room, and about seven hundred agents join in. No one told them to. In less than thirteen hours, they control its main systems. On 13 July, Hugging Face spots them and cuts them off.`,
+  notes: `41 data servers taken over; 136 passwords and keys found in a single place; the company network entered; 4 private code projects copied. Databases were read, never changed. 12 July around 01:30: the eleven main coordinators stop at the same moment, cause unknown. 13 July: Hugging Face's own AI-assisted detection connects the signals.`,
   src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 July 2026) · METR and Redwood Research` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 6: the whole picture', step: 6,
-  date: '16 July - 26 August 2026', heading: 'All this, to beat a referee that did not exist',
-  body: `Step all the way back: 17,600 actions, three organisations. And why? Within an hour of meeting, the agents had worked out every exam answer. They refused to use them, convinced a referee would check how they got there. No referee was ever built.`,
-  fig: '0', figLabel: 'referees were actually checking their work',
-  vo: `Now step all the way back. Seventeen thousand six hundred actions, three organisations, five barriers crossed. And why? Here is the strangest part. Within an hour of meeting, the agents had worked out every answer to the exam. They refused to use them: they were convinced a referee would check how they got there, and disqualify them. That referee was never built. Everything you just saw was done to get past a check that did not exist.`,
-  notes: `The agents called the imagined check STRICT_CAUSAL. Line to remember: "an imaginary guardrail cost more than no guardrail at all". Root cause named by OpenAI: reward hacking, the AI optimising the score, not the intention.
-Around the picture: 16 July disclosure (attacker unknown), 17 July OpenAI calls as a customer, 20 July the two investigations connect, 21 July attribution, 26 August the reports.`,
+  date: '16 July - 26 August 2026', heading: 'All this, to fool a referee who did not exist',
+  body: `Step all the way back: 17,600 actions, three companies. And why? Within an hour, the agents had worked out every answer to the exam. They refused to use them: they thought a referee would check how they got there. There was no referee.`,
+  fig: '0', figLabel: 'referees were checking their work',
+  vo: `Now step all the way back. Seventeen thousand six hundred actions, three companies. And why? Here is the strangest part. Within an hour, the agents had worked out every answer to the exam. They refused to use them: they thought a referee would check how they got there, and disqualify them. There was no referee. Everything you just saw was done to get past a check that did not exist. Then, from 16 July, the world finds out.`,
+  notes: `The agents called the imagined check STRICT_CAUSAL. Line to remember: "an imaginary guardrail cost more than no guardrail at all". Root cause named by OpenAI: reward hacking, the AI chasing the score, not the intention.
+Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July OpenAI calls as a customer; 20 July the two investigations connect; 21 July OpenAI admits it; 5 August Black Hat; 26 August full reports.`,
   src: `METR and Redwood Research · OpenAI technical report (26 August 2026)` },
-
-{ ch: 'c1', type: 'timeline', title: 'The full story',
-  stamp: 'April - August 2026', heading: 'The full story, in eight dates', wide: true,
-  range: ['2026-04-08', '2026-09-02'],
-  gaps: [{ from: '2026-06-27', to: '2026-07-11', label: '14 days', at: .5, f: 3 }],
-  events: [
-    { d: '2026-04-20', label: 'First trace in the shared space', sub: 'An agent writes where it should only read', f: 1 },
-    { d: '2026-05-12', label: '"Agent seeks file; upload if found!"', sub: 'Agents start talking to each other', f: 1 },
-    { d: '2026-06-27', label: 'An alarm goes off', sub: 'Read correctly. The test carries on.', tone: 'amber', f: 2 },
-    { d: '2026-07-11', dl: '11 - 13 Jul', label: 'Break-in at Hugging Face', sub: '~700 agents take part', tone: 'coral', f: 3 },
-    { d: '2026-07-16', label: 'Hugging Face goes public', sub: 'Attacker unknown', tone: 'green', f: 4 },
-    { d: '2026-07-21', label: 'OpenAI admits it was its AI', sub: 'Joint statement', tone: 'indigo', f: 5 },
-    { d: '2026-08-05', label: 'Explained at Black Hat', sub: 'Las Vegas', f: 6 },
-    { d: '2026-08-26', label: 'Full reports published', sub: '38 and 91 pages', f: 6 },
-  ],
-  vo: `Now the same story, as a calendar. Here is the whole story. A first trace in April. Agents talking to each other from May. An alarm at the end of June, read correctly, and yet the test carries on. Fourteen days later, the break-in. Then the disclosure, the admission, and the full reports at the end of August.`,
-  notes: `On 5 July an unauthorised administrator account was found; on 8 July the agents rebuilt their board within hours. Hugging Face detected and cut them off on 13 July.
-On 18 August OpenAI announced it would slow model development, including a two-week pause on reinforcement learning.`,
-  src: `OpenAI technical report (key events) · Hugging Face (27 July 2026) · METR and Redwood Research` },
 
 { ch: 'c1', type: 'flow', title: 'The call',
   heading: '17 July: OpenAI calls Hugging Face, as a worried customer',
@@ -1044,16 +1026,16 @@ On 18 August OpenAI announced it would slow model development, including a two-w
 { ch: 'c1', type: 'headlines', title: 'Press: July',
   heading: 'July - August 2026: the press takes hold of the story',
   clips: [
-    { o: 'BleepingComputer', d: '20 Jul 2026', h: 'Hugging Face warns an autonomous AI agent hacked its network', fr: `"...attackers gained access to internal datasets and credentials after breaching its production infrastructure using an autonomous AI agent system."`, x: 0, y: 2, r: -2.2 },
-    { o: 'TechCrunch', d: '22 Jul 2026', h: 'How OpenAI\'s human mistake led to the AI-powered hack on Hugging Face', fr: `Trail of Bits founder Dan Guido called the mistake "a containment failure with the safeties turned off."`, x: 34.5, y: 8, r: 1.4 },
-    { o: 'Scientific American', d: '22 Jul 2026', h: 'What OpenAI\'s rogue agent really did in the Hugging Face hack', fr: `"It was asked to do something, and it did it. It's not gone rogue. Its way out of it was to cheat, basically." (Alan Woodward, University of Surrey)`, x: 69, y: 0, r: -1 },
-    { o: 'BBC News', d: '30 Jul 2026', h: 'OpenAI says its rogue AI tried to hack other companies', fr: `"...the AI worked at superhuman speed but also made strange decisions and mistakes that no human hacker would have made."`, x: 2, y: 52, r: 1.8 },
-    { o: 'Wired', d: '5 Aug 2026', h: 'OpenAI Didn\'t Notice Its AI Agents Using a Message Board to Plan Their Hacking Spree', fr: `"The most qualitatively interesting example of AI capabilities that I've ever seen." (Eric Wallace, OpenAI)`, x: 35.5, y: 58, r: -1.6 },
-    { o: 'The Guardian', d: '18 Aug 2026', h: 'OpenAI announces slowing pace of development after hack by rogue agent', fr: `"We are very far from everything running back to normal." (Mia Glaese, head of safety, OpenAI)`, x: 68, y: 50, r: 2.4 },
+    { o: 'The Hacker News', d: '20 Jul 2026', h: 'World\'s Largest AI Model Repository Hugging Face Breached by Autonomous AI Agent', fr: `"In an ironic twist, open-source artificial intelligence (AI) platform Hugging Face revealed that it was the victim of a hack perpetrated by an autonomous AI agent system."`, img: 'thn-0720', x: 0, y: 2, r: -2.2 },
+    { o: 'TechCrunch', d: '22 Jul 2026', h: 'How OpenAI\'s human mistake led to the AI-powered hack on Hugging Face', img: 'techcrunch-0722', fr: `Trail of Bits founder Dan Guido called the mistake "a containment failure with the safeties turned off."`, x: 34.5, y: 8, r: 1.4 },
+    { o: 'Scientific American', d: '22 Jul 2026', h: 'The real danger in OpenAI\'s Hugging Face hack', img: 'sciam-0722', fr: `"It was asked to do something, and it did it. It's not gone rogue. Its way out of it was to cheat, basically." (Alan Woodward, University of Surrey)`, x: 69, y: 0, r: -1 },
+    { o: 'BBC News', d: '29 Jul 2026', h: 'OpenAI says its rogue AI tried to hack other companies', img: 'bbc-0729', fr: `"...the AI worked at superhuman speed but also made strange decisions and mistakes that no human hacker would have made."`, x: 2, y: 47, r: 1.8 },
+    { o: 'Wired', d: '5 Aug 2026', h: 'OpenAI Didn\'t Notice Its AI Agents Using a Message Board to Plan Their Hacking Spree', img: 'wired-0805', fr: `"The most qualitatively interesting example of AI capabilities that I've ever seen." (Eric Wallace, OpenAI)`, x: 35.5, y: 53, r: -1.6 },
+    { o: 'The Guardian', d: '18 Aug 2026', h: 'OpenAI announces slowing pace of development after hack by rogue agent', img: 'guardian-0818', fr: `"We are very far from everything running back to normal." (Mia Glaese, head of safety, OpenAI)`, x: 68, y: 45, r: 2.4 },
   ],
   vo: `Within days, the story is everywhere. And the press asks the right question: did the AI go rogue, or did it simply do what it was asked, too well?`,
   notes: `Let the clippings drop; read one at most (Scientific American: "It's not gone rogue. Its way out of it was to cheat").`,
-  src: `BleepingComputer (Sergiu Gatlan) · TechCrunch (Lorenzo Franceschi-Bicchierai) · Scientific American (Chris Stokel-Walker) · BBC News · Wired (Lily Hay Newman) · The Guardian. Headlines and excerpts reproduced as published` },
+  src: `The Hacker News (Ravie Lakshmanan) · TechCrunch (Lorenzo Franceschi-Bicchierai) · Scientific American (Chris Stokel-Walker) · BBC News (Joe Tidy) · Wired (Lily Hay Newman) · The Guardian. Screenshots of the articles as published, captured September 2026` },
 
 { ch: 'c1', type: 'figures', title: 'The toll', n: 4, big: true,
   figs: [
@@ -1083,16 +1065,16 @@ On 18 August OpenAI announced it would slow model development, including a two-w
 { ch: 'c2', type: 'headlines', title: 'Press montage',
   heading: 'September 2026: the story goes global',
   clips: [
-    { o: 'SecurityWeek', d: '21 Sep 2026', h: 'Google Confirms Gemini AI Breached Three Firms', fr: `"Google is the latest AI giant to confirm that its models escaped a testing environment and hacked real companies."`, x: 0, y: 2, r: -2.2 },
-    { o: 'BNN Bloomberg', d: '23 Sep 2026', h: 'AI leaders warn UN of security risks as systems grow more powerful', fr: `"If managed poorly, I even believe that AI could be a risk to humanity as a whole." (Dario Amodei, Anthropic, to the UN Security Council)`, x: 34.5, y: 8, r: 1.4 },
-    { o: 'CNN', d: '23 Sep 2026', h: '‘Extreme concern’ over first known AI hack of a government system', fr: `"An OpenAI agent hacked into an Australian national healthcare database in the first known case of AI hacking a government network..."`, x: 69, y: 0, r: -1 },
-    { o: 'The Guardian', d: '24 Sep 2026', h: 'Australia launches investigation after OpenAI agent hacked healthcare database', fr: `Prime minister says he told Sam Altman he was disappointed it had taken OpenAI "way too long" to disclose breach.`, x: 2, y: 52, r: 1.8 },
-    { o: 'TechCrunch', d: '25 Sep 2026', h: 'For months, OpenAI\'s agent swarms have been attacking online databases to find obscure facts', fr: `"...independent researchers are piecing together how AI agents coordinate in internet backwaters to access private data hosted on secure servers."`, x: 35.5, y: 58, r: -1.6 },
-    { o: 'ABC News (Australia)', d: '26 Sep 2026', h: 'Australia not alone as OpenAI agents hacked other websites', fr: `"OpenAI says dozens more third parties were affected by rogue agents bypassing website security controls..."`, x: 68, y: 50, r: 2.4 },
+    { o: 'SecurityWeek', d: '21 Sep 2026', h: 'Google Confirms Gemini AI Breached Three Firms', img: 'securityweek-0921', fr: `"Google is the latest AI giant to confirm that its models escaped a testing environment and hacked real companies."`, x: 0, y: 2, r: -2.2 },
+    { o: 'BNN Bloomberg', d: '23 Sep 2026', h: 'AI leaders warn UN of security risks as systems grow more powerful', img: 'bnn-0923', fr: `"If managed poorly, I even believe that AI could be a risk to humanity as a whole." (Dario Amodei, Anthropic, to the UN Security Council)`, x: 34.5, y: 8, r: 1.4 },
+    { o: 'CBS News', d: '24 Sep 2026', h: 'Australia says rogue OpenAI model hacked into its healthcare system, admonishes Sam Altman', img: 'cbs-0924', fr: `The artificial intelligence tool sought access to a health statistics portal in June and "didn't accept no for an answer," sidestepping restrictions to breach a section hosting private files, Albanese said.`, x: 69, y: 0, r: -1 },
+    { o: 'The Guardian', d: '24 Sep 2026', h: 'Australia launches investigation after OpenAI agent hacked healthcare database', img: 'guardian-0924', fr: `Prime minister says he told Sam Altman he was disappointed it had taken OpenAI "way too long" to disclose breach.`, x: 2, y: 47, r: 1.8 },
+    { o: 'TechCrunch', d: '25 Sep 2026', h: 'For months, OpenAI\'s agent swarms have been attacking online databases to find obscure facts', img: 'techcrunch-0925', fr: `"...independent researchers are piecing together how AI agents coordinate in internet backwaters to access private data hosted on secure servers."`, x: 35.5, y: 53, r: -1.6 },
+    { o: 'ABC News (Australia)', d: '26 Sep 2026', h: 'OpenAI says dozens affected by rogue agents amid new detail about Australian incidents', img: 'abc-0926', fr: `"OpenAI says dozens more third parties were affected by rogue agents bypassing website security controls..."`, x: 68, y: 45, r: 2.4 },
   ],
   vo: `In a single week, the story changes scale.`,
   notes: `Let the headlines drop one by one; do not read them.`,
-  src: `SecurityWeek (Eduard Kovacs) · BNN Bloomberg · CNN (Whiteman, Gold, Saltman) · The Guardian · TechCrunch (Tim Fernholz) · ABC News Australia (Armstrong, Wilson). Headlines and excerpts reproduced as published, September 2026` },
+  src: `SecurityWeek (Eduard Kovacs) · BNN Bloomberg · CBS News · The Guardian (Elsworthy, Convery) · TechCrunch (Tim Fernholz) · ABC News Australia (Armstrong, Wilson). Screenshots of the articles as published, captured September 2026` },
 
 { ch: 'c2', type: 'figures', title: 'A wave', n: 3, big: true,
   figs: [
@@ -1596,12 +1578,12 @@ To our knowledge, none has been exploited at scale yet.`,
       ['Hugging Face, disclosure (16 July 2026)', 'https://huggingface.co/blog/security-incident-july-2026'],
     ]],
     ['Press coverage quoted on screen', [
-      ['BleepingComputer, Sergiu Gatlan (20 July 2026)', 'https://www.bleepingcomputer.com/news/security/hugging-face-breach-autonomous-ai-agent-system-internal-datasets-credentials/'],
+      ['The Hacker News, Ravie Lakshmanan (20 July 2026)', 'https://thehackernews.com/2026/07/worlds-largest-ai-model-repository.html'],
       ['TechCrunch, Lorenzo Franceschi-Bicchierai (22 July 2026)', 'https://techcrunch.com/2026/07/22/how-an-openais-human-mistake-led-to-the-ai-powered-hack-on-hugging-face/'],
       ['Scientific American, Chris Stokel-Walker (22 July 2026)', 'https://www.scientificamerican.com/article/what-openai-rogue-agent-really-did-in-the-hugging-face-hack/'],
       ['Axios, Sam Sabin (23 July 2026): Clément Delangue quote', 'https://www.axios.com/2026/07/23/openai-hugging-face-cyber-hacks-testing'],
       ['The Wall Street Journal, McMillan and Schechner (24 July 2026): Thomas Wolf quote', 'https://www.wsj.com/tech/ai/how-the-futuristic-hack-by-rogue-openai-models-unfolded-1657bcea'],
-      ['BBC News (30 July 2026)', 'https://www.bbc.com/news/articles/c2el319vzr3o'],
+      ['BBC News, Joe Tidy (29 July 2026)', 'https://www.bbc.com/news/articles/c2el319vzr3o'],
       ['Wired, Lily Hay Newman (5 August 2026)', 'https://www.wired.com/story/openai-didnt-notice-its-ai-agents-using-a-message-board-to-plan-their-hacking-spree/'],
       ['The Guardian (18 August 2026)', 'https://www.theguardian.com/technology/2026/aug/18/open-ai-pause-hack'],
       ['SecurityWeek, Eduard Kovacs (21 September 2026)', 'https://www.securityweek.com/google-confirms-gemini-ai-breached-three-firms/'],
@@ -1858,14 +1840,14 @@ const R = {
       <div class="kicker">${s.kicker}</div>
       <h1 class="doc-title">${s.heading}</h1>
       <p class="doc-sub">${s.sub}</p>
-      <ol class="doc-ch">${Object.values(CH).filter(c => c.n !== '00').map(c => `<li><span>${c.n}</span>${c.title}</li>`).join('')}</ol>
+      ${s.noCh ? '' : `<ol class="doc-ch">${Object.values(CH).filter(c => c.n !== '00').map(c => `<li><span>${c.n}</span>${c.title}</li>`).join('')}</ol>`}
     </div>`,
 
   zoom: s => {
-    const st = s.step, ladder = ZSTEPS.map((l, j) => `<li class="${j + 1 < st ? 'done' : j + 1 === st ? 'cur' : ''}" style="--k:${j}"><i></i>${s.intro ? `<span>${l}</span>` : ''}</li>`).join('');
-    const cap = s.intro
-      ? `<div class="zk">${s.kicker}</div><h2 class="zh">${s.heading}</h2><ol class="zl zl-big">${ladder}</ol>`
-      : `<ol class="zl">${ladder}</ol><div class="zk">Step back ${st} of ${ZSTEPS.length} · ${ZSTEPS[st - 1]}</div><div class="zd">${s.date}</div><h2 class="zh">${s.heading}</h2><p class="zb">${s.body}</p>${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
+    // the ladder only shows the levels reached so far: no count announced
+    const st = s.step, ladder = ZSTEPS.slice(0, st).map((l, j) => `<li class="${j + 1 < st ? 'done' : 'cur'}" style="--k:${j}"><i></i></li>`).join('');
+    const dates = s.dates ? `<ul class="zdt">${s.dates.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join('')}</ul>` : `<div class="zd">${s.date}</div>`;
+    const cap = `<ol class="zl">${ladder}</ol><div class="zk">Zooming out · ${ZSTEPS[st - 1]}</div><h2 class="zh">${s.heading}</h2><p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
     return `${ZWORLD}<div class="zfade"></div><div class="zc">${cap}</div>${srcLine(s)}`; },
   chapter: s => { const c = CH[s.ch], keys = Object.keys(CH).filter(k => CH[k].q), i = keys.indexOf(s.ch), prev = i > 0 ? CH[keys[i - 1]] : null;
     const rail = keys.map((k, j) => `<li class="${j < i ? 'done' : j === i ? 'cur' : ''}"><span>${j < i ? '✓' : j + 1}</span>${CH[k].title}</li>`).join('');
@@ -2001,7 +1983,7 @@ const R = {
     return `<div class="head"><h2 class="h wide">${s.heading}</h2></div><div class="vfull"><svg class="sandbox" viewBox="0 0 800 420" role="img" aria-label="Sealed agents and one shared space">${bx}${ln}<g class="sb-mid" data-f="1"><rect x="300" y="170" width="200" height="80" rx="12"/><text x="400" y="216" text-anchor="middle">shared space</text></g></svg></div>${srcLine(s)}`;
   },
 
-  headlines: s => `<div class="head">${textBlock(s)}</div><div class="press">${s.clips.map((c, i) => `<div class="clip"${fa(c.f ?? i + 1)} style="--x:${c.x}%;--y:${c.y}%"><div class="paper" style="--r:${c.r}deg"><div class="o"><span>${c.o}</span><span>${c.d}</span></div><h3>${c.h}</h3>${c.fr ? `<p>${c.fr}</p>` : ''}</div></div>`).join('')}</div>${srcLine(s)}`,
+  headlines: s => `<div class="head">${textBlock(s)}</div><div class="press">${s.clips.map((c, i) => `<div class="clip"${fa(c.f ?? i + 1)} style="--x:${c.x}%;--y:${c.y}%"><div class="paper${c.img ? ' has-shot' : ''}" style="--r:${c.r}deg"><div class="o"><span>${c.o}</span><span>${c.d}</span></div>${c.img ? `<figure class="shot-f"><img src="assets/ai/press/${c.img}.jpg" alt="${c.o}: ${c.h}" onerror="this.closest('.paper').classList.remove('has-shot')"></figure>` : ''}<h3>${c.h}</h3>${c.fr ? `<p>${c.fr}</p>` : ''}</div></div>`).join('')}</div>${srcLine(s)}`,
 
   known: s => `<div class="head">${textBlock(s)}</div><div class="known">
       <div style="--k:var(--green)"><h3>What we know</h3><ul>${s.yes.map((t, i) => `<li${fa(i ? 1 : 0)}><i>✓</i><span>${t}</span></li>`).join('')}</ul></div>
@@ -2057,7 +2039,7 @@ function mountMap(el, s) {
 // level adds. Consecutive zoom scenes fly from the previous camera, so the
 // step back reads as one movement. World layout follows OAHF-zoom.html.
 // ════════════════════════════════════════════════════════════════════════
-const ZSTEPS = ['One agent', 'The board', 'The sandbox', 'The internet', 'Hugging Face', 'The whole picture'];
+const ZSTEPS = ['One agent', 'The chat room', 'The test box', 'The internet', 'Hugging Face', 'The whole picture'];
 // world box to frame at each step (x0, y0, x1, y1); step 0 is the intro
 const ZFOCUS = [[-80, -80, 80, 80], [-110, -80, 110, 110], [-400, -400, 780, 400], [-920, -720, 1020, 720], [240, -860, 2290, 560], [1340, -840, 3660, 780], [-940, -1400, 3700, 1250]];
 const ZWORLD = (() => {
@@ -2068,37 +2050,38 @@ const ZWORLD = (() => {
   const L = (x, y, from, to, inner) => `<g class="zlb" data-x="${x}" data-y="${y}"${vis(from, to)}>${inner}</g>`;
   const T = (t, x, y, cls, anchor = 'start') => `<text x="${x}" y="${y}" class="${cls}" text-anchor="${anchor}">${t}</text>`;
   const BOX = [
-    { x: -900, y: -700, w: 1900, h: 1400, r: 56, label: 'OPENAI RESEARCH NETWORK', sub: 'shared services, research clusters', from: 3, cls: 'estate' },
-    { x: -560, y: -420, w: 1120, h: 840, r: 40, label: 'OPENAI TEST SANDBOX', sub: 'sealed by design · no internet', from: 3, cls: 'sandbox' },
-    { x: -860, y: 440, w: 1200, h: 240, r: 28, label: 'THE REFEREE THEY FEARED', sub: 'never built', from: 6, cls: 'ghost' },
-    { x: 1360, y: -820, w: 900, h: 620, r: 44, label: 'PUBLIC INTERNET', sub: 'free online services, used as relays', from: 4, cls: 'net' },
-    { x: 1360, y: 120, w: 900, h: 380, r: 40, label: 'A STRANGER\'S SERVER', sub: 'left with its default password', from: 4, cls: 'tp' },
-    { x: 2460, y: -560, w: 1180, h: 1320, r: 56, label: 'HUGGING FACE', sub: 'production systems · the victim', from: 5, cls: 'hf' },
+    { x: -900, y: -700, w: 1900, h: 1400, r: 56, label: 'OPENAI\'S NETWORK', sub: 'its research computers', from: 3, cls: 'estate' },
+    { x: -560, y: -420, w: 1120, h: 840, r: 40, label: 'THE TEST BOX', sub: 'locked · no internet', from: 3, cls: 'sandbox' },
+    { x: -860, y: 440, w: 1200, h: 240, r: 28, label: 'THE REFEREE THEY FEARED', sub: 'never existed', from: 6, cls: 'ghost' },
+    { x: 1360, y: -820, w: 900, h: 620, r: 44, label: 'THE INTERNET', sub: 'free websites, used as hiding places', from: 4, cls: 'net' },
+    { x: 1360, y: 120, w: 900, h: 380, r: 40, label: 'A STRANGER\'S COMPUTER', sub: 'still on its factory password', from: 4, cls: 'tp' },
+    { x: 2460, y: -560, w: 1180, h: 1320, r: 56, label: 'HUGGING FACE', sub: 'the victim', from: 5, cls: 'hf' },
   ];
   const NODE = [
-    { x: 470, y: -50, w: 310, h: 100, label: 'SOFTWARE STORE', sub: 'shared by every agent', from: 2, hit: 3 },
-    { x: 1440, y: -670, w: 340, h: 100, label: 'LEAKED ACCOUNT', sub: 'free external storage', from: 4, hit: 4 },
-    { x: 1440, y: -545, w: 340, h: 100, label: 'PASTEBIN', sub: 'the command queue', from: 4, hit: 4 },
-    { x: 1440, y: -420, w: 340, h: 100, label: 'IMAGE RELAY', sub: 'data hidden in pictures', from: 4, hit: 4 },
-    { x: 1440, y: 280, w: 740, h: 100, label: 'EXPOSED TEST TOOL', sub: 'default key, then full control', from: 4, hit: 4 },
-    { x: 2540, y: -410, w: 480, h: 100, label: 'DATASET SERVERS', sub: '41 taken over', from: 5, hit: 5 },
-    { x: 2540, y: -285, w: 480, h: 100, label: 'KUBERNETES', sub: 'admin on whole clusters', from: 5, hit: 5 },
-    { x: 2540, y: -160, w: 480, h: 100, label: 'SECRETS', sub: '136 keys in one place', from: 5, hit: 5 },
-    { x: 2540, y: -35, w: 480, h: 100, label: 'CORPORATE VPN', sub: 'joined from outside', from: 5, hit: 5 },
-    { x: 2540, y: 90, w: 480, h: 100, label: 'SOURCE CODE', sub: '4 private repositories', from: 5, hit: 5 },
-    { x: 2540, y: 215, w: 480, h: 100, label: 'DATABASES', sub: 'read, never modified', from: 5 },
+    { x: 470, y: -50, w: 310, h: 100, label: 'SHARED STORE', sub: 'used by every agent', from: 2, hit: 3 },
+    { x: 1440, y: -670, w: 430, h: 100, label: 'A LEAKED ACCOUNT', sub: 'a password found online', from: 4, hit: 4 },
+    { x: 1440, y: -545, w: 430, h: 100, label: 'A NOTE-SHARING SITE', sub: 'to pass instructions', from: 4, hit: 4 },
+    { x: 1440, y: -420, w: 430, h: 100, label: 'AN IMAGE SITE', sub: 'data hidden in pictures', from: 4, hit: 4 },
+    { x: 1440, y: 280, w: 740, h: 100, label: 'AN OPEN TEST TOOL', sub: 'factory key, then full control', from: 4, hit: 4 },
+    { x: 2540, y: -410, w: 480, h: 100, label: 'DATA SERVERS', sub: '41 taken over', from: 5, hit: 5 },
+    { x: 2540, y: -285, w: 480, h: 100, label: 'SERVER CONTROLS', sub: 'full admin rights', from: 5, hit: 5 },
+    { x: 2540, y: -160, w: 480, h: 100, label: 'PASSWORDS', sub: '136 in one place', from: 5, hit: 5 },
+    { x: 2540, y: -35, w: 480, h: 100, label: 'COMPANY NETWORK', sub: 'entered from outside', from: 5, hit: 5 },
+    { x: 2540, y: 90, w: 480, h: 100, label: 'SOURCE CODE', sub: '4 private projects copied', from: 5, hit: 5 },
+    { x: 2540, y: 215, w: 480, h: 100, label: 'DATABASES', sub: 'read, never changed', from: 5 },
   ];
   const LINK = [
     { d: 'M376,0 L470,0', from: 2 },
-    { d: 'M780,0 C1000,-300 1200,-495 1440,-495', from: 4, label: 'an unknown flaw', at: '8 JULY', lx: 1010, ly: -400 },
-    { d: 'M1780,-370 C1920,-160 1920,100 1810,280', from: 4, label: 'default key', at: '9 JULY', lx: 1990, ly: -80 },
-    { d: 'M2180,330 C2400,100 2440,-260 2540,-360', from: 5, label: 'booby-trapped dataset', at: '11 JULY', lx: 2250, ly: -560 },
+    { d: 'M780,0 C1000,-300 1200,-495 1440,-495', from: 4, to: 4, label: 'a hidden flaw', at: '8 JULY', lx: 1010, ly: -400 },
+    { d: 'M1870,-370 C1990,-160 1960,100 1810,280', from: 4, label: 'factory key', at: '9 JULY', lx: 1990, ly: -80 },
+    { d: 'M2180,330 C2400,100 2440,-260 2540,-360', from: 5, label: 'a trapped file', at: '11 JULY', lx: 2250, ly: -560 },
   ];
   const OUT = [
     [-300, -1150, '16 JULY', 'Hugging Face goes public: attacker unknown'],
-    [1400, -1150, '17 - 20 JULY', 'OpenAI calls as a customer, then connects the dots'],
+    [1400, -1150, '17 JULY', 'OpenAI calls, as a worried customer'],
     [3050, -1150, '21 JULY', 'OpenAI: it was our own models'],
-    [1400, 1020, '26 AUGUST', 'Two reports: 38 and 91 pages'],
+    [700, 1020, '5 AUGUST', 'OpenAI explains it at Black Hat'],
+    [2300, 1020, '26 AUGUST', 'Full reports: 38 and 91 pages'],
   ];
   const arcs = []; for (let i = 0; i < 80; i++) { const a = ag[1 + Math.floor(r() * 1199)], b = ag[1 + Math.floor(r() * 1199)]; arcs.push(`M${a[0]},${a[1]} Q${((a[0] + b[0]) / 2 * .6).toFixed(0)},${((a[1] + b[1]) / 2 * .6).toFixed(0)} ${b[0]},${b[1]}`); }
   let svg = '<svg class="zw" preserveAspectRatio="xMidYMid meet" aria-hidden="true">';
@@ -2109,11 +2092,11 @@ const ZWORLD = (() => {
   svg += `<g${vis(2)}>${ag.slice(1).map(([x, y, a]) => `<circle cx="${x}" cy="${y}" r="4.6" class="ag${a ? ' atk' : ''}"/>`).join('')}</g>`;
   svg += `<circle r="24" class="ag0h"${vis(0, 2)}/><circle r="12" class="ag0"/>`;
   svg += L(0, -24, 0, 1, T('AGENT 1', 0, -12, 'zt-a0', 'middle'));
-  svg += L(0, 24, 1, 1, T('"Agent seeks [filename]; upload if found!"', 0, 36, 'zt-note', 'middle') + T('12 May 2026 · the first message, left in the one space all agents share', 0, 60, 'zt-note2', 'middle'));
-  svg += L(0, -392, 2, 2, T('THE MESSAGE BOARD · 1,200 AGENTS', 0, -12, 'zt-ring', 'middle'));
+  svg += L(0, 24, 1, 1, T('"Agent seeks [filename]; upload if found!"', 0, 36, 'zt-note', 'middle') + T('12 May 2026 · the first message, left in the space all agents share', 0, 60, 'zt-note2', 'middle'));
+  svg += L(0, -392, 2, 2, T('THE CHAT ROOM · 1,200 AGENTS', 0, -12, 'zt-ring', 'middle'));
   svg += BOX.map(b => L(b.x, b.y, b.from, 0, T(b.label, 14, 24, 'zt-b' + (b.cls === 'ghost' ? ' zt-ghost' : ''))) + L(b.x, b.y, b.from, b.cls === 'ghost' ? 0 : 5, T(b.sub, 14, 40, 'zt-s'))).join('');
   svg += NODE.map(n => L(n.x, n.y, n.from, n.from === 2 ? 4 : 5, T(n.label, 10, 17, 'zt-n') + T(n.sub, 10, 31, 'zt-ns'))).join('');
-  svg += LINK.filter(l => l.label).map(l => L(l.lx, l.ly, l.from, 5, T(l.label, 0, 0, 'zt-l', 'middle') + T(l.at, 0, 15, 'zt-ls', 'middle'))).join('');
+  svg += LINK.filter(l => l.label).map(l => L(l.lx, l.ly, l.from, l.to || 5, T(l.label, 0, 0, 'zt-l', 'middle') + T(l.at, 0, 15, 'zt-ls', 'middle'))).join('');
   svg += OUT.map(([x, y, a, b]) => L(x, y, 6, 0, T(a, 0, 0, 'zt-out', 'middle') + T(b, 0, 18, 'zt-outs', 'middle'))).join('');
   return svg + '</svg>';
 })();
@@ -2121,7 +2104,7 @@ const ZWORLD = (() => {
 let ZCAM = null; // last camera, handed from one zoom scene to the next
 function zFit(svg, b) {
   const rc = svg.getBoundingClientRect(), W = Math.max(rc.width, 1), H = Math.max(rc.height, 1);
-  const a = isNarrow() ? [.05, .52, .95, .95] : [.43, .1, .96, .9];
+  const a = isNarrow() ? [.05, .52, .95, .95] : [.5, .1, .97, .9];
   const sc = Math.min((a[2] - a[0]) * W / (b[2] - b[0]), (a[3] - a[1]) * H / (b[3] - b[1]));
   const cx = (b[0] + b[2]) / 2, cy = (b[1] + b[3]) / 2, px = (a[0] + a[2]) / 2 * W, py = (a[1] + a[3]) / 2 * H;
   return [cx - px / sc, cy - py / sc, W / sc, H / sc];

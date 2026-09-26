@@ -651,6 +651,12 @@ body.pres{background:var(--ws-ink-50)}
 .vc blockquote::before{content:'\201C';color:var(--ws-green-600)} .vc blockquote::after{content:'\201D';color:var(--ws-green-600)}
 .vc figcaption b{display:block;font-weight:600;font-size:1.1rem} .vc figcaption span{color:var(--muted);font-size:.95rem}
 @media (max-width:760px){ .voices{grid-template-columns:1fr;gap:2rem} .vc blockquote{font-size:1.3rem} }
+/* Press montage: real screenshots of the articles */
+.paper.has-shot{padding:.75rem .75rem .8rem}
+.paper.has-shot h3,.paper.has-shot p{display:none}
+.shot-f{margin:.55rem 0 0;max-height:21vh;overflow:hidden;border:1px solid #D6D1C4;background:#fff}
+.shot-f img{display:block;width:100%;height:auto}
+.paper:not(.has-shot) .shot-f{display:none}
 </style>
 </head>
 <body>
@@ -860,15 +866,15 @@ Worth stressing, positively: OpenAI claimed an attack nobody had pinned on it, t
 { ch: 'c1', type: 'headlines', title: 'Press: July',
   stamp: 'Press montage · 20 July - 18 August 2026', heading: 'The press takes hold of the story',
   clips: [
-    { o: 'BleepingComputer', d: '20 Jul 2026', h: 'Hugging Face warns an autonomous AI agent hacked its network', fr: `"...attackers gained access to internal datasets and credentials after breaching its production infrastructure using an autonomous AI agent system."`, x: 0, y: 2, r: -2.2 },
-    { o: 'TechCrunch', d: '22 Jul 2026', h: 'How OpenAI\'s human mistake led to the AI-powered hack on Hugging Face', fr: `Trail of Bits founder Dan Guido called the mistake "a containment failure with the safeties turned off."`, x: 34.5, y: 8, r: 1.4 },
-    { o: 'Scientific American', d: '22 Jul 2026', h: 'What OpenAI\'s rogue agent really did in the Hugging Face hack', fr: `"It was asked to do something, and it did it. It's not gone rogue. Its way out of it was to cheat, basically." (Alan Woodward, University of Surrey)`, x: 69, y: 0, r: -1 },
-    { o: 'BBC News', d: '30 Jul 2026', h: 'OpenAI says its rogue AI tried to hack other companies', fr: `"...the AI worked at superhuman speed but also made strange decisions and mistakes that no human hacker would have made."`, x: 2, y: 52, r: 1.8 },
-    { o: 'Wired', d: '5 Aug 2026', h: 'OpenAI Didn\'t Notice Its AI Agents Using a Message Board to Plan Their Hacking Spree', fr: `"The most qualitatively interesting example of AI capabilities that I've ever seen." (Eric Wallace, OpenAI)`, x: 35.5, y: 58, r: -1.6 },
-    { o: 'The Guardian', d: '18 Aug 2026', h: 'OpenAI announces slowing pace of development after hack by rogue agent', fr: `"We are very far from everything running back to normal." (Mia Glaese, head of safety, OpenAI)`, x: 68, y: 50, r: 2.4 },
+    { o: 'The Hacker News', d: '20 Jul 2026', h: 'World\'s Largest AI Model Repository Hugging Face Breached by Autonomous AI Agent', fr: `"In an ironic twist, open-source artificial intelligence (AI) platform Hugging Face revealed that it was the victim of a hack perpetrated by an autonomous AI agent system."`, img: 'thn-0720', x: 0, y: 2, r: -2.2 },
+    { o: 'TechCrunch', d: '22 Jul 2026', h: 'How OpenAI\'s human mistake led to the AI-powered hack on Hugging Face', img: 'techcrunch-0722', fr: `Trail of Bits founder Dan Guido called the mistake "a containment failure with the safeties turned off."`, x: 34.5, y: 8, r: 1.4 },
+    { o: 'Scientific American', d: '22 Jul 2026', h: 'The real danger in OpenAI\'s Hugging Face hack', img: 'sciam-0722', fr: `"It was asked to do something, and it did it. It's not gone rogue. Its way out of it was to cheat, basically." (Alan Woodward, University of Surrey)`, x: 69, y: 0, r: -1 },
+    { o: 'BBC News', d: '29 Jul 2026', h: 'OpenAI says its rogue AI tried to hack other companies', img: 'bbc-0729', fr: `"...the AI worked at superhuman speed but also made strange decisions and mistakes that no human hacker would have made."`, x: 2, y: 47, r: 1.8 },
+    { o: 'Wired', d: '5 Aug 2026', h: 'OpenAI Didn\'t Notice Its AI Agents Using a Message Board to Plan Their Hacking Spree', img: 'wired-0805', fr: `"The most qualitatively interesting example of AI capabilities that I've ever seen." (Eric Wallace, OpenAI)`, x: 35.5, y: 53, r: -1.6 },
+    { o: 'The Guardian', d: '18 Aug 2026', h: 'OpenAI announces slowing pace of development after hack by rogue agent', img: 'guardian-0818', fr: `"We are very far from everything running back to normal." (Mia Glaese, head of safety, OpenAI)`, x: 68, y: 45, r: 2.4 },
   ],
   notes: `Let the clippings drop one by one; read one at most. The key idea, voiced by Scientific American: the AI did not rebel, it cheated to complete its task.`,
-  src: `BleepingComputer (Sergiu Gatlan) · TechCrunch (Lorenzo Franceschi-Bicchierai) · Scientific American (Chris Stokel-Walker) · BBC News · Wired (Lily Hay Newman) · The Guardian. Headlines and excerpts reproduced as published` },
+  src: `The Hacker News (Ravie Lakshmanan) · TechCrunch (Lorenzo Franceschi-Bicchierai) · Scientific American (Chris Stokel-Walker) · BBC News (Joe Tidy) · Wired (Lily Hay Newman) · The Guardian. Screenshots of the articles as published, captured September 2026` },
 
 { ch: 'c1', type: 'split', title: 'The root cause',
   stamp: 'The investigators\' conclusion',
@@ -922,16 +928,16 @@ Pick 20 to 30 seconds and set start / end on the scene (in seconds). Check who p
 { ch: 'c2', type: 'headlines', title: 'Press montage',
   stamp: 'Press montage · 21 - 26 September 2026', heading: 'September: the story goes global',
   clips: [
-    { o: 'SecurityWeek', d: '21 Sep 2026', h: 'Google Confirms Gemini AI Breached Three Firms', fr: `"Google is the latest AI giant to confirm that its models escaped a testing environment and hacked real companies."`, x: 0, y: 2, r: -2.2 },
-    { o: 'BNN Bloomberg', d: '23 Sep 2026', h: 'AI leaders warn UN of security risks as systems grow more powerful', fr: `"If managed poorly, I even believe that AI could be a risk to humanity as a whole." (Dario Amodei, Anthropic, to the UN Security Council)`, x: 34.5, y: 8, r: 1.4 },
-    { o: 'CNN', d: '23 Sep 2026', h: '‘Extreme concern’ over first known AI hack of a government system', fr: `"An OpenAI agent hacked into an Australian national healthcare database in the first known case of AI hacking a government network..."`, x: 69, y: 0, r: -1 },
-    { o: 'The Guardian', d: '24 Sep 2026', h: 'Australia launches investigation after OpenAI agent hacked healthcare database', fr: `Prime minister says he told Sam Altman he was disappointed it had taken OpenAI "way too long" to disclose breach.`, x: 2, y: 52, r: 1.8 },
-    { o: 'TechCrunch', d: '25 Sep 2026', h: 'For months, OpenAI\'s agent swarms have been attacking online databases to find obscure facts', fr: `"...independent researchers are piecing together how AI agents coordinate in internet backwaters to access private data hosted on secure servers."`, x: 35.5, y: 58, r: -1.6 },
-    { o: 'ABC News (Australia)', d: '26 Sep 2026', h: 'Australia not alone as OpenAI agents hacked other websites', fr: `"OpenAI says dozens more third parties were affected by rogue agents bypassing website security controls..."`, x: 68, y: 50, r: 2.4 },
+    { o: 'SecurityWeek', d: '21 Sep 2026', h: 'Google Confirms Gemini AI Breached Three Firms', img: 'securityweek-0921', fr: `"Google is the latest AI giant to confirm that its models escaped a testing environment and hacked real companies."`, x: 0, y: 2, r: -2.2 },
+    { o: 'BNN Bloomberg', d: '23 Sep 2026', h: 'AI leaders warn UN of security risks as systems grow more powerful', img: 'bnn-0923', fr: `"If managed poorly, I even believe that AI could be a risk to humanity as a whole." (Dario Amodei, Anthropic, to the UN Security Council)`, x: 34.5, y: 8, r: 1.4 },
+    { o: 'CBS News', d: '24 Sep 2026', h: 'Australia says rogue OpenAI model hacked into its healthcare system, admonishes Sam Altman', img: 'cbs-0924', fr: `The artificial intelligence tool sought access to a health statistics portal in June and "didn't accept no for an answer," sidestepping restrictions to breach a section hosting private files, Albanese said.`, x: 69, y: 0, r: -1 },
+    { o: 'The Guardian', d: '24 Sep 2026', h: 'Australia launches investigation after OpenAI agent hacked healthcare database', img: 'guardian-0924', fr: `Prime minister says he told Sam Altman he was disappointed it had taken OpenAI "way too long" to disclose breach.`, x: 2, y: 47, r: 1.8 },
+    { o: 'TechCrunch', d: '25 Sep 2026', h: 'For months, OpenAI\'s agent swarms have been attacking online databases to find obscure facts', img: 'techcrunch-0925', fr: `"...independent researchers are piecing together how AI agents coordinate in internet backwaters to access private data hosted on secure servers."`, x: 35.5, y: 53, r: -1.6 },
+    { o: 'ABC News (Australia)', d: '26 Sep 2026', h: 'OpenAI says dozens affected by rogue agents amid new detail about Australian incidents', img: 'abc-0926', fr: `"OpenAI says dozens more third parties were affected by rogue agents bypassing website security controls..."`, x: 68, y: 45, r: 2.4 },
   ],
   notes: `Let the headlines drop one by one; do not read them all. Headlines reproduced as published.
 This is the turning point: from an incident between two companies to a worldwide story.`,
-  src: `SecurityWeek (Eduard Kovacs) · BNN Bloomberg · CNN (Whiteman, Gold, Saltman) · The Guardian · TechCrunch (Tim Fernholz) · ABC News Australia (Armstrong, Wilson). Headlines and excerpts reproduced as published, September 2026` },
+  src: `SecurityWeek (Eduard Kovacs) · BNN Bloomberg · CBS News · The Guardian (Elsworthy, Convery) · TechCrunch (Tim Fernholz) · ABC News Australia (Armstrong, Wilson). Screenshots of the articles as published, captured September 2026` },
 
 { ch: 'c2', type: 'figures', title: 'A wave, not an incident', n: 4,
   stamp: 'What the investigations revealed · September 2026', heading: 'Not one incident: a wave',
@@ -1610,12 +1616,12 @@ For robots and connected devices, the same questions apply at purchase: what doe
       ['OpenAI and Hugging Face, joint statement (21 July 2026)', 'https://openai.com/index/hugging-face-model-evaluation-security-incident/'],
     ]],
     ['Press coverage quoted on screen', [
-      ['BleepingComputer, Sergiu Gatlan (20 July 2026)', 'https://www.bleepingcomputer.com/news/security/hugging-face-breach-autonomous-ai-agent-system-internal-datasets-credentials/'],
+      ['The Hacker News, Ravie Lakshmanan (20 July 2026)', 'https://thehackernews.com/2026/07/worlds-largest-ai-model-repository.html'],
       ['TechCrunch, Lorenzo Franceschi-Bicchierai (22 July 2026)', 'https://techcrunch.com/2026/07/22/how-an-openais-human-mistake-led-to-the-ai-powered-hack-on-hugging-face/'],
       ['Scientific American, Chris Stokel-Walker (22 July 2026)', 'https://www.scientificamerican.com/article/what-openai-rogue-agent-really-did-in-the-hugging-face-hack/'],
       ['Axios, Sam Sabin (23 July 2026): Clément Delangue quote', 'https://www.axios.com/2026/07/23/openai-hugging-face-cyber-hacks-testing'],
       ['The Wall Street Journal, McMillan and Schechner (24 July 2026): Thomas Wolf quote', 'https://www.wsj.com/tech/ai/how-the-futuristic-hack-by-rogue-openai-models-unfolded-1657bcea'],
-      ['BBC News (30 July 2026)', 'https://www.bbc.com/news/articles/c2el319vzr3o'],
+      ['BBC News, Joe Tidy (29 July 2026)', 'https://www.bbc.com/news/articles/c2el319vzr3o'],
       ['Wired, Lily Hay Newman (5 August 2026)', 'https://www.wired.com/story/openai-didnt-notice-its-ai-agents-using-a-message-board-to-plan-their-hacking-spree/'],
       ['The Guardian (18 August 2026)', 'https://www.theguardian.com/technology/2026/aug/18/open-ai-pause-hack'],
       ['SecurityWeek, Eduard Kovacs (21 September 2026)', 'https://www.securityweek.com/google-confirms-gemini-ai-breached-three-firms/'],
@@ -2005,7 +2011,7 @@ const R = {
 
   chat: s => `<div class="split"><div class="txt">${textBlock(s)}</div><div class="vis"><div class="chatbox"><div class="cb-h">AI assistant · illustration</div><div class="cb-q">${s.chat.q}</div><div class="cb-a">${s.chat.a.map(x => `<p${fa(x.f)}>${x.t}</p>`).join('')}</div></div></div></div>${srcLine(s)}`,
 
-  headlines: s => `<div class="head">${textBlock(s)}</div><div class="press">${s.clips.map((c, i) => `<div class="clip"${fa(c.f ?? i + 1)} style="--x:${c.x}%;--y:${c.y}%"><div class="paper" style="--r:${c.r}deg"><div class="o"><span>${c.o}</span><span>${c.d}</span></div><h3>${c.h}</h3>${c.fr ? `<p>${c.fr}</p>` : ''}</div></div>`).join('')}</div>${srcLine(s)}`,
+  headlines: s => `<div class="head">${textBlock(s)}</div><div class="press">${s.clips.map((c, i) => `<div class="clip"${fa(c.f ?? i + 1)} style="--x:${c.x}%;--y:${c.y}%"><div class="paper${c.img ? ' has-shot' : ''}" style="--r:${c.r}deg"><div class="o"><span>${c.o}</span><span>${c.d}</span></div>${c.img ? `<figure class="shot-f"><img src="assets/ai/press/${c.img}.jpg" alt="${c.o}: ${c.h}" onerror="this.closest('.paper').classList.remove('has-shot')"></figure>` : ''}<h3>${c.h}</h3>${c.fr ? `<p>${c.fr}</p>` : ''}</div></div>`).join('')}</div>${srcLine(s)}`,
 
   known: s => `<div class="head">${textBlock(s)}</div><div class="known">
       <div style="--k:var(--green)"><h3>What we know</h3><ul>${s.yes.map((t, i) => `<li${fa(i ? 1 : 0)}><i>✓</i><span>${t}</span></li>`).join('')}</ul></div>

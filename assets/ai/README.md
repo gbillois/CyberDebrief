@@ -55,11 +55,17 @@ the portrait, and in the Sources scene.
 | `people/altman.jpg` | Sam Altman, CEO, OpenAI | Office of the Prime Minister of Japan, CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Meeting_with_Masayoshi_Son_and_Sam_Altman_(February_3,_2025)_(3x4_cropped_on_Altman).jpg) |
 | `people/vigna.jpg` | Benedetto Vigna, CEO, Ferrari (whose voice was cloned) | Rossini TV, CC BY 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Benedetto_Vigna_-_Universit%C3%A0_Urbino.jpg) |
 
-### Press excerpts
+### Press screenshots (included)
 
-The two press montages (July and September 2026) reproduce real headlines and
-short verbatim excerpts, each checked against the original article; the full
-list with links is in the Sources scene. The Thomas Wolf quote comes from The
+`press/*.jpg`: screenshots of the articles shown in the two press montages
+(July and September 2026), captured on 26 September 2026 and cropped to the
+masthead and headline. Each card falls back to the headline and a verbatim
+excerpt if its file is missing. The full list with links is in the Sources
+scene: The Hacker News, TechCrunch, Scientific American, BBC News, Wired, The
+Guardian (July); SecurityWeek, BNN Bloomberg, CBS News, The Guardian,
+TechCrunch, ABC News Australia (September). Short screenshots of news
+articles, credited on screen, for an internal awareness session; re-check
+before any public online release. The Thomas Wolf quote comes from The
 Wall Street Journal (24 July 2026) and the Clément Delangue quote from Axios
 (23 July 2026).
 
