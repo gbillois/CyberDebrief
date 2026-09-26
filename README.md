@@ -23,10 +23,15 @@ first French iteration (`ai-fr.html`) and the OpenAI / Hugging Face deep dives
 The same 40-minute story told like a TED talk. It opens on its question,
 "How is the threat changing with AI, and what can we do?", then on the date
 and on Hugging Face realising this is not a normal attacker. There is no
-agenda slide: it is built around seven questions, one per chapter; each
+agenda slide: it is built around eight questions, one per chapter; each
 chapter card shows the question, a progress rail and the previous chapter's
 answer, and each chapter ends on its answer in one sentence; a final screen
-replays all seven.
+replays all eight. The flow: the Hugging Face case, the wave of similar
+cases, why an AI derails, the debate on AI rules, then the other half of the
+problem, attackers using AI: against companies, as a ladder from one fake
+video call (Arup) to swarms of AI agents, then against each of us (phishing,
+fake parcels, cloned voices of loved ones, fake intimate images), robots in
+between, and what works.
 Chapter 1 tells the Hugging Face case the way `OAHF-zoom.html` does: one
 world, one camera that keeps stepping back (one agent, the chat room, the test
 box, the internet, Hugging Face, the whole picture), in plain words, with the
