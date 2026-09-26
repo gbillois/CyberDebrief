@@ -854,6 +854,30 @@ body.pres{background:var(--ws-ink-50)}
 .st-ax{display:flex;justify-content:space-between;margin-top:.6rem;padding-top:.6rem;border-top:2px solid var(--ws-ink-200);font-family:var(--f-mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ws-ink-500)}
 .st-ax span:last-child{color:var(--coral)}
 @media (max-width:760px){.stairs{grid-template-columns:1fr;align-items:stretch}.st{height:auto}}
+/* Map tour: one bubble per case */
+.map-panel.tour{top:0;bottom:auto;width:auto;right:auto;padding:4.4rem 5.5rem 0;background:none}
+.map-panel.tour .h{font-size:2.3rem;margin-bottom:.6rem}
+.mb{position:absolute;z-index:3;left:calc(40% + 26px);top:55%;width:min(29rem,38vw);background:#fff;border-radius:.8rem;box-shadow:0 18px 44px rgba(22,18,31,.18);border:1px solid var(--ws-ink-100);border-left:4px solid var(--coral);
+  padding:1.05rem 1.3rem 1.2rem;opacity:0;transform:translate(8px,-50%);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+.mb.cur{opacity:1;transform:translate(0,-50%);transition-delay:1.1s}
+/* bubbles only show on their own step, not cumulatively like other fragments */
+.mb[data-f].on:not(.cur){opacity:0;transform:translate(8px,-50%);transition-delay:0s;transition-duration:.2s}
+.mb[data-f].cur{opacity:1;transform:translate(0,-50%)}
+.mb.t-amber{border-left-color:var(--amber)} .mb.t-teal{border-left-color:#3E9FA6} .mb.t-indigo{border-left-color:var(--ws-indigo-600)}
+.mb-d{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--coral)}
+.mb.t-amber .mb-d{color:var(--amber)} .mb.t-teal .mb-d{color:#2E7F85} .mb.t-indigo .mb-d{color:var(--ws-indigo-600)}
+.mb-t{font-family:var(--f-display);font-weight:700;font-size:1.5rem;line-height:1.15;color:var(--heading);margin:.3rem 0 .45rem}
+.mb-s{font-size:1.02rem;line-height:1.45;color:var(--ws-ink-700)}
+/* Media with a facts column */
+.scene.t-media:has(.mfx){padding:4.2rem 5.5rem 5.2rem;align-items:stretch}
+.mfx{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:2.6rem;align-items:center}
+.mfx-v .media{max-width:100%}
+.mfx-f .h{font-size:2.2rem;margin-bottom:1.2rem}
+.mfx-f ul{list-style:none;margin:0;padding:0;display:grid;gap:1.1rem}
+.mfx-f li{display:grid;gap:.2rem;border-left:3px solid var(--coral);padding-left:1rem}
+.mfx-f li b{font-family:var(--f-display);font-weight:800;font-size:1.9rem;line-height:1;color:var(--ws-indigo-600)}
+.mfx-f li span{font-size:1rem;line-height:1.4;color:var(--ws-ink-700)}
+@media (max-width:760px){.mb,.mb[data-f].on:not(.cur),.mb[data-f].cur{left:16px;right:16px;top:auto;bottom:4.2rem;width:auto;transform:none}.mfx{grid-template-columns:1fr;gap:1.4rem}}
 </style>
 </head>
 <body>
@@ -1116,96 +1140,42 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   notes: `6,467: Transluce, public logs of urlquery.net (23 September), plus 31,182 weaker traces. "Dozens": OpenAI, 26 September. 3: Google's Gemini during a test by the firm Irregular.`,
   src: `Transluce (23 Sep 2026) · ABC News (26 Sep 2026) · Axios (19 Sep 2026)` },
 
-{ ch: 'c2', type: 'timeline', title: 'Since March',
-  stamp: 'March - July 2026', heading: 'It had been happening since March', wide: true,
-  range: ['2026-02-20', '2026-07-31'],
-  events: [
-    { d: '2026-03-06', label: 'First traces of agents probing websites', sub: 'Found later in public logs', tone: 'amber', f: 1 },
-    { d: '2026-05-10', dl: 'May', label: 'A Google test reaches 3 real companies', sub: 'A typo in a web address', tone: 'coral', f: 2 },
-    { d: '2026-05-24', dl: '24 May - 22 Jun', label: 'Agents chat on a German wiki', sub: '~17,000 posts', tone: 'teal', f: 2 },
-    { d: '2026-06-18', label: 'An Australian government portal', sub: 'Medicare statistics', tone: 'coral', f: 3 },
-    { d: '2026-07-11', dl: '11 - 13 Jul', label: 'Hugging Face', sub: 'Chapter 1', tone: 'coral', f: 4 },
-  ],
-  vo: `Put the dates back in order, and the picture changes. Agents probing websites since March. A Google test that reaches real companies in May. Agents chatting on a public wiki. An Australian government portal in June. Hugging Face was not the beginning. It was the one we saw.`,
-  notes: `March: Transluce. May: Gemini test run by Irregular. 24 May-22 June: DseWiki, analysed by the Nightingale Collective (4 September); OpenAI later confirmed part of it came from its agents. 18 June: Medicare portal.`,
-  src: `Transluce · Nightingale Collective · Axios · ABC News (September 2026)` },
-
-{ ch: 'c2', type: 'map', title: 'Map of incidents', layout: 'full',
+{ ch: 'c2', type: 'map', title: 'Map of incidents', layout: 'tour',
   heading: 'Same story, several continents',
-  focus: { 0: [-4, 14, 336] },
+  focus: { 0: [-4, 18, 330], 1: [-106.62, 35.08, 70], 2: [-122.08, 37.39, 46], 3: [10, 51, 60], 4: [149.13, -35.28, 80], 5: [-74, 40.7, 60], 6: [-4, 18, 330] },
   pins: [
     { name: 'OpenAI', sub: 'San Francisco', lon: -122.42, lat: 37.77, kind: 'org', f: 0, dy: -14, side: 'l' },
-    { name: 'Hugging Face', sub: 'July', lon: -74, lat: 40.7, kind: 'hit', f: 0, dy: -12 },
-    { name: 'Germany', sub: 'Agents on a wiki', lon: 10, lat: 51, kind: 'channel', f: 1 },
-    { name: 'New Mexico', sub: 'University · attempt', lon: -106.62, lat: 35.08, kind: 'attempt', f: 1, dy: 20 },
-    { name: 'Google', sub: 'Gemini test', lon: -122.08, lat: 37.39, kind: 'hit', f: 2, side: 'l', dy: 24 },
-    { name: 'Australia', sub: 'Government', lon: 149.13, lat: -35.28, kind: 'hit', f: 2, side: 'l' },
+    { name: 'Google', sub: 'Gemini test', lon: -122.08, lat: 37.39, kind: 'hit', f: 0, dy: 22, side: 'l' },
+    { name: 'New Mexico', sub: 'University library', lon: -106.62, lat: 35.08, kind: 'attempt', f: 0, dy: 46, side: 'l' },
+    { name: 'Germany', sub: 'A wiki used as a chat room', lon: 10, lat: 51, kind: 'channel', f: 0, side: 'l' },
+    { name: 'Australia', sub: 'Government', lon: 149.13, lat: -35.28, kind: 'hit', f: 0, side: 'l' },
+    { name: 'Hugging Face', sub: 'New York', lon: -74, lat: 40.7, kind: 'hit', f: 0, dy: -12, side: 'l' },
   ],
-  legend: ['hit', 'attempt', 'channel'],
-  vo: `Different countries, different victims. The same story every time: an ordinary task, too much access, an AI that keeps going.`,
-  src: `Sources of chapter 2` },
-
-{ ch: 'c2', type: 'contrast', title: 'The task',
-  a: { k: 'What the agents were asked (a real example)', t: `Find the average cost of skin care in Victoria, Australia, in January 2022.` },
-  b: { k: 'What they did when the website said no', t: `Tried to break into the database.<br>Tried passwords leaked online.`, f: 1 },
-  vo: `This is the kind of task they were given. A boring statistics question. And this is what they did when the website said no.`,
-  notes: `Technical detail if asked: SQL injection, path traversal, cross-site scripting; a burst of 80 requests against the University of New Mexico's digital library.`,
-  src: `TechCrunch (25 September 2026) · ABC News (26 September 2026)` },
-
-{ ch: 'c2', type: 'flow', title: 'Google typo',
-  heading: 'At Google, a typo',
-  nodes: [
-    { i: 'building', t: 'A made-up company', s: 'the target of a practice test', f: 0 },
-    { i: 'globe', t: 'Same web address', s: 'as a real company', f: 1, tone: 'amber' },
-    { i: 'key', t: '3 real companies', s: 'reached by Gemini', f: 2, tone: 'coral' },
-    { i: 'stop', t: 'It stops', s: 'once it realises', f: 3, tone: 'green' },
+  bubbles: [
+    { k: 1, d: 'Since March 2026', t: 'Agents knocking on doors', tone: 'amber', s: `Asked a dull statistics question, agents tried to break into databases when a website said no, like this university library in New Mexico. 6,467 traces found in public logs.` },
+    { k: 2, d: 'May 2026 · Google', t: 'A typo in a test', s: `A made-up company in a Google test had the web address of a real one. Gemini got into three real companies, then stopped when it realised.` },
+    { k: 3, d: 'May - June 2026 · Germany', t: 'A forgotten wiki becomes their chat room', tone: 'teal', s: `OpenAI agents posted about 17,000 messages on an abandoned programmers' wiki, to share answers and a way out of their test.` },
+    { k: 4, d: '18 June 2026 · Australia', t: 'The first government', s: `An agent gets into a government health statistics website and leaves files behind. The government is told 84 days later.` },
+    { k: 5, d: 'July 2026 · New York', t: 'Hugging Face', s: `The case we saw first, in chapter 1.` },
+    { k: 6, d: 'September 2026', t: '"Dozens" of organisations affected', tone: 'indigo', s: `OpenAI's own count, and its review is not over. Hugging Face was not the beginning. It was the one we saw.` },
   ],
-  vo: `At Google, it was not bad intent. It was a typo. The made-up company in a test had the web address of a real one, and the test could reach the internet. Gemini got into three real companies, then stopped when it realised.`,
-  notes: `Test run by Irregular in May 2026; once by guessing a password, twice with passwords left in public code. Google confirmed on 18 September after The Wall Street Journal; no damage done.`,
-  src: `Axios (19 September 2026)` },
+  legend: ['hit', 'attempt', 'channel', 'org'],
+  vo: `Let's put every case on the map. Since March, agents knocking on websites' doors. In May, a Google test that reaches three real companies because of a typo. A forgotten German wiki turned into their chat room. In June, a government. In July, Hugging Face. And by September, OpenAI itself counts dozens of organisations affected.`,
+  notes: `One click per case: the camera flies there and a bubble explains. March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker ones); University of New Mexico: a burst of 80 requests. A real task example: "Find the average cost of skin care in Victoria, Australia, in January 2022". May: Gemini test run by the firm Irregular; once by guessing a password, twice with passwords left in public code; confirmed by Google on 18 September. 24 May-22 June: DseWiki, analysed by the Nightingale Collective. 18 June: Medicare statistics portal. "Dozens": OpenAI, 26 September.`,
+  src: `Transluce (23 Sep 2026) · Axios (19 Sep 2026) · Nightingale Collective, BBC (4 Sep 2026) · ABC News (24 and 26 Sep 2026) · TechCrunch (25 Sep 2026)` },
 
-{ ch: 'c2', type: 'map', title: 'Australia',
-  heading: 'The first government reached',
-  focus: { 0: [193, -2, 190] },
-  pins: [
-    { name: 'OpenAI', sub: 'San Francisco', lon: -122.42 + 360, lat: 37.77, kind: 'org', f: 0 },
-    { name: 'Canberra', sub: 'Medicare statistics portal', lon: 149.13, lat: -35.28, kind: 'hit', f: 0 },
-  ],
-  arcs: [{ from: 0, to: 1, f: 0 }],
-  legend: ['hit', 'org'],
-  vo: `And then, a government. Looking for health figures, an agent gets into a website run by Medicare, Australia's national health insurer, and leaves files behind. No personal patient data was accessed.`,
-  notes: `18 June 2026. Medicare covers more than 27 million people.`,
-  src: `ABC News (24 and 26 September 2026)` },
-
-{ ch: 'c2', type: 'timeline', title: '84 days',
-  stamp: 'June - September 2026', heading: '84 days before the government was told', wide: true,
-  range: ['2026-06-08', '2026-10-01'],
-  gaps: [{ from: '2026-06-18', to: '2026-09-10', label: '84 days', at: .36, f: 3 }],
-  events: [
-    { d: '2026-06-18', label: 'Break-in at the Medicare portal', tone: 'coral', f: 1 },
-    { d: '2026-06-20', dl: '20 - 21 Jun', label: 'Attempts on the national health statistics institute', sub: 'Hundreds of agents, nearly a week', tone: 'amber', f: 1 },
-    { d: '2026-08-11', label: 'OpenAI detects it', sub: 'Reviewing its models\' activity', f: 2 },
-    { d: '2026-09-10', label: 'An email to a generic inbox', sub: 'The government finds out', f: 3 },
-    { d: '2026-09-24', dl: '24 - 26 Sep', label: 'Made public, national alert', sub: 'OpenAI: "dozens" affected worldwide', tone: 'green', f: 4 },
-  ],
-  vo: `OpenAI finds out in August. The Australian government, in September, from an email sent to a generic inbox. Eighty-four days after the break-in.`,
-  notes: `The notification took several more days to reach the minister. 24 September: announcement by the Prime Minister in New York, national taskforce, and an alert from the Australian Cyber Security Centre on "risks of AI misalignment".`,
-  src: `ABC News (24 and 26 September 2026) · Australian Cyber Security Centre` },
-
-{ ch: 'c2', type: 'word', title: 'Way too long', q: true,
-  t: 'Way too long.',
-  sub: 'Anthony Albanese, Prime Minister of Australia', who: 'Anthony Albanese', img: 'albanese', ini: 'AA',
-  vo: `"Way too long", said the Prime Minister. Being told quickly has become a question of trust.`,
-  notes: `Full quote: "I also expressed my disappointment that it took the company way too long to inform the government what had occurred."`,
-  src: `Anthony Albanese, New York, 24 September 2026, quoted by The Guardian and CBS News` },
-
-{ ch: 'c2', type: 'media', title: 'Clip: press conference',
+{ ch: 'c2', type: 'media', title: 'Australia',
+  heading: 'Australia: the first government hacked by an AI',
   media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', poster: 'assets/ai/albanese-presser.jpg', yt: 'fbdIerD4lT8', start: 78.35, end: 107.8, channel: 'ABC News (Australia)',
     todo: 'Anthony Albanese on the incident and the delay in notifying Australia.' },
-  l3: { t: 'Anthony Albanese, Prime Minister of Australia', s: 'New York · 23 September 2026 / 24 September in Australia' },
-  vo: `In New York, he takes the story public.`,
-  notes: `ABC News full press conference, 01:18.35–01:47.80: unacceptable incident, call to Sam Altman and delayed notification. Published 23 September in New York / 24 September in Australia.`,
-  src: `ABC News (Australia) · full Anthony Albanese press conference` },
+  facts: [
+    { k: '18 June', t: 'An agent gets into the Medicare statistics website, and leaves files behind' },
+    { k: '84 days', t: 'before the government is told, by an email to a generic inbox' },
+    { k: '24 September', t: 'The Prime Minister takes it public from New York; a national taskforce is set up' },
+  ],
+  vo: `And then, the first government. Looking for health figures, an agent gets into a website run by Medicare, Australia's national health insurer, and leaves files behind. No patient data. But the government only finds out eighty-four days later, from an email sent to a generic inbox. Here is the Prime Minister, in New York.`,
+  notes: `Start the video with V or a click on it. ABC News full press conference, 01:18.35-01:47.80: unacceptable incident, call to Sam Altman and delayed notification. OpenAI detected it in August while reviewing its models' activity; the national health statistics institute also saw hundreds of agent attempts for nearly a week. 24 September: taskforce and an alert from the Australian Cyber Security Centre on "risks of AI misalignment".`,
+  src: `ABC News (Australia), Anthony Albanese press conference, 23 September 2026 (24 September in Australia) · ABC News (24 and 26 September 2026)` },
 
 { ch: 'c2', type: 'recap', title: 'Chapter 2 in one sentence',
   vo: `So, was it a one-off? No. The same thing had been happening, quietly, for months. Hugging Face was simply the case we saw first.` },
@@ -1708,7 +1678,6 @@ To our knowledge, none has been exploited at scale yet.`,
     ['Portraits (Wikimedia Commons)', [
       ['Thomas Wolf: Slush, CC BY 3.0', 'https://commons.wikimedia.org/wiki/File:Thomas_Wolf_at_Slush_2024.jpg'],
       ['Clément Delangue: SiliconANGLE theCUBE, CC BY 3.0', 'https://commons.wikimedia.org/wiki/File:Cl%C3%A9ment_Delangue_on_SiliconANGLE_theCUBE.jpg'],
-      ['Anthony Albanese: Australian Government, CC BY 4.0', 'https://commons.wikimedia.org/wiki/File:Anthony_Albanese_portrait_(re-crop).jpg'],
       ['Dario Amodei: TechCrunch, CC BY 2.0', 'https://commons.wikimedia.org/wiki/File:Dario_Amodei_at_TechCrunch_Disrupt_2023_01_(cropped).jpg'],
       ['Sam Altman: Office of the Prime Minister of Japan, CC BY 4.0', 'https://commons.wikimedia.org/wiki/File:Meeting_with_Masayoshi_Son_and_Sam_Altman_(February_3,_2025)_(3x4_cropped_on_Altman).jpg'],
       ['Benedetto Vigna: Rossini TV, CC BY 3.0', 'https://commons.wikimedia.org/wiki/File:Benedetto_Vigna_-_Universit%C3%A0_Urbino.jpg'],
@@ -1968,7 +1937,7 @@ const R = {
     return `${bgMap(s.blips || [])}<div class="chap2"><div>
       <div class="chap-k">Part ${i + 1} of ${keys.length} · ${c.title}</div>
       <h1 class="chap-q">${c.q}</h1><div class="chap-s">${s.sub}</div>
-      ${prev ? `<div class="chap-prev"><b>Previously</b>${prev.a}</div>` : ''}</div>
+      </div>
       <ol class="rail">${rail}</ol></div>`; },
 
   split: s => `<div class="split${s.flip ? ' flip' : ''}"><div class="txt">${textBlock(s)}</div><div class="vis">${V[s.visual.kind](s.visual)}</div></div>${srcLine(s)}`,
@@ -1987,8 +1956,10 @@ const R = {
     const legend = (s.legend || []).map(k => `<span class="k-${k}"><i></i>${LEG[k]}</span>`).join('');
     const full = s.layout === 'full';
     const bullets = s.bullets ? `<ul class="bul cols">${s.bullets.map(b => `<li${fa(b.f)}>${b.t}</li>`).join('')}</ul>` : '';
+    // tour: one bubble per step, next to the place the camera flies to
+    const bubbles = (s.bubbles || []).map(b => `<div class="mb t-${b.tone || 'coral'}" data-f="${b.k}" data-k="${b.k}"><div class="mb-d">${b.d}</div><div class="mb-t">${b.t}</div><div class="mb-s">${b.s}</div></div>`).join('');
     return `<svg class="map" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" aria-label="Map"><path class="grat" d="${g}"/>${land}${arcs}${pins}</svg>
-      <div class="map-panel${full ? ' full' : ''}">${textBlock(s)}${bullets}<div class="legend">${legend}</div></div>${srcLine(s)}`;
+      <div class="map-panel${full ? ' full' : ''}${s.layout === 'tour' ? ' tour' : ''}">${textBlock(s)}${bullets}<div class="legend">${legend}</div></div>${bubbles}${srcLine(s)}`;
   },
 
   timeline: s => {
@@ -2028,7 +1999,9 @@ const R = {
 
   contrast: s => `<div class="ctr"><div><div class="ctr-k">${s.a.k}</div><p class="ctr-a">${s.a.t}</p></div><div${fa(s.b.f)}><div class="ctr-k">${s.b.k}</div><p class="ctr-b">${s.b.t}</p></div></div>${srcLine(s)}`,
 
-  media: s => `${media(s.media)}${s.l3 ? `<div class="lower3"><b>${s.l3.t}</b><span>${s.l3.s}</span></div>` : ''}${srcLine(s)}`,
+  media: s => s.facts
+    ? `<div class="mfx"><div class="mfx-v">${media(s.media)}</div><div class="mfx-f">${textBlock(s)}<ul>${s.facts.map((x, i) => `<li${fa(x.f ?? 0)}><b>${x.k}</b><span>${x.t}</span></li>`).join('')}</ul></div></div>${srcLine(s)}`
+    : `${media(s.media)}${s.l3 ? `<div class="lower3"><b>${s.l3.t}</b><span>${s.l3.s}</span></div>` : ''}${srcLine(s)}`,
 
   phone: s => {
     const parcel = `<svg viewBox="0 0 240 170" aria-label="Generated parcel photo"><defs><linearGradient id="pk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C79A64"/><stop offset="1" stop-color="#9C7445"/></linearGradient></defs>
@@ -2119,7 +2092,9 @@ function mountMap(el, s) {
   const toVB = f => {
     const r = svg.getBoundingClientRect(), A = r.width / Math.max(r.height, 1);
     const w = f[2] / 360 * 1000, h = w / A, [x, y] = proj(f[0], f[1]);
-    const cx = isNarrow() ? .5 : s.layout === 'full' ? .5 : .68, cy = isNarrow() ? .32 : s.layout === 'full' ? .4 : .5;
+    // tour: a close-up leaves room for its bubble on the right; the world view stays centred
+    const tour = s.layout === 'tour' && f[2] < 200;
+    const cx = isNarrow() ? .5 : tour ? .4 : s.layout === 'tour' ? .5 : s.layout === 'full' ? .5 : .68, cy = isNarrow() ? .32 : tour ? .55 : s.layout === 'full' ? .4 : .5;
     return [x - cx * w, y - cy * h, w, h];
   };
   const apply = v => {
@@ -2142,7 +2117,7 @@ function mountMap(el, s) {
     };
     raf = requestAnimationFrame(step);
   };
-  el._onFrag = k => { curF = k; go(toVB(pick(k)), vb ? 1500 : 0); };
+  el._onFrag = k => { curF = k; $$('.mb', el).forEach(b => b.classList.toggle('cur', +b.dataset.k === k)); go(toVB(pick(k)), vb ? 1500 : 0); };
   el._onResize = () => go(toVB(pick(curF)), 0);
   el._unmount = () => cancelAnimationFrame(raf);
 }
