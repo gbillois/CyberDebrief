@@ -4,6 +4,32 @@ An interactive, scrubable reconstruction of the 2017 NotPetya cyberattack
 (`index.html`), plus a generalized generator that turns the same concept into a
 reusable tool.
 
+## ai.html · Hors du bac à sable
+
+Un documentaire interactif de 30 minutes, en français, pour une séance de
+sensibilisation aux risques de l'IA devant de grandes organisations. Le
+présentateur avance au clic ; aucune voix off n'est nécessaire.
+
+| # | Chapitre | Minutes | Contenu |
+|---|----------|---------|---------|
+| 00 | Prologue | 0 - 2 | Ouverture au noir sur la divulgation de Hugging Face (16 juillet 2026) |
+| 01 | L'examen | 2 - 10 | L'affaire OpenAI / Hugging Face : l'objectif, le canal entre agents, l'alerte classée, la cause |
+| 02 | Les répliques | 10 - 18 | DseWiki, Medicare en Australie, Transluce, Gemini et Irregular, carte des incidents |
+| 03 | Le corps | 18 - 22 | Robotique humanoïde : surfaces d'attaque, Unitree, FCC, leçons transposables |
+| 04 | Vous | 22 - 28 | Faux colis avec photo générée, hameçonnage par IA, deepfake Arup, fausses preuves |
+| 05 | Les réflexes | 28 - 30 | Réflexes individuels, leçons pour les organisations, ce qui a fonctionné |
+
+Chaque scène porte sa source à l'écran et des notes d'orateur (minutage, faits,
+précautions de formulation). Commandes : `→` / `←` (ou télécommande),
+`P` vue présentateur synchronisée dans une seconde fenêtre (notes, minuteur,
+scène suivante), `N` notes à l'écran, `O` plan, `B` écran noir, `F` plein
+écran, `V` vidéo, `M` masquer les médias manquants, `?` aide.
+
+La carte du monde est incluse dans le fichier : la page fonctionne hors ligne,
+seules les polices viennent de Google Fonts. Les captures, extraits vidéo et
+portraits se déposent dans `assets/ai/` ; la liste des plans attendus est dans
+`assets/ai/README.md`.
+
 ## OAHF-zoom.html — the animated zoom-out
 
 The story told as one continuous camera move. Press play and the camera pulls
