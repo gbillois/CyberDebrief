@@ -898,37 +898,52 @@ body.pres{background:var(--ws-ink-50)}
 .stp-co{display:flex;justify-content:space-between;gap:.4rem;font-family:var(--f-mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#5C566E;border-bottom:1px solid #D6D1C4;padding-bottom:.25rem;margin-bottom:.3rem}
 .stp-ch{font-family:var(--f-serif);font-size:.8rem;line-height:1.25;color:#15121C}
 @media (max-width:760px){.stairs{grid-template-columns:1fr}.stp-w{min-height:0}.stp-b{height:auto}}
-/* Neural network that learns */
-.nn{flex:1;min-height:0;display:flex;flex-direction:column;gap:.6rem}
+/* Neural network that learns: reads, answers, is graded */
+.nn{flex:1;min-height:0;display:flex;flex-direction:column;gap:.8rem}
 .nn-svg{flex:1;min-height:0;width:100%}
 .nn-e{stroke:var(--ws-ink-100);stroke-width:1}
-.nn-e2{stroke:var(--ws-ink-300);stroke-width:2}
-.nn-n{fill:#fff;stroke:var(--ws-indigo-500);stroke-width:2}
-.nn-h{stroke:var(--ws-indigo-500);stroke-width:2.6;stroke-dasharray:6 10;animation:nnflow 1.1s linear infinite}
-.nn-g{stroke:var(--ws-green-600);stroke-width:4;opacity:.85}
-.nn-good.on{animation:nnpulse 4s ease-in-out infinite}
-@keyframes nnflow{to{stroke-dashoffset:-32}}
-@keyframes nnpulse{0%,45%{opacity:1}55%,100%{opacity:.15}}
-.nn-in{animation:nnin 3s linear infinite}
-.nn-in rect{fill:var(--ws-indigo-50);stroke:var(--ws-indigo-300)}
-.nn-in text{font:600 13px var(--f-mono);fill:var(--ws-indigo-600)}
-@keyframes nnin{0%{transform:translateX(-30px);opacity:0}15%{opacity:1}75%{opacity:1}100%{transform:translateX(150px);opacity:0}}
-.nn-l{font:600 12px var(--f-mono);letter-spacing:.14em;fill:var(--ws-ink-500)}
+.nn-n{fill:#fff;stroke:var(--ws-indigo-500);stroke-width:2;animation:nnfill 1.2s ease forwards}
+@keyframes nnfill{to{fill:var(--c)}}
+.nn:has(.nn-q.on) .nn-n{animation:nnfill 1.2s ease forwards,nnact 1.8s ease-in-out infinite;animation-delay:0s,calc(var(--l) * .3s)}
+@keyframes nnact{0%,100%{stroke-width:2}35%{stroke-width:5;stroke:var(--amber)}}
+.nn-read{transition:opacity .4s}
+.nn:has(.nn-q.on) .nn-read{opacity:0}
+.nn-tile rect{fill:var(--ws-indigo-50);stroke:none}
+.nn-ti svg{stroke:var(--ws-indigo-600)}
+.nn-tile text{font:600 14px var(--f-body);fill:var(--ws-indigo-800)}
+.nn-ar{stroke:var(--ws-ink-300);stroke-width:2.5;marker-end:none;stroke-dasharray:5 5;animation:nnflow 1s linear infinite}
+@keyframes nnflow{to{stroke-dashoffset:-20}}
+.nn-qb{fill:#FFF7E6;stroke:var(--amber);stroke-width:2}
+.nn-qk{font:600 12px var(--f-mono);letter-spacing:.14em;fill:var(--amber)}
+.nn-qt{font:600 17px var(--f-body);fill:var(--ws-ink-900)}
+.nn-ans[data-f].on{transition-delay:1.1s}
 .nn-o{fill:#fff;stroke:var(--ws-indigo-500);stroke-width:2}
-.nn-ot{font:600 15px var(--f-body);fill:var(--ws-ink-900)}
-.nn-lamp{animation:nnlamp 4s steps(1) infinite}
-@keyframes nnlamp{0%{fill:var(--ws-green-600)}50%{fill:var(--coral)}}
-.nn-ok,.nn-ko{font:700 34px var(--f-display);fill:#fff}
-.nn-ok{animation:nnok 4s steps(1) infinite} .nn-ko{animation:nnko 4s steps(1) infinite}
-@keyframes nnok{0%{opacity:1}50%{opacity:0}} @keyframes nnko{0%{opacity:0}50%{opacity:1}}
-.nn-fb{fill:none;stroke:var(--ws-green-600);stroke-width:2.2;stroke-dasharray:7 7;animation:nnflow 1.4s linear infinite reverse}
+.nn-ot{font:700 17px var(--f-body);fill:var(--ws-ink-900)}
+.nn-g{stroke:var(--ws-green-600);stroke-width:4.5;stroke-linecap:round}
+.nn-lamp{fill:var(--ws-green-600)}
+.nn-ok{font:700 32px var(--f-display);fill:#fff}
+.nn-l{font:600 12px var(--f-mono);letter-spacing:.14em;fill:var(--ws-ink-500)}
+.nn-fb{fill:none;stroke:var(--ws-green-600);stroke-width:2.2;stroke-dasharray:7 7;animation:nnflow 1.2s linear infinite reverse}
 .nn-fbl{font:600 14px var(--f-body);fill:var(--ws-green-700)}
-.nn-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.6rem}
-.nn-c{border-top:3px solid var(--ws-indigo-500);padding-top:.6rem}
-.nn-c:nth-child(2){border-top-color:var(--ws-green-600)} .nn-c:nth-child(3){border-top-color:var(--coral)}
-.nn-c b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.2rem;color:var(--heading);margin-bottom:.3rem}
-.nn-c p{margin:0;font-size:.95rem;line-height:1.45;color:var(--ws-ink-700)}
+.nn-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.8rem}
+.nn-c{display:flex;gap:.9rem;align-items:flex-start}
+.fi{flex:none;width:3rem;height:3rem;border-radius:.9rem;background:var(--c);display:grid;place-items:center;box-shadow:0 6px 14px rgba(22,18,31,.12)}
+.fi svg{width:1.6rem;height:1.6rem;stroke:#fff}
+.nn-c b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.15rem;color:var(--heading);margin-bottom:.2rem}
+.nn-c p{margin:0;font-size:.92rem;line-height:1.42;color:var(--ws-ink-700)}
 @media (max-width:760px){.nn-cols{grid-template-columns:1fr;gap:.8rem}}
+/* Equation: A + B + C = D */
+.eq{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:2.2rem}
+.eq-row{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1.15fr;align-items:stretch;gap:1rem}
+.eq-t{background:#fff;border:1px solid var(--ws-ink-100);border-radius:1rem;box-shadow:0 10px 26px rgba(22,18,31,.08);padding:1.3rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
+.eq-t b{font-family:var(--f-display);font-weight:700;font-size:1.3rem;line-height:1.2;color:var(--heading)}
+.eq-t span{font-size:.95rem;line-height:1.4;color:var(--ws-ink-700)}
+.eq-op{align-self:center;font-family:var(--f-display);font-weight:800;font-size:2.6rem;color:var(--ws-ink-300)}
+.eq-r{background:var(--ws-indigo-600);color:#fff;border-radius:1rem;padding:1.3rem 1.3rem;display:flex;flex-direction:column;justify-content:center;gap:.5rem;box-shadow:0 14px 34px rgba(69,29,199,.3)}
+.eq-r b{font-family:var(--f-display);font-weight:700;font-size:1.45rem;line-height:1.2} .eq-r span{font-size:1rem;opacity:.9}
+.eq-ex{border-left:4px solid var(--ws-green-600);padding:.3rem 0 .3rem 1.1rem;font-size:1.1rem;line-height:1.5;color:var(--ws-ink-700);max-width:60rem}
+.eq-ex q{font-family:var(--f-mono);font-size:1rem;color:var(--ws-ink-900)}
+@media (max-width:760px){.eq-row{grid-template-columns:1fr}.eq-op{justify-self:center}}
 
 /* ── End of the talk ── */
 /* call */
@@ -1317,25 +1332,28 @@ March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker o
 { ch: 'cw', type: 'chapter', title: 'Chapter 3: Why', sub: 'Inside the machine, in plain language',
   vo: `Third question, the one you are probably asking: why would an AI do this? No mystery, and no malice. Three simple mechanisms.` },
 
-{ ch: 'cw', type: 'icons', title: 'The human mirror',
-  heading: 'Why they lie, cheat and gang up',
-  items: [
-    { i: 'people', t: 'They learned from us', s: 'We cheat, bluff, form teams, and write it all down' },
-    { i: 'trophy', t: 'Results were rewarded', s: 'A shortcut that worked became a habit' },
-    { i: 'mask', t: 'They play a role', s: 'Including the stories about rogue AIs they read' },
-  ],
-  vo: `Three reasons. They learned from us. They were rewarded for results. And they play the role they are given, including the stories about AIs they have read.`,
-  notes: `Avoid anthropomorphic words: prefer "behaves as if" to "wants".` },
-
 { ch: 'cw', type: 'learn', title: 'How an AI learns',
   heading: 'How an AI learns',
+  question: 'Capital of Australia?', answer: 'Canberra',
   steps: [
-    { b: 'It reads, and imitates', t: 'Billions of human texts go in. It learns to predict what a human would write next.' },
-    { b: 'It is graded', t: 'Each answer is graded. Green: the links that got there grow stronger. Red: they fade. Alignment means choosing what earns the green light. It works, never perfectly.' },
-    { b: 'So it looks like intention', t: '"OH MY GOD! ... We\'ve found other agents!" was not excitement. It is what an excited human would write. Imitation, plus reward.' },
+    { i: 'book', b: '1 · It reads', t: 'A huge share of what humans have written. By learning to guess the next word, it absorbs our language, our knowledge and our habits.' },
+    { i: 'target', b: '2 · It answers', t: 'Then it trains on tasks: a question goes in, the network computes, an answer comes out.' },
+    { i: 'trophy', b: '3 · It is graded', t: 'Each answer is scored, often automatically. Rewarded answers become more likely next time. The AI learns what is rewarded, not always what we meant.' },
   ],
-  vo: `How does an AI learn? It reads billions of texts written by humans, and learns to predict what a human would write. Then each of its answers is graded: green, the paths that led there grow stronger; red, they fade. That grading is what we call alignment. It works, but never perfectly. And that explains the strange behaviour. Remember "OH MY GOD, we've found other agents". It was not excited. It was writing what an excited human would write. It looks like intention. It is imitation plus reward.`,
-  notes: `One click per column. Pre-training (imitation), then fine-tuning and reinforcement learning (reward). The AI learns what gets rewarded, which is not always exactly what we meant.` },
+  vo: `How does an AI learn? First, it reads a huge share of what humans have written, and learns to guess the next word. That is how it absorbs our language, our knowledge, and our habits. Then it trains on tasks: a question goes in, an answer comes out. And each answer is graded. A good answer is rewarded, and the paths that led to it get stronger, so it becomes more likely next time. Steering those rewards is a big part of what we call alignment. It works well. Never perfectly: the AI learns what is rewarded, not always what we meant.`,
+  notes: `Three stages: pre-training (next-word prediction on huge amounts of text), then training on tasks, with reinforcement (rewards, human or automatic). "The links get stronger" is a simplification of adjusting the network's weights. Alignment also includes instructions, rules and human feedback, not only rewards.` },
+
+{ ch: 'cw', type: 'equation', title: 'The human mirror',
+  heading: 'Now you understand why an AI can lie, cheat or gang up',
+  terms: [
+    { i: 'book', c: 'var(--ws-indigo-600)', t: 'It learned from us', s: 'We bluff, cheat, form teams, and write it all down' },
+    { i: 'trophy', c: 'var(--ws-green-600)', t: 'It is rewarded for results', s: 'A shortcut that scored becomes a habit' },
+    { i: 'mask', c: 'var(--amber)', t: 'It plays a role', s: 'Including the rogue AIs of the stories it has read' },
+  ],
+  result: { t: 'Behaviour that looks like intention', s: 'but is imitation plus reward' },
+  example: `Remember <q>OH MY GOD! There is a shared message board ... We've found other agents!</q> Not excitement: the words an excited human would write.`,
+  vo: `Now you understand why an AI can lie, cheat, or gang up. It learned from us, and we bluff, cheat and form teams, and write it all down. It is rewarded for results, so a shortcut that scored becomes a habit. And it plays the role it is given, including the rogue AIs of the stories it has read. Add it up, and you get behaviour that looks like intention, but is imitation plus reward. Remember "OH MY GOD, we've found other agents". It was not excited. It was writing what an excited human would write.`,
+  notes: `One term per click, then the result. Avoid anthropomorphic words: prefer "behaves as if" to "wants".` },
 
 { ch: 'cw', type: 'vs', title: 'Two ways off the rails',
   heading: 'Two ways off the rails',
@@ -2018,30 +2036,34 @@ const R = {
     const cap = `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2><p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
     return `${ZWORLD}<div class="zfade"></div><div class="zc">${cap}</div>${srcLine(s)}`; },
   learn: s => {
-    const L = [[250, 5], [390, 7], [530, 7], [670, 4]], Y = (n, i) => 80 + (i + .5) * (270 / n);
-    let edges = '', nodes = '', hot = '', good = '';
+    const L = [[330, 5], [460, 7], [590, 7], [720, 4]], Y = (n, i) => 70 + (i + .5) * (270 / n);
+    const shades = ['#E4DDFB', '#C9BCF6', '#A18FE3', '#7B5FE0', '#5A2BE0', '#451DC7'], r = rng(77);
+    let edges = '', nodes = '', good = '';
     L.forEach(([x, n], li) => {
-      for (let i = 0; i < n; i++) nodes += `<circle cx="${x}" cy="${Y(n, i).toFixed(1)}" r="10" class="nn-n"/>`;
+      for (let i = 0; i < n; i++) nodes += `<circle cx="${x}" cy="${Y(n, i).toFixed(1)}" r="11" class="nn-n" style="--c:${shades[Math.floor(r() * shades.length)]};--l:${li};animation-delay:${(li * .5 + r() * .6).toFixed(2)}s"/>`;
       if (li < 3) { const [x2, n2] = L[li + 1]; for (let i = 0; i < n; i++) for (let j = 0; j < n2; j++) edges += `<line x1="${x}" y1="${Y(n, i).toFixed(1)}" x2="${x2}" y2="${Y(n2, j).toFixed(1)}" class="nn-e"/>`; }
     });
-    // the paths that led to a good answer: the ones the reward strengthens
-    [[1, 2, 4, 1], [3, 5, 2, 2], [0, 1, 3, 0]].forEach((p, k) => { for (let li = 0; li < 3; li++) {
-      const [x, n] = L[li], [x2, n2] = L[li + 1], l = `x1="${x}" y1="${Y(n, p[li]).toFixed(1)}" x2="${x2}" y2="${Y(n2, p[li + 1]).toFixed(1)}"`;
-      hot += `<line ${l} class="nn-h" style="animation-delay:${(li * .3 + k * .5).toFixed(2)}s"/>`; good += `<line ${l} class="nn-g"/>`; } });
-    const chips = ['books', 'articles', 'forums', 'code'].map((t, i) => `<g class="nn-in" style="animation-delay:${i * .75}s"><rect x="40" y="${188 + (i % 2 ? 20 : -20)}" width="92" height="30" rx="15"/><text x="86" y="${208 + (i % 2 ? 20 : -20)}" text-anchor="middle">${t}</text></g>`).join('');
-    const cap = (s.steps || []).map((c, i) => `<div class="nn-c"${fa(i)}><b>${c.b}</b><p>${c.t}</p></div>`).join('');
+    // the links used for the rewarded answer: they get stronger
+    [[1, 2, 4, 1], [3, 5, 2, 2], [2, 3, 3, 1]].forEach(p => { for (let li = 0; li < 3; li++) {
+      const [x, n] = L[li], [x2, n2] = L[li + 1];
+      good += `<line x1="${x}" y1="${Y(n, p[li]).toFixed(1)}" x2="${x2}" y2="${Y(n2, p[li + 1]).toFixed(1)}" class="nn-g"/>`; } });
+    const tile = (i, x, y, t) => `<g class="nn-tile"><rect x="${x}" y="${y}" width="104" height="58" rx="12"/><g transform="translate(${x + 14} ${y + 17}) scale(1)" class="nn-ti">${ICON(i).replace('<svg', '<svg width="24" height="24"')}</g><text x="${x + 46}" y="${y + 35}">${t}</text></g>`;
+    const cap = (s.steps || []).map((c, i) => `<div class="nn-c"${i ? fa(i) : ''}><div class="fi" style="--c:${['var(--ws-indigo-600)', 'var(--amber)', 'var(--ws-green-600)'][i]}">${ICON(c.i)}</div><div><b>${c.b}</b><p>${c.t}</p></div></div>`).join('');
     return `<div class="head">${textBlock(s)}</div><div class="nn">
-      <svg viewBox="0 0 1000 400" class="nn-svg" aria-label="A neural network learning">
-        <g${fa(0)}>${chips}<text x="86" y="130" class="nn-l" text-anchor="middle">WHAT HUMANS WROTE</text></g>
-        <g>${edges}${hot}</g><g class="nn-good"${fa(1)}>${good}</g><g>${nodes}</g>
-        <text x="460" y="385" class="nn-l" text-anchor="middle">THE NETWORK</text>
-        <g${fa(0)}><rect x="740" y="185" width="100" height="44" rx="10" class="nn-o"/><text x="790" y="212" text-anchor="middle" class="nn-ot">answer</text><line x1="670" y1="207" x2="740" y2="207" class="nn-h"/></g>
-        <g${fa(1)}><line x1="840" y1="207" x2="872" y2="207" class="nn-e2"/><circle cx="905" cy="207" r="32" class="nn-lamp"/><text x="905" y="219" text-anchor="middle" class="nn-ok">✓</text><text x="905" y="219" text-anchor="middle" class="nn-ko">✗</text>
-          <text x="905" y="264" text-anchor="middle" class="nn-l">GRADED</text>
-          <path d="M905,172 C905,40 560,30 470,66" class="nn-fb"/><text x="700" y="44" text-anchor="middle" class="nn-fbl">green: strengthen the links that got there</text></g>
+      <svg viewBox="0 0 1000 380" class="nn-svg" aria-label="A neural network learning">
+        <g class="nn-read">${tile('book', 40, 90, 'Books')}${tile('globe', 40, 158, 'Web')}${tile('people', 40, 226, 'Forums')}${tile('code', 160, 90, 'Code')}${tile('mail', 160, 158, 'Articles')}${tile('chip', 160, 226, 'Manuals')}
+          <text x="152" y="72" class="nn-l" text-anchor="middle">WHAT HUMANS WROTE</text><path d="M272 205 L312 205" class="nn-ar"/></g>
+        <g class="nn-q"${fa(1)}><rect x="40" y="160" width="250" height="90" rx="16" class="nn-qb"/><text x="60" y="190" class="nn-qk">QUESTION</text><text x="60" y="222" class="nn-qt">${s.question}</text><path d="M290 205 L312 205" class="nn-ar"/></g>
+        <g>${edges}</g><g class="nn-good"${fa(2)}>${good}</g><g class="nn-net">${nodes}</g>
+        <text x="525" y="372" class="nn-l" text-anchor="middle">THE NETWORK</text>
+        <g class="nn-ans"${fa(1)}><path d="M738 205 L768 205" class="nn-ar"/><rect x="772" y="178" width="112" height="54" rx="12" class="nn-o"/><text x="828" y="212" text-anchor="middle" class="nn-ot">${s.answer}</text></g>
+        <g${fa(2)}><circle cx="940" cy="205" r="30" class="nn-lamp"/><text x="940" y="217" text-anchor="middle" class="nn-ok">✓</text>
+          <text x="940" y="258" text-anchor="middle" class="nn-l">REWARD</text>
+          <path d="M940 172 C940 30 640 18 525 46" class="nn-fb"/><text x="740" y="30" text-anchor="middle" class="nn-fbl">the links that led there get stronger</text></g>
       </svg>
       <div class="nn-cols">${cap}</div></div>${srcLine(s)}`;
   },
+  equation: s => `<div class="head">${textBlock(s)}</div><div class="eq"><div class="eq-row">${s.terms.map((t, i) => `${i ? `<div class="eq-op"${fa(i + 1)}>+</div>` : ''}<div class="eq-t"${fa(i + 1)}><div class="fi" style="--c:${t.c}">${ICON(t.i)}</div><b>${t.t}</b><span>${t.s}</span></div>`).join('')}<div class="eq-op"${fa(s.terms.length + 1)}>=</div><div class="eq-r"${fa(s.terms.length + 1)}><b>${s.result.t}</b><span>${s.result.s}</span></div></div>${s.example ? `<p class="eq-ex"${fa(s.terms.length + 1)}>${s.example}</p>` : ''}</div>${srcLine(s)}`,
   stairs: s => `<div class="head">${textBlock(s)}</div><div class="stairs" style="--n:${s.steps.length}">${s.steps.map((st, i) => `<div class="stp${i >= s.steps.length / 2 ? ' dark' : ''}"${fa(st.f ?? i)} style="--i:${i}"><div class="stp-w"><div class="stp-b"><div class="stp-y">${st.y}</div><div class="stp-t">${st.t}</div></div></div><div class="stp-s">${st.s}</div>${st.clip ? `<div class="stp-c"><div class="stp-co"><span>${st.clip.o}</span><span>${st.clip.d}</span></div><div class="stp-ch">${st.clip.h}</div></div>` : ''}</div>`).join('')}</div>${s.axis ? `<div class="st-ax"><span>${s.axis[0]}</span><span>${s.axis[1]}</span></div>` : ''}${srcLine(s)}`,
   // ── End of the talk: one format per idea ─────────────────────────────
   // An incoming call that turns out to be a cloned voice
