@@ -14,11 +14,12 @@ version; `ai-fr.html` keeps the French one.
 | # | Chapter | Minutes | Content |
 |---|---------|---------|---------|
 | 00 | Prologue | 0 - 2 | Cold open on Hugging Face's disclosure (16 July 2026) |
-| 01 | The Exam | 2 - 10 | OpenAI / Hugging Face in plain language: the goal, agents talking to each other, the warning nobody acted on, the imaginary referee |
-| 02 | The Wave | 10 - 17 | Press montage, the numbers behind it, a world map, the mechanism (an ordinary task, a break-in), Google, then Australia and the 84-day delay |
-| 03 | The Body | 17 - 20 | Humanoid robots: the doors they open, first warning signs, lessons that carry over |
-| 04 | You | 20 - 26 | Fake parcels with generated photos, AI-written scam emails, the Arup deepfake, fake evidence |
-| 05 | What Works | 26 - 30 | Five reflexes (including "use AI to help you", shown in a demo), three questions for leaders, what worked |
+| 01 | The Exam | 2 - 9 | OpenAI / Hugging Face in plain language: the goal, agents talking to each other, the warning nobody acted on, the imaginary referee |
+| 02 | The Wave | 9 - 14 | Press montage, the numbers behind it, a world map, the mechanism (an ordinary task, a break-in), Google, then Australia and the 84-day delay |
+| 03 | Why It Derails | 14 - 19 | How an AI learns (read, imitate, get rewarded) and what alignment is; derailing on its own vs. prompt injection, with a hidden-instruction email; why AIs seem to lie, cheat and organise; what researchers had already seen in the lab |
+| 04 | The Body | 19 - 21 | Humanoid robots: the doors they open, first warning signs, lessons that carry over |
+| 05 | You | 21 - 26 | Fake parcels with generated photos, AI-written scam emails, the Arup deepfake, fake evidence |
+| 06 | What Works | 26 - 30 | Five reflexes (including "use AI to help you", shown in a demo), three questions for leaders, what worked |
 
 Written for a general audience: plain language on screen, technical detail in
 the speaker notes for questions. `ai-fr.html` is the earlier French iteration
