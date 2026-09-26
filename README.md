@@ -6,24 +6,25 @@ reusable tool.
 
 ## ai.html · Out of the Sandbox
 
-A 30-minute interactive documentary for an AI-risk awareness session in front
+A 40-minute interactive documentary for an AI-risk awareness session in front
 of large organisations, told the way an investigative TV magazine would: the
-presenter clicks through, no voice-over required. `ai.html` is the English
-version; `ai-fr.html` keeps the French one.
+presenter clicks through, no voice-over required. It opens on one case
+(OpenAI / Hugging Face) and ends with what each person can do. `ai.html` is the
+English version; `ai-fr.html` keeps the first French iteration.
 
 | # | Chapter | Minutes | Content |
 |---|---------|---------|---------|
 | 00 | Prologue | 0 - 2 | Cold open on Hugging Face's disclosure (16 July 2026) |
-| 01 | The Exam | 2 - 9 | OpenAI / Hugging Face in plain language: the goal, agents talking to each other, the warning nobody acted on, the imaginary referee |
-| 02 | The Wave | 9 - 14 | Press montage, the numbers behind it, a world map, the mechanism (an ordinary task, a break-in), Google, then Australia and the 84-day delay |
-| 03 | Why It Derails | 14 - 19 | How an AI learns (read, imitate, get rewarded) and what alignment is; derailing on its own vs. prompt injection, with a hidden-instruction email; why AIs seem to lie, cheat and organise; what researchers had already seen in the lab |
-| 04 | The Body | 19 - 21 | Humanoid robots: the doors they open, first warning signs, lessons that carry over |
-| 05 | You | 21 - 26 | Fake parcels with generated photos, AI-written scam emails, the Arup deepfake, fake evidence |
-| 06 | What Works | 26 - 30 | Five reflexes (including "use AI to help you", shown in a demo), three questions for leaders, what worked |
+| 01 | The Exam | 2 - 10 | OpenAI / Hugging Face in plain language: the goal, agents talking to each other, the warning nobody acted on, the imaginary referee |
+| 02 | The Wave | 10 - 15 | Press montage, the numbers behind it, a world map, the mechanism (an ordinary task, a break-in), Google, then Australia and the 84-day delay |
+| 03 | Why It Derails | 15 - 21 | How an AI learns and what alignment is; derailing on its own vs. prompt injection, with a hidden-instruction email; why AIs seem to lie, cheat and organise; what researchers had already seen in the lab |
+| 04 | The Attackers Level Up | 21 - 27 | Classic attackers using AI: a spying campaign run mostly by AI, one extortionist and 17 victims, fake employees, the Ferrari deepfake stopped by one question, malware that asks an AI, the new pace of attacks |
+| 05 | The Body | 27 - 30 | Humanoid robots: the doors they open, first warning signs, lessons that carry over |
+| 06 | You | 30 - 35 | Fake parcels with generated photos, AI-written scam emails, the Arup deepfake, fake evidence |
+| 07 | What Works | 35 - 40 | Five reflexes; AI on your side, to clear a doubt and to think about your risks; three questions for leaders; what worked |
 
 Written for a general audience: plain language on screen, technical detail in
-the speaker notes for questions. `ai-fr.html` is the earlier French iteration
-(first structure).
+the speaker notes for questions.
 
 Every scene carries its source on screen, a narrator's script (what to say, and
 the basis for a later voice-over) and speaker notes. Controls: `→` / `←` (or a
