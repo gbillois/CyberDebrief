@@ -14,22 +14,30 @@ surface for title, chapter and closing cards. Tokens are inlined from
 stay offline.
 
 The entry point for the AI-risk session: links to the visual talk
-(`ai-talk.html`, recommended on stage), the full documentary (`ai.html`), the
+(`ai-talk.html`, recommended on stage), its photo edition
+(`ai-talk-photos.html`), the full documentary (`ai.html`), the
 first French iteration (`ai-fr.html`) and the OpenAI / Hugging Face deep dives
 (`OAHF*.html`). Offline like the rest.
 
 ## ai-talk.html · Out of the Sandbox, the talk
+
+`ai-talk-photos.html` is the same talk with full-screen photography (chapter
+openers, recaps, places on the maps). It is generated, never edited by hand:
+run `python3 tools/build-talk-photos.py` after changing `ai-talk.html` or
+`assets/ai/photos/photoset.js`.
 
 The same 40-minute story told like a TED talk. It opens on its question,
 "How is the threat changing with AI, and what can we do?", then on the date
 and on Hugging Face realising this is not a normal attacker. There is no
 agenda slide: it is built around eight questions, one per chapter; each
 chapter card shows the question, a progress rail and the previous chapter's
-answer, and each chapter ends on its answer in one sentence; a final screen
-replays all eight. The flow: the Hugging Face case, the wave of similar
-cases, why an AI derails, the debate on AI rules, then the other half of the
-problem, attackers using AI: against companies, as a ladder from one fake
-video call (Arup) to swarms of AI agents, then against each of us (phishing,
+answer, and each chapter ends on its answer in one sentence; the last screen,
+left up during the questions, shows all eight questions and answers. The flow:
+the Hugging Face case, the wave of similar cases, why an AI derails (prompt
+injection included), the debate on AI rules, then the other half of the
+problem, attackers using AI: against companies, on a world map with a key
+figure per case, from one fake video call (Arup) to swarms of AI agents, then
+against each of us (phishing,
 fake parcels, cloned voices of loved ones), robots in
 between, and what works.
 Chapter 1 tells the Hugging Face case the way `OAHF-zoom.html` does: one

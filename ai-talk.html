@@ -1206,6 +1206,32 @@ svg.robot .ai-last text{fill:var(--coral)} svg.robot .ai-last .ld{stroke:var(--c
 .cr2 dl div:last-child dd{font-weight:700;color:var(--coral)}
 .ug ~ .src *{color:inherit}
 @media (max-width:760px){.cr2{grid-template-columns:1fr;gap:2rem}.cr2-h{font-size:2.2rem}.sw-stat b{font-size:4rem}.scene:has(.an) .h,.scene:has(.tc) .h,.scene:has(.sk) .h,.sw-sp .h,.kr-sp .h{font-size:2.2rem}}
+/* Photo edition (ai-talk-photos.html): photo layers, off unless a scene has `bg` */
+.scene.has-bg{isolation:isolate}
+.pbg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#0E0A1F}
+.pbg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 12s cubic-bezier(.2,.6,.3,1)}
+.scene.live .pbg img{transform:scale(1)}
+.pbg::after{content:'';position:absolute;inset:0}
+.pbg-c{position:absolute;right:1.4rem;bottom:3.3rem;z-index:2;font-family:var(--f-mono);font-size:.58rem;letter-spacing:.03em;color:rgba(255,255,255,.62);text-shadow:0 1px 2px rgba(0,0,0,.6)}
+/* brand: the photo in Wavestone indigo, for title and chapter screens */
+.pb-brand img{filter:saturate(.55) contrast(1.08) brightness(.82)}
+.pb-brand::after{background:linear-gradient(100deg,rgba(30,13,87,.97) 0%,rgba(40,17,115,.9) 34%,rgba(55,24,160,.55) 62%,rgba(69,29,199,.18) 100%),linear-gradient(0deg,rgba(20,8,60,.55),transparent 40%)}
+.scene.bgm-brand .bgmap{opacity:.25}
+/* dark: the photo full-bleed, text in white */
+.pb-dark::after{background:linear-gradient(180deg,rgba(10,6,30,.5) 0%,rgba(10,6,30,.62) 50%,rgba(10,6,30,.9) 100%)}
+.scene.bgm-dark{color:#fff}
+.scene.bgm-dark :is(.h,.wd-t,.wd-s,.dt-big,.dt-sub,.ask-q,.ask-k,.ask-a b,.ask-a p,.rc-a,.rc-q,.lede,.kicker,.nb b,.nb p,.cl-a,.cl-b){color:#fff}
+.scene.bgm-dark .src{color:rgba(255,255,255,.65)}
+/* side: the photo on the right, fading into the page */
+.pb-side{left:auto;width:46%;background:#fff}
+.pb-side::after{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.55) 16%,rgba(255,255,255,0) 42%)}
+.scene.bgm-side > :not(.pbg):not(.src):not(.vo){max-width:56%}
+.scene.bgm-side .pbg-c{color:rgba(255,255,255,.8)}
+/* a photo on top of a map bubble */
+.mb-ph{position:relative;height:9.5rem;margin:0 0 .8rem;border-radius:.5rem;overflow:hidden;background:#EEE}
+.mb-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.mb-ph span{position:absolute;right:.45rem;bottom:.3rem;font-family:var(--f-mono);font-size:.52rem;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.8)}
+@media (max-width:760px){.pb-side{width:100%;opacity:.25}.scene.bgm-side > :not(.pbg):not(.src):not(.vo){max-width:none}}
 /* Zoom: old labels vanish at once, new ones wait for the camera */
 .zw .zlb{transition:opacity .5s ease 1.5s}
 .zw .zlb.off{transition:opacity .12s ease 0s}
@@ -2117,6 +2143,10 @@ const PHOTO = {
 };
 const photoCredits = s => { const ids = [s.img, s.photo && s.photo.id, ...(s.people || []).map(p => p.img), ...(s.voices || []).map(p => p.img)].filter(k => k && PHOTO[k]);
   return ids.length ? `Photo${ids.length > 1 ? 's' : ''}: ${[...new Set(ids)].map(k => PHOTO[k]).join(' · ')}, via Wikimedia Commons` : ''; };
+// Photo edition: a full-bleed or side photo behind a scene, and photos in map bubbles
+const photoLayer = b => `<div class="pbg pb-${b.mode || 'dark'}"><img src="${b.src}" alt="" style="object-position:${b.pos || '50% 50%'}" onerror="photoMissing(this)">${PHOTO[b.id] ? `<span class="pbg-c">Photo: ${PHOTO[b.id]}</span>` : ''}</div>`;
+window.photoMissing = img => { const sc = img.closest('.scene'); if (sc) sc.classList.remove('has-bg', 'bgm-dark', 'bgm-side', 'bgm-brand'); img.parentNode.remove(); };
+const bubblePhoto = b => b ? `<div class="mb-ph"><img src="${b.src}" alt="" style="object-position:${b.pos || '50% 50%'}" onerror="this.parentNode.remove()">${PHOTO[b.id] ? `<span>${PHOTO[b.id]}</span>` : ''}</div>` : '';
 const srcLine = s => { const t = [s.src, photoCredits(s)].filter(Boolean).join(' · '); return t ? `<div class="src">${t}</div>` : ''; };
 const R = {
   cold: s => `<div class="cold">${s.lines.map((l, i) => { const o = typeof l === 'string' ? { t: l } : l; return `<p class="cold-l ${o.cls || ''}"${fa(i)}>${o.t}</p>`; }).join('')}</div>${srcLine(s)}`,
@@ -2270,7 +2300,7 @@ const R = {
     const full = s.layout === 'full';
     const bullets = s.bullets ? `<ul class="bul cols">${s.bullets.map(b => `<li${fa(b.f)}>${b.t}</li>`).join('')}</ul>` : '';
     // tour: one bubble per step, next to the place the camera flies to
-    const bubbles = (s.bubbles || []).map(b => `<div class="mb t-${b.tone || 'coral'}${b.media ? ' mb-big' : ''}" data-f="${b.k}" data-k="${b.k}">${b.fig ? `<div class="mb-fig"><b>${b.fig}</b><span>${b.figl}</span></div>` : ''}<div class="mb-body"><div class="mb-d">${b.d}</div><div class="mb-t">${b.t}</div>${b.s ? `<div class="mb-s">${b.s}</div>` : ''}${b.media ? media(b.media) : ''}</div></div>`).join('');
+    const bubbles = (s.bubbles || []).map(b => `<div class="mb t-${b.tone || 'coral'}${b.media ? ' mb-big' : ''}" data-f="${b.k}" data-k="${b.k}">${b.fig ? `<div class="mb-fig"><b>${b.fig}</b><span>${b.figl}</span></div>` : ''}<div class="mb-body">${bubblePhoto(b.photo)}<div class="mb-d">${b.d}</div><div class="mb-t">${b.t}</div>${b.s ? `<div class="mb-s">${b.s}</div>` : ''}${b.media ? media(b.media) : ''}</div></div>`).join('');
     return `<svg class="map" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" aria-label="Map"><path class="grat" d="${g}"/>${land}${arcs}${pins}</svg>
       <div class="map-panel${full ? ' full' : ''}${s.layout === 'tour' ? ' tour' : ''}">${textBlock(s)}${bullets}<div class="legend">${legend}</div></div>${bubbles}${srcLine(s)}`;
   },
@@ -2618,6 +2648,7 @@ function render(i, k) {
   el.className = `scene t-${s.type}${s.tone === 'black' ? ' bg-black' : ''}`;
   document.body.classList.toggle('brand', ['title', 'chapter', 'closing'].includes(s.type));
   el.innerHTML = R[s.type](s) + (say(s) ? `<div class="vo">${say(s)}</div>` : '');
+  if (s.bg) { el.classList.add('has-bg', 'bgm-' + (s.bg.mode || 'dark')); el.insertAdjacentHTML('afterbegin', photoLayer(s.bg)); }
   el._max = maxF(el);
   stage.appendChild(el);
   if (s.type === 'map') mountMap(el, s);
