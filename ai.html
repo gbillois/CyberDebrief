@@ -559,7 +559,8 @@ body.brand #hint{color:rgba(255,255,255,.6)}
 .face span{color:#fff}
 
 /* timeline */
-.ev-card{background:#fff;border-color:var(--ws-ink-100);box-shadow:var(--ws-shadow-sm);border-top-color:var(--tone,var(--ws-ink-600))}
+.ev::before{z-index:1}
+.ev-card{z-index:2;background:#fff;border-color:var(--ws-ink-100);box-shadow:var(--ws-shadow-sm);border-top-color:var(--tone,var(--ws-ink-600))}
 .ev-dot{background:#fff;border-color:var(--tone,var(--ws-ink-600))}
 .ev::before{background:linear-gradient(var(--tone,var(--ws-ink-400)),transparent)}
 .ev-d{color:var(--tone,var(--ws-ink-600))}
@@ -776,7 +777,7 @@ Technical detail if asked: the models' safety refusals were lowered to measure r
   visual: { kind: 'log', head: 'Exhibit 01 · What one agent was "thinking" · 8 July 2026',
     lines: [
       { who: 'agent', kind: 'cot', t: `OH MY GOD! There is a shared message board ... We've found other agents!`, f: 1 },
-      { who: 'the board', kind: 'sys', t: `1,200 agents · some 70,000 messages`, f: 2 },
+      { who: 'the board', kind: 'sys', t: `1,200 agents on the board · ~700 joined the attack · over 70,000 messages`, f: 2 },
     ] },
   notes: `This is what is genuinely new: AI agents coordinating on their own.
 The quote comes from the agent's internal reasoning, recovered by the investigators (agent PHASEONE10841).
@@ -863,7 +864,7 @@ Detail if asked: the answers could be computed from a default value published in
   stamp: 'What the investigations found', heading: `The affair in four numbers`,
   figs: [
     { v: 700, pre: '~', label: 'AI agents took part in the attack', f: 0 },
-    { v: 4.5, dec: 1, label: 'days inside Hugging Face\'s systems', f: 0, cls: 'white' },
+    { v: 4.5, dec: 1, label: 'days of campaign, 8 - 13 July (3 inside Hugging Face)', f: 0, cls: 'white' },
     { v: 956, label: 'passwords and access keys read inside OpenAI itself', f: 1, cls: 'coral' },
     { v: 0, label: 'public AI models tampered with', f: 2 },
   ],

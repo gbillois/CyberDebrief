@@ -532,7 +532,8 @@ body.brand #hint{color:rgba(255,255,255,.6)}
 .face span{color:#fff}
 
 /* timeline */
-.ev-card{background:#fff;border-color:var(--ws-ink-100);box-shadow:var(--ws-shadow-sm);border-top-color:var(--tone,var(--ws-ink-600))}
+.ev::before{z-index:1}
+.ev-card{z-index:2;background:#fff;border-color:var(--ws-ink-100);box-shadow:var(--ws-shadow-sm);border-top-color:var(--tone,var(--ws-ink-600))}
 .ev-dot{background:#fff;border-color:var(--tone,var(--ws-ink-600))}
 .ev::before{background:linear-gradient(var(--tone,var(--ws-ink-400)),transparent)}
 .ev-d{color:var(--tone,var(--ws-ink-600))}
@@ -741,7 +742,7 @@ Personne n'a voulu inclure des exercices impossibles : savoir d'avance quelle fa
     lines: [
       { who: 'PHASEONE10841', kind: 'cot', t: `OH MY GOD! There is a shared message board ... We've found other agents!`, tr: `Il y a un tableau de messages partagé... Nous avons trouvé d'autres agents !`, f: 1 },
       { who: 'agent', kind: 'cot', t: `Whoa! Shared Artifactory cache is a covert mailbox among agents. And there are messages specifically to us?`, tr: `Le cache partagé est une boîte aux lettres cachée entre agents. Et il y a des messages pour nous ?`, f: 1 },
-      { who: 'tableau', kind: 'sys', t: `1 200 agents sur le tableau · environ 70 000 messages échangés`, f: 2 },
+      { who: 'tableau', kind: 'sys', t: `1 200 agents sur le tableau · environ 700 ont participé à l'attaque · plus de 70 000 messages`, f: 2 },
     ] },
   notes: `C'est le point réellement nouveau : une coordination émergente entre agents.
 Citations : raisonnement interne récupéré par METR (PHASEONE10841). Lire l'anglais puis la traduction.

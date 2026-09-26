@@ -22,7 +22,11 @@ first French iteration (`ai-fr.html`) and the OpenAI / Hugging Face deep dives
 
 The same 40-minute story told like a TED talk. It opens on the date and on
 Hugging Face realising this is not a normal attacker, then steps back three
-months to tell the whole story. One idea per screen: big words
+months to tell the whole story. It is built around seven questions, one per
+chapter: each chapter card shows the question, a progress rail and the
+previous chapter's answer, and each chapter ends on its answer in one
+sentence; a final screen replays all seven. Full timelines for each part.
+One idea per screen: big words
 and numbers, pictograms, flow diagrams, maps and video clips. Long text stays
 only where it is needed (quotes, the advice). Everything the presenter says
 is in the presenter view (`P`), with facts and sources for questions in the
