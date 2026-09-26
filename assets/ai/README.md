@@ -83,6 +83,10 @@ Used by the talk (`ai-talk.html`) and its photo edition (`ai-talk-photos.html`).
 |---|---|---|---|
 | `photos/un-chamber.jpg` | UN Security Council chamber, New York | James D. Forrester, CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:United_Nations_Headquarters_-_Security_Council_chamber,_straight-on_view.jpg) |
 | `photos/unitree-go2.jpg` | Unitree Go2 robot dog | HotNews Romania (Adi Iacob, Ovidiu Popica), CC BY 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Unitree_Go2_of_Salvamont_side_view.jpg) |
+| `photos/openai-hq.jpg` | OpenAI offices, Mission Bay, San Francisco (former Uber campus, photo 2020) | HaeB, CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Uber_offices,_Mission_Bay_(July_2020)_-1.jpg) |
+| `photos/hf-hq.jpg` | 20 Jay Street, Brooklyn (Hugging Face headquarters) | Jim Henderson, CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:20_Jay_Street_jeh.jpg) |
+
+Press images, credited on screen: `press/unitree-amazon.jpg` (Amazon listing, screenshot from [boschko.ca](https://boschko.ca/unitree-go2-rce/)), `press/renault-calvin.jpg` ([Renault Group](https://www.renaultgroup.com/en/magazine/technology/calvin-a-new-generation-robot-is-born/)), `press/figure-bed.jpg` (Figure AI, via [Interesting Engineering](https://interestingengineering.com/ai-robotics/humanoids-team-up-to-make-a-bed)).
 
 ### Photo edition (Unsplash, included)
 
@@ -91,11 +95,11 @@ Used by the talk (`ai-talk.html`) and its photo edition (`ai-talk-photos.html`).
 | File | Photographer | Source |
 |---|---|---|
 | `photos/racks.jpg` | Taylor Vick | [Unsplash](https://unsplash.com/photos/M5tzZtFCOfs) |
-| `photos/racks-side.jpg` | imgix | [Unsplash](https://unsplash.com/photos/klWUhr-wPJ8) |
+| `photos/servers.jpg` | Tyler | [Unsplash](https://unsplash.com/photos/vSprjjDbu60) |
 | `photos/earth-night.jpg` | NASA | [Unsplash](https://unsplash.com/photos/Q1p7bh3SHj8) |
 | `photos/chip.jpg` | Laura Ockel | [Unsplash](https://unsplash.com/photos/qOx9KsvpqcM) |
 | `photos/capitol.jpg` | Andy Feliciotti | [Unsplash](https://unsplash.com/photos/6kA9FjqUxhM) |
-| `photos/exam.jpg` | Nguyen Dang Hoang Nhu | [Unsplash](https://unsplash.com/photos/cbEvoHbJnIE) |
+| `photos/exam.jpg` | Nguyen Dang Hoang Nhu | [Unsplash](https://unsplash.com/photos/qDgTQOYk6B8) |
 | `photos/keyboard.jpg` | Clint Patterson | [Unsplash](https://unsplash.com/photos/dYEuFB8KQJk) |
 | `photos/humanoid.jpg` | Franck V. | [Unsplash](https://unsplash.com/photos/JjGXjESMxOY) |
 | `photos/phone.jpg` | Rodion Kutsaiev | [Unsplash](https://unsplash.com/photos/0VGG7cqTwCo) |
@@ -106,7 +110,6 @@ Used by the talk (`ai-talk.html`) and its photo edition (`ai-talk-photos.html`).
 | `photos/maranello.jpg` | Daniele Fotia | [Unsplash](https://unsplash.com/photos/8N47wnw9Cno) |
 | `photos/pyongyang.jpg` | Thomas Evans | [Unsplash](https://unsplash.com/photos/3dSv5LXts8A) |
 | `photos/kyiv.jpg` | Glib Albovsky | [Unsplash](https://unsplash.com/photos/sbPI02mZqxs) |
-| `photos/beijing.jpg` | chen zy | [Unsplash](https://unsplash.com/photos/Tk2-PENhSHo) |
 | `photos/taipei.jpg` | Mark Huang | [Unsplash](https://unsplash.com/photos/ttfr5T5hL6A) |
 | `photos/earth-side.jpg` | Carl Wang | [Unsplash](https://unsplash.com/photos/OCe8cTGymSQ) |
 | `photos/san-francisco.jpg` | Jamie Street | [Unsplash](https://unsplash.com/photos/MlctHHqC4nk) |

@@ -7,7 +7,7 @@
 Object.assign(PHOTO, {
   // Unsplash License (free to use); photographers credited on screen
   'racks': 'Taylor Vick on Unsplash',
-  'racks-side': 'imgix on Unsplash',
+  'servers': 'Tyler on Unsplash',
   'earth-night': 'NASA on Unsplash',
   'chip': 'Laura Ockel on Unsplash',
   'capitol': 'Andy Feliciotti on Unsplash',
@@ -36,7 +36,7 @@ const FILE = { go2: 'unitree-go2', unsc: 'un-chamber' };
 const PHOTOSET = {
   'Title':                              { bg: PH('racks', 'brand') },
   'Chapter 1: The Exam':                { bg: PH('exam', 'brand') },
-  'Chapter 1 in one sentence':          { bg: PH('racks-side', 'side') },
+  'Chapter 1 in one sentence':          { bg: PH('servers', 'side') },
   'Chapter 2: The Wave':                { bg: PH('earth-night', 'brand') },
   'Chapter 2 in one sentence':          { bg: PH('earth-side', 'side') },
   'Chapter 3: Why':                     { bg: PH('chip', 'brand') },
@@ -51,11 +51,11 @@ const PHOTOSET = {
   'Chapter 8: What Works':              { bg: PH('padlock', 'brand') },
   'Question for the room':              { bg: PH('audience', 'dark') },
   'Map of incidents': { bubbles: {
-    1: PH('new-mexico'), 2: PH('racks-side'), 3: PH('germany'),
+    1: PH('new-mexico'), 2: PH('servers'), 3: PH('germany'),
   } },
   'Attackers on the map': { bubbles: {
-    1: PH('hong-kong'), 2: PH('maranello'), 3: PH('pyongyang'), 4: PH('kyiv'), 5: PH('beijing'),
-    6: PH('racks'), 7: PH('taipei'), 8: PH('san-francisco'), 9: PH('payment'), 10: PH('earth-side'),
+    1: PH('hong-kong'), 2: PH('maranello'), 3: PH('pyongyang'), 4: PH('kyiv'), 5: PH('racks'),
+    6: PH('taipei'), 7: PH('san-francisco'), 8: PH('payment'), 9: PH('earth-side'),
   } },
 };
 
