@@ -514,12 +514,12 @@ const proj = (lon, lat) => [(lon + 180) / 360 * 1000, (90 - lat) / 180 * 500];
 const CH = {
   p:  { n: '00', title: 'Prologue',              mins: [0, 2] },
   c1: { n: '01', title: 'The Exam',              mins: [2, 10] },
-  c2: { n: '02', title: 'The Wave',              mins: [10, 15] },
-  cw: { n: '03', title: 'Why It Derails',        mins: [15, 21] },
-  ca: { n: '04', title: 'The Attackers Level Up', mins: [21, 27] },
-  c3: { n: '05', title: 'The Body',              mins: [27, 30] },
-  c4: { n: '06', title: 'You',                   mins: [30, 35] },
-  c5: { n: '07', title: 'What Works',            mins: [35, 40] },
+  c2: { n: '02', title: 'The Wave',              mins: [10, 14] },
+  cw: { n: '03', title: 'Why It Derails',        mins: [14, 20] },
+  ca: { n: '04', title: 'The Attackers Level Up', mins: [20, 26] },
+  c3: { n: '05', title: 'The Body',              mins: [26, 31] },
+  c4: { n: '06', title: 'You',                   mins: [31, 36] },
+  c5: { n: '07', title: 'What Works',            mins: [36, 40] },
 };
 
 // ════════════════════════════════════════════════════════════════════════
@@ -1069,17 +1069,66 @@ The last figure is the good news: the basics still stop most attacks. Transition
   blips: [[116.4, 39.9], [-77, 38.9]],
   notes: `Transition. Tone: forward-looking but not speculative; rely on what has already been observed.` },
 
+{ ch: 'c3', type: 'media', title: 'Clip: the robot games',
+  media: { type: 'video', src: 'assets/ai/robot-games.mp4', yt: 'BWE-vXYt0HA', channel: 'World Humanoid Robot Games',
+    todo: 'Highlights of the World Humanoid Robot Games, Beijing, 22-26 August 2026: sprints, football, boxing, real-world tasks.' },
+  l3: { t: 'World Humanoid Robot Games', s: 'Beijing · 22-26 August 2026' },
+  notes: `Let the images do the work: 30 to 45 seconds of the most impressive moments (sprint, jumps, football, handling tasks).
+Check the publisher of the clip before the session and prefer a news agency or broadcaster.` },
+
+{ ch: 'c3', type: 'figures', title: 'The robot games in numbers', n: 4,
+  stamp: 'Beijing · August 2026', heading: 'The robot games, in numbers',
+  figs: [
+    { v: 2056, label: 'humanoid robots competing', f: 0, cls: 'white' },
+    { v: 666, label: 'teams from around the world', f: 0, cls: 'white' },
+    { v: 51, label: 'events, from sprinting to sorting and handling tasks', f: 1, cls: 'white' },
+    { txt: '9.39 s', label: 'for the 100 metres: faster than Usain Bolt\'s 9.58', f: 2 },
+  ],
+  notes: `Second edition of the World Humanoid Robot Games (the first was held in August 2025, with about 500 robots and 280 teams: the scale quadrupled in a year).
+The 9.39 s run was reported by the Global Times on 22 August 2026 (Tianzhuo team, preliminary race); later races were reported under 9 seconds. The 2025 winning time was 21.50 s.
+Whatever one thinks of the sporting interest, the Games show the public how fast these machines are progressing.`,
+  src: `Global Times (22 August 2026) · World Humanoid Robot Games` },
+
+{ ch: 'c3', type: 'media', title: 'Clip: the crash',
+  media: { type: 'video', src: 'assets/ai/robot-crash.mp4', yt: 'zratOmQozBs', channel: 'Robot games · the crash',
+    todo: 'The record-setting robot sprinter crashing into a wall after the line, or a compilation of falls and fires at the 2026 Games.' },
+  l3: { t: 'A record, then a crash', s: 'Same week: falls, collisions, and a robot on fire' },
+  notes: `Let the room laugh: it is funny.
+Then the pivot: "Funny on a racetrack. Much less funny in a warehouse, next to people. And the most serious weaknesses are the ones you cannot see."
+Alternatives: "Biggest fails from the 2026 World Humanoid Robot Games" (YouTube XgnBN8BLc-o), "Humanoid Robots on Fire" (YouTube Fy298Uz2CRs).` },
+
 { ch: 'c3', type: 'split', title: 'A computer that walks',
   stamp: 'From the screen to the physical world',
   heading: 'A humanoid robot is a connected computer that walks',
   lede: `It sees, hears, connects to the internet, receives updates, and increasingly uses AI to decide what to do.`,
   more: [
-    { f: 1, t: `Humanoid and four-legged robots are already at work in labs, universities and some police forces.` },
+    { f: 1, t: `Humanoid and four-legged robots are already being tested in factories and warehouses, and used in labs, universities and some police forces.` },
     { f: 2, t: `It inherits the risks of computers and of AI agents, and adds a new one: the safety of the people around it.` },
   ],
   visual: { kind: 'robot' },
   notes: `Present the robot as a set of doors: cameras and microphones (privacy), wireless connections (takeover), the manufacturer's cloud (where the data goes), the AI (what it decides), the motors (physical safety).`,
   src: `Alias Robotics, The Cybersecurity of a Humanoid Robot (arXiv 2509.14096, 2025)` },
+
+{ ch: 'c3', type: 'split', title: 'The robot dog',
+  stamp: 'Unitree Go2 · February 2026',
+  heading: 'Bought like any customer. Taken over in a few steps.',
+  lede: `Two security researchers buy a Unitree Go2, a four-legged robot sold to the public, and look at how it works inside.`,
+  more: [
+    { f: 1, t: `No password, no check: anyone on its network can send it a program, which then runs with full control of the robot.` },
+    { f: 3, t: `And the manufacturer runs a community app store for robot programs. One booby-trapped program could reach every owner.` },
+  ],
+  take: { f: 4, t: `Unitree fixed the flaws and now reviews programs submitted to its store. But these robots are arriving in factories now.` },
+  visual: { kind: 'chain', head: 'The attack, step by step', nodes: [
+    { t: 'Join the robot\'s network', s: 'no authentication on its internal messaging', f: 0 },
+    { t: 'Upload a program', s: 'no check on what the code does', f: 1, tone: 'var(--amber)' },
+    { t: 'It runs with full control', s: 'administrator ("root") rights on the robot', f: 1, tone: 'var(--coral)' },
+    { t: 'Hidden behind a button combination', s: 'triggered from the physical controller, it survives restarts', f: 2, tone: 'var(--coral)' },
+  ] },
+  notes: `Researchers: Olivier Laflamme and Ruikai (Pwn0), published 27 February 2026 on boschko.ca. The robot was bought as an ordinary customer would.
+Technical detail if asked: the robot's internal DDS communication accepted messages without authentication; Python code was uploaded and executed as root; the backdoor was bound to controller key combinations and persisted across reboots. CVE-2026-27509 and CVE-2026-27510. Fixed in firmware V1.1.13.
+The app store point: like OpenClaw's community skills, manufacturers rely on their communities to extend what the robots can do, which also opens a software supply-chain risk.
+Presenter's view (L'Usine Nouvelle interview): humanoid robots bring new risks to factories: safety, hijacking and espionage.`,
+  src: `boschko.ca, Unitree Go2 RCE (27 February 2026)` },
 
 { ch: 'c3', type: 'timeline', title: 'First robotics signals',
   stamp: 'September 2025 - August 2026', heading: 'The first warning signs are already here', wide: true,
@@ -1087,10 +1136,11 @@ The last figure is the good news: the basics still stop most attacks. Transition
   events: [
     { d: '2025-09-20', label: 'Robots hijacked over Bluetooth', sub: 'Researchers show one robot can take over others nearby', tone: 'coral', f: 1 },
     { d: '2025-10-05', dl: 'Sep - Oct 2025', label: 'A robot that reports home', sub: 'A popular humanoid sends data to servers in China every few minutes, without telling its owner', tone: 'amber', f: 2 },
-    { d: '2026-07-28', label: 'The US restricts foreign robots', sub: 'New foreign-made humanoids need government approval before sale', tone: 'green', f: 3 },
-    { d: '2026-08-27', label: 'Two new serious flaws', sub: 'Full remote control of the same robot, one of them without any pairing', tone: 'coral', f: 4 },
+    { d: '2026-02-27', label: 'A robot dog taken over through its own software', sub: 'Unitree Go2: no authentication, full control, hidden backdoor', tone: 'coral', f: 3 },
+    { d: '2026-07-28', label: 'The US restricts foreign robots', sub: 'New foreign-made humanoids need government approval before sale', tone: 'green', f: 4 },
+    { d: '2026-08-27', label: 'Two new serious flaws', sub: 'Full remote control of the G1 humanoid, one of them without any pairing', tone: 'coral', f: 5 },
   ],
-  take: { f: 5, t: `To our knowledge, none of these flaws has been exploited at scale yet. They show how early robot security still is.` },
+  take: { f: 6, t: `To our knowledge, none of these flaws has been exploited at scale yet. They show how early robot security still is.` },
   notes: `The robots are made by Unitree (models G1, H1, Go2, B2).
 "UniPwn": Andreas Makris and Kevin Finisterre, 20 September 2025; hard-coded encryption keys in the Bluetooth setup, allowing a robot-to-robot "botnet".
 Data to China: Alias Robotics research, telemetry including audio and video according to the researchers.
@@ -1119,12 +1169,16 @@ August 2026: CVE-2026-76639 and CVE-2026-76640 (Olivier Laflamme).`,
 Message: what we learned about AI agents in 2026 applies directly to robots; now is the time to build it into how we buy and deploy them.`,
   src: `Synthesis of chapters 1 and 2` },
 
-{ ch: 'c3', type: 'media', title: 'Clip: UniPwn demo',
-  media: { type: 'video', src: 'assets/ai/unipwn-demo.mp4', yt: 'ALIHl4-nVAg', channel: 'Researchers\' demonstration',
-    todo: 'Clip of the public UniPwn demonstration (taking over a Unitree robot over Bluetooth), or a photo of a Unitree G1.',
-    href: 'https://www.helpnetsecurity.com/2025/10/16/unitree-g1-humanoid-robot-vulnerability/' },
-  l3: { t: 'Taking control of a robot over Bluetooth', s: 'Security researchers · 2025' },
-  notes: `Optional: skip if short of time.` },
+{ ch: 'c3', type: 'cards', title: 'Robots: act now', n: 3,
+  stamp: 'For security and industrial leaders', heading: 'Robots are arriving on site. Start now.',
+  cards: [
+    { n: '01', h: 'Audit before you deploy', p: `Treat each robot as a critical industrial system, and go deeper: it moves, sees, hears and runs third-party code.`, ref: 'Unitree Go2, G1', f: 0 },
+    { n: '02', h: 'Isolate and control', p: `A separate network, no default trust, and a clear view of what it sends to the manufacturer's cloud.`, ref: 'Data sent to China', f: 1 },
+    { n: '03', h: 'Watch the app store', p: `Decide which programs and updates may run on the robot, and who approves them.`, ref: 'Community marketplace', f: 2 },
+  ],
+  notes: `Update your risk analysis and your controls now, while deployments are still pilots: safety of people, hijacking, espionage.
+Industrial security teams (OT) are the natural owners, but robots are more versatile than usual OT equipment, so the analysis must go further.`,
+  src: `boschko.ca (February 2026) · Alias Robotics (2025) · L'Usine Nouvelle` },
 
 // ─── CHAPTER 6 · YOU ──────────────────────────────────────────────────────
 { ch: 'c4', type: 'chapter', title: 'Chapter 6: You',
@@ -1354,6 +1408,9 @@ For robots and connected devices, the same questions apply at purchase: what doe
       ['Palo Alto Networks Unit 42, Global Incident Response Report (February 2026)', 'https://www.paloaltonetworks.com/resources/research/unit-42-incident-response-report'],
     ]],
     ['Chapter 5 · Robots', [
+      ['Global Times, humanoid robot runs 100 m in 9.39 s at the Beijing robot games (22 August 2026)', 'https://www.globaltimes.cn/page/202608/1368761.shtml'],
+      ['boschko.ca, Unitree Go2 remote code execution (27 February 2026)', 'https://boschko.ca/unitree-go2-rce/'],
+      ['L\'Usine Nouvelle, humanoid robots bring new cyber risks to factories', 'https://www.usinenouvelle.com/cybersecurite/ils-ont-plus-de-capacites-de-nuire-capables-de-se-deplacer-de-voir-et-decouter-les-robots-humanoides-introduisent-de-nouveaux-risques-cyber-dans-les-usines.FPZQXYCFQVA6HJZWZ6F3D5EJ3U.html'],
       ['Alias Robotics, The Cybersecurity of a Humanoid Robot (arXiv 2509.14096)', 'https://arxiv.org/pdf/2509.14096'],
       ['Help Net Security, Unitree G1 vulnerability (16 October 2025)', 'https://www.helpnetsecurity.com/2025/10/16/unitree-g1-humanoid-robot-vulnerability/'],
       ['The Hacker News, Two Unitree G1 EDU flaws (August 2026)', 'https://thehackernews.com/2026/08/two-unitree-g1-edu-humanoid-robot-flaws.html'],
@@ -1413,11 +1470,15 @@ const SCRIPT = {
   'The Ferrari question': `In Italy, a Ferrari executive gets a call from his CEO. The voice is perfect. So he asks one simple question.`,
   'Malware that asks AI': `Even malicious software now asks an AI for help, to change its appearance or decide its next move.`,
   'The new pace': `Faster, cheaper, everywhere. But look at the last number: most attacks still get in through gaps we know how to close.`,
-  'Chapter 5: The Body': `And soon, some of these AIs will have a body.`,
+  'Chapter 5: The Body': `And AI is now getting a body.`,
+  'Clip: the robot games': `This summer in Beijing, more than two thousand humanoid robots competed in their own games.`,
+  'The robot games in numbers': `Two thousand robots. Six hundred teams. And a humanoid faster than Usain Bolt over one hundred metres.`,
+  'Clip: the crash': `And then, the same week, this. Funny on a racetrack. Much less funny in a warehouse.`,
   'A computer that walks': `A humanoid robot sees, hears, connects, and moves. Each of those abilities is a door.`,
+  'The robot dog': `Because the most dangerous weaknesses are invisible. Two researchers bought a robot dog, and took control of it in a few steps.`,
   'First robotics signals': `The weaknesses are already documented. And governments are starting to react.`,
   'Carrying lessons over to robots': `What AI agents did inside computers, what would a robot do in a warehouse? These are questions, not predictions.`,
-  'Clip: UniPwn demo': `In 2025, researchers show how to take control of a robot over Bluetooth.`,
+  'Robots: act now': `These robots are arriving in factories and warehouses today. The time to secure them is now, not after the first incident.`,
   'Chapter 6: You': `Back to you. Because the same technology is now in the hands of fraudsters.`,
   'Question for the room': `Raise your hand if, this month, you received a message that made you hesitate.`,
   'The fake parcel': `The message knows your name. The photo shows your address. All of it is fake, and all of it is generated.`,

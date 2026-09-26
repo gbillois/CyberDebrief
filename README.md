@@ -16,12 +16,12 @@ English version; `ai-fr.html` keeps the first French iteration.
 |---|---------|---------|---------|
 | 00 | Prologue | 0 - 2 | Cold open on Hugging Face's disclosure (16 July 2026) |
 | 01 | The Exam | 2 - 10 | OpenAI / Hugging Face in plain language: the goal, agents talking to each other, the warning nobody acted on, the imaginary referee |
-| 02 | The Wave | 10 - 15 | Press montage, the numbers behind it, a world map, the mechanism (an ordinary task, a break-in), Google, then Australia and the 84-day delay |
-| 03 | Why It Derails | 15 - 21 | How an AI learns and what alignment is; derailing on its own vs. prompt injection, with a hidden-instruction email; why AIs seem to lie, cheat and organise; what researchers had already seen in the lab |
-| 04 | The Attackers Level Up | 21 - 27 | Classic attackers using AI: a spying campaign run mostly by AI, one extortionist and 17 victims, fake employees, the Ferrari deepfake stopped by one question, malware that asks an AI, the new pace of attacks |
-| 05 | The Body | 27 - 30 | Humanoid robots: the doors they open, first warning signs, lessons that carry over |
-| 06 | You | 30 - 35 | Fake parcels with generated photos, AI-written scam emails, the Arup deepfake, fake evidence |
-| 07 | What Works | 35 - 40 | Five reflexes; AI on your side, to clear a doubt and to think about your risks; three questions for leaders; what worked |
+| 02 | The Wave | 10 - 14 | Press montage, the numbers behind it, a world map, the mechanism (an ordinary task, a break-in), Google, then Australia and the 84-day delay |
+| 03 | Why It Derails | 14 - 20 | How an AI learns and what alignment is; derailing on its own vs. prompt injection, with a hidden-instruction email; why AIs seem to lie, cheat and organise; what researchers had already seen in the lab |
+| 04 | The Attackers Level Up | 20 - 26 | Classic attackers using AI: a spying campaign run mostly by AI, one extortionist and 17 victims, fake employees, the Ferrari deepfake stopped by one question, malware that asks an AI, the new pace of attacks |
+| 05 | The Body | 26 - 31 | The 2026 robot games (impressive clips, then the crash), the robot as a computer that walks, the Unitree Go2 takeover and its app store, warning signs, what security leaders should do now |
+| 06 | You | 31 - 36 | Fake parcels with generated photos, AI-written scam emails, the Arup deepfake, fake evidence |
+| 07 | What Works | 36 - 40 | Five reflexes; AI on your side, to clear a doubt and to think about your risks; three questions for leaders; what worked |
 
 Written for a general audience: plain language on screen, technical detail in
 the speaker notes for questions.
