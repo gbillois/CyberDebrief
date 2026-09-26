@@ -1150,13 +1150,11 @@ svg.robot .ai-last text{fill:var(--coral)} svg.robot .ai-last .ld{stroke:var(--c
 .fin-b{margin:0;font-size:1.3rem;line-height:1.4;color:#D9D2FA;max-width:44ch}
 .fin-c{justify-self:end;text-align:right;font-family:var(--f-display);font-weight:800;font-size:2.4rem;line-height:1.05;color:var(--ws-green-400);max-width:12ch}
 .fin-g{list-style:none;margin:0;padding:0;flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:1fr 1fr;gap:1rem}
-.fin-card{all:unset;box-sizing:border-box;cursor:pointer;height:100%;width:100%;display:flex;flex-direction:column;background:rgba(255,255,255,.96);border-radius:1rem;padding:1.1rem 1.2rem;box-shadow:0 14px 34px rgba(10,4,40,.3);transition:transform .2s}
+.fin-card{all:unset;box-sizing:border-box;cursor:pointer;height:100%;width:100%;display:flex;flex-direction:column;background:rgba(255,255,255,.96);border-radius:1rem;padding:1.3rem 1.4rem;box-shadow:0 14px 34px rgba(10,4,40,.3);transition:transform .2s}
 .fin-card:hover{transform:translateY(-3px)}
-.fin-n{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ws-indigo-600);font-weight:700}
-.fin-card small{margin-top:.25rem;font-size:.92rem;font-weight:600;color:var(--ws-ink-900);line-height:1.25}
-.fin-v{margin-top:auto;padding-top:.5rem;font-family:var(--f-display);font-weight:800;font-size:2.4rem;line-height:1;letter-spacing:-.03em;color:var(--coral)}
-.fin-l{font-size:.8rem;line-height:1.3;color:var(--ws-ink-600);margin-top:.2rem}
-.fin-card p{margin:.6rem 0 0;padding-top:.6rem;border-top:1px solid var(--ws-ink-100);font-size:.9rem;line-height:1.35;color:var(--ws-ink-700)}
+.fin-n{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ws-indigo-600);font-weight:700}
+.fin-q{margin-top:.6rem;font-family:var(--f-display);font-weight:700;font-size:1.7rem;line-height:1.15;color:var(--ws-indigo-600)}
+.fin-card p{margin:.9rem 0 0;padding-top:.9rem;border-top:2px solid var(--ws-green-600);font-size:1.38rem;line-height:1.35;color:var(--ws-ink-900)}
 @media (max-width:760px){.fin-top{grid-template-columns:1fr}.fin-c{justify-self:start;text-align:left}.fin-g{grid-template-columns:1fr 1fr;grid-template-rows:none}.fin-a{font-size:2.2rem}}
 /* End of the talk: fill the frame. Slide rules applied: content fills most
    of the safe area, one strong focal point, type readable from the back row */
@@ -1833,18 +1831,8 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
   a: `The technology has changed scale.`,
   b: `The reflexes that protect us remain simple, human, and within everyone's reach.`,
   c: 'Thank you. Your questions?',
-  keys: {
-    c1: { v: '700', l: 'agents joined the attack' },
-    c2: { v: '84 days', l: 'before Australia was told' },
-    cw: { v: 'Reward', l: 'it learns what is rewarded, not what we meant' },
-    cr: { v: '1,100+', l: 'AI staff asking to pace the frontier' },
-    ca: { v: '600,000', l: 'cards stolen by a swarm of AI agents' },
-    c3: { v: 'root', l: 'on a robot dog, in four steps' },
-    c4: { v: '54%', l: 'clicked on a scam email written by AI' },
-    c5: { v: '9 in 10', l: 'breaches go through gaps we know how to close' },
-  },
   vo: `Eight questions, eight answers. The technology has changed scale. The reflexes that protect us remain simple, human, and within everyone's reach. Thank you. I am happy to take your questions.`,
-  notes: `Leave this screen up during the questions: every chapter, its answer and its key figure are on it. Click any card to jump back to that chapter.` },
+  notes: `Leave this screen up during the questions: every chapter's question and answer are on it. Click any card to jump back to that chapter.` },
 
 { ch: 'c5', type: 'sources', title: 'Sources',
   heading: 'Sources',
@@ -2246,8 +2234,8 @@ const R = {
   // Last screen, left up during the questions: every chapter at a glance
   finale: s => { const keys = Object.keys(CH).filter(k => CH[k].q);
     return `<div class="fin-bg"></div><div class="fin"><div class="fin-top"><div><h2 class="fin-a">${s.a}</h2><p class="fin-b">${s.b}</p></div><div class="fin-c">${s.c}</div></div>
-      <ol class="fin-g">${keys.map((k, j) => { const i = SCENES.findIndex(x => x.ch === k && x.type === 'chapter'), f = s.keys[k] || {};
-        return `<li><button class="fin-card" onclick="event.stopPropagation();go(${i})"><span class="fin-n">${String(j + 1).padStart(2, '0')} · ${CH[k].title}</span><small>${CH[k].q}</small><b class="fin-v">${f.v || ''}</b><span class="fin-l">${f.l || ''}</span><p>${CH[k].a}</p></button></li>`; }).join('')}</ol></div>`; },
+      <ol class="fin-g">${keys.map((k, j) => { const i = SCENES.findIndex(x => x.ch === k && x.type === 'chapter');
+        return `<li><button class="fin-card" onclick="event.stopPropagation();go(${i})"><span class="fin-n">${String(j + 1).padStart(2, '0')} · ${CH[k].title}</span><b class="fin-q">${CH[k].q}</b><p>${CH[k].a}</p></button></li>`; }).join('')}</ol></div>`; },
 
   // End credits: the people who made these stories known
   credits: s => `<div class="cr2"><p class="cr2-h">${s.t}</p><dl>${s.rows.map((r, i) => `<div${fa(i + 1)}><dt>${r.who}</dt><dd>${r.did}</dd></div>`).join('')}</dl></div>${srcLine(s)}`,
