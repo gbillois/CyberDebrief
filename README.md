@@ -26,6 +26,11 @@ months to tell the whole story. It is built around seven questions, one per
 chapter: each chapter card shows the question, a progress rail and the
 previous chapter's answer, and each chapter ends on its answer in one
 sentence; a final screen replays all seven. Full timelines for each part.
+Chapter 1 tells the Hugging Face case the way `OAHF-zoom.html` does: one
+world, one camera that steps back six times (one agent, the message board,
+the sandbox, the internet, Hugging Face, the whole picture), ending on the
+referee that never existed. Consecutive zoom slides fly from one framing to
+the next, so the step back reads as one movement.
 One idea per screen: big words
 and numbers, pictograms, flow diagrams, maps and video clips. Long text stays
 only where it is needed (quotes, the advice). Everything the presenter says
