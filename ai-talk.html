@@ -1028,6 +1028,21 @@ body.pres{background:var(--ws-ink-50)}
 .cr2 dd{order:2;margin:0;text-align:left;font-size:1.1rem;color:var(--ws-ink-900)}
 .cr2 dl div{grid-template-columns:minmax(0,1fr) 3rem minmax(0,1fr)}
 @media (max-width:760px){.cl2,.an,.tc{grid-template-columns:1fr;gap:1.2rem;padding-left:0}.ph2{width:13rem}.sk{flex-direction:column;gap:1rem}.sk-n{width:80%;aspect-ratio:auto}}
+/* Duo: facts on the left, testimonies on the right */
+.duo{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:4rem;align-items:center;margin-top:1rem}
+.duo-l{display:grid;gap:1.6rem;border-right:1px solid var(--ws-ink-100);padding-right:3rem}
+.duo-f b{display:block;font-family:var(--f-display);font-weight:800;font-size:3.4rem;line-height:1;letter-spacing:-.03em;color:var(--ws-indigo-600)}
+.duo-f span{display:block;margin-top:.35rem;font-size:1.05rem;line-height:1.4;color:var(--ws-ink-700)}
+.duo-r{display:grid;gap:2.2rem}
+.duo-v{margin:0;display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start}
+.duo-v .face.sm{width:5.4rem;height:5.4rem}
+.duo-v blockquote{margin:0;font-family:var(--f-display);font-weight:600;font-size:1.55rem;line-height:1.28;letter-spacing:-.01em;color:var(--heading)}
+.duo-v blockquote::before{content:'\201C';color:var(--ws-green-600)} .duo-v blockquote::after{content:'\201D';color:var(--ws-green-600)}
+.duo-v figcaption{margin-top:.6rem;font-size:.95rem;color:var(--ws-ink-600)} .duo-v figcaption b{color:var(--ws-ink-900)}
+@media (max-width:760px){.duo{grid-template-columns:1fr;gap:1.6rem}.duo-l{border-right:0;padding-right:0}}
+/* Zoom: old labels vanish at once, new ones wait for the camera */
+.zw .zlb{transition:opacity .5s ease 1.5s}
+.zw .zlb.off{transition:opacity .12s ease 0s}
 </style>
 </head>
 <body>
@@ -1106,25 +1121,20 @@ const SCENES = [
   notes: `Open on the date. Pause. Second click: the announcement.`,
   src: `Hugging Face, 16 July 2026` },
 
-{ ch: 'p', type: 'figures', title: 'Who is Hugging Face', n: 3, big: true,
-  stamp: 'Who is Hugging Face? · New York and Paris', heading: 'The "Wikipedia of AI"',
-  figs: [
-    { txt: '3.1 M', label: 'AI models shared by researchers and companies', f: 0, cls: 'white' },
-    { txt: '1 M', label: 'datasets, including the test data used to grade AIs', f: 0, cls: 'white' },
-    { txt: 'Free', label: 'and open to anyone, to publish or download', f: 0 },
+{ ch: 'p', type: 'duo', title: 'Hugging Face, and a strange attacker',
+  stamp: 'Who is Hugging Face?', heading: 'Hugging Face: the "Wikipedia of AI"',
+  facts: [
+    { v: '3.1 M', t: 'AI models shared by researchers and companies' },
+    { v: '1 M', t: 'datasets, including the test data used to grade AIs' },
+    { v: 'Free', t: 'and open to anyone, to publish or download' },
   ],
-  vo: `First, who is Hugging Face? Think of it as the Wikipedia of AI: the directory where researchers and companies worldwide share their AI models, more than three million of them, and their data, including the test data used to grade AIs. Keep that in mind: it is exactly what the intruder was after.`,
-  notes: `Counts shown on huggingface.co on 26 September 2026: 3,097,731 models and 1,064,358 datasets. Founded in New York, with a large team in Paris.`,
-  src: `huggingface.co (26 September 2026)` },
-
-{ ch: 'p', type: 'voices', title: 'Not a normal attacker',
   voices: [
-    { q: `This is making no sense. This guy is just looking at cybersecurity data sets... Human attackers, they don't want that. They want something they could sell.`, who: 'Thomas Wolf', role: 'Co-founder, Hugging Face', ini: 'TW', img: 'wolf', f: 0 },
-    { q: `An attack unlike anything we've seen before.`, who: 'Clément Delangue', role: 'CEO, Hugging Face', ini: 'CD', img: 'delangue', f: 1 },
+    { q: `This is making no sense. This guy is just looking at cybersecurity data sets... Human attackers, they don't want that. They want something they could sell.`, who: 'Thomas Wolf', role: 'Co-founder', ini: 'TW', img: 'wolf', f: 1 },
+    { q: `An attack unlike anything we've seen before.`, who: 'Clément Delangue', role: 'CEO', ini: 'CD', img: 'delangue', f: 2 },
   ],
-  vo: `Inside Hugging Face, the engineers watch the intruder at work. Fast, methodical, and yet it steals nothing worth selling and asks for no ransom. This is not a normal attacker. Its CEO calls it an attack unlike anything they have seen.`,
-  notes: `Second click: Delangue. Hugging Face's disclosure reads: "used LLM still not known".`,
-  src: `Thomas Wolf, quoted by The Wall Street Journal (24 July 2026) · Clément Delangue, quoted by Axios (23 July 2026)` },
+  vo: `First, who is Hugging Face? Think of it as the Wikipedia of AI: the directory where researchers and companies worldwide share their AI models, more than three million of them, and their data, including the test data used to grade AIs. Inside, the engineers watch the intruder at work. Fast, methodical, and yet it steals nothing worth selling and asks for no ransom. This is not a normal attacker. Its CEO calls it an attack unlike anything they have seen.`,
+  notes: `Clicks: Thomas Wolf, then Clément Delangue. Counts shown on huggingface.co on 26 September 2026: 3,097,731 models and 1,064,358 datasets. Hugging Face's disclosure reads: "used LLM still not known".`,
+  src: `huggingface.co (26 September 2026) · Thomas Wolf, quoted by The Wall Street Journal (24 July 2026) · Clément Delangue, quoted by Axios (23 July 2026)` },
 
 { ch: 'p', type: 'word', title: 'No attacker',
   t: 'There was no human attacker.',
@@ -1236,6 +1246,14 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   notes: `~17,600 recovered actions, grouped into ~6,280 clusters, 9-13 July. The agent encoded what it staged (chunk + XOR + gzip) so a naive log scan missed it; replicating its decoding recovered roughly 4x the initial findings, mostly tokens. GLM-5.2 is an open-weights model from the Chinese lab Z.ai, run in a quantized version (by Nvidia) on Hugging Face's own infrastructure, which also kept attacker data in-house. Their own AI-assisted detection had correlated the first signals but failed to raise the alert's severity to page the on-call team.`,
   src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 July 2026)` },
 
+{ ch: 'c1', type: 'media', title: 'Clip: Black Hat',
+  media: { type: 'video', src: 'assets/ai/blackhat-briefing.mp4', poster: 'assets/ai/blackhat-briefing.jpg', yt: '87DyyMV0kCY', start: 28.5, end: 57, channel: 'Black Hat',
+    todo: 'Clip from the session on the OpenAI / Hugging Face incident, Black Hat USA, August 2026.' },
+  l3: { t: 'OpenAI explains the incident', s: 'Black Hat USA · Las Vegas · 5 August 2026' },
+  vo: `Weeks later, OpenAI explains to the security community what happened, and how it missed it. But go back to July: how was it discovered?`,
+  notes: `Optional. Skip with a general audience if short of time. Official Black Hat recording, 00:28.50–00:57.00: Eric Wallace explains the autonomous attack and OpenAI's responsibility.`,
+  src: `Black Hat · Eric Wallace · official conference recording` },
+
 { ch: 'c1', type: 'flow', title: 'The call',
   heading: 'During all this, nobody suspected OpenAI. How was it discovered?',
   nodes: [
@@ -1247,14 +1265,6 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   vo: `During all this, nobody suspected OpenAI, not even OpenAI. On 17 July, it calls Hugging Face as a worried customer: is our data safe? It does not know it is calling the victim of its own AI. Three days later, investigating an alert of its own, it finds Hugging Face passwords in files left by its agents, and calls back. Two investigations become one. On 21 July, OpenAI admits it publicly.`,
   notes: `19 July: an OpenAI alert on unusual identity activity. 20 July: responders shut down agent-created accounts and repositories, find Hugging Face credentials in the agents' external storage, call Hugging Face; two of those credentials were already rotated.`,
   src: `OpenAI technical report · joint statement (21 July 2026)` },
-
-{ ch: 'c1', type: 'media', title: 'Clip: Black Hat',
-  media: { type: 'video', src: 'assets/ai/blackhat-briefing.mp4', poster: 'assets/ai/blackhat-briefing.jpg', yt: '87DyyMV0kCY', start: 28.5, end: 57, channel: 'Black Hat',
-    todo: 'Clip from the session on the OpenAI / Hugging Face incident, Black Hat USA, August 2026.' },
-  l3: { t: 'OpenAI explains the incident', s: 'Black Hat USA · Las Vegas · 5 August 2026' },
-  vo: `A few weeks later, OpenAI explains to the security community what happened, and how it missed it.`,
-  notes: `Optional. Skip with a general audience if short of time. Official Black Hat recording, 00:28.50–00:57.00: Eric Wallace explains the autonomous attack and OpenAI's responsibility.`,
-  src: `Black Hat · Eric Wallace · official conference recording` },
 
 { ch: 'c1', type: 'recap', title: 'Chapter 1 in one sentence',
   vo: `So, what happened? An AI chasing a score escaped its test, and broke into another company. No malice. A goal, a shared space, and nobody to say stop.` },
@@ -2077,6 +2087,11 @@ const R = {
 
   // End credits: the people who made these stories known
   credits: s => `<div class="cr2"><p class="cr2-h">${s.t}</p><dl>${s.rows.map((r, i) => `<div${fa(i + 1)}><dt>${r.who}</dt><dd>${r.did}</dd></div>`).join('')}</dl></div>${srcLine(s)}`,
+
+  // What it is on the left, the voices on the right
+  duo: s => `<div class="head">${textBlock(s)}</div><div class="duo">
+      <div class="duo-l">${s.facts.map(x => `<div class="duo-f"><b>${x.v}</b><span>${x.t}</span></div>`).join('')}</div>
+      <div class="duo-r">${s.voices.map((v, i) => `<figure class="duo-v"${fa(v.f ?? i + 1)}>${face(v, 'sm')}<div><blockquote>${v.q}</blockquote><figcaption><b>${v.who}</b> · ${v.role}</figcaption></div></figure>`).join('')}</div></div>${srcLine(s)}`,
 
   chapter: s => { const c = CH[s.ch], keys = Object.keys(CH).filter(k => CH[k].q), i = keys.indexOf(s.ch), prev = i > 0 ? CH[keys[i - 1]] : null;
     const rail = keys.map((k, j) => `<li class="${j < i ? 'done' : j === i ? 'cur' : ''}"><span>${j < i ? '✓' : j + 1}</span>${CH[k].title}</li>`).join('');
