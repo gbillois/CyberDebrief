@@ -1,0 +1,204 @@
+/* ════════════════════════════════════════════════════════════════════════
+   SLEEK EDITION · a documentary on a dark stage
+   Built into ai-talk-photo-sleek.html by tools/build-talk-sleek.py.
+   Direction: one cinematic dark stage in Wavestone indigo, neon-green light
+   for what matters, coral for danger. Cards are glass; real-world objects
+   (emails, phones, notes, settings) stay light, like props on a set.
+   ════════════════════════════════════════════════════════════════════════ */
+:root{
+  --sk-bg:#07040F; --sk-bg2:#0E0822; --sk-glow:#451DC7;
+  --ws-indigo-50:rgba(122,92,255,.14); --ws-indigo-100:rgba(161,143,227,.32); --ws-indigo-300:#B6A6FF;
+  --ws-indigo-500:#7A5CFF; --ws-indigo-600:#8B6DFF; --ws-indigo-700:#6A4BF0; --ws-indigo-800:#2D1380; --ws-indigo-900:#1E0D57;
+  --ws-green-50:rgba(4,240,106,.1); --ws-green-400:#04F06A; --ws-green-600:#19E57A; --ws-green-700:#3DF58C;
+  --ws-ink-50:rgba(255,255,255,.055); --ws-ink-100:rgba(255,255,255,.11); --ws-ink-200:rgba(255,255,255,.2);
+  --ws-ink-300:rgba(255,255,255,.34); --ws-ink-400:rgba(255,255,255,.48); --ws-ink-500:rgba(255,255,255,.58);
+  --ws-ink-600:rgba(255,255,255,.7); --ws-ink-700:rgba(255,255,255,.82); --ws-ink-900:#FFFFFF;
+  --bg:var(--sk-bg); --bg2:var(--sk-bg2); --panel:rgba(255,255,255,.05); --panel2:rgba(255,255,255,.09);
+  --line:rgba(255,255,255,.12); --line2:rgba(255,255,255,.22);
+  --text:#F5F3FF; --muted:rgba(245,243,255,.74); --subtle:rgba(245,243,255,.5);
+  --heading:#FFFFFF; --green:#04F06A; --green-neon:#04F06A; --coral:#FF6B5A; --amber:#FFB547; --teal:#5FD4DA;
+  --land:rgba(255,255,255,.07); --land-line:rgba(255,255,255,.14);
+  --glass:linear-gradient(155deg,rgba(255,255,255,.1),rgba(255,255,255,.035));
+  --glass-line:rgba(255,255,255,.14);
+  --sk-ease:cubic-bezier(.16,1,.3,1);
+}
+html,body{background:var(--sk-bg)!important}
+body{color:var(--text)}
+body::before,body::after{display:block!important}
+body::before{z-index:40;background:radial-gradient(120% 95% at 50% 45%,transparent 58%,rgba(0,0,0,.6) 100%)}
+body::after{opacity:.07;animation:sk-grain .9s steps(4) infinite}
+@keyframes sk-grain{0%{transform:translate(0,0)}25%{transform:translate(-2%,1%)}50%{transform:translate(1%,-2%)}75%{transform:translate(2%,2%)}100%{transform:translate(0,0)}}
+
+/* the stage: slow aurora of Wavestone light behind every screen */
+#stage{background:var(--sk-bg)}
+#stage::before{content:'';position:absolute;inset:-20%;z-index:0;pointer-events:none;
+  background:radial-gradient(40% 35% at 18% 20%,rgba(69,29,199,.42),transparent 70%),radial-gradient(35% 30% at 85% 75%,rgba(90,43,224,.28),transparent 70%),radial-gradient(25% 22% at 70% 15%,rgba(4,240,106,.07),transparent 70%);
+  animation:sk-aurora 28s ease-in-out infinite alternate}
+@keyframes sk-aurora{to{transform:translate(4%,-3%) rotate(6deg) scale(1.08)}}
+.scene{background:transparent!important}
+.scene.t-title,.scene.t-chapter,.scene.t-closing{background:var(--ws-gradient-brand)!important}
+
+/* camera cuts: a push-in with focus pull, a soft exit */
+.scene{transform:scale(1.035);filter:blur(12px);transition:opacity .75s ease .15s,transform 1.4s var(--sk-ease) .1s,filter .9s ease .1s}
+.scene.live{transform:none;filter:none}
+.scene.leaving{transform:scale(.985);filter:blur(8px);transition:opacity .45s ease,transform .6s ease,filter .45s ease}
+.scene.t-zoom,.scene.t-map{transform:none!important;filter:none!important}
+[data-f]{transition:opacity .8s ease,transform .9s var(--sk-ease),filter .8s ease}
+[data-f]:not(g):not(path):not(.on){filter:blur(6px)}
+
+/* words that rise into focus */
+.sk-w{display:inline-block;opacity:0;transform:translateY(.42em);filter:blur(8px)}
+.scene.live .sk-w{animation:sk-word .9s var(--sk-ease) forwards;animation-delay:calc(.35s + var(--i) * .055s)}
+@keyframes sk-word{to{opacity:1;transform:none;filter:none}}
+[data-f]:not(.on) .sk-w{animation:none}
+[data-f].on .sk-w{animation:sk-word .9s var(--sk-ease) forwards;animation-delay:calc(.05s + var(--i) * .045s)}
+
+/* type */
+.h{color:#fff;letter-spacing:-.025em}
+.stamp,.kicker,.ask-k,.chap-k{color:var(--green)!important;letter-spacing:.22em}
+.stamp::before{background:var(--green)}
+.c-coral{color:var(--coral)!important}
+.lede,.p{color:var(--muted)}
+.src{color:var(--subtle)}
+.src b,.src strong{color:var(--muted)}
+
+/* HUD: a thin line of light */
+#hud{color:var(--subtle)}
+#prog div{background:rgba(255,255,255,.1)!important}
+#prog div i{background:linear-gradient(90deg,#7A5CFF,#04F06A)!important;box-shadow:0 0 12px rgba(4,240,106,.6)}
+#hint{color:var(--subtle)}
+
+/* glass: every panel that is not a real-world object */
+.mb,.fin-card,.tr-c,.fo-c,.kr-t,.tc-p,.inj-chat,.an-c,.ev-card,.card,.eq-t,.rc-v,.ug-r li,.duo-f,.ph-after,.shot-f,.cn-i,.st,.dom-box{
+  background:var(--glass)!important;border:1px solid var(--glass-line)!important;box-shadow:0 24px 60px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08)!important;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--text)}
+.ev-dot{background:var(--sk-bg)!important}
+.gap span{background:var(--sk-bg)!important}
+
+/* props: real-world objects keep their own light */
+.mail,.gs,.ph3-box,.sk-n,.paper,.an-msg,.sw-panel,.tc-a,.ic-a,.inset,.phone-shot,.cb-a,.shot-f img{
+  --ws-ink-50:#F5F4F9; --ws-ink-100:#E6E4EE; --ws-ink-200:#CFCCDC; --ws-ink-300:#A8A4B8; --ws-ink-400:#817C95;
+  --ws-ink-500:#6B6580; --ws-ink-600:#514C63; --ws-ink-700:#3A3550; --ws-ink-900:#16121F;
+  --ws-indigo-600:#451DC7; --ws-indigo-50:#F1EEFB; --ws-green-50:#E1FDED; --ws-green-600:#06B854; --ws-green-700:#088A42;
+  --text:#16121F; --muted:#514C63; --heading:#451DC7; --coral:#D8412F; color:#16121F}
+.sw-row{background:#fff!important}
+.an-msg,.sw-panel,.gs,.ph3-box,.inset,.mail{box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08)!important}
+
+/* numbers that glow */
+.nb b,.fig b,.ph3-s b,.sw-stat b,.mb-fig b,.ask-a b,.dt-big{text-shadow:0 0 40px currentColor}
+.nb.coral b,.fig.coral b{color:var(--coral)}
+
+/* chapter cards: a giant numeral, the photo breathing behind */
+.chap2{position:relative}
+.sk-num{position:absolute;right:-1rem;top:50%;transform:translateY(-54%);z-index:-1;font-family:var(--f-display);font-weight:800;font-size:34rem;line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.14);pointer-events:none;user-select:none}
+.scene.live .sk-num{animation:sk-num 2.4s var(--sk-ease) both}
+@keyframes sk-num{from{opacity:0;transform:translate(6%,-54%) scale(1.08)}}
+.chap-q{font-size:5.4rem!important;text-shadow:0 10px 40px rgba(0,0,0,.35)}
+.rail li.cur span{box-shadow:0 0 0 .4rem rgba(4,240,106,.18),0 0 24px rgba(4,240,106,.6)}
+.pbg img{transition:transform 16s linear!important}
+.scene.live .pbg img{transform:scale(1.08)!important}
+.pb-brand img{transform:scale(1)}
+
+/* recaps: the answer lit like a title card */
+.scene.t-recap .rc-a{color:#fff!important;border-left-color:var(--green)!important;text-shadow:0 0 50px rgba(122,92,255,.35)}
+.scene.t-recap .rc-q{color:var(--muted)!important}
+.rc-m{background:linear-gradient(120deg,rgba(4,240,106,.14),rgba(4,240,106,.04))!important;border:1px solid rgba(4,240,106,.35)!important}
+.rc-m p{color:#fff!important}
+.rc-mi{background:var(--green)!important} .rc-mi svg{stroke:#07040F!important}
+
+/* side photos fade into the dark, not into white */
+.pb-side{background:var(--sk-bg)!important}
+.pb-side::after{background:linear-gradient(90deg,var(--sk-bg) 0%,rgba(7,4,15,.6) 18%,rgba(7,4,15,0) 45%)!important}
+
+/* maps: land as light on the dark */
+.map .land{fill:rgba(255,255,255,.06)!important;stroke:rgba(255,255,255,.12)!important}
+.map .grat{stroke:rgba(255,255,255,.05)!important}
+.map-panel.tour{background:none!important}
+.mb-fig b{color:var(--coral)}
+.mb-t{color:#fff!important}
+.mb-s{color:var(--muted)!important}
+.pin text{fill:#fff!important} .pin text.sub{fill:var(--subtle)!important}
+.bgmap .land{fill:rgba(255,255,255,.05)!important;stroke:rgba(255,255,255,.1)!important}
+
+/* specific screens */
+.fl-c,.ic-c{background:rgba(255,255,255,.04)!important}
+.fl-li{background:var(--sk-bg)!important}
+.ov{background:rgba(7,4,15,.96)!important}
+.ov-g button{background:rgba(255,255,255,.06)!important;color:#fff}
+#notes{background:rgba(7,4,15,.95)!important;color:#fff}
+.pv .nt,.pv .box{background:rgba(255,255,255,.06)!important}
+.pv .btns button{background:rgba(255,255,255,.08)!important;border-color:rgba(255,255,255,.2)!important;color:#fff}
+.pv .btns button.pri{background:#5A2BE0!important}
+.sk{background:repeating-linear-gradient(0deg,transparent 0 31px,rgba(255,255,255,.03) 31px 32px),rgba(255,255,255,.03)!important;border:1px solid var(--glass-line)}
+.fin-card{background:linear-gradient(155deg,rgba(255,255,255,.12),rgba(255,255,255,.04))!important}
+.fin-q{color:#fff!important} .fin-card p{color:var(--muted)!important;border-top-color:var(--green)!important}
+.fin-n{color:var(--green)!important}
+.cl2-t li b,.hk-st b,.kr-l li b,.ug-r b,.tr-c b,.fo-c blockquote{color:#fff!important}
+.fo-c blockquote{color:#fff!important} .fo-c figcaption,.fo-c figcaption b{color:var(--muted)!important}
+.hk-st code{background:#000!important;border:1px solid rgba(4,240,106,.3)}
+.kr-c{box-shadow:0 0 0 .8rem rgba(122,92,255,.18),0 0 80px rgba(122,92,255,.6)!important;background:#5A2BE0!important}
+.kr-t svg{stroke:#B6A6FF!important} .kr-t span{color:#fff!important}
+.kr2-reco{background:linear-gradient(120deg,#04F06A,#19C66A)!important;color:#07040F!important;box-shadow:0 0 60px rgba(4,240,106,.35)}
+.kr2-reco b,.kr2-reco span{color:#07040F!important}
+.tc-q{background:#5A2BE0!important}
+.tc-h{color:#fff!important}
+.ph3-s b{color:var(--coral)!important}
+.ph3-s span{color:#fff!important}
+.ph-after{background:linear-gradient(120deg,rgba(255,107,90,.18),rgba(255,107,90,.05))!important;border-color:rgba(255,107,90,.4)!important}
+.inj-k{color:var(--muted)!important}
+.inj-n{color:var(--coral)!important}
+.vs-s b{text-shadow:0 0 30px currentColor}
+.cr2-h{color:#fff!important}
+.cr2 dt{color:var(--green)!important}
+.cr2 dd{color:#fff!important}
+.cr2 dl div:last-child dd{color:var(--green)!important}
+.ug-l{background:linear-gradient(160deg,#C9362A 0%,#7A1A12 100%)!important}
+.an-fix{color:var(--green)!important}
+.an-flag{color:var(--coral)!important}
+.sw-stat b{color:var(--coral)!important}
+.sw-stat span,.sw-lede{color:var(--muted)!important}
+.eq-t b,.eq-r b{color:#fff}
+.stp-b{box-shadow:0 0 40px rgba(122,92,255,.3)}
+.nn-l{fill:rgba(255,255,255,.55)!important}
+.nn-e{stroke:rgba(255,255,255,.07)!important}
+.nn-qb{fill:rgba(255,181,71,.12)!important;stroke:var(--amber)!important} .nn-qt{fill:#fff!important}
+.nn-o{fill:rgba(255,255,255,.06)!important} .nn-ot{fill:#fff!important}
+.nn-tile rect{fill:rgba(255,255,255,.06)!important;stroke:rgba(255,255,255,.14)!important} .nn-tile text{fill:#fff!important}
+.nn-c b{color:#fff!important} .nn-c p{color:var(--muted)!important}
+svg.robot text{fill:#fff!important} svg.robot text.s{fill:rgba(255,255,255,.6)!important}
+svg.robot g[fill]{fill:rgba(122,92,255,.18)!important;stroke:rgba(182,166,255,.6)!important}
+svg.robot .ai-last text{fill:var(--coral)!important}
+.rv-msg{color:var(--coral)!important;text-shadow:0 0 40px rgba(255,107,90,.5)}
+.lower3{background:rgba(7,4,15,.85)!important;backdrop-filter:blur(10px);border-left-color:var(--green)!important}
+.media video,.media img{box-shadow:0 40px 100px rgba(0,0,0,.7)}
+.duo-f b{color:#fff!important}
+.bar-l,.bars .l{color:#fff}
+
+/* zoom: the chapter 1 camera, drawn in light on the dark */
+.zbox{fill:rgba(122,92,255,.05)!important;stroke:rgba(182,166,255,.55)!important}
+.zbox.sandbox{fill:rgba(255,255,255,.05)!important}
+.zbox.ai{fill:rgba(122,92,255,.14)!important;stroke:#8B6DFF!important}
+.zbox.net{fill:rgba(95,212,218,.07)!important;stroke:#5FD4DA!important}
+.zbox.tp{fill:rgba(255,255,255,.03)!important;stroke:rgba(255,255,255,.35)!important}
+.zbox.hf{fill:rgba(255,181,71,.1)!important}
+.znode{fill:rgba(255,255,255,.1)!important;stroke:rgba(255,255,255,.35)!important}
+.znode.hit{fill:rgba(255,107,90,.3)!important;stroke:var(--coral)!important}
+.zt-b{fill:#D9CFFF!important} .zt-a0,.zt-out{fill:#B6A6FF!important}
+.zlog{fill:rgba(255,255,255,.12)!important} .zlog.hot{fill:var(--coral)!important}
+.zdate{color:#B6A6FF!important} .zf b{color:#fff!important;text-shadow:0 0 30px rgba(122,92,255,.6)} .zdt b{color:#B6A6FF!important}
+
+/* reflex boxes and map labels */
+.take{color:#fff!important;background:linear-gradient(90deg,rgba(4,240,106,.16),rgba(4,240,106,.04))!important}
+.pin text{stroke:rgba(7,4,15,.85)!important}
+
+/* the title: light pouring through the words */
+.doc-title{background:linear-gradient(100deg,#FFFFFF 0%,#FFFFFF 55%,#B6A6FF 80%,#04F06A 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.doc-title .sk-w{background:inherit;-webkit-background-clip:text;background-clip:text}
+.scene.t-title .doc-title{filter:drop-shadow(0 10px 40px rgba(0,0,0,.4))}
+
+/* chapter cards: cinema bars close in, then open */
+.scene.t-chapter::before,.scene.t-chapter::after{content:'';position:absolute;left:0;right:0;height:9vh;background:#000;z-index:5;transform:scaleY(0);transition:transform 1.2s var(--sk-ease) .2s}
+.scene.t-chapter::before{top:0;transform-origin:top} .scene.t-chapter::after{bottom:0;transform-origin:bottom}
+.scene.t-chapter.live::before,.scene.t-chapter.live::after{transform:scaleY(1)}
+.sk-num{-webkit-text-stroke:2px rgba(255,255,255,.2)}
+.doc-title .sk-w{padding-bottom:.12em;margin-bottom:-.12em}

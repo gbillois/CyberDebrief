@@ -26,6 +26,12 @@ openers, recaps, places on the maps). It is generated, never edited by hand:
 run `python3 tools/build-talk-photos.py` after changing `ai-talk.html` or
 `assets/ai/photos/photoset.js`.
 
+`ai-talk-photo-sleek.html` is the cinematic edition of the same talk: a dark
+stage in Wavestone colours, glass panels, film grain, camera-like transitions,
+titles that rise word by word and cinema bars on chapter cards. It is generated
+too: run `python3 tools/build-talk-sleek.py` after changing `ai-talk.html`, the
+photo set or `assets/ai/sleek/` (sleek.css, sleek.js).
+
 The same 40-minute story told like a TED talk. It opens on its question,
 "How is the threat changing with AI, and what can we do?", then on the date
 and on Hugging Face realising this is not a normal attacker. There is no
