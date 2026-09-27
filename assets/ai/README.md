@@ -157,3 +157,11 @@ Each `visual` or `media` object in the `SCENES` array accepts:
 
 For any later public release (with a voice-over), re-check the rights to every
 clip.
+
+## Narration (sleek edition)
+
+`assets/ai/voice/*.mp3` are synthetic voices generated with Kokoro-82M
+(hexgrad, Apache 2.0 licence), voices `af_heart` (narrator) and `bm_george`
+(quoted lines), by `tools/build-talk-voice.py` from the `vo` lines of
+`ai-talk.html`. `narration.json` / `narration.js` index them (length, start of
+each sentence). No human voice was recorded or cloned.

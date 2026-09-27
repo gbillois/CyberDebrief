@@ -32,6 +32,16 @@ titles that rise word by word and cinema bars on chapter cards. It is generated
 too: run `python3 tools/build-talk-sleek.py` after changing `ai-talk.html`, the
 photo set or `assets/ai/sleek/` (sleek.css, sleek.js).
 
+Two options sit on its title screen. **Opening credits** (key I) plays a
+16-second animated opening with a score synthesised live in the browser (A mutes
+it). **Narrated version** (key R, K to pause) lets the talk play on its own: each
+scene's script is read by recorded voices, its steps turn with the sentences and
+the next scene follows. The voices are in `assets/ai/voice/`, recorded offline
+with Kokoro-82M (Apache 2.0): a narrator, and a second voice for the quoted
+lines. Run `python3 tools/build-talk-voice.py <kokoro folder>` after changing a
+`vo` line (only the changed scenes are recorded again), then rebuild the sleek
+edition. Without the recordings, the browser's own English voice reads instead.
+
 The same 40-minute story told like a TED talk. It opens on its question,
 "How is the threat changing with AI, and what can we do?", then on the date
 and on Hugging Face realising this is not a normal attacker. There is no
