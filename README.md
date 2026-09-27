@@ -43,7 +43,7 @@ I plays the opening alone. The narration follows its own dramatised script,
 engineers, the testers, the agents' messages, the scammers), with `>>` where
 each click happens; real people only say their own public words, verbatim.
 The voices are recorded offline with Kokoro-82M (Apache 2.0) into
-`assets/ai/voice/` (about 20 minutes, 22 with the pauses and the credits). Run
+`assets/ai/voice/` (about 18 minutes, under 20 with the pauses and the credits). Run
 `python3 tools/build-talk-voice.py <kokoro folder>` after editing the script
 (only the changed scenes are recorded again), then rebuild the sleek
 edition. Without the recordings, the browser's own English voice reads instead.

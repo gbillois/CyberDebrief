@@ -14,21 +14,21 @@ Named real people only say their own public words, verbatim. Every other
 line of dialogue is a dramatised reconstruction of documented events, given
 to an unnamed role (an engineer, a tester, a scammer).
 
-@NARRATOR af_heart en-us 0.95
-@ENGINEER am_michael en-us 1.0
-@ANALYST af_bella en-us 1.0
-@TESTER bm_george en-gb 1.0
-@AGENT am_puck en-us 1.05
-@WOLF bm_fable en-gb 1.0
-@DELANGUE am_fenrir en-us 1.0
-@AMODEI am_michael en-us 0.97
-@ALTMAN bm_fable en-gb 1.0
-@CHATBOT af_nova en-us 1.05
-@DRIVER am_fenrir en-us 1.05
-@ADVISER bm_george en-gb 1.0 phone
-@DAUGHTER af_nicole en-us 1.0 phone
-@EMPLOYEE am_michael en-us 1.0
-@ASSISTANT bf_emma en-gb 1.0
+@NARRATOR af_heart en-us 1.1
+@ENGINEER am_michael en-us 1.13
+@ANALYST af_bella en-us 1.13
+@TESTER bm_george en-gb 1.13
+@AGENT am_puck en-us 1.19
+@WOLF bm_fable en-gb 1.13
+@DELANGUE am_fenrir en-us 1.13
+@AMODEI am_michael en-us 1.1
+@ALTMAN bm_fable en-gb 1.13
+@CHATBOT af_nova en-us 1.19
+@DRIVER am_fenrir en-us 1.19
+@ADVISER bm_george en-gb 1.13 phone
+@DAUGHTER af_nicole en-us 1.13 phone
+@EMPLOYEE am_michael en-us 1.13
+@ASSISTANT bf_emma en-gb 1.13
 
 ## Title
 NARRATOR: One question tonight. How is the threat changing with artificial intelligence, and what can we do about it? Let's start with a date.
