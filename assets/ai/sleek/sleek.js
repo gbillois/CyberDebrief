@@ -256,7 +256,7 @@ function skNarrScene() {
   const alive = () => skN.on && cur === el;
   const step = k => { if (alive() && frag < k && k <= el._max) { frag = k - 1; next(); } };
   const move = () => { if (!alive() || skN.paused) return; if (frag < el._max) next(); if (idx < SCENES.length - 1) go(idx + 1, 0); else skNarrStop(); };
-  const after = () => { skN.resume = after; if (!skN.paused && alive()) skHold(move, 1500); };
+  const after = () => { skN.resume = after; if (!skN.paused && alive()) skHold(move, 900); };
   if (!say(s)) {
     // a silent screen: walk its steps, then move on
     let k = frag; const tick = () => { if (!alive() || skN.paused) return; if (k < max) { step(++k); skHold(tick, 1800); } else after(); };
@@ -382,7 +382,7 @@ if (!PRESENTER) {
     skOptions(n);
     if (skAudio && idx !== 0) skAudio.fade(1.8);
     if (idx === 0 && !skN.on && !document.getElementById('sk-intro')) skLoopStart(); else if (idx !== 0) skLoopStop();
-    if (skN.on) { skNarrClear(); const t = setTimeout(() => { if (cur === n) skNarrScene(); }, 650); skN.timers.push(t); }
+    if (skN.on) { skNarrClear(); const t = setTimeout(() => { if (cur === n) skNarrScene(); }, 550); skN.timers.push(t); }
   }))).observe(document.getElementById('stage'), { childList: true });
   if (cur) skOptions(cur);
   if (idx === 0) skLoopStart();

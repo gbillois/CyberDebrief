@@ -22,7 +22,7 @@ import soundfile as sf
 root = Path(__file__).resolve().parent.parent
 out = root / 'assets/ai/voice'
 NARRATOR, QUOTE, SPEED = ('af_heart', 'en-us', 0.96, ''), ('bm_george', 'en-gb', 1.0, ''), 0.96
-GAP_WORD, GAP_SENT, GAP_VOICE = 0.14, 0.34, 0.22
+GAP_WORD, GAP_SENT, GAP_VOICE = 0.1, 0.22, 0.12
 
 # how a few words should sound (the screen keeps its spelling)
 SAY = [(r'OH MY GOD', 'Oh my God'), (r'GPT-(\d)', r'GPT \1'), (r'GLM-(\d)', r'GLM \1'), (r'\bGo2\b', 'Go two'), (r'’', "'")]
