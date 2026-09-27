@@ -43,11 +43,12 @@ new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.nod
   .observe(document.getElementById('stage'), { childList: true });
 
 // ─── Opening: credits and a 20-second score ─────────────────────────────
-// Optional, from a button on the title screen (or the I key): the score,
-// synthesised live with Web Audio (no file, works offline), and the credits:
-// a log typed at 03:12, the title slammed in on the impact, then the stage
-// fades up on the title screen. Any key skips the credits (the music plays on
-// and fades when the title is left), Esc skips both, A mutes the music.
+// The title screen plays a looping theme (as soon as the browser lets sound
+// start, or at the first key or click). The Narration button plays the credits
+// with their score, synthesised live with Web Audio (no file, works offline):
+// a log typed at 03:12, the title slammed in on the impact, then straight to
+// the date, and the narration takes over. Any key skips the credits, Esc
+// cancels, A turns the music on or off, I plays the credits alone.
 const SK_INTRO = [
   ['16.07.2026 · 03:12 UTC', 0.7],
   ['hf-prod · unusual outbound traffic', 1.9],
@@ -139,9 +140,9 @@ function skScore() {
   };
 }
 
-function skIntro() {
+function skIntro(then) {
   if (PRESENTER) return;
-  go(0);
+  go(0); skLoopStop(0.8);
   document.getElementById('sk-intro')?.remove();
   const box = document.createElement('div'); box.id = 'sk-intro';
   const title = 'OUT OF THE SANDBOX'.split(' ').map(w => `<span class="w">${w.split('').map(c => `<i style="--d:${(Math.random() * (SK_T.hit - SK_T.letters - 0.5)).toFixed(2)}s">${c}</i>`).join('')}</span>`).join(' ');
@@ -153,11 +154,11 @@ function skIntro() {
     <div class="ski-flash"></div>`;
   document.body.appendChild(box);
   const timers = [];
-  const end = (quick) => {
+  const end = (quick, cancel) => {
     if (!box.isConnected || box.classList.contains('out')) return;
     timers.forEach(clearTimeout); box.classList.add('out'); if (quick) box.classList.add('quick');
-    if (idx === 0) render(0, 0);
-    setTimeout(() => box.remove(), quick ? 500 : 1500);
+    if (then && !cancel) then(); else if (idx === 0) render(0, 0);
+    setTimeout(() => { box.remove(); if (idx === 0 && !skN.on) skLoopStart(); }, quick ? 500 : 1500);
   };
   const start = () => {
     box.classList.add('run');
@@ -177,7 +178,7 @@ function skIntro() {
     if (k && (e.metaKey || e.ctrlKey || e.altKey || k === 'Shift')) return;
     if (k === 'f' || k === 'F' || k === 'a' || k === 'A') return;
     e.stopImmediatePropagation(); e.preventDefault();
-    if (k === 'Escape') { if (skAudio) skAudio.fade(0.4); end(true); return; }
+    if (k === 'Escape') { if (skAudio) skAudio.fade(0.4); end(true, true); return; }
     end(true);
   };
   box.addEventListener('click', gesture);
@@ -200,14 +201,20 @@ const skHold = (fn, ms) => { skN.resume = fn; skN.holds.push(setTimeout(fn, ms))
 const skNarrClear = () => { skN.timers.forEach(t => { clearTimeout(t); clearInterval(t); }); skN.holds.forEach(clearTimeout); skN.timers = []; skN.holds = []; if (skN.audio) { skN.audio.onended = skN.audio.onerror = null; skN.audio.pause(); skN.audio = null; } if (window.speechSynthesis) speechSynthesis.cancel(); skN.resume = null; };
 function skNarrUI() {
   document.body.classList.toggle('sk-narr', skN.on); document.body.classList.toggle('sk-narr-paused', skN.on && skN.paused);
-  document.querySelectorAll('[data-sk="narr"]').forEach(b => { b.setAttribute('aria-pressed', skN.on); b.querySelector('em').textContent = skN.on ? 'Stop the narration' : 'Narrated version'; });
+  document.querySelectorAll('[data-sk="narr"]').forEach(b => { b.setAttribute('aria-pressed', skN.on); b.querySelector('em').textContent = skN.on ? 'Stop the narration' : 'Narration'; });
   let np = document.getElementById('sk-np');
   if (!np) { np = document.createElement('div'); np.id = 'sk-np'; np.innerHTML = '<i></i><span></span><button data-sk="pause"></button><button data-sk="stop">Stop</button>'; document.body.appendChild(np); }
   np.querySelector('span').textContent = skN.paused ? 'Narration paused' : 'Narrated';
   np.querySelector('[data-sk="pause"]').textContent = skN.paused ? 'Resume (K)' : 'Pause (K)';
 }
-function skNarrStop() { skN.on = skN.paused = false; skNarrClear(); skNarrUI(); }
-function skNarrStart() { if (skAudio) skAudio.fade(1); skN.on = true; skN.paused = false; skNarrUI(); skNarrScene(); }
+function skNarrStop() { skN.on = skN.paused = false; skNarrClear(); skNarrUI(); if (idx === 0) skLoopStart(); }
+function skNarrStart(to) {
+  if (skAudio && to === undefined) skAudio.fade(1);
+  skLoopStop(); skN.on = true; skN.paused = false; skNarrUI();
+  if (to !== undefined && to !== idx) go(to, 0); else skNarrScene();
+}
+// on the title: the credits first, then straight to the date, narrated
+const skNarrGo = () => { if (skN.on) skNarrStop(); else if (idx === 0) skIntro(() => skNarrStart(1)); else skNarrStart(); };
 function skNarrPause() {
   if (!skN.on) return; skN.paused = !skN.paused; skNarrUI();
   if (skN.paused) { skN.holds.forEach(clearTimeout); skN.holds = []; if (skN.audio) skN.audio.pause(); if (window.speechSynthesis) speechSynthesis.pause(); }
@@ -256,13 +263,78 @@ function skNarrScene() {
   a.play().catch(() => { if (skN.audio === a) { skN.audio = null; speak(); } });
 }
 
-// the two buttons on the title screen
+// ─── The title theme, in a loop ─────────────────────────────────────────
+// Rendered once (OfflineAudioContext), 19.2 s: A minor, F, C, G over the
+// drone and a slow heartbeat. The reverb tail of the last bar is folded back
+// onto the first, so the loop has no seam.
+const skLoop = { ac: null, buf: null, src: null, gain: null, want: false };
+async function skLoopBuffer(ac) {
+  const sr = 44100, L = 19.2, oc = new OfflineAudioContext(2, Math.ceil((L + 5) * sr), sr);
+  const master = oc.createGain(); master.gain.value = 0.8;
+  const comp = oc.createDynamicsCompressor(); comp.threshold.value = -16; comp.ratio.value = 3;
+  master.connect(comp); comp.connect(oc.destination);
+  const verb = oc.createConvolver(), len = sr * 4, ir = oc.createBuffer(2, len, sr);
+  for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3); }
+  verb.buffer = ir; const wet = oc.createGain(); wet.gain.value = 0.5; verb.connect(wet); wet.connect(master);
+  const bus = (dry, send) => { const g = oc.createGain(), d = oc.createGain(), w = oc.createGain(); d.gain.value = dry; w.gain.value = send; g.connect(d); d.connect(master); g.connect(w); w.connect(verb); return g; };
+  const hz = m => 440 * Math.pow(2, (m - 69) / 12);
+  // drone: whole numbers of cycles in the loop, so it joins without a click
+  const dr = bus(0.8, 0.35), lp = oc.createBiquadFilter(); lp.type = 'lowpass'; lp.Q.value = 5; lp.frequency.value = 320;
+  const lfo = oc.createOscillator(), lg = oc.createGain(); lfo.frequency.value = 1 / L; lg.gain.value = 150; lfo.connect(lg); lg.connect(lp.frequency); lfo.start(0); lfo.stop(L);
+  dr.gain.value = 0.2; lp.connect(dr);
+  [[1054, 'sawtooth'], [1058, 'sawtooth'], [1056, 'sine']].forEach(([n, type]) => { const o = oc.createOscillator(); o.type = type; o.frequency.value = n / L; o.connect(lp); o.start(0); o.stop(L); });
+  // the chords, 4.8 s each
+  [[57, 64, 71, 72], [53, 60, 64, 69], [48, 55, 64, 67], [55, 62, 67, 71]].forEach((notes, c) => {
+    const a = c * 4.8, b = a + 4.8;
+    notes.forEach(m => {
+      const g = bus(0.35, 0.9), f = oc.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 1700; f.connect(g);
+      [-5, 5].forEach(dt => { const o = oc.createOscillator(); o.type = 'triangle'; o.frequency.value = hz(m); o.detune.value = dt; o.connect(f); o.start(a); o.stop(b + 2.6); });
+      g.gain.setValueAtTime(0, a); g.gain.linearRampToValueAtTime(0.045, a + 1.6); g.gain.setValueAtTime(0.045, b); g.gain.linearRampToValueAtTime(0, b + 2.4);
+    });
+    const o = oc.createOscillator(), g = bus(0.2, 1.4), at = a + 0.8; o.frequency.value = hz([88, 84, 79, 83][c]);
+    g.gain.setValueAtTime(0, at); g.gain.linearRampToValueAtTime(0.05, at + 0.01); g.gain.exponentialRampToValueAtTime(0.001, at + 3.4); o.connect(g); o.start(at); o.stop(at + 3.5);
+  });
+  // a slow heartbeat
+  for (let t = 0; t < L - 0.5; t += 1.6) [0, 0.2].forEach((off, j) => {
+    const at = t + off, o = oc.createOscillator(), g = bus(1, 0.15);
+    o.frequency.setValueAtTime(90, at); o.frequency.exponentialRampToValueAtTime(38, at + 0.18);
+    g.gain.setValueAtTime(0, at); g.gain.linearRampToValueAtTime(j ? 0.13 : 0.24, at + 0.008); g.gain.exponentialRampToValueAtTime(0.001, at + 0.3);
+    o.connect(g); o.start(at); o.stop(at + 0.35);
+  });
+  const r = await oc.startRendering(), n = Math.round(L * sr), out = ac.createBuffer(2, n, sr);
+  for (let c = 0; c < 2; c++) { const d = r.getChannelData(c), o = out.getChannelData(c); for (let i = 0; i < n; i++) o[i] = d[i] + (i + n < d.length ? d[i + n] : 0); }
+  return out;
+}
+function skLoopStart() {
+  if (PRESENTER || skMuted || skN.on || skLoop.src) return;
+  const AC = window.AudioContext || window.webkitAudioContext; if (!AC || !window.OfflineAudioContext) return;
+  skLoop.want = true; if (!skLoop.ac) skLoop.ac = new AC();
+  const ac = skLoop.ac, play = buf => {
+    if (!skLoop.want || skLoop.src) return;
+    const s = ac.createBufferSource(), g = ac.createGain(); s.buffer = buf; s.loop = true;
+    g.gain.setValueAtTime(0, ac.currentTime); g.gain.linearRampToValueAtTime(0.75, ac.currentTime + 3);
+    s.connect(g); g.connect(ac.destination); s.start(); skLoop.src = s; skLoop.gain = g;
+  };
+  if (skLoop.buf) play(skLoop.buf); else skLoopBuffer(ac).then(b => { skLoop.buf = b; play(b); }).catch(() => {});
+  ac.resume().catch(() => {});
+}
+function skLoopStop(sec = 1.5) {
+  skLoop.want = false; const { src, gain, ac } = skLoop; if (!src) return; skLoop.src = null;
+  gain.gain.cancelScheduledValues(ac.currentTime); gain.gain.setValueAtTime(gain.gain.value, ac.currentTime); gain.gain.linearRampToValueAtTime(0, ac.currentTime + sec); src.stop(ac.currentTime + sec + 0.05);
+}
+function skMusic() {
+  skMuted = !skMuted; document.body.classList.toggle('sk-muted', skMuted); skAudio && skAudio.mute(skMuted);
+  if (skMuted) skLoopStop(0.6); else if (idx === 0) skLoopStart();
+  document.querySelectorAll('[data-sk="music"]').forEach(b => b.setAttribute('aria-pressed', !skMuted));
+}
+
+// the Narration button (and a small music switch) on the title screen
 function skOptions(scene) {
   const tt = scene.classList.contains('t-title') && scene.querySelector('.tt');
   if (!tt || tt.querySelector('.sk-opts')) return;
   tt.insertAdjacentHTML('beforeend', `<div class="sk-opts">
-    <button data-sk="intro"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg><span><em>Opening credits</em><small>with music · 16 seconds</small></span></button>
-    <button data-sk="narr" aria-pressed="${skN.on}"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg><span><em>${skN.on ? 'Stop the narration' : 'Narrated version'}</em><small>two voices · plays on its own</small></span></button>
+    <button data-sk="narr" aria-pressed="${skN.on}"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg><span><em>${skN.on ? 'Stop the narration' : 'Narration'}</em><small>opening credits, then the talk plays on its own</small></span></button>
+    <button data-sk="music" class="sk-mu" aria-pressed="${!skMuted}" title="Music on / off (A)"><svg viewBox="0 0 24 24"><path d="M9 17.5V6l10-2v11.5"/><circle cx="6.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="15.5" r="2.5"/></svg></button>
   </div>`);
 }
 
@@ -272,27 +344,31 @@ if (!PRESENTER) {
     if (n.nodeType !== 1 || !n.classList.contains('scene')) return;
     skOptions(n);
     if (skAudio && idx !== 0) skAudio.fade(1.8);
+    if (idx === 0 && !skN.on && !document.getElementById('sk-intro')) skLoopStart(); else if (idx !== 0) skLoopStop();
     if (skN.on) { skNarrClear(); const t = setTimeout(() => { if (cur === n) skNarrScene(); }, 650); skN.timers.push(t); }
   }))).observe(document.getElementById('stage'), { childList: true });
   if (cur) skOptions(cur);
+  if (idx === 0) skLoopStart();
+  // the first gesture lets the sound start, if the browser held it back
+  ['pointerdown', 'keydown', 'touchstart'].forEach(t => document.addEventListener(t, () => { if (skLoop.ac && skLoop.ac.state === 'suspended' && skLoop.want) skLoop.ac.resume().catch(() => {}); }, true));
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-sk]'); if (!b) return;
     e.stopPropagation(); b.blur();
     const k = b.dataset.sk;
-    if (k === 'intro') { if (skN.on) skNarrStop(); skIntro(); }
-    else if (k === 'narr') skN.on ? skNarrStop() : skNarrStart();
+    if (k === 'narr') skNarrGo();
+    else if (k === 'music') skMusic();
     else if (k === 'pause') skNarrPause();
     else if (k === 'stop') skNarrStop();
   }, true);
   document.addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey || document.querySelector('.ov.open')) return;
     const k = e.key.toLowerCase();
-    if (k === 'a') { skMuted = !skMuted; skAudio && skAudio.mute(skMuted); document.body.classList.toggle('sk-muted', skMuted); }
+    if (k === 'a') skMusic();
     else if (k === 'i' && !document.getElementById('sk-intro')) { if (skN.on) skNarrStop(); skIntro(); }
-    else if (k === 'r') skN.on ? skNarrStop() : skNarrStart();
+    else if (k === 'r') skNarrGo();
     else if (k === 'k') skNarrPause();
     else if (e.key === 'Escape' && skN.on) skNarrStop();
   });
   const keys = document.querySelector('#help .keys');
-  if (keys) keys.insertAdjacentHTML('beforeend', '<kbd>I</kbd><span>Opening credits, with music (A: music on / off)</span><kbd>R</kbd><span>Narrated version on / off (K: pause)</span>');
+  if (keys) keys.insertAdjacentHTML('beforeend', '<kbd>R</kbd><span>Narration on / off: opening credits, then the talk plays on its own (K: pause)</span><kbd>A</kbd><span>Music on / off</span><kbd>I</kbd><span>Opening credits alone</span>');
 }
