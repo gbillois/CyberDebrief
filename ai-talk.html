@@ -1355,9 +1355,6 @@ svg.robot .ai-last text{fill:var(--coral)} svg.robot .ai-last .ld{stroke:var(--c
 .scene.t-sticky .bgmap{opacity:.9}
 .scene.t-sticky .head,.scene.t-sticky .sk{position:relative;z-index:1}
 .scene.t-sticky .sk.grouped{background:rgba(255,255,255,.55);backdrop-filter:blur(2px)}
-.sk.grouped .sk-n{width:12.5rem!important;padding:1.1rem 1rem!important;gap:.5rem}
-.sk.grouped .sk-n b{font-size:1.35rem!important}
-.sk.grouped .sk-n span{font-size:.92rem!important}
 @media (max-width:760px){.trio,.ph3,.kr2{grid-template-columns:1fr}.ph-after,.ph-after ol{grid-template-columns:1fr}.ph3-s b{font-size:5rem}}
 /* Round of 26 September, late */
 .hk-circ{position:absolute;z-index:3;border:.3rem solid var(--coral);border-radius:50%;box-shadow:0 0 0 .5rem rgba(216,65,47,.18)}
@@ -1371,11 +1368,16 @@ svg.robot .ai-last text{fill:var(--coral)} svg.robot .ai-last .ld{stroke:var(--c
 .scene.t-sticky.bgm-dark .sk.grouped{background:transparent;backdrop-filter:none;border:0}
 .scene.t-sticky.bgm-dark .sk-h{color:#CFC4FF}
 .scene.t-sticky.bgm-dark .sk-g + .sk-g{border-left-color:rgba(255,255,255,.25)}
-.sk.grouped .sk-n{width:10.8rem!important;padding:.9rem .85rem!important;gap:.4rem}
-.sk.grouped .sk-n b{font-size:1.15rem!important}
-.sk.grouped .sk-n span{font-size:.8rem!important}
-.sk.grouped .sk-n::before{width:3rem;height:.9rem}
 @media (max-width:760px){.kr-med{position:static;zoom:1;width:auto;margin-top:1rem}}
+.scene.t-finale .fin-g{grid-template-rows:auto auto;align-content:end;gap:.8rem!important}
+.scene.t-finale .fin{justify-content:space-between}
+.scene.t-finale .fin-card{padding:.9rem 1rem!important;background:rgba(255,255,255,.92);backdrop-filter:blur(3px)}
+.scene.t-finale .fin-q{font-size:1.3rem!important;margin-top:.35rem}
+.scene.t-finale .fin-card p{font-size:1.05rem!important;margin-top:.5rem!important;padding-top:.5rem!important}
+.scene.t-finale .fin-n{font-size:.68rem}
+.scene.t-finale .fin-a{font-size:3.2rem!important}
+.scene.t-finale .fin-b{color:#E4DEFF}
+.scene.t-finale .pb-dark::after{background:linear-gradient(180deg,rgba(10,6,30,.55) 0%,rgba(10,6,30,.25) 45%,rgba(10,6,30,.7) 100%)}
 /* Zoom: old labels vanish at once, new ones wait for the camera */
 .zw .zlb{transition:opacity .5s ease 1.5s}
 .zw .zlb.off{transition:opacity .12s ease 0s}
@@ -1975,7 +1977,6 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
 
 { ch: 'c5', type: 'sticky', title: 'For leaders',
   stamp: 'Good practice', heading: 'What are the good practices when I use AI?',
-  bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
   groups: [
     { h: 'When I use AI', cards: [
       { q: 'Never share work or private data on a public AI', a: 'What you paste can be stored, reused, or leak.' },
@@ -2002,6 +2003,7 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
   vo: `A last word. There is reason for optimism. Everything you have seen tonight, we know because someone spotted it and spoke up. Hugging Face detected and disclosed. OpenAI admitted. Independent researchers found the traces. Journalists kept asking. And the next one, it could be you.` },
 
 { ch: 'c5', type: 'finale', title: 'Questions',
+  bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
   a: `The technology has changed scale.`,
   b: `The reflexes that protect us remain simple, human, and within everyone's reach.`,
   c: 'Thank you. Your questions?',
@@ -2443,7 +2445,7 @@ const R = {
 
   // Last screen, left up during the questions: every chapter at a glance
   finale: s => { const keys = Object.keys(CH).filter(k => CH[k].q);
-    return `<div class="fin-bg"></div><div class="fin"><div class="fin-top"><div><h2 class="fin-a">${s.a}</h2><p class="fin-b">${s.b}</p></div><div class="fin-c">${s.c}</div></div>
+    return `${s.bg ? '' : '<div class="fin-bg"></div>'}<div class="fin"><div class="fin-top"><div><h2 class="fin-a">${s.a}</h2><p class="fin-b">${s.b}</p></div><div class="fin-c">${s.c}</div></div>
       <ol class="fin-g">${keys.map((k, j) => { const i = SCENES.findIndex(x => x.ch === k && x.type === 'chapter');
         return `<li><button class="fin-card" onclick="event.stopPropagation();go(${i})"><span class="fin-n">${String(j + 1).padStart(2, '0')} · ${CH[k].title}</span><b class="fin-q">${CH[k].q}</b><p>${CH[k].a}</p></button></li>`; }).join('')}</ol></div>`; },
 
