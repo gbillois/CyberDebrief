@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How an AI agent left OpenAI and reached Hugging Face</title>
-  <meta name="description" content="A Wavestone-styled, animated, deeply technical explainer of the July 2026 OpenAI to Hugging Face agent incident: every action, and how each one unlocked the next. Built from public reports (METR, Hugging Face, OpenAI, swarmtraces.org, collusion.wiki).">
+  <meta name="description" content="An animated, deeply technical explainer of the July 2026 OpenAI to Hugging Face agent incident: every action, and how each one unlocked the next. Built from public reports (METR, Hugging Face, OpenAI, swarmtraces.org, collusion.wiki).">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -60,8 +60,6 @@
       border-radius:50%;border:2px solid rgba(4,240,106,.55);
       box-shadow:0 0 0 22px rgba(255,255,255,.04);opacity:.5}
     .hbrand{display:flex;align-items:center;gap:12px}
-    .wordmark{font-family:var(--ws-display);font-weight:800;letter-spacing:-.01em;color:#fff;font-size:1.25rem;line-height:1}
-    .wordmark .dot{color:var(--ws-green-400)}
     .hbrand span{font-family:var(--ws-display);font-weight:600;opacity:.85;font-size:.95rem}
     .hero h1{color:#fff;font-size:clamp(2rem,6vw,3.7rem);font-weight:800;line-height:1.04;margin:26px 0 0;max-width:16ch}
     .hero h1 .grn{color:var(--ws-green-400)}
@@ -183,8 +181,6 @@
     .src .n{font-size:13px;color:var(--ws-ink-500);margin-top:2px}
 
     footer{background:var(--ws-indigo-900);color:rgba(255,255,255,.72);padding:34px 0;margin-top:40px;font-size:12.8px}
-    footer .fbrand{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-    footer .fbrand .wordmark{font-size:1.05rem}
 
     @media(min-width:768px){
       .stats{grid-template-columns:repeat(4,1fr)}
@@ -200,7 +196,6 @@
   <header class="hero">
     <div class="wrap">
       <div class="hbrand">
-        <span class="wordmark">wavestone<span class="dot">.</span></span>
         <span>Threat teardown</span>
       </div>
       <span class="eyebrow" style="margin-top:22px;display:inline-block">Incident teardown &nbsp;·&nbsp; July 2026</span>
@@ -489,7 +484,6 @@
 
   <footer>
     <div class="wrap">
-      <div class="fbrand"><span class="wordmark">wavestone<span class="dot">.</span></span></div>
       Educational teardown of a publicly disclosed 2026 security incident. Synthesised from the sources listed above. No confidential information and no operational exploit detail is included.
     </div>
   </footer>
