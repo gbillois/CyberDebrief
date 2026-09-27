@@ -38,10 +38,14 @@ click; A or the note button turns it off). One button, **Narration** (key R, K
 to pause), plays a 16-second animated opening with its score, goes straight to
 the date and lets the talk play on its own: each scene's script is read by
 recorded voices, its steps turn with the sentences and the next scene follows.
-I plays the opening alone. The voices are in `assets/ai/voice/`, recorded offline
-with Kokoro-82M (Apache 2.0): a narrator, and a second voice for the quoted
-lines. Run `python3 tools/build-talk-voice.py <kokoro folder>` after changing a
-`vo` line (only the changed scenes are recorded again), then rebuild the sleek
+I plays the opening alone. The narration follows its own dramatised script,
+`assets/ai/voice/narration-script.md`: a narrator and a cast of voices (the
+engineers, the testers, the agents' messages, the scammers), with `>>` where
+each click happens; real people only say their own public words, verbatim.
+The voices are recorded offline with Kokoro-82M (Apache 2.0) into
+`assets/ai/voice/` (about 20 minutes, 22 with the pauses and the credits). Run
+`python3 tools/build-talk-voice.py <kokoro folder>` after editing the script
+(only the changed scenes are recorded again), then rebuild the sleek
 edition. Without the recordings, the browser's own English voice reads instead.
 
 The same 40-minute story told like a TED talk. It opens on its question,

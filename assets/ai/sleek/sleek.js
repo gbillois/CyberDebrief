@@ -191,20 +191,42 @@ function skIntro(then) {
 }
 
 // ─── Narrated version ───────────────────────────────────────────────────
-// Optional, from the title screen (or the R key): each scene's script is read
-// by recorded voices (NARR, assets/ai/voice/, see tools/build-talk-voice.py),
-// its steps turn on the sentences, and the next scene follows on its own.
-// The arrows still work, K pauses, R or Esc stops. Without the recordings the
-// browser's own English voice reads instead.
-const skN = { on: false, paused: false, audio: null, timers: [], holds: [], resume: null };
+// From the title screen (or the R key): each scene's script is played by
+// recorded voices (NARR, assets/ai/voice/, see tools/build-talk-voice.py),
+// its steps turn on the cues of the script, and the next scene follows on its
+// own. The arrows still work, K pauses, R or Esc stops. Browsers only let a
+// sound start soon after a gesture, so one audio element is unlocked by the
+// click on Narration and reused for every scene; if a browser still refuses,
+// the next click or key resumes. Without the recordings, the browser's own
+// English voice reads instead, and failing that the steps turn in silence.
+const skN = { on: false, paused: false, audio: null, el: null, timers: [], holds: [], resume: null, ask: null };
+// a twentieth of a second of silence, to unlock the audio element in the gesture
+function skSilence() {
+  const n = 400, b = new ArrayBuffer(44 + n * 2), v = new DataView(b), w = (o, t) => [...t].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
+  w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVE'); w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+  v.setUint32(24, 8000, true); v.setUint32(28, 16000, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
+  return URL.createObjectURL(new Blob([b], { type: 'audio/wav' }));
+}
+function skUnlock() {
+  const e = skN.el || (skN.el = new Audio()); e.preload = 'auto'; e.src = skSilence(); e.play().catch(() => {});
+  if (window.speechSynthesis) { const u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); }
+}
+// the browser held the sound back: the next click or key plays it
+function skNarrAsk(fn) {
+  skNarrAskHide(); const box = document.createElement('div'); box.id = 'sk-ask'; box.innerHTML = '<i></i>Click or press a key to continue the narration'; document.body.appendChild(box);
+  const go_ = e => { e.stopImmediatePropagation(); e.preventDefault(); skNarrAskHide(); fn(); };
+  skN.ask = () => { box.remove(); document.removeEventListener('pointerdown', go_, true); document.removeEventListener('keydown', go_, true); };
+  document.addEventListener('pointerdown', go_, true); document.addEventListener('keydown', go_, true);
+}
+function skNarrAskHide() { if (skN.ask) { skN.ask(); skN.ask = null; } }
 const skHold = (fn, ms) => { skN.resume = fn; skN.holds.push(setTimeout(fn, ms)); };
-const skNarrClear = () => { skN.timers.forEach(t => { clearTimeout(t); clearInterval(t); }); skN.holds.forEach(clearTimeout); skN.timers = []; skN.holds = []; if (skN.audio) { skN.audio.onended = skN.audio.onerror = null; skN.audio.pause(); skN.audio = null; } if (window.speechSynthesis) speechSynthesis.cancel(); skN.resume = null; };
+const skNarrClear = () => { skN.timers.forEach(t => { clearTimeout(t); clearInterval(t); }); skN.holds.forEach(clearTimeout); skN.timers = []; skN.holds = []; if (skN.audio) { skN.audio.onended = skN.audio.onerror = null; skN.audio.pause(); skN.audio = null; } if (window.speechSynthesis) speechSynthesis.cancel(); skN.resume = null; skNarrAskHide(); };
 function skNarrUI() {
   document.body.classList.toggle('sk-narr', skN.on); document.body.classList.toggle('sk-narr-paused', skN.on && skN.paused);
   document.querySelectorAll('[data-sk="narr"]').forEach(b => { b.setAttribute('aria-pressed', skN.on); b.querySelector('em').textContent = skN.on ? 'Stop the narration' : 'Narration'; });
   let np = document.getElementById('sk-np');
   if (!np) { np = document.createElement('div'); np.id = 'sk-np'; np.innerHTML = '<i></i><span></span><button data-sk="pause"></button><button data-sk="stop">Stop</button>'; document.body.appendChild(np); }
-  np.querySelector('span').textContent = skN.paused ? 'Narration paused' : 'Narrated';
+  np.querySelector('span').textContent = skN.paused ? 'Narration paused' : 'Narration · synthetic voices, dramatised';
   np.querySelector('[data-sk="pause"]').textContent = skN.paused ? 'Resume (K)' : 'Pause (K)';
 }
 function skNarrStop() { skN.on = skN.paused = false; skNarrClear(); skNarrUI(); if (idx === 0) skLoopStart(); }
@@ -214,7 +236,7 @@ function skNarrStart(to) {
   if (to !== undefined && to !== idx) go(to, 0); else skNarrScene();
 }
 // on the title: the credits first, then straight to the date, narrated
-const skNarrGo = () => { if (skN.on) skNarrStop(); else if (idx === 0) skIntro(() => skNarrStart(1)); else skNarrStart(); };
+const skNarrGo = () => { if (skN.on) { skNarrStop(); return; } skUnlock(); if (idx === 0) skIntro(() => skNarrStart(1)); else skNarrStart(); };
 function skNarrPause() {
   if (!skN.on) return; skN.paused = !skN.paused; skNarrUI();
   if (skN.paused) { skN.holds.forEach(clearTimeout); skN.holds = []; if (skN.audio) skN.audio.pause(); if (window.speechSynthesis) speechSynthesis.pause(); }
@@ -246,21 +268,36 @@ function skNarrScene() {
     const vs = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang));
     const pick = vs.find(v => /natural|neural|premium|enhanced/i.test(v.name)) || vs.find(v => /Google UK English Female|Google US English|Samantha|Serena|Daniel|Aria|Jenny|Libby/i.test(v.name)) || vs[0];
     const parts = say(s).split(/(?<=[.!?][”"]?)\s+(?=[A-Z0-9“"])/), when = skNarrTimes(max, parts.length, parts.map((_, i) => i));
+    let started = false;
+    speechSynthesis.cancel();
     parts.forEach((p, i) => {
       const u = new SpeechSynthesisUtterance(p.replace(/[“”"]/g, '')); if (pick) u.voice = pick; u.lang = pick ? pick.lang : 'en-GB'; u.rate = 0.98;
-      u.onstart = () => when.forEach((w, j) => { if (w <= i) step(j + 1); });
+      u.onstart = () => { started = true; when.forEach((w, j) => { if (w <= i) step(j + 1); }); };
       if (i === parts.length - 1) u.onend = after;
       speechSynthesis.speak(u);
     });
     skN.resume = () => speechSynthesis.resume();
+    // no voice at all: turn the steps at reading speed, in silence
+    skN.timers.push(setTimeout(() => {
+      if (started || !alive()) return; speechSynthesis.cancel();
+      const d = say(s).split(/\s+/).length / 2.6, t0 = Date.now();
+      skN.timers.push(setInterval(() => { if (!alive() || skN.paused) return; const e = (Date.now() - t0) / 1000; for (let k = 1; k <= max; k++) if (e >= d * k / (max + 1)) step(k); }, 200));
+      skHold(after, d * 1000);
+    }, 2500));
   };
   if (!n) { speak(); return; }
-  const a = new Audio(n.f), when = skNarrTimes(max, n.d, n.b);
-  skN.audio = a; a.preload = 'auto';
+  // the clicks: the cues of the script if it has them, else on its sentences
+  const when = n.s ? [...n.s, ...Array(Math.max(0, max - n.s.length)).fill(n.d)].slice(0, max) : skNarrTimes(max, n.d, n.b);
+  const a = skN.el || (skN.el = new Audio());
+  skN.audio = a; a.preload = 'auto'; a.src = n.f;
   a.onended = after; a.onerror = () => { if (skN.audio === a) { skN.audio = null; speak(); } };
-  skN.resume = () => a.play().catch(() => {});
+  const play = () => { if (skN.audio !== a || skN.paused) return; a.play().then(skNarrAskHide).catch(e => {
+    if (skN.audio !== a || !e || e.name === 'AbortError') return;
+    if (e.name === 'NotAllowedError') skNarrAsk(play); else { skN.audio = null; speak(); }
+  }); };
+  skN.resume = play;
   skN.timers.push(setInterval(() => { if (!alive()) return; when.forEach((w, j) => { if (a.currentTime >= w) step(j + 1); }); }, 120));
-  a.play().catch(() => { if (skN.audio === a) { skN.audio = null; speak(); } });
+  play();
 }
 
 // ─── The title theme, in a loop ─────────────────────────────────────────

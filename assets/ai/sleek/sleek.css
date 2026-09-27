@@ -280,3 +280,6 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 
 /* the controller label keeps its dark ink on its white chip */
 .hk-pad{color:#16121F}
+#sk-ask{position:fixed;left:50%;bottom:5.5rem;transform:translateX(-50%);z-index:70;display:flex;align-items:center;gap:.8rem;padding:.8rem 1.4rem;border-radius:999px;
+  background:rgba(7,4,15,.85);border:1px solid rgba(4,240,106,.6);color:#fff;font-family:var(--f-display);font-weight:600;font-size:1rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:sk-opt .6s var(--sk-ease) both}
+#sk-ask i{width:.6rem;height:.6rem;border-radius:50%;background:#04F06A;animation:ski-rec 1.6s infinite}
