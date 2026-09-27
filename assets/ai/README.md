@@ -161,7 +161,9 @@ clip.
 ## Narration (sleek edition)
 
 `assets/ai/voice/*.mp3` are synthetic voices generated with Kokoro-82M
-(hexgrad, Apache 2.0 licence), voices `af_heart` (narrator) and `bm_george`
-(quoted lines), by `tools/build-talk-voice.py` from the `vo` lines of
-`ai-talk.html`. `narration.json` / `narration.js` index them (length, start of
-each sentence). No human voice was recorded or cloned.
+(hexgrad, Apache 2.0 licence) by `tools/build-talk-voice.py`, from the
+dramatised script `narration-script.md` (cast: af_heart narrator; am_michael,
+af_bella, bm_george, am_puck, bm_fable, am_fenrir, af_nova, af_nicole, bf_emma
+for the other roles). `narration.json` / `narration.js` index them (length,
+start of each line, time of each click). No human voice was recorded or
+cloned; lines given to named people are their published quotes, verbatim.
