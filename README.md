@@ -32,11 +32,13 @@ titles that rise word by word and cinema bars on chapter cards. It is generated
 too: run `python3 tools/build-talk-sleek.py` after changing `ai-talk.html`, the
 photo set or `assets/ai/sleek/` (sleek.css, sleek.js).
 
-Two options sit on its title screen. **Opening credits** (key I) plays a
-16-second animated opening with a score synthesised live in the browser (A mutes
-it). **Narrated version** (key R, K to pause) lets the talk play on its own: each
-scene's script is read by recorded voices, its steps turn with the sentences and
-the next scene follows. The voices are in `assets/ai/voice/`, recorded offline
+Its title screen plays a looping theme, synthesised live in the browser (it
+starts as soon as the browser allows sound, at the latest on the first key or
+click; A or the note button turns it off). One button, **Narration** (key R, K
+to pause), plays a 16-second animated opening with its score, goes straight to
+the date and lets the talk play on its own: each scene's script is read by
+recorded voices, its steps turn with the sentences and the next scene follows.
+I plays the opening alone. The voices are in `assets/ai/voice/`, recorded offline
 with Kokoro-82M (Apache 2.0): a narrator, and a second voice for the quoted
 lines. Run `python3 tools/build-talk-voice.py <kokoro folder>` after changing a
 `vo` line (only the changed scenes are recorded again), then rebuild the sleek
