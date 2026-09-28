@@ -18,18 +18,18 @@
   ]
  },
  "Hugging Face, and a strange attacker": {
-  "f": "assets/ai/voice/v-3238bad44a.mp3",
-  "d": 29.81,
+  "f": "assets/ai/voice/v-562210571a.mp3",
+  "d": 29.91,
   "b": [
    0.0,
    7.32,
-   15.11,
-   23.34,
-   27.78
+   13.32,
+   15.68,
+   22.02
   ],
   "s": [
-   15.11,
-   27.78
+   13.32,
+   22.02
   ]
  },
  "No attacker": {
@@ -86,14 +86,15 @@
   ]
  },
  "Zoom 1: one agent": {
-  "f": "assets/ai/voice/v-4c1a0ce393.mp3",
-  "d": 23.39,
+  "f": "assets/ai/voice/v-db71ca88a8.mp3",
+  "d": 33.4,
   "b": [
    0.0,
    5.43,
-   12.96,
-   17.78,
-   21.4
+   14.93,
+   22.97,
+   27.79,
+   31.42
   ]
  },
  "Zoom 2: the chat room": {
@@ -171,20 +172,21 @@
   ]
  },
  "The call": {
-  "f": "assets/ai/voice/v-028d8377bf.mp3",
-  "d": 32.75,
+  "f": "assets/ai/voice/v-85c616422f.mp3",
+  "d": 38.45,
   "b": [
    0.0,
    4.38,
-   9.5,
-   12.59,
-   15.86,
-   23.8,
-   26.85
+   9.69,
+   13.32,
+   16.63,
+   24.56,
+   27.78,
+   32.54
   ],
   "s": [
-   12.59,
-   23.8
+   13.32,
+   24.56
   ]
  },
  "Chapter 1 in one sentence": {
@@ -230,20 +232,22 @@
   ]
  },
  "Map of incidents": {
-  "f": "assets/ai/voice/v-69aefcec11.mp3",
-  "d": 25.46,
+  "f": "assets/ai/voice/v-92964f1e42.mp3",
+  "d": 25.23,
   "b": [
    0.0,
    1.82,
    6.54,
    10.94,
-   15.69
+   15.69,
+   22.92
   ],
   "s": [
    1.82,
    6.54,
    10.94,
-   15.69
+   15.69,
+   22.92
   ]
  },
  "Chapter 2 in one sentence": {

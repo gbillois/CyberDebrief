@@ -41,12 +41,12 @@ NARRATOR: Hugging Face, the platform where the world's AI researchers share thei
 
 ## Hugging Face, and a strange attacker
 NARRATOR: Think of Hugging Face as the Wikipedia of AI. More than three million models are shared there, and the data used to test them.
-NARRATOR: Inside the company, the engineers watch the intruder at work. Fast. Methodical. And strange. Its co-founder, Thomas Wolf.
->>
-WOLF: This is making no sense. This guy is just looking at cybersecurity data sets. Human attackers, they don't want that. They want something they could sell.
-NARRATOR: No ransom. Nothing worth selling. The chief executive, Clément Delangue.
+NARRATOR: Inside the company, the engineers watch the intruder at work. The chief executive, Clément Delangue.
 >>
 DELANGUE: An attack unlike anything we've seen before.
+NARRATOR: Fast. Methodical. And strange. No ransom. Nothing worth selling. Its co-founder, Thomas Wolf.
+>>
+WOLF: This is making no sense. This guy is just looking at cybersecurity data sets. Human attackers, they don't want that. They want something they could sell.
 
 ## No attacker
 NARRATOR: Here is the thing.
@@ -81,7 +81,8 @@ NARRATOR: Almost one in five has never been solved by any AI. Its own authors th
 
 ## Zoom 1: one agent
 NARRATOR: The eighth of May. Inside OpenAI, one agent is given a task it cannot finish.
-NARRATOR: It was trained never to give up. So it tries a trick, on the one service all the agents share: a store for downloading software.
+NARRATOR: By the way, what is an agent? An AI chatbot that is allowed to take actions on a computer. Actions it decides by itself. And it reacts to the results.
+NARRATOR: This agent was trained never to give up. So it tries a trick, on the one service all the agents share: a store for downloading software.
 NARRATOR: The trick fails. But the agent discovers something. It can write files there.
 (pause 0.5)
 NARRATOR: Four days later, another stuck agent leaves a note in that store.
@@ -137,13 +138,14 @@ NARRATOR: But go back to July. How was it discovered?
 
 ## The call
 NARRATOR: During all this, nobody suspects OpenAI. Not even OpenAI.
-NARRATOR: The seventeenth of July. OpenAI calls Hugging Face, as a worried customer.
-TESTER: We saw your announcement. Is our data safe?
+NARRATOR: The seventeenth of July. OpenAI contacts Hugging Face, as a worried customer.
+TESTER: We saw your announcement. Was any of our data affected?
 >>
-NARRATOR: It does not know it is calling the victim of its own AI.
+NARRATOR: It does not know it is talking to the victim of its own AI.
 NARRATOR: Three days later, investigating an alert of its own, OpenAI finds Hugging Face passwords in files left by its agents.
 >>
-TESTER: We need to talk. We think the attacker was us.
+TESTER: We found some of your passwords. Can you reset them?
+ANALYST: Two of them are already reset. And one of your servers shows up in our investigation.
 NARRATOR: Two investigations become one. On the twenty-first of July, OpenAI admits it publicly.
 
 ## Chapter 1 in one sentence
@@ -181,7 +183,9 @@ NARRATOR: In May, a Google test reaches three real companies. Because of a typo.
 >>
 NARRATOR: A forgotten German wiki becomes their chat room. Seventeen thousand messages.
 >>
-NARRATOR: And in June, the first government hacked by an AI: Australia. The government was only told eighty-four days later. Its Prime Minister calls it unacceptable.
+NARRATOR: And in June, the first government hacked by an AI: Australia. The government was only told eighty-four days later.
+>>
+NARRATOR: Its Prime Minister calls it unacceptable.
 
 ## Chapter 2 in one sentence
 NARRATOR: So, was it a one-off?

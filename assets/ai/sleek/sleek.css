@@ -26,7 +26,8 @@ html,body{background:var(--sk-bg)!important}
 body{color:var(--text)}
 body::before,body::after{display:block!important}
 body::before{z-index:40;background:radial-gradient(120% 95% at 50% 45%,transparent 58%,rgba(0,0,0,.6) 100%)}
-body::after{opacity:.07;animation:sk-grain .9s steps(4) infinite}
+/* the grain jitters by 2%: it overscans the screen so no edge ever shows */
+body::after{inset:-5%;opacity:.07;animation:sk-grain .9s steps(4) infinite}
 @keyframes sk-grain{0%{transform:translate(0,0)}25%{transform:translate(-2%,1%)}50%{transform:translate(1%,-2%)}75%{transform:translate(2%,2%)}100%{transform:translate(0,0)}}
 
 /* the stage: slow aurora of Wavestone light behind every screen */
@@ -160,6 +161,7 @@ body::after{opacity:.07;animation:sk-grain .9s steps(4) infinite}
 .eq-t b,.eq-r b{color:#fff}
 .stp-b{box-shadow:0 0 40px rgba(122,92,255,.3)}
 .nn-l{fill:rgba(255,255,255,.55)!important}
+.nn-n{fill:#150D2E} /* dark until it has read: the nodes light up as they fill */
 .nn-e{stroke:rgba(255,255,255,.07)!important}
 .nn-qb{fill:rgba(255,181,71,.12)!important;stroke:var(--amber)!important} .nn-qt{fill:#fff!important}
 .nn-o{fill:rgba(255,255,255,.06)!important} .nn-ot{fill:#fff!important}

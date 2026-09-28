@@ -32,10 +32,10 @@ titles that rise word by word and cinema bars on chapter cards. It is generated
 too: run `python3 tools/build-talk-sleek.py` after changing `ai-talk.html`, the
 photo set or `assets/ai/sleek/` (sleek.css, sleek.js).
 
-Its title screen plays a looping theme, synthesised live in the browser (it
-starts as soon as the browser allows sound, at the latest on the first key or
-click; A or the note button turns it off). One button, **Narration** (key R, K
-to pause), plays a 16-second animated opening with its score, goes straight to
+The page opens in silence. On the title screen, A or the note button starts a
+looping theme, synthesised live in the browser, and the score of the opening
+(press again to turn the music off). One button, **Narration** (key R, K
+to pause), plays a 16-second animated opening, goes straight to
 the date and lets the talk play on its own: each scene's script is read by
 recorded voices, its steps turn with the sentences and the next scene follows.
 I plays the opening alone. The narration follows its own dramatised script,
@@ -69,7 +69,10 @@ key dates of each step and the referee that never existed, then zooms back in
 on Hugging Face's investigation. It is preceded by how often OpenAI ships and
 tests new models, and the exam itself.
 Consecutive zoom slides fly from one framing to the next, so the step back
-reads as one movement. The press montages show real screenshots of the
+reads as one movement. Their labels keep their size on screen (they follow the
+page's type size) and the world leaves them room at every step: no label
+crosses a box, a line, a dot or another label, from 1024 × 768 to 2560 × 1440.
+The press montages show real screenshots of the
 articles (`assets/ai/press/`).
 One idea per screen: big words
 and numbers, pictograms, flow diagrams, maps and video clips. Long text stays
