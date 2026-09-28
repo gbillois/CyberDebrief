@@ -43,9 +43,9 @@ new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.nod
   .observe(document.getElementById('stage'), { childList: true });
 
 // ─── Opening: credits and a 20-second score ─────────────────────────────
-// The title screen plays a looping theme (as soon as the browser lets sound
-// start, or at the first key or click). The Narration button plays the credits
-// with their score, synthesised live with Web Audio (no file, works offline):
+// The page opens in silence: A or the note button on the title screen starts
+// a looping theme, and the score of the credits. The Narration button plays
+// the credits, synthesised live with Web Audio (no file, works offline):
 // a log typed at 03:12, the title slammed in on the impact, then straight to
 // the date, and the narration takes over. Any key skips the credits, Esc
 // cancels, A turns the music on or off, I plays the credits alone.
@@ -56,7 +56,7 @@ const SK_INTRO = [
   ['status · <b>outside its sandbox</b>', 4.3],
 ];
 const SK_T = { glitch: 5.9, pres: 6.4, letters: 8.9, hit: 11.6, sub: 12.6, out: 16.2 };
-let skAudio = null, skMuted = false;
+let skAudio = null, skMuted = true;
 
 function skScore() {
   const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
@@ -385,6 +385,7 @@ if (!PRESENTER) {
     if (skN.on) { skNarrClear(); const t = setTimeout(() => { if (cur === n) skNarrScene(); }, 550); skN.timers.push(t); }
   }))).observe(document.getElementById('stage'), { childList: true });
   if (cur) skOptions(cur);
+  document.body.classList.toggle('sk-muted', skMuted);
   if (idx === 0) skLoopStart();
   // the first gesture lets the sound start, if the browser held it back
   ['pointerdown', 'keydown', 'touchstart'].forEach(t => document.addEventListener(t, () => { if (skLoop.ac && skLoop.ac.state === 'suspended' && skLoop.want) skLoop.ac.resume().catch(() => {}); }, true));

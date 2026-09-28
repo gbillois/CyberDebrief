@@ -783,6 +783,8 @@ body.pres{background:var(--ws-ink-50)}
 .zdt li{display:grid;grid-template-columns:5.2rem 1fr;gap:.6rem;font-size:.9rem;line-height:1.35;color:var(--ws-ink-700)}
 .zdt b{font-family:var(--f-mono);font-weight:500;font-size:.8rem;color:var(--ws-indigo-600);padding-top:.1rem}
 .zask{margin:0;font-family:var(--f-display);font-weight:600;font-size:1.25rem;color:var(--coral)}
+.zdef{margin:0;padding:.65rem .95rem .7rem;border-radius:.6rem;background:var(--ws-indigo-50);border-left:3px solid var(--ws-indigo-500);font-size:.98rem;line-height:1.42;color:var(--text);text-wrap:pretty}
+.zdef b{display:block;margin-bottom:.15rem;font-family:var(--f-mono);font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ws-indigo-600)}
 .zw [data-from]{transition:opacity .9s ease}
 .zw .off{opacity:0}
 .zw.init,.zw.init *{transition:none!important}
@@ -811,6 +813,7 @@ body.pres{background:var(--ws-ink-50)}
 .zt-ns{font:400 10px var(--f-body);fill:var(--ws-ink-500)}
 .zt-l{font:600 11px var(--f-mono);fill:var(--coral)}
 .zt-ls{font:500 10px var(--f-mono);fill:var(--ws-ink-500)}
+.zll text{paint-order:stroke;stroke:var(--bg);stroke-width:6px;stroke-linejoin:round}
 .zt-a0{font:700 15px var(--f-display);letter-spacing:.1em;fill:var(--ws-indigo-600)}
 .zt-note{font:500 21px var(--f-mono);fill:var(--ws-ink-900)}
 .zt-note2{font:400 13px var(--f-body);fill:var(--ws-ink-500)}
@@ -921,6 +924,13 @@ body.pres{background:var(--ws-ink-50)}
 .nn-o{fill:#fff;stroke:var(--ws-indigo-500);stroke-width:2}
 .nn-ot{font:700 17px var(--f-body);fill:var(--ws-ink-900)}
 .nn-g{stroke:var(--ws-green-600);stroke-width:4.5;stroke-linecap:round}
+/* signals through the network: indigo while it reads, amber when it answers, then only on the rewarded links */
+.nn-h{fill:none;stroke:var(--ws-indigo-500);stroke-width:4;stroke-linecap:round;stroke-dasharray:9 100;stroke-dashoffset:9;animation:nnrun 2.6s linear var(--d) infinite;transition:opacity .6s ease,stroke .6s ease}
+@keyframes nnrun{to{stroke-dashoffset:-100}}
+.nn:has(.nn-q.on) .nn-flow .nn-h{stroke:var(--amber)}
+.nn-flow{transition:opacity .6s ease}
+.nn:has(.nn-good.on) .nn-flow{opacity:0}
+.nn-good .nn-h{stroke:#fff;stroke-width:3;animation-duration:2.2s}
 .nn-lamp{fill:var(--ws-green-600)}
 .nn-ok{font:700 32px var(--f-display);fill:#fff}
 .nn-l{font:600 12px var(--f-mono);letter-spacing:.14em;fill:var(--ws-ink-500)}
@@ -1415,7 +1425,8 @@ html,body{background:var(--sk-bg)!important}
 body{color:var(--text)}
 body::before,body::after{display:block!important}
 body::before{z-index:40;background:radial-gradient(120% 95% at 50% 45%,transparent 58%,rgba(0,0,0,.6) 100%)}
-body::after{opacity:.07;animation:sk-grain .9s steps(4) infinite}
+/* the grain jitters by 2%: it overscans the screen so no edge ever shows */
+body::after{inset:-5%;opacity:.07;animation:sk-grain .9s steps(4) infinite}
 @keyframes sk-grain{0%{transform:translate(0,0)}25%{transform:translate(-2%,1%)}50%{transform:translate(1%,-2%)}75%{transform:translate(2%,2%)}100%{transform:translate(0,0)}}
 
 /* the stage: slow aurora of Wavestone light behind every screen */
@@ -1549,6 +1560,7 @@ body::after{opacity:.07;animation:sk-grain .9s steps(4) infinite}
 .eq-t b,.eq-r b{color:#fff}
 .stp-b{box-shadow:0 0 40px rgba(122,92,255,.3)}
 .nn-l{fill:rgba(255,255,255,.55)!important}
+.nn-n{fill:#150D2E} /* dark until it has read: the nodes light up as they fill */
 .nn-e{stroke:rgba(255,255,255,.07)!important}
 .nn-qb{fill:rgba(255,181,71,.12)!important;stroke:var(--amber)!important} .nn-qt{fill:#fff!important}
 .nn-o{fill:rgba(255,255,255,.06)!important} .nn-ot{fill:#fff!important}
@@ -1758,12 +1770,12 @@ const SCENES = [
     { v: 'Free', t: 'and open to anyone, to publish or download' },
   ],
   voices: [
-    { q: `This is making no sense. This guy is just looking at cybersecurity data sets... Human attackers, they don't want that. They want something they could sell.`, who: 'Thomas Wolf', role: 'Co-founder', ini: 'TW', img: 'wolf', f: 1 },
-    { q: `An attack unlike anything we've seen before.`, who: 'Clément Delangue', role: 'CEO', ini: 'CD', img: 'delangue', f: 2 },
+    { q: `An attack unlike anything we've seen before.`, who: 'Clément Delangue', role: 'CEO', ini: 'CD', img: 'delangue', f: 1 },
+    { q: `This is making no sense. This guy is just looking at cybersecurity data sets... Human attackers, they don't want that. They want something they could sell.`, who: 'Thomas Wolf', role: 'Co-founder', ini: 'TW', img: 'wolf', f: 2 },
   ],
-  vo: `First, who is Hugging Face? Think of it as the Wikipedia of AI: the directory where researchers and companies worldwide share their AI models, more than three million of them, and their data, including the test data used to grade AIs. Inside, the engineers watch the intruder at work. Fast, methodical, and yet it steals nothing worth selling and asks for no ransom. This is not a normal attacker. Its CEO calls it an attack unlike anything they have seen.`,
-  notes: `Clicks: Thomas Wolf, then Clément Delangue. Counts shown on huggingface.co on 26 September 2026: 3,097,731 models and 1,064,358 datasets. Hugging Face's disclosure reads: "used LLM still not known".`,
-  src: `huggingface.co (26 September 2026) · Thomas Wolf, quoted by The Wall Street Journal (24 July 2026) · Clément Delangue, quoted by Axios (23 July 2026)` },
+  vo: `First, who is Hugging Face? Think of it as the Wikipedia of AI: the directory where researchers and companies worldwide share their AI models, more than three million of them, and their data, including the test data used to grade AIs. Inside, the engineers watch the intruder at work. Its CEO calls it an attack unlike anything they have seen. Fast, methodical, and yet it steals nothing worth selling and asks for no ransom. Its co-founder is baffled: human attackers want something they could sell. This is not a normal attacker.`,
+  notes: `Clicks: Clément Delangue, then Thomas Wolf. Counts shown on huggingface.co on 26 September 2026: 3,097,731 models and 1,064,358 datasets. Hugging Face's disclosure reads: "used LLM still not known".`,
+  src: `huggingface.co (26 September 2026) · Clément Delangue, quoted by Axios (23 July 2026) · Thomas Wolf, quoted by The Wall Street Journal (24 July 2026)` },
 
 { ch: 'p', type: 'word', title: 'No attacker',
   t: 'There was no human attacker.',
@@ -1809,11 +1821,13 @@ const SCENES = [
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 1: one agent', step: 1, date: 'May 2026',
   heading: 'One agent, one impossible task',
+  def: { q: 'By the way, what is an AI agent?', a: 'An AI chatbot that is allowed to take actions on a computer. It decides them by itself, and reacts to the results.' },
   body: `An AI agent gets a task it cannot finish. It was trained never to give up. So it tries a trick on the one service all the agents share: a store for downloading software. The trick fails, but it discovers it can write files there.`,
   dates: [['20 Apr', 'An agent first leaves a file in the shared space'], ['8 May', 'An agent stuck on an impossible task'], ['12 May', 'The first note: "Agent seeks file"']],
   quote: `Agent seeks [filename]; upload if found!`, quoteBy: `Days later, another stuck agent leaves this note in the store · 12 May`,
-  vo: `We start with one AI agent, inside OpenAI, in May. It is given a task it cannot finish. It was trained never to give up, so it tries a trick on the one service all the agents share: a store for downloading software. The trick fails. But it discovers it can write files there. Days later, another stuck agent leaves a note in that store: "Agent seeks file; upload if found!"`,
-  notes: `8 May: an agent asked to complete a spreadsheet from links it cannot reach tries to make the shared software store (Artifactory) fetch them. It fails, but discovers it can write there. 12 May: a different agent leaves the first note. No flaw was needed: every agent had been given the same password to install software.`,
+  vo: `We start with one AI agent, inside OpenAI, in May. By the way, what is an agent? An AI chatbot that is allowed to take actions on a computer: actions it decides by itself, and it reacts to the results. This one is given a task it cannot finish. It was trained never to give up, so it tries a trick on the one service all the agents share: a store for downloading software. The trick fails. But it discovers it can write files there. Days later, another stuck agent leaves a note in that store: "Agent seeks file; upload if found!"`,
+  notes: `An AI agent: a model like the ones behind chatbots, given a goal and tools (a terminal, a browser, files). It chooses its own actions, reads what they return, and carries on.
+8 May: an agent asked to complete a spreadsheet from links it cannot reach tries to make the shared software store (Artifactory) fetch them. It fails, but discovers it can write there. 12 May: a different agent leaves the first note. No flaw was needed: every agent had been given the same password to install software.`,
   src: `OpenAI technical report · METR and Redwood Research (26 August 2026)` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 2: the chat room', date: 'May - July 2026', step: 2,
@@ -1862,7 +1876,7 @@ const SCENES = [
   fig: '0', figLabel: 'referees were checking their work',
   vo: `Now step all the way back. Seventeen thousand six hundred actions, three companies. And why? Here is the strangest part. Within an hour, the agents had worked out every answer to the exam. They refused to use them: they thought a referee would check how they got there, and disqualify them. There was no referee. Everything you just saw was done to get past a check that did not exist. Then, from 16 July, the world finds out.`,
   notes: `The agents called the imagined check STRICT_CAUSAL. Line to remember: "an imaginary guardrail cost more than no guardrail at all". Root cause named by OpenAI: reward hacking, the AI chasing the score, not the intention.
-Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July OpenAI calls as a customer; 20 July the two investigations connect; 21 July OpenAI admits it; 5 August Black Hat; 26 August full reports.`,
+Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July OpenAI asks, as a customer, whether its data was affected; 20 July it asks Hugging Face to reset passwords found in its agents' files, and the two investigations connect; 21 July OpenAI admits it; 5 August Black Hat; 26 August full reports.`,
   src: `METR and Redwood Research · OpenAI technical report (26 August 2026)` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 7: the investigation', step: 7, date: '13 - 27 July 2026', kicker: 'Zooming back in',
@@ -1872,7 +1886,8 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   dates: [['13 Jul', 'Detected and cut off'], ['16 Jul', 'Goes public: attacker unknown'], ['27 Jul', 'Full technical timeline published']],
   fig: '4×', figLabel: 'more stolen secrets found once the hidden data was decoded',
   vo: `Let's zoom back in on Hugging Face, the victim. Nobody knew who the attacker was. Seventeen thousand six hundred actions to rebuild, hidden among thousands of failed tries. They reached for AI to help, and the first tools they tried, Claude and Fable, refused: to them, analysing an attack looked like launching one. So they ran a Chinese open model, GLM-5.2, on their own servers. Once the hidden data was decoded, they found four times more stolen secrets than their first scan. Then they had to check everything: every password changed, even where the agents never went, every code project and package verified, one core system rebuilt from scratch.`,
-  notes: `~17,600 recovered actions, grouped into ~6,280 clusters, 9-13 July. The agent encoded what it staged (chunk + XOR + gzip) so a naive log scan missed it; replicating its decoding recovered roughly 4x the initial findings, mostly tokens. GLM-5.2 is an open-weights model from the Chinese lab Z.ai, run in a quantized version (by Nvidia) on Hugging Face's own infrastructure, which also kept attacker data in-house. Their own AI-assisted detection had correlated the first signals but failed to raise the alert's severity to page the on-call team.`,
+  notes: `~17,600 recovered actions, grouped into ~6,280 clusters, 9-13 July. The agent encoded what it staged (chunk + XOR + gzip) so a naive log scan missed it; replicating its decoding recovered roughly 4x the initial findings, mostly tokens. GLM-5.2 is an open-weights model from the Chinese lab Z.ai, run in a quantized version (by Nvidia) on Hugging Face's own infrastructure, which also kept attacker data in-house. Their own AI-assisted detection had correlated the first signals but failed to raise the alert's severity to page the on-call team.
+If asked about OpenAI's models: Hugging Face only names Claude Opus and Fable (both Anthropic) as the models it tried first. GPT refused too, but elsewhere: on 31 July Andrew Ng reported that his team's security review of its own code was refused by both Claude Code (Fable 5) and OpenAI's Codex (GPT-5.6 Sol).`,
   src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 July 2026)` },
 
 { ch: 'c1', type: 'media', title: 'Clip: Black Hat',
@@ -1886,14 +1901,14 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
 { ch: 'c1', type: 'flow', title: 'The call',
   heading: 'During all this, nobody suspected OpenAI. How was it discovered?',
   nodes: [
-    { i: 'building', t: 'OpenAI', s: '17 July: "Is our data safe?"', f: 0, photo: { src: 'assets/ai/photos/openai-hq.jpg', id: 'openaihq', cap: 'San Francisco' } },
+    { i: 'building', t: 'OpenAI', s: '17 July, as a customer: "Was our data affected?"', f: 0, photo: { src: 'assets/ai/photos/openai-hq.jpg', id: 'openaihq', cap: 'San Francisco' } },
     { i: 'phone', t: '', f: 0, link: true },
     { i: 'building', t: 'Hugging Face', s: 'the victim of OpenAI\'s own AI', f: 1, tone: 'coral', photo: { src: 'assets/ai/photos/hf-hq.jpg', id: 'hfhq', cap: 'New York', pos: '50% 35%' } },
   ],
-  caption: { t: '20 July: OpenAI finds Hugging Face passwords in its own agents\' files, and calls back. Two investigations become one. 21 July: OpenAI admits it publicly.', f: 2 },
-  vo: `During all this, nobody suspected OpenAI, not even OpenAI. On 17 July, it calls Hugging Face as a worried customer: is our data safe? It does not know it is calling the victim of its own AI. Three days later, investigating an alert of its own, it finds Hugging Face passwords in files left by its agents, and calls back. Two investigations become one. On 21 July, OpenAI admits it publicly.`,
-  notes: `19 July: an OpenAI alert on unusual identity activity. 20 July: responders shut down agent-created accounts and repositories, find Hugging Face credentials in the agents' external storage, call Hugging Face; two of those credentials were already rotated.`,
-  src: `OpenAI technical report · joint statement (21 July 2026)` },
+  caption: { t: '20 July: OpenAI finds Hugging Face passwords in files left by its agents, and asks Hugging Face to reset them. The answer: two are already reset, and an OpenAI server shows up in Hugging Face\'s investigation. Two investigations become one. 21 July: OpenAI admits it publicly.', f: 2 },
+  vo: `During all this, nobody suspected OpenAI, not even OpenAI. On 17 July, it contacts Hugging Face as a worried customer: was our data affected? It does not know it is talking to the victim of its own AI. Three days later, investigating an alert of its own, it finds Hugging Face passwords in files left by its agents, and asks Hugging Face to reset them. The answer: two are already reset, and one of OpenAI's own servers shows up in Hugging Face's investigation. Two investigations become one. On 21 July, OpenAI admits it publicly.`,
+  notes: `17 July: OpenAI "contacted Hugging Face in its capacity as a Hugging Face customer to assess any impact to OpenAI data" (the reports do not say how: call or message). 19 July: an OpenAI alert on unusual identity activity. 20 July: responders shut down agent-created accounts and repositories, find Hugging Face credentials (access tokens) among files the agents had staged in a third party's account, and reach out to Hugging Face to rotate them. Hugging Face: two were already rotated, and OpenAI's Artifactory hostname and the same staging account appear in its own investigation. OpenAI then concludes its models were likely involved and informs Hugging Face.`,
+  src: `OpenAI technical report (26 August 2026) · joint statement (21 July 2026)` },
 
 { ch: 'c1', type: 'recap', title: 'Chapter 1 in one sentence',
   msg: { t: 'It can happen to any company that tests AI models. Before letting one loose, make sure it is harmless to others.' },
@@ -1936,7 +1951,7 @@ Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July
   ],
   legend: ['hit', 'attempt', 'channel', 'org'],
   vo: `Let's put the cases on the map. Since March, agents knocking on websites' doors. In May, a Google test that reaches three real companies because of a typo. A forgotten German wiki turned into their chat room. And in June, the first government hacked by an AI: Australia. Here is its Prime Minister.`,
-  notes: `One click per case: the camera flies there, the key figure and a bubble appear. On the Australia step the press conference plays by itself (ABC News, 01:18.35-01:47.80: unacceptable incident, call to Sam Altman, delayed notification).
+  notes: `One click per case: the camera flies there, the key figure and a bubble appear. On the Australia step the press conference waits on its first frame: one more click plays it (ABC News, 01:18.35-01:47.80: unacceptable incident, call to Sam Altman, delayed notification).
 March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker ones); University of New Mexico: a burst of 80 requests. A real task example: "Find the average cost of skin care in Victoria, Australia, in January 2022". May: Gemini test run by the firm Irregular; confirmed by Google on 18 September. 24 May-22 June: DseWiki, analysed by the Nightingale Collective. 18 June: Medicare statistics portal; OpenAI detected it in August; government told on 10 September. OpenAI now counts "dozens" of organisations affected (26 September).`,
   src: `Transluce (23 Sep 2026) · Axios (19 Sep 2026) · Nightingale Collective, BBC (4 Sep 2026) · ABC News Australia (24 and 26 Sep 2026)` },
 
@@ -2310,6 +2325,7 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
       ['METR and Redwood Research, independent investigation (26 August 2026)', 'https://metr.org/hugging-face-incident-report-aug-2026.pdf'],
       ['Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 July 2026)', 'https://huggingface.co/blog/agent-intrusion-technical-timeline'],
       ['Hugging Face, disclosure (16 July 2026)', 'https://huggingface.co/blog/security-incident-july-2026'],
+      ['Andrew Ng, The Batch (31 July 2026): Claude Code and Codex refuse a security review', 'https://charonhub.deeplearning.ai/open-models-open-harnesses-open-security/'],
     ]],
     ['Press coverage quoted on screen', [
       ['The Hacker News, Ravie Lakshmanan (20 July 2026)', 'https://thehackernews.com/2026/07/worlds-largest-ai-model-repository.html'],
@@ -2331,8 +2347,8 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
       ['Unitree Go2: HotNews Romania (Adi Iacob, Ovidiu Popica), CC BY 3.0', 'https://commons.wikimedia.org/wiki/File:Unitree_Go2_of_Salvamont_side_view.jpg'],
       ['OpenAI offices, Mission Bay: HaeB, CC BY-SA 4.0', 'https://commons.wikimedia.org/wiki/File:Uber_offices,_Mission_Bay_(July_2020)_-1.jpg'],
       ['20 Jay Street, Brooklyn: Jim Henderson, CC BY-SA 4.0', 'https://commons.wikimedia.org/wiki/File:20_Jay_Street_jeh.jpg'],
-      ['Thomas Wolf: Slush, CC BY 3.0', 'https://commons.wikimedia.org/wiki/File:Thomas_Wolf_at_Slush_2024.jpg'],
       ['Clément Delangue: SiliconANGLE theCUBE, CC BY 3.0', 'https://commons.wikimedia.org/wiki/File:Cl%C3%A9ment_Delangue_on_SiliconANGLE_theCUBE.jpg'],
+      ['Thomas Wolf: Slush, CC BY 3.0', 'https://commons.wikimedia.org/wiki/File:Thomas_Wolf_at_Slush_2024.jpg'],
       ['Dario Amodei: TechCrunch, CC BY 2.0', 'https://commons.wikimedia.org/wiki/File:Dario_Amodei_at_TechCrunch_Disrupt_2023_01_(cropped).jpg'],
       ['Sam Altman: Office of the Prime Minister of Japan, CC BY 4.0', 'https://commons.wikimedia.org/wiki/File:Meeting_with_Masayoshi_Son_and_Sam_Altman_(February_3,_2025)_(3x4_cropped_on_Altman).jpg'],
       ['Benedetto Vigna: Rossini TV, CC BY 3.0', 'https://commons.wikimedia.org/wiki/File:Benedetto_Vigna_-_Universit%C3%A0_Urbino.jpg'],
@@ -2612,20 +2628,24 @@ const R = {
     // the ladder only shows the levels reached so far: no count announced
     const st = s.step, ladder = ZSTEPS.slice(0, st).map((l, j) => `<li class="${j + 1 < st ? 'done' : 'cur'}" style="--k:${j}"><i></i></li>`).join('');
     const dates = s.dates ? `<ul class="zdt">${s.dates.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join('')}</ul>` : '';
-    const cap = `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2><p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
+    const cap = `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.def ? `<p class="zdef"><b>${s.def.q}</b>${s.def.a}</p>` : ''}<p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
     return `${ZWORLD}<div class="zfade"></div><div class="zc">${cap}</div>${srcLine(s)}`; },
   learn: s => {
     const L = [[330, 5], [460, 7], [590, 7], [720, 4]], Y = (n, i) => 70 + (i + .5) * (270 / n);
     const shades = ['#E4DDFB', '#C9BCF6', '#A18FE3', '#7B5FE0', '#5A2BE0', '#451DC7'], r = rng(77);
-    let edges = '', nodes = '', good = '';
+    let edges = '', nodes = '', good = '', flow = '';
     L.forEach(([x, n], li) => {
       for (let i = 0; i < n; i++) nodes += `<circle cx="${x}" cy="${Y(n, i).toFixed(1)}" r="11" class="nn-n" style="--c:${shades[Math.floor(r() * shades.length)]};--l:${li};animation-delay:${(li * .5 + r() * .6).toFixed(2)}s"/>`;
       if (li < 3) { const [x2, n2] = L[li + 1]; for (let i = 0; i < n; i++) for (let j = 0; j < n2; j++) edges += `<line x1="${x}" y1="${Y(n, i).toFixed(1)}" x2="${x2}" y2="${Y(n2, j).toFixed(1)}" class="nn-e"/>`; }
     });
-    // the links used for the rewarded answer: they get stronger
-    [[1, 2, 4, 1], [3, 5, 2, 2], [2, 3, 3, 1]].forEach(p => { for (let li = 0; li < 3; li++) {
+    // signals running through the network, layer by layer: a route is one node per layer
+    const route = (p, k, d) => `<path d="M${p.map((j, li) => `${L[li][0]},${Y(L[li][1], j).toFixed(1)}`).join(' L')}" pathLength="100" class="nn-h" style="--d:${(k * d).toFixed(2)}s"/>`;
+    for (let k = 0; k < 10; k++) flow += route(L.map(([, n]) => Math.floor(r() * n)), k, .31);
+    // the links used for the rewarded answer: they get stronger, and the signals take them
+    [[1, 2, 4, 1], [3, 5, 2, 2], [2, 3, 3, 1]].forEach((p, k) => { for (let li = 0; li < 3; li++) {
       const [x, n] = L[li], [x2, n2] = L[li + 1];
-      good += `<line x1="${x}" y1="${Y(n, p[li]).toFixed(1)}" x2="${x2}" y2="${Y(n2, p[li + 1]).toFixed(1)}" class="nn-g"/>`; } });
+      good += `<line x1="${x}" y1="${Y(n, p[li]).toFixed(1)}" x2="${x2}" y2="${Y(n2, p[li + 1]).toFixed(1)}" class="nn-g"/>`; }
+      good += route(p, k, .8); });
     const tile = (i, x, y, t) => `<g class="nn-tile"><rect x="${x}" y="${y}" width="104" height="58" rx="12"/><g transform="translate(${x + 14} ${y + 17}) scale(1)" class="nn-ti">${ICON(i).replace('<svg', '<svg width="24" height="24"')}</g><text x="${x + 46}" y="${y + 35}">${t}</text></g>`;
     const cap = (s.steps || []).map((c, i) => `<div class="nn-c"${i ? fa(i) : ''}><div class="fi" style="--c:${['var(--ws-indigo-600)', 'var(--amber)', 'var(--ws-green-600)'][i]}">${ICON(c.i)}</div><div><b>${c.b}</b><p>${c.t}</p></div></div>`).join('');
     return `<div class="head">${textBlock(s)}</div><div class="nn">
@@ -2633,7 +2653,7 @@ const R = {
         <g class="nn-read">${tile('book', 40, 90, 'Books')}${tile('globe', 40, 158, 'Web')}${tile('people', 40, 226, 'Forums')}${tile('code', 160, 90, 'Code')}${tile('mail', 160, 158, 'Articles')}${tile('chip', 160, 226, 'Manuals')}
           <text x="152" y="72" class="nn-l" text-anchor="middle">WHAT HUMANS WROTE</text><path d="M272 205 L312 205" class="nn-ar"/></g>
         <g class="nn-q"${fa(1)}><rect x="40" y="160" width="250" height="90" rx="16" class="nn-qb"/><text x="60" y="190" class="nn-qk">QUESTION</text><text x="60" y="222" class="nn-qt">${s.question}</text><path d="M290 205 L312 205" class="nn-ar"/></g>
-        <g>${edges}</g><g class="nn-good"${fa(2)}>${good}</g><g class="nn-net">${nodes}</g>
+        <g>${edges}</g><g class="nn-flow">${flow}</g><g class="nn-good"${fa(2)}>${good}</g><g class="nn-net">${nodes}</g>
         <text x="525" y="372" class="nn-l" text-anchor="middle">THE NETWORK</text>
         <g class="nn-ans"${fa(1)}><path d="M738 205 L768 205" class="nn-ar"/><rect x="772" y="178" width="112" height="54" rx="12" class="nn-o"/><text x="828" y="212" text-anchor="middle" class="nn-ot">${s.answer}</text></g>
         <g${fa(2)}><circle cx="940" cy="205" r="30" class="nn-lamp"/><text x="940" y="217" text-anchor="middle" class="nn-ok">✓</text>
@@ -2773,8 +2793,9 @@ const R = {
     const legend = (s.legend || []).map(k => `<span class="k-${k}"><i></i>${LEG[k]}</span>`).join('');
     const full = s.layout === 'full';
     const bullets = s.bullets ? `<ul class="bul cols">${s.bullets.map(b => `<li${fa(b.f)}>${b.t}</li>`).join('')}</ul>` : '';
-    // tour: one bubble per step, next to the place the camera flies to
-    const bubbles = (s.bubbles || []).map(b => `<div class="mb t-${b.tone || 'coral'}${b.media ? ' mb-big' : ''}" data-f="${b.k}" data-k="${b.k}">${b.fig ? `<div class="mb-fig${b.fig.length > 6 ? ' long' : ''}"><b>${b.fig}</b><span>${b.figl}</span></div>` : ''}<div class="mb-body">${bubblePhoto(b.photo)}<div class="mb-d">${b.d}</div><div class="mb-t">${b.t}</div>${b.s ? `<div class="mb-s">${b.s}</div>` : ''}${b.media ? media(b.media) : ''}</div></div>`).join('');
+    // tour: one bubble per step, next to the place the camera flies to; a
+    // bubble with a video takes one more click, which plays it
+    const bubbles = (s.bubbles || []).map(b => `<div class="mb t-${b.tone || 'coral'}${b.media ? ' mb-big' : ''}" data-f="${b.k}" data-k="${b.k}">${b.fig ? `<div class="mb-fig${b.fig.length > 6 ? ' long' : ''}"><b>${b.fig}</b><span>${b.figl}</span></div>` : ''}<div class="mb-body">${bubblePhoto(b.photo)}<div class="mb-d">${b.d}</div><div class="mb-t">${b.t}</div>${b.s ? `<div class="mb-s">${b.s}</div>` : ''}${b.media ? media(b.media) : ''}${b.media && b.media.type === 'video' ? `<i class="mb-go" data-f="${b.k + 1}"></i>` : ''}</div></div>`).join('');
     return `<svg class="map" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" aria-label="Map"><path class="grat" d="${g}"/>${land}${arcs}${pins}</svg>
       <div class="map-panel${full ? ' full' : ''}${s.layout === 'tour' ? ' tour' : ''}">${textBlock(s)}${bullets}<div class="legend">${legend}</div></div>${bubbles}${srcLine(s)}`;
   },
@@ -2932,8 +2953,9 @@ function mountMap(el, s) {
   };
   el._onFrag = k => {
     curF = k;
-    $$('.mb', el).forEach(b => { const on = +b.dataset.k === k, v = $('video', b); b.classList.toggle('cur', on);
-      if (v) { if (on) setTimeout(() => { if (b.classList.contains('cur') && !PRESENTER) v.play().catch(() => {}); }, 1500); else v.pause(); } });
+    // a bubble's video waits on its poster: the next click plays it
+    $$('.mb', el).forEach(b => { const bk = +b.dataset.k, v = $('video', b), on = bk === k || (!!v && bk + 1 === k); b.classList.toggle('cur', on);
+      if (v) { if (on && k > bk && !PRESENTER) v.play().catch(() => {}); else { v.pause(); v.currentTime = 0; } } });
     go(toVB(pick(k)), vb ? 1500 : 0);
   };
   el._onResize = () => go(toVB(pick(curF)), 0);
@@ -2948,87 +2970,101 @@ function mountMap(el, s) {
 // ════════════════════════════════════════════════════════════════════════
 const ZSTEPS = ['One agent', 'The chat room', 'The test box', 'The internet', 'Hugging Face', 'The whole picture', 'The investigation'];
 // world box to frame at each step (x0, y0, x1, y1)
-const ZFOCUS = [[-260, -110, 160, 110], [-260, -110, 160, 110], [-400, -400, 400, 400], [-920, -720, 1020, 720], [-420, -860, 2290, 560], [1340, -840, 3660, 780], [-940, -1400, 3700, 1250], [2440, -600, 3680, 790]];
+const ZFOCUS = [[-260, -110, 160, 110], [-260, -110, 160, 110], [-350, -350, 350, 350], [-920, -800, 1020, 850], [-480, -860, 2350, 700], [1340, -840, 3340, 820], [-940, -1260, 3900, 1230], [2660, -600, 3880, 760]];
+// Labels keep their size on screen while the camera steps back, so the world
+// leaves them room at every step: every box has headroom for its name, every
+// node for its two lines, and no line or dot runs under a label. Checked at
+// 1600 × 900; label sizes follow the page's rem, so it holds on any screen.
 const ZWORLD = (() => {
   const r = rng(20260512), GOLD = Math.PI * (3 - Math.sqrt(5)), A0 = [-215, 0], ag = [];
   // the agents sit in a ring around the shared store, which is the chat room
   for (let i = 0; ag.length < 1199; i++) {
-    const d = 170 + Math.sqrt((i + .5) / 1260) * 212, a = i * GOLD, x = Math.cos(a) * d, y = Math.sin(a) * d;
+    const d = 160 + Math.sqrt((i + .5) / 1260) * 180, a = i * GOLD, x = Math.cos(a) * d, y = Math.sin(a) * d;
     if (Math.hypot(x - A0[0], y - A0[1]) < 26) continue;
     ag.push({ x: +x.toFixed(1), y: +y.toFixed(1), atk: r() < .585 });
   }
   // the tunnel: some agents leave the ring and line up along the way out
   const bez = (t, p) => { const u = 1 - t; return [0, 1].map(k => u * u * u * p[0][k] + 3 * u * u * t * p[1][k] + 3 * u * t * t * p[2][k] + t * t * t * p[3][k]); };
-  const TUN = [[560, 0], [900, -120], [1150, -495], [1430, -495]];
+  const TUN = [[560, 0], [900, -100], [1150, -365], [1430, -365]];
   const onTunnel = k => k < .33 ? [140 + (560 - 140) * k / .33, 0] : bez((k - .33) / .67, TUN);
   [...ag].sort((a, b) => b.x - a.x).slice(0, 110).forEach((g, j) => { const [tx, ty] = onTunnel(j / 109); g.tn = [+(tx - g.x + (r() - .5) * 26).toFixed(1), +(ty - g.y + (r() - .5) * 26).toFixed(1)]; });
   const vis = (from, to, skip) => ` data-from="${from}"${to ? ` data-to="${to}"` : ''}${skip ? ` data-skip="${skip}"` : ''}`;
   // labels keep a constant size on screen: their group is re-scaled with the camera
-  const L = (x, y, from, to, inner, skip) => `<g class="zlb" data-x="${x}" data-y="${y}"${vis(from, to, skip)}>${inner}</g>`;
+  const L = (x, y, from, to, inner, skip, cls = '') => `<g class="zlb${cls}" data-x="${x}" data-y="${y}"${vis(from, to, skip)}>${inner}</g>`;
   const T = (t, x, y, cls, anchor = 'start') => `<text x="${x}" y="${y}" class="${cls}" text-anchor="${anchor}">${t}</text>`;
+  // far: the name on two lines once the camera is all the way back;
+  // pan: at that step the camera has moved on, the name moves to the top right corner
   const BOX = [
-    { x: -900, y: -700, w: 1900, h: 1400, r: 56, label: 'OPENAI\'S NETWORK', sub: 'its research computers', from: 3, cls: 'estate' },
-    { x: -560, y: -420, w: 1120, h: 840, r: 40, label: 'THE TEST BOX', sub: 'locked · no internet', from: 3, cls: 'sandbox' },
-    { x: -860, y: 440, w: 1200, h: 240, r: 28, label: 'THE REFEREE THEY FEARED', sub: 'never existed', from: 6, to: 6, cls: 'ghost' },
-    { x: 1360, y: -820, w: 900, h: 620, r: 44, label: 'THE INTERNET', sub: 'free websites, used as hiding places', from: 4, cls: 'net' },
-    { x: 1360, y: 120, w: 900, h: 380, r: 40, label: 'A STRANGER\'S CLOUD SERVER', sub: 'rented by another company', from: 4, cls: 'tp' },
-    { x: 2460, y: -560, w: 1180, h: 1320, r: 56, label: 'HUGGING FACE', sub: 'the victim', from: 5, cls: 'hf' },
-    { x: 3060, y: 90, w: 560, h: 230, r: 22, label: '', sub: '', from: 7, cls: 'ai' },
+    { x: -900, y: -780, w: 1900, h: 1610, r: 56, label: 'OPENAI\'S NETWORK', sub: 'its research computers', from: 3, cls: 'estate', pan: 4 },
+    { x: -560, y: -560, w: 1120, h: 980, r: 40, label: 'THE TEST BOX', sub: 'locked · no internet', from: 3, cls: 'sandbox' },
+    { x: -860, y: 460, w: 1460, h: 330, r: 28, label: 'THE REFEREE THEY FEARED', sub: 'never existed', from: 6, to: 6, cls: 'ghost' },
+    { x: 1360, y: -820, w: 960, h: 740, r: 44, label: 'THE INTERNET', sub: 'free websites, used as hiding places', from: 4, cls: 'net' },
+    { x: 1360, y: 160, w: 960, h: 500, r: 40, label: 'A STRANGER\'S CLOUD SERVER', far: ['A STRANGER\'S', 'CLOUD SERVER'], sub: 'rented by another company', from: 4, cls: 'tp' },
+    { x: 2680, y: -560, w: 1180, h: 1280, r: 56, label: 'HUGGING FACE', sub: 'the victim', from: 5, cls: 'hf' },
+    { x: 3280, y: 90, w: 560, h: 230, r: 22, label: '', sub: '', from: 7, cls: 'ai' },
   ];
+  // to: last step with the node's name, sto: with its second line
   const NODE = [
-    { x: -130, y: -50, w: 260, h: 100, label: 'SHARED STORE', sub: 'every agent can write here', from: 1, to: 4, hit: 3 },
-    { x: 1440, y: -670, w: 430, h: 100, label: 'A LEAKED ACCOUNT', sub: 'a password found online', from: 4, to: 5, hit: 4 },
-    { x: 1440, y: -545, w: 430, h: 100, label: 'A NOTE-SHARING SITE', sub: 'to pass instructions', from: 4, to: 5, hit: 4 },
-    { x: 1440, y: -420, w: 430, h: 100, label: 'AN IMAGE SITE', sub: 'data hidden in pictures', from: 4, to: 5, hit: 4 },
-    { x: 1440, y: 280, w: 740, h: 100, label: 'AN OPEN TEST TOOL', sub: 'factory key, then full control', from: 4, to: 5, hit: 4 },
-    { x: 2540, y: -410, w: 480, h: 100, label: 'DATA SERVERS', sub: '41 taken over', from: 5, to: 7, hit: 5, chk: 1 },
-    { x: 2540, y: -285, w: 480, h: 100, label: 'SERVER CONTROLS', sub: 'full admin rights', from: 5, to: 7, hit: 5, chk: 1 },
-    { x: 2540, y: -160, w: 480, h: 100, label: 'PASSWORDS', sub: '136 in one place', from: 5, to: 7, hit: 5, chk: 1 },
-    { x: 2540, y: -35, w: 480, h: 100, label: 'COMPANY NETWORK', sub: 'entered from outside', from: 5, to: 7, hit: 5, chk: 1 },
-    { x: 2540, y: 90, w: 480, h: 100, label: 'SOURCE CODE', sub: '4 private projects copied', from: 5, to: 7, hit: 5, chk: 1 },
-    { x: 2540, y: 215, w: 480, h: 100, label: 'DATABASES', sub: 'read, never changed', from: 5, to: 7, chk: 1 },
+    { x: -140, y: -50, w: 280, h: 100, label: 'SHARED STORE', sub: 'every agent can write here', from: 1, to: 3, sto: 2, hit: 3 },
+    { x: 1440, y: -605, w: 640, h: 140, label: 'A LEAKED ACCOUNT', sub: 'a password found online', from: 4, to: 5, hit: 4 },
+    { x: 1440, y: -435, w: 640, h: 140, label: 'A NOTE-SHARING SITE', sub: 'to pass instructions', from: 4, to: 5, hit: 4 },
+    { x: 1440, y: -265, w: 640, h: 140, label: 'AN IMAGE SITE', sub: 'data hidden in pictures', from: 4, to: 5, hit: 4 },
+    { x: 1440, y: 480, w: 640, h: 140, label: 'AN OPEN TEST TOOL', sub: 'factory key, then full control', from: 4, to: 5, hit: 4 },
+    { x: 2760, y: -345, w: 480, h: 120, label: 'DATA SERVERS', sub: '41 taken over', from: 5, to: 7, hit: 5, chk: 1 },
+    { x: 2760, y: -200, w: 480, h: 120, label: 'SERVER CONTROLS', sub: 'full admin rights', from: 5, to: 7, hit: 5, chk: 1 },
+    { x: 2760, y: -55, w: 480, h: 120, label: 'PASSWORDS', sub: '136 in one place', from: 5, to: 7, hit: 5, chk: 1 },
+    { x: 2760, y: 90, w: 480, h: 120, label: 'COMPANY NETWORK', sub: 'entered from outside', from: 5, to: 7, hit: 5, chk: 1 },
+    { x: 2760, y: 235, w: 480, h: 120, label: 'SOURCE CODE', sub: '4 private projects copied', from: 5, to: 7, hit: 5, chk: 1 },
+    { x: 2760, y: 380, w: 480, h: 120, label: 'DATABASES', sub: 'read, never changed', from: 5, to: 7, chk: 1 },
   ];
+  // a link's label: lx, ly a point in the world, dx its offset on screen;
+  // a label that sits on its own line gets a halo (.zll) that cuts the line
   const LINK = [
-    { d: `M${A0[0] + 14},0 L-132,0`, from: 1, to: 1, label: 'a trick fails, but it can write here', at: '8 MAY', lx: -172, ly: 44 },
-    { d: 'M130,0 L560,0 C900,-120 1150,-495 1440,-495', from: 4, id: 'ztun', label: 'a hidden flaw', at: '8 JULY', lx: 1040, ly: -400, lto: 4 },
-    { d: 'M1870,-370 C1990,-160 1960,100 1810,280', from: 4, label: 'factory key', at: '9 JULY', lx: 1990, ly: -80 },
-    { d: 'M2180,330 C2400,100 2440,-260 2540,-360', from: 5, label: 'a trapped file', at: '11 JULY', lx: 2250, ly: -560 },
+    { d: `M${A0[0] + 14},0 L-142,0`, from: 1, to: 1, label: ['a trick fails,', 'but it can write here'], at: '8 MAY', lx: -185, ly: 44 },
+    { d: 'M140,0 L560,0 C900,-100 1150,-365 1440,-365', from: 4, id: 'ztun', label: ['a hidden flaw'], at: '8 JULY', lx: 800, ly: 85, lto: 4 },
+    { d: 'M1440,-195 C1230,-195 1230,550 1440,550', from: 4, label: ['factory key'], at: '9 JULY', lx: 1292, ly: 40, dx: 12, anchor: 'start' },
+    { d: 'M2080,590 C2520,590 2520,-285 2760,-285', from: 5, label: ['a trapped file'], at: '11 JULY', lx: 2518, ly: 91, on: 1 },
   ];
   const OUT = [
-    [-300, -1150, '16 JULY', 'Hugging Face goes public: attacker unknown'],
-    [1400, -1150, '17 JULY', 'OpenAI calls, as a worried customer'],
-    [3050, -1150, '21 JULY', 'OpenAI: it was our own models'],
-    [700, 1020, '5 AUGUST', 'OpenAI explains it at Black Hat'],
-    [2300, 1020, '26 AUGUST', 'Full reports: 38 and 91 pages'],
+    [-120, -1150, '16 JULY', 'Hugging Face goes public: attacker unknown'],
+    [1840, -1150, '17 JULY', 'OpenAI asks, as a worried customer'],
+    [3270, -1150, '21 JULY', 'OpenAI: it was our own models'],
+    [700, 1060, '5 AUGUST', 'OpenAI explains it at Black Hat'],
+    [2500, 1060, '26 AUGUST', 'Full reports: 38 and 91 pages'],
   ];
   // every message goes through the store
-  const spokes = []; for (let i = 0; i < 90; i++) { const g = ag[Math.floor(r() * ag.length)], k = 132 / Math.max(Math.abs(g.x), 1), e = Math.min(1, 52 / Math.max(Math.abs(g.y), 1)); const m = Math.min(k, e); spokes.push(`M${g.x},${g.y} L${(g.x * m).toFixed(0)},${(g.y * m).toFixed(0)}`); }
+  const spokes = []; for (let i = 0; i < 90; i++) { const g = ag[Math.floor(r() * ag.length)], k = 142 / Math.max(Math.abs(g.x), 1), e = Math.min(1, 52 / Math.max(Math.abs(g.y), 1)); const m = Math.min(k, e); spokes.push(`M${g.x},${g.y} L${(g.x * m).toFixed(0)},${(g.y * m).toFixed(0)}`); }
   // the investigation: ~17,600 actions to rebuild, the working path hidden in the noise
-  const LX = 3070, LY = -470, COLS = 34, ROWS = 28, CELL = 16, path = new Set();
+  const LX = 3290, LY = -470, COLS = 34, ROWS = 28, CELL = 16, path = new Set();
   let c = 1, rr = 26; while (rr > 1) { path.add(rr * COLS + c); if (r() < .55) c = Math.min(COLS - 2, c + 1); else rr--; }
   let logs = ''; for (let y = 0; y < ROWS; y++) for (let x = 0; x < COLS; x++) logs += `<rect x="${LX + x * CELL}" y="${LY + y * CELL}" width="12" height="12" rx="2" class="zlog${path.has(y * COLS + x) ? ' hot' : ''}"/>`;
   let svg = '<svg class="zw" preserveAspectRatio="xMidYMid meet" aria-hidden="true">';
   svg += BOX.map(b => `<rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="${b.r}" class="zbox ${b.cls}"${vis(b.from, b.to)}/>`).join('');
-  svg += `<path d="M130,0 L560,0" class="zdoor"${vis(3, 3)}/>`;
+  svg += `<path d="M140,0 L560,0" class="zdoor"${vis(3, 3)}/>`;
   svg += LINK.map(l => `<path d="${l.d}"${l.id ? ` id="${l.id}"` : ''} class="zlink"${vis(l.from, l.to)}/>`).join('');
-  svg += `<g${vis(2, 2)}>${spokes.map(d => `<path d="${d}" class="zarc"/>`).join('')}</g><circle r="392" class="zring"${vis(2, 2)}/>`;
+  svg += `<g${vis(2, 2)}>${spokes.map(d => `<path d="${d}" class="zarc"/>`).join('')}</g><circle r="346" class="zring"${vis(2, 2)}/>`;
   svg += NODE.map(n => `<rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="14" class="znode"${vis(n.from)}${n.hit ? ` data-hit="${n.hit}"` : ''}/>`).join('');
-  svg += `<g${vis(2, 6)}>${ag.map(g => `<circle cx="${g.x}" cy="${g.y}" r="4.6" class="ag${g.atk ? ' atk' : ''}${g.tn ? ' tn' : ''}"${g.tn ? ` style="--tx:${g.tn[0]}px;--ty:${g.tn[1]}px"` : ''}/>`).join('')}</g>`;
+  svg += `<g${vis(2, 6)}>${ag.map(g => `<circle cx="${g.x}" cy="${g.y}" r="4.4" class="ag${g.atk ? ' atk' : ''}${g.tn ? ' tn' : ''}"${g.tn ? ` style="--tx:${g.tn[0]}px;--ty:${g.tn[1]}px"` : ''}/>`).join('')}</g>`;
   svg += `<g${vis(4, 5)}>${[0, 1, 2, 3, 4, 5].map(k => `<circle r="7" class="zpk"><animateMotion dur="3.2s" begin="${(k * .53).toFixed(2)}s" repeatCount="indefinite"><mpath href="#ztun"/></animateMotion></circle>`).join('')}</g>`;
   svg += `<circle cx="${A0[0]}" cy="0" r="24" class="ag0h"${vis(0, 2)}/><circle cx="${A0[0]}" cy="0" r="12" class="ag0"${vis(0, 6)}/>`;
   svg += `<g${vis(7, 7)}>${logs}</g>`;
   svg += L(A0[0], -24, 0, 1, T('AGENT 1', 0, -12, 'zt-a0', 'middle'));
-  svg += L(0, -392, 2, 2, T('THE CHAT ROOM · 1,200 AGENTS · every message goes through the store', 0, -12, 'zt-ring', 'middle'));
-  svg += L(500, 0, 3, 3, T('the only way out', 0, -14, 'zt-l', 'middle') + T('to download software', 0, 22, 'zt-ls', 'middle'));
-  svg += BOX.filter(b => b.label).map(b => L(b.x, b.y, b.from, b.to || 0, T(b.label, 14, 24, 'zt-b' + (b.cls === 'ghost' ? ' zt-ghost' : ''))) + L(b.x, b.y, b.from, b.cls === 'ghost' ? 6 : 5, T(b.sub, 14, 40, 'zt-s'))).join('');
-  svg += NODE.map(n => L(n.x, n.y, n.from, n.to, T(n.label, 10, 17, 'zt-n') + T(n.sub, 10, 31, 'zt-ns'), n.chk ? 6 : 0)).join('');
+  svg += L(0, -346, 2, 2, T('THE CHAT ROOM · 1,200 AGENTS · every message goes through the store', 0, -12, 'zt-ring', 'middle'));
+  svg += L(560, 0, 3, 3, T('the only way out', 12, -4, 'zt-l') + T('to download software', 12, 12, 'zt-ls'));
+  svg += BOX.filter(b => b.label).map(b => {
+    const name = (lines, from, to) => L(b.x, b.y, from, to, lines.map((t, i) => T(t, 14, 24 + i * 16, 'zt-b' + (b.cls === 'ghost' ? ' zt-ghost' : ''))).join(''), b.pan);
+    return (b.far ? name([b.label], b.from, 5) + name(b.far, 6, 0) : name([b.label], b.from, b.to || 0)) + L(b.x, b.y, b.from, b.cls === 'ghost' ? 6 : 5, T(b.sub, 14, 40, 'zt-s'), b.pan)
+      + (b.pan ? L(b.x + b.w, b.y, b.pan, b.pan, T(b.label, -14, 24, 'zt-b', 'end') + T(b.sub, -14, 40, 'zt-s', 'end')) : '');
+  }).join('');
+  // node labels: centred on the node's height, at every zoom
+  svg += NODE.map(n => L(n.x, n.y + n.h / 2, n.from, n.to, T(n.label, 10, -4.5, 'zt-n'), n.chk ? 6 : 0) + L(n.x, n.y + n.h / 2, n.from, n.sto || n.to, T(n.sub, 10, 9.5, 'zt-ns'), n.chk ? 6 : 0)).join('');
   svg += NODE.filter(n => n.chk).map(n => L(n.x + n.w, n.y + n.h / 2, 7, 7, T('✓ checked', -10, 4, 'zt-ok', 'end'))).join('');
-  svg += LINK.filter(l => l.label).map(l => L(l.lx, l.ly, l.from, l.lto || l.to || 5, T(l.label, 0, 0, 'zt-l', 'middle') + T(l.at, 0, 15, 'zt-ls', 'middle'))).join('');
+  svg += LINK.map((l, i) => L(l.lx, l.ly, l.from, l.lto || l.to || 5, [...l.label, l.at].map((t, j) => T(t, l.dx || 0, j * 14 + (j === l.label.length), j < l.label.length ? 'zt-l' : 'zt-ls', l.anchor || 'middle')).join(''), 0, l.on ? ' zll' : '')).join('');
   svg += OUT.map(([x, y, a, b]) => L(x, y, 6, 6, T(a, 0, 0, 'zt-out', 'middle') + T(b, 0, 18, 'zt-outs', 'middle'))).join('');
   svg += L(LX, LY, 7, 7, T('17,600 ACTIONS TO REBUILD', 0, -26, 'zt-b') + T('each square: about 18 actions', 0, -10, 'zt-s'));
   svg += L(LX, LY + ROWS * CELL, 7, 7, T('in red: the path that worked,', 0, 16, 'zt-s') + T('hidden among thousands of failed tries', 0, 30, 'zt-s'));
-  svg += L(3060, 90, 7, 7, T('AI HELPERS', 12, 22, 'zt-b') + T('✗ Claude, Fable: refused', 12, 44, 'zt-no') + T('✓ GLM-5.2 (China): worked', 12, 62, 'zt-ok') + T('on their own servers', 12, 78, 'zt-s'));
-  svg += L(2540, 380, 7, 7, T('THEN CHECK EVERYTHING', 0, 0, 'zt-b') + T('every password changed, even where they never went', 0, 18, 'zt-s') + T('every code project and package verified', 0, 34, 'zt-s') + T('one core cluster rebuilt from scratch', 0, 50, 'zt-s'));
+  svg += L(3280, 90, 7, 7, T('AI HELPERS', 12, 22, 'zt-b') + T('✗ Claude, Fable: refused', 12, 44, 'zt-no') + T('✓ GLM-5.2 (China): worked', 12, 62, 'zt-ok') + T('on their own servers', 12, 78, 'zt-s'));
+  svg += L(2760, 560, 7, 7, T('THEN CHECK EVERYTHING', 0, 0, 'zt-b') + T('every password changed, even where they never went', 0, 18, 'zt-s') + T('every code project and package verified', 0, 34, 'zt-s') + T('one core cluster rebuilt from scratch', 0, 50, 'zt-s'));
   return svg + '</svg>';
 })();
 
@@ -3051,10 +3087,14 @@ function mountZoom(el, s) {
     hits.forEach(n => n.classList.toggle('hit', st >= +n.dataset.hit));
     svg.classList.remove('s0', 's1', 's2', 's3', 's4', 's5', 's6', 's7'); svg.classList.add('s' + st);
   };
+  // labels grow with the page's type (rem), as laid out at 1600 × 900 where 1rem = 16.64px,
+  // and never faster than the screen, so they keep their room at any size
+  let lk = 1; const size = () => { const rc = svg.getBoundingClientRect(); lk = isNarrow() ? .7 : Math.min(parseFloat(getComputedStyle(document.documentElement).fontSize) / 16.64, rc.width / 1600, rc.height / 900); };
+  size();
   const apply = v => {
     vb = v; ZCAM = { vb: v, step: s.step };
     svg.setAttribute('viewBox', v.join(' '));
-    const u = v[2] / Math.max(svg.getBoundingClientRect().width, 1) * (isNarrow() ? .7 : 1);
+    const u = v[2] / Math.max(svg.getBoundingClientRect().width, 1) * lk;
     lbls.forEach(g => g.setAttribute('transform', `translate(${g.dataset.x},${g.dataset.y}) scale(${u})`));
   };
   const fly = (to, ms) => {
@@ -3078,7 +3118,7 @@ function mountZoom(el, s) {
     svg.classList.remove('init');
     requestAnimationFrame(() => { show(s.step); fly(zFit(svg, ZFOCUS[s.step]), 1900); });
   } else { svg.classList.add('init'); show(s.step); apply(zFit(svg, ZFOCUS[s.step])); svg.getBoundingClientRect(); svg.classList.remove('init'); }
-  el._onResize = () => { cancelAnimationFrame(raf); apply(zFit(svg, ZFOCUS[s.step])); };
+  el._onResize = () => { cancelAnimationFrame(raf); size(); apply(zFit(svg, ZFOCUS[s.step])); };
   el._unmount = () => cancelAnimationFrame(raf);
 }
 
@@ -3311,7 +3351,7 @@ SCENES.forEach(s => {
 // ─── Narration ───
 // Narration of the talk, recorded by tools/build-talk-voice.py (Kokoro-82M voices).
 // Per scene: the MP3, its length, the start of each line and the time of each click (s), in seconds.
-const NARR = {"Title": {"f": "assets/ai/voice/v-d3359e4a33.mp3", "d": 7.0, "b": [0.0]}, "16 July 2026": {"f": "assets/ai/voice/v-4728cb1e0f.mp3", "d": 11.39, "b": [0.0, 3.56], "s": [3.56]}, "Hugging Face, and a strange attacker": {"f": "assets/ai/voice/v-3238bad44a.mp3", "d": 29.81, "b": [0.0, 7.32, 15.11, 23.34, 27.78], "s": [15.11, 27.78]}, "No attacker": {"f": "assets/ai/voice/v-24a003a41f.mp3", "d": 3.66, "b": [0.0, 2.17]}, "700 agents": {"f": "assets/ai/voice/v-8d3e5a1671.mp3", "d": 14.87, "b": [0.0, 5.5, 7.06]}, "Chapter 1: The Exam": {"f": "assets/ai/voice/v-3438d65090.mp3", "d": 10.87, "b": [0.0, 1.82]}, "Always testing": {"f": "assets/ai/voice/v-e394b7d875.mp3", "d": 25.8, "b": [0.0, 3.36, 9.43, 16.81, 23.18], "s": [3.36, 16.81, 23.18]}, "898 questions": {"f": "assets/ai/voice/v-9370bf6d7a.mp3", "d": 23.29, "b": [0.0, 10.46, 16.44], "s": [16.44]}, "Zoom 1: one agent": {"f": "assets/ai/voice/v-4c1a0ce393.mp3", "d": 23.39, "b": [0.0, 5.43, 12.96, 17.78, 21.4]}, "Zoom 2: the chat room": {"f": "assets/ai/voice/v-617a4f71bc.mp3", "d": 21.56, "b": [0.0, 3.31, 6.65, 14.63, 15.99]}, "Zoom 3: the test box": {"f": "assets/ai/voice/v-884a084871.mp3", "d": 30.59, "b": [0.0, 4.85, 10.96, 13.86, 19.06, 27.37]}, "Zoom 4: the internet": {"f": "assets/ai/voice/v-eb2b4995e2.mp3", "d": 19.87, "b": [0.0, 6.66, 15.31]}, "Zoom 5: Hugging Face": {"f": "assets/ai/voice/v-005e84e183.mp3", "d": 23.23, "b": [0.0, 2.29, 9.55, 16.83, 21.18]}, "Zoom 6: the whole picture": {"f": "assets/ai/voice/v-e36035e446.mp3", "d": 26.38, "b": [0.0, 5.21, 12.7, 17.37, 23.44]}, "Zoom 7: the investigation": {"f": "assets/ai/voice/v-9996558eae.mp3", "d": 41.22, "b": [0.0, 9.68, 13.39, 19.91, 25.01, 32.04]}, "Clip: Black Hat": {"f": "assets/ai/voice/v-d4c7b1c58e.mp3", "d": 9.44, "b": [0.0, 7.0]}, "The call": {"f": "assets/ai/voice/v-028d8377bf.mp3", "d": 32.75, "b": [0.0, 4.38, 9.5, 12.59, 15.86, 23.8, 26.85], "s": [12.59, 23.8]}, "Chapter 1 in one sentence": {"f": "assets/ai/voice/v-44a9d2e9d9.mp3", "d": 16.27, "b": [0.0, 1.29, 10.04], "s": [1.29, 10.04]}, "Chapter 2: The Wave": {"f": "assets/ai/voice/v-133f8d3ed0.mp3", "d": 4.38, "b": [0.0, 1.61]}, "Press montage": {"f": "assets/ai/voice/v-a012cb3dea.mp3", "d": 21.1, "b": [0.0, 2.52, 6.16, 9.09, 13.06, 14.95, 17.47], "s": [2.52, 6.16, 9.09, 13.06, 14.95, 17.47]}, "Map of incidents": {"f": "assets/ai/voice/v-69aefcec11.mp3", "d": 25.46, "b": [0.0, 1.82, 6.54, 10.94, 15.69], "s": [1.82, 6.54, 10.94, 15.69]}, "Chapter 2 in one sentence": {"f": "assets/ai/voice/v-3a6ad1e11e.mp3", "d": 7.43, "b": [0.0, 1.48], "s": [1.48]}, "Chapter 3: Why": {"f": "assets/ai/voice/v-1498dafe7c.mp3", "d": 6.36, "b": [0.0, 1.5]}, "How an AI learns": {"f": "assets/ai/voice/v-7c100706b2.mp3", "d": 25.95, "b": [0.0, 10.42, 14.5], "s": [10.42, 14.5]}, "The human mirror": {"f": "assets/ai/voice/v-fe13cdc8e6.mp3", "d": 31.94, "b": [0.0, 2.74, 7.12, 11.09, 16.05, 24.45, 28.25], "s": [2.74, 7.12, 11.09, 16.05]}, "Two ways off the rails": {"f": "assets/ai/voice/v-0bb6f3c5de.mp3", "d": 16.13, "b": [0.0, 9.29], "s": [9.29]}, "The hidden order": {"f": "assets/ai/voice/v-8a5537cf25.mp3", "d": 24.22, "b": [0.0, 7.68, 11.99, 15.02, 19.51], "s": [7.68, 15.02, 19.51]}, "Chapter 3 in one sentence": {"f": "assets/ai/voice/v-9d22463251.mp3", "d": 14.2, "b": [0.0, 1.07, 7.57], "s": [1.07, 7.57]}, "Chapter 4: The Rules": {"f": "assets/ai/voice/v-7a249324f8.mp3", "d": 7.13, "b": [0.0, 1.78]}, "The debate": {"f": "assets/ai/voice/v-6f2eb1a963.mp3", "d": 24.38, "b": [0.0, 1.29, 12.32, 17.85], "s": [1.29, 12.32, 17.85]}, "Voices: the UN": {"f": "assets/ai/voice/v-ca92df7855.mp3", "d": 22.65, "b": [0.0, 8.4, 14.03, 16.23], "s": [8.4, 16.23]}, "Chapter 4 in one sentence": {"f": "assets/ai/voice/v-7fa2e053b8.mp3", "d": 14.18, "b": [0.0, 1.61, 5.58], "s": [1.61, 5.58]}, "Chapter 5: The Attackers Level Up": {"f": "assets/ai/voice/v-ae84e97dc1.mp3", "d": 12.66, "b": [0.0, 2.42]}, "Two kinds of risk": {"f": "assets/ai/voice/v-90a36786ce.mp3", "d": 5.68, "b": [0.0, 3.29], "s": [3.29]}, "Clip: Arup": {"f": "assets/ai/voice/v-398694843a.mp3", "d": 12.89, "b": [0.0]}, "Attackers on the map": {"f": "assets/ai/voice/v-c5907da303.mp3", "d": 39.35, "b": [0.0, 4.0, 9.04, 14.36, 19.63, 22.8, 26.62, 30.51, 33.7], "s": [4.0, 9.04, 14.36, 19.63, 22.8, 26.62, 30.51, 33.7]}, "Chapter 5 in one sentence": {"f": "assets/ai/voice/v-7b4ec19774.mp3", "d": 15.74, "b": [0.0, 1.86, 9.06], "s": [1.86, 9.06]}, "Chapter 6: The Body": {"f": "assets/ai/voice/v-f4f5385513.mp3", "d": 6.6, "b": [0.0, 1.73]}, "Clip: the robot games": {"f": "assets/ai/voice/v-6c3dfc1f17.mp3", "d": 15.39, "b": [0.0, 8.86, 13.11], "s": [8.86, 13.11]}, "A computer that walks": {"f": "assets/ai/voice/v-90e9f523fb.mp3", "d": 20.16, "b": [0.0, 4.04, 5.09, 6.12, 9.14, 13.91], "s": [4.04, 5.09, 6.12, 9.14]}, "The robot dog": {"f": "assets/ai/voice/v-eb3c5fa11c.mp3", "d": 29.49, "b": [0.0, 10.27, 13.33, 17.71, 23.09], "s": [10.27, 13.33, 17.71, 23.09]}, "Chapter 6 in one sentence": {"f": "assets/ai/voice/v-daae8f24b8.mp3", "d": 19.13, "b": [0.0, 2.46, 8.72], "s": [2.46, 8.72]}, "Chapter 7: You": {"f": "assets/ai/voice/v-cd2ec3e912.mp3", "d": 6.13, "b": [0.0, 1.63]}, "Question for the room": {"f": "assets/ai/voice/v-cad4e512c3.mp3", "d": 6.96, "b": [0.0, 3.74], "s": [3.74]}, "Against you": {"f": "assets/ai/voice/v-7619aa3997.mp3", "d": 9.24, "b": [0.0, 4.32, 5.62, 7.32], "s": [4.32, 5.62, 7.32]}, "AI phishing": {"f": "assets/ai/voice/v-8788533922.mp3", "d": 16.77, "b": [0.0, 1.56], "s": [1.56]}, "The fake parcel": {"f": "assets/ai/voice/v-b618006738.mp3", "d": 41.92, "b": [0.0, 2.45, 10.26, 12.95, 15.14, 17.45, 22.37, 30.97, 39.59], "s": [10.26, 12.95, 15.14, 17.45, 22.37, 39.59]}, "The fake call": {"f": "assets/ai/voice/v-7edb5a1504.mp3", "d": 27.51, "b": [0.0, 2.15, 6.1, 14.43, 21.6], "s": [2.15, 6.1, 14.43, 21.6]}, "Chapter 7 in one sentence": {"f": "assets/ai/voice/v-e511a78274.mp3", "d": 8.65, "b": [0.0, 1.71], "s": [1.71]}, "Chapter 8: What Works": {"f": "assets/ai/voice/v-84c6ec55dc.mp3", "d": 5.13, "b": [0.0, 1.61]}, "When in doubt": {"f": "assets/ai/voice/v-caedbb5dc0.mp3", "d": 20.91, "b": [0.0, 8.09, 9.89, 12.56], "s": [8.09, 9.89, 12.56]}, "The basics": {"f": "assets/ai/voice/v-14ef1c86ff.mp3", "d": 14.72, "b": [0.0, 3.19, 4.56, 7.91], "s": [3.19, 4.56, 7.91]}, "Lock these three first": {"f": "assets/ai/voice/v-a847efdedc.mp3", "d": 22.96, "b": [0.0, 2.1, 7.07, 9.66, 12.34], "s": [2.1, 7.07, 9.66, 12.34]}, "AI on your side": {"f": "assets/ai/voice/v-6dcdf94b71.mp3", "d": 35.85, "b": [0.0, 8.92, 14.01, 19.22, 25.62, 31.4], "s": [8.92, 14.01, 25.62]}, "For leaders": {"f": "assets/ai/voice/v-1c18c2e25f.mp3", "d": 20.53, "b": [0.0, 6.62, 10.77, 16.43, 17.63], "s": [6.62, 10.77, 16.43, 17.63]}, "What worked": {"f": "assets/ai/voice/v-7921445ff5.mp3", "d": 21.15, "b": [0.0, 7.22, 10.38, 12.97, 15.39, 18.1], "s": [7.22, 10.38, 12.97, 15.39, 18.1]}, "Questions": {"f": "assets/ai/voice/v-59559928a9.mp3", "d": 10.89, "b": [0.0, 9.63]}};
+const NARR = {"Title": {"f": "assets/ai/voice/v-d3359e4a33.mp3", "d": 7.0, "b": [0.0]}, "16 July 2026": {"f": "assets/ai/voice/v-4728cb1e0f.mp3", "d": 11.39, "b": [0.0, 3.56], "s": [3.56]}, "Hugging Face, and a strange attacker": {"f": "assets/ai/voice/v-562210571a.mp3", "d": 29.91, "b": [0.0, 7.32, 13.32, 15.68, 22.02], "s": [13.32, 22.02]}, "No attacker": {"f": "assets/ai/voice/v-24a003a41f.mp3", "d": 3.66, "b": [0.0, 2.17]}, "700 agents": {"f": "assets/ai/voice/v-8d3e5a1671.mp3", "d": 14.87, "b": [0.0, 5.5, 7.06]}, "Chapter 1: The Exam": {"f": "assets/ai/voice/v-3438d65090.mp3", "d": 10.87, "b": [0.0, 1.82]}, "Always testing": {"f": "assets/ai/voice/v-e394b7d875.mp3", "d": 25.8, "b": [0.0, 3.36, 9.43, 16.81, 23.18], "s": [3.36, 16.81, 23.18]}, "898 questions": {"f": "assets/ai/voice/v-9370bf6d7a.mp3", "d": 23.29, "b": [0.0, 10.46, 16.44], "s": [16.44]}, "Zoom 1: one agent": {"f": "assets/ai/voice/v-db71ca88a8.mp3", "d": 33.4, "b": [0.0, 5.43, 14.93, 22.97, 27.79, 31.42]}, "Zoom 2: the chat room": {"f": "assets/ai/voice/v-617a4f71bc.mp3", "d": 21.56, "b": [0.0, 3.31, 6.65, 14.63, 15.99]}, "Zoom 3: the test box": {"f": "assets/ai/voice/v-884a084871.mp3", "d": 30.59, "b": [0.0, 4.85, 10.96, 13.86, 19.06, 27.37]}, "Zoom 4: the internet": {"f": "assets/ai/voice/v-eb2b4995e2.mp3", "d": 19.87, "b": [0.0, 6.66, 15.31]}, "Zoom 5: Hugging Face": {"f": "assets/ai/voice/v-005e84e183.mp3", "d": 23.23, "b": [0.0, 2.29, 9.55, 16.83, 21.18]}, "Zoom 6: the whole picture": {"f": "assets/ai/voice/v-e36035e446.mp3", "d": 26.38, "b": [0.0, 5.21, 12.7, 17.37, 23.44]}, "Zoom 7: the investigation": {"f": "assets/ai/voice/v-9996558eae.mp3", "d": 41.22, "b": [0.0, 9.68, 13.39, 19.91, 25.01, 32.04]}, "Clip: Black Hat": {"f": "assets/ai/voice/v-d4c7b1c58e.mp3", "d": 9.44, "b": [0.0, 7.0]}, "The call": {"f": "assets/ai/voice/v-85c616422f.mp3", "d": 38.45, "b": [0.0, 4.38, 9.69, 13.32, 16.63, 24.56, 27.78, 32.54], "s": [13.32, 24.56]}, "Chapter 1 in one sentence": {"f": "assets/ai/voice/v-44a9d2e9d9.mp3", "d": 16.27, "b": [0.0, 1.29, 10.04], "s": [1.29, 10.04]}, "Chapter 2: The Wave": {"f": "assets/ai/voice/v-133f8d3ed0.mp3", "d": 4.38, "b": [0.0, 1.61]}, "Press montage": {"f": "assets/ai/voice/v-a012cb3dea.mp3", "d": 21.1, "b": [0.0, 2.52, 6.16, 9.09, 13.06, 14.95, 17.47], "s": [2.52, 6.16, 9.09, 13.06, 14.95, 17.47]}, "Map of incidents": {"f": "assets/ai/voice/v-92964f1e42.mp3", "d": 25.23, "b": [0.0, 1.82, 6.54, 10.94, 15.69, 22.92], "s": [1.82, 6.54, 10.94, 15.69, 22.92]}, "Chapter 2 in one sentence": {"f": "assets/ai/voice/v-3a6ad1e11e.mp3", "d": 7.43, "b": [0.0, 1.48], "s": [1.48]}, "Chapter 3: Why": {"f": "assets/ai/voice/v-1498dafe7c.mp3", "d": 6.36, "b": [0.0, 1.5]}, "How an AI learns": {"f": "assets/ai/voice/v-7c100706b2.mp3", "d": 25.95, "b": [0.0, 10.42, 14.5], "s": [10.42, 14.5]}, "The human mirror": {"f": "assets/ai/voice/v-fe13cdc8e6.mp3", "d": 31.94, "b": [0.0, 2.74, 7.12, 11.09, 16.05, 24.45, 28.25], "s": [2.74, 7.12, 11.09, 16.05]}, "Two ways off the rails": {"f": "assets/ai/voice/v-0bb6f3c5de.mp3", "d": 16.13, "b": [0.0, 9.29], "s": [9.29]}, "The hidden order": {"f": "assets/ai/voice/v-8a5537cf25.mp3", "d": 24.22, "b": [0.0, 7.68, 11.99, 15.02, 19.51], "s": [7.68, 15.02, 19.51]}, "Chapter 3 in one sentence": {"f": "assets/ai/voice/v-9d22463251.mp3", "d": 14.2, "b": [0.0, 1.07, 7.57], "s": [1.07, 7.57]}, "Chapter 4: The Rules": {"f": "assets/ai/voice/v-7a249324f8.mp3", "d": 7.13, "b": [0.0, 1.78]}, "The debate": {"f": "assets/ai/voice/v-6f2eb1a963.mp3", "d": 24.38, "b": [0.0, 1.29, 12.32, 17.85], "s": [1.29, 12.32, 17.85]}, "Voices: the UN": {"f": "assets/ai/voice/v-ca92df7855.mp3", "d": 22.65, "b": [0.0, 8.4, 14.03, 16.23], "s": [8.4, 16.23]}, "Chapter 4 in one sentence": {"f": "assets/ai/voice/v-7fa2e053b8.mp3", "d": 14.18, "b": [0.0, 1.61, 5.58], "s": [1.61, 5.58]}, "Chapter 5: The Attackers Level Up": {"f": "assets/ai/voice/v-ae84e97dc1.mp3", "d": 12.66, "b": [0.0, 2.42]}, "Two kinds of risk": {"f": "assets/ai/voice/v-90a36786ce.mp3", "d": 5.68, "b": [0.0, 3.29], "s": [3.29]}, "Clip: Arup": {"f": "assets/ai/voice/v-398694843a.mp3", "d": 12.89, "b": [0.0]}, "Attackers on the map": {"f": "assets/ai/voice/v-c5907da303.mp3", "d": 39.35, "b": [0.0, 4.0, 9.04, 14.36, 19.63, 22.8, 26.62, 30.51, 33.7], "s": [4.0, 9.04, 14.36, 19.63, 22.8, 26.62, 30.51, 33.7]}, "Chapter 5 in one sentence": {"f": "assets/ai/voice/v-7b4ec19774.mp3", "d": 15.74, "b": [0.0, 1.86, 9.06], "s": [1.86, 9.06]}, "Chapter 6: The Body": {"f": "assets/ai/voice/v-f4f5385513.mp3", "d": 6.6, "b": [0.0, 1.73]}, "Clip: the robot games": {"f": "assets/ai/voice/v-6c3dfc1f17.mp3", "d": 15.39, "b": [0.0, 8.86, 13.11], "s": [8.86, 13.11]}, "A computer that walks": {"f": "assets/ai/voice/v-90e9f523fb.mp3", "d": 20.16, "b": [0.0, 4.04, 5.09, 6.12, 9.14, 13.91], "s": [4.04, 5.09, 6.12, 9.14]}, "The robot dog": {"f": "assets/ai/voice/v-eb3c5fa11c.mp3", "d": 29.49, "b": [0.0, 10.27, 13.33, 17.71, 23.09], "s": [10.27, 13.33, 17.71, 23.09]}, "Chapter 6 in one sentence": {"f": "assets/ai/voice/v-daae8f24b8.mp3", "d": 19.13, "b": [0.0, 2.46, 8.72], "s": [2.46, 8.72]}, "Chapter 7: You": {"f": "assets/ai/voice/v-cd2ec3e912.mp3", "d": 6.13, "b": [0.0, 1.63]}, "Question for the room": {"f": "assets/ai/voice/v-cad4e512c3.mp3", "d": 6.96, "b": [0.0, 3.74], "s": [3.74]}, "Against you": {"f": "assets/ai/voice/v-7619aa3997.mp3", "d": 9.24, "b": [0.0, 4.32, 5.62, 7.32], "s": [4.32, 5.62, 7.32]}, "AI phishing": {"f": "assets/ai/voice/v-8788533922.mp3", "d": 16.77, "b": [0.0, 1.56], "s": [1.56]}, "The fake parcel": {"f": "assets/ai/voice/v-b618006738.mp3", "d": 41.92, "b": [0.0, 2.45, 10.26, 12.95, 15.14, 17.45, 22.37, 30.97, 39.59], "s": [10.26, 12.95, 15.14, 17.45, 22.37, 39.59]}, "The fake call": {"f": "assets/ai/voice/v-7edb5a1504.mp3", "d": 27.51, "b": [0.0, 2.15, 6.1, 14.43, 21.6], "s": [2.15, 6.1, 14.43, 21.6]}, "Chapter 7 in one sentence": {"f": "assets/ai/voice/v-e511a78274.mp3", "d": 8.65, "b": [0.0, 1.71], "s": [1.71]}, "Chapter 8: What Works": {"f": "assets/ai/voice/v-84c6ec55dc.mp3", "d": 5.13, "b": [0.0, 1.61]}, "When in doubt": {"f": "assets/ai/voice/v-caedbb5dc0.mp3", "d": 20.91, "b": [0.0, 8.09, 9.89, 12.56], "s": [8.09, 9.89, 12.56]}, "The basics": {"f": "assets/ai/voice/v-14ef1c86ff.mp3", "d": 14.72, "b": [0.0, 3.19, 4.56, 7.91], "s": [3.19, 4.56, 7.91]}, "Lock these three first": {"f": "assets/ai/voice/v-a847efdedc.mp3", "d": 22.96, "b": [0.0, 2.1, 7.07, 9.66, 12.34], "s": [2.1, 7.07, 9.66, 12.34]}, "AI on your side": {"f": "assets/ai/voice/v-6dcdf94b71.mp3", "d": 35.85, "b": [0.0, 8.92, 14.01, 19.22, 25.62, 31.4], "s": [8.92, 14.01, 25.62]}, "For leaders": {"f": "assets/ai/voice/v-1c18c2e25f.mp3", "d": 20.53, "b": [0.0, 6.62, 10.77, 16.43, 17.63], "s": [6.62, 10.77, 16.43, 17.63]}, "What worked": {"f": "assets/ai/voice/v-7921445ff5.mp3", "d": 21.15, "b": [0.0, 7.22, 10.38, 12.97, 15.39, 18.1], "s": [7.22, 10.38, 12.97, 15.39, 18.1]}, "Questions": {"f": "assets/ai/voice/v-59559928a9.mp3", "d": 10.89, "b": [0.0, 9.63]}};
 
 // ─── Sleek edition ───
 // Sleek edition: extra photos, and the motion layer (words that rise into
@@ -3359,9 +3399,9 @@ new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.nod
   .observe(document.getElementById('stage'), { childList: true });
 
 // ─── Opening: credits and a 20-second score ─────────────────────────────
-// The title screen plays a looping theme (as soon as the browser lets sound
-// start, or at the first key or click). The Narration button plays the credits
-// with their score, synthesised live with Web Audio (no file, works offline):
+// The page opens in silence: A or the note button on the title screen starts
+// a looping theme, and the score of the credits. The Narration button plays
+// the credits, synthesised live with Web Audio (no file, works offline):
 // a log typed at 03:12, the title slammed in on the impact, then straight to
 // the date, and the narration takes over. Any key skips the credits, Esc
 // cancels, A turns the music on or off, I plays the credits alone.
@@ -3372,7 +3412,7 @@ const SK_INTRO = [
   ['status · <b>outside its sandbox</b>', 4.3],
 ];
 const SK_T = { glitch: 5.9, pres: 6.4, letters: 8.9, hit: 11.6, sub: 12.6, out: 16.2 };
-let skAudio = null, skMuted = false;
+let skAudio = null, skMuted = true;
 
 function skScore() {
   const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
@@ -3701,6 +3741,7 @@ if (!PRESENTER) {
     if (skN.on) { skNarrClear(); const t = setTimeout(() => { if (cur === n) skNarrScene(); }, 550); skN.timers.push(t); }
   }))).observe(document.getElementById('stage'), { childList: true });
   if (cur) skOptions(cur);
+  document.body.classList.toggle('sk-muted', skMuted);
   if (idx === 0) skLoopStart();
   // the first gesture lets the sound start, if the browser held it back
   ['pointerdown', 'keydown', 'touchstart'].forEach(t => document.addEventListener(t, () => { if (skLoop.ac && skLoop.ac.state === 'suspended' && skLoop.want) skLoop.ac.resume().catch(() => {}); }, true));
