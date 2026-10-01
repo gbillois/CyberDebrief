@@ -30,7 +30,21 @@ gradient instead of black, the signature arcs drawn live, an indigo sweep
 between grounds and on chapter cards, a yacht thumbnail that gains a sail on
 each of the three AI levels, and a slow parallax on the decoration.
 
-`assises-standalone.html` and `assises-wavestone-standalone.html` are the same files with every image inlined, to copy
+`assises-horizon.html` reinvents the form completely (same content, same
+script and notes, read from `deck.js` at build time). One living sea of dots
+runs under the whole talk and becomes the content: it rises into the
+benchmark bars and lines up as the agentic wall, draws the seven agents as
+hexagons, the organization perimeter and the shadow AI around it, turns
+stormy when the threat speeds up and into speed lines on "it changed the
+speed", fills the waffle charts, the funnel and the data lake, orbits as
+agents, and writes "Lead the Shift." on the last screen. Around it: two
+grounds that crossfade (paper, Wavestone indigo), editorial type (Poppins
+with Newsreader italics), words that rise through masks, digits that roll,
+photos that open through a horizon slit, and chapters as split screens where
+the next sail is hoisted live. Sources: `assets/assises/horizon.src.html`,
+`horizon.css`, `horizon.js`.
+
+`assises-standalone.html`, `assises-wavestone-standalone.html` and `assises-horizon-standalone.html` are the same files with every image inlined, to copy
 on a USB stick and run with no network. Both are generated, never edited by
 hand: edit `assets/assises/` (`deck.src.html`, `deck.css`, `deck.js`, the
 photos) and run `python3 tools/build-assises.py`.
