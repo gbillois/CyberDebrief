@@ -4,6 +4,36 @@ An interactive, scrubable reconstruction of the 2017 NotPetya cyberattack
 (`index.html`), plus a generalized generator that turns the same concept into a
 reusable tool.
 
+## assises.html · Lead the Shift (Les Assises 2026)
+
+The 40-minute Wavestone workshop for CISOs at Les Assises 2026 ("How CISOs
+must lead the AI transformation", Claire Carré and Gérôme Billois), rebuilt
+from `Atelier_Assises 2026_V.07 light 2.pptx` in two steps:
+
+1. `Assises-deckseeder.html`: the PowerPoint converted to HTML by the
+   DeckSeeder PPTX import engine (deterministic import, PPTX style kept, then
+   DeckSeeder's standalone HTML export). Its images are stored in
+   `assets/assises/deckseeder/` instead of inline base64 (77 MB to 1 MB).
+2. `assises.html`: the same talk in the logic of `ai-talk-photo-sleek.html`:
+   a dark cinematic stage in Wavestone indigo and green, glass panels, film
+   grain, camera-like transitions, titles that rise word by word, numbers
+   that count up, and one click per idea. The deck's yacht is the thread: on
+   each chapter card a new sail is hoisted live (Cyber for AI, Cyber against
+   AI, Cyber with AI), then the crew. 32 scenes in 4 chapters plus the
+   opening and the close.
+
+`assises-standalone.html` is the same file with every image inlined, to copy
+on a USB stick and run with no network. Both are generated, never edited by
+hand: edit `assets/assises/` (`deck.src.html`, `deck.css`, `deck.js`, the
+photos) and run `python3 tools/build-assises.py`.
+
+Controls as in the other talks: `→` / `←` (or a remote), `P` synced presenter
+view (script in French, notes, timer, next scene), `N` notes, `S` script as
+subtitles, `O` outline, `B` black screen, `F` full screen, `?` help. The
+notes list what was changed from the source deck (typos, merged slides 13 and
+17, placeholders such as "XX tools consolidated" removed from screen) and the
+open points still to settle before the session.
+
 ## ai-menu.html · front page
 
 All the AI-risk pages (`ai-menu.html`, `ai-talk.html`, `ai.html`, `ai-fr.html`)
