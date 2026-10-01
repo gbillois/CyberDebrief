@@ -44,7 +44,21 @@ photos that open through a horizon slit, and chapters as split screens where
 the next sail is hoisted live. Sources: `assets/assises/horizon.src.html`,
 `horizon.css`, `horizon.js`.
 
-`assises-standalone.html`, `assises-wavestone-standalone.html` and `assises-horizon-standalone.html` are the same files with every image inlined, to copy
+`assises-chart.html` (The Chart) rewrites the content and reinvents the form:
+the talk is one nautical chart, and a camera flies over it from waypoint to
+waypoint, with the route drawn as the talk advances. Same facts, new words
+and a new order: Port Wavestone and its seven agents moored at a jetty, the
+three shifts as ocean currents, the benchmark as depth soundings running onto
+an agentic reef, discovery as a radar picture, platform controls as buoys,
+agent identity as a ship's papers; the threats as five squalls on a night
+chart, the new baseline as a 48-hour watch dial, virtual patching as a hull
+cross-section, the market as a regatta; the three AI levels read from the
+atoll's outer waters to its lagoon, which is the cyber data lake; the cyber
+graph as a star chart; the crew as a heading, a lighthouse and a fleet; and
+an arrival that pulls back over the whole voyage. Sources in
+`assets/assises/chart/` (engine.js, one part file per chapter, boot.js).
+
+`assises-standalone.html`, `assises-wavestone-standalone.html` `assises-horizon-standalone.html` and `assises-chart-standalone.html` are the same files with every image inlined, to copy
 on a USB stick and run with no network. Both are generated, never edited by
 hand: edit `assets/assises/` (`deck.src.html`, `deck.css`, `deck.js`, the
 photos) and run `python3 tools/build-assises.py`.

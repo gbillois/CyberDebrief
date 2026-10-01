@@ -205,7 +205,7 @@ function camFor(s, k) { let c = s.cam; Object.entries(s.camF || {}).sort((a, b) 
 function applyFrag(el, k, first) {
   const s = SCENES[idx];
   $$('[data-f]', el).forEach(n => n.classList.toggle('on', +n.dataset.f <= k));
-  rollOdos(el);
+  rollOdos(el); setTimeout(() => { if (cur === el) rollOdos(el); }, 700);
   const on = flagsFor(s, k);
   $$('#chart [data-flag]').forEach(n => n.classList.toggle('on', n.dataset.flag.split(' ').some(f => on.has(f))));
   const c = camFor(s, k);
@@ -223,7 +223,7 @@ function render(i, k) {
   const el = document.createElement('section');
   el.className = `scene t-${s.type || 'x'}`;
   el.innerHTML = s.html ? s.html() : '';
-  $$('.t', el).forEach(splitWords);
+  $$('.t:not(.pin)', el).forEach(splitWords);
   el._max = maxF(s, el);
   $('#ov-layer').appendChild(el);
   const old = cur; cur = el;

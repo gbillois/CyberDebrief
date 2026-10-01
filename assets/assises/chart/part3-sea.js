@@ -114,10 +114,10 @@ LAYERS.push(() => {
   // the two drivers: two streams feed the channel
   const yt = y + wob(x0);
   s += `<g class="fl" data-flag="p3-drivers">
-    <path d="M${x0 - 460},${y - 470} C${x0 - 240},${y - 460} ${x0 - 140},${yt - 160} ${x0 + 60},${yt - 110}" fill="none" stroke="var(--indigo)" stroke-width="40" opacity=".16"/>
-    <path d="M${x0 - 460},${y + 470} C${x0 - 240},${y + 460} ${x0 - 140},${yt + 160} ${x0 + 60},${yt + 110}" fill="none" stroke="var(--indigo)" stroke-width="40" opacity=".16"/>
-    <path d="M${x0 - 460},${y - 470} C${x0 - 240},${y - 460} ${x0 - 140},${yt - 160} ${x0 + 60},${yt - 110}" fill="none" stroke="var(--indigo)" stroke-width="7" stroke-dasharray="26 22" class="flow"/>
-    <path d="M${x0 - 460},${y + 470} C${x0 - 240},${y + 460} ${x0 - 140},${yt + 160} ${x0 + 60},${yt + 110}" fill="none" stroke="var(--indigo)" stroke-width="7" stroke-dasharray="26 22" class="flow"/></g>`;
+    <path d="M${x0 - 460},${y - 420} C${x0 - 240},${y - 420} ${x0 - 140},${yt - 160} ${x0 + 60},${yt - 110}" fill="none" stroke="var(--indigo)" stroke-width="40" opacity=".16"/>
+    <path d="M${x0 - 460},${y + 420} C${x0 - 240},${y + 420} ${x0 - 140},${yt + 160} ${x0 + 60},${yt + 110}" fill="none" stroke="var(--indigo)" stroke-width="40" opacity=".16"/>
+    <path d="M${x0 - 460},${y - 420} C${x0 - 240},${y - 420} ${x0 - 140},${yt - 160} ${x0 + 60},${yt - 110}" fill="none" stroke="var(--indigo)" stroke-width="7" stroke-dasharray="26 22" class="flow"/>
+    <path d="M${x0 - 460},${y + 420} C${x0 - 240},${y + 420} ${x0 - 140},${yt + 160} ${x0 + 60},${yt + 110}" fill="none" stroke="var(--indigo)" stroke-width="7" stroke-dasharray="26 22" class="flow"/></g>`;
   // locks: two gates and a chamber each
   locks.forEach((lx, i) => {
     const w = W(lx) + 46, yc = y + wob(lx);
@@ -222,6 +222,8 @@ SCENES.push(
 // 1 · waypoint card
 { ch: 'c3', type: 'waypoint', title: 'Waypoint 03 · Open sea', ref: 'Chapter 3: Cyber with AI', leg: 3, cam: { x: 9457, y: 2452, w: 8400 },
   onF: { 1: ['p3-zones', 'p3-z1'], 2: ['p3-z2'], 3: ['p3-z3'] },
+  notesPlus: `Clics : 1, 2, 3 = les trois voiles, une à la fois (sur la photo et sur la carte).
+La carte de tout le chapitre : on lit l'atoll de l'extérieur vers l'intérieur. Voile 1 = les eaux extérieures (chaque équipe dans son port), voile 2 = l'anneau de l'atoll (les plateformes, reliées par une route), voile 3 = le lagon (le Cyber Data Lake, où naviguent les agents). La jauge à trois voiles revient en tête des écrans de chaque niveau.`,
   html: () => `${waypointCard({ n: '03', place: 'Open sea', theme: 'Cyber <em>with</em> AI', line: 'Defend at machine speed. Three sails to set, one at a time, from the outer waters into the lagoon.' })}
   <figure class="polar p3-photo" style="--r:1.6deg"><img src="${IMG.yacht3}" alt="">
     ${[19, 42, 65].map((x, i) => `<b class="p3-sn" style="left:${x}%"${fa(i + 1)}>${i + 1}</b>`).join('')}
@@ -231,14 +233,16 @@ SCENES.push(
 // 2 · sail 1: use cases in every team
 { ch: 'c3', type: 'sail1', title: 'Sail 1 · Assist', ref: 'Level 1: AI acculturation', leg: 3, cam: { x: 9300, y: 1700, w: 7400 },
   on: ['p3-ports'], onF: { 1: ['p3-flags'] },
-  notesPlus: `Le top 10 de l'acculturation, équipe par équipe. Chaque équipe a son propre port : les cas d'usage sont construits localement, sans route entre eux (c'est ce que le niveau 2 va changer). Fanions verts = ROI mesuré.`,
+  notesPlus: `Clics : 1 les dix cas d'usage (fanions hissés), 2 les ROI mesurés.
+Le top 10 de l'acculturation, équipe par équipe. Chaque équipe a son propre port : les cas d'usage sont construits localement, sans route entre eux (c'est ce que le niveau 2 va changer). Fanions verts = ROI mesuré.`,
   html: () => `${P3.head(1, 'Level 1 · AI acculturation · the top 10', 'Use cases land <em>in every team</em>', 'Mostly built locally, they make existing tasks faster and better, and prove value quickly.', '54rem', true)}
   ${P3.TEAMS.map(t => P3.port(t, `<ul>${P3.UC[t.k].map(([u, r]) => `<li${fa(1)}><span>${u}</span>${r ? `<em class="p3-roi"${fa(2)}>${r}</em>` : ''}</li>`).join('')}</ul>`)).join('')}` },
 
 // 3 · how to pick them
 { ch: 'c3', type: 'locks', title: 'Three locks, three months', ref: 'Deep dive: the right use cases', leg: 3, cam: { x: 10000, y: 1000, w: 4300 },
   on: ['p3-chan', 'p3-ideas0'], onF: { 1: ['p3-drivers'], 2: ['p3-lock1', 'p3-ideas1'], 3: ['p3-lock2', 'p3-ideas2'], 4: ['p3-lock3', 'p3-ideas3'] },
-  notesPlus: `Grille d'idéation (à citer si question) :
+  notesPlus: `Clics : 1 les deux moteurs, 2 écluse 1 (idéation) et la grille valeur × complexité, 3 écluse 2 (premiers démonstrateurs), 4 écluse 3 (feuille de route), sortie en pleine mer.
+Grille d'idéation (détail à citer si question) :
 Valeur = bénéfices directs / nouvelles capacités ; coûts et efficacité ; bénéfices indirects (image, culture d'innovation) ; aide à la décision.
 Complexité = données (existence, accès, qualité) ; maturité technologique ; coût et compétences du projet ; impact organisationnel et risques.
 Matrice valeur × complexité : forte valeur / faible complexité = quick wins ; forte / forte = initiatives stratégiques ; faible / faible = test & learn ; faible / forte = abandonner ou reclasser.
@@ -246,8 +250,8 @@ Matrice valeur × complexité : forte valeur / faible complexité = quick wins ;
   html: () => { const { x0, x1, y, locks } = P3.CH, W = P3.chW;
     const L = [['Ideation', 'Test realism at once', 'Workshops with an AI maker, scored value × complexity'], ['First implementation', 'Build first demonstrators', 'Prompting &amp; no-code, ROI measured from day one'], ['Roadmap', 'Scale to full application', 'Make, buy or make-to-buy, with training &amp; change management']];
     return `${L.map(([k, b, s], i) => pin(locks[i], y - 470, `<div class="p3-lock"><i>Lock ${i + 1} · ${k}</i><b>${b}</b></div>`, 'p3-up', i + 2) + pin(locks[i], y + 290, `<div class="p3-lockd">${s}</div>`, 'b', i + 2)).join('')}
-  ${pin(x0 - 470, y - 500, `<div class="p3-drv"><i>Driver</i>New value-adding activities</div>`, 'l', 1, 'margin-top:-1.2rem')}
-  ${pin(x0 - 470, y + 500, `<div class="p3-drv"><i>Driver</i>Pain-point fixes</div>`, 'l', 1, 'margin-top:1.4rem')}
+  ${pin(x0 - 470, y - 450, `<div class="p3-drv"><i>Driver</i>New value-adding activities</div>`, 'l', 1, 'margin-top:-1.2rem')}
+  ${pin(x0 - 470, y + 450, `<div class="p3-drv"><i>Driver</i>Pain-point fixes</div>`, 'l', 1, 'margin-top:1.4rem')}
   ${pin(x1, y + 240, `<div class="p3-out"><i>Open sea</i>A few, at scale</div>`, 'b', 4)}
   ${pin(x0, y + 530, '<span class="p3-sc">0</span>', 'b')}${pin(x1, y + 530, '<span class="p3-sc">3 months</span>', 'b')}
   <div class="cart at-br p3-mx"${fa(2)}><span class="tab">Lock 1 · the ideation grid</span>
@@ -260,7 +264,8 @@ Matrice valeur × complexité : forte valeur / faible complexité = quick wins ;
 // 4 · sail 2: platform renewal
 { ch: 'c3', type: 'sail2', title: 'Sail 2 · Team up', ref: 'Level 2: platform renewal', leg: 3, cam: { x: 9300, y: 1700, w: 7400 },
   on: ['p3-plat'], onF: { 1: ['p3-road'], 2: ['p3-office'] },
-  notesPlus: `Même carte qu'au niveau 1 : les ports deviennent des plateformes posées sur l'anneau de l'atoll, et une seule route les relie (le contexte partagé). Une plateforme à la fois. Le phare au milieu du lagon : le Cyber Data & AI Office.`,
+  notesPlus: `Clics : 1 la route autour de l'atoll (le contexte partagé), 2 le Cyber Data & AI Office.
+Même carte qu'au niveau 1 : les ports deviennent des plateformes posées sur l'anneau de l'atoll, et une seule route les relie (le contexte partagé). Une plateforme à la fois. Le phare au milieu du lagon : le Cyber Data & AI Office.`,
   html: () => { const P = {
       grc: [['AI-native GRC', 'Continuous controls, compliance, TPRM, vendor risk', 'UK bank']],
       sbd: [['App security', 'Posture management, code &amp; pipeline security', 'EU manufacturing']],
@@ -275,8 +280,8 @@ Matrice valeur × complexité : forte valeur / faible complexité = quick wins ;
 // 5 · two voyages
 { ch: 'c3', type: 'voyages', title: 'Two voyages, one objective', ref: 'Deep dive: two approaches', leg: 3, cam: { x: 9775, y: 2400, w: 7600 },
   on: ['p3-voy'], onF: { 1: ['p3-va'], 2: ['p3-vb'] },
-  notesPlus: `Deux routes autour du même atoll, même point de départ, même arrivée. Au nord, l'assureur (3 étapes) ; au sud, le constructeur automobile (4 étapes).
-Retirés de l'écran car non confirmés dans la source : durée et budget du programme assurance (« XX-year », « $XXX »), « 50 AI agents deployed in the SOC », « XX tools consolidated ».`,
+  notesPlus: `Clics : 1 l'assureur (route nord), 2 l'automobile (route sud).
+Deux routes autour du même atoll, même point de départ, même arrivée. Au nord, l'assureur (3 étapes) ; au sud, le constructeur automobile (4 étapes).`,
   html: () => { const A = ['Unify governance, processes &amp; technology', 'Strengthen data visibility &amp; control', 'Remediate risk at scale'];
     const B = ['Embed AI by design', 'Unify the platform', 'Upskill teams', 'Align staffing, ownership &amp; partners'];
     const lab = (b, t, i, f, up) => { const [x, y] = P3.pt(b, P3.VR + 110); return pin(x, y, `<div class="p3-leg ${up ? 'a' : 'b'}"><i>${i + 1}</i>${t}</div>`, up ? 'p3-up' : 'b', f); };
@@ -290,7 +295,8 @@ Retirés de l'écran car non confirmés dans la source : durée et budget du pro
 // 6 · sail 3: the lagoon
 { ch: 'c3', type: 'sail3', title: 'Sail 3 · Machine speed', ref: 'Level 3: machine speed', leg: 3, cam: { x: 9300, y: 2240, w: 4700 },
   on: ['p3-lake'], onF: { 1: ['p3-in'], 2: ['p3-agents', 'p3-out'] },
-  notesPlus: `Le lagon de l'atoll EST le Cyber Data Lake. Les rivières qui y entrent : les sources (SOC/EDR, CTI/vulnérabilités, actifs/configurations, GRC/TPRM/risques), via API. Les bateaux du lagon : les agents, sur une plateforme d'IA agentique. Les rivières qui en sortent : les actions, via MCP et API.`,
+  notesPlus: `Clics : 1 les sources et l'étape 1 (data lake), 2 les agents, les actions et l'étape 2 (plateforme agentique), 3 défensif → proactif.
+Le lagon de l'atoll EST le Cyber Data Lake. Les rivières qui y entrent : les sources (SOC/EDR, CTI/vulnérabilités, actifs/configurations, GRC/TPRM/risques), via API. Les bateaux du lagon : les agents, sur une plateforme d'IA agentique. Les rivières qui en sortent : les actions, via MCP et API.`,
   html: () => `${P3.head(3, 'Level 3 · cyber at machine speed', 'The lagoon is <em>your data</em>', 'Machine speed needs one data foundation for agentic operations.', '29rem')}
   ${P3.SRC.map(([t, y]) => pin(7880, y, `<span class="p3-src">${t}</span>`, 'r', 1)).join('')}
   ${pin(8380, 2700, '<span class="p3-api">APIs in</span>', 'b', 1)}
@@ -303,7 +309,8 @@ Retirés de l'écran car non confirmés dans la source : durée et budget du pro
 // 7 · navigate by the graph (night)
 { ch: 'c3', type: 'stars', title: 'Navigate by the graph', ref: 'Level 3: golden rules & cyber graph', leg: 3, night: true, cam: { x: 9950, y: 1500, w: 4800 },
   onF: { 1: ['p3-crew'], 2: ['p3-graph'], 3: ['p3-mirror'] },
-  notesPlus: `Carte du ciel : le graphe cyber (IT et OT) est la constellation sur laquelle tous les agents prennent leur relèvement. Un agent par équipe du RSSI, au mouillage dans le lagon (le data lake). Data lake + graphe. Côté OT, l'humain reste dans la boucle.
+  notesPlus: `Clics : 1 les six agents, 2 le graphe cyber (constellation), 3 data lake + graphe, l'OT avec humain dans la boucle.
+Carte du ciel : le graphe cyber (IT et OT) est la constellation sur laquelle tous les agents prennent leur relèvement. Un agent par équipe du RSSI, au mouillage dans le lagon (le data lake). Data lake + graphe. Côté OT, l'humain reste dans la boucle.
 Contenu marqué « IN THE WORKS » dans la source : à valider.`,
   html: () => `<div class="cart at-tl w-s p3-rules"><span class="tab">Rules of the watch</span><p class="kick">Level 3 · golden rules</p><h2 class="h s t">Navigate <em>by the graph</em></h2>
     <ul class="log">
@@ -319,6 +326,7 @@ Contenu marqué « IN THE WORKS » dans la source : à valider.`,
 // 8 · keep the engine honest
 { ch: 'c3', type: 'tokenops', title: 'Keep the engine honest', ref: 'Trust & TokenOps', leg: 3, cam: { x: 10560, y: 2400, w: 8800 },
   on: ['p3-office'], onF: { 1: ['p3-gyre'] },
+  notesPlus: `Clics : 1 le cycle Build / Run / Check, qui tourne autour de l'atoll et du Cyber Data & AI Office, 2, 3, 4 les trois instruments (observer la performance, préserver la confiance, maîtriser les coûts). Les cadrans sont des pictogrammes : aucune valeur chiffrée.`,
   html: () => { const { pt, GR } = P3;
     const D = [['eye', 'Observe', 'performance', 'Know what agents do, and how well', ['Quality &amp; evaluation', 'Reliability &amp; observability', 'Decision traceability'], 38],
       ['shield', 'Preserve', 'trust', 'Keep humans accountable for every delegated action', ['Human oversight', 'Ownership &amp; accountability'], 62],
