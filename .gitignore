@@ -17,3 +17,4 @@ video/build/vo/
 !assets/ai/robot-crash.mp4
 !assets/ai/arup-report.mp4
 !assets/ai/robot-fall.mp4
+.preview-*.html

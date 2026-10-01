@@ -1,0 +1,2 @@
+.p4-beam{animation:p4sweep 7s ease-in-out infinite alternate;transform-origin:0 0}
+@keyframes p4sweep{from{transform:rotate(150deg)}to{transform:rotate(240deg)}}
