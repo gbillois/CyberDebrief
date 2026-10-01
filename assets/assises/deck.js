@@ -335,7 +335,6 @@ BYOAI : Bring Your Own AI. BYOA : Bring Your Own Agent. MCP : Model Context Prot
   </div>`; },
   vo: `Deuxième pan : les plateformes sur lesquelles tournent les agents. Prenons une architecture agentique type, et voyons ce qu'une plateforme de sécurité IA doit couvrir. Un : des garde-fous sur les prompts et les réponses. Deux : la protection des modèles et de leur chaîne d'approvisionnement. Trois : la sécurité des données et du RAG. Quatre : l'isolation de l'exécution du code et des outils. Cinq : la gestion de posture, pour trouver les services IA exposés. Six : la détection et la réponse, en envoyant enfin les logs IA au SOC. Concrètement : évaluez vos plateformes, choisissez une plateforme de sécurité IA reliée à une passerelle IA, et testez-la en red team.`,
   notes: `Clics 1 à 6 : chaque fonction s'allume dans le schéma et dans la liste. Clic 7 : les trois actions.
-Repère : le radar des solutions de sécurité IA 2025 de Wavestone peut être montré à la demande.
 Note source : filtrer ce qui entre et sort en amont, cartographier les flux de données et d'actions, contrôler l'egress, sandbox, puis contractualiser.` },
 
 { ch: 'c1', type: 'idm', title: 'Break the wall 3/3: identity',
