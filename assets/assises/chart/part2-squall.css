@@ -14,7 +14,7 @@
 .p2-land-ring{fill:none;stroke:var(--coral);stroke-width:6;stroke-dasharray:16 12}
 .p2-landfall{fill:none;stroke:var(--coral);stroke-width:7;stroke-dasharray:1;stroke-linecap:round}
 
-.p2-case{width:13.4rem;white-space:normal;text-align:center}
+.p2-case{width:12.4rem;white-space:normal;text-align:center;text-shadow:0 0 .4rem var(--sea),0 0 .8rem var(--sea),0 0 1.2rem var(--sea)}
 .p2-case b{display:block;font-family:var(--f-sans);font-weight:700;font-size:2.35rem;line-height:1;letter-spacing:-.04em;color:#fff}
 .p2-case p{margin:.35rem 0 0;font-size:.84rem;line-height:1.35;color:var(--mute)}
 .p2-case small{display:block;margin-top:.4rem;font-family:var(--f-mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral)}
@@ -42,7 +42,7 @@
 .p2-beaufort:has(.hard.on) .calm{opacity:0}
 .statement.p2-speed{bottom:5.5rem}
 .p2-speed .big{font-size:7.4rem;color:#fff;text-shadow:0 0 2rem var(--sea),0 0 4rem var(--sea)}
-.p2-speed .big em{color:var(--coral)}
+body.night .p2-speed .big em{color:var(--coral)}
 .p2-speed[data-f].on .big{animation:p2slam .7s cubic-bezier(.2,1.6,.4,1)}
 @keyframes p2slam{from{transform:scale(1.25);letter-spacing:.05em}to{transform:none}}
 
@@ -57,7 +57,7 @@
 .p2-arc{fill:none;stroke:var(--green);stroke-width:58;stroke-linecap:butt;stroke-dasharray:1;stroke-dashoffset:1}
 .p2-arc.on{stroke-dashoffset:0}
 .p2-arc.hot{stroke:var(--coral)}
-.p2-ring-l{font-family:var(--f-mono);font-size:30px;letter-spacing:3px;text-transform:uppercase;fill:#fff;text-anchor:end}
+.p2-ring-l{font-family:var(--f-mono);font-size:30px;letter-spacing:3px;text-transform:uppercase;fill:#fff;text-anchor:end;paint-order:stroke;stroke:var(--sea);stroke-width:10px}
 .p2-pie{fill:rgba(4,240,106,.2);stroke:var(--green);stroke-width:4}
 .p2-wedge{fill:var(--coral)}
 .p2-hubl b{display:block;font-family:var(--f-sans);font-weight:700;font-size:2.2rem;letter-spacing:-.04em;line-height:1;color:#fff}
@@ -78,7 +78,7 @@
 .p2-cond b{font-weight:700}
 
 /* patch at sea */
-.p2-tree{position:absolute;left:6rem;top:5.4rem;width:40rem}
+.p2-tree{position:absolute;left:6rem;top:8.6rem;width:36rem}
 .p2-paper{margin-top:1rem;background:#fff;padding:.6rem;box-shadow:0 20px 50px rgba(0,0,0,.35);transform:rotate(-.6deg)}
 .p2-paper img{width:100%;height:auto}
 .p2-sla{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0 0}
@@ -115,5 +115,24 @@
 .p2-crew li b{color:#fff;font-weight:600}
 .p2-crew.lead{border-color:var(--green);box-shadow:0 0 0 .25rem rgba(4,240,106,.18)}
 .p2-crew.lead .v{color:var(--green)}
-.p2-key{display:flex;align-items:center;gap:.6rem;margin:.8rem 0 0;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lav)}
+.p2-key{display:flex;align-items:center;gap:.6rem;margin:0;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lav)}
 .p2-key svg{width:1.3rem;height:1.5rem}
+.p2-race-h{padding:1.1rem 1.5rem}
+.p2-race-h .h{margin:0;white-space:nowrap}
+.p2-race-end{position:absolute;width:21rem;padding:.9rem 1.2rem;background:var(--green);color:#1E0D57;font-family:var(--f-sans);font-weight:500;font-size:1.05rem;line-height:1.25}
+.p2-race-end b{display:block;font-weight:700;font-size:1.45rem;letter-spacing:-.02em}
+.pin.b.l{transform:translate(0,0)}
+.p2-watch.cart{position:absolute;right:6rem;top:5.4rem;width:40rem;padding:1.2rem 1.5rem}
+.p2-deck-l{width:22rem;white-space:normal}
+.p2-round{fill:none;stroke:var(--green);stroke-width:6;stroke-dasharray:18 14}
+.p2-cl.g{fill:var(--green);text-anchor:start}
+.p2-race-h .p2-key{margin-top:.7rem}
+.p2-watch.cart{width:41rem}
+.p2-tree{width:34rem}
+.p2-deck-l{width:21rem}
+.p2-deck-l span{font-size:.72rem}
+.p2-deckn{font-family:var(--f-mono);font-size:30px;letter-spacing:4px;fill:#fff;opacity:.55;text-anchor:middle}
+.p2-deck-l{width:24rem}
+/* logs that grow click by click instead of reserving their space */
+.p2-rows li[data-f]:not(.on),.p2-grow [data-f]:not(.on),.p2-catch[data-f]:not(.on),.p2-cond[data-f]:not(.on){display:none}
+@starting-style{.p2-rows li[data-f].on,.p2-grow [data-f].on,.p2-catch[data-f].on,.p2-cond[data-f].on{opacity:0;translate:0 .9rem}}
