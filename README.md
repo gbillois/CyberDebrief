@@ -22,7 +22,15 @@ from `Atelier_Assises 2026_V.07 light 2.pptx` in two steps:
    AI, Cyber with AI), then the crew. 32 scenes in 4 chapters plus the
    opening and the close.
 
-`assises-standalone.html` is the same file with every image inlined, to copy
+`assises-wavestone.html` is a brighter Wavestone edition of the same 32
+scenes (`assets/assises/wavestone.css` and `wavestone.js` layered on top):
+content scenes on white and lavender with indigo type and a neon-green
+highlighter swept under the key words, photo scenes on the indigo brand
+gradient instead of black, the signature arcs drawn live, an indigo sweep
+between grounds and on chapter cards, a yacht thumbnail that gains a sail on
+each of the three AI levels, and a slow parallax on the decoration.
+
+`assises-standalone.html` and `assises-wavestone-standalone.html` are the same files with every image inlined, to copy
 on a USB stick and run with no network. Both are generated, never edited by
 hand: edit `assets/assises/` (`deck.src.html`, `deck.css`, `deck.js`, the
 photos) and run `python3 tools/build-assises.py`.

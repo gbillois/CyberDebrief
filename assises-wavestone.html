@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lead the Shift · Les Assises 2026</title>
+<title>Lead the Shift · Les Assises 2026, Wavestone edition</title>
 <meta name="description" content="Lead the Shift: how CISOs must lead the AI transformation. Wavestone workshop at Les Assises 2026, 40 minutes, for CISOs.">
 <style>
 /* Embedded fonts (SIL Open Font License): Poppins, Inter, IBM Plex Mono,
@@ -758,6 +758,272 @@ svg.curves path{fill:none;stroke-width:2.2;stroke-dasharray:2400;stroke-dashoffs
   .bm-top{flex-wrap:wrap;gap:1rem} .bm-top p{font-size:1.1rem}
   .src{left:16px}
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   LEAD THE SHIFT · Wavestone edition
+   Built into assises-wavestone.html by tools/build-assises.py, on top of
+   deck.css. Two grounds, as in Wavestone decks: content scenes on white and
+   lavender (.lt: indigo type, neon green only as highlighter and fills),
+   photo scenes on the indigo brand gradient (.br). The signature arcs are
+   drawn live, an indigo sweep carries the camera between grounds, and the
+   key words get a green highlighter stroke.
+   ════════════════════════════════════════════════════════════════════════ */
+:root{
+  --ws-i9:#1E0D57; --ws-i8:#2D1380; --ws-i6:#451DC7; --ws-i5:#5A2BE0; --ws-i3:#A18FE3; --ws-i1:#D1CAF2; --ws-i05:#F1EEFB;
+  --ws-g:#04F06A; --ws-g6:#06B854; --ws-g7:#088A42; --ws-g05:#E1FDED;
+  --ws-ink:#16121F; --ws-ink6:#514C63; --ws-ink4:#817C95; --ws-ink1:#E6E4EE;
+  --ws-red:#E0294A; --ws-amber:#B86E00;
+  --ws-brand:radial-gradient(120% 120% at 25% 15%,#5226E0 0%,#451DC7 38%,#2D1380 100%);
+  --ws-card-sh:0 1px 0 rgba(255,255,255,.9) inset,0 18px 44px rgba(45,19,128,.12),0 2px 6px rgba(45,19,128,.06);
+}
+html,body{background:#2D1380}
+#stage{background:var(--ws-brand)}
+#stage::before{background:radial-gradient(40% 35% at 18% 20%,rgba(122,92,255,.5),transparent 70%),radial-gradient(35% 30% at 85% 75%,rgba(90,43,224,.4),transparent 70%),radial-gradient(25% 22% at 70% 15%,rgba(4,240,106,.12),transparent 70%)}
+/* film: a softer vignette, a finer grain, both gone on white */
+body::before{background:radial-gradient(120% 95% at 50% 45%,transparent 62%,rgba(30,13,87,.38) 100%);transition:opacity .8s}
+body::after{opacity:.04}
+body.lthud::before,body.lthud::after{opacity:0}
+
+/* the Wavestone kicker: a circled arrow */
+.k::before{width:1.45rem;height:1.45rem;border-radius:50%;flex:none;background:var(--ws-g) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E0D57' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M6 12h12M13 6l6 6-6 6'/></svg>") center/62% no-repeat}
+.k.nobar::before{display:none}
+
+/* ═══ BRAND GROUND (.br): indigo, never black ═══════════════════════════ */
+.scene.br{background:var(--ws-brand)}
+.br .pbg::before{background:#3A18A8;opacity:.42}
+.br .pbg::after{background:linear-gradient(180deg,rgba(45,19,128,.55) 0%,rgba(69,29,199,.18) 45%,rgba(30,13,87,.82) 100%)}
+.br .pbg.deep::after{background:linear-gradient(180deg,rgba(45,19,128,.82),rgba(55,24,160,.7) 50%,rgba(30,13,87,.9))}
+.br .pbg.left::after{background:linear-gradient(90deg,rgba(45,19,128,.95) 0%,rgba(69,29,199,.72) 40%,rgba(69,29,199,.12) 75%,rgba(45,19,128,.35) 100%)}
+.br .pbg.soft::after{background:linear-gradient(90deg,rgba(45,19,128,.9) 0%,rgba(69,29,199,.55) 45%,rgba(69,29,199,.1) 100%)}
+.br .glass{background:linear-gradient(155deg,rgba(255,255,255,.17),rgba(255,255,255,.07));border-color:rgba(255,255,255,.24);box-shadow:0 24px 60px rgba(20,8,70,.35),inset 0 1px 0 rgba(255,255,255,.18)}
+.yframe::before{background:#3A18A8;opacity:.32}
+.yframe::after{background:linear-gradient(180deg,rgba(45,19,128,.45) 0%,rgba(69,29,199,.06) 30%,rgba(69,29,199,.04) 60%,rgba(30,13,87,.8) 100%)}
+.yframe.deep::after{background:linear-gradient(180deg,rgba(45,19,128,.85) 0%,rgba(69,29,199,.55) 40%,rgba(30,13,87,.88) 100%)}
+.scene.t-chapter::before,.scene.t-chapter::after{background:var(--ws-i9)}
+.band,.scene.t-chapter .band{background:linear-gradient(180deg,rgba(69,29,199,0),rgba(69,29,199,.82) 38%,rgba(45,19,128,.96))}
+.wall-tint{background:radial-gradient(70% 60% at 50% 50%,rgba(69,29,199,.2),rgba(45,19,128,.82)),linear-gradient(180deg,rgba(90,43,224,.35),rgba(45,19,128,.4))}
+.press-band{background:linear-gradient(90deg,rgba(69,29,199,0),rgba(69,29,199,.94) 18%,rgba(69,29,199,.94) 82%,rgba(69,29,199,0))}
+.ttl h1 em{background:linear-gradient(100deg,#fff 0%,#D1CAF2 30%,#04F06A 85%);-webkit-background-clip:text;background-clip:text}
+.ttl-logos .ass{box-shadow:0 20px 50px rgba(20,8,70,.45)}
+.cur-line{box-shadow:0 0 40px rgba(182,166,255,.6)}
+.speed b,.st b{text-shadow:0 0 40px rgba(4,240,106,.4)}
+/* the signature arcs, drawn when the scene arrives */
+.scene > .ws-arcs{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;transform:translate(calc(var(--mx,0) * -10px),calc(var(--my,0) * -6px));transition:transform .6s ease-out}
+.ws-arcs path{fill:none;stroke-width:2.2;stroke-dasharray:2600;stroke-dashoffset:2600;vector-effect:non-scaling-stroke}
+.ws-arcs .a1{stroke:var(--ws-g)} .ws-arcs .a2{stroke:rgba(255,255,255,.85)}
+.scene.live .ws-arcs path{animation:wsdraw 3.4s var(--ease) .25s forwards}
+.scene.live .ws-arcs .a2{animation-delay:.7s}
+@keyframes wsdraw{to{stroke-dashoffset:0}}
+.t-chapter .ws-arcs{z-index:7}
+.t-end .ws-arcs{display:none}
+
+/* ═══ LIGHT GROUND (.lt): white, lavender, indigo type ══════════════════ */
+.scene.lt{--text:#16121F;--muted:#514C63;--subtle:#817C95;--faint:#A8A4B8;--line:rgba(69,29,199,.12);--line2:rgba(69,29,199,.24);--coral:var(--ws-red);--amber:var(--ws-amber);
+  color:var(--text);background:radial-gradient(70% 80% at 100% 0%,#EAE5FC 0%,rgba(234,229,252,0) 60%),radial-gradient(50% 60% at 0% 100%,#E9FBF1 0%,rgba(233,251,241,0) 60%),linear-gradient(160deg,#FFFFFF 0%,#F7F5FE 60%,#F1EEFB 100%)}
+.scene > .lt-deco{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;transform:translate(calc(var(--mx,0) * -12px),calc(var(--my,0) * -8px));transition:transform .6s ease-out}
+.lt-deco svg{position:absolute;inset:0;width:100%;height:100%}
+.lt-deco path{fill:none;stroke:rgba(69,29,199,.13);stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-dasharray:2600;stroke-dashoffset:2600}
+.lt-deco path.g{stroke:rgba(4,240,106,.5)}
+.scene.live .lt-deco path{animation:wsdraw 3s var(--ease) .2s forwards}
+.lt-deco .dots{position:absolute;right:3.5rem;top:5.2rem;width:9rem;height:6rem;background:radial-gradient(circle,rgba(69,29,199,.22) 1.2px,transparent 1.6px) 0 0/1rem 1rem;-webkit-mask-image:linear-gradient(225deg,#000,transparent 75%);mask-image:linear-gradient(225deg,#000,transparent 75%)}
+.lt .k{color:var(--ws-i6)}
+.lt .k::before{background-color:var(--ws-i6);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2304F06A' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M6 12h12M13 6l6 6-6 6'/></svg>")}
+.lt .h{color:var(--ws-i9)}
+.lt .sub{color:var(--ws-ink6)}
+.lt .lede{color:var(--ws-ink6)} .lt .lede b{color:var(--ws-ink)}
+/* the highlighter: neon green, swept under the key words */
+.lt g,.lt .g{color:var(--ws-i6);background:linear-gradient(transparent,transparent) ,linear-gradient(var(--ws-g),var(--ws-g));background-repeat:no-repeat;background-position:0 92%;background-size:0% .3em;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size 1.1s var(--ease) 1.2s}
+.lt.live g,.lt.live .g{background-size:100% .3em}
+.lt .lede g,.lt .sub g{background-size:0% .45em;background-position:0 100%;transition-delay:1.6s}
+.lt.live .lede g{background-size:100% .45em}
+.lt .glass{background:#fff;border:1px solid rgba(69,29,199,.1);box-shadow:var(--ws-card-sh);backdrop-filter:none;-webkit-backdrop-filter:none;color:var(--ws-ink)}
+.lt [data-f].on.glass{animation:wslift 1s var(--ease) both}
+@keyframes wslift{from{box-shadow:0 0 0 rgba(45,19,128,0)}}
+.lt .pill.mature{background:var(--ws-g05);color:var(--ws-g7);border-color:rgba(6,184,84,.5)}
+.lt .pill.emerging{background:#FFF3DC;color:var(--ws-amber);border-color:rgba(184,110,0,.4)}
+.lt .pill.early{background:#FDE8EC;color:var(--ws-red);border-color:rgba(224,41,74,.45)}
+.lt .dd{background:var(--ws-i6);color:#fff;box-shadow:0 10px 30px rgba(69,29,199,.3)} .lt .dd i{background:var(--ws-g);color:var(--ws-i9)}
+/* photos on white: a soft indigo watermark that fades into the page */
+.lt .pbg{-webkit-mask-image:linear-gradient(270deg,#000 0%,transparent 60%);mask-image:linear-gradient(270deg,#000 0%,transparent 60%);opacity:.5}
+.lt .pbg::before{background:#451DC7;opacity:.6}
+.lt .pbg::after{background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(241,238,251,.5))}
+
+/* about */
+.lt .ab-k div b{color:var(--ws-i6);text-shadow:none}
+.lt .ab-k div b small{color:var(--ws-i9)}
+.lt .ab-k div > span{color:var(--ws-ink6)} .lt .ab-k div > span strong{color:var(--ws-ink)}
+.lt .ab-k > div{padding-left:1rem;border-left:3px solid var(--ws-g)}
+.lt .ab-c h3{color:var(--ws-i9)} .lt .ab-c h3 b{color:var(--ws-i6)}
+.lt .ab-c p{color:var(--ws-ink6)} .lt .ab-c p b{color:var(--ws-ink)}
+.lt .props figure div{border-color:#fff;box-shadow:0 0 0 2px var(--ws-i1),0 14px 30px rgba(45,19,128,.18)}
+.lt .props figcaption{color:var(--ws-ink4)}
+/* agents */
+.lt .hx{background:linear-gradient(160deg,var(--ws-i3),var(--ws-i6))}
+.lt .hx > div{background:linear-gradient(160deg,#4A22C9,#2D1380)}
+.lt .hx.hot{background:linear-gradient(160deg,var(--ws-g),var(--ws-g6))}
+.lt .hx.hot > div{background:linear-gradient(160deg,#0E7A44,#0A4F33)}
+.lt .hx span{color:rgba(255,255,255,.78)}
+.lt .shots img{border-color:#fff;box-shadow:0 20px 50px rgba(45,19,128,.28)}
+.lt .ag-r .tag{color:var(--ws-i9)} .lt .ag-r .tag b{color:var(--ws-i6);font-style:italic}
+.lt .pr i{color:var(--ws-i6)} .lt .pr b{color:var(--ws-i9)} .lt .pr span{color:var(--ws-ink6)}
+.lt .pr{border-left:4px solid var(--ws-g)!important}
+/* benchmark */
+.lt .mat div{border-color:var(--ws-i3);background:var(--ws-i05);color:var(--ws-i9)}
+.lt .mat div:last-child{border-color:var(--ws-g6);background:var(--ws-g05);box-shadow:0 0 0 .4rem rgba(4,240,106,.18)}
+.lt .mat svg{color:var(--ws-i6)}
+.lt .bm-top p{color:var(--ws-ink)} .lt .bm-top p b.pts{color:var(--ws-i6)}
+.lt .bm-col h4{background:var(--ws-i6);color:#fff;border-color:var(--ws-i6)} .lt .bm-col h4 i{color:var(--ws-g)}
+.lt .st b{color:var(--ws-i6);text-shadow:none} .lt .st.lo b{color:var(--ws-red)}
+.lt .st > span{color:var(--ws-ink6)} .lt .st > span strong{color:var(--ws-ink)}
+.lt .st.lo{background:linear-gradient(180deg,#fff,#FFF6F8)}
+.lt .wallline{border-top-color:var(--ws-red)} .lt .wallline span{background:var(--ws-red);color:#fff;box-shadow:0 8px 24px rgba(224,41,74,.35)}
+/* break the wall */
+.lt .btw span{color:var(--ws-ink4);border-color:var(--ws-ink1);background:#fff}
+.lt .btw span.cur{color:#fff;background:var(--ws-i6);border-color:var(--ws-i6);box-shadow:0 10px 26px rgba(69,29,199,.3)}
+.lt .btw span.done{color:var(--ws-i6);background:var(--ws-i05);border-color:var(--ws-i1)}
+.lt .step i{background:var(--ws-i6);color:#fff}
+.lt .step b{color:var(--ws-i6)} .lt .step span{color:var(--ws-ink)} .lt .step span small{color:var(--ws-ink6)}
+.lt .step{border-top:3px solid var(--ws-g)!important}
+.lt .perim{background:radial-gradient(circle at 40% 35%,#FFFFFF,#EEE9FD 60%,#E2DAFB);border-color:var(--ws-i1);box-shadow:0 30px 70px rgba(45,19,128,.15)}
+.lt .perim::after{background:conic-gradient(from 0deg,rgba(4,240,106,.4),rgba(4,240,106,0) 22%,transparent 100%);mix-blend-mode:multiply}
+.lt .perim > span{color:var(--ws-i6)}
+.lt .bub.cit{background:#fff;border-color:var(--ws-i3);color:var(--ws-i6)}
+.lt .bub.saas{background:var(--ws-i1);color:var(--ws-i8)}
+.lt .bub.out{background:#FFF8EA;border-color:var(--ws-amber);color:var(--ws-amber)}
+.lt .wtl h3{color:var(--ws-i9)} .lt .wl b{color:var(--ws-i9)} .lt .wl li{color:var(--ws-ink6)} .lt .wl li::before{color:var(--ws-g6)}
+.lt .wl .ic{color:var(--ws-i6)}
+.lt .arch .blk{background:var(--ws-i05);border-color:var(--ws-i1)} .lt .arch .blk > small{color:var(--ws-i6)}
+.lt .nd{background:#fff;border-color:var(--ws-i1);color:var(--ws-i9);box-shadow:0 6px 16px rgba(45,19,128,.08)}
+.lt .nd.orc{background:linear-gradient(160deg,#5A2BE0,#451DC7);color:#fff;border-color:transparent}
+.lt .nd.agt small{color:var(--ws-ink6)}
+.lt .bar.mon{background:var(--ws-i05);border-color:var(--ws-i1);color:var(--ws-i8)}
+.lt .badge{background:#fff;border-color:var(--ws-i1);color:var(--ws-ink4)}
+.lt .badge.hl{background:var(--ws-g);border-color:var(--ws-g);color:var(--ws-i9)}
+.lt .ctl li{color:var(--ws-ink4)} .lt .ctl li b{color:var(--ws-i9)} .lt .ctl li.hl{color:var(--ws-ink)}
+.lt .ctl li i{background:#fff;border-color:var(--ws-i1);color:var(--ws-ink4)}
+.lt .ctl li.hl i{background:var(--ws-g);border-color:var(--ws-g);color:var(--ws-i9)}
+.lt .idm-g .qh{border-left-color:var(--ws-ink1)} .lt .idm-g .qh em{color:var(--ws-i6)} .lt .idm-g .qh b{color:var(--ws-i9)} .lt .idm-g .qh .ic{color:var(--ws-i6)}
+.lt .idm-g .rh{background:var(--ws-i6);color:#fff}
+.lt .idm-g .cell{background:#fff;border-left-color:var(--ws-ink1);box-shadow:0 4px 12px rgba(45,19,128,.05)}
+.lt .dt.must{background:var(--ws-g6);box-shadow:0 0 0 .3rem rgba(4,240,106,.2)}
+.lt .dt.help{background:var(--ws-i5);box-shadow:0 0 0 .3rem rgba(90,43,224,.15)}
+.lt .dt.will{border-color:var(--ws-i9)}
+.lt .legend{color:var(--ws-ink6)}
+/* other challenges: the photo stays, the text side turns white */
+.lt .split-ph .h{color:#fff} .lt .split-ph g{color:var(--ws-g);background:none}
+.lt .split-ph::before{background:#451DC7;opacity:.5}
+.lt .split-ph::after{background:linear-gradient(90deg,rgba(45,19,128,.7),rgba(69,29,199,.25) 60%,rgba(247,245,254,1))}
+.lt .chev h3{color:var(--ws-i9);background:linear-gradient(90deg,var(--ws-i05),#fff)} .lt .chev h3 .ic{color:var(--ws-i6)}
+.lt .chev h3{border-left:4px solid var(--ws-g)}
+.lt .chev li{color:var(--ws-ink6)} .lt .chev li b{color:var(--ws-ink)} .lt .chev li::before{background:var(--ws-g6)}
+/* QR */
+.lt .cta .h b{color:var(--ws-i6)} .lt .cta p{color:var(--ws-ink6)} .lt .qr span{color:var(--ws-ink6)}
+.lt .qr img{box-shadow:0 0 0 .35rem var(--ws-g05),0 18px 40px rgba(45,19,128,.18)}
+.lt .mtn{box-shadow:0 30px 70px rgba(45,19,128,.3)}
+/* baseline */
+.lt .blc::before{background:linear-gradient(170deg,#5226E0,#2D1380);border-color:transparent;box-shadow:0 24px 50px rgba(45,19,128,.3)}
+.lt .blc:nth-child(2n)::before{background:#fff;border:1px solid var(--ws-i1);box-shadow:var(--ws-card-sh)}
+.lt .blc h4{color:var(--ws-g)} .lt .blc .tg{color:#fff} .lt .blc .ts{color:rgba(255,255,255,.78)} .lt .blc .ts b{color:#fff}
+.lt .blc li{color:rgba(255,255,255,.72)} .lt .blc li b{color:#fff}
+.lt .blc:nth-child(2n) h4{color:var(--ws-i6)} .lt .blc:nth-child(2n) .tg{color:var(--ws-i6)} .lt .blc:nth-child(2n) .ts{color:var(--ws-ink6)} .lt .blc:nth-child(2n) .ts b{color:var(--ws-ink)}
+.lt .blc:nth-child(2n) li{color:var(--ws-ink6)} .lt .blc:nth-child(2n) li b{color:var(--ws-ink)}
+.lt .bl-end{color:var(--ws-i9)} .lt .bl-end b{color:var(--ws-i6)}
+/* vulnerability operations */
+.lt .vo-h b{color:var(--ws-i9)} .lt .vo-h span{color:var(--ws-i6)}
+.lt .vo-img{box-shadow:var(--ws-card-sh);border:1px solid rgba(69,29,199,.1)}
+.lt .amp{color:var(--ws-i1)}
+.lt .vps th{color:var(--ws-i6);border-bottom-color:var(--ws-ink1)} .lt .vps td{color:var(--ws-ink6);border-bottom-color:#F1EFF7}
+.lt .vps td:first-child{color:var(--ws-i9)} .lt .vps td:first-child .ic{color:var(--ws-i6)}
+/* tempos */
+.lt .tpc{--tc:var(--ws-red)} .lt .tpc.mid{--tc:var(--ws-i5)} .lt .tpc.top{--tc:var(--ws-g6)}
+.lt .ring .bgc{stroke:var(--ws-i05)} .lt .ring b{color:var(--ws-i9)} .lt .ring .fg{filter:none}
+.lt .tpc h4{color:#fff} .lt .tpc.top h4{color:var(--ws-i9);background:var(--ws-g)}
+.lt .tpc h5{color:var(--ws-i9)} .lt .tpc li{color:var(--ws-ink6)} .lt .tpc li b{color:var(--ws-ink)}
+.lt .endband{background:var(--ws-brand);color:#fff;border:0;box-shadow:0 20px 40px rgba(69,29,199,.3)} .lt .endband b{color:var(--ws-g)}
+/* levels */
+.lt .lvh .h b{color:var(--ws-i6)} .lt .lvh .h .sep{color:var(--ws-i1)}
+.lt .lvl span{background:var(--ws-i1)} .lt .lvl span.on{background:var(--ws-g6);box-shadow:none}
+.lt .aih div b{color:var(--ws-i6)} .lt .aih div span{color:var(--ws-ink6)} .lt .aih p{background:var(--ws-i05)}
+.lt .aih p i{background:linear-gradient(90deg,var(--ws-i6),var(--ws-g));box-shadow:none}
+.lvmeta{flex-direction:row;align-items:center;gap:1.4rem}
+.lvcol{display:flex;flex-direction:column;align-items:flex-end;gap:.9rem}
+.lvph{width:11rem;height:6.2rem;border-radius:3.1rem 1rem 3.1rem 1rem;overflow:hidden;position:relative;box-shadow:0 14px 30px rgba(45,19,128,.25);border:3px solid #fff;flex:none}
+.lvph img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.15);transition:transform 14s linear}
+.scene.live .lvph img{transform:scale(1.35)}
+.lvph::after{content:'';position:absolute;inset:0;background:#451DC7;mix-blend-mode:color;opacity:.35}
+.lt .ciso div{box-shadow:0 12px 30px rgba(4,240,106,.35)}
+.lt .ciso .office{background:#fff;color:var(--ws-g7);border-color:var(--ws-g6)}
+.lt .ciso .office.hl{background:var(--ws-g);color:var(--ws-i9)}
+.lt .ciso .dash{background:repeating-linear-gradient(90deg,var(--ws-g6) 0 5px,transparent 5px 9px)}
+.lt .tree{border-color:var(--ws-i3)}
+.lt .team > h4{background:var(--ws-i6);border-color:var(--ws-i6);color:#fff}
+.lt .team > h4 i{background:var(--ws-g);color:var(--ws-i9);box-shadow:0 0 0 3px #fff}
+.lt .uc{background:#fff;border:1px solid var(--ws-i1);color:var(--ws-ink6);box-shadow:0 10px 24px rgba(45,19,128,.08)}
+.lt .uc b{color:var(--ws-i9)} .lt .uc .ref{color:var(--ws-amber);border-top-color:var(--ws-ink1)}
+.lt .roi{box-shadow:none;color:var(--ws-i9)}
+.lt .callout{color:var(--ws-i9)} .lt .callout b{color:var(--ws-i6)}
+.lt .callout.glass{background:var(--ws-g05);border-color:rgba(6,184,84,.35)}
+/* funnel */
+.lt .fn-in div{color:var(--ws-i9)} .lt .fn-in .ic{color:var(--ws-i6)}
+.lt .fn-ph{border-color:#fff;box-shadow:0 0 0 2px var(--ws-i1),0 30px 70px rgba(45,19,128,.3)}
+.lt .fs i{background:var(--ws-i6);color:#fff} .lt .fs b{color:var(--ws-i9)} .lt .fs b em{color:var(--ws-i6)} .lt .fs span{color:var(--ws-ink6)} .lt .fs small{color:var(--ws-g7)}
+/* two approaches */
+.lt.t-duo .diag{background:linear-gradient(105deg,rgba(241,238,251,.9) 0 49.6%,rgba(69,29,199,.25) 49.7% 49.8%,rgba(225,253,237,.55) 49.9% 100%)}
+.lt .dc h3{color:var(--ws-i6)} .lt .dc > small{color:var(--ws-amber)}
+.lt .dc .figs div b{color:var(--ws-i9);text-shadow:none} .lt .dc .figs div > span{color:var(--ws-ink6)}
+.lt .how{border-top-color:var(--ws-ink1)} .lt .how small{color:var(--ws-g7)}
+.lt .chain span{background:var(--ws-i05);border-color:var(--ws-i1);color:var(--ws-i9)} .lt .chain i{color:var(--ws-g6)}
+.lt .dc{border-top:4px solid var(--ws-g)!important}
+/* level 3 */
+.lt .l3s b{color:var(--ws-i9)} .lt .l3s b em{color:var(--ws-i6)} .lt .l3s li{color:var(--ws-ink6)} .lt .l3s li::before{color:var(--ws-g6)}
+.lt .l3s > div > i{color:var(--ws-i1)}
+.lt svg.flow{filter:drop-shadow(0 20px 40px rgba(45,19,128,.18))}
+.lt .dp .def b{color:var(--ws-ink4)} .lt .dp .def span{color:var(--ws-ink6)}
+.lt .dp .pro b{color:var(--ws-i6);text-shadow:none} .lt .dp .pro span{color:var(--ws-ink)}
+.lt .dp .arr{background:linear-gradient(90deg,var(--ws-i1),var(--ws-i6));box-shadow:none} .lt .dp .arr::after{border-left-color:var(--ws-i6)}
+.lt .gr .ic{color:var(--ws-i6)} .lt .gr b{color:var(--ws-i9)} .lt .gr span{color:var(--ws-ink6)}
+.lt .agents6 div{background:linear-gradient(160deg,#5226E0,#2D1380);border-color:transparent;box-shadow:0 12px 28px rgba(69,29,199,.28)}
+.lt .agents6 .ic{color:var(--ws-g)}
+.lt .cg{background:#fff;border-color:var(--ws-g6);box-shadow:var(--ws-card-sh)}
+.lt .cg > small{color:var(--ws-ink6)} .lt .cg > small b{color:var(--ws-g7)}
+.lt .cg-in line{stroke:rgba(69,29,199,.22)} .lt .cg-in line.hot{stroke:var(--ws-g6)}
+.lt .gn{background:var(--ws-i6);color:#fff;box-shadow:0 8px 20px rgba(69,29,199,.3)}
+/* trust & tokenops */
+.lt .loop svg circle{stroke:var(--ws-g6)}
+.lt .loop .lp{background:#F7F5FE} .lt .loop .lp b{color:var(--ws-i6)} .lt .loop .lp span{color:var(--ws-ink6)}
+.lt .loop .core{background:var(--ws-brand);box-shadow:0 0 0 .6rem var(--ws-i05),0 20px 40px rgba(69,29,199,.35)}
+.lt .pl .ic{color:var(--ws-i6)} .lt .pl h4{color:var(--ws-i9)} .lt .pl h4 b{color:var(--ws-i6)} .lt .pl p{color:var(--ws-ink6)}
+.lt .pl ul{border-top-color:var(--ws-g6)} .lt .pl li{color:var(--ws-ink)} .lt .pl li::before{color:var(--ws-g6)}
+
+/* ═══ CAMERA: an indigo sweep between grounds and on chapter cards ══════ */
+#ws-wipe{position:fixed;top:-10vh;bottom:-10vh;left:0;width:78vw;z-index:55;pointer-events:none;transform:translateX(-90vw);
+  background:linear-gradient(90deg,rgba(45,19,128,0),#2D1380 12%,#451DC7 55%,#5A2BE0 88%);border-radius:0 50% 50% 0/0 50% 50% 0}
+#ws-wipe::after{content:'';position:absolute;top:0;bottom:0;right:-1.4vw;width:30vw;border-right:3px solid var(--ws-g);border-radius:0 50% 50% 0/0 50% 50% 0;filter:drop-shadow(0 0 12px rgba(4,240,106,.8))}
+#ws-wipe.go{animation:wswipe 1.15s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes wswipe{from{transform:translateX(-90vw)}to{transform:translateX(125vw)}}
+
+/* HUD and frame on the white ground */
+body.lthud #hud{color:var(--ws-ink4)} body.lthud #hud .ch{color:var(--ws-i6)}
+body.lthud #prog div{background:rgba(69,29,199,.12)}
+body.lthud #prog div i{background:linear-gradient(90deg,#451DC7,#04F06A);box-shadow:none}
+body.lthud #hint,body.lthud #brandmark{color:var(--ws-ink4)}
+body.lthud #brandmark img{content:url("assets/assises/w-mark-indigo.svg")}
+#hud,#brandmark,#hint{transition:opacity .5s,color .6s}
+#prog div i{background:linear-gradient(90deg,#B6A6FF,#04F06A)}
+
+/* title: the two logos on one white pill */
+.t-title .ttl-logos{background:#fff;padding:.9rem 1.6rem .9rem .9rem;border-radius:999px;box-shadow:0 20px 50px rgba(20,8,70,.35);gap:1.4rem}
+.t-title .ttl-logos .ass{height:3.2rem;box-shadow:none;border-radius:999px}
+.t-title .ttl-logos .ws{height:1.6rem}
+.t-title .ws-arcs .a1{d:path("M-20 800 C 420 900, 980 900, 1620 640")}
+/* closing: cards over the yacht need a deeper ground */
+.br.t-closing .pbg::after{background:linear-gradient(180deg,rgba(45,19,128,.85),rgba(55,24,160,.72) 50%,rgba(30,13,87,.92))}
+/* level 3 flow: drawn on an indigo panel, as a product screen */
+.lt svg.flow{background:var(--ws-brand);border-radius:1.6rem;padding:1.4rem 1.6rem;box-shadow:0 30px 70px rgba(45,19,128,.3);filter:none}
+.lt svg.flow .lbl{fill:#D1CAF2}
+/* the end card: the indigo wordmark on white would be off-brand, keep white */
+.t-end .brandbg{background:var(--ws-brand)}
+@media (max-width:760px){.lvph{display:none}.lvmeta{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -1607,6 +1873,51 @@ function presenter() {
   });
   chan && chan.addEventListener('message', e => { if (e.data.type === 'state') { state = e.data; draw(); } });
   cmd('hello'); draw();
+}
+
+// ─── Wavestone edition ───────────────────────────────────────────────────
+// Inlined by tools/build-assises.py after deck.js, before the first scene is
+// drawn. Content scenes go on the white ground (.lt), photo scenes on the
+// indigo brand ground (.br); arcs are drawn on arrival, an indigo sweep
+// carries the camera between grounds and onto chapter cards.
+const WS_BRAND = ['title', 'press', 'question', 'shifts', 'chapter', 'waters', 'fund', 'crew', 'human', 'closing', 'end'];
+const wsMode = s => (WS_BRAND.includes(s.type) ? 'br' : 'lt');
+const WS_ARCS = `<svg class="ws-arcs" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true"><path class="a1" d="M-20 720 C 420 850, 980 840, 1620 540"/><path class="a2" d="M540 940 C 820 660, 1240 600, 1620 680"/></svg>`;
+const WS_DECO = `<div class="lt-deco" aria-hidden="true"><svg viewBox="0 0 1600 900" preserveAspectRatio="none"><path d="M880 -40 C 1120 170, 1380 230, 1660 170"/><path class="g" d="M1080 -60 C 1240 130, 1440 300, 1680 330"/><path d="M-40 860 C 300 790, 620 830, 900 940"/></svg><i class="dots"></i></div>`;
+const WS_YACHT = ['assets/assises/yacht-1.jpg', 'assets/assises/yacht-2.jpg', 'assets/assises/yacht-3.jpg'];
+
+SCENES.forEach(s => {
+  const html = s.html, m = wsMode(s);
+  const arcs = ['title', 'question'].includes(s.type) ? WS_ARCS : '';
+  // on the title, the wordmark sits on a white pill: the indigo logo, as on Wavestone covers
+  const fix = h => (s.type === 'title' ? h.replace('assets/assises/wavestone.svg', 'assets/assises/wavestone-indigo.svg') : h);
+  s.html = () => (m === 'lt' ? WS_DECO : '') + fix(html()) + arcs;
+});
+
+let wsPrev = null;
+function wsDress(el) {
+  const s = SCENES[idx], m = wsMode(s);
+  el.classList.add(m);
+  document.body.classList.toggle('lthud', m === 'lt');
+  const lv = (s.title.match(/^Level (\d)/) || [])[1], meta = el.querySelector('.lvmeta');
+  if (lv && meta && !meta.querySelector('.lvph')) {
+    meta.innerHTML = `<div class="lvph"><img src="${WS_YACHT[lv - 1]}" alt=""></div><div class="lvcol">${meta.innerHTML}</div>`;
+  }
+  if (wsPrev && (wsPrev !== m || s.type === 'chapter')) {
+    const w = document.getElementById('ws-wipe');
+    w.classList.remove('go'); void w.offsetWidth; w.classList.add('go');
+  }
+  wsPrev = m;
+}
+if (!PRESENTER) {
+  document.body.insertAdjacentHTML('beforeend', '<div id="ws-wipe" aria-hidden="true"></div>');
+  new MutationObserver(ms => ms.forEach(r => r.addedNodes.forEach(n => { if (n.nodeType === 1 && n.classList.contains('scene')) wsDress(n); })))
+    .observe(document.getElementById('stage'), { childList: true });
+  // a slow parallax on the arcs, following the pointer
+  document.addEventListener('mousemove', e => {
+    document.body.style.setProperty('--mx', (e.clientX / innerWidth - .5).toFixed(3));
+    document.body.style.setProperty('--my', (e.clientY / innerHeight - .5).toFixed(3));
+  });
 }
 
 if (PRESENTER) presenter();
