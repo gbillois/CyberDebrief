@@ -132,3 +132,5 @@
 .p1-ctl li[data-f].on{opacity:1}
 .p1-ctl li i{transition:background .6s,border-color .6s}
 .p1-ctl li:not(.on) i{background:var(--card);border-color:var(--ink)}
+.p1-grow > .p1-key[data-f].on{margin-top:.7rem}
+.p1-bl.infra,.p1-bl.mon{max-width:none}

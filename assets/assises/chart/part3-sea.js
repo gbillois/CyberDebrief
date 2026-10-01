@@ -149,7 +149,7 @@ LAYERS.push(() => {
   const [sx, sy] = pt(180, R), [ex, ey] = pt(360, R);
   let s = `<g class="fl" data-flag="p3-voy"><circle cx="${f(sx)}" cy="${f(sy)}" r="44" fill="var(--card)" stroke="var(--ink)" stroke-width="8"/>
     <g transform="translate(${f(ex)} ${f(ey)})"><circle r="90" fill="none" stroke="var(--green-d)" stroke-width="6" class="pulse"/><path d="M0,-74 L18,-18 L74,0 L18,18 L0,74 L-18,18 L-74,0 L-18,-18Z" fill="var(--green)" stroke="var(--ink)" stroke-width="5"/></g></g>`;
-  [['p3-va', arc(180, 360), P3.VA, 'var(--indigo)'], ['p3-vb', arc(180, 0), P3.VB, 'var(--ink)']].forEach(([fl, d, steps, c]) => {
+  [['p3-va', arc(180, 360), P3.VA, 'var(--indigo)'], ['p3-vb', arc(180, 0), P3.VB, 'var(--green-x)']].forEach(([fl, d, steps, c]) => {
     s += `<g class="fl" data-flag="${fl}"><path class="draw" data-flag="${fl}" pathLength="1" d="${d}" fill="none" stroke="${c}" stroke-width="12" stroke-linecap="round"/>`;
     steps.forEach((b, i) => { const [x, y] = pt(b, R); s += `<circle cx="${f(x)}" cy="${f(y)}" r="46" fill="var(--card)" stroke="${c}" stroke-width="9"/><text x="${f(x)}" y="${f(y + 18)}" text-anchor="middle" style="font:600 48px var(--f-sans);fill:${c}">${i + 1}</text>`; });
     s += '</g>';
@@ -183,7 +183,7 @@ P3.CREW = [['GRC', 196], ['Sec by design', 225], ['Infra sec', 254], ['IAM', 286
 LAYERS.push(() => {
   const { STARS: N, EDGES: E, f } = P3;
   const star = (x, y, r) => `<path d="M${x},${y - r} Q${x + r * .18},${y - r * .18} ${x + r},${y} Q${x + r * .18},${y + r * .18} ${x},${y + r} Q${x - r * .18},${y + r * .18} ${x - r},${y} Q${x - r * .18},${y - r * .18} ${x},${y - r}Z"/>`;
-  let s = `<g class="fl p3-sky" data-flag="p3-graph">`;
+  let s = `<g class="fl p3-sky" data-flag="p3-graph">${[1500, 1800, 2100, 2400].map(r => `<circle cx="9300" cy="2400" r="${r}" class="grat"/>`).join('')}`;
   E.forEach(([a, b], i) => { s += `<line x1="${N[a][1]}" y1="${N[a][2]}" x2="${N[b][1]}" y2="${N[b][2]}" class="${i % 3 === 0 ? 'hot flow' : ''}"/>`; });
   N.forEach(([, x, y], i) => { s += `<circle cx="${x}" cy="${y}" r="70" class="halo"/><g class="st${i % 3 === 0 ? ' blink' : ''}">${star(x, y, 64)}</g>`; });
   // faint field stars
@@ -279,7 +279,7 @@ Matrice valeur × complexité : forte valeur / faible complexité = quick wins ;
 Retirés de l'écran car non confirmés dans la source : durée et budget du programme assurance (« XX-year », « $XXX »), « 50 AI agents deployed in the SOC », « XX tools consolidated ».`,
   html: () => { const A = ['Unify governance, processes &amp; technology', 'Strengthen data visibility &amp; control', 'Remediate risk at scale'];
     const B = ['Embed AI by design', 'Unify the platform', 'Upskill teams', 'Align staffing, ownership &amp; partners'];
-    const lab = (b, t, i, f, up) => { const [x, y] = P3.pt(b, P3.VR + 110); return pin(x, y, `<div class="p3-leg"><i>${i + 1}</i>${t}</div>`, up ? 'p3-up' : 'b', f); };
+    const lab = (b, t, i, f, up) => { const [x, y] = P3.pt(b, P3.VR + 110); return pin(x, y, `<div class="p3-leg ${up ? 'a' : 'b'}"><i>${i + 1}</i>${t}</div>`, up ? 'p3-up' : 'b', f); };
     return `<div class="cart at-tr w-s p3-logc"${fa(1)}><span class="tab">Log · north about</span><p class="kick">Insurance</p><h3>Enterprise data protection at scale</h3>
       <div class="p3-figs"><div><b>${odo(1500)}</b><span>applications in the data ecosystem</span></div><div><b>${odo(65000)}</b><span>collaboration sites</span></div><div><b>${odo(50000)}</b><span>file shares</span></div><div><b>${odo(40)}<small>PB</small></b><span>of data</span></div></div></div>
     <div class="cart at-br w-s p3-logc"${fa(2)}><span class="tab">Log · south about</span><p class="kick">Automotive</p><h3>An AI-first CISO operating model</h3>
@@ -293,9 +293,9 @@ Retirés de l'écran car non confirmés dans la source : durée et budget du pro
   notesPlus: `Le lagon de l'atoll EST le Cyber Data Lake. Les rivières qui y entrent : les sources (SOC/EDR, CTI/vulnérabilités, actifs/configurations, GRC/TPRM/risques), via API. Les bateaux du lagon : les agents, sur une plateforme d'IA agentique. Les rivières qui en sortent : les actions, via MCP et API.`,
   html: () => `${P3.head(3, 'Level 3 · cyber at machine speed', 'The lagoon is <em>your data</em>', 'Machine speed needs one data foundation for agentic operations.', '29rem')}
   ${P3.SRC.map(([t, y]) => pin(7880, y, `<span class="p3-src">${t}</span>`, 'r', 1)).join('')}
-  ${pin(8330, 2830, '<span class="p3-api">APIs in</span>', 'b', 1)}
+  ${pin(8380, 2700, '<span class="p3-api">APIs in</span>', 'b', 1)}
   ${P3.ACT.map(([t, y]) => pin(10760, y, `<span class="p3-act">${t}</span>`, 'l', 2)).join('')}
-  ${pin(10300, 2840, '<span class="p3-api g">MCP &amp; APIs out</span>', 'b', 2)}
+  ${pin(10300, 2700, '<span class="p3-api g">MCP &amp; APIs out</span>', 'b', 2)}
   <div class="cart at-bl p3-step"${fa(1)}><span class="tab">Step 1</span><b>Build your <em>cyber data lake</em></b><span>Fragmented, slow cyber data becomes real-time context. Collect, enrich and normalize it through APIs.</span></div>
   <div class="cart at-br p3-step"${fa(2)}><span class="tab">Step 2</span><b>Use an <em>agentic AI platform</em></b><span>Built on your existing processes and control models. Delegate actions with the right level of human oversight.</span></div>
   <div class="cart at-tr p3-shift"${fa(3)}><span class="tab">The shift</span><div><s>Defensive</s><span>react to incidents, team by team</span></div><i>→</i><div><b>Proactive</b><span>anticipate drift in real time, act across teams</span></div></div>` },

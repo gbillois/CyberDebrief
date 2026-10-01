@@ -159,6 +159,9 @@ SCENES.push(
 
 // 2 · the benchmark as soundings
 { ch: 'c1', type: 'reef', title: 'The soundings', ref: '2026 AI Cyber Benchmark', leg: 1, cam: { x: 4900, y: 2420, w: 2400 },
+  vo: `Notre benchmark 2026, lu comme une carte de sondes. D'abord la bonne nouvelle : la maturité sécurité de l'IA passe de 31 à 45 % en un an, quatorze points. À gauche, l'eau profonde : 72 % identifient l'IA dans leurs achats, 88 % ont adapté leur gestion des risques avec un responsable sécurité IA au niveau groupe, 87,5 % génèrent des logs dans leurs applications IA, la moitié fait du red teaming IA, 72 % ont intégré la conformité données personnelles dans le cycle de vie de l'IA. Suivez maintenant chaque ligne vers l'est : 12 % connaissent les systèmes d'IA hors de leur plateforme, un tiers couvre l'agentique dans ses analyses de risques, 8 % envoient ces logs au SOC, 11 % vont au-delà des fonctions natives, 15 % ont une gestion des identités adaptée aux agents. C'est le récif agentique : la progression s'y échoue.`,
+  notesPlus: `Clics : 0 la maturité 31 → 45 %, 1 découverte & risques, 2 sécurité des plateformes, 3 identité, 4 le récif apparaît et les faibles sondes passent en corail.
+Lecture : une sonde = un % d'entreprises. Eau profonde = pratique acquise ; haut-fond = le manque agentique. Chaque ligne de sonde relie un acquis à son manque.`,
   onF: { 1: ['p1-t1'], 2: ['p1-t2'], 3: ['p1-t3'], 4: ['p1-reef'] },
   html: () => `${p1Board()}
   <div class="cart at-l w-s p1-bench p1-grow"><span class="tab">2026 AI Cyber Benchmark</span>
@@ -173,6 +176,8 @@ SCENES.push(
       <small>Source: Wavestone, 2026 AI Cyber Benchmark</small></div></div>` },
 // 3 · passage 1: find
 { ch: 'c1', type: 'reef', title: 'Passage 1 · Find', ref: 'Break the wall 1/3: discovery', leg: 1, cam: { x: 4620, y: 1700, w: 4000 },
+  notesPlus: `Clics : 1 les échos hors périmètre (IA personnelle, BYOAI, BYOA), 2 où chercher, 3 les trois actions.
+Image : le radar balaie l'île de l'organisation. Ce qui est balisé (les ports) est connu ; les échos qui clignotent au large sont les IA et agents que personne n'a déclarés.`,
   on: ['p1-find'], onF: { 1: ['p1-out'] },
   html: () => `${P1_HB.map(([x, y, k, l]) => pin(x, y + (k === 'ent' ? 105 : 70), `<span class="p1-hb ${k}">${l}</span>`, 'b')).join('')}
   ${P1_OUT.map(([x, y, l]) => pin(x, y + 90, `<span class="p1-blip">${l}<i>unknown contact</i></span>`, 'b', 1)).join('')}
@@ -185,6 +190,8 @@ SCENES.push(
     <div class="p1-mv"${fa(3)}><b class="p1-lbl">Three moves</b>${moves([['One policy, named owners', 'IT and AI teams share one agent policy'], ['Continuous discovery', 'reconciled with the agent registry'], ['A discovery tool', 'that feeds the registry automatically']])}</div></div>` },
 // 4 · passage 2: fence
 { ch: 'c1', type: 'reef', title: 'Passage 2 · Fence', ref: 'Break the wall 2/3: platforms', leg: 1, cam: { x: 4400, y: 1560, w: 3200 },
+  notesPlus: `Clics 1 à 6 : chaque bouée s'allume, dans le plan et dans la liste. Clic 7 : la passerelle IA (pointillé vert, tous les flux y passent) et les trois actions.
+Le plan est un « carton », l'encart à grande échelle d'un port sur une carte marine : ici, une plateforme agentique type.`,
   on: ['p1-plan'], onF: { 1: ['p1-b1'], 2: ['p1-b2'], 3: ['p1-b3'], 4: ['p1-b4'], 5: ['p1-b5'], 6: ['p1-b6'], 7: ['p1-gw'] },
   html: () => `${pin(P1_PL.x + 40, P1_PL.y + 60, `<span class="p1-plt">Plan · an agentic AI platform<i>example architecture</i></span>`, 'l')}
   ${pin(3060, 1200, '<span class="p1-colh">Inputs &amp; execution</span>', 'l')}${pin(4000, 1220, '<span class="p1-colh">User interface</span>', 'l')}
@@ -197,6 +204,8 @@ SCENES.push(
     <div class="p1-mv"${fa(7)}><b class="p1-lbl">Three moves</b>${moves([['Map what you have', 'the security functions of your current platforms'], ['One AI security platform', 'linked to an AI gateway: every AI flow goes through it'], ['Red-team it', 'from the dev environment to internet-facing functions']])}</div></div>` },
 // 5 · passage 3: name
 { ch: 'c1', type: 'reef', title: 'Passage 3 · Name', ref: 'Break the wall 3/3: identity', leg: 1, cam: { x: 5150, y: 2850, w: 3000 }, on: ['p1-ais'],
+  notesPlus: `Image : les papiers de bord. Chaque agent est une cible AIS ; on en contrôle une. Nom = qui est l'agent ; pavillon = pour le compte de qui ; permis = ce qu'il peut faire ; destination = son intention ; clairance = l'autoriser, maintenant ; journal de bord = ce qu'il a fait.
+Clics : 1 qui s'en charge (gouvernance, accès, protection : doit le faire / y contribue / le fera), 2 les trois actions.`,
   html: () => `${P1_AIS.map(([x, y, , sel]) => sel ? pin(x - 125, y + 40, `<span class="p1-ais sel">Agent<i>papers, please</i></span>`, 'r') : pin(x + 60, y + 75, `<span class="p1-ais">agent</span>`, 'l')).join('')}
   <div class="cart at-tr p1-papers p1-grow"><span class="tab">Passage 3 · Name</span>
     <p class="kick">Agent identity</p><h2 class="h s t">Every agent must <em>show its papers</em></h2>
@@ -206,6 +215,8 @@ SCENES.push(
     <div class="p1-mv3"${fa(2)}>${moves([['Assess what you can enforce', 'identity providers, agentic platforms, gateways, xDR: find the gaps and the compensating tools'], ['Minimum rules for every agent', 'unique identity, human sponsor, delegation, least privilege, short-lived credentials, traceability'], ['An enforcement POC', 'on a real agent, end to end: identity → human delegation → scoped access → runtime decision → action-level logging']])}</div></div>` },
 // 6 · uncharted waters: the other emerging challenges
 { ch: 'c1', type: 'reef', title: 'Uncharted waters', ref: 'Other emerging challenges', leg: 1, cam: { x: 4900, y: 980, w: 3200 },
+  notesPlus: `Clics : 1 résilience, 2 modèles open-weight.
+Clin d'œil : sur les cartes anciennes, « P.A. » (position approximate) marque un danger signalé mais pas encore relevé. C'est le statut de ces deux sujets.`,
   on: ['p1-uns'], onF: { 1: ['p1-u1'], 2: ['p1-u2'] },
   html: () => `${pin(4980, 900, `<span class="p1-dgl">Resilience<i>reported · position approximate</i></span>`, 'b', 1)}
   ${pin(5500, 1230, `<span class="p1-dgl">Open-weight models<i>reported · position approximate</i></span>`, 'b', 2)}
@@ -217,6 +228,7 @@ SCENES.push(
 
 // 7 · the full chart: QR to the benchmark
 { ch: 'c1', type: 'reef', title: 'Take the full chart', ref: 'Discover the benchmark', leg: 1, cam: { x: 4250, y: 1700, w: 5800 },
+  notesPlus: `La caméra recule sur toute la zone : sondes, récif, eaux non relevées. Laisser 5 secondes pour scanner le QR code.`,
   on: ['p1-reef', 'p1-t1', 'p1-t2', 'p1-t3', 'p1-sv', 'p1-uns', 'p1-u1', 'p1-u2'],
   html: () => `<div class="cart at-l p1-cta"><span class="tab">2026 AI Cyber Benchmark</span>
     <div class="p1-ctag"><div><p class="kick">Take the full chart</p><h2 class="h s t">Every sounding, <em>every topic</em></h2>

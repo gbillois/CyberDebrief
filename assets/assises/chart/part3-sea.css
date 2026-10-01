@@ -153,3 +153,6 @@
 .p3-grid .ay{left:-1.3rem;top:50%;transform:translate(-50%,-50%) rotate(-90deg);transform-origin:center}
 .p3-grid .ax{left:50%;bottom:-1.1rem;transform:translateX(-50%)}
 .p3-grid .ay::after{content:' →'} .p3-grid .ax::after{content:' →'}
+.p3-leg.a{border-left:3px solid var(--indigo)} .p3-leg.b{border-left:3px solid var(--green-x)}
+.p3-leg.b i{color:var(--green-x)}
+.p3-sky .grat{fill:none;stroke:rgba(182,166,255,.16);stroke-width:3;stroke-dasharray:4 18}
