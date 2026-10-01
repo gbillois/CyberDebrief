@@ -119,3 +119,16 @@
 .p1-qr b{display:block;margin-top:.6rem;color:var(--indigo);font-weight:500}
 .p1-svd{font-family:var(--f-serif);font-style:italic;font-size:64px;fill:var(--indigo)}
 .p1-svd.s{fill:var(--coral)}
+
+/* cartouches that grow as the story unfolds: later blocks take no room until revealed */
+.p1-grow > [data-f]{max-height:0;overflow:hidden;margin-top:0;padding-top:0;border-top-color:transparent;transition:opacity .8s ease .25s,translate 1s var(--ease) .25s,max-height 1s var(--ease),margin .8s,padding .8s}
+.p1-grow > [data-f].on{max-height:40rem}
+.p1-grow > .p1-dg[data-f].on{margin-top:1rem;padding-top:.7rem;border-top-color:var(--ink)}
+.p1-grow > .p1-aground[data-f].on{margin-top:.9rem}
+.p1-grow > .p1-mv3[data-f].on{margin-top:1rem}
+.cart.at-tr.p1-grow,.cart.at-tl.p1-grow{top:6.4rem}
+/* the six controls are listed from the start, unlit; each lights with its buoy */
+.p1-ctl li[data-f]{opacity:.38;translate:none}
+.p1-ctl li[data-f].on{opacity:1}
+.p1-ctl li i{transition:background .6s,border-color .6s}
+.p1-ctl li:not(.on) i{background:var(--card);border-color:var(--ink)}

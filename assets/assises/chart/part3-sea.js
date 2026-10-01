@@ -15,8 +15,8 @@ const P3 = (() => {
   const f = (n, d = 0) => n.toFixed(d);
   // the six CISO teams, at fixed bearings: west column top to bottom, then east column
   const TEAMS = [
-    { k: 'grc', name: 'GRC', b: 218 }, { k: 'sbd', name: 'Sec by design', b: 180 }, { k: 'infra', name: 'Infra sec', b: 142 },
-    { k: 'iam', name: 'IAM', b: 322 }, { k: 'def', name: 'Defense', b: 0 }, { k: 'res', name: 'Resilience', b: 38 }];
+    { k: 'grc', name: 'GRC', b: 226 }, { k: 'sbd', name: 'Sec by design', b: 180 }, { k: 'infra', name: 'Infra sec', b: 134 },
+    { k: 'iam', name: 'IAM', b: 313 }, { k: 'def', name: 'Defense', b: 0 }, { k: 'res', name: 'Resilience', b: 47 }];
   const LX = { w: 7780, e: 10820 };            // where the team labels hang, west and east
   const side = t => (t.b > 90 && t.b < 270 ? 'w' : 'e');
   const LV = [[20, 'AI assists', 'Human does, AI assists'], [50, 'Human-agent teams', 'Human-agent teams'], [80, 'Human-led, agent-operated', 'Human-led, agent-operated']];
@@ -34,8 +34,8 @@ P3.sails = (lv, big) => {
 };
 P3.gauge = lv => { const [p, , l] = P3.LV[lv - 1]; return `<div class="p3-gauge">${P3.sails(lv)}<div class="p3-gv"><b>AI ≈ ${p}%</b><span>${l}</span></div>
   <div class="p3-bar"><i style="width:${p}%"></i>${[20, 50, 80].map((v, i) => `<s style="left:${v}%" class="${i < lv ? 'on' : ''}"></s>`).join('')}</div></div>`; };
-P3.head = (lv, kick, h, p, w = '33rem', wide = false) => `<div class="cart at-tl p3-head${wide ? ' wide' : ''}" style="width:${w}"><span class="tab">Sail ${lv} of 3</span>${P3.gauge(lv)}
-  <div class="p3-ht"><p class="kick">${kick}</p><h2 class="h s t">${h}</h2>${p ? `<p class="p">${p}</p>` : ''}</div></div>`;
+P3.head = (lv, kick, h, p, w = '33rem', wide = false, extra = '') => `<div class="cart at-tl p3-head${wide ? ' wide' : ''}" style="width:${w}"><span class="tab">Sail ${lv} of 3</span>${P3.gauge(lv)}
+  <div class="p3-ht"><p class="kick">${kick}</p><h2 class="h s t">${h}</h2>${p ? `<p class="p">${p}</p>` : ''}${extra}</div></div>`;
 
 // ════════════════════════════════════════════════════════════════════════
 // CHART LAYERS
@@ -96,7 +96,7 @@ LAYERS.push(() => {
 });
 
 // scene 3 · how to pick them: a channel with three locks, narrowing towards the open sea
-P3.CH = { x0: 8650, x1: 11600, y: 640, locks: [9560, 10360, 11060] };
+P3.CH = { x0: 8650, x1: 11640, y: 640, locks: [9460, 10270, 11070] };
 P3.chW = x => { const t = (x - P3.CH.x0) / (P3.CH.x1 - P3.CH.x0); return 300 - 220 * Math.pow(t, .8); };   // half width
 LAYERS.push(() => {
   const { x0, x1, y, locks } = P3.CH, f = P3.f, W = P3.chW;
@@ -134,7 +134,7 @@ LAYERS.push(() => {
     s += '</g>';
   });
   // a scale bar in months under the channel, like a chart's scale of miles
-  const sy = y + 600, seg = (x1 - x0) / 3;
+  const sy = y + 470, seg = (x1 - x0) / 3;
   s += `<g class="fl" data-flag="p3-chan">${[0, 1, 2].map(i => `<rect x="${f(x0 + seg * i)}" y="${sy}" width="${f(seg)}" height="22" fill="${i % 2 ? 'var(--card)' : 'var(--ink)'}" stroke="var(--ink)" stroke-width="3"/>`).join('')}</g>`;
   return s;
 });
@@ -158,7 +158,7 @@ LAYERS.push(() => {
 });
 
 // scene 6 · sail 3: the lagoon is the cyber data lake; rivers in through APIs, out through MCP & APIs
-P3.SRC = [['SOC / EDR', 1930], ['CTI / vulnerabilities', 2170], ['Assets / configs', 2410], ['GRC / TPRM / risks', 2650]];
+P3.SRC = [['SOC / EDR', 2040], ['CTI / vulnerabilities', 2250], ['Assets / configs', 2460], ['GRC / TPRM / risks', 2670]];
 P3.ACT = [['EDR / NDR / FW', 2130], ['Patching &amp; config', 2400], ['Access rights / DLP', 2670]];
 LAYERS.push(() => {
   const f = P3.f, river = (d, c, fl) => `<path d="${d}" fill="none" stroke="var(--coast)" stroke-width="52" stroke-linecap="round"/><path d="${d}" fill="none" stroke="var(--sea)" stroke-width="44" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${c}" stroke-width="7" stroke-dasharray="26 30" class="flow"/>`;
@@ -177,7 +177,7 @@ LAYERS.push(() => {
 });
 
 // scene 7 · the star chart: the cyber graph as a constellation over the atoll
-P3.STARS = [['Assets', 9330, 1080, 'b'], ['Identities', 9690, 600, 't'], ['Vulnerabilities', 10140, 1010, 'b'], ['Controls', 10530, 520, 't'], ['Third parties', 10960, 1060, 'b'], ['Data', 11330, 620, 't'], ['Business processes', 11640, 1160, 'b']];
+P3.STARS = [['Assets', 9330, 1080, 'b'], ['Identities', 9690, 600, 'p3-up'], ['Vulnerabilities', 10140, 1010, 'b'], ['Controls', 10530, 520, 'p3-up'], ['Third parties', 10960, 1060, 'b'], ['Data', 11330, 620, 'p3-up'], ['Business processes', 11640, 1160, 'b']];
 P3.EDGES = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [0, 2], [1, 3], [2, 4], [3, 5], [4, 6], [1, 5], [0, 3]];
 P3.CREW = [['GRC', 196], ['Sec by design', 225], ['Infra sec', 254], ['IAM', 286], ['Cyber defense', 315], ['Resilience', 344]];
 LAYERS.push(() => {
@@ -245,13 +245,17 @@ Matrice valeur × complexité : forte valeur / faible complexité = quick wins ;
 À l'écran : le chenal se resserre à chaque écluse, de moins en moins de bateaux passent ; l'échelle en bas est en mois (trois mois).`,
   html: () => { const { x0, x1, y, locks } = P3.CH, W = P3.chW;
     const L = [['Ideation', 'Test realism at once', 'Workshops with an AI maker, scored value × complexity'], ['First implementation', 'Build first demonstrators', 'Prompting &amp; no-code, ROI measured from day one'], ['Roadmap', 'Scale to full application', 'Make, buy or make-to-buy, with training &amp; change management']];
-    return `${L.map(([k, b, s], i) => pin(locks[i], y - 470, `<div class="p3-lock"><i>Lock ${i + 1} · ${k}</i><b>${b}</b></div>`, 't', i + 2) + pin(locks[i], y + 290, `<div class="p3-lockd">${s}</div>`, 'b', i + 2)).join('')}
+    return `${L.map(([k, b, s], i) => pin(locks[i], y - 470, `<div class="p3-lock"><i>Lock ${i + 1} · ${k}</i><b>${b}</b></div>`, 'p3-up', i + 2) + pin(locks[i], y + 290, `<div class="p3-lockd">${s}</div>`, 'b', i + 2)).join('')}
   ${pin(x0 - 470, y - 500, `<div class="p3-drv"><i>Driver</i>New value-adding activities</div>`, 'l', 1, 'margin-top:-1.2rem')}
   ${pin(x0 - 470, y + 500, `<div class="p3-drv"><i>Driver</i>Pain-point fixes</div>`, 'l', 1, 'margin-top:1.4rem')}
   ${pin(x1, y + 240, `<div class="p3-out"><i>Open sea</i>A few, at scale</div>`, 'b', 4)}
-  ${pin(x0, y + 660, '<span class="p3-sc">0</span>', 'b')}${pin(x1, y + 660, '<span class="p3-sc">3 months</span>', 'b')}
-  <div class="cart at-br p3-lockhead"><span class="tab">Deep dive · a 3-month engagement</span><p class="kick">Level 1 · picking the right use cases</p>
-    <h2 class="h s t">Three locks, <em>three months</em></h2><p class="p">In: existing or already identified use cases, the Wavestone catalog and market feedback. Every idea then passes each lock in turn; fewer get through, and those that do reach open water with a measured return.</p></div>`; } },
+  ${pin(x0, y + 530, '<span class="p3-sc">0</span>', 'b')}${pin(x1, y + 530, '<span class="p3-sc">3 months</span>', 'b')}
+  <div class="cart at-br p3-mx"${fa(2)}><span class="tab">Lock 1 · the ideation grid</span>
+    <div class="p3-grid"><span class="ay">Value</span><span class="ax">Complexity</span>
+      <div class="q g"><b>Quick wins</b><i>high value, low complexity</i></div><div class="q"><b>Strategic initiatives</b><i>high value, high complexity</i></div>
+      <div class="q"><b>Test &amp; learn</b><i>low value, low complexity</i></div><div class="q x"><b>Abandon or reclassify</b><i>low value, high complexity</i></div></div></div>
+  <div class="cart at-bl p3-lockhead"><span class="tab">Deep dive · a 3-month engagement</span><p class="kick">Level 1 · picking the right use cases</p>
+    <h2 class="h s t">Three locks, <em>three months</em></h2><p class="p">Ideas come in from existing or already identified use cases, the Wavestone catalog and market feedback. Each lock lets fewer through; those that pass reach open water with a measured return.</p></div>`; } },
 
 // 4 · sail 2: platform renewal
 { ch: 'c3', type: 'sail2', title: 'Sail 2 · Team up', ref: 'Level 2: platform renewal', leg: 3, cam: { x: 9300, y: 1700, w: 7400 },
@@ -264,9 +268,9 @@ Matrice valeur × complexité : forte valeur / faible complexité = quick wins ;
       iam: [['IGA / PAM', 'Machine &amp; agent identities, access governance']],
       def: [['AI SOC', 'Detect, investigate, respond, hunt', 'Global manufacturing'], ['AI pentest', 'Continuous exposure discovery, validation &amp; remediation', 'Global insurance']],
       res: [['Business continuity', 'Dependencies, impact analysis, recovery orchestration']] };
-    return `${P3.head(2, 'Level 2 · platform renewal, one at a time', 'One road <em>round the atoll</em>', 'Integrated platforms share context automatically: faster insights, consistent policies, action across functions.', '54rem', true)}
+    return `${P3.head(2, 'Level 2 · platform renewal, one at a time', 'One road <em>round the atoll</em>', 'Integrated platforms share context automatically: faster insights, consistent policies, action across functions.', '54rem', true, `<p class="p3-ostrip"${fa(2)}>Scaling AI across cyber needs one approach: <b>create a Cyber Data &amp; AI Office</b></p>`)}
   ${P3.TEAMS.map(t => P3.port(t, P[t.k].map(([n, d, r]) => `<div class="p3-pf"><b>${n}</b><span>${d}</span>${r ? `<em>${r}</em>` : ''}</div>`).join(''))).join('')}
-  ${pin(9300, 1960, `<div class="p3-office"><i>Scaling AI across cyber needs one approach</i><b>Create a Cyber Data &amp; AI Office</b></div>`, 't', 2)}`; } },
+  ${pin(9300, 2060, '<span class="p3-otag">Cyber Data &amp; AI Office</span>', 'l', 2, 'margin-left:1.6rem')}`; } },
 
 // 5 · two voyages
 { ch: 'c3', type: 'voyages', title: 'Two voyages, one objective', ref: 'Deep dive: two approaches', leg: 3, cam: { x: 9775, y: 2400, w: 7600 },
@@ -275,7 +279,7 @@ Matrice valeur × complexité : forte valeur / faible complexité = quick wins ;
 Retirés de l'écran car non confirmés dans la source : durée et budget du programme assurance (« XX-year », « $XXX »), « 50 AI agents deployed in the SOC », « XX tools consolidated ».`,
   html: () => { const A = ['Unify governance, processes &amp; technology', 'Strengthen data visibility &amp; control', 'Remediate risk at scale'];
     const B = ['Embed AI by design', 'Unify the platform', 'Upskill teams', 'Align staffing, ownership &amp; partners'];
-    const lab = (b, t, i, f, up) => { const [x, y] = P3.pt(b, P3.VR + 110); return pin(x, y, `<div class="p3-leg"><i>${i + 1}</i>${t}</div>`, up ? 't' : 'b', f); };
+    const lab = (b, t, i, f, up) => { const [x, y] = P3.pt(b, P3.VR + 110); return pin(x, y, `<div class="p3-leg"><i>${i + 1}</i>${t}</div>`, up ? 'p3-up' : 'b', f); };
     return `<div class="cart at-tr w-s p3-logc"${fa(1)}><span class="tab">Log · north about</span><p class="kick">Insurance</p><h3>Enterprise data protection at scale</h3>
       <div class="p3-figs"><div><b>${odo(1500)}</b><span>applications in the data ecosystem</span></div><div><b>${odo(65000)}</b><span>collaboration sites</span></div><div><b>${odo(50000)}</b><span>file shares</span></div><div><b>${odo(40)}<small>PB</small></b><span>of data</span></div></div></div>
     <div class="cart at-br w-s p3-logc"${fa(2)}><span class="tab">Log · south about</span><p class="kick">Automotive</p><h3>An AI-first CISO operating model</h3>
@@ -289,9 +293,9 @@ Retirés de l'écran car non confirmés dans la source : durée et budget du pro
   notesPlus: `Le lagon de l'atoll EST le Cyber Data Lake. Les rivières qui y entrent : les sources (SOC/EDR, CTI/vulnérabilités, actifs/configurations, GRC/TPRM/risques), via API. Les bateaux du lagon : les agents, sur une plateforme d'IA agentique. Les rivières qui en sortent : les actions, via MCP et API.`,
   html: () => `${P3.head(3, 'Level 3 · cyber at machine speed', 'The lagoon is <em>your data</em>', 'Machine speed needs one data foundation for agentic operations.', '29rem')}
   ${P3.SRC.map(([t, y]) => pin(7880, y, `<span class="p3-src">${t}</span>`, 'r', 1)).join('')}
-  ${pin(8330, 1960, '<span class="p3-api">APIs in</span>', 't', 1)}
+  ${pin(8330, 2830, '<span class="p3-api">APIs in</span>', 'b', 1)}
   ${P3.ACT.map(([t, y]) => pin(10760, y, `<span class="p3-act">${t}</span>`, 'l', 2)).join('')}
-  ${pin(10290, 2040, '<span class="p3-api g">MCP &amp; APIs out</span>', 't', 2)}
+  ${pin(10300, 2840, '<span class="p3-api g">MCP &amp; APIs out</span>', 'b', 2)}
   <div class="cart at-bl p3-step"${fa(1)}><span class="tab">Step 1</span><b>Build your <em>cyber data lake</em></b><span>Fragmented, slow cyber data becomes real-time context. Collect, enrich and normalize it through APIs.</span></div>
   <div class="cart at-br p3-step"${fa(2)}><span class="tab">Step 2</span><b>Use an <em>agentic AI platform</em></b><span>Built on your existing processes and control models. Delegate actions with the right level of human oversight.</span></div>
   <div class="cart at-tr p3-shift"${fa(3)}><span class="tab">The shift</span><div><s>Defensive</s><span>react to incidents, team by team</span></div><i>→</i><div><b>Proactive</b><span>anticipate drift in real time, act across teams</span></div></div>` },
@@ -307,7 +311,7 @@ Contenu marqué « IN THE WORKS » dans la source : à valider.`,
       <li><i>ii.</i><span><b>Govern agents.</b> Identity, rights, traceability and audit for every one.</span></li>
       <li><i>iii.</i><span><b>Embed experts.</b> Cyber experts inside business, IT and OT teams.</span></li></ul></div>
   ${P3.CREW.map(([t, a]) => { const [x, y] = P3.pt(a, 430); return pin(x, y + 50, `<span class="p3-crew">${t}</span>`, 'b', 1); }).join('')}
-  ${P3.STARS.map(([t, x, y, p]) => pin(x, y, `<span class="p3-star">${t}</span>`, p, 2, p === 't' ? 'margin-top:-1.6rem' : 'margin-top:1.6rem')).join('')}
+  ${P3.STARS.map(([t, x, y, p]) => pin(x, y, `<span class="p3-star">${t}</span>`, p, 2, p === 'p3-up' ? 'margin-top:-1.6rem' : 'margin-top:1.6rem')).join('')}
   ${pin(10500, 300, '<span class="p3-const">The cyber graph · IT &amp; OT</span>', '', 2)}
   ${pin(9300, 1700, '<span class="p3-mir">data lake + graph</span>', 'l', 3, 'margin-left:1rem')}
   <div class="cart at-br w-s p3-ot"${fa(3)}><span class="tab">One sky for every agent</span><b>Data lake <em>+</em> graph</b><span>Every agent reads the same graph of the whole estate. In OT, a human stays in the loop.</span></div>` },
@@ -320,11 +324,11 @@ Contenu marqué « IN THE WORKS » dans la source : à valider.`,
       ['shield', 'Preserve', 'trust', 'Keep humans accountable for every delegated action', ['Human oversight', 'Ownership &amp; accountability'], 62],
       ['dollar', 'Control', 'cost over time', 'Keep the platform sustainable as usage scales', ['Cost management', 'Maintenance lifecycle', 'Change &amp; model governance'], 48]];
     const dial = v => { const a = Math.PI * (1 - v / 100); return `<svg viewBox="0 0 120 70" class="p3-dial"><path d="M10,62 A50,50 0 0,1 110,62" class="bg"/><path d="M10,62 A50,50 0 0,1 ${(60 + 50 * Math.cos(Math.PI * .35)).toFixed(1)},${(62 - 50 * Math.sin(Math.PI * .35)).toFixed(1)}" class="ok"/>${[0, .25, .5, .75, 1].map(t => { const b = Math.PI * (1 - t); return `<line x1="${(60 + 42 * Math.cos(b)).toFixed(1)}" y1="${(62 - 42 * Math.sin(b)).toFixed(1)}" x2="${(60 + 50 * Math.cos(b)).toFixed(1)}" y2="${(62 - 50 * Math.sin(b)).toFixed(1)}" class="tk"/>`; }).join('')}<line x1="60" y1="62" x2="${(60 + 40 * Math.cos(a)).toFixed(1)}" y2="${(62 - 40 * Math.sin(a)).toFixed(1)}" class="nd"/><circle cx="60" cy="62" r="5" class="hb"/></svg>`; };
-    return `${pin(...pt(270, GR), `<div class="p3-loop c"><b>Build</b><span>Continuously adapt agents and data</span></div>`, 't', 1, 'margin-top:-1.4rem')}
+    return `${pin(...pt(270, GR), `<div class="p3-loop c"><b>Build</b><span>Continuously adapt agents and data</span></div>`, 'p3-up', 1, 'margin-top:-1.4rem')}
   ${pin(...pt(40, GR), `<div class="p3-loop"><b>Run</b><span>Experts in the loop</span></div>`, 'l', 1, 'margin-left:1.4rem;margin-top:1.4rem')}
   ${pin(...pt(140, GR), `<div class="p3-loop r"><b>Check</b><span>Independent check of trust, efficiency and cost</span></div>`, 'r', 1, 'margin-left:-1.4rem;margin-top:1.4rem')}
-  ${pin(9300, 1960, `<div class="p3-office"><b>Cyber Data &amp; AI Office</b></div>`, 't')}
+  ${pin(9300, 2060, '<span class="p3-otag">Cyber Data &amp; AI Office</span>', 'l', null, 'margin-left:1.6rem')}
   <div class="cart at-r p3-panel"><span class="tab">Trust &amp; TokenOps</span><p class="kick">Run it for real</p><h2 class="h s t">Keep the engine <em>honest</em></h2>
     <p class="p">Agents that stay observable, trusted and affordable.</p>
-    ${D.map(([ic, a, b, l, items, v], i) => `<div class="p3-inst"${fa(i + 2)}>${dial(v)}<div><b>${a} <em>${b}</em></b><span>${l}</span><ul>${items.map(x => `<li>${x}</li>`).join('')}</ul></div></div>`).join('')}</div>`; } },
+    ${D.map(([ic, a, b, l, items, v], i) => `<div class="p3-inst"${fa(i + 2)}>${dial(v)}<div><b>${a} <em>${b}</em></b><span>${l}</span><p class="p3-items">${items.join(' · ')}</p></div></div>`).join('')}</div>`; } },
 );

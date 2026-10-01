@@ -58,7 +58,7 @@ body.night .p2-speed .big em{color:var(--coral)}
 .p2-arc.on{stroke-dashoffset:0}
 .p2-arc.hot{stroke:var(--coral)}
 .p2-ring-l{font-family:var(--f-mono);font-size:30px;letter-spacing:3px;text-transform:uppercase;fill:#fff;text-anchor:end;paint-order:stroke;stroke:var(--sea);stroke-width:10px}
-.p2-pie{fill:rgba(4,240,106,.2);stroke:var(--green);stroke-width:4}
+.p2-pie{fill:var(--card);stroke:var(--green);stroke-width:5}
 .p2-wedge{fill:var(--coral)}
 .p2-hubl b{display:block;font-family:var(--f-sans);font-weight:700;font-size:2.2rem;letter-spacing:-.04em;line-height:1;color:#fff}
 .p2-hubl span{font-family:var(--f-mono);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
@@ -127,7 +127,7 @@ body.night .p2-speed .big em{color:var(--coral)}
 .p2-round{fill:none;stroke:var(--green);stroke-width:6;stroke-dasharray:18 14}
 .p2-cl.g{fill:var(--green);text-anchor:start}
 .p2-race-h .p2-key{margin-top:.7rem}
-.p2-watch.cart{width:41rem}
+.p2-watch.cart{width:40rem}
 .p2-tree{width:34rem}
 .p2-deck-l{width:21rem}
 .p2-deck-l span{font-size:.72rem}

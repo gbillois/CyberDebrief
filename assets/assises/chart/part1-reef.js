@@ -161,7 +161,7 @@ SCENES.push(
 { ch: 'c1', type: 'reef', title: 'The soundings', ref: '2026 AI Cyber Benchmark', leg: 1, cam: { x: 4900, y: 2420, w: 2400 },
   onF: { 1: ['p1-t1'], 2: ['p1-t2'], 3: ['p1-t3'], 4: ['p1-reef'] },
   html: () => `${p1Board()}
-  <div class="cart at-l w-s p1-bench"><span class="tab">2026 AI Cyber Benchmark</span>
+  <div class="cart at-l w-s p1-bench p1-grow"><span class="tab">2026 AI Cyber Benchmark</span>
     <p class="kick">AI security maturity</p>
     <p class="p1-mat">${odo(31)}<small>%</small><i>→</i>${odo(45)}<small>%</small></p>
     <p class="p"><b>+14 points in one year.</b> The fundamentals are in place.</p>
@@ -176,7 +176,7 @@ SCENES.push(
   on: ['p1-find'], onF: { 1: ['p1-out'] },
   html: () => `${P1_HB.map(([x, y, k, l]) => pin(x, y + (k === 'ent' ? 105 : 70), `<span class="p1-hb ${k}">${l}</span>`, 'b')).join('')}
   ${P1_OUT.map(([x, y, l]) => pin(x, y + 90, `<span class="p1-blip">${l}<i>unknown contact</i></span>`, 'b', 1)).join('')}
-  <div class="cart at-r w-s p1-find"><span class="tab">Passage 1 · Find</span>
+  <div class="cart at-tr w-s p1-find p1-grow"><span class="tab">Passage 1 · Find</span>
     <p class="kick">Discovery</p><h2 class="h s t">You cannot secure an agent <em>you cannot see</em></h2>
     <div class="p1-look"${fa(2)}><b class="p1-lbl">Where to look</b>
       <div><i class="k ent"></i><p><b>Enterprise AI</b>review platforms &amp; contracts · scan repos for AI keys, models &amp; libraries</p></div>
@@ -191,14 +191,14 @@ SCENES.push(
   ${Object.entries(P1_BK).map(([k, [bx, by, bw, bh, l]]) => pin(bx + bw / 2, by + bh / 2, `<span class="p1-bl ${k}">${l}</span>`)).join('')}
   ${pin(3730, 1640, '<span class="p1-bl ag">Agents<i>skills, memory</i></span>')}
   ${pin(3730, 1760, '<span class="p1-gwl">AI gateway · every AI flow goes through it</span>', '', 7)}
-  <div class="cart at-r p1-fence"><span class="tab">Passage 2 · Fence</span>
+  <div class="cart at-tr p1-fence p1-grow"><span class="tab">Passage 2 · Fence</span>
     <p class="kick">Platforms</p><h2 class="h s t">Secure the platforms <em>agents run on</em></h2>
     <ol class="p1-ctl">${P1_BUOY.map(([n, , , a, b]) => `<li${fa(n)}><i>${n}</i><span><b>${a}</b>${b}</span></li>`).join('')}</ol>
     <div class="p1-mv"${fa(7)}><b class="p1-lbl">Three moves</b>${moves([['Map what you have', 'the security functions of your current platforms'], ['One AI security platform', 'linked to an AI gateway: every AI flow goes through it'], ['Red-team it', 'from the dev environment to internet-facing functions']])}</div></div>` },
 // 5 · passage 3: name
 { ch: 'c1', type: 'reef', title: 'Passage 3 · Name', ref: 'Break the wall 3/3: identity', leg: 1, cam: { x: 5150, y: 2850, w: 3000 }, on: ['p1-ais'],
   html: () => `${P1_AIS.map(([x, y, , sel]) => sel ? pin(x - 125, y + 40, `<span class="p1-ais sel">Agent<i>papers, please</i></span>`, 'r') : pin(x + 60, y + 75, `<span class="p1-ais">agent</span>`, 'l')).join('')}
-  <div class="cart at-r p1-papers"><span class="tab">Passage 3 · Name</span>
+  <div class="cart at-tr p1-papers p1-grow"><span class="tab">Passage 3 · Name</span>
     <p class="kick">Agent identity</p><h2 class="h s t">Every agent must <em>show its papers</em></h2>
     <table class="p1-tab"><thead><tr><th colspan="2">Six questions</th><th>The capability</th><th>Market</th><th class="d"${fa(1)}>Gov.</th><th class="d"${fa(1)}>Access</th><th class="d"${fa(1)}>Protect</th></tr></thead>
     <tbody>${P1_PAPERS.map(([f, q, c, m, d]) => `<tr><td class="f">${f}</td><td class="q">${q}</td><td class="c">${c}</td><td><span class="p1-m ${m}">${m}</span></td>${d.map(v => `<td class="d">${v ? `<i class="p1-dt ${v}"${fa(1)}></i>` : ''}</td>`).join('')}</tr>`).join('')}</tbody></table>
@@ -209,7 +209,7 @@ SCENES.push(
   on: ['p1-uns'], onF: { 1: ['p1-u1'], 2: ['p1-u2'] },
   html: () => `${pin(4980, 900, `<span class="p1-dgl">Resilience<i>reported · position approximate</i></span>`, 'b', 1)}
   ${pin(5500, 1230, `<span class="p1-dgl">Open-weight models<i>reported · position approximate</i></span>`, 'b', 2)}
-  <div class="cart at-l w-s"><span class="tab">Beyond the reef</span>
+  <div class="cart at-tl w-s p1-grow"><span class="tab">Beyond the reef</span>
     <p class="kick">Other emerging challenges</p><h2 class="h s t">Uncharted <em>waters</em></h2>
     <p class="p">Two more dangers are reported, not yet surveyed. Chart them before you sail there.</p>
     <div class="p1-dg"${fa(1)}><b>Resilience</b><ul><li>switch or rebuild your models</li><li>recover datasets and knowledge bases</li><li>validate integrity, so AI decisions stay trustworthy</li></ul></div>
