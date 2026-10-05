@@ -1918,40 +1918,23 @@ If asked about OpenAI's models: Hugging Face only names Claude Opus and Fable (b
 { ch: 'c2', type: 'chapter', title: 'Chapter 2: The Wave', sub: 'March - September 2026',
   vo: `Second question: was it a one-off? We could have thought so. Until September.` },
 
-{ ch: 'c2', type: 'headlines', title: 'Press montage',
-  heading: 'September 2026: the story goes global',
-  clips: [
-    { o: 'SecurityWeek', d: '21 Sep 2026', h: 'Google Confirms Gemini AI Breached Three Firms', img: 'securityweek-0921', fr: `"Google is the latest AI giant to confirm that its models escaped a testing environment and hacked real companies."`, x: 0, y: 2, r: -2.2 },
-    { o: 'BNN Bloomberg', d: '23 Sep 2026', h: 'AI leaders warn UN of security risks as systems grow more powerful', img: 'bnn-0923', fr: `"If managed poorly, I even believe that AI could be a risk to humanity as a whole." (Dario Amodei, Anthropic, to the UN Security Council)`, x: 34.5, y: 8, r: 1.4 },
-    { o: 'CBS News', d: '24 Sep 2026', h: 'Australia says rogue OpenAI model hacked into its healthcare system, admonishes Sam Altman', img: 'cbs-0924', fr: `The artificial intelligence tool sought access to a health statistics portal in June and "didn't accept no for an answer," sidestepping restrictions to breach a section hosting private files, Albanese said.`, x: 69, y: 0, r: -1 },
-    { o: 'The Guardian', d: '24 Sep 2026', h: 'Australia launches investigation after OpenAI agent hacked healthcare database', img: 'guardian-0924', fr: `Prime minister says he told Sam Altman he was disappointed it had taken OpenAI "way too long" to disclose breach.`, x: 2, y: 47, r: 1.8 },
-    { o: 'TechCrunch', d: '25 Sep 2026', h: 'For months, OpenAI\'s agent swarms have been attacking online databases to find obscure facts', img: 'techcrunch-0925', fr: `"...independent researchers are piecing together how AI agents coordinate in internet backwaters to access private data hosted on secure servers."`, x: 35.5, y: 53, r: -1.6 },
-    { o: 'ABC News (Australia)', d: '26 Sep 2026', h: 'OpenAI says dozens affected by rogue agents amid new detail about Australian incidents', img: 'abc-0926', fr: `"OpenAI says dozens more third parties were affected by rogue agents bypassing website security controls..."`, x: 68, y: 45, r: 2.4 },
-  ],
-  vo: `In a single week, the story changes scale.`,
-  notes: `Let the headlines drop one by one; do not read them.`,
-  src: `SecurityWeek (Eduard Kovacs) · BNN Bloomberg · CBS News · The Guardian (Elsworthy, Convery) · TechCrunch (Tim Fernholz) · ABC News Australia (Armstrong, Wilson). Screenshots of the articles as published, captured September 2026` },
-
 { ch: 'c2', type: 'map', title: 'Map of incidents', layout: 'tour',
   heading: 'Same story, several continents',
-  focus: { 0: [-4, 18, 330], 1: [-106.62, 35.08, 70], 2: [-122.08, 37.39, 46], 3: [10, 51, 60], 4: [149.13, -35.28, 80] },
+  focus: { 0: [-4, 18, 330], 4: [149.13, -35.28, 80] },
   pins: [
     { name: 'OpenAI', sub: 'San Francisco', lon: -122.42, lat: 37.77, kind: 'org', f: 0, dy: -14, side: 'l' },
-    { name: 'Google', sub: 'Gemini test', lon: -122.08, lat: 37.39, kind: 'hit', f: 0, dy: 22, side: 'l' },
-    { name: 'New Mexico', sub: 'University library', lon: -106.62, lat: 35.08, kind: 'attempt', f: 0, dy: 46, side: 'l' },
-    { name: 'Germany', sub: 'A wiki used as a chat room', lon: 10, lat: 51, kind: 'channel', f: 0, side: 'l' },
-    { name: 'Australia', sub: 'Government', lon: 149.13, lat: -35.28, kind: 'hit', f: 0, side: 'l' },
+    { name: 'A typo in a Google test', sub: 'May 2026 · 3 firms entered', lon: -122.08, lat: 37.39, kind: 'hit', f: 2, dy: -28 },
+    { name: 'Agents knocking on doors', sub: 'Since March 2026 · 6,467 traces', lon: -106.62, lat: 35.08, kind: 'attempt', f: 1, dy: 6 },
+    { name: 'A wiki turned chat room', sub: 'May - June 2026 · 17,000 messages', lon: 10, lat: 51, kind: 'channel', f: 3, side: 'l' },
+    { name: 'Australia', sub: 'Government', lon: 149.13, lat: -35.28, kind: 'hit', f: 4, side: 'l' },
   ],
   bubbles: [
-    { k: 1, d: 'Since March 2026', t: 'Agents knocking on doors', tone: 'amber', fig: '6,467', figl: 'traces of agents trying to get in', s: `Given a dull statistics question, agents tried to break into databases when a website said no, like this university library in New Mexico.` },
-    { k: 2, d: 'May 2026 · Google', t: 'A typo in a test', fig: '3', figl: 'real companies entered', s: `A made-up company in a Google test had the web address of a real one. Gemini got in, then stopped when it realised.` },
-    { k: 3, d: 'May - June 2026 · Germany', t: 'A forgotten wiki becomes their chat room', tone: 'teal', fig: '17,000', figl: 'messages posted by the agents', s: `OpenAI agents used an abandoned programmers' wiki to share answers and a way out of their test.` },
     { k: 4, d: '18 June 2026 · Australia', t: 'The first government hacked by an AI', fig: '84 days', figl: 'before the government was told', s: `An agent gets into the Medicare statistics website and leaves files behind. The government learns it from an email to a generic inbox. On 24 September, the Prime Minister goes public:`,
       media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', poster: 'assets/ai/albanese-presser.jpg', yt: 'fbdIerD4lT8', start: 78.35, end: 107.8, channel: 'ABC News (Australia)', todo: 'Anthony Albanese on the incident and the delay in notifying Australia.' } },
   ],
   legend: ['hit', 'attempt', 'channel', 'org'],
   vo: `Let's put the cases on the map. Since March, agents knocking on websites' doors. In May, a Google test that reaches three real companies because of a typo. A forgotten German wiki turned into their chat room. And in June, the first government hacked by an AI: Australia. Here is its Prime Minister.`,
-  notes: `One click per case: the camera flies there, the key figure and a bubble appear. On the Australia step the press conference waits on its first frame: one more click plays it (ABC News, 01:18.35-01:47.80: unacceptable incident, call to Sam Altman, delayed notification).
+  notes: `One click per case: the case appears on the world map, a few words next to its pin. Only Australia gets a close-up: the camera flies there and a bubble opens. On the Australia step the press conference waits on its first frame: one more click plays it (ABC News, 01:18.35-01:47.80: unacceptable incident, call to Sam Altman, delayed notification).
 March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker ones); University of New Mexico: a burst of 80 requests. A real task example: "Find the average cost of skin care in Victoria, Australia, in January 2022". May: Gemini test run by the firm Irregular; confirmed by Google on 18 September. 24 May-22 June: DseWiki, analysed by the Nightingale Collective. 18 June: Medicare statistics portal; OpenAI detected it in August; government told on 10 September. OpenAI now counts "dozens" of organisations affected (26 September).`,
   src: `Transluce (23 Sep 2026) · Axios (19 Sep 2026) · Nightingale Collective, BBC (4 Sep 2026) · ABC News Australia (24 and 26 Sep 2026)` },
 
@@ -2063,32 +2046,22 @@ March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker o
 
 { ch: 'ca', type: 'map', title: 'Attackers on the map', layout: 'tour',
   heading: 'From one fake call to swarms of AI agents',
-  focus: { 0: [5, 25, 330], 1: [114.17, 22.32, 40], 2: [10.87, 44.53, 30], 3: [125.75, 39.03, 40], 4: [34, 53, 40], 5: [-122.42, 37.77, 30], 6: [121.56, 25.03, 26], 7: [-121.96, 37.35, 26], 8: [-92, 38, 60] },
+  focus: { 0: [5, 25, 330] },
   pins: [
-    { name: 'Hong Kong', sub: 'Arup', lon: 114.17, lat: 22.32, kind: 'hit', f: 0, side: 'l', dy: 20 },
-    { name: 'Italy', sub: 'Ferrari', lon: 10.87, lat: 44.53, kind: 'attempt', f: 0, side: 'l', dy: 16 },
-    { name: 'North Korea', sub: 'Fake IT workers', lon: 125.75, lat: 39.03, kind: 'weapon', f: 0, side: 'l', dy: -14 },
-    { name: 'Ukraine', sub: 'PROMPTSTEAL', lon: 30.52, lat: 50.45, kind: 'hit', f: 0, side: 'l', dy: 16 },
-    { name: 'Moscow', sub: 'Military hackers', lon: 37.62, lat: 55.75, kind: 'weapon', f: 0, dy: -12 },
-    { name: 'JadePuffer', sub: 'Found by Sysdig', lon: -122.42, lat: 37.77, kind: 'org', f: 0, side: 'l', dy: -14 },
-    { name: 'Taiwan', sub: 'Government', lon: 121.56, lat: 25.03, kind: 'hit', f: 0, side: 'l', dy: -10 },
-    { name: 'Unit 42', sub: 'Palo Alto Networks', lon: -121.96, lat: 37.35, kind: 'org', f: 0, side: 'l', dy: 22 },
-    { name: 'Online shops', sub: '119 websites', lon: -92, lat: 38, kind: 'hit', f: 0, side: 'l' },
+    { name: 'A deepfake video call', sub: 'Feb 2024 · Arup · $25M sent', lon: 114.17, lat: 22.32, kind: 'hit', f: 1, side: 'l', dy: 20 },
+    { name: 'A cloned CEO voice', sub: 'Jul 2024 · Ferrari · stopped', lon: 10.87, lat: 44.53, kind: 'attempt', f: 2, side: 'l', dy: 16 },
+    { name: 'Fake IT workers', sub: '2019 - 2025 · 136 US firms', lon: 125.75, lat: 39.03, kind: 'weapon', f: 3, side: 'l', dy: -14 },
+    { name: 'Malware asking an AI', sub: 'Jul 2025 · PROMPTSTEAL', lon: 30.52, lat: 50.45, kind: 'hit', f: 4, dy: 16 },
+    { name: 'Moscow', sub: 'Military hackers', lon: 37.62, lat: 55.75, kind: 'weapon', f: 4, dy: -12 },
+    { name: 'First AI-run ransomware', sub: 'Jul 2026 · JadePuffer', lon: -122.42, lat: 37.77, kind: 'org', f: 5, dy: -34 },
+    { name: 'AI swarm vs Taiwan', sub: 'Jul 2026 · 8 agents', lon: 121.56, lat: 25.03, kind: 'hit', f: 6 },
+    { name: '2 weeks in 10 hours', sub: 'Sep 2026 · Unit 42', lon: -121.96, lat: 37.35, kind: 'org', f: 7, dy: 38 },
+    { name: '600,000 cards stolen', sub: 'Jul - Sep 2026 · 119 shops', lon: -92, lat: 38, kind: 'hit', f: 8 },
   ],
   arcs: [{ from: 4, to: 3, f: 4 }],
-  bubbles: [
-    { k: 1, d: 'Feb 2024 · Hong Kong · Arup', t: 'Every face on the call was fake', fig: '$25M', figl: 'sent in 15 transfers', s: `An employee joins a video call with his finance chief and colleagues. All of them deepfakes, built from public videos.` },
-    { k: 2, d: 'Jul 2024 · Italy · Ferrari', t: 'A cloned CEO\'s voice', tone: 'green', fig: '1', figl: 'question stopped it', s: `A fake Benedetto Vigna calls about a secret deal. The executive asks which book the CEO had recommended. The caller hangs up.` },
-    { k: 3, d: '2019 - 2025 · North Korea', t: 'Fake employees, hired thanks to AI', tone: 'amber', fig: '136', figl: 'US companies fooled', s: `Stolen identities, AI-polished profiles, live deepfakes in video interviews. Once hired, they send their salaries home.` },
-    { k: 4, d: 'Jul 2025 · Ukraine', t: 'Malware that asks an AI what to do', fig: '1st', figl: 'malware asking an AI for orders, live', s: `PROMPTSTEAL, used by Russian military hackers, asks a language model for its commands in the field. Its cousin PROMPTFLUX asks an AI to rewrite its own code every hour.` },
-    { k: 5, d: 'Jul 2026 · JadePuffer', t: 'The first ransomware run by an AI', fig: '31 s', figl: 'from a failed login to a working fix', s: `Break in, steal passwords, spread, encrypt: every step done by an AI agent, which adapts when something fails, like a human would.` },
-    { k: 6, d: 'Jul 2026 · Taiwan', t: 'A swarm against a government', fig: '8', figl: 'AI agents, coordinated', s: `In four days: 21 government systems mapped, 85 accounts cracked, 2,500 personnel records taken. Almost no human at the controls.` },
-    { k: 7, d: 'Sep 2026 · Palo Alto Networks', t: 'Two weeks of attack in ten hours', fig: '< 10 h', figl: 'instead of about two weeks', s: `A human attacker hands the intrusion to AI agents: over 50 techniques, monitored and re-planned in real time.` },
-    { k: 8, d: 'Jul - Sep 2026 · online shops', t: 'One attacker, a swarm of AI agents', fig: '600,000', figl: 'bank cards stolen', s: `Open-source AI agents find the flaws, break in and plant card skimmers: 119 websites, a US airline among the victims, about $25 of AI per target.` },
-  ],
   legend: ['hit', 'attempt', 'weapon', 'org'],
   vo: `Let's put the attackers on the map, from the simplest to the most advanced. Hong Kong: a fake video call, twenty-five million dollars. Italy: a cloned voice at Ferrari, stopped by one personal question. Remember that one. North Korea: fake employees, hired by 136 US companies. Ukraine: malware that asks an AI what to do next. Then this summer: the first ransomware run end to end by an AI. Eight AI agents against Taiwan's government. Two weeks of attack compressed into ten hours. And a swarm of agents stealing six hundred thousand bank cards. Faster, cheaper, everywhere.`,
-  notes: `One click per case: the camera flies there and the key figure appears.
+  notes: `One click per case: the case appears on the world map, a few words and its key figure next to the pin.
 Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp messages then a cloned-voice call (Bloomberg). North Korea: US Department of Justice, 14 November 2025, schemes affecting 136 US companies. PROMPTSTEAL (also called LameHug): reported by CERT-UA in July 2025, attributed to APT28; Google calls it the first malware seen querying a language model in live operations. PROMPTFLUX: experimental, rewrites itself hourly (Google, November 2025). JadePuffer: Sysdig, reported 4 July 2026; victim not disclosed. Taiwan: July 2026, found by the Israeli firm Dream, reported by CNN on 13 August 2026; attribution not confirmed. Unit 42: 2 September 2026, victim not disclosed, "compressed weeks of methodical intrusion tradecraft into less than 10 hours". Swarm: Gambit Security via BleepingComputer, 22 September 2026, active since July; victims include a Fortune 500 hospitality company and a major US airline.`,
   src: `CNN (2024, 2026) · Bloomberg (2024) · US DOJ (2025) · Google (2025) · Sysdig (2026) · Unit 42 (2026) · Gambit Security, BleepingComputer (2026)` },
 
@@ -3333,13 +3306,6 @@ const PHOTOSET = {
   'Chapter 7 in one sentence':          { bg: PH('phone-side', 'side') },
   'Chapter 8: What Works':              { bg: PH('padlock', 'brand') },
   'Question for the room':              { bg: PH('audience', 'dark') },
-  'Map of incidents': { bubbles: {
-    1: PH('new-mexico'), 2: PH('servers'), 3: PH('germany'),
-  } },
-  'Attackers on the map': { bubbles: {
-    1: PH('hong-kong'), 2: PH('maranello'), 3: PH('pyongyang'), 4: PH('kyiv'), 5: PH('racks'),
-    6: PH('taipei'), 7: PH('san-francisco'), 8: PH('payment'),
-  } },
 };
 
 SCENES.forEach(s => {
