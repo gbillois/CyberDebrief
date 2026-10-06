@@ -10,7 +10,7 @@ The root page links to four debriefs: **NotPetya** (`notpetya.html`),
 **OpenAI × Hugging Face** (`OAHF.html`), and **AI risks / Out of the Sandbox**
 (`ai-threat-landscape-202609.html`), plus **Lead the Shift / Les Assises 2026**
 (`assises-chart.html`, the latest workshop). Alternative formats
-are available under each card. The menu follows the public CyberSecWatch home: white background, indigo headings, green accents and the same interactive dotted globe. Fonts and globe data are local; the layout adapts to mobile. The old `Support_PBR.html` URL redirects permanently to `ai-threat-landscape-202609.html`.
+are available under each card. The menu follows the public CyberSecWatch home: white background, indigo headings, green accents. The case directory uses a full-width grid of four cards, with local fonts and a single column on mobile. The old `Support_PBR.html` URL redirects permanently to `ai-threat-landscape-202609.html`.
 
 ## Deployment
 
