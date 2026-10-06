@@ -1,8 +1,31 @@
-# NotPetyaTimeline
+# CyberDebrief
 
 An interactive, scrubable reconstruction of the 2017 NotPetya cyberattack
-(`index.html`), plus a generalized generator that turns the same concept into a
+(`notpetya.html`), plus a generalized generator that turns the same concept into a
 reusable tool.
+
+## index.html · debrief collection
+
+The root page links to the three debriefs: **NotPetya** (`notpetya.html`),
+**OpenAI × Hugging Face** (`OAHF.html`), and **AI risks / Out of the Sandbox**
+(`Support_PBR.html`, the latest standalone presentation). Alternative formats
+are available under each card. The menu uses the dark Wavestone palette and
+local fonts from `Support_PBR.html`, with a responsive layout and keyboard navigation.
+
+## Deployment
+
+Public URL: <https://debrief.cybersecwatcher.com>.
+Cloudflare Pages project: `cyberdebrief`; production branch: `main`.
+
+`.github/workflows/cloudflare-pages.yml` deploys on every push to `main`,
+and can also be triggered manually. It requires the GitHub repository secret
+`CLOUDFLARE_API_TOKEN` (Cloudflare Pages: Edit for the hosting account), and
+repository variable `CLOUDFLARE_ACCOUNT_ID`.
+
+Run `python3 tools/build-site.py` to prepare `dist/`. The staging script copies
+public HTML pages, assets and design-system files; it excludes development
+tools, Git metadata, local configuration and source presentation documents.
+Preview with `python3 -m http.server --directory dist 8765`.
 
 ## assises.html · Lead the Shift (Les Assises 2026)
 
@@ -343,11 +366,11 @@ can tell which organisation's account a given claim comes from.
 
 ### A note on the JSX runtime
 
-The file pins `@babel/standalone@7.29.0` like `index.html`, but also registers
+The file pins `@babel/standalone@7.29.0` like `notpetya.html`, but also registers
 the `react` preset explicitly with `runtime: 'classic'`. Babel 8 defaults to the
 automatic JSX runtime, which emits bare ESM imports that a plain `<script>`
 cannot execute — so without this the page fails silently if the CDN ever serves
-a newer major. `index.html` still has that latent exposure.
+a newer major. `notpetya.html` still has that latent exposure.
 
 ## CrisisDebrifier.html — timeline generator
 

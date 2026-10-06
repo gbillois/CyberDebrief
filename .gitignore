@@ -18,3 +18,7 @@ video/build/vo/
 !assets/ai/arup-report.mp4
 !assets/ai/robot-fall.mp4
 .preview-*.html
+
+# Public deployment output and local Wrangler state.
+/dist/
+/.wrangler/
