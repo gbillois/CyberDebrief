@@ -34,14 +34,22 @@ MP4 fast-start. Actual duration can differ by one video frame at the cut.
 The six clips total about 2 min 56 s and 52 MiB. Sources, precise cuts,
 checksums and encoding settings are recorded in `clips.json`.
 
-### `Support_PBR.html`: the fake call
+### `ai-threat-landscape-202609.html`: the fake call
 
-Scene 47 (The fake call) plays `scam-call-cspan.mp4` inside the phone on its
-first click. Drop the C-SPAN clip
-["Story of attempted scam using AI"](https://www.c-span.org/clip/public-affairs-event/story-of-attempted-scam-using-ai/5093651)
-here **uncut**: the page plays it from 00:04 to 00:53 by itself. If you trim
-it yourself, remove `clip: [4, 53]` from the scene. Until the file is there,
-the phone shows a dashed slot with a link to the source.
+Scene 47 (The fake call), the third example in the “You” chapter, plays
+`avocat.mp4` in a landscape player on its first click. The file is the **full**
+video `avocat.MP4` supplied by the presenter: Gary Schildhorn’s C-SPAN testimony
+about an attempted scam using his son’s cloned voice. No `clip` time range,
+trimming, speed change or loop is applied. `V` plays/pauses; native controls
+also allow seeking and full screen. `avocat.jpg` is a poster from the video.
+
+Encoding: 1280 × 720, 25 fps, H.264 / YUV420p, CRF 26, preset slow, MP4
+fast-start. The original AAC audio stream is copied without re-encoding.
+Full duration: 214.92 seconds (3 min 34.92 s), unchanged from the original.
+Size: 12,853,417 bytes (12.3 MiB), down from 46,743,741 bytes (44.6 MiB).
+In narration mode, this scene keeps the video audio and waits for the full
+testimony to finish before advancing.
+The original file remains in the presenter’s Documents folder.
 
 Source corrections made during preparation:
 

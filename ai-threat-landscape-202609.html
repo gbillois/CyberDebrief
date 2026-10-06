@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Out of the Sandbox · Support PBR</title>
+<title>Out of the Sandbox · AI Threat Landscape · September 2026</title>
 <meta name="description" content="A 40-minute visual talk: how AI risk changed scale in 2026. Agents, robots, fraud, and the reflexes that work.">
 <style>
 /* Embedded fonts (SIL Open Font License): Poppins, Inter, IBM Plex Mono,
@@ -957,6 +957,12 @@ body.pres{background:var(--ws-ink-50)}
 @media (max-width:760px){.eq-row{grid-template-columns:1fr}.eq-op{justify-self:center}}
 
 /* ── End of the talk ── */
+/* Full-length testimony: readable landscape video beside the takeaways. */
+.call-wide{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:3rem;align-items:center}
+.call-wide .h{font-size:2.8rem}.call-points{display:grid;gap:1rem;margin-top:1.5rem}.call-points .an{display:flex;gap:.9rem;align-items:flex-start}.call-points .mk{flex:none}.call-points h4{font-family:var(--f-display);color:var(--heading);font-size:1.1rem;margin:0 0 .2rem}.call-points p{font-size:.9rem;line-height:1.4;margin:0;color:var(--ws-ink-700)}
+.call-evidence{min-width:0}.call-evidence-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem;font-family:var(--f-mono);font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--heading)}.call-evidence-head strong{border:2px solid var(--coral);color:var(--coral);padding:.3rem .6rem}.call-evidence .media video{display:block;width:100%;height:auto;aspect-ratio:16/9;max-height:none;object-fit:contain;background:#16121f;border-radius:.8rem}.call-credit{font-size:.85rem;line-height:1.6;color:var(--ws-ink-700);margin:.8rem 0 0}
+@media(max-width:760px){.call-wide{grid-template-columns:1fr;gap:1.6rem;flex:none}.call-wide .h{font-size:2.3rem}.call-evidence{grid-row:2}.call-evidence-head{font-size:.7rem}.call-points{gap:.8rem}}
+
 /* call */
 .cl2{flex:1;min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4.5rem;align-items:center;padding-left:3rem}
 .ph2{width:19rem;aspect-ratio:9/18.5;border-radius:2.6rem;background:#16121F;padding:.7rem;box-shadow:0 30px 60px rgba(22,18,31,.35)}
@@ -2189,7 +2195,8 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
   caller: { name: 'Emma', ini: 'E', sub: 'mobile' },
   line: `Mum, I've had an accident. I need money, now.`,
   stamp: 'Cloned voice',
-  video: { type: 'video', src: 'assets/ai/scam-call-cspan.mp4', clip: [4, 53], href: 'https://www.c-span.org/clip/public-affairs-event/story-of-attempted-scam-using-ai/5093651', todo: 'C-SPAN: "Story of attempted scam using AI", 00:04 - 00:53.' },
+  video: { type: 'video', src: 'assets/ai/avocat.mp4', poster: 'assets/ai/avocat.jpg', controls: true },
+  wideVideo: true,
   points: [
     { h: 'A few seconds of voice are enough', t: 'a video on social media, a voicemail greeting', f: 2 },
     { h: 'The number can be faked too', t: 'the name on the screen proves nothing', f: 2 },
@@ -2197,8 +2204,8 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
   ],
   reflex: { t: 'Do not judge the voice. Hang up, and call back on the number you know.', f: 4 },
   vo: `The phone rings. It is your daughter. You pick up: it is her voice, in tears, asking for money, now. But it is not her. A few seconds of her voice on social media were enough to clone it, and the number can be faked too. So do not try to judge the voice: hang up, and call her back on the number you know. Or ask the family question.`,
-  notes: `First click: the call is answered and the C-SPAN testimony plays in the phone (00:04-00:53, about 49 s; V pauses it). Second: the "cloned voice" stamp. CNN, 29 May 2026: a California mother scammed after a call that sounded like her daughter; FBI figure of $893 million lost to AI-related scams in 2025 (voice cloning, AI phishing, romance scams).`,
-  src: `CNN (29 May 2026) · FBI · C-SPAN` },
+  notes: `First click: the full 3 min 34.92 s video provided by the presenter (avocat.MP4) plays, without a cut or a playback time limit. Gary Schildhorn describes an attempted scam using his son’s cloned voice. The daughter’s incoming call is an illustrative scenario. V pauses the video; its controls allow seeking or full screen. Second: the "cloned voice" label. CNN, 29 May 2026: a California mother scammed after a call that sounded like her daughter; FBI figure of $893 million lost to AI-related scams in 2025 (voice cloning, AI phishing, romance scams).`,
+  src: `CNN (29 May 2026) · FBI · Video: Gary Schildhorn, C-SPAN (provided by presenter)` },
 
 { ch: 'c4', type: 'recap', title: 'Chapter 7 in one sentence',
   vo: `So, what does it mean for you? Scams are now cheap, flawless and personal, up to the cloned voice of a loved one. But the defences have not changed.` },
@@ -2434,7 +2441,7 @@ function face(p, cls = '') {
 function media(m) {
   const vid = m.type === 'video';
   let el = '', cls = '';
-  if (vid && m.src) el = `<video src="${m.src}" playsinline preload="metadata"${m.clip ? ` data-clip="${m.clip.join(',')}"` : ''}${m.loop ? ' loop' : ''}${m.poster ? ` poster="${m.poster}"` : ''} onerror="videoFallback(this)"></video>`;
+  if (vid && m.src) el = `<video src="${m.src}" playsinline preload="metadata"${m.controls ? ' controls' : ''}${m.clip ? ` data-clip="${m.clip.join(',')}"` : ''}${m.loop ? ' loop' : ''}${m.poster ? ` poster="${m.poster}"` : ''} onerror="videoFallback(this)"></video>`;
   else if (!vid && m.src) el = `<img src="${m.src}" alt="${m.caption || ''}" onerror="mediaMissing(this)">`;
   if (vid && m.yt && navigator.onLine) {
     el += `<div class="yt" data-yt="${m.yt}" data-start="${Math.floor(m.start || 0)}" data-end="${m.end ? Math.ceil(m.end) : ''}" role="button" aria-label="Play the clip"><img src="https://i.ytimg.com/vi/${m.yt}/hqdefault.jpg" alt="" onerror="mediaMissing(this)"><span class="yt-tag">${m.channel || 'Clip'}</span><span class="yt-play">▶</span></div>`;
@@ -2648,7 +2655,9 @@ const R = {
   stairs: s => `<div class="head">${textBlock(s)}</div><div class="stairs" style="--n:${s.steps.length}">${s.steps.map((st, i) => `<div class="stp${i >= s.steps.length / 2 ? ' dark' : ''}"${fa(st.f ?? i)} style="--i:${i}"><div class="stp-w"><div class="stp-b"><div class="stp-y">${st.y}</div><div class="stp-t">${st.t}</div></div></div><div class="stp-s">${st.s}</div>${st.clip ? `<div class="stp-c"><div class="stp-co"><span>${st.clip.o}</span><span>${st.clip.d}</span></div><div class="stp-ch">${st.clip.h}</div></div>` : ''}</div>`).join('')}</div>${s.axis ? `<div class="st-ax"><span>${s.axis[0]}</span><span>${s.axis[1]}</span></div>` : ''}${srcLine(s)}`,
   // ── End of the talk: one format per idea ─────────────────────────────
   // An incoming call that turns out to be a cloned voice
-  call: s => { const bars = Array.from({ length: 28 }, (_, i) => `<i style="animation-delay:${(i * 83 % 700) / 1000}s"></i>`).join('');
+  call: s => {
+    if (s.wideVideo) return `<div class="call-wide"><div class="txt">${textBlock(s)}<div class="call-points">${s.points.map((p,i)=>`<div class="an"${fa(p.f)}><span class="mk">${i+1}</span><div><h4>${p.h}</h4><p>${p.t}</p></div></div>`).join('')}</div>${s.reflex ? `<div class="take"${fa(s.reflex.f)}>${s.reflex.t}</div>` : ''}</div><div class="call-evidence"><div class="call-evidence-head"><span>Deepfake audio</span><strong${fa(2)}>${s.stamp}</strong></div><div data-f="1" data-play-at="1">${media(s.video)}</div><p class="call-credit"${fa(1)}>Gary Schildhorn · C-SPAN<br>Full testimony · 3 min 35 s · V: play / pause</p></div></div>${srcLine(s)}`;
+    const bars = Array.from({ length: 28 }, (_, i) => `<i style="animation-delay:${(i * 83 % 700) / 1000}s"></i>`).join('');
     return `<div class="phone-l cl3"><div class="txt">${textBlock(s)}${s.reflex ? `<div class="take"${fa(s.reflex.f)}>${s.reflex.t}</div>` : ''}</div>
       <div class="ph2"><div class="ph2-scr">
         <div class="ph2-top">${s.caller.sub}</div><div class="ph2-av">${s.caller.ini}</div><div class="ph2-name">${s.caller.name}</div>
@@ -3533,7 +3542,7 @@ function skIntro(then) {
 // click on Narration and reused for every scene; if a browser still refuses,
 // the next click or key resumes. Without the recordings, the browser's own
 // English voice reads instead, and failing that the steps turn in silence.
-const skN = { on: false, paused: false, audio: null, el: null, timers: [], holds: [], resume: null, ask: null };
+const skN = { on: false, paused: false, video: null, audio: null, el: null, timers: [], holds: [], resume: null, ask: null };
 // a twentieth of a second of silence, to unlock the audio element in the gesture
 function skSilence() {
   const n = 400, b = new ArrayBuffer(44 + n * 2), v = new DataView(b), w = (o, t) => [...t].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
@@ -3554,13 +3563,13 @@ function skNarrAsk(fn) {
 }
 function skNarrAskHide() { if (skN.ask) { skN.ask(); skN.ask = null; } }
 const skHold = (fn, ms) => { skN.resume = fn; skN.holds.push(setTimeout(fn, ms)); };
-const skNarrClear = () => { skN.timers.forEach(t => { clearTimeout(t); clearInterval(t); }); skN.holds.forEach(clearTimeout); skN.timers = []; skN.holds = []; if (skN.audio) { skN.audio.onended = skN.audio.onerror = null; skN.audio.pause(); skN.audio = null; } if (window.speechSynthesis) speechSynthesis.cancel(); skN.resume = null; skNarrAskHide(); };
+const skNarrClear = () => { if (skN.video) { skN.video.onended = null; skN.video.pause(); skN.video = null; } skN.timers.forEach(t => { clearTimeout(t); clearInterval(t); }); skN.holds.forEach(clearTimeout); skN.timers = []; skN.holds = []; if (skN.audio) { skN.audio.onended = skN.audio.onerror = null; skN.audio.pause(); skN.audio = null; } if (window.speechSynthesis) speechSynthesis.cancel(); skN.resume = null; skNarrAskHide(); };
 function skNarrUI() {
   document.body.classList.toggle('sk-narr', skN.on); document.body.classList.toggle('sk-narr-paused', skN.on && skN.paused);
   document.querySelectorAll('[data-sk="narr"]').forEach(b => { b.setAttribute('aria-pressed', skN.on); b.querySelector('em').textContent = skN.on ? 'Stop the narration' : 'Narration'; });
   let np = document.getElementById('sk-np');
   if (!np) { np = document.createElement('div'); np.id = 'sk-np'; np.innerHTML = '<i></i><span></span><button data-sk="pause"></button><button data-sk="stop">Stop</button>'; document.body.appendChild(np); }
-  np.querySelector('span').textContent = skN.paused ? 'Narration paused' : 'Narration · synthetic voices, dramatised';
+  np.querySelector('span').textContent = skN.paused ? 'Narration paused' : SCENES[idx]?.wideVideo ? 'Full testimony · original audio' : 'Narration · synthetic voices, dramatised';
   np.querySelector('[data-sk="pause"]').textContent = skN.paused ? 'Resume (K)' : 'Pause (K)';
 }
 function skNarrStop() { skN.on = skN.paused = false; skNarrClear(); skNarrUI(); if (idx === 0) skLoopStart(); }
@@ -3573,7 +3582,7 @@ function skNarrStart(to) {
 const skNarrGo = () => { if (skN.on) { skNarrStop(); return; } skUnlock(); if (idx === 0) skIntro(() => skNarrStart(1)); else skNarrStart(); };
 function skNarrPause() {
   if (!skN.on) return; skN.paused = !skN.paused; skNarrUI();
-  if (skN.paused) { skN.holds.forEach(clearTimeout); skN.holds = []; if (skN.audio) skN.audio.pause(); if (window.speechSynthesis) speechSynthesis.pause(); }
+  if (skN.paused) { skN.holds.forEach(clearTimeout); skN.holds = []; if (skN.audio) skN.audio.pause(); if (skN.video) skN.video.pause(); if (window.speechSynthesis) speechSynthesis.pause(); }
   else if (skN.resume) skN.resume();
 }
 // when step k (1..max) comes, in seconds: on a sentence start if there are
@@ -3586,11 +3595,21 @@ function skNarrTimes(max, d, starts) {
 function skNarrScene() {
   skNarrClear(); if (!skN.on || !cur) return;
   const el = cur, s = SCENES[idx], n = typeof NARR !== 'undefined' ? NARR[s.title] : null, max = el._max;
-  el.querySelectorAll('video').forEach(v => { v.muted = true; });
+  el.querySelectorAll('video').forEach(v => { v.muted = !s.wideVideo; });
   const alive = () => skN.on && cur === el;
   const step = k => { if (alive() && frag < k && k <= el._max) { frag = k - 1; next(); } };
   const move = () => { if (!alive() || skN.paused) return; if (frag < el._max) next(); if (idx < SCENES.length - 1) go(idx + 1, 0); else skNarrStop(); };
   const after = () => { skN.resume = after; if (!skN.paused && alive()) skHold(move, 900); };
+  // The full testimony replaces narration on this scene: keep its audio
+  // audible and wait for the end before advancing the presentation.
+  if (s.wideVideo) {
+    const v = el.querySelector('video'); skN.video = v;
+    step(1);
+    const play = () => { if (alive() && !skN.paused) v.play().then(skNarrAskHide).catch(() => skNarrAsk(play)); };
+    skN.resume = play;
+    v.onended = () => { if (!alive()) return; step(max); skN.resume = after; skHold(after, 6000); };
+    play(); return;
+  }
   if (!say(s)) {
     // a silent screen: walk its steps, then move on
     let k = frag; const tick = () => { if (!alive() || skN.paused) return; if (k < max) { step(++k); skHold(tick, 1800); } else after(); };
@@ -3755,6 +3774,7 @@ else {
   document.addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     const k = e.key;
+    if (e.target.closest?.('video[controls]') && ['ArrowRight','ArrowLeft','ArrowUp','ArrowDown','Home','End',' ','Enter'].includes(k)) return;
     if (k === 'Escape') { closeAll(); $('#notes').classList.remove('open'); document.body.classList.remove('black'); return; }
     if ($('#ov').classList.contains('open') || $('#help').classList.contains('open')) { if (k === 'o' || k === 'O' || k === '?') closeAll(); return; }
     if (['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Enter'].includes(k)) { e.preventDefault(); document.body.classList.remove('black'); next(); }
@@ -3772,7 +3792,7 @@ else {
   });
   stage.addEventListener('click', e => {
     const yt = e.target.closest('.yt'); if (yt) { playYT(yt); return; }
-    if (e.target.closest('a,button,video,iframe,.srcs')) { const v = e.target.closest('video'); if (v) v.paused ? v.play() : v.pause(); return; }
+    if (e.target.closest('a,button,video,iframe,.srcs')) { const v = e.target.closest('video'); if (v && !v.controls) v.paused ? v.play() : v.pause(); return; }
     if (window.getSelection().toString()) return;
     document.body.classList.remove('black');
     e.clientX < window.innerWidth * .18 ? prev() : next();
@@ -3780,7 +3800,7 @@ else {
   $('#black').addEventListener('click', () => document.body.classList.remove('black'));
   $('#help').addEventListener('click', closeAll);
   let tx = null;
-  stage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchstart', e => { tx = e.target.closest('video[controls]') ? null : e.touches[0].clientX; }, { passive: true });
   stage.addEventListener('touchend', e => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); } tx = null; });
   let idleT; const wake = () => { document.body.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => document.body.classList.add('idle'), 2500); };
   document.addEventListener('mousemove', wake); wake();
