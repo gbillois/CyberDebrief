@@ -25,7 +25,7 @@ Scene numbers below refer to **`ai-talk.html`**, not the documentary variants.
 | 19 · Black Hat (optional) | `blackhat-briefing.mp4` | 00:28.50–00:57.00 | 28.50 s | Eric Wallace describes the autonomous attack and OpenAI's responsibility. [Official Black Hat recording](https://www.youtube.com/watch?v=87DyyMV0kCY&t=28) |
 | 31 · Press conference | `albanese-presser.mp4` | 01:18.35–01:47.80 | 29.45 s | Albanese calls the incident unacceptable and criticises the notification delay. [ABC News full press conference](https://www.youtube.com/watch?v=fbdIerD4lT8&t=78) |
 | 33 · Security Council (optional) | `un-security-council.mp4` | 19:04.35–19:41.05 | 36.70 s | Dario Amodei explains global risks and ends on the warning about humanity. [Sky News](https://www.youtube.com/watch?v=eBEYrOk42Rg&t=1144) |
-| 55 · Robot games | `robot-games.mp4` | 00:28.40–00:53.20 | 24.80 s | Scale of the games, boxing, jumping, dancing and progress; ends before the failures. [CTV News](https://www.youtube.com/watch?v=BWE-vXYt0HA&t=28) |
+| 55 · Robot games (in `ai-threat-landscape-202609.html`: played to 00:17.95 only, before the analyst) | `robot-games.mp4` | 00:28.40–00:53.20 | 24.80 s | Scale of the games, boxing, jumping, dancing and progress; ends before the failures. [CTV News](https://www.youtube.com/watch?v=BWE-vXYt0HA&t=28) |
 | 57 · The crash | `robot-crash.mp4` | 00:00.00–00:24.80 | 24.80 s | Sprint, collision and fire, before the studio banter. [KHOU 11](https://www.youtube.com/watch?v=zratOmQozBs) |
 | 68 · Arup (optional) | `arup-report.mp4` | 01:03.70–01:35.20 | 31.50 s | Joe Tidy explains the Arup call and the $25 million fraud. News illustrations, not footage of the actual fraudulent call. [BBC World Service](https://www.youtube.com/watch?v=lH608DfrAxU&t=63) |
 
@@ -39,8 +39,9 @@ checksums and encoding settings are recorded in `clips.json`.
 Scene 47 (The fake call), the third example in the “You” chapter, plays
 `avocat.mp4` in a landscape player on its first click. The file is the **full**
 video `avocat.MP4` supplied by the presenter: Gary Schildhorn’s C-SPAN testimony
-about an attempted scam using his son’s cloned voice. No `clip` time range,
-trimming, speed change or loop is applied. `V` plays/pauses; native controls
+about an attempted scam using his son’s cloned voice. Since October 2026 it plays with `clip: [0, 53.4]`: it stops at 00:53, on
+"I'm in action mode"; the next click shows the end of the story on screen.
+The file itself is not trimmed. `V` plays/pauses; native controls
 also allow seeking and full screen. `avocat.jpg` is a poster from the video.
 
 Encoding: 1280 × 720, 25 fps, H.264 / YUV420p, CRF 26, preset slow, MP4

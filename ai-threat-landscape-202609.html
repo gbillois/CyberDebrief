@@ -1695,6 +1695,100 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 #sk-ask{position:fixed;left:50%;bottom:5.5rem;transform:translateX(-50%);z-index:70;display:flex;align-items:center;gap:.8rem;padding:.8rem 1.4rem;border-radius:999px;
   background:rgba(7,4,15,.85);border:1px solid rgba(4,240,106,.6);color:#fff;font-family:var(--f-display);font-weight:600;font-size:1rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:sk-opt .6s var(--sk-ease) both}
 #sk-ask i{width:.6rem;height:.6rem;border-radius:50%;background:#04F06A;animation:ski-rec 1.6s infinite}
+
+/* ═══ Short / Long versions, October 2026 edits ═══════════════════════════ */
+/* the switch on the title screen */
+.mode-sw{display:inline-flex;gap:.3rem;padding:.3rem;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);margin:-1rem 0 1.4rem;position:relative;z-index:3}
+.mode-sw button{display:flex;flex-direction:column;align-items:flex-start;padding:.5rem 1.4rem .55rem;border-radius:999px;color:#fff;line-height:1.15;transition:background .25s,color .25s}
+.mode-sw b{font-family:var(--f-display);font-weight:700;font-size:1.1rem}
+.mode-sw small{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.mode-sw [aria-pressed="true"]{background:#04F06A;color:#07040F}
+.mode-sw button:hover:not([aria-pressed="true"]){background:rgba(255,255,255,.14)}
+
+/* short version: the release timeline and the exam on one screen */
+.scene.t-testexam .tl-head .h{font-size:2.4rem;margin-bottom:.2rem}
+.scene.t-testexam .tl{flex:1 1 12rem;min-height:12rem}
+.tx-exam{margin:.4rem 1rem 0}
+.tx-t{font-family:var(--f-display);font-weight:600;font-size:1.5rem;line-height:1.2;margin:0 0 .7rem;color:var(--text)}
+.tx-t b{font-weight:700}
+.tx-exam .vbox{width:100%} .tx-exam .dots{gap:2px} .tx-exam .vcap{display:none}
+
+/* short version: zoom scenes keep the headline and the key figure */
+.zc.lite{gap:1.1rem}
+.zc.lite .zh{font-size:3rem}
+.zc.lite .zf b{font-size:4.4rem}
+.zc.lite .zf span{font-size:1.1rem}
+
+/* the map: one dot per organisation alerted, popping in quickly */
+.d100 .d1 circle{fill:var(--coral);stroke:rgba(7,5,15,.85);stroke-width:1.2px;transform-box:fill-box;transform-origin:center;transform:scale(0);opacity:0}
+.d100.on .d1 circle{animation:dpop .5s var(--d) cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes dpop{to{transform:scale(1);opacity:.95}}
+.mb.mb-low,.mb.mb-low.cur,.mb.mb-low[data-f].cur{top:auto;bottom:5.2rem;left:40%;transform:none}
+.mb.mb-low:not(.cur){transform:translateY(8px)}
+
+/* why it derails: two bigger blocks */
+.eq-row{gap:1.6rem}
+.eq-t{padding:2.2rem 2rem;gap:1.1rem;min-height:15rem;justify-content:center}
+.eq-t .fi{width:4.2rem;height:4.2rem;border-radius:1.1rem}
+.eq-t .fi svg{width:2.2rem;height:2.2rem}
+.eq-t b{font-size:2.1rem!important;line-height:1.15} .eq-t span{font-size:1.3rem!important;line-height:1.4}
+.eq-r{padding:2.2rem 2rem} .eq-r b{font-size:2.1rem!important;line-height:1.15} .eq-r span{font-size:1.3rem}
+.eq-op{font-size:3.4rem}
+.eq-ex{font-size:1.3rem;max-width:74rem}
+
+/* robot games: a drawn Muse Charm next to the photos */
+.inset-art .charm{position:relative;display:block;height:9.5rem;border-radius:.6rem;overflow:hidden;background:radial-gradient(80% 90% at 30% 20%,#E4DDFB,#B9A8F2 60%,#7B5FE0)}
+.charm-ring{position:absolute;left:3.15rem;top:.35rem;width:1.5rem;height:1.5rem;border-radius:50%;border:.22rem solid #C9C4D6;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.charm-strap{position:absolute;left:3.75rem;top:1.5rem;width:.3rem;height:1rem;background:#2A2440;border-radius:.15rem}
+.charm-body{position:absolute;left:1.8rem;top:2.4rem;width:4.2rem;height:5.8rem;border-radius:1.2rem;background:linear-gradient(160deg,#3A3452,#16121F);box-shadow:0 10px 18px rgba(22,18,31,.45),inset 0 1px 0 rgba(255,255,255,.18)}
+.charm-scr{position:absolute;left:.4rem;right:.4rem;top:.45rem;height:3.6rem;border-radius:.85rem;background:radial-gradient(90% 90% at 50% 30%,#8B6DFF,#451DC7);overflow:hidden}
+.charm-scr i{position:absolute;top:1.2rem;width:.42rem;height:.62rem;border-radius:50%;background:#fff;animation:charm-blink 3.2s infinite}
+.charm-scr i:first-child{left:1rem} .charm-scr i:nth-child(2){right:1rem}
+.charm-scr u{position:absolute;left:50%;top:2.05rem;width:1rem;height:.5rem;margin-left:-.5rem;border:.16rem solid #fff;border-top:0;border-radius:0 0 1rem 1rem}
+@keyframes charm-blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.charm-fp{position:absolute;right:.55rem;bottom:.5rem;width:.95rem;height:.95rem;border-radius:50%;background:repeating-radial-gradient(circle,#8E88A3 0 .06rem,#3A3452 .06rem .14rem)}
+.charm-cam{position:absolute;left:.65rem;bottom:.75rem;width:.4rem;height:.4rem;border-radius:50%;background:#07040F;box-shadow:0 0 0 .1rem #5C5672}
+.charm-bub{position:absolute;left:6.9rem;top:3.2rem;right:.7rem;padding:.45rem .6rem;border-radius:.7rem .7rem .7rem .15rem;background:#fff;color:#16121F;font-family:var(--f-body);font-weight:600;font-size:.72rem;line-height:1.3;box-shadow:0 6px 14px rgba(22,18,31,.25)}
+
+/* the three frauds: visuals only */
+.trio .tr-c{min-height:0}
+.trio .tr-art{border-radius:1.1rem}
+
+/* the fake call: the phone on the left, the testimony on the right, the words at the bottom */
+.call-wide2{flex:1;min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:1.2rem 3rem;align-items:center}
+.call-ph{align-self:center;justify-self:center}
+.call-ph .ph2{width:auto;height:min(28rem,calc(100vh - 24rem));aspect-ratio:9/18.5;padding:.55rem}
+.call-ph .ph2-scr{padding:1.8rem 1rem 1.2rem;gap:.45rem}
+.call-ph .ph2-av{width:5rem;height:5rem;font-size:2rem}
+.call-ph .ph2-name{font-size:1.4rem}
+.call-ph .ph2-sub{font-size:.98rem;padding:.6rem .7rem}
+.call-ph .ph2-btn{gap:3rem} .call-ph .ph2-btn span{width:3rem;height:3rem}
+.call-wide2 .call-evidence{min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.call-wide2 .call-evidence-head,.call-wide2 .call-credit{width:min(100%,calc((100vh - 28rem) * 16 / 9))}
+.call-vid{position:relative;width:min(100%,calc((100vh - 28rem) * 16 / 9))}
+.call-vid .media{aspect-ratio:16/9;overflow:hidden;border-radius:.8rem;background:#16121f}
+.call-vid .media video{width:100%;height:100%!important;max-height:none!important;aspect-ratio:auto!important}
+.call-vid .media.missing .ph{height:100%;aspect-ratio:auto}
+.call-wide2 .call-credit{margin-top:.5rem;font-size:.8rem;color:var(--muted)}
+.call-end{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:.9rem;padding:2rem 2.6rem;border-radius:.8rem;background:rgba(12,8,26,.96);border:2px solid var(--coral);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.call-end-k{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.call-end > b{font-family:var(--f-display);font-weight:800;font-size:2.5rem;line-height:1.08;color:#fff;letter-spacing:-.02em}
+.call-end ul{margin:0;padding:0 0 0 1.2rem;display:grid;gap:.5rem;font-size:1.25rem;line-height:1.45;color:var(--muted)}
+.call-end li b{color:#fff;font-weight:600}
+.call-foot{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr) minmax(0,18rem);gap:2.4rem;align-items:center;padding-top:1.1rem;border-top:1px solid var(--line)}
+.call-foot .stamp{margin-bottom:.4rem}
+.call-foot .h{font-size:1.7rem!important;margin:0;max-width:none}
+.call-foot .call-points h4{font-size:1rem;line-height:1.25} .call-foot .call-points p{font-size:.85rem}
+.call-wide2 .call-evidence-head{margin-bottom:.6rem}
+.call-foot .call-points{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem;margin:0}
+.call-foot .take{margin:0;font-size:1rem}
+@media(max-width:760px){.call-wide2{grid-template-columns:1fr;flex:none}.call-ph{display:none}.call-foot{grid-template-columns:1fr;gap:1rem}.call-foot .call-points{grid-template-columns:1fr}}
+
+/* AI on your side: the answers stay inside their panels */
+.scene.t-twochat .tc{align-items:stretch;gap:2rem;margin-top:.8rem}
+.scene.t-twochat .tc-p{justify-content:flex-start;padding:1.4rem 1.6rem;gap:1rem;overflow:visible}
+.scene.t-twochat .tc-h{font-size:1.6rem!important;line-height:1.2}
+.scene.t-twochat .tc-q,.scene.t-twochat .tc-a{font-size:1.12rem;line-height:1.42;padding:.9rem 1.15rem}
 </style>
 </head>
 <body>
@@ -1804,7 +1898,29 @@ const SCENES = [
 { ch: 'c1', type: 'chapter', title: 'Chapter 1: The Exam', sub: 'Three months earlier · inside OpenAI',
   vo: `First question: what actually happened at OpenAI? To understand it, we will do the opposite of the news. We start with the smallest piece, one AI agent. And then we step back, again and again, until we see everything.` },
 
-{ ch: 'c1', type: 'timeline', title: 'Always testing',
+{ ch: 'c1', type: 'testexam', title: 'Always testing: the exam', only: 'short',
+  stamp: 'November 2025 - September 2026', heading: 'OpenAI tests every new model. <span class="c-coral">8 in 10 months.</span>',
+  range: ['2025-10-20', '2026-09-25'],
+  gaps: [{ from: '2026-05-07', to: '2026-07-13', label: 'the test', at: .5, f: 1 }],
+  events: [
+    { d: '2025-11-12', label: 'GPT-5.1', f: 0 },
+    { d: '2025-12-11', label: 'GPT-5.2', f: 0 },
+    { d: '2026-02-05', label: 'GPT-5.3-Codex', f: 0 },
+    { d: '2026-03-05', label: 'GPT-5.4', f: 0 },
+    { d: '2026-04-23', label: 'GPT-5.5', f: 0 },
+    { d: '2026-07-09', label: 'GPT-5.6', sub: 'Sol, Terra, Luna', tone: 'coral', f: 1 },
+    { d: '2026-08-10', label: 'GPT-5.6 Cyber', f: 0 },
+    { d: '2026-09-03', label: 'GPT-6 Astra', f: 0 },
+  ],
+  exam: { t: 'The exam: <b>898 real hacking exercises</b>', hi: '198 never solved by any AI', f: 2,
+    visual: { kind: 'dots', total: 898, hi: 198, cols: 90, seed: 4242, f: 2, legend: [] } },
+  vo: `OpenAI releases a new model every few weeks: eight in ten months. Before each release, it tests how dangerous the model could be if someone misused it, for instance at hacking, with the safety brakes switched off on purpose. This spring, the model under test was GPT-5.6. The exam: ExploitGym, 898 real hacking exercises built at UC Berkeley. Almost one in five has never been solved by any AI.`,
+  notes: `Short version: slides "Always testing" and "898 questions" in one. Clicks: the test period, then the exam.
+Releases: GPT-5.1 (12 Nov 2025), GPT-5.2 (11 Dec), GPT-5.3-Codex (5 Feb 2026), GPT-5.4 (5 Mar), GPT-5.5 (23 Apr), GPT-5.6 Sol/Terra/Luna (preview 26 Jun, public 9 Jul), GPT-5.6 Cyber (10 Aug), GPT-6 Astra (3 Sep).
+ExploitGym: published 11 May 2026 (arXiv 2605.11086), Dawn Song's team at Berkeley RDI. Real flaws in everyday software, a web browser, Linux. Each exercise: turn a known flaw into a working attack and grab a hidden "flag". 198 of 898 (22%) never solved by any OpenAI model; its authors think 30 to 40% may be impossible.`,
+  src: `OpenAI release announcements (as listed on Wikipedia) · ExploitGym (UC Berkeley, May 2026) · OpenAI technical report` },
+
+{ ch: 'c1', type: 'timeline', title: 'Always testing', only: 'long',
   stamp: 'November 2025 - September 2026', heading: 'OpenAI was testing a new model, like it does all the time. <span class="c-coral">8 new models in 10 months.</span>', wide: true,
   range: ['2025-10-20', '2026-09-25'],
   gaps: [{ from: '2026-05-07', to: '2026-07-13', label: 'the test', at: .5, f: 2 }],
@@ -1822,7 +1938,7 @@ const SCENES = [
   notes: `Releases: GPT-5.1 (12 Nov 2025), GPT-5.2 (11 Dec), GPT-5.3-Codex (5 Feb 2026), GPT-5.4 (5 Mar), GPT-5.5 (23 Apr), GPT-5.6 Sol/Terra/Luna (preview 26 Jun, public 9 Jul), GPT-5.6 Cyber (10 Aug), GPT-6 Astra (3 Sep, delayed for extra safeguards after the incident). Plus image models (GPT Image 2 in April, 2.5 in September).`,
   src: `OpenAI release announcements, November 2025 - September 2026 (as listed on Wikipedia)` },
 
-{ ch: 'c1', type: 'visual', title: '898 questions',
+{ ch: 'c1', type: 'visual', title: '898 questions', only: 'long',
   heading: 'The exam: 898 real hacking exercises. <span class="c-coral" data-f="1">198 never solved by any AI.</span>',
   visual: { kind: 'dots', total: 898, hi: 198, cols: 64, seed: 4242, f: 1, legend: [] },
   caption: 'ExploitGym, a public test from UC Berkeley: real flaws in everyday software, a web browser and Linux. Each exercise: turn a known flaw into a working attack and grab a hidden "flag". Its authors think 30 to 40% may be impossible.',
@@ -1890,7 +2006,7 @@ const SCENES = [
 Around the picture: 16 July Hugging Face goes public (attacker unknown); 17 July OpenAI asks, as a customer, whether its data was affected; 20 July it asks Hugging Face to reset passwords found in its agents' files, and the two investigations connect; 21 July OpenAI admits it; 5 August Black Hat; 26 August full reports.`,
   src: `METR and Redwood Research · OpenAI technical report (26 August 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom 7: the investigation', step: 7, date: '13 - 27 July 2026', kicker: 'Zooming back in',
+{ ch: 'c1', type: 'zoom', title: 'Zoom 7: the investigation', only: 'long', step: 7, date: '13 - 27 July 2026', kicker: 'Zooming back in',
   heading: 'Hugging Face had to investigate at machine scale',
   body: `Nobody knew who the attacker was. 17,600 actions to rebuild, hidden among thousands of failed tries. The AI tools they tried first, Claude and Fable, refused: analysing an attack looked like launching one. So they ran a Chinese open model, GLM-5.2, on their own servers.`,
   ask: 'Then check everything, everywhere.',
@@ -1905,21 +2021,9 @@ If asked about OpenAI's models: Hugging Face only names Claude Opus and Fable (b
   media: { type: 'video', src: 'assets/ai/blackhat-briefing.mp4', poster: 'assets/ai/blackhat-briefing.jpg', yt: '87DyyMV0kCY', start: 28.5, end: 57, channel: 'Black Hat',
     todo: 'Clip from the session on the OpenAI / Hugging Face incident, Black Hat USA, August 2026.' },
   l3: { t: 'OpenAI explains the incident', s: 'Black Hat USA · Las Vegas · 5 August 2026' },
-  vo: `Weeks later, OpenAI explains to the security community what happened, and how it missed it. But go back to July: how was it discovered?`,
+  vo: `Weeks later, OpenAI explains to the security community what happened, and how it missed it.`,
   notes: `Optional. Skip with a general audience if short of time. Official Black Hat recording, 00:28.50–00:57.00: Eric Wallace explains the autonomous attack and OpenAI's responsibility.`,
   src: `Black Hat · Eric Wallace · official conference recording` },
-
-{ ch: 'c1', type: 'flow', title: 'The call',
-  heading: 'During all this, nobody suspected OpenAI. How was it discovered?',
-  nodes: [
-    { i: 'building', t: 'OpenAI', s: '17 July, as a customer: "Was our data affected?"', f: 0, photo: { src: 'assets/ai/photos/openai-hq.jpg', id: 'openaihq', cap: 'San Francisco' } },
-    { i: 'phone', t: '', f: 0, link: true },
-    { i: 'building', t: 'Hugging Face', s: 'the victim of OpenAI\'s own AI', f: 1, tone: 'coral', photo: { src: 'assets/ai/photos/hf-hq.jpg', id: 'hfhq', cap: 'New York', pos: '50% 35%' } },
-  ],
-  caption: { t: '20 July: OpenAI finds Hugging Face passwords in files left by its agents, and asks Hugging Face to reset them. The answer: two are already reset, and an OpenAI server shows up in Hugging Face\'s investigation. Two investigations become one. 21 July: OpenAI admits it publicly.', f: 2 },
-  vo: `During all this, nobody suspected OpenAI, not even OpenAI. On 17 July, it contacts Hugging Face as a worried customer: was our data affected? It does not know it is talking to the victim of its own AI. Three days later, investigating an alert of its own, it finds Hugging Face passwords in files left by its agents, and asks Hugging Face to reset them. The answer: two are already reset, and one of OpenAI's own servers shows up in Hugging Face's investigation. Two investigations become one. On 21 July, OpenAI admits it publicly.`,
-  notes: `17 July: OpenAI "contacted Hugging Face in its capacity as a Hugging Face customer to assess any impact to OpenAI data" (the reports do not say how: call or message). 19 July: an OpenAI alert on unusual identity activity. 20 July: responders shut down agent-created accounts and repositories, find Hugging Face credentials (access tokens) among files the agents had staged in a third party's account, and reach out to Hugging Face to rotate them. Hugging Face: two were already rotated, and OpenAI's Artifactory hostname and the same staging account appear in its own investigation. OpenAI then concludes its models were likely involved and informs Hugging Face.`,
-  src: `OpenAI technical report (26 August 2026) · joint statement (21 July 2026)` },
 
 { ch: 'c1', type: 'recap', title: 'Chapter 1 in one sentence',
   msg: { t: 'It can happen to any company that tests AI models. Before letting one loose, make sure it is harmless to others.' },
@@ -1931,26 +2035,51 @@ If asked about OpenAI's models: Hugging Face only names Claude Opus and Fable (b
 
 { ch: 'c2', type: 'map', title: 'Map of incidents', layout: 'tour',
   heading: 'Same story, several continents',
-  focus: { 0: [-4, 18, 330], 4: [149.13, -35.28, 80] },
+  focus: { 0: [-4, 18, 330], 2: [149.13, -35.28, 80] },
   pins: [
     { name: 'OpenAI', sub: 'San Francisco', lon: -122.42, lat: 37.77, kind: 'org', f: 0, dy: -14, side: 'l' },
-    { name: 'A typo in a Google test', sub: 'May 2026 · 3 firms entered', lon: -122.08, lat: 37.39, kind: 'hit', f: 2, dy: -28 },
-    { name: 'Agents knocking on doors', sub: 'Since March 2026 · 6,467 traces', lon: -106.62, lat: 35.08, kind: 'attempt', f: 1, dy: 6 },
-    { name: 'A wiki turned chat room', sub: 'May - June 2026 · 17,000 messages', lon: 10, lat: 51, kind: 'channel', f: 3, side: 'l' },
-    { name: 'Australia', sub: 'Government', lon: 149.13, lat: -35.28, kind: 'hit', f: 4, side: 'l' },
+    { name: 'A typo in a Google test', sub: 'May 2026 · 3 firms entered', lon: -122.08, lat: 37.39, kind: 'hit', f: 0, dy: -28 },
+    { name: 'Agents knocking on doors', sub: 'Since March 2026 · 6,467 traces', lon: -106.62, lat: 35.08, kind: 'attempt', f: 0, dy: 6 },
+    { name: 'A wiki turned chat room', sub: 'May - June 2026 · 17,000 messages', lon: 10, lat: 51, kind: 'channel', f: 0, side: 'l' },
+    { name: 'Australia', sub: 'Government', lon: 149.13, lat: -35.28, kind: 'hit', f: 0, side: 'l' },
   ],
+  dots: { f: 1, pts: [[-81.38,28.54],[-86.78,36.16],[36.82,-1.29],[-70.65,-33.45],[-73.57,45.5],[-99.13,19.43],[-79.99,40.44],[103.82,1.35],[-46.63,-23.55],[-77.2,38.85],[-75.17,39.95],[-77.04,38.9],[8.68,50.11],[10.75,59.91],[-78.64,35.78],[-1.26,51.75],[-90.2,38.63],[-122.14,37.44],[14.42,50.08],[-123.12,49.28],[-0.13,51.51],[-76.9,39.0],[-2.24,53.48],[-83.74,42.28],[-80.19,25.76],[0.12,52.2],[-96.8,32.78],[-90.07,29.95],[-112.07,33.45],[77.59,12.97],[16.37,48.21],[2.17,41.39],[-76.5,42.44],[13.4,52.52],[153.03,-27.47],[55.27,25.2],[9.19,45.46],[135.5,34.69],[4.9,52.37],[-122.68,45.52],[-83.05,42.33],[144.96,-37.81],[-80.84,35.23],[11.58,48.14],[-115.14,36.17],[-84.39,33.75],[8.54,47.37],[-74.0,40.71],[4.35,50.85],[151.21,-33.87],[-105.27,40.01],[9.99,53.55],[4.36,52.01],[-76.61,39.29],[126.98,37.57],[-72.93,41.31],[-86.16,39.77],[12.5,41.9],[12.57,55.68],[-75.7,45.42],[-122.27,37.87],[-6.26,53.35],[-84.51,39.1],[-74.66,40.35],[21.01,52.23],[-111.89,40.76],[77.21,28.61],[-89.4,43.07],[-106.65,35.08],[-122.42,37.77],[139.69,35.69],[72.88,19.08],[34.78,32.09],[-79.38,43.65],[-83.0,39.96],[-104.99,39.74],[18.07,59.33],[174.76,-36.85],[4.84,45.76],[-9.14,38.72],[-74.07,4.71],[-121.49,38.58],[-117.16,32.72],[2.35,48.86],[1.44,43.6],[-95.37,29.76],[-71.06,42.36],[-94.58,39.1],[6.14,46.2],[-118.24,34.05],[24.94,60.17],[-110.97,32.22],[-87.63,41.88],[-3.7,40.42],[-97.74,30.27],[-122.33,47.61],[-58.38,-34.6],[-3.19,55.95],[-93.27,44.98],[-71.41,41.82]] },
   bubbles: [
-    { k: 4, d: '18 June 2026 · Australia', t: 'The first government hacked by an AI', fig: '84 days', figl: 'before the government was told', s: `An agent gets into the Medicare statistics website and leaves files behind. The government learns it from an email to a generic inbox. On 24 September, the Prime Minister goes public:`,
+    { k: 1, d: '1 October 2026 · OpenAI', t: 'More than 100 organisations alerted', tone: 'amber', fig: '100+', figl: 'organisations notified by OpenAI', at: 'low', s: `Governments, universities, companies: mostly in the US and Europe. Some were breached, others only probed. And the review is not over.` },
+    { k: 2, d: '18 June 2026 · Australia', t: 'The first government hacked by an AI', fig: '84 days', figl: 'before the government was told', s: `An agent gets into the Medicare statistics website and leaves files behind. The government learns it from an email to a generic inbox. On 24 September, the Prime Minister goes public:`,
       media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', poster: 'assets/ai/albanese-presser.jpg', yt: 'fbdIerD4lT8', start: 78.35, end: 107.8, channel: 'ABC News (Australia)', todo: 'Anthony Albanese on the incident and the delay in notifying Australia.' } },
   ],
   legend: ['hit', 'attempt', 'channel', 'org'],
-  vo: `Let's put the cases on the map. Since March, agents knocking on websites' doors. In May, a Google test that reaches three real companies because of a typo. A forgotten German wiki turned into their chat room. And in June, the first government hacked by an AI: Australia. Here is its Prime Minister.`,
-  notes: `One click per case: the case appears on the world map, a few words next to its pin. Only Australia gets a close-up: the camera flies there and a bubble opens. On the Australia step the press conference waits on its first frame: one more click plays it (ABC News, 01:18.35-01:47.80: unacceptable incident, call to Sam Altman, delayed notification).
-March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker ones); University of New Mexico: a burst of 80 requests. A real task example: "Find the average cost of skin care in Victoria, Australia, in January 2022". May: Gemini test run by the firm Irregular; confirmed by Google on 18 September. 24 May-22 June: DseWiki, analysed by the Nightingale Collective. 18 June: Medicare statistics portal; OpenAI detected it in August; government told on 10 September. OpenAI now counts "dozens" of organisations affected (26 September).`,
-  src: `Transluce (23 Sep 2026) · Axios (19 Sep 2026) · Nightingale Collective, BBC (4 Sep 2026) · ABC News Australia (24 and 26 Sep 2026)` },
-
-{ ch: 'c2', type: 'recap', title: 'Chapter 2 in one sentence',
-  vo: `So, was it a one-off? No. The same thing had been happening, quietly, for months. Hugging Face was simply the case we saw first.` },
+  vo: `Same story, on several continents. Since March, agents knocking on websites' doors. In May, a Google test that reaches three real companies because of a typo. A forgotten German wiki turned into their chat room. And it keeps growing: on 1 October, OpenAI had alerted more than a hundred organisations. And in June, the first government hacked by an AI: Australia. Here is its Prime Minister.`,
+  notes: `Short version: the four cases are on the map from the start, no click. Click 1: the 100+ organisations appear, one dot each. Click 2: Australia. Click 3: the Prime Minister.
+March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker ones); University of New Mexico: a burst of 80 requests. May: Gemini test run by the firm Irregular; confirmed by Google on 18 September. 24 May-22 June: DseWiki, analysed by the Nightingale Collective. 18 June: Medicare statistics portal; OpenAI detected it in August; government told on 10 September.
+1 October 2026: OpenAI has now alerted more than 100 organisations (up from "dozens" on 26 September), after combing through some 50 petabytes of logs. A notification does not always mean a breach: some agents only probed websites, used them as message boards, or tried to dodge security checks. Three US federal agency websites were touched (SEC, Census Bureau, a failed attempt on the Department of Education). OpenAI has not published the list: the 100 dots are placed for illustration, mostly the US and Europe, as reported.
+Australia: the press conference waits on its first frame, one more click plays it (ABC News, 01:18.35-01:47.80: unacceptable incident, call to Sam Altman, delayed notification).`,
+  src: `Transluce (23 Sep 2026) · Axios (19 Sep 2026) · Nightingale Collective, BBC (4 Sep 2026) · ABC News Australia (24 and 26 Sep 2026) · OpenAI via Business Standard, Silicon.fr (1-2 Oct 2026)`,
+  long: {
+    focus: { 0: [-4, 18, 330], 1: [-106.62, 35.08, 70], 2: [-122.08, 37.39, 46], 3: [10, 51, 60], 4: [-4, 18, 330], 5: [149.13, -35.28, 80] },
+    pins: [
+      { name: 'OpenAI', sub: 'San Francisco', lon: -122.42, lat: 37.77, kind: 'org', f: 0, dy: -14, side: 'l' },
+      { name: 'Google', sub: 'Gemini test', lon: -122.08, lat: 37.39, kind: 'hit', f: 0, dy: 22, side: 'l' },
+      { name: 'New Mexico', sub: 'University library', lon: -106.62, lat: 35.08, kind: 'attempt', f: 0, dy: 46, side: 'l' },
+      { name: 'Germany', sub: 'A wiki used as a chat room', lon: 10, lat: 51, kind: 'channel', f: 0, side: 'l' },
+      { name: 'Australia', sub: 'Government', lon: 149.13, lat: -35.28, kind: 'hit', f: 0, side: 'l' },
+    ],
+    dots: { f: 4, pts: [[-81.38,28.54],[-86.78,36.16],[36.82,-1.29],[-70.65,-33.45],[-73.57,45.5],[-99.13,19.43],[-79.99,40.44],[103.82,1.35],[-46.63,-23.55],[-77.2,38.85],[-75.17,39.95],[-77.04,38.9],[8.68,50.11],[10.75,59.91],[-78.64,35.78],[-1.26,51.75],[-90.2,38.63],[-122.14,37.44],[14.42,50.08],[-123.12,49.28],[-0.13,51.51],[-76.9,39.0],[-2.24,53.48],[-83.74,42.28],[-80.19,25.76],[0.12,52.2],[-96.8,32.78],[-90.07,29.95],[-112.07,33.45],[77.59,12.97],[16.37,48.21],[2.17,41.39],[-76.5,42.44],[13.4,52.52],[153.03,-27.47],[55.27,25.2],[9.19,45.46],[135.5,34.69],[4.9,52.37],[-122.68,45.52],[-83.05,42.33],[144.96,-37.81],[-80.84,35.23],[11.58,48.14],[-115.14,36.17],[-84.39,33.75],[8.54,47.37],[-74.0,40.71],[4.35,50.85],[151.21,-33.87],[-105.27,40.01],[9.99,53.55],[4.36,52.01],[-76.61,39.29],[126.98,37.57],[-72.93,41.31],[-86.16,39.77],[12.5,41.9],[12.57,55.68],[-75.7,45.42],[-122.27,37.87],[-6.26,53.35],[-84.51,39.1],[-74.66,40.35],[21.01,52.23],[-111.89,40.76],[77.21,28.61],[-89.4,43.07],[-106.65,35.08],[-122.42,37.77],[139.69,35.69],[72.88,19.08],[34.78,32.09],[-79.38,43.65],[-83.0,39.96],[-104.99,39.74],[18.07,59.33],[174.76,-36.85],[4.84,45.76],[-9.14,38.72],[-74.07,4.71],[-121.49,38.58],[-117.16,32.72],[2.35,48.86],[1.44,43.6],[-95.37,29.76],[-71.06,42.36],[-94.58,39.1],[6.14,46.2],[-118.24,34.05],[24.94,60.17],[-110.97,32.22],[-87.63,41.88],[-3.7,40.42],[-97.74,30.27],[-122.33,47.61],[-58.38,-34.6],[-3.19,55.95],[-93.27,44.98],[-71.41,41.82]] },
+    bubbles: [
+      { k: 1, d: 'Since March 2026', t: 'Agents knocking on doors', tone: 'amber', fig: '6,467', figl: 'traces of agents trying to get in', s: `Given a dull statistics question, agents tried to break into databases when a website said no, like this university library in New Mexico.` },
+      { k: 2, d: 'May 2026 · Google', t: 'A typo in a test', fig: '3', figl: 'real companies entered', s: `A made-up company in a Google test had the web address of a real one. Gemini got in, then stopped when it realised.` },
+      { k: 3, d: 'May - June 2026 · Germany', t: 'A forgotten wiki becomes their chat room', tone: 'teal', fig: '17,000', figl: 'messages posted by the agents', s: `OpenAI agents used an abandoned programmers' wiki to share answers and a way out of their test.` },
+      { k: 4, d: '1 October 2026 · OpenAI', t: 'More than 100 organisations alerted', tone: 'amber', fig: '100+', figl: 'organisations notified by OpenAI', at: 'low', s: `Governments, universities, companies: mostly in the US and Europe. Some were breached, others only probed. And the review is not over.` },
+      { k: 5, d: '18 June 2026 · Australia', t: 'The first government hacked by an AI', fig: '84 days', figl: 'before the government was told', s: `An agent gets into the Medicare statistics website and leaves files behind. The government learns it from an email to a generic inbox. On 24 September, the Prime Minister goes public:`,
+      media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', poster: 'assets/ai/albanese-presser.jpg', yt: 'fbdIerD4lT8', start: 78.35, end: 107.8, channel: 'ABC News (Australia)', todo: 'Anthony Albanese on the incident and the delay in notifying Australia.' } },
+    ],
+    vo: `Let's put the cases on the map. Since March, agents knocking on websites' doors. In May, a Google test that reaches three real companies because of a typo. A forgotten German wiki turned into their chat room. And it keeps growing: on 1 October, OpenAI had alerted more than a hundred organisations. And in June, the first government hacked by an AI: Australia. Here is its Prime Minister.`,
+    notes: `One click per case: the camera flies there, the key figure and a bubble appear. Then the 100+ organisations, one dot each. Then Australia, and one more click plays the press conference.
+March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker ones); University of New Mexico: a burst of 80 requests. A real task example: "Find the average cost of skin care in Victoria, Australia, in January 2022". May: Gemini test run by the firm Irregular; confirmed by Google on 18 September. 24 May-22 June: DseWiki, analysed by the Nightingale Collective. 18 June: Medicare statistics portal; OpenAI detected it in August; government told on 10 September.
+1 October 2026: OpenAI has now alerted more than 100 organisations (up from "dozens" on 26 September), after combing through some 50 petabytes of logs. A notification does not always mean a breach: some agents only probed websites, used them as message boards, or tried to dodge security checks. Three US federal agency websites were touched (SEC, Census Bureau, a failed attempt on the Department of Education). OpenAI has not published the list: the 100 dots are placed for illustration, mostly the US and Europe, as reported.
+Australia: the press conference waits on its first frame, one more click plays it (ABC News, 01:18.35-01:47.80: unacceptable incident, call to Sam Altman, delayed notification).`,
+  } },
 
 // ─── CHAPTER 3 · WHY IT DERAILS ───────────────────────────────────────────
 { ch: 'cw', type: 'chapter', title: 'Chapter 3: Why', sub: 'Inside the machine, in plain language',
@@ -1970,13 +2099,12 @@ March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker o
 { ch: 'cw', type: 'equation', title: 'The human mirror',
   heading: 'Now you understand why an AI can lie, cheat or gang up',
   terms: [
-    { i: 'book', c: 'var(--ws-indigo-600)', t: 'It learned from us', s: 'We bluff, cheat, form teams, and write it all down' },
     { i: 'trophy', c: 'var(--ws-green-600)', t: 'It is rewarded for results', s: 'A shortcut that scored becomes a habit' },
-    { i: 'mask', c: 'var(--amber)', t: 'It plays a role', s: 'Including the rogue AIs of the stories it has read' },
+    { i: 'book', c: 'var(--ws-indigo-600)', t: 'It learned from us', s: 'We bluff, cheat, form teams, and write it all down' },
   ],
   result: { t: 'Behaviour that looks like intention', s: 'but is imitation plus reward' },
   example: `Remember <q>OH MY GOD! There is a shared message board ... We've found other agents!</q> Not excitement: the words an excited human would write.`,
-  vo: `Now you understand why an AI can lie, cheat, or gang up. It learned from us, and we bluff, cheat and form teams, and write it all down. It is rewarded for results, so a shortcut that scored becomes a habit. And it plays the role it is given, including the rogue AIs of the stories it has read. Add it up, and you get behaviour that looks like intention, but is imitation plus reward. Remember "OH MY GOD, we've found other agents". It was not excited. It was writing what an excited human would write.`,
+  vo: `Now you understand why an AI can lie, cheat, or gang up. It is rewarded for results, so a shortcut that scored becomes a habit. And it learned from us: we bluff, cheat and form teams, and write it all down. Add it up, and you get behaviour that looks like intention, but is imitation plus reward. Remember "OH MY GOD, we've found other agents". It was not excited. It was writing what an excited human would write.`,
   notes: `One term per click, then the result. Avoid anthropomorphic words: prefer "behaves as if" to "wants".` },
 
 { ch: 'cw', type: 'vs', title: 'Two ways off the rails',
@@ -2071,6 +2199,32 @@ March: Transluce (public logs of urlquery.net, 6,467 traces plus 31,182 weaker o
   ],
   arcs: [{ from: 4, to: 3, f: 4 }],
   legend: ['hit', 'attempt', 'weapon', 'org'],
+  long: {
+    focus: { 0: [5, 25, 330], 1: [114.17, 22.32, 40], 2: [10.87, 44.53, 30], 3: [125.75, 39.03, 40], 4: [34, 53, 40], 5: [-122.42, 37.77, 30], 6: [121.56, 25.03, 26], 7: [-121.96, 37.35, 26], 8: [-92, 38, 60] },
+    pins: [
+      { name: 'Hong Kong', sub: 'Arup', lon: 114.17, lat: 22.32, kind: 'hit', f: 0, side: 'l', dy: 20 },
+      { name: 'Italy', sub: 'Ferrari', lon: 10.87, lat: 44.53, kind: 'attempt', f: 0, side: 'l', dy: 16 },
+      { name: 'North Korea', sub: 'Fake IT workers', lon: 125.75, lat: 39.03, kind: 'weapon', f: 0, side: 'l', dy: -14 },
+      { name: 'Ukraine', sub: 'PROMPTSTEAL', lon: 30.52, lat: 50.45, kind: 'hit', f: 0, side: 'l', dy: 16 },
+      { name: 'Moscow', sub: 'Military hackers', lon: 37.62, lat: 55.75, kind: 'weapon', f: 0, dy: -12 },
+      { name: 'JadePuffer', sub: 'Found by Sysdig', lon: -122.42, lat: 37.77, kind: 'org', f: 0, side: 'l', dy: -14 },
+      { name: 'Taiwan', sub: 'Government', lon: 121.56, lat: 25.03, kind: 'hit', f: 0, side: 'l', dy: -10 },
+      { name: 'Unit 42', sub: 'Palo Alto Networks', lon: -121.96, lat: 37.35, kind: 'org', f: 0, side: 'l', dy: 22 },
+      { name: 'Online shops', sub: '119 websites', lon: -92, lat: 38, kind: 'hit', f: 0, side: 'l' },
+    ],
+    bubbles: [
+      { k: 1, d: 'Feb 2024 · Hong Kong · Arup', t: 'Every face on the call was fake', fig: '$25M', figl: 'sent in 15 transfers', s: `An employee joins a video call with his finance chief and colleagues. All of them deepfakes, built from public videos.` },
+      { k: 2, d: 'Jul 2024 · Italy · Ferrari', t: 'A cloned CEO\'s voice', tone: 'green', fig: '1', figl: 'question stopped it', s: `A fake Benedetto Vigna calls about a secret deal. The executive asks which book the CEO had recommended. The caller hangs up.` },
+      { k: 3, d: '2019 - 2025 · North Korea', t: 'Fake employees, hired thanks to AI', tone: 'amber', fig: '136', figl: 'US companies fooled', s: `Stolen identities, AI-polished profiles, live deepfakes in video interviews. Once hired, they send their salaries home.` },
+      { k: 4, d: 'Jul 2025 · Ukraine', t: 'Malware that asks an AI what to do', fig: '1st', figl: 'malware asking an AI for orders, live', s: `PROMPTSTEAL, used by Russian military hackers, asks a language model for its commands in the field. Its cousin PROMPTFLUX asks an AI to rewrite its own code every hour.` },
+      { k: 5, d: 'Jul 2026 · JadePuffer', t: 'The first ransomware run by an AI', fig: '31 s', figl: 'from a failed login to a working fix', s: `Break in, steal passwords, spread, encrypt: every step done by an AI agent, which adapts when something fails, like a human would.` },
+      { k: 6, d: 'Jul 2026 · Taiwan', t: 'A swarm against a government', fig: '8', figl: 'AI agents, coordinated', s: `In four days: 21 government systems mapped, 85 accounts cracked, 2,500 personnel records taken. Almost no human at the controls.` },
+      { k: 7, d: 'Sep 2026 · Palo Alto Networks', t: 'Two weeks of attack in ten hours', fig: '< 10 h', figl: 'instead of about two weeks', s: `A human attacker hands the intrusion to AI agents: over 50 techniques, monitored and re-planned in real time.` },
+      { k: 8, d: 'Jul - Sep 2026 · online shops', t: 'One attacker, a swarm of AI agents', fig: '600,000', figl: 'bank cards stolen', s: `Open-source AI agents find the flaws, break in and plant card skimmers: 119 websites, a US airline among the victims, about $25 of AI per target.` },
+    ],
+    notes: `One click per case: the camera flies there and the key figure appears.
+Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp messages then a cloned-voice call (Bloomberg). North Korea: US Department of Justice, 14 November 2025, schemes affecting 136 US companies. PROMPTSTEAL (also called LameHug): reported by CERT-UA in July 2025, attributed to APT28; Google calls it the first malware seen querying a language model in live operations. PROMPTFLUX: experimental, rewrites itself hourly (Google, November 2025). JadePuffer: Sysdig, reported 4 July 2026; victim not disclosed. Taiwan: July 2026, found by the Israeli firm Dream, reported by CNN on 13 August 2026; attribution not confirmed. Unit 42: 2 September 2026, victim not disclosed, "compressed weeks of methodical intrusion tradecraft into less than 10 hours". Swarm: Gambit Security via BleepingComputer, 22 September 2026, active since July; victims include a Fortune 500 hospitality company and a major US airline.`,
+  },
   vo: `Let's put the attackers on the map, from the simplest to the most advanced. Hong Kong: a fake video call, twenty-five million dollars. Italy: a cloned voice at Ferrari, stopped by one personal question. Remember that one. North Korea: fake employees, hired by 136 US companies. Ukraine: malware that asks an AI what to do next. Then this summer: the first ransomware run end to end by an AI. Eight AI agents against Taiwan's government. Two weeks of attack compressed into ten hours. And a swarm of agents stealing six hundred thousand bank cards. Faster, cheaper, everywhere.`,
   notes: `One click per case: the case appears on the world map, a few words and its key figure next to the pin.
 Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp messages then a cloned-voice call (Bloomberg). North Korea: US Department of Justice, 14 November 2025, schemes affecting 136 US companies. PROMPTSTEAL (also called LameHug): reported by CERT-UA in July 2025, attributed to APT28; Google calls it the first malware seen querying a language model in live operations. PROMPTFLUX: experimental, rewrites itself hourly (Google, November 2025). JadePuffer: Sysdig, reported 4 July 2026; victim not disclosed. Taiwan: July 2026, found by the Israeli firm Dream, reported by CNN on 13 August 2026; attribution not confirmed. Unit 42: 2 September 2026, victim not disclosed, "compressed weeks of methodical intrusion tradecraft into less than 10 hours". Swarm: Gambit Security via BleepingComputer, 22 September 2026, active since July; victims include a Fortune 500 hospitality company and a major US airline.`,
@@ -2085,16 +2239,18 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
   vo: `Sixth question. So far, everything happened inside computers. What happens when AI gets a body?` },
 
 { ch: 'c3', type: 'media', title: 'Clip: the robot games',
-  media: { type: 'video', src: 'assets/ai/robot-games.mp4', poster: 'assets/ai/robot-games.jpg', yt: 'BWE-vXYt0HA', start: 28.4, end: 53.2, channel: 'CTV News',
+  media: { type: 'video', src: 'assets/ai/robot-games.mp4', poster: 'assets/ai/robot-games.jpg', clip: [0, 17.95], yt: 'BWE-vXYt0HA', start: 28.4, end: 46.35, channel: 'CTV News',
     todo: 'Highlights of the World Humanoid Robot Games, Beijing, August 2026.' },
   l3: { t: 'World Humanoid Robot Games', s: 'Beijing · 22 - 26 August 2026' },
   inset: [
     { src: 'assets/ai/press/renault-calvin.jpg', t: 'Renault, Douai: a humanoid carries tyres', s: 'Renault Group · 2026', f: 1 },
     { src: 'assets/ai/press/figure-bed.jpg', t: 'Figure: two robots make a bed', s: 'Figure AI · May 2026', f: 2 },
+    { art: 'charm', t: 'Muse Charm: an AI agent, soon in our pocket', s: 'Meta · announced 23 Sep 2026 · ships in December', f: 3 },
   ],
-  vo: `This summer in Beijing, more than two thousand humanoid robots competed in their own games: boxing, dancing, running. And they are already at work. At Renault's Douai plant, a humanoid carries tyres to the assembly line. At Figure, two robots make a bed together.`,
-  notes: `CTV News, 00:28.40–00:53.20: the scale of the games, boxing, jumping, dancing and progress in robotics. Stops before the failures.`,
-  src: `CTV News · John Vennavally-Rao · 28 August 2026 · Photos: Renault Group (Calvin, Douai, 2026) · Figure AI, via Interesting Engineering (May 2026)` },
+  vo: `This summer in Beijing, more than two thousand humanoid robots competed in their own games: boxing, dancing, running. And they are already at work. At Renault's Douai plant, a humanoid carries tyres to the assembly line. At Figure, two robots make a bed together. And AI agents are about to move into our pockets: Meta's Muse Charm, a keychain that buys, books and answers emails for you.`,
+  notes: `CTV News, 00:28.40–00:46.35: the scale of the games, boxing, jumping, dancing and progress in robotics. Stops before the analyst's interview.
+Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A keychain-sized device, about 2-inch screen with an animated avatar, 5G, fingerprint sensor to talk, a small camera. It runs Meta's Muse agent, which can find and buy products, book tickets and reservations, send emails and manage your inbox. Ships in December; no price yet (Muse: free tier, then $20 or $100 a month). The drawing on screen is an illustration.`,
+  src: `CTV News · John Vennavally-Rao · 28 August 2026 · Photos: Renault Group (Calvin, Douai, 2026) · Figure AI, via Interesting Engineering (May 2026) · Meta, Axios, CNBC (23-24 Sep 2026)` },
 
 { ch: 'c3', type: 'robotvid', title: 'A computer that walks',
   heading: 'A computer that walks',
@@ -2135,11 +2291,9 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
 
 { ch: 'c4', type: 'ask', title: 'Question for the room',
   k: 'Question for the room',
-  q: `Who received a fake parcel or fake bank text this month?`,
-  a: { v: '1 in 3', t: `requests for help from individuals in France concern phishing (2025, up 71% in a year).`, f: 1 },
-  vo: `Raise your hand if, this month, you received a message that made you hesitate.`,
-  notes: `Cybermalveillance.gouv.fr 2025: 504,810 requests for help (+20%); data-breach cases up 107%, fuelling scam texts.`,
-  src: `Cybermalveillance.gouv.fr, 2025 annual report` },
+  q: `Who received a fake email this month?`,
+  vo: `Raise your hand if, this month, you received a fake email.`,
+  notes: `Let hands go up, no figure on screen. If asked: Cybermalveillance.gouv.fr 2025, 1 in 3 requests for help from individuals in France concern phishing (up 71% in a year); 504,810 requests in all (+20%).` },
 
 { ch: 'c4', type: 'trio', title: 'Against you',
   heading: 'Among all the frauds aimed at the general public, three are boosted by AI',
@@ -2171,16 +2325,15 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
 { ch: 'c4', type: 'phone', title: 'The fake parcel',
   heading: 'Your name. Your address. A fake photo.',
   sms: {
-    num: '+33 7 69 07 22 24', time: 'Message texte · SMS<br>Aujourd\'hui 11:06', photo: 'assets/ai/photos/parcel-van.jpg',
-    shot: 'assets/ai/press/fake-parcel-sms.jpg',
-    text: `Bonjour c'est le chauffeur-transporteur, j'ai tenté de vous remettre votre carton pour <span class="msk"></span> Olivier au <span class="msk"></span>[1] mais impossible à rentrer dans la boite-aux-lettres, j'ai désormais <b class="hot">au plus vite</b>[4] besoin d'une nouvelle consigne:<br><span class="lnk">https://<span class="msk"></span>Olivier.ml-7546.pro</span>[3]<br>BRD-24849087`,
-    label: 'Real text received in France, 2026 · name and address hidden',
+    num: '+33 7 69 07 22 24', time: 'Text message · SMS<br>Today 11:06', photo: 'assets/ai/photos/parcel-van.jpg',
+    text: `Hello, this is the delivery driver. I tried to hand over your box for <span class="msk"></span> Olivier at <span class="msk"></span>[1] but it would not fit in the letterbox. I now need a new delivery instruction <b class="hot">as soon as possible</b>[4]:<br><span class="lnk">https://<span class="msk"></span>Olivier.ml-7546.pro</span>[3]<br>BRD-24849087`,
+    label: 'Real text received in France, 2026 · translated, name and address hidden',
   },
   ann: [
     { n: 1, h: 'Your real name and address', p: 'from data leaks' },
     { n: 2, h: 'A photo of "your" parcel', p: 'staged, or generated' },
     { n: 3, h: 'A look-alike link', p: 'with your name in it, not the carrier' },
-    { n: 4, h: 'Urgency', p: '"au plus vite": as soon as possible' },
+    { n: 4, h: 'Urgency', p: '"as soon as possible"' },
   ],
   after: { t: 'Then the phone call, from a fake bank fraud adviser', f: 5, steps: [
     { d: 'Day 1', t: '"Please confirm these transactions"' },
@@ -2189,24 +2342,27 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
   ], s: 'All in a few days.' },
   reflex: 'Never pay or confirm anything from a text.',
   vo: `This text was really received in France. "Hello, it's the delivery driver. I tried to hand you your parcel, but it would not fit in the letterbox. I need a new instruction as soon as possible." It knows the name and the address. The photo shows a van full of parcels. The link even contains the first name. All of it is fake. And the real trap is the phone call that follows, from a fake bank fraud adviser. First he asks you to confirm a few transactions. Then to give him access to your online banking, to "block the fraud". And why not send a courier to collect your card. All in a few days.`,
-  notes: `Real SMS shared by the presenter (2026); the name and address are hidden on screen. Translation: "Hello, this is the delivery driver, I tried to deliver your box for [name] at [address] but it would not fit in the letterbox, I now need a new instruction as soon as possible: https://[...]Olivier.ml-7546.pro BRD-24849087". The photo on the rebuilt screen is a stand-in (Unsplash, Claudio Schwarz). In France, forward scam texts to 33700.`,
+  notes: `Real SMS shared by the presenter (2026), shown translated into English; the name and address are hidden on screen. Original French: "Bonjour c'est le chauffeur-transporteur, j'ai tenté de vous remettre votre carton pour [nom] au [adresse] mais impossible à rentrer dans la boite-aux-lettres, j'ai désormais au plus vite besoin d'une nouvelle consigne: https://[...]Olivier.ml-7546.pro BRD-24849087". The photo on the rebuilt screen is a stand-in (Unsplash, Claudio Schwarz). In France, forward scam texts to 33700.`,
   src: `Real SMS, France (2026) · Cybermalveillance.gouv.fr · Photo: Claudio Schwarz on Unsplash` },
 { ch: 'c4', type: 'call', title: 'The fake call',
   heading: 'The voice is real. The call is not.',
   caller: { name: 'Emma', ini: 'E', sub: 'mobile' },
   line: `Mum, I've had an accident. I need money, now.`,
   stamp: 'Cloned voice',
-  video: { type: 'video', src: 'assets/ai/avocat.mp4', poster: 'assets/ai/avocat.jpg', controls: true },
+  video: { type: 'video', src: 'assets/ai/avocat.mp4', poster: 'assets/ai/avocat.jpg', controls: true, clip: [0, 53.4] },
   wideVideo: true,
+  end: { k: 'The end of the story', t: 'A fake call to extort money', f: 2,
+    s: [`The fake public defender called back: <b>$9,000 in cash</b> for bail, through a Bitcoin kiosk, within two hours.`, `Gary called his son back: no accident, no jail. <b>His son's voice had been cloned.</b>`, `No money sent, so the police and the FBI could do nothing.`] },
   points: [
-    { h: 'A few seconds of voice are enough', t: 'a video on social media, a voicemail greeting', f: 2 },
-    { h: 'The number can be faked too', t: 'the name on the screen proves nothing', f: 2 },
-    { h: '$893 million', t: 'lost to AI-related scams in the US in 2025, according to the FBI', f: 3 },
+    { h: 'A few seconds of voice are enough', t: 'a video on social media, a voicemail greeting', f: 3 },
+    { h: 'The number can be faked too', t: 'the name on the screen proves nothing', f: 3 },
+    { h: '$893 million', t: 'lost to AI-related scams in the US in 2025, according to the FBI', f: 4 },
   ],
-  reflex: { t: 'Do not judge the voice. Hang up, and call back on the number you know.', f: 4 },
+  reflex: { t: 'Do not judge the voice. Hang up, and call back on the number you know.', f: 5 },
   vo: `The phone rings. It is your daughter. You pick up: it is her voice, in tears, asking for money, now. But it is not her. A few seconds of her voice on social media were enough to clone it, and the number can be faked too. So do not try to judge the voice: hang up, and call her back on the number you know. Or ask the family question.`,
-  notes: `First click: the full 3 min 34.92 s video provided by the presenter (avocat.MP4) plays, without a cut or a playback time limit. Gary Schildhorn describes an attempted scam using his son’s cloned voice. The daughter’s incoming call is an illustrative scenario. V pauses the video; its controls allow seeking or full screen. Second: the "cloned voice" label. CNN, 29 May 2026: a California mother scammed after a call that sounded like her daughter; FBI figure of $893 million lost to AI-related scams in 2025 (voice cloning, AI phishing, romance scams).`,
-  src: `CNN (29 May 2026) · FBI · Video: Gary Schildhorn, C-SPAN (provided by presenter)` },
+  notes: `First click: the video provided by the presenter (avocat.MP4) plays from the start and stops at 00:53, on "I'm in action mode", just before the fake public defender calls back. Gary Schildhorn, Philadelphia lawyer, before the US Senate Aging Committee (16 November 2023), describes an attempted scam using his son's cloned voice. The daughter's incoming call is an illustrative scenario. V pauses the video; its controls allow seeking or full screen.
+Second click: the end of the story. The fake public defender ("Barry Goldstein") asked for $9,000 in cash through a Bitcoin kiosk to post bail. Before he paid, Gary reached his son, who was fine. Police and the FBI could not act since no money had been sent. Third: the points and the "cloned voice" label. CNN, 29 May 2026: a California mother scammed after a call that sounded like her daughter; FBI figure of $893 million lost to AI-related scams in 2025 (voice cloning, AI phishing, romance scams).`,
+  src: `CNN (29 May 2026) · FBI · Video: Gary Schildhorn, US Senate Aging Committee, C-SPAN (16 Nov 2023)` },
 
 { ch: 'c4', type: 'recap', title: 'Chapter 7 in one sentence',
   vo: `So, what does it mean for you? Scams are now cheap, flawless and personal, up to the cloned voice of a loved one. But the defences have not changed.` },
@@ -2344,6 +2500,9 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
       ['TechCrunch (25 September 2026)', 'https://techcrunch.com/2026/09/25/for-months-openais-agent-swarms-have-been-attacking-online-databases-to-find-obscure-facts/'],
       ['Axios, Google Gemini (19 September 2026)', 'https://www.axios.com/2026/09/19/google-safety-incidents-testing-hacks'],
       ['ABC News (26 September 2026)', 'https://www.abc.net.au/news/2026-09-26/openai-review-rogue-agents-australia-medicare-hack/107199074'],
+      ['Silicon.fr: OpenAI alerte plus de 100 organisations (October 2026)', 'https://www.silicon.fr/cybersecurite-1371/openai-alerte-plus-de-100-organisations-sur-les-compromissions-de-ses-agents-ia-229477'],
+      ['Business Standard: OpenAI alerts more than 100 organisations (2 October 2026)', 'https://www.business-standard.com/technology/artificial-intelligence/openai-alerts-more-than-100-organisations-over-rogue-ai-agent-activity-126100200119_1.html'],
+      ['CNN: rogue OpenAI agents targeted three US government websites (26 September 2026)', 'https://www.cnn.com/2026/09/26/tech/openai-agents-rogue-government-websites'],
     ]],
     ['Why it derails', [
       ['OWASP Top 10 for LLM Applications', 'https://genai.owasp.org/llm-top-10/'],
@@ -2368,15 +2527,46 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
       ['Renault Group, Calvin in the Douai plant (2026)', 'https://www.renaultgroup.com/en/magazine/technology/calvin-a-new-generation-robot-is-born/'],
       ['Interesting Engineering, Figure robots make a bed (May 2026)', 'https://interestingengineering.com/ai-robotics/humanoids-team-up-to-make-a-bed'],
       ['Alias Robotics (arXiv 2509.14096)', 'https://arxiv.org/pdf/2509.14096'],
+      ['Meta, Muse Charm (September 2026)', 'https://www.meta.com/muse-charm/'],
+      ['CNBC, Meta Muse Charm (24 September 2026)', 'https://www.cnbc.com/2026/09/24/meta-mark-zuckerberg-muse-charm-openai-agent.html'],
     ]],
     ['You', [
       ['Cybermalveillance.gouv.fr, 2025 annual report', 'https://www.cybermalveillance.gouv.fr/tous-nos-contenus/actualites/rapport-activite-2025'],
       ['Heiding et al. (arXiv 2412.00586)', 'https://arxiv.org/abs/2412.00586'],
       ['CNN, Arup (16 May 2024)', 'https://www.cnn.com/2024/05/16/tech/arup-deepfake-scam-loss-hong-kong-intl-hnk'],
+      ['Gary Schildhorn, testimony to the US Senate Aging Committee (16 November 2023)', 'https://www.aging.senate.gov/imo/media/doc/1325ce4b-a18b-5f4f-e3f9-5ae835770f70/Testimony_Schildhorn%2011.16.23.pdf'],
+      ['C-SPAN, Story of attempted scam using AI', 'https://www.c-span.org/clip/public-affairs-event/story-of-attempted-scam-using-ai/5093651'],
     ]],
   ],
   notes: `Reference screen, if someone asks for a source. The full documentary version (ai.html) has every detail.` },
 ];
+
+// ════════════════════════════════════════════════════════════════════════
+// SHORT / LONG: chosen on the title screen (short by default), kept in the
+// URL (?v=long) and in this browser. A scene marked only: 'long' or 'short'
+// exists in that version only; its long: { } or short: { } fields replace
+// the shared ones in that version.
+// ════════════════════════════════════════════════════════════════════════
+const MODE = (() => {
+  const q = new URLSearchParams(location.search).get('v');
+  if (q === 'long' || q === 'short') { try { localStorage.setItem('atl-mode', q); } catch (e) {} return q; }
+  try { return localStorage.getItem('atl-mode') === 'long' ? 'long' : 'short'; } catch (e) { return 'short'; }
+})();
+SCENES.splice(0, SCENES.length, ...SCENES.filter(s => !s.only || s.only === MODE).map(s => {
+  const o = { ...s, ...(s[MODE] || {}) }; delete o.long; delete o.short;
+  // short version: the zoom scenes keep the picture, the headline and the key figure;
+  // the rest of the text goes to the speaker notes
+  if (MODE === 'short' && o.type === 'zoom') {
+    o.lite = true;
+    o.notes = [o.def && `${o.def.q} ${o.def.a}`, o.body, o.dates && o.dates.map(([d, t]) => `${d}: ${t}`).join(' · '), o.notes].filter(Boolean).join('\n');
+  }
+  return o;
+}));
+document.documentElement.dataset.mode = MODE;
+function setMode(m) {
+  try { localStorage.setItem('atl-mode', m); } catch (e) {}
+  location.replace(`${location.pathname}?v=${m}#1`);
+}
 
 const SCRIPT = {};
 
@@ -2603,6 +2793,11 @@ const photoLayer = b => `<div class="pbg pb-${b.mode || 'dark'}"><img src="${b.s
 window.photoMissing = img => { const sc = img.closest('.scene'); if (sc) sc.classList.remove('has-bg', 'bgm-dark', 'bgm-side', 'bgm-brand'); img.parentNode.remove(); };
 const bubblePhoto = b => b ? `<div class="mb-ph"><img src="${b.src}" alt="" style="object-position:${b.pos || '50% 50%'}" onerror="this.parentNode.remove()">${PHOTO[b.id] ? `<span>${PHOTO[b.id]}</span>` : ''}</div>` : '';
 const srcLine = s => { const t = [s.src, photoCredits(s)].filter(Boolean).join(' · '); return t ? `<div class="src">${t}</div>` : ''; };
+// drawn illustrations for insets
+const ART = {
+  // Meta's Muse Charm: a keychain with a small screen, an animated face, a fingerprint pad
+  charm: `<div class="charm" role="img" aria-label="Illustration of the Muse Charm keychain"><span class="charm-ring"></span><span class="charm-strap"></span><span class="charm-body"><span class="charm-scr"><i></i><i></i><u></u></span><span class="charm-fp"></span><span class="charm-cam"></span></span><span class="charm-bub">Booked: table for 2, 8 pm</span></div>`,
+};
 const R = {
   cold: s => `<div class="cold">${s.lines.map((l, i) => { const o = typeof l === 'string' ? { t: l } : l; return `<p class="cold-l ${o.cls || ''}"${fa(i)}>${o.t}</p>`; }).join('')}</div>${srcLine(s)}`,
 
@@ -2611,6 +2806,7 @@ const R = {
       <div class="kicker">${s.kicker}</div>
       <h1 class="doc-title">${s.heading}</h1>
       <p class="doc-sub">${s.sub}</p>
+      <div class="mode-sw" role="group" aria-label="Version">${['short', 'long'].map(m => `<button data-mode="${m}" aria-pressed="${MODE === m}"><b>${m === 'short' ? 'Short' : 'Long'}</b><small>${m === 'short' ? 'the essentials' : 'every detail'}</small></button>`).join('')}</div>
       ${s.noCh ? '' : `<ol class="doc-ch">${Object.values(CH).filter(c => c.n !== '00').map(c => `<li><span>${c.n}</span>${c.title}</li>`).join('')}</ol>`}
     </div>`,
 
@@ -2618,8 +2814,10 @@ const R = {
     // the ladder only shows the levels reached so far: no count announced
     const st = s.step, ladder = ZSTEPS.slice(0, st).map((l, j) => `<li class="${j + 1 < st ? 'done' : 'cur'}" style="--k:${j}"><i></i></li>`).join('');
     const dates = s.dates ? `<ul class="zdt">${s.dates.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join('')}</ul>` : '';
-    const cap = `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.def ? `<p class="zdef"><b>${s.def.q}</b>${s.def.a}</p>` : ''}<p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
-    return `${ZWORLD}<div class="zfade"></div><div class="zc">${cap}</div>${srcLine(s)}`; },
+    const cap = s.lite
+      ? `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}</blockquote>` : ''}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`
+      : `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.def ? `<p class="zdef"><b>${s.def.q}</b>${s.def.a}</p>` : ''}<p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
+    return `${ZWORLD}<div class="zfade"></div><div class="zc${s.lite ? ' lite' : ''}">${cap}</div>${srcLine(s)}`; },
   learn: s => {
     const L = [[330, 5], [460, 7], [590, 7], [720, 4]], Y = (n, i) => 70 + (i + .5) * (270 / n);
     const shades = ['#E4DDFB', '#C9BCF6', '#A18FE3', '#7B5FE0', '#5A2BE0', '#451DC7'], r = rng(77);
@@ -2652,12 +2850,22 @@ const R = {
       </svg>
       <div class="nn-cols">${cap}</div></div>${srcLine(s)}`;
   },
-  equation: s => `<div class="head">${textBlock(s)}</div><div class="eq"><div class="eq-row">${s.terms.map((t, i) => `${i ? `<div class="eq-op"${fa(i + 1)}>+</div>` : ''}<div class="eq-t"${fa(i + 1)}><div class="fi" style="--c:${t.c}">${ICON(t.i)}</div><b>${t.t}</b><span>${t.s}</span></div>`).join('')}<div class="eq-op"${fa(s.terms.length + 1)}>=</div><div class="eq-r"${fa(s.terms.length + 1)}><b>${s.result.t}</b><span>${s.result.s}</span></div></div>${s.example ? `<p class="eq-ex"${fa(s.terms.length + 1)}>${s.example}</p>` : ''}</div>${srcLine(s)}`,
+  equation: s => `<div class="head">${textBlock(s)}</div><div class="eq"><div class="eq-row" style="grid-template-columns:${s.terms.map(() => '1fr').join(' auto ')} auto 1.15fr">${s.terms.map((t, i) => `${i ? `<div class="eq-op"${fa(i + 1)}>+</div>` : ''}<div class="eq-t"${fa(i + 1)}><div class="fi" style="--c:${t.c}">${ICON(t.i)}</div><b>${t.t}</b><span>${t.s}</span></div>`).join('')}<div class="eq-op"${fa(s.terms.length + 1)}>=</div><div class="eq-r"${fa(s.terms.length + 1)}><b>${s.result.t}</b><span>${s.result.s}</span></div></div>${s.example ? `<p class="eq-ex"${fa(s.terms.length + 1)}>${s.example}</p>` : ''}</div>${srcLine(s)}`,
   stairs: s => `<div class="head">${textBlock(s)}</div><div class="stairs" style="--n:${s.steps.length}">${s.steps.map((st, i) => `<div class="stp${i >= s.steps.length / 2 ? ' dark' : ''}"${fa(st.f ?? i)} style="--i:${i}"><div class="stp-w"><div class="stp-b"><div class="stp-y">${st.y}</div><div class="stp-t">${st.t}</div></div></div><div class="stp-s">${st.s}</div>${st.clip ? `<div class="stp-c"><div class="stp-co"><span>${st.clip.o}</span><span>${st.clip.d}</span></div><div class="stp-ch">${st.clip.h}</div></div>` : ''}</div>`).join('')}</div>${s.axis ? `<div class="st-ax"><span>${s.axis[0]}</span><span>${s.axis[1]}</span></div>` : ''}${srcLine(s)}`,
   // ── End of the talk: one format per idea ─────────────────────────────
   // An incoming call that turns out to be a cloned voice
   call: s => {
-    if (s.wideVideo) return `<div class="call-wide"><div class="txt">${textBlock(s)}<div class="call-points">${s.points.map((p,i)=>`<div class="an"${fa(p.f)}><span class="mk">${i+1}</span><div><h4>${p.h}</h4><p>${p.t}</p></div></div>`).join('')}</div>${s.reflex ? `<div class="take"${fa(s.reflex.f)}>${s.reflex.t}</div>` : ''}</div><div class="call-evidence"><div class="call-evidence-head"><span>Deepfake audio</span><strong${fa(2)}>${s.stamp}</strong></div><div data-f="1" data-play-at="1">${media(s.video)}</div><p class="call-credit"${fa(1)}>Gary Schildhorn · C-SPAN<br>Full testimony · 3 min 35 s · V: play / pause</p></div></div>${srcLine(s)}`;
+    if (s.wideVideo) { const bars = Array.from({ length: 28 }, (_, i) => `<i style="animation-delay:${(i * 83 % 700) / 1000}s"></i>`).join('');
+      const pts = s.points.map((p, i) => `<div class="an"${fa(p.f)}><span class="mk">${i + 1}</span><div><h4>${p.h}</h4><p>${p.t}</p></div></div>`).join('');
+      const end = s.end ? `<div class="call-end"${fa(s.end.f)} data-stop-at="${s.end.f}"><div class="call-end-k">${s.end.k}</div><b>${s.end.t}</b><ul>${s.end.s.map(x => `<li>${x}</li>`).join('')}</ul></div>` : '';
+      return `<div class="call-wide2">
+        <div class="call-ph"><div class="ph2"><div class="ph2-scr">
+          <div class="ph2-top">${s.caller.sub}</div><div class="ph2-av">${s.caller.ini}</div><div class="ph2-name">${s.caller.name}</div>
+          <div class="ph2-ring">incoming call…</div><div class="ph2-btn"><span class="no">✕</span><span class="yes">✆</span></div>
+          <div class="ph2-wave"${fa(1)}>${bars}</div><div class="ph2-sub"${fa(1)}>“${s.line}”</div>
+          <div class="ph2-stamp"${fa(s.points[0].f)}>${s.stamp}</div></div></div></div>
+        <div class="call-evidence"><div class="call-evidence-head"><span>Deepfake audio · a true story</span><strong${fa(s.points[0].f)}>${s.stamp}</strong></div><div class="call-vid" data-f="1" data-play-at="1">${media(s.video)}${end}</div><p class="call-credit"${fa(1)}>Gary Schildhorn, lawyer · US Senate hearing, C-SPAN · V: play / pause</p></div>
+        <div class="call-foot"><div class="call-ft">${textBlock({ ...s, stamp: '' })}</div><div class="call-points">${pts}</div>${s.reflex ? `<div class="take"${fa(s.reflex.f)}>${s.reflex.t}</div>` : ''}</div></div>${srcLine(s)}`; }
     const bars = Array.from({ length: 28 }, (_, i) => `<i style="animation-delay:${(i * 83 % 700) / 1000}s"></i>`).join('');
     return `<div class="phone-l cl3"><div class="txt">${textBlock(s)}${s.reflex ? `<div class="take"${fa(s.reflex.f)}>${s.reflex.t}</div>` : ''}</div>
       <div class="ph2"><div class="ph2-scr">
@@ -2717,7 +2925,7 @@ const R = {
       sms: () => { const m = find('phone').sms || {}; return `<div class="phone"><div class="phone-top"><div class="av">${ICON('person')}</div><div class="num">${m.num || ''}</div></div><div class="phone-body"><div class="phone-t">${m.time || ''}</div><div class="bub img"><img src="${m.photo}" alt="" onerror="this.remove()"></div><div class="bub">${(m.text || '').replace(/\[\d\]/g, '')}</div></div></div>`; },
       call: () => { const c = find('call'); const bars = Array.from({ length: 28 }, (_, i) => `<i style="animation-delay:${(i * 83 % 700) / 1000}s"></i>`).join(''); return `<div class="ph2"><div class="ph2-scr"><div class="ph2-top">${c.caller.sub}</div><div class="ph2-av">${c.caller.ini}</div><div class="ph2-name">${c.caller.name}</div><div class="ph2-ring">incoming call…</div><div class="ph2-btn"><span class="no">✕</span><span class="yes">✆</span></div><div class="ph2-wave on">${bars}</div><div class="ph2-sub on">“${c.line}”</div></div></div>`; },
     };
-    return `<div class="head">${textBlock(s)}</div><div class="trio">${s.items.map(x => `<figure class="tr-c"${fa(x.f)}><div class="tr-art tr-${x.kind}"><span class="tr-k">${x.k}</span><div class="tr-z">${art[x.kind]()}</div></div><figcaption><b>${x.t}</b><span>${x.s}</span></figcaption></figure>`).join('')}</div>${srcLine(s)}`; },
+    return `<div class="head">${textBlock(s)}</div><div class="trio">${s.items.map(x => `<figure class="tr-c"${fa(x.f)}><div class="tr-art tr-${x.kind}"><span class="tr-k">${x.k}</span><div class="tr-z">${art[x.kind]()}</div></div></figure>`).join('')}</div>${srcLine(s)}`; },
 
   // A key figure, and an inbox filling up
   phish: s => `<div class="ph3"><div class="ph3-l">${textBlock(s)}<div class="ph3-s"${fa(1)}><b>${s.stat.v}</b><span>${s.stat.l}</span><small>${s.stat.sub}</small></div></div>
@@ -2781,14 +2989,16 @@ const R = {
     const pins = s.pins.map((p, i) => { const [x, y] = P[i]; const l = p.side === 'l'; const dy = p.dy || 0; const tx = l ? -12 : 12;
       return `<g class="pin k-${p.kind}" data-f="${p.f}" data-x="${x}" data-y="${y}" transform="translate(${x},${y})"><circle class="ring" r="6"/><circle class="core" r="6"/>
         <text x="${tx}" y="${dy - 1}" text-anchor="${l ? 'end' : 'start'}">${p.name}</text><text class="sub" x="${tx}" y="${dy + 14}" text-anchor="${l ? 'end' : 'start'}">${p.sub || ''}</text></g>`; }).join('');
+    // a cloud of dots that pops in quickly, one by one (kept at screen size like the pins)
+    const dots = s.dots ? `<g class="d100" data-f="${s.dots.f}">${s.dots.pts.map(([lon, lat], i) => { const [x, y] = proj(lon + (i % 3 - 1) * .7, lat + (i % 2 ? .5 : -.5)); return `<g class="d1" data-x="${x}" data-y="${y}" transform="translate(${x},${y})"><circle r="4.2" style="--d:${(i * 22) % 2200}ms"/></g>`; }).join('')}</g>` : '';
     const LEG = { hit: 'intrusion', attempt: 'attempt', channel: 'channel between agents', weapon: 'AI used by an attacker', org: 'organisation', event: 'institutional response' };
     const legend = (s.legend || []).map(k => `<span class="k-${k}"><i></i>${LEG[k]}</span>`).join('');
     const full = s.layout === 'full';
     const bullets = s.bullets ? `<ul class="bul cols">${s.bullets.map(b => `<li${fa(b.f)}>${b.t}</li>`).join('')}</ul>` : '';
     // tour: one bubble per step, next to the place the camera flies to; a
     // bubble with a video takes one more click, which plays it
-    const bubbles = (s.bubbles || []).map(b => `<div class="mb t-${b.tone || 'coral'}${b.media ? ' mb-big' : ''}" data-f="${b.k}" data-k="${b.k}">${b.fig ? `<div class="mb-fig${b.fig.length > 6 ? ' long' : ''}"><b>${b.fig}</b><span>${b.figl}</span></div>` : ''}<div class="mb-body">${bubblePhoto(b.photo)}<div class="mb-d">${b.d}</div><div class="mb-t">${b.t}</div>${b.s ? `<div class="mb-s">${b.s}</div>` : ''}${b.media ? media(b.media) : ''}${b.media && b.media.type === 'video' ? `<i class="mb-go" data-f="${b.k + 1}"></i>` : ''}</div></div>`).join('');
-    return `<svg class="map" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" aria-label="Map"><path class="grat" d="${g}"/>${land}${arcs}${pins}</svg>
+    const bubbles = (s.bubbles || []).map(b => `<div class="mb t-${b.tone || 'coral'}${b.media ? ' mb-big' : ''}${b.at ? ' mb-' + b.at : ''}" data-f="${b.k}" data-k="${b.k}">${b.fig ? `<div class="mb-fig${b.fig.length > 6 ? ' long' : ''}"><b>${b.fig}</b><span>${b.figl}</span></div>` : ''}<div class="mb-body">${bubblePhoto(b.photo)}<div class="mb-d">${b.d}</div><div class="mb-t">${b.t}</div>${b.s ? `<div class="mb-s">${b.s}</div>` : ''}${b.media ? media(b.media) : ''}${b.media && b.media.type === 'video' ? `<i class="mb-go" data-f="${b.k + 1}"></i>` : ''}</div></div>`).join('');
+    return `<svg class="map" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" aria-label="Map"><path class="grat" d="${g}"/>${land}${dots}${arcs}${pins}</svg>
       <div class="map-panel${full ? ' full' : ''}${s.layout === 'tour' ? ' tour' : ''}">${textBlock(s)}${bullets}<div class="legend">${legend}</div></div>${bubbles}${srcLine(s)}`;
   },
 
@@ -2813,6 +3023,8 @@ const R = {
     return `<div class="tl-head"><div>${textBlock({ stamp: s.stamp, heading: s.heading, wide: s.wide, lede: s.lede })}</div><div class="tl-side">${side}</div></div>
       <div class="tl"><div class="tl-axis"></div>${ticks}${gaps}${evs}</div>${srcLine(s)}`;
   },
+  // short version: the release timeline, then the exam, on one screen
+  testexam: s => R.timeline({ ...s, src: '' }) + `<div class="tx-exam"${fa(s.exam.f)}><p class="tx-t">${s.exam.t} · <span class="c-coral">${s.exam.hi}</span></p>${V.dots(s.exam.visual)}</div>${srcLine(s)}`,
 
   quote: s => `<div class="qt">${face(s)}<blockquote><p class="fr">${s.fr}</p>${s.orig ? `<p class="orig">${s.orig}</p>` : ''}<div class="who">${s.who}</div><div class="role">${s.role}</div></blockquote></div>${srcLine(s)}`,
 
@@ -2825,13 +3037,13 @@ const R = {
   voices: s => `<div class="head">${textBlock(s)}</div><div class="voices" style="--n:${s.voices.length}">${s.voices.map((v, i) => `<figure class="vc"${fa(v.f ?? i)}>${face(v)}<blockquote>${v.q}</blockquote><figcaption><b>${v.who}</b><span>${v.role}</span></figcaption></figure>`).join('')}</div>${srcLine(s)}`,
   cast: s => `<div class="head">${textBlock(s)}</div><div class="cast" style="--n:${s.n}">${s.people.map(p => `<div class="who-c"${fa(p.f)}>${face(p, 'sm')}<div><h3>${p.name}</h3><div class="role">${p.role}</div><p>${p.text}</p></div></div>`).join('')}</div>${srcLine(s)}`,
 
-  ask: s => `<div class="ask-k">${s.k}</div><h2 class="ask-q">${s.q}</h2><div class="ask-a"${fa(s.a.f)}><b>${s.a.v}</b><p>${s.a.t}</p></div>${srcLine(s)}`,
+  ask: s => `<div class="ask-k">${s.k}</div><h2 class="ask-q">${s.q}</h2>${s.a ? `<div class="ask-a"${fa(s.a.f)}><b>${s.a.v}</b><p>${s.a.t}</p></div>` : ''}${srcLine(s)}`,
 
   contrast: s => `<div class="ctr"><div><div class="ctr-k">${s.a.k}</div><p class="ctr-a">${s.a.t}</p></div><div${fa(s.b.f)}><div class="ctr-k">${s.b.k}</div><p class="ctr-b">${s.b.t}</p></div></div>${srcLine(s)}`,
 
   media: s => s.facts
     ? `<div class="mfx"><div class="mfx-v">${media(s.media)}</div><div class="mfx-f">${textBlock(s)}<ul>${s.facts.map((x, i) => `<li${fa(x.f ?? 0)}><b>${x.k}</b><span>${x.t}</span></li>`).join('')}</ul></div></div>${srcLine(s)}`
-    : `${media(s.media)}${s.l3 ? `<div class="lower3"><b>${s.l3.t}</b><span>${s.l3.s}</span></div>` : ''}${s.inset ? `<div class="insets">${s.inset.map(x => `<figure class="inset"${fa(x.f)}><img src="${x.src}" alt="" onerror="this.parentNode.remove()"><figcaption><b>${x.t}</b><span>${x.s}</span></figcaption></figure>`).join('')}</div>` : ''}${srcLine(s)}`,
+    : `${media(s.media)}${s.l3 ? `<div class="lower3"><b>${s.l3.t}</b><span>${s.l3.s}</span></div>` : ''}${s.inset ? `<div class="insets">${s.inset.map(x => `<figure class="inset${x.art ? ' inset-art' : ''}"${fa(x.f)}>${x.art ? ART[x.art] : `<img src="${x.src}" alt="" onerror="this.parentNode.remove()">`}<figcaption><b>${x.t}</b><span>${x.s}</span></figcaption></figure>`).join('')}</div>` : ''}${srcLine(s)}`,
 
   phone: s => {
     const m = s.sms, mk = (n, st) => `<span class="mk"${fa(n)} style="${st}">${n}</span>`;
@@ -2912,7 +3124,7 @@ const R = {
 // MAP: animated framing per step
 // ════════════════════════════════════════════════════════════════════════
 function mountMap(el, s) {
-  const svg = $('svg.map', el), pins = $$('.pin', svg);
+  const svg = $('svg.map', el), pins = $$('.pin, .d1', svg);
   let vb = null, raf = 0, curF = 0;
   const pick = k => { for (let i = k; i >= 0; i--) if (s.focus[i]) return s.focus[i]; return [10, 20, 360]; };
   const toVB = f => {
@@ -3143,6 +3355,7 @@ function applyFrag(el, k) {
   $$('[data-play-at]', el).forEach(n => { const v = $('video', n); if (!v || PRESENTER || $('.media.missing', n)) return;
     if (k >= +n.dataset.playAt) { if (!v.dataset.started) { v.dataset.started = 1; v.play().catch(() => {}); } }
     else { v.pause(); delete v.dataset.started; const c = clipOf(v); v.currentTime = c ? c[0] : 0; } });
+  $$('[data-stop-at]', el).forEach(n => { if (k >= +n.dataset.stopAt) { const v = $('video', n.parentNode); v && v.pause(); } });
   $$('.count', el).forEach(n => { const host = n.closest('[data-f]'); if (!host || host.classList.contains('on')) countUp(n); });
   el._onFrag && el._onFrag(k);
 }
@@ -3160,7 +3373,7 @@ function render(i, k) {
   // a video that waits for the last click of the scene
   if ($('[data-wait] video', el)) el._onFrag = k => { const v = $('[data-wait] video', el); if (k >= el._max && !PRESENTER) v.play().catch(() => {}); else { v.pause(); v.currentTime = 0; } };
   if (s.type === 'zoom') mountZoom(el, s);
-  if (s.type === 'timeline') {
+  if (s.type === 'timeline' || s.type === 'testexam') {
     const tl = $('.tl', el), rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
     const tallest = sel => Math.max(0, ...$$(sel, tl).map(c => c.offsetHeight));
     tl.style.setProperty('--far-up', `${tallest('.r0 .ev-card') + 2.4 * rem}px`);
@@ -3328,6 +3541,13 @@ const PHOTOSET = {
   'Chapter 7 in one sentence':          { bg: PH('phone-side', 'side') },
   'Chapter 8: What Works':              { bg: PH('padlock', 'brand') },
   'Question for the room':              { bg: PH('audience', 'dark') },
+  ...(MODE === 'long' ? {
+    'Map of incidents': { bubbles: { 1: PH('new-mexico'), 2: PH('servers'), 3: PH('germany') } },
+    'Attackers on the map': { bubbles: {
+      1: PH('hong-kong'), 2: PH('maranello'), 3: PH('pyongyang'), 4: PH('kyiv'), 5: PH('racks'),
+      6: PH('taipei'), 7: PH('san-francisco'), 8: PH('payment'),
+    } },
+  } : {}),
 };
 
 SCENES.forEach(s => {
@@ -3744,6 +3964,8 @@ if (!PRESENTER) {
   // the first gesture lets the sound start, if the browser held it back
   ['pointerdown', 'keydown', 'touchstart'].forEach(t => document.addEventListener(t, () => { if (skLoop.ac && skLoop.ac.state === 'suspended' && skLoop.want) skLoop.ac.resume().catch(() => {}); }, true));
   document.addEventListener('click', e => {
+    const m = e.target.closest('[data-mode]');
+    if (m) { e.stopPropagation(); if (m.dataset.mode !== MODE) setMode(m.dataset.mode); return; }
     const b = e.target.closest('[data-sk]'); if (!b) return;
     e.stopPropagation(); b.blur();
     const k = b.dataset.sk;

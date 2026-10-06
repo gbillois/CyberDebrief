@@ -12,6 +12,8 @@ The root page links to four debriefs: **NotPetya** (`notpetya.html`),
 (`assises-chart.html`, the latest workshop). Alternative formats
 are available under each card. The menu follows the public CyberSecWatch home: white background, indigo headings, green accents. The case directory uses a full-width grid of four cards, with local fonts and a single column on mobile. The old `Support_PBR.html` URL redirects permanently to `ai-threat-landscape-202609.html`.
 
+`ai-threat-landscape-202609.html` has two versions, picked with the **Short / Long** switch on its title screen (Short by default; also `?v=short` or `?v=long` in the URL, remembered in the browser). In `SCENES`, `only: 'long'` or `only: 'short'` keeps a scene in one version, and `long: { … }` / `short: { … }` fields override the shared ones. The short version merges the release timeline and the exam, keeps only headlines and key figures on the zoom scenes (the rest goes to the speaker notes), skips Zoom 7, and shows the incident and attacker maps without the per-case close-ups.
+
 ## Deployment
 
 Public URL: <https://debrief.cybersecwatcher.com>.
