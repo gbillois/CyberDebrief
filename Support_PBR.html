@@ -972,6 +972,10 @@ body.pres{background:var(--ws-ink-50)}
 @keyframes bounce2{50%{transform:translateY(-5px)}}
 .ph2:has(.ph2-wave.on) .ph2-ring,.ph2:has(.ph2-wave.on) .ph2-btn{display:none}
 .ph2:has(.ph2-wave.on) .ph2-av{animation:none}
+.ph2-vid{width:calc(100% + 1.6rem);margin-top:1rem}
+.ph2-vid .media video{border-radius:.5rem;border:0;max-height:none}
+.ph2-vid .media.missing .ph{aspect-ratio:auto;padding:.9rem 1rem;gap:.35rem}
+.ph2-vid .ph-k{font-size:.62rem} .ph2-vid .ph-t{font-size:.85rem;line-height:1.3} .ph2-vid .ph-f{font-size:.6rem;word-break:break-all} .ph2-vid .ph-a{font-size:.8rem}
 .ph2-wave{display:flex;align-items:center;gap:3px;height:3.2rem;margin-top:1.2rem}
 .ph2-wave i{display:block;width:4px;height:30%;border-radius:2px;background:#9EF0C0;animation:wave2 .7s ease-in-out infinite alternate}
 @keyframes wave2{to{height:100%}}
@@ -2185,6 +2189,7 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
   caller: { name: 'Emma', ini: 'E', sub: 'mobile' },
   line: `Mum, I've had an accident. I need money, now.`,
   stamp: 'Cloned voice',
+  video: { type: 'video', src: 'assets/ai/scam-call-cspan.mp4', clip: [4, 53], href: 'https://www.c-span.org/clip/public-affairs-event/story-of-attempted-scam-using-ai/5093651', todo: 'C-SPAN: "Story of attempted scam using AI", 00:04 - 00:53.' },
   points: [
     { h: 'A few seconds of voice are enough', t: 'a video on social media, a voicemail greeting', f: 2 },
     { h: 'The number can be faked too', t: 'the name on the screen proves nothing', f: 2 },
@@ -2192,8 +2197,8 @@ Arup: early 2024, 15 transfers, about $25M (CNN). Ferrari: July 2024, WhatsApp m
   ],
   reflex: { t: 'Do not judge the voice. Hang up, and call back on the number you know.', f: 4 },
   vo: `The phone rings. It is your daughter. You pick up: it is her voice, in tears, asking for money, now. But it is not her. A few seconds of her voice on social media were enough to clone it, and the number can be faked too. So do not try to judge the voice: hang up, and call her back on the number you know. Or ask the family question.`,
-  notes: `First click: the call is answered. Second: the "cloned voice" stamp. CNN, 29 May 2026: a California mother scammed after a call that sounded like her daughter; FBI figure of $893 million lost to AI-related scams in 2025 (voice cloning, AI phishing, romance scams).`,
-  src: `CNN (29 May 2026) · FBI` },
+  notes: `First click: the call is answered and the C-SPAN testimony plays in the phone (00:04-00:53, about 49 s; V pauses it). Second: the "cloned voice" stamp. CNN, 29 May 2026: a California mother scammed after a call that sounded like her daughter; FBI figure of $893 million lost to AI-related scams in 2025 (voice cloning, AI phishing, romance scams).`,
+  src: `CNN (29 May 2026) · FBI · C-SPAN` },
 
 { ch: 'c4', type: 'recap', title: 'Chapter 7 in one sentence',
   vo: `So, what does it mean for you? Scams are now cheap, flawless and personal, up to the cloned voice of a loved one. But the defences have not changed.` },
@@ -2429,7 +2434,7 @@ function face(p, cls = '') {
 function media(m) {
   const vid = m.type === 'video';
   let el = '', cls = '';
-  if (vid && m.src) el = `<video src="${m.src}" playsinline preload="metadata"${m.loop ? ' loop' : ''}${m.poster ? ` poster="${m.poster}"` : ''} onerror="videoFallback(this)"></video>`;
+  if (vid && m.src) el = `<video src="${m.src}" playsinline preload="metadata"${m.clip ? ` data-clip="${m.clip.join(',')}"` : ''}${m.loop ? ' loop' : ''}${m.poster ? ` poster="${m.poster}"` : ''} onerror="videoFallback(this)"></video>`;
   else if (!vid && m.src) el = `<img src="${m.src}" alt="${m.caption || ''}" onerror="mediaMissing(this)">`;
   if (vid && m.yt && navigator.onLine) {
     el += `<div class="yt" data-yt="${m.yt}" data-start="${Math.floor(m.start || 0)}" data-end="${m.end ? Math.ceil(m.end) : ''}" role="button" aria-label="Play the clip"><img src="https://i.ytimg.com/vi/${m.yt}/hqdefault.jpg" alt="" onerror="mediaMissing(this)"><span class="yt-tag">${m.channel || 'Clip'}</span><span class="yt-play">▶</span></div>`;
@@ -2440,6 +2445,10 @@ function media(m) {
   const cap = m.caption ? `<figcaption><span>${m.caption}</span>${m.credit ? `<em>${m.credit}</em>` : ''}</figcaption>` : '';
   return `<figure class="media${el ? cls : ' missing'}${m.portrait ? ' portrait' : ''}"${fa(m.f)}>${el}${ph}${cap}</figure>`;
 }
+// a clip cut inside a longer file: starts at its first time, stops at its second
+const clipOf = v => v.dataset.clip ? v.dataset.clip.split(',').map(Number) : null;
+['loadedmetadata', 'play'].forEach(t => document.addEventListener(t, e => { const c = e.target.dataset && clipOf(e.target); if (c && (e.target.currentTime < c[0] || e.target.currentTime >= c[1])) e.target.currentTime = c[0]; }, true));
+document.addEventListener('timeupdate', e => { const c = e.target.dataset && clipOf(e.target); if (c && e.target.currentTime >= c[1]) e.target.pause(); }, true);
 window.videoFallback = v => { const f = v.closest('.media'); if (!f) return; if ($('.yt', f)) f.classList.add('use-yt'); else f.classList.add('missing'); };
 function playYT(box) {
   if ($('iframe', box)) return;
@@ -2644,7 +2653,7 @@ const R = {
       <div class="ph2"><div class="ph2-scr">
         <div class="ph2-top">${s.caller.sub}</div><div class="ph2-av">${s.caller.ini}</div><div class="ph2-name">${s.caller.name}</div>
         <div class="ph2-ring">incoming call…</div><div class="ph2-btn"><span class="no">✕</span><span class="yes">✆</span></div>
-        <div class="ph2-wave"${fa(1)}>${bars}</div><div class="ph2-sub"${fa(1)}>“${s.line}”</div>
+        <div class="ph2-wave"${fa(1)}>${bars}</div>${s.video ? `<div class="ph2-vid" data-f="1" data-play-at="1">${media(s.video)}</div>` : `<div class="ph2-sub"${fa(1)}>“${s.line}”</div>`}
         <div class="ph2-stamp"${fa(2)}>${s.stamp}</div></div></div>
       <div class="ann">${s.points.map((p, i) => `<div class="an"${fa(p.f)}><span class="mk">${i + 1}</span><div><h4>${p.h}</h4><p>${p.t}</p></div></div>`).join('')}</div></div>${srcLine(s)}`; },
 
@@ -3121,6 +3130,9 @@ function applyFrag(el, k) {
   $$('[data-hl]', el).forEach(n => n.classList.toggle('hl', +n.dataset.hl <= k));
   $$('.rules [data-f]', el).forEach(n => n.classList.toggle('cur', +n.dataset.f === k));
   $$('[data-dots]', el).forEach(n => n.classList.toggle('show', +n.dataset.dots <= k));
+  $$('[data-play-at]', el).forEach(n => { const v = $('video', n); if (!v || PRESENTER || $('.media.missing', n)) return;
+    if (k >= +n.dataset.playAt) { if (!v.dataset.started) { v.dataset.started = 1; v.play().catch(() => {}); } }
+    else { v.pause(); delete v.dataset.started; const c = clipOf(v); v.currentTime = c ? c[0] : 0; } });
   $$('.count', el).forEach(n => { const host = n.closest('[data-f]'); if (!host || host.classList.contains('on')) countUp(n); });
   el._onFrag && el._onFrag(k);
 }
@@ -3194,7 +3206,7 @@ function autoPlay(el) {
   if (PRESENTER) return;
   $$('video', el).forEach(v => {
     const f = v.closest('.media');
-    if (v.closest('.mb,[data-wait]') || (f && (f.classList.contains('missing') || f.classList.contains('use-yt')))) return;
+    if (v.closest('.mb,[data-wait],[data-play-at]') || (f && (f.classList.contains('missing') || f.classList.contains('use-yt')))) return;
     v.play().catch(() => {});
   });
 }

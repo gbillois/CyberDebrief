@@ -34,6 +34,15 @@ MP4 fast-start. Actual duration can differ by one video frame at the cut.
 The six clips total about 2 min 56 s and 52 MiB. Sources, precise cuts,
 checksums and encoding settings are recorded in `clips.json`.
 
+### `Support_PBR.html`: the fake call
+
+Scene 47 (The fake call) plays `scam-call-cspan.mp4` inside the phone on its
+first click. Drop the C-SPAN clip
+["Story of attempted scam using AI"](https://www.c-span.org/clip/public-affairs-event/story-of-attempted-scam-using-ai/5093651)
+here **uncut**: the page plays it from 00:04 to 00:53 by itself. If you trim
+it yourself, remove `clip: [4, 53]` from the scene. Until the file is there,
+the phone shows a dashed slot with a link to the source.
+
 Source corrections made during preparation:
 
 - `JmklCcqSwz8` was a third-party commentary, replaced by the official Black Hat recording.
