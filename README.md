@@ -6,9 +6,10 @@ reusable tool.
 
 ## index.html · debrief collection
 
-The root page links to the three debriefs: **NotPetya** (`notpetya.html`),
+The root page links to four debriefs: **NotPetya** (`notpetya.html`),
 **OpenAI × Hugging Face** (`OAHF.html`), and **AI risks / Out of the Sandbox**
-(`Support_PBR.html`, the latest standalone presentation). Alternative formats
+(`Support_PBR.html`), plus **Lead the Shift / Les Assises 2026**
+(`assises-chart.html`, the latest workshop). Alternative formats
 are available under each card. The menu uses the dark Wavestone palette and
 local fonts from `Support_PBR.html`, with a responsive layout and keyboard navigation.
 
