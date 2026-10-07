@@ -14,6 +14,31 @@ are available under each card. The menu follows the public CyberSecWatch home: w
 
 `ai-threat-landscape-202609.html` has two versions, picked with the **Short / Long** switch on its title screen (Short by default; also `?v=short` or `?v=long` in the URL, remembered in the browser). In `SCENES`, `only: 'long'` or `only: 'short'` keeps a scene in one version, and `long: { … }` / `short: { … }` fields override the shared ones. The short version merges the release timeline and the exam, keeps only headlines and key figures on the zoom scenes (the rest goes to the speaker notes), skips Zoom 7, and shows the incident and attacker maps without the per-case close-ups.
 
+## ai-cyber-largeorg.html · AI-cyber-largeorg (French)
+
+A 45-minute talk in French for CISOs, risk managers and CIOs of large
+organisations, on the threat and the market around frontier models. It runs
+on the same engine and dark stage as `ai-threat-landscape-202609.html` (one
+version only, the long one), with the interface, the zoom world and the
+presenter view translated, and French typography (non-breaking spaces before
+`: ; ! ?` and inside « »). Five parts, one question each:
+
+| # | Part | Minutes | Content |
+|---|------|---------|---------|
+| 00 | Ouverture | 0 - 2 | 16 July 2026, Hugging Face, no human attacker |
+| 01 | L'examen | 2 - 11 | The OpenAI / Hugging Face case as in the long threat landscape (release timeline, ExploitGym, zooms 1 to 7, Black Hat), then a control and assurance reading of the incident |
+| 02 | Les débordements | 11 - 18 | The map of overflows, every lab affected (Anthropic, Meta, RubyGems, second pause, 100+ organisations), why it derails, prompt injection |
+| 03 | Les modèles frontière | 18 - 27 | Mythos, the capability curve (ExploitBench), the market and access modes, the verification programmes, the access asymmetry, the patching bottleneck, supervisors' reactions |
+| 04 | Réagir | 27 - 36 | Simplified part 2 of Lead the Shift: fundamentals and new CISO powers, rebuilding the foundations, the new cyber baseline (24 h / 3 h / 24 h / 2 days / 5 %), maturity, proving it across the three lines |
+| 05 | La cyber augmentée | 36 - 45 | Part 3 of Lead the Shift: three stages (80 / 30 / 5 %), use cases, one platform per domain, the cyber AAA, the unified platform, the new organisation with Trust & Challenge, synthesis, questions, sources |
+
+"Assurance" is used in its English sense throughout (justified confidence,
+from independent verification, that controls work). The deck does not name
+its audience. Scenes specific to this talk (`lessons`, `powers`, `found`,
+`baseline`, `lod`, `market`, `tiers`, `asym`, `stages`, `gains`, `domains`,
+`platform`, `org`, `synth`) are defined in the block marked AI-CYBER-LARGEORG,
+with their styles in the last `<style>` of the head. No narration recordings.
+
 ## Deployment
 
 Public URL: <https://debrief.cybersecwatcher.com>.
