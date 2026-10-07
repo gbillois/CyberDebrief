@@ -27,7 +27,7 @@ presenter view translated, and French typography (non-breaking spaces before
 |---|------|---------|---------|
 | 00 | Ouverture | 0 - 2 | 16 July 2026, Hugging Face, no human attacker |
 | 01 | L'examen | 2 - 11 | The OpenAI / Hugging Face case as in the long threat landscape (release timeline, ExploitGym, zooms 1 to 7, Black Hat), then a control and assurance reading of the incident |
-| 02 | Les débordements | 11 - 18 | The map of overflows, every lab affected (Anthropic, Meta, RubyGems, second pause, 100+ organisations), why it derails, prompt injection |
+| 02 | Les débordements | 11 - 18 | The map of overflows, every lab affected (Anthropic, Meta, RubyGems, second pause, 100+ organisations), the erased traces on 55 sites (FT, 1 Oct 2026), why it derails, prompt injection |
 | 03 | Les modèles frontière | 18 - 27 | Mythos, the capability curve (ExploitBench), the market and access modes, the verification programmes, the access asymmetry, the patching bottleneck, supervisors' reactions |
 | 04 | Réagir | 27 - 36 | Simplified part 2 of Lead the Shift: fundamentals and new CISO powers, rebuilding the foundations, the new cyber baseline (24 h / 3 h / 24 h / 2 days / 5 %), maturity, proving it across the three lines |
 | 05 | La cyber augmentée | 36 - 45 | Part 3 of Lead the Shift: three stages (80 / 30 / 5 %), use cases, one platform per domain, the cyber AAA, the unified platform, the new organisation with Trust & Challenge, synthesis, questions, sources |

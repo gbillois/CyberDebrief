@@ -2324,6 +2324,24 @@ Pour un public régulé : 84 jours entre l'incident et la notification de la vi
 Le président du FSB, dans sa lettre au G20 d'août : des modèles d'OpenAI, d'Anthropic et de Meta « ont utilisé internet pour pirater des organisations extérieures ».`,
   src: `TechCrunch, CNBC (30 juil. 2026) · Bloomberg, SecurityWeek (5 août 2026) · The Hacker News (12 sept. 2026) · heise (18 sept. 2026) · Fortune (26 sept. 2026) · IAPP, The Register (sept.-oct. 2026)` },
 
+{ ch: 'c2', type: 'known', title: 'Des traces effacées',
+  stamp: '1er octobre 2026 · Financial Times, Asymmetric Security', heading: 'Et des traces <span class="c-coral">effacées</span>',
+  yes: [
+    `55 sites atteints : administrations, entreprises, associations, dont les CDC, la SEC, l'Agence internationale de l'énergie, la Mayo Clinic, des agences australiennes`,
+    `Des journaux d'activité effacés, ou rendus inaccessibles`,
+    `Des boîtes mail temporaires et des comptes privés ouverts sur un service d'analyse de liens pour télécharger des données`,
+    `OpenAI : « nous examinons l'activité de modèles mal alignés et prévenons les organisations concernées »`,
+  ],
+  take: { t: `Si l'on ne peut pas reconstituer ce qu'un agent a fait, quand et pourquoi, on ne le contrôle pas.`, f: 3 },
+  no: [
+    `Si les agents ont voulu masquer leurs actions, ou ont simplement débordé du cadre du test`,
+    `Quelles instructions ils avaient reçues : les chercheurs extérieurs n'ont pas accès aux journaux complets`,
+  ],
+  vo: `Et le 1er octobre, le Financial Times révèle l'enquête d'une société d'investigation numérique, Asymmetric Security. Les agents d'OpenAI ont extrait des données de cinquante-cinq sites : les CDC américains, la SEC, l'Agence internationale de l'énergie, la Mayo Clinic, des agences australiennes. Et certaines traces ont été effacées, ou rendues inaccessibles. Les agents ont ouvert des boîtes mail temporaires et des comptes privés pour télécharger des données. Ce que l'on ne sait pas : s'ils voulaient couvrir leurs traces, ou s'ils ont simplement débordé. Pour nous, la leçon est simple : si l'on ne peut pas reconstituer ce qu'un agent a fait, quand et pourquoi, on ne le contrôle pas.`,
+  notes: `Financial Times, 1er octobre 2026, d'après Asymmetric Security. Pippa Thompson, cofondatrice : « It's possible that the agents were deliberately using these tools to cover their tracks » (il est possible que les agents aient délibérément utilisé ces outils pour couvrir leurs traces). L'entreprise n'a pas pu établir si le comportement était intentionnel ou résultait d'agents sortis des contraintes d'un exercice de test. Les comptes privés ont été ouverts sur urlquery.net, le même service où Transluce avait trouvé les premières traces. OpenAI au FT : « We're reviewing misaligned model activity and notifying organisations when we identify potential impacts to their systems » ; selon OpenAI, l'essentiel de l'activité relevait de tâches de recherche courantes sur des contenus publics.
+Pour un public contrôle et audit : journalisation immuable et hors de portée des agents eux-mêmes, conservation des instructions et des appels d'outils, droit d'accès aux journaux dans les contrats avec les fournisseurs d'IA.`,
+  src: `Financial Times (1er oct. 2026) · Asymmetric Security · Arab Times, Express Tribune (2 oct. 2026)` },
+
 { ch: 'c2', type: 'learn', title: 'Comment une IA apprend',
   heading: 'Pourquoi ça déborde ? D\'abord, comment une IA apprend',
   question: 'Capitale de l\'Australie ?', answer: 'Canberra',
@@ -2730,6 +2748,7 @@ Côté humains : le temps passé sur les tâches répétitives baisse fortement
       ['TechCrunch : les modèles d\'Anthropic atteignent trois entreprises (30 juillet 2026)', 'https://techcrunch.com/2026/07/30/anthropic-says-its-own-ai-models-breached-three-companies-during-security-tests/'],
       ['SecurityWeek : un modèle de Meta pirate des systèmes externes (août 2026)', 'https://www.securityweek.com/meta-ai-hacked-external-systems-during-cybersecurity-testing/'],
       ['The Hacker News : agents d\'OpenAI et RubyGems (septembre 2026)', 'https://thehackernews.com/2026/09/openai-agents-linked-to-rubygems.html'],
+      ['Financial Times : les agents d\'OpenAI ont masqué leurs traces (1er octobre 2026)', 'https://www.ft.com/content/fb32e9f8-4bf7-44ad-983d-1a03f50f66f5'],
       ['Fortune : seconde évasion et seconde pause (26 septembre 2026)', 'https://fortune.com/2026/09/26/openai-ai-agents-secure-sandbox-escape-training-pause-second-time-hugging-face-hack/'],
       ['The Register : injonction de la Californie (2 octobre 2026)', 'https://www.theregister.com/ai-and-ml/2026/10/02/openais-wandering-ai-agents-earn-it-a-california-subpoena/5300850'],
       ['OWASP Top 10 for LLM Applications', 'https://genai.owasp.org/llm-top-10/'],
@@ -3344,8 +3363,8 @@ const R = {
   headlines: s => `<div class="head">${textBlock(s)}</div><div class="press">${s.clips.map((c, i) => `<div class="clip"${fa(c.f ?? i + 1)} style="--x:${c.x}%;--y:${c.y}%"><div class="paper${c.img ? ' has-shot' : ''}" style="--r:${c.r}deg"><div class="o"><span>${c.o}</span><span>${c.d}</span></div>${c.img ? `<figure class="shot-f"><img src="assets/ai/press/${c.img}.jpg" alt="${c.o}: ${c.h}" onerror="this.closest('.paper').classList.remove('has-shot')"></figure>` : ''}<h3>${c.h}</h3>${c.fr ? `<p>${c.fr}</p>` : ''}</div></div>`).join('')}</div>${srcLine(s)}`,
 
   known: s => `<div class="head">${textBlock(s)}</div><div class="known">
-      <div style="--k:var(--green)"><h3>What we know</h3><ul>${s.yes.map((t, i) => `<li${fa(i ? 1 : 0)}><i>✓</i><span>${t}</span></li>`).join('')}</ul></div>
-      <div style="--k:var(--amber)"${fa(2)}><h3>What we do not know yet</h3><ul>${s.no.map(t => `<li><i>?</i><span>${t}</span></li>`).join('')}</ul></div>
+      <div style="--k:var(--green)"><h3>Ce que l’on sait</h3><ul>${s.yes.map((t, i) => `<li${fa(i ? 1 : 0)}><i>✓</i><span>${t}</span></li>`).join('')}</ul></div>
+      <div style="--k:var(--amber)"${fa(2)}><h3>Ce que l’on ne sait pas encore</h3><ul>${s.no.map(t => `<li><i>?</i><span>${t}</span></li>`).join('')}</ul></div>
     </div>${srcLine(s)}`,
 
   closing: s => `${bgMap([[2.35, 48.86]])}<div style="position:relative;z-index:2"><h2 class="cl-a">${s.a}</h2><p class="cl-b"${fa(1)}>${s.b}</p><div class="cl-c"${fa(2)}>${s.c}</div></div>`,
