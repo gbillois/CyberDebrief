@@ -2482,6 +2482,23 @@ CVE-2026-61500 (Rejetto HFS) : trouvée par Mythos via Horizon3, corrigée le 1
 Citation : Frank Elderson, membre du directoire de la BCE, 13-14 mai 2026 (« not an excuse for inaction »).`,
   src: `Hugging Face (27 juil. 2026) · Axios, Bloomberg (juin 2026) · Euronews (10 sept. 2026) · Anthropic Frontier Red Team (29 sept. 2026) · Tech Times (5 oct. 2026) · BankInfoSecurity (mai 2026)` },
 
+{ ch: 'c3', type: 'figures', title: 'Sept établissements financiers',
+  stamp: 'Fin septembre - début octobre 2026 · Corée du Sud', heading: 'Ce n\'est plus théorique : <span class="c-coral">sept établissements financiers</span>', n: 4,
+  figs: [
+    { v: 7, label: 'banques et prêteurs atteints, dont Shinhan, KB Kookmin et Hana', cls: 'coral', f: 1 },
+    { txt: '65 000', label: 'clients exposés, au moins : identité, revenus, plafonds de prêt', cls: 'white', f: 2 },
+    { txt: '15 h', label: 'avant la détection chez Shinhan, par des sites périphériques peu surveillés', cls: 'white', f: 3 },
+    { v: 1, label: 'outil de test d\'intrusion autonome à base d\'IA, en accès libre, soupçonné', f: 4 },
+  ],
+  foot: { t: `Le régulateur ordonne l'inspection de tous les systèmes exposés sur internet, et suspend l'assouplissement de la séparation des réseaux.`, f: 5 },
+  vo: `Et ce n'est plus théorique. Fin septembre, en Corée du Sud, sept banques et prêteurs sont attaqués : Shinhan, KB Kookmin, Hana, et quatre autres. Plus de soixante-cinq mille clients exposés : identité, revenus, plafonds de prêt. Les attaquants sont entrés par la périphérie : un site de consultation pour les courtiers en crédit, des applications de terrain pour les employés, des pages mal protégées. Chez Shinhan, il a fallu une quinzaine d'heures pour s'en apercevoir. L'outil soupçonné : un système de test d'intrusion autonome, piloté par des agents d'IA, téléchargeable par tous sur GitHub. Le régulateur a réuni les responsables sécurité du secteur en urgence, ordonné l'inspection de tous les systèmes exposés, et suspendu l'assouplissement de la règle de séparation des réseaux qu'il venait d'accorder.`,
+  notes: `Victimes : Shinhan Bank (environ 25 700 clients), Yegaram Savings Bank (environ 40 000), KB Kookmin (119 personnes), Hana (89), Welcome Savings Bank (jusqu'à 2 200), Hyundai Capital (146 courtiers), BNK Busan (11 développeurs prestataires). Total selon les sources : 65 000 à 68 000 personnes. Données : noms, téléphones, numéros d'identité dans certains cas, revenus, plafonds de prêt.
+Points d'entrée : service de consultation pour les courtiers en crédit (Shinhan), système mobile d'aide au travail des employés (KB Kookmin), système d'aide à la vente (Hana), pages web à la validation de session insuffisante (BNK Busan). Bourrage d'identifiants et contournement de la vérification par téléphone.
+Outil : ARTEX, système de test d'intrusion autonome « piloté par plusieurs agents d'IA » fonctionnant sur des modèles commerciaux, publié sur GitHub. Aucun régulateur ne l'a confirmé publiquement ; un responsable précise que l'outil « n'a pas agi seul » et a été utilisé par un pirate. Attribution non établie.
+Réponse : réunions d'urgence de la FSC, inspection des systèmes exposés sur internet avec échéance au 8 octobre, enquête de police, alerte aux consommateurs (risque de hameçonnage vocal très ciblé avec ces données). La FSC a suspendu la seconde phase des exemptions à la séparation des réseaux (49 établissements exemptés pour tester des défenses à base d'IA). Le président Lee : « dans certaines attaques, des signes d'utilisation de l'IA sont apparus, ce qui suscite une inquiétude considérable ».
+Lien avec la partie 4 : « Découvrir en moins de 24 heures tout actif exposé » ; les points d'entrée étaient des systèmes périphériques que personne ne regardait.`,
+  src: `American Banker (6 oct. 2026) · Cryptopolitan (6 oct. 2026) · Tech Times (5 oct. 2026)` },
+
 { ch: 'c3', type: 'figures', title: 'Le goulot d\'étranglement',
   stamp: 'La découverte s\'industrialise', heading: 'Trouver est devenu facile. <span class="c-coral">Corriger, non.</span>', n: 4,
   figs: [
@@ -2769,6 +2786,9 @@ Côté humains : le temps passé sur les tâches répétitives baisse fortement
       ['Euronews : l\'UE obtient Mythos trois mois plus tard (10 septembre 2026)', 'https://www.euronews.com/my-europe/2026/09/10/the-eu-got-access-to-anthropics-most-powerful-model-three-months-later'],
       ['Dark Reading : le flot de failles de Mythos bute sur l\'humain (septembre 2026)', 'https://www.darkreading.com/application-security/mythos-vulnerability-firehose-hits-human-bottleneck'],
       ['Tech Times : CVE-2026-61500 exploitée en un jour (5 octobre 2026)', 'https://www.techtimes.com/articles/328531/20261005/cve-2026-61500-anthropic-mythos-finds-rejetto-hfs-flaw-exploited-within-one-day.htm'],
+      ['American Banker : des attaques liées à l\'IA touchent des banques coréennes (6 octobre 2026)', 'https://www.americanbanker.com/news/ai-linked-hacks-hit-korean-banks-through-loan-agent-sites'],
+      ['Cryptopolitan : la Corée du Sud suspend l\'assouplissement de la séparation des réseaux (6 octobre 2026)', 'https://www.cryptopolitan.com/south-korea-bank-security-ai-hacks/'],
+      ['Tech Times : sept banques sud-coréennes piratées (5 octobre 2026)', 'https://techtimes.com/articles/328541/20261005/open-source-ai-agent-hacked-seven-south-korean-banks-exposing-65000-records.htm'],
       ['FIRST : prévisions de vulnérabilités 2026', 'https://www.first.org/newsroom/releases/20260211'],
       ['Mandiant, M-Trends 2026', 'https://cloud.google.com/blog/topics/threat-intelligence/m-trends-2026'],
     ]],
