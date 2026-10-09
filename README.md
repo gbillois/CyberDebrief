@@ -50,8 +50,9 @@ European bank and insurer), and every figure are fictitious. Personas are
 named by role only, and no real product or vendor is named. English UI; the
 hub card is in French.
 
-Two interface styles, switched from the options menu (gear icon, top
-right) and remembered in the browser: **Console** (default), a dark
+The Part 1 pages and the showcase always use the classic Wavestone style.
+The platform (Part 2) has two interface styles, switched from the options menu
+(gear icon, top right) and remembered in the browser: **Console** (default), a dark
 security-operations console with a left navigation rail, dense tables and
 cards, severity chips and mono IDs; and **Classic**, the Wavestone light look.
 Screens are written once with light colours; in Console mode `CP.theme`

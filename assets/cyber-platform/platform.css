@@ -542,3 +542,4 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
 .role-opt>.i:last-child{color:var(--indigo)}
 .btn-demo.btn-alt{background:#fff;color:var(--dark)}
 .subnav .persona b,.subnav .persona strong{color:var(--ink)}
+.opts-note{font-size:11.5px;color:var(--muted);margin:2px 10px 6px;line-height:1.4}

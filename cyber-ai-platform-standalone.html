@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="console">
+<html lang="en" data-theme="classic">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -561,6 +561,7 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
 .role-opt>.i:last-child{color:var(--indigo)}
 .btn-demo.btn-alt{background:#fff;color:var(--dark)}
 .subnav .persona b,.subnav .persona strong{color:var(--ink)}
+.opts-note{font-size:11.5px;color:var(--muted);margin:2px 10px 6px;line-height:1.4}
 
 </style>
   <style>
@@ -1318,14 +1319,17 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
     const all = root.getElementsByTagName('*'); for (let i = 0; i < all.length; i++) mapEl(all[i]);
   }
   let observer = null;
+  /* pref: the user's choice for The platform (Part 2). Part 1 and the
+     showcase always use the classic Wavestone style. */
   CP.theme = {
-    current: 'console',
+    current: 'classic', pref: 'console',
     dark() { return CP.theme.current === 'console'; },
     mapCss,
-    set(name, silent) {
-      CP.theme.current = name === 'classic' ? 'classic' : 'console';
-      document.documentElement.setAttribute('data-theme', CP.theme.current);
-      try { localStorage.setItem('cp-theme', CP.theme.current); } catch (e) { /* storage blocked */ }
+    apply(name) {
+      name = name === 'console' ? 'console' : 'classic';
+      if (name === CP.theme.current && document.documentElement.getAttribute('data-theme') === name) return;
+      CP.theme.current = name;
+      document.documentElement.setAttribute('data-theme', name);
       CP.qsa('style[data-src]').forEach((st) => { st.textContent = CP.theme.dark() ? mapCss(st._src) : st._src; });
       if (observer) { observer.disconnect(); observer = null; }
       if (CP.theme.dark()) {
@@ -1336,9 +1340,20 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
         }));
         observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'fill', 'stroke'] });
       }
-      if (!silent) { CP.render(); CP.toast(CP.theme.dark() ? 'Console style: dark security operations look.' : 'Classic style: Wavestone light.'); }
+    },
+    /* Theme for a screen: the preference on The platform, classic elsewhere. */
+    forScreen(scr) { return scr && scr.part === 2 ? CP.theme.pref : 'classic'; },
+    set(name, silent) {
+      CP.theme.pref = name === 'classic' ? 'classic' : 'console';
+      try { localStorage.setItem('cp-theme', CP.theme.pref); } catch (e) { /* storage blocked */ }
+      if (!silent) {
+        const scr = CP.screens[CP.route.id];
+        CP.render();
+        CP.toast((CP.theme.pref === 'console' ? 'Console style' : 'Classic style') + ' for The platform.' + (scr && scr.part !== 2 ? ' How it works keeps the classic style.' : ''));
+      }
     }
   };
+
 
   /* ---------------- Toasts & modal ---------------- */
   CP.toast = function (msg, kind) {
@@ -1415,6 +1430,7 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
     const y = window.scrollY;
     root.className = 'view' + (scr.flush ? ' flush' : '');
     try {
+      CP.theme.apply(CP.theme.forScreen(scr));
       if (scr.part === 2 && !CP.canSee(scr.id)) root.innerHTML = moduleRibbon(scr.id) + lockedHtml(scr);
       else root.innerHTML = (scr.part === 2 ? moduleRibbon(scr.id) : conceptRibbon(scr.id)) + scr.render.call(scr, CP.route);
       if (scr.mount) scr.mount.call(scr, root, CP.route);
@@ -1512,9 +1528,9 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
       '<button class="bell' + (pend.length ? ' has' : '') + '" data-open-drawer title="Decisions awaiting a human">' + CP.icon('bell') + '<span class="lbl">Decisions</span>' + (pend.length ? '<span class="badge-n">' + pend.length + '</span>' : '') + '</button>' +
       '<a class="btn-demo" href="' + CP.href('demo') + '" title="Guided demo">' + CP.icon('play') + '<span class="lbl">Guided demo</span></a>' +
       '<div class="opts"><button class="opts-btn" data-opts-toggle aria-haspopup="true" aria-expanded="' + optsOpen + '" title="Options" aria-label="Options">' + CP.icon('gear') + '</button>' +
-      '<div class="opts-menu' + (optsOpen ? ' open' : '') + '" id="opts-menu" role="menu"><div class="rm-head">Interface style</div>' +
+      '<div class="opts-menu' + (optsOpen ? ' open' : '') + '" id="opts-menu" role="menu"><div class="rm-head">Style of The platform</div>' +
       [['console', 'Console', 'Dark security-operations console: left rail, dense data, severity colours'], ['classic', 'Classic', 'Wavestone light, as in EBIOS RM and CrisisMaker']].map((t) =>
-        '<button class="role-opt' + (CP.theme.current === t[0] ? ' active' : '') + '" role="menuitemradio" aria-checked="' + (CP.theme.current === t[0]) + '" data-theme-set="' + t[0] + '"><span class="th-sw th-' + t[0] + '" aria-hidden="true"><i></i><i></i><i></i></span><span class="ro-txt"><b>' + t[1] + '</b><small>' + t[2] + '</small></span>' + (CP.theme.current === t[0] ? CP.icon('check') : '') + '</button>').join('') +
+        '<button class="role-opt' + (CP.theme.pref === t[0] ? ' active' : '') + '" role="menuitemradio" aria-checked="' + (CP.theme.pref === t[0]) + '" data-theme-set="' + t[0] + '"><span class="th-sw th-' + t[0] + '" aria-hidden="true"><i></i><i></i><i></i></span><span class="ro-txt"><b>' + t[1] + '</b><small>' + t[2] + '</small></span>' + (CP.theme.pref === t[0] ? CP.icon('check') : '') + '</button>').join('') + '<p class="opts-note">How it works always uses the classic Wavestone style.</p>' +
       '<div class="rm-head">Demo</div><button class="role-opt" data-action="resetDemo"><span class="th-sw" aria-hidden="true">' + CP.icon('restart') + '</span><span class="ro-txt"><b>Reset the demo data</b><small>Back to the baseline, scenarios stopped</small></span></button></div></div>';
   }
   CP.renderTop = renderTop;
@@ -1590,6 +1606,7 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
     try { const r = localStorage.getItem('cp-role'); if (r && CP.role(r) && CP.screens[CP.role(r).screen]) CP.currentRole = r; } catch (e) { /* storage blocked */ }
     let th = 'console'; try { th = localStorage.getItem('cp-theme') || 'console'; } catch (e) { /* storage blocked */ }
     CP.theme.set(th, true);
+    CP.theme.apply('classic');
     store.reset();
     CP.bus.emit('boot');
     CP.render(true);
