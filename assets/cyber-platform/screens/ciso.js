@@ -839,7 +839,7 @@
       orgSel(el) { this.ui.orgSel = el.dataset.u; CP.render(); if (window.innerWidth <= 1180 && el.closest('.cc-org,.t')) { const od = document.querySelector('.cc-od'); if (od) od.scrollIntoView({ behavior: 'smooth', block: 'start' }); } },
       briefAud(el) { this.ui.aud = el.dataset.v; CP.render(); },
       briefSec(el) { this.ui.sec[el.dataset.k] = el.checked; CP.render(); },
-      openCase(el) { const c = CP.store.find('cases', el.dataset.id); if (c) caseModal(c); },
+      openCase(el) { CP.go('cases', el.dataset.id); },
       openAgent(el) { const a = CP.agent(el.dataset.id); if (a) agentModal(a); },
       openDecision(el) {
         const a = allDecisions().find((x) => x.id === el.dataset.id); if (!a) return;

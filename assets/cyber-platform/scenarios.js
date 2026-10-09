@@ -25,7 +25,7 @@
   CP.scenarios = [
     /* ------------------------------------------------------------------ */
     {
-      id: 'cti', n: 'S1', short: 'CTI zero-day', icon: 'radar',
+      id: 'cti', n: 'S1', caseId: 'C-2301', short: 'CTI zero-day', icon: 'radar',
       title: 'A zero-day hits a file-transfer product used by 14 suppliers',
       pitch: 'One CTI alert: the platform maps the exposure, patches virtually, writes the detection, runs a quick forensic and questions the suppliers, while humans keep the decisions that matter.',
       domains: ['cti', 'grc', 'appsec', 'soc'], clock: { day: 'Tue', start: 8 * 3600 + 42 * 60 },
@@ -175,7 +175,7 @@
 
     /* ------------------------------------------------------------------ */
     {
-      id: 'identity', n: 'S2', short: 'Compromised identity', icon: 'fingerprint',
+      id: 'identity', n: 'S2', caseId: 'C-2302', short: 'Compromised identity', icon: 'fingerprint',
       title: 'MFA fatigue at 2 a.m. on a payment approver',
       pitch: 'An attacker wears down a Treasury operator with MFA pushes. The platform contains in 7 minutes, measures the data touched, and wakes a human only for the business decision.',
       domains: ['iam', 'soc', 'data', 'grc'], clock: { day: 'Wed', start: 2 * 3600 + 13 * 60 },
@@ -232,12 +232,12 @@
           text: 'Since 01:00 this account approved 3 payments for €4.2 M. Suspending a payment approver and holding today\'s payments has direct business impact, so the platform stops and calls the Head of Treasury, with the CISO in the loop. Everything is ready: one click executes it.',
           flow: [['ag-iam-resp', 'or-policy'], ['or-policy', 'or-hitl'], ['or-hitl', 'hu-ciso']],
           gate: {
-            approval: { id: 'AP-ID-HOLD', role: 'ciso', decider: 'p-hugo', requestedBy: 'ag-iam-resp', autonomy: 'L1', title: 'Suspend t.op-17 and hold 3 payments (€4.2 M)', summary: 'Three payments approved by this account since 01:00 are still in the cut-off queue. Holding them lets Treasury call the beneficiaries before release.', threshold: 'action on payments and on a key business account', impacts: ['3 payments held until 10:00 (beneficiaries called back)', 'Operator suspended until a supervised re-onboarding', 'Treasury desk informed at 07:00'], recommendation: 'Hold: two beneficiaries were created yesterday and one bank is new for Novalys.', approveLabel: 'Suspend and hold', rejectLabel: 'Release payments' },
+            approval: { id: 'AP-ID-HOLD', role: 'owner', decider: 'p-hugo', requestedBy: 'ag-iam-resp', autonomy: 'L1', title: 'Suspend t.op-17 and hold 3 payments (€4.2 M)', summary: 'Three payments approved by this account since 01:00 are still in the cut-off queue. Holding them lets Treasury call the beneficiaries before release.', threshold: 'action on payments and on a key business account', impacts: ['3 payments held until 10:00 (beneficiaries called back)', 'Operator suspended until a supervised re-onboarding', 'Treasury desk informed at 07:00'], recommendation: 'Hold: two beneficiaries were created yesterday and one bank is new for Novalys.', approveLabel: 'Suspend and hold', rejectLabel: 'Release payments' },
             onApprove: [{ op: 'add', coll: 'actions', item: { id: 'A-9877', ts: 'Wed 02:24', agent: 'ag-iam-resp', system: 'Payment hub / Identity provider', action: 'Suspended account; held 3 payments (€4.2 M)', level: 'L1', status: 'done', rollback: true, scenario: 'identity' } }, { op: 'update', coll: 'cases', id: 'C-2302', patch: { status: 'contained', summary: 'Contained at 02:24. 3 payments held. 1,200 IBANs exposed (GDPR assessment).' } }],
             onReject: [{ op: 'update', coll: 'cases', id: 'C-2302', patch: { status: 'contained', summary: 'Contained; payments released by Treasury decision.' } }],
             fallback: 'Payments are released; the platform raises fraud monitoring on the 3 beneficiaries.'
           },
-          see: ['ciso', null, 'Decide in the CISO cockpit']
+          see: ['owner', null, 'Decide in the risk owner app']
         },
         {
           id: 'id-8', t: 900, actor: 'ag-grc-controls', domain: 'grc', level: 'L1', title: 'Regulatory assessment drafted',
@@ -282,7 +282,7 @@
 
     /* ------------------------------------------------------------------ */
     {
-      id: 'regulator', n: 'S3', short: 'Regulator request', icon: 'gavel',
+      id: 'regulator', n: 'S3', caseId: 'C-2303', short: 'Regulator request', icon: 'gavel',
       title: 'The supervisor wants DORA evidence in 5 days',
       pitch: 'A supervisory letter arrives on Monday. The platform turns it into 23 evidence items, assembles them from the data lake, finds the gaps first, and Engage answers with a remediation plan.',
       domains: ['grc', 'data'], clock: { day: 'Mon', start: 9 * 3600 },
@@ -293,7 +293,7 @@
           log: 'supervisor requests ICT register, resilience test evidence and incident log within 5 days.',
           text: 'The supervisor asks for the register of ICT third-party arrangements, evidence that critical functions were tested for resilience, and the log of major incidents over 12 months. Deadline: 5 business days. the Head of Engage uploads the letter to the platform.',
           flow: [['out-reg', 'hu-engage'], ['hu-engage', 'int-mcp'], ['int-mcp', 'ag-grc-controls']],
-          effects: [{ op: 'add', coll: 'regulatory', item: { id: 'R-DORA-REQ', framework: 'DORA', regulator: 'Supervisor', item: 'Supervisory request: ICT register, resilience tests, incident log', due: 'Mon 20 Oct', status: 'at-risk', owner: 'p-amira', collected: 0, total: 23, scenario: 'regulator' } }],
+          effects: [{ op: 'add', coll: 'cases', item: { id: 'C-2303', title: 'Supervisory request · DORA ICT evidence in 5 days', severity: 'high', status: 'open', domains: ['grc', 'data'], opened: 'Mon 09:00', owner: 'ag-grc-controls', summary: '23 evidence items to assemble by Mon 20 Oct.' } }, { op: 'add', coll: 'regulatory', item: { id: 'R-DORA-REQ', framework: 'DORA', regulator: 'Supervisor', item: 'Supervisory request: ICT register, resilience tests, incident log', due: 'Mon 20 Oct', status: 'at-risk', owner: 'p-amira', collected: 0, total: 23, scenario: 'regulator' } }],
           see: ['engage', 'regulators', 'See it in Engage · Regulators']
         },
         {
@@ -363,7 +363,7 @@
           log: 'pack submitted on the supervisor portal; LoD2 re-sampled 10% of evidence: 0 discrepancy.',
           text: 'Engage submits through the supervisor portal, 3 days early. Trust & Challenge, as second line, independently re-samples 10% of the evidence against the source systems: no discrepancy. The platform keeps the answer as the starting point for next year.',
           flow: [['hu-engage', 'out-reg'], ['hu-trust', 'ctx-lake']],
-          effects: [{ op: 'inc', path: 'kpis.hoursSaved', by: 494 }],
+          effects: [{ op: 'inc', path: 'kpis.hoursSaved', by: 494 }, { op: 'update', coll: 'cases', id: 'C-2303', patch: { status: 'closed', summary: 'Submitted 3 days early with 3 gaps disclosed and a dated plan. LoD2 re-sample: 0 discrepancy.' } }],
           metric: { value: '3 weeks → 2 days', label: 'with gaps found by us, not by the inspector' }
         }
       ]
@@ -371,7 +371,7 @@
 
     /* ------------------------------------------------------------------ */
     {
-      id: 'drift', n: 'S4', short: 'Agent drift', icon: 'eye',
+      id: 'drift', n: 'S4', caseId: 'C-2304', short: 'Agent drift', icon: 'eye',
       title: 'Who watches the agents? A triage agent is fooled',
       pitch: 'Attackers hide instructions in phishing emails and the triage agent starts closing them. Trust & Challenge spots the drift, Run pulls the kill-switch, Build ships a fix, and autonomy comes back step by step.',
       domains: ['soc', 'trust'], clock: { day: 'Thu', start: 10 * 3600 + 5 * 60 },
@@ -383,7 +383,7 @@
           text: 'The deviation hunt monitor flags the SOC Triage Agent: its auto-close rate on user-reported phishing jumped from 61% to 84% in 48 hours, concentrated on emails from one sender domain. No model or prompt change explains it.',
           flow: [['ag-soc-triage', 'ai-eval'], ['ai-eval', 'hu-trust']],
           focus: ['ag-soc-triage'],
-          effects: [{ op: 'add', coll: 'deviations', item: { id: 'DV-34', agent: 'ag-soc-triage', signal: 'Auto-close rate on phishing reports +23 pts in 48 h, one sender domain', metric: 'Auto-close rate', baseline: '61%', observed: '84%', status: 'investigating', detected: 'Thu 10:05', scenario: 'drift' } }],
+          effects: [{ op: 'add', coll: 'cases', item: { id: 'C-2304', title: 'AI incident · SOC Triage Agent fooled by hidden instructions', severity: 'high', status: 'open', domains: ['soc', 'trust'], opened: 'Thu 10:05', owner: 'p-jonas', summary: 'Auto-close rate on phishing reports +23 pts in 48 h.' } }, { op: 'add', coll: 'deviations', item: { id: 'DV-34', agent: 'ag-soc-triage', signal: 'Auto-close rate on phishing reports +23 pts in 48 h, one sender domain', metric: 'Auto-close rate', baseline: '61%', observed: '84%', status: 'investigating', detected: 'Thu 10:05', scenario: 'drift' } }],
           metric: { value: '+23 pts', label: 'auto-close rate in 48 h' },
           see: ['trust', 'deviation', 'See it in Trust & Challenge']
         },
@@ -452,7 +452,7 @@
           log: 'after 72 h canary (99.1% agreement) the agent is back to L2; AI register updated.',
           text: 'After 72 hours of canary at 99.1% agreement with analysts, the agent returns to L2 for all traffic. The incident is recorded in the AI governance register and the AI Act documentation of the agent is updated.',
           flow: [['or-policy', 'ag-soc-triage'], ['or-audit', 'ctx-lake']],
-          effects: [{ op: 'update', coll: 'agents', id: 'ag-soc-triage', patch: { mode: 'L2', status: 'active' } }, { op: 'update', coll: 'deviations', id: 'DV-34', patch: { status: 'closed' } }, { op: 'update', coll: 'releases', id: 'REL-79', patch: { stage: 'prod', status: 'done' } }, { op: 'update', coll: 'regulatory', id: 'R-AIACT', patch: { collected: 42 } }]
+          effects: [{ op: 'update', coll: 'agents', id: 'ag-soc-triage', patch: { mode: 'L2', status: 'active' } }, { op: 'update', coll: 'deviations', id: 'DV-34', patch: { status: 'closed' } }, { op: 'update', coll: 'releases', id: 'REL-79', patch: { stage: 'prod', status: 'done' } }, { op: 'update', coll: 'regulatory', id: 'R-AIACT', patch: { collected: 42 } }, { op: 'update', coll: 'cases', id: 'C-2304', patch: { status: 'closed', summary: 'Detected in 6 h, contained in 20 min, fixed and proven in 4 h; back to L2 after 72 h canary.' } }]
         },
         {
           id: 'dr-9', t: 274300, actor: 'orchestrator', domain: 'orch', level: 'L3', title: 'The board sees agents under control',

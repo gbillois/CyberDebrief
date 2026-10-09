@@ -60,6 +60,8 @@
     CP.store.apply({ op: 'add', coll: 'feed', item: { id: 'f-' + step.id + '-' + Date.now(), ts, actor: step.actor, domain: step.domain, level: step.gate ? 'decision' : 'action', text: step.log || step.title, scenario: S.id } }, true);
     CP.store.apply({ op: 'inc', path: 'kpis.actionsToday', by: (step.flow || []).length }, true);
     addLog(ts, step.actor, step.log || step.title, step.gate ? 'dec' : '');
+    /* Agent trace kept in the store, so the case workspace can show it later. */
+    CP.store.apply({ op: 'add', coll: 'traces', append: true, item: { id: 'tr-' + step.id, scenario: S.id, case: S.caseId, stepIndex: i, t: step.t, ts, actor: step.actor, domain: step.domain, level: step.level, title: step.title, text: step.text, flow: step.flow || [], artifact: step.artifact || null, gate: step.gate ? step.gate.approval.id : null, metric: step.metric || null } }, true);
     if (step.gate) {
       const ap = Object.assign({}, step.gate.approval, { scenario: S.id, status: 'pending', createdAt: ts });
       CP.store.apply({ op: 'add', coll: 'approvals', item: ap }, true);

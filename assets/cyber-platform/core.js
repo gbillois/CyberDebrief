@@ -298,8 +298,8 @@
 
   /* CrisisMaker-style dark tab bar for a console.
      groups: [{label, tabs:[{id, label, icon, count, warn}]}]; active = current sub id. */
-  ui.tabbar = (screenId, groups, active, right) => '<nav class="tabbar" aria-label="Console sections">' +
-    groups.map((g) => '<div class="tg">' + (g.label ? '<span class="tg-label">' + esc(g.label) + '</span>' : '') +
+  ui.tabbar = (screenId, groups, active, right) => '<nav class="subnav" aria-label="Module sections">' +
+    groups.map((g) => '<div class="sg">' + (g.label ? '<span class="sg-label">' + esc(g.label) + '</span>' : '') +
       g.tabs.map((t) => '<a href="' + CP.href(screenId, t.id) + '" class="' + (t.id === active ? 'active' : '') + '" data-tour="tab-' + esc(screenId + '-' + t.id) + '">' + (t.icon ? CP.icon(t.icon) : '') + esc(t.label) +
         (t.count ? '<span class="count' + (t.warn ? ' warn' : '') + '">' + esc(t.count) + '</span>' : '') + '</a>').join('') + '</div>').join('') +
     (right ? '<span class="persona">' + right + '</span>' : '') + '</nav>';
@@ -438,6 +438,22 @@
   };
   CP.href = (id, sub) => '#/' + id + (sub ? '/' + sub : '');
 
+  /* Cross-linking: any known case id shown in a screen becomes a link to its workspace. */
+  function linkCases(root) {
+    const ids = {}; store.get('cases').forEach((c) => { ids[c.id] = 1; });
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(n) {
+        if (!/\bC-\d{4}\b/.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
+        return n.parentElement.closest('a,button,pre,textarea,select,option,svg,.code,[data-nolink]') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((n) => {
+      const html = esc(n.nodeValue).replace(/\bC-\d{4}\b/g, (m) => ids[m] ? '<a class="case-link" href="#/cases/' + m + '">' + m + '</a>' : m);
+      if (html === esc(n.nodeValue)) return;
+      const span = document.createElement('span'); span.innerHTML = html; n.parentNode.replaceChild(span, n);
+    });
+  }
   let lastId = null;
   CP.render = function (scrollTop) {
     const r = parseHash();
@@ -449,14 +465,15 @@
     const y = window.scrollY;
     root.className = 'view' + (scr.flush ? ' flush' : '');
     try {
-      root.innerHTML = (scr.part === 2 ? '' : conceptRibbon(scr.id)) + scr.render.call(scr, CP.route);
+      if (scr.part === 2 && !CP.canSee(scr.id)) root.innerHTML = moduleRibbon(scr.id) + lockedHtml(scr);
+      else root.innerHTML = (scr.part === 2 ? moduleRibbon(scr.id) : conceptRibbon(scr.id)) + scr.render.call(scr, CP.route);
       if (scr.mount) scr.mount.call(scr, root, CP.route);
+      if (scr.id !== 'cases') linkCases(root);
     } catch (e) {
       console.error(e);
       root.innerHTML = '<div class="notice error">This screen failed to render: ' + esc(e.message) + '</div>';
     }
     if (changedScreen || scrollTop === true) window.scrollTo(0, 0); else window.scrollTo(0, y);
-    if (changedScreen && scr.role && CP.currentRole !== scr.role) setRole(scr.role, true);
     lastId = scr.id + '/' + r.sub;
     renderNav();
     renderTop();
@@ -478,6 +495,31 @@
     renderTop();
   }
   CP.setRole = setRole;
+
+  /* Role-based access to platform modules. */
+  CP.module = (id) => (CP.data.modules || []).find((m) => m.id === id);
+  CP.canSee = (id, role) => { const m = CP.module(id); return !m || m.roles.indexOf(role || CP.currentRole) >= 0; };
+  function moduleRibbon(active) {
+    const role = CP.currentRole; const groups = [];
+    CP.data.modules.filter((m) => m.roles.indexOf(role) >= 0).forEach((m) => {
+      let g = groups.find((x) => x.label === m.group); if (!g) { g = { label: m.group, items: [] }; groups.push(g); }
+      g.items.push(m);
+    });
+    return '<nav class="tabbar" aria-label="Platform modules">' + groups.map((g) => '<div class="tg"><span class="tg-label">' + esc(g.label) + '</span>' +
+      g.items.map((m) => {
+        let count = '';
+        if (m.id === 'inbox') { const n = store.pendingApprovals().filter((a) => CP.roleSees(a)).length; if (n) count = '<span class="count warn">' + n + '</span>'; }
+        const mine = m.for && m.for.indexOf(role) >= 0;
+        return '<a href="' + CP.href(m.id) + '" class="' + (active === m.id ? 'active' : '') + '" data-tour="mod-' + m.id + '">' + CP.icon(m.icon) + esc(m.label) + (mine ? '<span class="mine" title="Your daily work"></span>' : '') + count + '</a>';
+      }).join('') + '</div>').join('') + '</nav>';
+  }
+  /* Which approvals a role should act on (its own, plus all for the CISO). */
+  CP.roleSees = (a, role) => { role = role || CP.currentRole; return a.role === role || role === 'ciso' || (role === 'analyst' && a.role === 'run'); };
+  function lockedHtml(scr) {
+    const m = CP.module(scr.id) || {}; const role = CP.role(CP.currentRole);
+    const who = CP.data.roles.filter((r) => m.roles && m.roles.indexOf(r.id) >= 0).map((r) => r.label);
+    return '<div class="empty" style="margin-top:40px;padding:48px">' + CP.icon('lock') + '<h2 style="margin:10px 0 6px">' + esc(m.label || scr.label) + ' is not available for the ' + esc(role.label) + ' role</h2><p style="margin:0 0 16px">Role-based access: this module is open to ' + esc(who.join(', ')) + '.</p><a class="btn-demo" href="' + CP.href(role.screen) + '" style="display:inline-flex">Go to my home ' + CP.icon('arrowRight') + '</a></div>';
+  }
 
   /* Dark ribbon for Part 1 pages and the guided demo (consoles draw their own). */
   function conceptRibbon(active) {
@@ -501,10 +543,11 @@
       ms.innerHTML = '<a href="' + CP.href('home') + '" class="' + (scr.part !== 2 ? 'on' : '') + '" data-tour="mode-how">' + CP.icon('layers') + '<span class="long">How it works</span><span class="short">Concept</span></a>' +
         '<div class="mode-pf role-picker"><button class="' + (scr.part === 2 ? 'on' : '') + '" data-role-toggle aria-haspopup="true" aria-expanded="' + menuOpen + '" data-tour="mode-platform">' + CP.icon('monitor') + '<span class="long">The platform</span><span class="short">Platform</span>' +
         '<span class="pf-role">' + ui.av(persona.id) + '<span class="lbl">' + esc(role.label) + '</span>' + CP.icon('chevronDown') + '</span></button>' +
-        '<div class="role-menu' + (menuOpen ? ' open' : '') + '" id="role-menu" role="menu"><div class="rm-head">Open the console of a role</div>' +
-        CP.data.roles.map((r) => {
+        '<div class="role-menu' + (menuOpen ? ' open' : '') + '" id="role-menu" role="menu">' +
+        CP.data.roles.map((r, k) => {
+          const head = (k === 0 || CP.data.roles[k - 1].group !== r.group) ? '<div class="rm-head">' + esc(r.group) + '</div>' : '';
           const pp = CP.person(r.persona); const n = store.pendingApprovals(r.id).length;
-          return '<button class="role-opt' + (r.id === CP.currentRole && scr.part === 2 ? ' active' : '') + '" role="menuitem" data-role="' + esc(r.id) + '">' + ui.av(pp.id) +
+          return head + '<button class="role-opt' + (r.id === CP.currentRole && scr.part === 2 ? ' active' : '') + '" role="menuitem" data-role="' + esc(r.id) + '">' + ui.av(pp.id) +
             '<span class="ro-txt"><b>' + esc(r.label) + '</b><small>' + esc(r.desc) + '</small></span>' + (n ? '<span class="count" title="Decisions awaiting">' + n + '</span>' : '') + '</button>';
         }).join('') + '</div></div>';
     }
@@ -513,7 +556,8 @@
         '<div class="mini-player">' + (st.playing ? '<button class="small" data-player="pause" title="Pause (space)" aria-label="Pause">' + CP.icon('pause') + '</button>' : '<button class="small" data-player="play" title="Play (space)" aria-label="Play"' + (st.done ? ' disabled' : '') + '>' + CP.icon('play') + '</button>') +
         '<button class="small" data-player="next" title="Next step (→)" aria-label="Next step"' + (st.done ? ' disabled' : '') + '>' + CP.icon('next') + '</button></div>'
       : '<div class="sim-pill"><span class="dot"></span>Simulated · <b>' + esc(CP.clock ? CP.clock.label() : '') + '</b></div>';
-    top.innerHTML = sim +
+    const canSearch = CP.canSee('graph-x');
+    top.innerHTML = (canSearch ? '<form class="gsearch" data-gsearch role="search"><label class="sr" for="gs-in">Search the security graph</label>' + CP.icon('search') + '<input id="gs-in" name="q" placeholder="Search assets, identities, suppliers, CVEs…" autocomplete="off" value="' + esc(CP.route.id === 'graph-x' ? (CP.route.query.q || '') : '') + '"></form>' : '') + sim +
       '<button class="bell' + (pend.length ? ' has' : '') + '" data-open-drawer title="Decisions awaiting a human">' + CP.icon('bell') + '<span class="lbl">Decisions</span>' + (pend.length ? '<span class="badge-n">' + pend.length + '</span>' : '') + '</button>' +
       '<a class="btn-demo" href="' + CP.href('demo') + '" title="Guided demo">' + CP.icon('play') + '<span class="lbl">Guided demo</span></a>';
   }
@@ -556,6 +600,10 @@
       if (fn) { ev.preventDefault(); fn.call(scr, t, ev, CP.route); }
       else if (CP.globalActions[t.dataset.action]) { ev.preventDefault(); CP.globalActions[t.dataset.action](t, ev); }
     }
+  });
+  document.addEventListener('submit', (ev) => {
+    const f = ev.target.closest('[data-gsearch]'); if (!f) return;
+    ev.preventDefault(); const q = f.querySelector('input').value.trim(); CP.go('graph-x', null, q ? { q } : null);
   });
   document.addEventListener('change', (ev) => {
     const t = ev.target.closest('[data-change]'); if (!t) return;

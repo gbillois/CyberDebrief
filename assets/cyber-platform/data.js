@@ -51,16 +51,46 @@
     { id: 'p-jonas', name: 'AI assurance lead', title: 'Trust & Challenge · Data scientists', abbr: 'AIA', team: 'trust', color: '#5a2be0' },
     { id: 'p-sam', name: 'Red team lead', title: 'Trust & Challenge · Offensive', abbr: 'RED', team: 'trust', color: '#5a2be0' },
     { id: 'p-hugo', name: 'Head of Treasury', title: 'Business owner · Payments', abbr: 'TRE', team: 'business', color: '#3a3550' },
-    { id: 'p-sara', name: 'DPO', title: 'Data Protection Officer', abbr: 'DPO', team: 'business', color: '#3a3550' }
+    { id: 'p-sara', name: 'DPO', title: 'Data Protection Officer', abbr: 'DPO', team: 'business', color: '#3a3550' },
+    { id: 'p-analyst', name: 'SOC analyst', title: 'Operators · Incident responder L2', abbr: 'L2', team: 'run', color: '#a87a00' },
+    { id: 'p-supplier', name: 'Supplier CISO', title: 'Atlas Payroll Services (external)', abbr: 'EXT', team: 'external', color: '#c8861a' },
+    { id: 'p-auditor', name: 'Internal auditor', title: 'Internal audit · third line', abbr: 'AUD', team: 'audit', color: '#514c63' }
   ];
 
+  /* Roles of the role picker. The picker sets the landing page, the inbox
+     filter and which modules are visible (role-based access). */
+  const INTERNAL = ['ciso', 'engage', 'build', 'run', 'trust', 'analyst'];
   D.roles = [
-    { id: 'ciso', label: 'CISO', persona: 'p-elena', screen: 'ciso', desc: 'Global view, decisions above threshold, value' },
-    { id: 'engage', label: 'Engage', persona: 'p-amira', screen: 'engage', desc: 'Business, third parties, regulators, crisis, culture' },
-    { id: 'build', label: 'Platform Ops · Build', persona: 'p-raj', screen: 'build', desc: 'Agent products, studio, pipeline, connectors' },
-    { id: 'run', label: 'Platform Ops · Run', persona: 'p-chloe', screen: 'run', desc: 'Live operations, supervision, quality, cost' },
-    { id: 'trust', label: 'Trust & Challenge', persona: 'p-jonas', screen: 'trust', desc: 'AI assurance, red team, adversary lab, LoD2' }
+    { id: 'ciso', group: 'CISO organisation', label: 'CISO', persona: 'p-elena', screen: 'ciso', desc: 'Steers: posture, decisions above threshold, value' },
+    { id: 'engage', group: 'CISO organisation', label: 'Engage', persona: 'p-amira', screen: 'my', desc: 'Business, suppliers, regulators, crisis, culture' },
+    { id: 'build', group: 'CISO organisation', label: 'Platform Ops · Build', persona: 'p-raj', screen: 'my', desc: 'Agents as products, playbooks, policies, releases' },
+    { id: 'run', group: 'CISO organisation', label: 'Platform Ops · Run', persona: 'p-chloe', screen: 'my', desc: 'Operates the fleet: supervision, rollback, quality, cost' },
+    { id: 'trust', group: 'CISO organisation', label: 'Trust & Challenge', persona: 'p-jonas', screen: 'my', desc: 'Evals, deviation hunt, red team, LoD2' },
+    { id: 'analyst', group: 'Operators', label: 'SOC analyst', persona: 'p-analyst', screen: 'inbox', desc: 'Works cases with the agents: validates, investigates' },
+    { id: 'owner', group: 'Business & outside', label: 'Risk owner (business)', persona: 'p-hugo', screen: 'owner', desc: 'Decides on business impact, accepts risk; on a phone' },
+    { id: 'supplier', group: 'Business & outside', label: 'Supplier (external)', persona: 'p-supplier', screen: 'supplier', desc: 'Answers pre-filled questionnaires, shares evidence' },
+    { id: 'auditor', group: 'Business & outside', label: 'Internal auditor', persona: 'p-auditor', screen: 'auditor', desc: 'Read-only evidence room: traces, samples, provenance' }
   ];
+  D.internalRoles = INTERNAL;
+
+  /* Modules of "The platform", grouped by function. roles: who can open it;
+     for: whose daily work it is (shown with a dot). */
+  D.modules = [
+    { id: 'my', label: 'My home', icon: 'home', group: 'Work', roles: INTERNAL },
+    { id: 'inbox', label: 'Inbox', icon: 'bell', group: 'Work', roles: INTERNAL, for: ['analyst', 'run', 'engage'] },
+    { id: 'cases', label: 'Cases', icon: 'workflow', group: 'Work', roles: INTERNAL.concat(['auditor']), for: ['analyst', 'run'] },
+    { id: 'graph-x', label: 'Graph', icon: 'network', group: 'Work', roles: INTERNAL.concat(['auditor']), for: ['analyst'] },
+    { id: 'engage', label: 'Engage', icon: 'megaphone', group: 'Engage', roles: INTERNAL, for: ['engage'] },
+    { id: 'design', label: 'Design', icon: 'branch', group: 'Platform', roles: INTERNAL, for: ['build', 'ciso'] },
+    { id: 'build', label: 'Build', icon: 'code', group: 'Platform', roles: INTERNAL, for: ['build'] },
+    { id: 'run', label: 'Operate', icon: 'activity', group: 'Platform', roles: INTERNAL, for: ['run'] },
+    { id: 'trust', label: 'Assurance', icon: 'shieldCheck', group: 'Assurance', roles: INTERNAL.concat(['auditor']), for: ['trust', 'auditor'] },
+    { id: 'ciso', label: 'Steer', icon: 'gauge', group: 'Steer', roles: ['ciso', 'engage', 'build', 'run', 'trust'], for: ['ciso'] },
+    { id: 'owner', label: 'Risk owner app', icon: 'user', group: 'Business', roles: ['owner'] },
+    { id: 'supplier', label: 'Supplier portal', icon: 'building', group: 'External', roles: ['supplier'] },
+    { id: 'auditor', label: 'Evidence room', icon: 'search', group: 'Audit', roles: ['auditor'] }
+  ];
+
 
   /* Non-agent actors that appear in logs and timelines. */
   D.actors = {
@@ -147,6 +177,7 @@
     ],
 
     approvals: [],
+    traces: [],
 
     cases: [
       { id: 'C-2291', title: 'Phishing wave impersonating the HR portal', severity: 'medium', status: 'contained', domains: ['soc', 'iam'], opened: 'Mon 16:20', owner: 'ag-soc-triage', summary: '212 emails quarantined, 3 clicks, credentials reset automatically.' },
