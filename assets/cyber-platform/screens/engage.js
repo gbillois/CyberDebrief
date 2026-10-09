@@ -159,7 +159,7 @@
 .eg-clk{grid-template-columns:110px minmax(0,1fr) 44px!important}
 .eg-mail .eg-mh span{width:auto;margin-right:6px}.eg-textarea{min-height:200px}
 .eg .grid{gap:12px}.eg .stack{gap:12px}
-.eg .table-wrap table.t{min-width:640px}.eg .eg-panel .table-wrap table.t{min-width:420px}.eg-cnt span{font-size:8.5px;letter-spacing:.3px}.eg-ev{grid-template-columns:24px minmax(0,1fr) auto}}
+.eg .table-wrap table.t{min-width:720px}.eg .eg-panel .table-wrap table.t{min-width:420px}.eg-cnt span{font-size:8.5px;letter-spacing:.3px}.eg-ev{grid-template-columns:24px minmax(0,1fr) auto}}
 `);
 
   /* ------------------------------------------------------------------
