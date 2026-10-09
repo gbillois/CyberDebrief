@@ -88,6 +88,7 @@
     monitor: '<rect x="2" y="4" width="20" height="13"/><path d="M8 21h8M12 17v4"/>',
     info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',
     hourglass: '<path d="M6 2h12M6 22h12M7 2c0 5 10 5 10 10S7 17 7 22M17 2c0 5-10 5-10 10s10 5 10 10"/>',
+    gear: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/>',
     compass: '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/>'
   };
   CP.icon = (name, cls) => '<svg class="i ' + (cls || '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (IC[name] || IC.info) + '</svg>';
@@ -387,7 +388,104 @@
   /* Screen-specific CSS, injected once: CP.css('engage', '.x{...}') */
   CP.css = function (id, text) {
     if (document.getElementById('css-' + id)) return;
-    const st = document.createElement('style'); st.id = 'css-' + id; st.textContent = text; document.head.appendChild(st);
+    const st = document.createElement('style'); st.id = 'css-' + id; st.dataset.src = '1'; st._src = text;
+    st.textContent = CP.theme && CP.theme.dark() ? CP.theme.mapCss(text) : text; document.head.appendChild(st);
+  };
+
+  /* ---------------- Themes ----------------
+     classic: Wavestone light (EBIOS RM / CrisisMaker look).
+     console: dark security-operations console. Screens are written with
+     light colours; in console mode a property-aware mapper rewrites the
+     hard-coded light backgrounds, borders and dark text of every rendered
+     element and screen stylesheet to the dark tokens (white text stays). */
+  const BG_PANEL = /^(#fff|#ffffff|white|#fffdf7|#fbfafd|#faf9fd|#fbfafc|#fbfaff|#faf9fc)$/i;
+  const BG_PANEL2 = /^(#f7f6fb|#f7f6fa|#f5f4f8|#f5f4f9|#f3f1f8|#eeebf4|#f0eef5|#ece8f8|#ede9f8|#e9e4fb|#e6e4ee|#ece9f3|#f3fff8|#fff5f7|#fff1f3|#fff0f2|#fffaf0|#fff8ec|#fff6e8|#fff2d8|#ffe9ed|#e1fded|#ecfbf2|#e2f1f2|#fff6e6|#f4f2fa|#f8f7fc)$/i;
+  const BG_ACCENT = /^(#f1eefb|#f6f3ff|#ede8fd|#f0edfc|#e4dcfb|#eeebf7|#d9d0f7|#d9d0fb|#e7e1ff|#cfc3f7|#e8e2fb|#ece6ff)$/i;
+  const LINE = /^(#dedbe8|#e6e4ee|#eeecf3|#d9d3e4|#cfcadf|#cbc6d9|#d8cfee|#e5e1ef|#e8e4f3|#d8d3e6|#ddd8ea|#ccc|#cfc6ea|#bdb0e8|#cbbff3|#b9a9f2|#e8c88a|#9fdcb8|#f1c27a|#f0b9c3|#a8e6c1|#d9cef9|#f3e1bf|#b9b3c9|#d8cfee|#eee|#ddd)$/i;
+  const INK = /^(#201c30|#16121f|#3b3550|#3a3550|#242036|#2b1960|#211248|#51406c|#594282|#4a4560|#1d1245|#0b5e2d)$/i;
+  const MUTED = /^(#6d687e|#514c63|#817c95|#a8a4b8|#9b95ab|#9a93ad)$/i;
+  function hsl(hex) {
+    let h = hex.replace('#', ''); if (h.length === 3) h = h.split('').map((x) => x + x).join(''); if (h.length === 8) h = h.slice(0, 6);
+    if (h.length !== 6) return null;
+    const r = parseInt(h.slice(0, 2), 16) / 255, g = parseInt(h.slice(2, 4), 16) / 255, b = parseInt(h.slice(4, 6), 16) / 255;
+    const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2; let hh = 0, ss = 0;
+    if (mx !== mn) { const d = mx - mn; ss = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); hh = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; hh *= 60; }
+    const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    return { h: Math.round(hh), s: ss, l, lum };
+  }
+  const H = (c, s, l, a) => 'hsl' + (a != null ? 'a' : '') + '(' + c.h + ',' + Math.round(s * 100) + '%,' + Math.round(l * 100) + '%' + (a != null ? ',' + a : '') + ')';
+  function mapColor(prop, v) {
+    const c = v.trim();
+    if (/^white$/i.test(c)) return /^background/.test(prop) ? 'var(--c-panel)' : null;
+    const x = hsl(c); if (!x) return null;
+    if (/^background/.test(prop)) {
+      if (x.lum > 0.93 && x.s < 0.5) return 'var(--c-panel)';
+      if (x.lum > 0.82 && x.s < 0.25) return 'var(--c-panel-2)';
+      if (x.lum > 0.6) return x.s < 0.2 ? 'var(--c-panel-2)' : H(x, Math.min(0.55, x.s), 0.13); /* light tint: dark surface of the same hue */
+      return null;
+    }
+    if (/^border|^outline/.test(prop)) {
+      if (x.lum > 0.55) return x.s < 0.3 ? 'var(--c-line)' : H(x, Math.min(0.6, x.s), 0.5, 0.35);
+      return null;
+    }
+    if (prop === 'color') {
+      if (/^#451dc7$|^#5a2be0$|^#36169b$/i.test(c)) return 'var(--indigo)';
+      if (x.lum < 0.06) return x.s > 0.35 && x.l > 0.08 ? H(x, Math.min(0.85, x.s), 0.74) : 'var(--c-ink)';
+      if (x.lum < 0.32) return x.s > 0.3 ? H(x, Math.min(0.85, x.s), 0.7) : 'var(--c-muted)';
+      return null;
+    }
+    return null;
+  }
+  function mapCss(text) {
+    return text.replace(/(^|[;{\s"])((?:background(?:-color)?|border(?:-[a-z]+)*|outline|color))\s*:\s*([^;}"]+)/gi, (m, pre, prop, val) => {
+      let out = val.replace(/#[0-9a-f]{3,8}\b|\bwhite\b/gi, (c) => mapColor(prop.toLowerCase(), c) || c);
+      if (/^background/i.test(prop)) out = out.replace(/rgba\(\s*255\s*,\s*255\s*,\s*255\s*,\s*([\d.]+)\s*\)/gi, 'rgba(17,20,27,$1)');
+      return pre + prop + ':' + out;
+    });
+  }
+  const SHAPES = { rect: 1, circle: 1, ellipse: 1, path: 1, polygon: 1 };
+  function mapEl(el) {
+    const st = el.getAttribute && el.getAttribute('style');
+    if (st) { const m = mapCss(st); if (m !== st) el.setAttribute('style', m); }
+    if (el.namespaceURI === 'http://www.w3.org/2000/svg') {
+      const tag = el.tagName.toLowerCase();
+      const f = el.getAttribute('fill');
+      if (f && f[0] === '#') {
+        let r = null;
+        if (tag === 'text' || tag === 'tspan') r = mapColor('color', f);
+        else if (SHAPES[tag]) { r = mapColor('background', f); if (!r && /^#211248$|^#36206f$/i.test(f)) r = 'var(--c-deep)'; }
+        if (r) el.setAttribute('fill', r);
+      }
+      const k = el.getAttribute('stroke');
+      if (k && k[0] === '#') { const x = hsl(k); const r = x && x.lum > 0.93 ? 'var(--c-panel)' : x && x.lum > 0.5 ? (x.s < 0.35 ? 'var(--c-line-strong)' : H(x, Math.min(0.6, x.s), 0.45, 0.6)) : /^#211248$/i.test(k) ? 'var(--c-line-strong)' : null; if (r) el.setAttribute('stroke', r); }
+    }
+  }
+  function mapTree(root) {
+    if (root.nodeType !== 1) return;
+    mapEl(root);
+    const all = root.getElementsByTagName('*'); for (let i = 0; i < all.length; i++) mapEl(all[i]);
+  }
+  let observer = null;
+  CP.theme = {
+    current: 'console',
+    dark() { return CP.theme.current === 'console'; },
+    mapCss,
+    set(name, silent) {
+      CP.theme.current = name === 'classic' ? 'classic' : 'console';
+      document.documentElement.setAttribute('data-theme', CP.theme.current);
+      try { localStorage.setItem('cp-theme', CP.theme.current); } catch (e) { /* storage blocked */ }
+      CP.qsa('style[data-src]').forEach((st) => { st.textContent = CP.theme.dark() ? mapCss(st._src) : st._src; });
+      if (observer) { observer.disconnect(); observer = null; }
+      if (CP.theme.dark()) {
+        mapTree(document.body);
+        observer = new MutationObserver((muts) => muts.forEach((m) => {
+          if (m.type === 'attributes') { mapEl(m.target); return; }
+          m.addedNodes.forEach(mapTree);
+        }));
+        observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'fill', 'stroke'] });
+      }
+      if (!silent) { CP.render(); CP.toast(CP.theme.dark() ? 'Console style: dark security operations look.' : 'Classic style: Wavestone light.'); }
+    }
   };
 
   /* ---------------- Toasts & modal ---------------- */
@@ -557,9 +655,15 @@
         '<button class="small" data-player="next" title="Next step (→)" aria-label="Next step"' + (st.done ? ' disabled' : '') + '>' + CP.icon('next') + '</button></div>'
       : '<div class="sim-pill"><span class="dot"></span>Simulated · <b>' + esc(CP.clock ? CP.clock.label() : '') + '</b></div>';
     const canSearch = CP.canSee('graph-x');
+    const optsOpen = !!document.getElementById('opts-menu') && document.getElementById('opts-menu').classList.contains('open');
     top.innerHTML = (canSearch ? '<form class="gsearch" data-gsearch role="search"><label class="sr" for="gs-in">Search the security graph</label>' + CP.icon('search') + '<input id="gs-in" name="q" placeholder="Search assets, identities, suppliers, CVEs…" autocomplete="off" value="' + esc(CP.route.id === 'graph-x' ? (CP.route.query.q || '') : '') + '"></form>' : '') + sim +
       '<button class="bell' + (pend.length ? ' has' : '') + '" data-open-drawer title="Decisions awaiting a human">' + CP.icon('bell') + '<span class="lbl">Decisions</span>' + (pend.length ? '<span class="badge-n">' + pend.length + '</span>' : '') + '</button>' +
-      '<a class="btn-demo" href="' + CP.href('demo') + '" title="Guided demo">' + CP.icon('play') + '<span class="lbl">Guided demo</span></a>';
+      '<a class="btn-demo" href="' + CP.href('demo') + '" title="Guided demo">' + CP.icon('play') + '<span class="lbl">Guided demo</span></a>' +
+      '<div class="opts"><button class="opts-btn" data-opts-toggle aria-haspopup="true" aria-expanded="' + optsOpen + '" title="Options" aria-label="Options">' + CP.icon('gear') + '</button>' +
+      '<div class="opts-menu' + (optsOpen ? ' open' : '') + '" id="opts-menu" role="menu"><div class="rm-head">Interface style</div>' +
+      [['console', 'Console', 'Dark security-operations console: left rail, dense data, severity colours'], ['classic', 'Classic', 'Wavestone light, as in EBIOS RM and CrisisMaker']].map((t) =>
+        '<button class="role-opt' + (CP.theme.current === t[0] ? ' active' : '') + '" role="menuitemradio" aria-checked="' + (CP.theme.current === t[0]) + '" data-theme-set="' + t[0] + '"><span class="th-sw th-' + t[0] + '" aria-hidden="true"><i></i><i></i><i></i></span><span class="ro-txt"><b>' + t[1] + '</b><small>' + t[2] + '</small></span>' + (CP.theme.current === t[0] ? CP.icon('check') : '') + '</button>').join('') +
+      '<div class="rm-head">Demo</div><button class="role-opt" data-action="resetDemo"><span class="th-sw" aria-hidden="true">' + CP.icon('restart') + '</span><span class="ro-txt"><b>Reset the demo data</b><small>Back to the baseline, scenarios stopped</small></span></button></div></div>';
   }
   CP.renderTop = renderTop;
 
@@ -580,6 +684,10 @@
 
   /* ---------------- Global delegated events ---------------- */
   document.addEventListener('click', (ev) => {
+    const om = document.getElementById('opts-menu');
+    if (om && om.classList.contains('open') && !ev.target.closest('.opts')) om.classList.remove('open');
+    const tb = ev.target.closest('[data-opts-toggle],[data-theme-set]');
+    if (tb) { if (tb.dataset.themeSet) { om.classList.remove('open'); CP.theme.set(tb.dataset.themeSet); } else om.classList.toggle('open'); return; }
     const t = ev.target.closest('[data-decide],[data-player],[data-open-drawer],[data-close-drawer],[data-role-toggle],[data-role],[data-drawer-filter],[data-close-modal],[data-go],[data-action],[data-scenario-start]');
     const menu = document.getElementById('role-menu');
     if (menu && menu.classList.contains('open') && (!t || !t.closest('.role-picker'))) menu.classList.remove('open');
@@ -628,6 +736,8 @@
   window.addEventListener('hashchange', () => CP.render());
   CP.boot = function () {
     try { const r = localStorage.getItem('cp-role'); if (r && CP.role(r) && CP.screens[CP.role(r).screen]) CP.currentRole = r; } catch (e) { /* storage blocked */ }
+    let th = 'console'; try { th = localStorage.getItem('cp-theme') || 'console'; } catch (e) { /* storage blocked */ }
+    CP.theme.set(th, true);
     store.reset();
     CP.bus.emit('boot');
     CP.render(true);

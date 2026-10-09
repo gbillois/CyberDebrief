@@ -72,7 +72,7 @@
       const k = CP.store.state.kpis;
       return '<div class="cx-hero"><div class="welcome">' + arcs + '<div class="eyebrow">The concept</div><h1>One cyber platform, one context, many agents.</h1>' +
         '<p>Today every cyber domain has its own tools, data and people working in sequence. Tomorrow one platform hosts specialized AI agents per domain, gives them the same context, lets an orchestrator assign the work and enforce decision rights, and keeps humans in charge of what matters.</p>' +
-        '<div class="row wrap"><a class="btn-demo" href="' + CP.href('arch-simple') + '" style="height:42px">' + CP.icon('play') + 'See how it works</a><a class="btn-demo" href="' + CP.href('demo') + '" style="height:42px;background:#fff;color:var(--dark)">' + CP.icon('compass') + 'Guided demo</a></div></div>' +
+        '<div class="row wrap"><a class="btn-demo" href="' + CP.href('arch-simple') + '" style="height:42px">' + CP.icon('play') + 'See how it works</a><a class="btn-demo btn-alt" href="' + CP.href('demo') + '" style="height:42px">' + CP.icon('compass') + 'Guided demo</a></div></div>' +
         '<div class="cx-ideas">' +
         idea(1, 'One shared context', 'A cyber security graph (assets, identities, suppliers, exposures, controls) and a cyber data lake as long-term memory, used by every agent.') +
         idea(2, 'Specialized agents, orchestrated', 'One or many agents per domain (GRC, SOC, CTI, AppSec, Data, IAM). The orchestrator plans, assigns and checks the decision rights of every action.') +

@@ -164,7 +164,7 @@ table.t{border-collapse:collapse;width:100%;font-size:13.5px}
 .t tr.clickable:hover td{background:#faf9fd}
 .t tr.sel td{background:var(--indigo-50)}
 .t tr.new td{animation:newrow 2.4s}
-@keyframes newrow{0%{background:#d8ffe8}100%{background:transparent}}
+@keyframes newrow{0%{background:var(--flash,#d8ffe8)}100%{background:transparent}}
 .progress{height:6px;background:#eeebf4;min-width:60px}
 .progress span{display:block;height:100%;background:var(--indigo)}
 .progress.green span{background:var(--green-ink)}
@@ -530,3 +530,15 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
 .toolbar{min-width:0;flex-shrink:1}
 @media(max-width:1560px){.sim-pill{display:none}.gsearch{width:40px;padding:0 11px}.gsearch input{width:0}.gsearch:focus-within{width:240px}.gsearch:focus-within input{width:100%}}
 @media(max-width:1400px){.mode-pf .pf-role .lbl{max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+/* Options menu (style switcher) */
+.opts{position:relative}
+.opts-btn{min-height:36px;padding:0 10px;justify-content:center}
+.opts-menu{position:absolute;right:0;top:calc(100% + 6px);width:340px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);z-index:60;display:none;padding:8px}
+.opts-menu.open{display:block}
+.th-sw{width:38px;height:28px;display:grid;grid-template-columns:10px 1fr;grid-template-rows:8px 1fr;gap:2px;padding:3px;border:1px solid var(--line);flex:none;place-items:center}
+.th-sw i{display:block;width:100%;height:100%}
+.th-sw.th-classic{background:#f5f4f8}.th-sw.th-classic i:nth-child(1){grid-column:1/3;background:#fff;border-bottom:1px solid #dedbe8}.th-sw.th-classic i:nth-child(2){background:#211248}.th-sw.th-classic i:nth-child(3){background:#fff;border:1px solid #dedbe8}
+.th-sw.th-console{background:#090b10;border-color:#323a4c}.th-sw.th-console i:nth-child(1){grid-column:1/3;background:#0c0f15;border-bottom:1px solid #232937}.th-sw.th-console i:nth-child(2){background:#0c0f15;box-shadow:inset 2px 0 #8b7cff}.th-sw.th-console i:nth-child(3){background:#11141b;border:1px solid #232937}
+.role-opt>.i:last-child{color:var(--indigo)}
+.btn-demo.btn-alt{background:#fff;color:var(--dark)}
+.subnav .persona b,.subnav .persona strong{color:var(--ink)}
