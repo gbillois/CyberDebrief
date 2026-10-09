@@ -166,13 +166,13 @@
 .bd-rm .qh{padding:9px 10px;font-size:11.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);background:#f7f6fa;border-bottom:1px solid var(--line);border-left:1px solid var(--line-2)}
 .bd-rm .qh.now{color:var(--indigo)}
 .bd-rm .ln{padding:10px;border-bottom:1px solid var(--line-2);font-size:12.5px;font-weight:650;display:flex;flex-direction:column;gap:4px;justify-content:center}
-.bd-rm .lt{grid-column:2/6;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px 6px;padding:8px 6px;border-bottom:1px solid var(--line-2);background-image:linear-gradient(90deg,transparent calc(25% - .5px),var(--line-2) calc(25% - .5px),var(--line-2) 25%,transparent 25%,transparent calc(50% - .5px),var(--line-2) calc(50% - .5px),var(--line-2) 50%,transparent 50%,transparent calc(75% - .5px),var(--line-2) calc(75% - .5px),var(--line-2) 75%,transparent 75%)}
-.bd-rmi{font-size:11.5px;padding:5px 8px;border-left:3px solid var(--c);background:color-mix(in srgb,var(--c) 10%,#fff);line-height:1.3;min-width:0}
+.bd-rm .lt{grid-column:2/6;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px 6px;padding:8px 6px;border-bottom:1px solid var(--line-2);grid-auto-flow:row dense;background-image:linear-gradient(90deg,transparent calc(25% - .5px),var(--line-2) calc(25% - .5px),var(--line-2) 25%,transparent 25%,transparent calc(50% - .5px),var(--line-2) calc(50% - .5px),var(--line-2) 50%,transparent 50%,transparent calc(75% - .5px),var(--line-2) calc(75% - .5px),var(--line-2) 75%,transparent 75%)}
+.bd-rmi{position:relative;z-index:1;font-size:11.5px;padding:5px 8px;border-left:3px solid var(--c);background:color-mix(in srgb,var(--c) 10%,#fff);line-height:1.3;min-width:0}
 .bd-rmi b{display:block;font-weight:650;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bd-rmi span{color:var(--muted)}
 .bd-rmi.done{opacity:.65}
 .bd-rmi.fresh{outline:2px solid var(--green-ink)}
-.bd-today{position:absolute;top:0;bottom:0;width:0;border-left:2px dashed var(--red);pointer-events:none}
+.bd-today{position:absolute;top:0;bottom:0;width:0;z-index:0;border-left:2px dashed var(--red);pointer-events:none}
 .bd-today span{position:absolute;top:2px;left:4px;font-size:10px;color:var(--red-ink);font-weight:700;white-space:nowrap;background:#fff;padding:0 3px}
 /* Graph */
 .bd-schema{width:100%;height:auto;display:block}
@@ -1996,13 +1996,13 @@ release:
         '<div class="grid g-3-2" style="margin-top:18px">' +
         CP.ui.card('Build capacity by domain', CP.ui.table([
           { label: 'Domain', render: (r) => r.d === 'orch' ? '<span class="dom"><i style="background:#451dc7"></i>Platform</span>' : CP.ui.dom(r.d) },
-          { label: 'Product owner', render: (r) => CP.ui.who(r.po) + (r.po !== 'p-ines' || r.d === 'soc' ? '' : ' <span class="bd-mini">(shared)</span>') },
+          { label: 'Product owner', render: (r) => '<span class="row" style="gap:7px;white-space:nowrap">' + CP.ui.av(r.po, 'sm') + '<span class="small-txt" style="font-weight:600">' + esc(pname(r.po)) + '</span>' + (r.po === 'p-ines' && r.d !== 'soc' ? '<span class="bd-mini">shared</span>' : '') + '</span>' },
           { label: 'Developers', render: (r) => '<span class="num"><b>' + CP.fmt(r.devs, 1) + '</b> FTE</span>' + (r.need > r.devs ? ' <span class="bd-mini" style="color:var(--red-ink)">need ' + CP.fmt(r.need, 1) + '</span>' : '') },
           { label: 'Open backlog', render: (r) => '<span class="num">' + r.open + '</span>' },
-          { label: 'Load', render: (r) => { const v = Math.min(100, Math.round(r.need / r.devs * 88)); return '<div class="row" style="gap:6px"><span class="num" style="width:36px">' + v + '%</span>' + CP.ui.progress(v, v > 95 ? 'red' : v > 85 ? 'amber' : 'green') + '</div>'; } }
+          { label: 'Load', render: (r) => { const v = Math.min(100, Math.round(r.need / r.devs * 78)); return '<div class="row" style="gap:6px"><span class="num" style="width:36px">' + v + '%</span>' + CP.ui.progress(v, v > 95 ? 'red' : v > 85 ? 'amber' : 'green') + '</div>'; } }
         ], capRows) + '<div class="small-txt muted" style="margin-top:10px">Build team: 1 platform manager, product owners per domain (some shared while hiring), 15.5 developer FTE. GRC and IAM are the bottleneck for the S2 and S3 follow-ups.</div>', { sub: 'Agent product owners and developers per domain' }) +
         CP.ui.card('Adoption: domain work covered by agents', CP.ui.hbars(capRows.filter((r) => r.cov != null).map((r) => ({ label: CP.domain(r.d).label, value: r.cov, color: colOf[r.d], display: r.cov + '% → ' + r.tgt + '%' })), { max: 100 }) +
-          '<div style="margin-top:14px">' + CP.ui.line([{ label: 'Covered', color: '#451dc7', values: [22, 31, 40, 48, 57, 63, 68, 72] }, { label: 'Plan', color: '#9b95ab', dash: true, values: [20, 30, 40, 50, 58, 64, 70, 76] }], ['Q1 26', 'Q2 26', 'Q3 26', 'Q4 26', 'Q1 27', 'Q2 27', 'Q3 27', 'Q4 27'], { h: 170, unit: '%', min: 0, max: 100, label: 'Share of cyber work handled by agents' }) + '</div>', { sub: 'Now → target end of Q3 2027 · share of tasks handled by agents end to end' }) + '</div>';
+          '<div style="margin-top:14px">' + CP.ui.line([{ label: 'Covered', color: '#451dc7', values: [22, 31, 40, 48, 55, 61, 66, 70] }, { label: 'Plan', color: '#9b95ab', dash: true, values: [20, 28, 38, 50, 60, 68, 75, 81] }], ['Q1 26', 'Q2 26', 'Q3 26', 'Q4 26', 'Q1 27', 'Q2 27', 'Q3 27', 'Q4 27'], { h: 230, unit: '%', min: 0, max: 100, label: 'Share of cyber work handled by agents' }) + '</div>', { sub: 'Now → target end of Q3 2027 · share of tasks handled by agents end to end' }) + '</div>';
     },
 
     /* ================================================================

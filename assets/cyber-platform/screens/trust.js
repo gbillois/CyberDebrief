@@ -123,6 +123,7 @@
     '@media(max-width:1280px){.tc-actors{grid-template-columns:repeat(2,minmax(0,1fr))}}',
     '@media(max-width:1100px){.tc-form{grid-template-columns:1fr}.tc-replay .rl{grid-template-columns:54px 80px minmax(0,1fr)}.tc-replay .rl .rr{grid-column:3}}',
     '.tc-mx{min-width:960px}',
+    '.tc-page .grid>*{min-width:0}',
     '.t tr.tc-bp td{background:#fff5f7}.t tr.tc-bp td:first-child{box-shadow:inset 3px 0 var(--red)}',
     '.tc-mx.heat{min-width:1080px}',
     '@media(max-width:760px){' +

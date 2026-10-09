@@ -504,3 +504,5 @@ main.view{padding-top:0}
 @media(max-width:380px){.mode-switch>a .i,.mode-switch>.mode-pf>button>.i{display:none}}
 svg.arch.dim .n-box{opacity:.32}
 svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
+@media(max-width:1360px){.sim-pill{display:none}}
+@media(max-width:1280px){.brand-product,.brand-divider{display:none}}

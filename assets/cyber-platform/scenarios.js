@@ -317,7 +317,7 @@
           text: 'Cross-checking the evidence reveals three gaps: 31 arrangements miss their sub-contracting chain, 7 critical providers have no tested exit plan, and 2 incidents were notified after the 4-hour initial deadline. Better found today than by the inspector.',
           flow: [['ag-grc-controls', 'ctx-graph'], ['ag-grc-controls', 'ctx-lake'], ['ag-grc-controls', 'hu-engage']],
           artifact: { type: 'list', title: 'Gaps', items: ['31 arrangements without full sub-contracting chain (Art. 28 RTS)', '7 critical providers without a tested exit plan: Atlas Payroll, ClaimsOne, LedgerLine, SwiftNet…', '2 major incidents: initial notification at 5 h 10 and 6 h 40 (target 4 h)'] },
-          effects: tpUpdate(['tp-atlas', 'tp-claimsone', 'tp-ledger', 'tp-swiftnet'], { status: 'none', gap: 'Exit plan not tested' })
+          effects: ['tp-atlas', 'tp-claimsone', 'tp-ledger', 'tp-swiftnet'].map((id) => ({ op: 'update', coll: 'thirdParties', id, patch: { exitPlan: false, gap: 'Exit plan not tested' } }))
         },
         {
           id: 'rg-5', t: 2400, actor: 'ag-grc-tprm', domain: 'grc', level: 'L2', title: 'Providers asked to complete their data',
