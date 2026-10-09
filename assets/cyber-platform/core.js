@@ -501,7 +501,7 @@
   CP.canSee = (id, role) => { const m = CP.module(id); return !m || m.roles.indexOf(role || CP.currentRole) >= 0; };
   function moduleRibbon(active) {
     const role = CP.currentRole; const groups = [];
-    CP.data.modules.filter((m) => m.roles.indexOf(role) >= 0).forEach((m) => {
+    CP.data.modules.filter((m) => m.roles.indexOf(role) >= 0 && CP.screens[m.id]).forEach((m) => {
       let g = groups.find((x) => x.label === m.group); if (!g) { g = { label: m.group, items: [] }; groups.push(g); }
       g.items.push(m);
     });
@@ -544,8 +544,8 @@
         '<div class="mode-pf role-picker"><button class="' + (scr.part === 2 ? 'on' : '') + '" data-role-toggle aria-haspopup="true" aria-expanded="' + menuOpen + '" data-tour="mode-platform">' + CP.icon('monitor') + '<span class="long">The platform</span><span class="short">Platform</span>' +
         '<span class="pf-role">' + ui.av(persona.id) + '<span class="lbl">' + esc(role.label) + '</span>' + CP.icon('chevronDown') + '</span></button>' +
         '<div class="role-menu' + (menuOpen ? ' open' : '') + '" id="role-menu" role="menu">' +
-        CP.data.roles.map((r, k) => {
-          const head = (k === 0 || CP.data.roles[k - 1].group !== r.group) ? '<div class="rm-head">' + esc(r.group) + '</div>' : '';
+        CP.data.roles.filter((r) => CP.screens[r.screen]).map((r, k, arr) => {
+          const head = (k === 0 || arr[k - 1].group !== r.group) ? '<div class="rm-head">' + esc(r.group) + '</div>' : '';
           const pp = CP.person(r.persona); const n = store.pendingApprovals(r.id).length;
           return head + '<button class="role-opt' + (r.id === CP.currentRole && scr.part === 2 ? ' active' : '') + '" role="menuitem" data-role="' + esc(r.id) + '">' + ui.av(pp.id) +
             '<span class="ro-txt"><b>' + esc(r.label) + '</b><small>' + esc(r.desc) + '</small></span>' + (n ? '<span class="count" title="Decisions awaiting">' + n + '</span>' : '') + '</button>';
@@ -627,7 +627,7 @@
 
   window.addEventListener('hashchange', () => CP.render());
   CP.boot = function () {
-    try { const r = localStorage.getItem('cp-role'); if (r && CP.role(r)) CP.currentRole = r; } catch (e) { /* storage blocked */ }
+    try { const r = localStorage.getItem('cp-role'); if (r && CP.role(r) && CP.screens[CP.role(r).screen]) CP.currentRole = r; } catch (e) { /* storage blocked */ }
     store.reset();
     CP.bus.emit('boot');
     CP.render(true);
