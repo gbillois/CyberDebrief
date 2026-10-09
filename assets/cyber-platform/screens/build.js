@@ -57,7 +57,7 @@
 .bd-edtabs .modes{margin-left:auto;display:flex;align-items:center;gap:4px;padding:0 8px;flex:none}
 .bd-edtabs .modes button{background:transparent;color:#cfc6ea;border:1px solid #ffffff26;min-height:26px;padding:2px 9px;font-size:11.5px}
 .bd-edtabs .modes button.on{background:#ffffff1f;color:#fff;border-color:#ffffff77}
-.bd-ed{display:flex;height:540px;position:relative;overflow:hidden}
+.bd-ed{display:flex;flex:1;min-height:540px;position:relative;overflow:hidden}
 .bd-gutter{width:44px;flex:none;overflow:hidden;border-right:1px solid #2a1d5a;color:#6f63a0;font-family:var(--mono);font-size:12.5px;line-height:20px;text-align:right;user-select:none}
 .bd-gutter div{padding:10px 8px 10px 0;white-space:pre}
 .bd-area{position:relative;flex:1;min-width:0;overflow:hidden}
@@ -66,7 +66,7 @@
 .bd-area textarea{position:absolute;inset:0;width:100%;height:100%;resize:none;background:transparent;color:transparent;caret-color:#fff;outline:none;overflow:auto;min-height:0}
 .bd-area textarea::selection{background:#6a52d8aa;color:transparent}
 .bd-hl .k{color:#04f06a}.bd-hl .s{color:#ffcf7a}.bd-hl .c{color:#8f84b8;font-style:italic}.bd-hl .n{color:#9cc3ff}.bd-hl .l{color:#ff9ec7;font-weight:600}.bd-hl .h{color:#fff;font-weight:700}.bd-hl .b{color:#9cc3ff}
-.bd-diff{height:540px;overflow:auto;font-family:var(--mono);font-size:12.5px;line-height:20px;color:#e7e1ff}
+.bd-diff{flex:1;height:540px;min-height:540px;overflow:auto;font-family:var(--mono);font-size:12.5px;line-height:20px;color:#e7e1ff}
 .bd-diff .dl{display:grid;grid-template-columns:40px 40px 18px max-content;white-space:pre;min-width:100%}
 .bd-diff .dl span.no{color:#6f63a0;text-align:right;padding-right:8px;user-select:none}
 .bd-diff .dl.add{background:#0f3d2a}.bd-diff .dl.add .sg{color:#04f06a}
@@ -197,7 +197,7 @@
 @media(max-width:760px){
 .bd-ide{grid-template-columns:1fr}.bd-tree{padding:0}.bd-tree .bd-tree-full{display:none}.bd-tree-sel{display:block}
 .bd-side{display:flex;grid-template-columns:none}.bd-side .bd-sec{border-right:0;border-bottom:1px solid var(--line)}
-.bd-ed,.bd-diff{height:420px}
+.bd-ed,.bd-diff{min-height:420px;height:420px;flex:none}
 .bd-bl{grid-template-columns:1fr}
 .bd-filters input{min-width:0;flex:1 1 100%}
 .bd-filters select{flex:1 1 45%}
@@ -1157,7 +1157,8 @@ ${ag.status === 'draft' ? '' : `
     const lines = content.split('\n');
     const i = lines.findIndex((l) => l.indexOf(e.anchor) >= 0);
     if (i < 0) return content + (content.endsWith('\n') ? '' : '\n') + e.text;
-    const at = e.mode === 'after' ? i + 1 : i;
+    let at = e.mode === 'after' ? i + 1 : i;
+    if (e.mode !== 'after' && at > 0 && lines[at - 1].trim() === '') at--;
     lines.splice(at, 0, e.text.replace(/\n$/, ''));
     return lines.join('\n');
   }
