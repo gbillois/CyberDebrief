@@ -275,10 +275,10 @@
     const frame = simple ? { x: 236, y: 146, w: 1128, h: 462 } : { x: 236, y: 152, w: 1128, h: 832 };
     let s = '<svg class="arch" viewBox="0 0 ' + L.w + ' ' + L.h + '" role="img" aria-label="' + (simple ? 'Simple view of the cyber AI platform' : 'Detailed architecture of the cyber AI platform') + '" font-family="Inter, system-ui, sans-serif">' +
       '<defs>' +
-      '<marker id="ah-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#451dc7"/></marker>' +
-      '<marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#088a42"/></marker>' +
-      '<marker id="ah-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9a93ad"/></marker>' +
-      '<marker id="ah-ms" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M10 0L0 5L10 10z" fill="#9a93ad"/></marker>' +
+      '<marker id="ah-i" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#451dc7"/></marker>' +
+      '<marker id="ah-g" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#088a42"/></marker>' +
+      '<marker id="ah-m" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#9a93ad"/></marker>' +
+      '<marker id="ah-ms" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#9a93ad"/></marker>' +
       '<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
       '</defs>' +
       '<text x="105" y="' + (simple ? 182 : 172) + '" font-size="11" text-anchor="middle" fill="#8a5a05" font-weight="700" letter-spacing="1.2">OUTSIDE</text>' +
@@ -299,21 +299,53 @@
   /* ------------------------------------------------------------------
      Flow animation
      ------------------------------------------------------------------ */
-  function anchors(a, b) {
+  /* Flow path between two blocks: leaves and enters each block straight
+     (short stubs perpendicular to the edge), with a cubic curve between, so
+     the arrowhead always sits square on the target. */
+  function anchors(a, b, off) {
+    if (a === b) return null;
+    off = off || 0;
     const ac = [a.x + a.w / 2, a.y + a.h / 2], bc = [b.x + b.w / 2, b.y + b.h / 2];
     const dx = bc[0] - ac[0], dy = bc[1] - ac[1];
-    let p1, p2, vertical;
-    if (Math.abs(dy) > Math.abs(dx) * 0.45) {
-      vertical = true;
-      p1 = [ac[0], dy > 0 ? a.y + a.h : a.y]; p2 = [bc[0], dy > 0 ? b.y : b.y + b.h];
+    const GAP = 3, STUB = 14;
+    const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+    /* Attach on the facing sides, at the point most aligned with the other block. */
+    const gy = Math.max(b.y - (a.y + a.h), a.y - (b.y + b.h)), gx = Math.max(b.x - (a.x + a.w), a.x - (b.x + b.w));
+    let p1, p2, vertical, sx, sy;
+    if (gy > 0 && gy * 1.8 >= gx) {
+      vertical = true; sy = dy > 0 ? 1 : -1; sx = 0;
+      const ox = (Math.max(a.x, b.x) + Math.min(a.x + a.w, b.x + b.w)) / 2; /* centre of the horizontal overlap, if any */
+      const overlap = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x) > 24;
+      const x1 = overlap ? ox : clamp(bc[0], a.x + 14, a.x + a.w - 14), x2 = overlap ? ox : clamp(ac[0], b.x + 14, b.x + b.w - 14);
+      p1 = [x1, dy > 0 ? a.y + a.h : a.y]; p2 = [x2, dy > 0 ? b.y - GAP : b.y + b.h + GAP];
     } else {
-      p1 = [dx > 0 ? a.x + a.w : a.x, ac[1]]; p2 = [dx > 0 ? b.x : b.x + b.w, bc[1]];
+      vertical = false; sx = dx > 0 ? 1 : -1; sy = 0;
+      const oy = (Math.max(a.y, b.y) + Math.min(a.y + a.h, b.y + b.h)) / 2;
+      const overlap = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y) > 16;
+      const y1 = overlap ? oy : clamp(bc[1], a.y + 10, a.y + a.h - 10), y2 = overlap ? oy : clamp(ac[1], b.y + 10, b.y + b.h - 10);
+      p1 = [dx > 0 ? a.x + a.w : a.x, y1]; p2 = [dx > 0 ? b.x - GAP : b.x + b.w + GAP, y2];
     }
-    const k = vertical ? Math.max(30, Math.abs(p2[1] - p1[1]) * 0.45) : Math.max(30, Math.abs(p2[0] - p1[0]) * 0.45);
-    const c1 = vertical ? [p1[0], p1[1] + (dy > 0 ? k : -k)] : [p1[0] + (dx > 0 ? k : -k), p1[1]];
-    const c2 = vertical ? [p2[0], p2[1] - (dy > 0 ? k : -k)] : [p2[0] - (dx > 0 ? k : -k), p2[1]];
-    if (a === b) return null;
-    return 'M' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1) + ' C' + c1[0].toFixed(1) + ' ' + c1[1].toFixed(1) + ' ' + c2[0].toFixed(1) + ' ' + c2[1].toFixed(1) + ' ' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
+    /* Sideways offset, used to separate a return flow from its outbound twin. */
+    if (vertical) { p1[0] += off; p2[0] += off; } else { p1[1] += off; p2[1] += off; }
+    const q1 = [p1[0] + sx * 6, p1[1] + sy * 6], q2 = [p2[0] - sx * STUB, p2[1] - sy * STUB];
+    const span = vertical ? Math.abs(q2[1] - q1[1]) : Math.abs(q2[0] - q1[0]);
+    const k = Math.max(24, span * 0.5);
+    const c1 = [q1[0] + sx * k, q1[1] + sy * k], c2 = [q2[0] - sx * k, q2[1] - sy * k];
+    const f = (pt) => pt[0].toFixed(1) + ' ' + pt[1].toFixed(1);
+    return 'M' + f(p1) + ' L' + f(q1) + ' C' + f(c1) + ' ' + f(c2) + ' ' + f(q2) + ' L' + f(p2);
+  }
+
+  /* One arrowhead marker per flow colour, so the head matches its flow. */
+  function flowMarker(svg, color) {
+    const id = 'ahf-' + color.replace(/[^0-9a-z]/gi, '');
+    if (!svg.querySelector('#' + id)) {
+      const m = document.createElementNS(SVGNS, 'marker');
+      m.setAttribute('id', id); m.setAttribute('viewBox', '0 0 12 12'); m.setAttribute('refX', '10.5'); m.setAttribute('refY', '6');
+      m.setAttribute('markerWidth', '12'); m.setAttribute('markerHeight', '12'); m.setAttribute('markerUnits', 'userSpaceOnUse'); m.setAttribute('orient', 'auto');
+      m.innerHTML = '<path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="' + color + '"/>';
+      svg.querySelector('defs').appendChild(m);
+    }
+    return 'url(#' + id + ')';
   }
 
   const view = { simple: true, layout: null, root: null, animId: 0 };
@@ -355,14 +387,16 @@
     layer.innerHTML = ''; tok.innerHTML = '';
     if (!step) return;
     const color = colorFor(step);
-    const flows = viewFlows(step).map((f) => ({ f, d: anchors(nodeById(f[0]) || {}, nodeById(f[1]) || {}) })).filter((x) => x.d && nodeById(x.f[0]) && nodeById(x.f[1]));
+    const vf = viewFlows(step);
+    const keys = vf.map((f) => f[0] + '>' + f[1]);
+    const flows = vf.map((f) => ({ f, d: anchors(nodeById(f[0]) || {}, nodeById(f[1]) || {}, keys.indexOf(f[1] + '>' + f[0]) >= 0 && f[0] > f[1] ? 9 : (keys.indexOf(f[1] + '>' + f[0]) >= 0 ? -9 : 0)) })).filter((x) => x.d && nodeById(x.f[0]) && nodeById(x.f[1]));
     const id = ++view.animId;
     const speed = Math.max(1, (CP.player.status().speed || 1));
     const hop = 720 / Math.min(speed, 3);
     flows.forEach((x, i) => {
       const p = document.createElementNS(SVGNS, 'path');
       p.setAttribute('d', x.d); p.setAttribute('class', 'flow-path trail'); p.setAttribute('stroke', color);
-      p.setAttribute('marker-end', 'url(#ah-i)');
+      p.setAttribute('marker-end', flowMarker(svg, color));
       if (animate) p.style.opacity = '0';
       layer.appendChild(p);
       if (!animate) return;

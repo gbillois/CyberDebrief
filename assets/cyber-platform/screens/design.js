@@ -833,8 +833,8 @@ button.dz-node.sim-skip{opacity:.45}
       }).join('');
       /* edges */
       let edges = '<svg class="dz-edges" width="' + L.W + '" height="' + L.H + '" viewBox="0 0 ' + L.W + ' ' + L.H + '" aria-hidden="true"><defs>' +
-        '<marker id="dz-ar" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#b3adc5"/></marker>' +
-        '<marker id="dz-arg" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#088a42"/></marker></defs>';
+        '<marker id="dz-ar" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#b3adc5"/></marker>' +
+        '<marker id="dz-arg" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#088a42"/></marker></defs>';
       F.nodes.forEach((n) => n.after.forEach((pid) => {
         const p = F.byId[pid]; if (!p) return;
         const x1 = p._x + L.NW, y1 = p._y + L.NH / 2, x2 = n._x - 2, y2 = n._y + L.NH / 2;
