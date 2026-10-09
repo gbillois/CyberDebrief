@@ -97,6 +97,13 @@ button.dz-node.sim-skip{opacity:.45}
 .dz-f select,.dz-f input,.dz-f textarea,.dz-in{border:1px solid var(--line);padding:.42rem .55rem;font-size:13px;min-height:34px;background:#fff;color:var(--ink);font-weight:500;width:100%}
 .dz-f input[type=checkbox],.dz-tools input,.dz-deps input{width:auto;min-height:0;padding:0;margin:0;flex:none}
 .dz-wide{grid-template-columns:minmax(0,1.7fr) minmax(320px,1fr)}
+.dz-wide>*{min-width:0}
+.dz-pblist{display:none}
+.dz-pblist button{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line-2);background:#fff;padding:10px 2px;font-weight:500;align-items:start}
+.dz-pblist button.sel{background:var(--indigo-50);box-shadow:inset 3px 0 var(--indigo)}
+@media(max-width:760px){.dz-pbtable{display:none}.dz-pblist{display:block}}
+.dz-thr .r>*{min-width:0}
+.dz-thr select,.dz-filters select,.dz-insp select{max-width:100%}
 .dz-f textarea{min-height:64px;line-height:1.45;resize:vertical}
 .dz-f select:disabled{background:#f7f6fa;color:var(--muted)}
 .dz-seg{display:flex;border:1px solid var(--line)}
@@ -686,6 +693,7 @@ button.dz-node.sim-skip{opacity:.45}
     },
 
     render(route) {
+      CP._dzRendering = true;
       this.init();
       const S = this.ui;
       const subs = ['playbooks', 'policies', 'approvals', 'catalogue'];
@@ -710,6 +718,7 @@ button.dz-node.sim-skip{opacity:.45}
 
     mount(root) {
       const S = this.ui;
+      CP._dzRendering = false;
       const fl = root.querySelector('.dz-flow');
       if (fl) {
         const sc = S.fs[S.pb]; if (sc) { fl.scrollLeft = sc[0]; fl.scrollTop = sc[1]; }
@@ -790,7 +799,7 @@ button.dz-node.sim-skip{opacity:.45}
         U.metric({ label: 'Human gates designed', icon: 'users', value: gates, foot: 'each with a decision holder, a timeout and a fallback' }) +
         U.metric({ label: 'Lint across the catalogue', icon: 'alert', value: errN, unit: 'blocking', color: errN ? 'var(--red-ink)' : 'var(--green-ink)', foot: warnN + ' warnings · agent ceilings read live from Operate', flash: errN > 0 }) +
         '</div>' +
-        U.card('Playbook catalogue', table, { tour: 'design-playbooks', sub: 'Select a playbook to open it in the designer', right: '<span class="dz-mini">Runs, median time and decisions over the last 90 days</span>', style: 'padding:16px' }) +
+        U.card('Playbook catalogue', '<div class="dz-pbtable">' + table + '</div><div class="dz-pblist">' + rows.map((r) => '<button class="' + (r.id === pb.id ? 'sel' : '') + '" data-action="selPb" data-id="' + r.id + '"><span><b class="dz-name" style="font-size:14px">' + esc(r.p.name) + '</b><span class="dz-mini" style="display:block;margin-top:2px">' + r.F.nodes.length + ' steps · ' + r.g + ' gate(s) · ' + (r.p.runs || 0) + ' runs · median ' + esc(r.p.median) + '</span></span><span style="text-align:right"><span class="mono" style="font-weight:700;font-size:12px">v' + esc(r.ver.v) + '</span><br>' + (r.e ? '<span class="tag red">' + r.e + ' blocking</span>' : r.w ? '<span class="tag amber">' + r.w + ' warn</span>' : '<span class="dz-ok">' + I('checkCircle') + ' Clean</span>') + '</span></button>').join('') + '</div>', { tour: 'design-playbooks', sub: 'Select a playbook to open it in the designer', right: '<span class="dz-mini">Runs, median time and decisions over the last 90 days</span>', style: 'padding:16px' }) +
         this.designer(pb);
     },
 
@@ -900,7 +909,7 @@ button.dz-node.sim-skip{opacity:.45}
         const agents = CP.store.get('agents');
         const c = n.agent ? ceiling(n.agent) : null;
         h += '<label class="dz-f">Performed by' + (isAgentLane ? '<select data-change="nodeField" data-f="agent">' + agents.filter((a) => a.domain === n.lane || a.id === n.agent).map((a) => '<option value="' + a.id + '"' + (a.id === n.agent ? ' selected' : '') + '>' + esc(a.name) + ' · v' + esc(a.version) + ' · ' + esc(a.mode) + '</option>').join('') + '</select>' : '<select disabled><option>' + esc(actorName(n)) + '</option></select>') + '</label>';
-        h += '<div class="dz-f">Autonomy level' + (c ? ' <span class="dz-mini" style="font-weight:400">· agent ceiling ' + c.lv + (c.live ? ' (lowered live: ' + esc(c.status) + ')' : '') + '</span>' : '') +
+        h += '<div class="dz-f">Autonomy level' + (c ? ' <span class="dz-mini" style="font-weight:400">agent ceiling ' + c.lv + (c.live ? ' (lowered live: ' + esc(c.status) + ')' : '') + '</span>' : '') +
           '<div class="dz-seg" role="group" aria-label="Autonomy level">' + ['L0', 'L1', 'L2', 'L3'].map((l) => '<button class="' + (l === n.level ? 'on' : '') + (c && LVN[l] > LVN[c.lv] ? ' over' : '') + '" data-action="nodeLevel" data-l="' + l + '" title="' + esc((CP.data.autonomy.find((a) => a.id === l) || {}).desc || '') + (c && LVN[l] > LVN[c.lv] ? ' Above the agent ceiling.' : '') + '"' + (n.lane === 'human' || n.lane === 'ext' ? ' disabled' : '') + '>' + l + '</button>').join('') + '</div></div>';
         const domTools = TOOLS.filter((t) => t.dom === n.lane || t.dom === 'orch' || (n.tools || []).indexOf(t.id) >= 0);
         const ag = CP.agent(n.agent);
@@ -1180,7 +1189,11 @@ button.dz-node.sim-skip{opacity:.45}
       },
       nodeField(el) { const S = this.ui; this.setEdit(S.pb, { [el.dataset.f]: el.value }, S.sel[S.pb]); CP.render(); },
       nodeLevel(el) { const S = this.ui; this.setEdit(S.pb, { level: el.dataset.l }, S.sel[S.pb]); CP.render(); },
-      nodeCommit(el) { const S = this.ui; this.setEdit(S.pb, { fallback: el.value }, S.sel[S.pb]); S._focus = null; CP.render(); },
+      nodeCommit(el) {
+        const S = this.ui; this.setEdit(S.pb, { fallback: el.value }, S.sel[S.pb]);
+        if (!el.isConnected || CP._dzRendering) return; /* removed by a live re-render: keep focus */
+        S._focus = null; CP.render();
+      },
       nodeTool(el) {
         const S = this.ui; const F = flow(S, pbById(S, S.pb)); const n = F.byId[S.sel[S.pb]];
         const tools = (n.tools || []).slice(); const t = el.dataset.tool; const i = tools.indexOf(t);
