@@ -40,7 +40,7 @@
 .bd-tree{background:#1d1245;color:#d6cfee;font-size:12.5px;padding:10px 0 14px;min-width:0}
 .bd-tree h4{font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:#9d8fc4;margin:10px 14px 6px;font-weight:700}
 .bd-tree .dir{display:flex;gap:7px;align-items:center;padding:5px 14px;font-family:var(--mono);color:#b9addf}
-.bd-tree button.bd-f{display:flex;width:100%;background:transparent;border:0;color:inherit;padding:5px 12px 5px 14px;min-height:0;font-weight:450;font-size:12.5px;font-family:var(--mono);gap:7px;justify-content:flex-start;text-align:left;align-items:center}
+.bd-tree button.bd-f{display:flex;width:100%;white-space:nowrap;overflow:hidden;background:transparent;border:0;color:inherit;padding:5px 12px 5px 14px;min-height:0;font-weight:450;font-size:12.5px;font-family:var(--mono);gap:7px;justify-content:flex-start;text-align:left;align-items:center}
 .bd-tree button.bd-f:hover{background:#ffffff10}
 .bd-tree button.bd-f.on{background:#ffffff1c;color:#fff;box-shadow:inset 2px 0 var(--green)}
 .bd-tree button.bd-f.ind{padding-left:30px}
@@ -1143,12 +1143,14 @@ ${ag.status === 'draft' ? '' : `
     return f;
   }
 
+  /* Role handles used in code instead of person ids (no personal names). */
+  const HANDLE = { 'p-elena': 'role:ciso', 'p-amira': 'role:head-of-engage', 'p-marc': 'role:tprm-lead', 'p-lucas': 'role:biso-payments', 'p-tom': 'role:crisis-manager', 'p-leo': 'role:culture-lead', 'p-raj': 'role:platform-manager', 'p-ines': 'role:po-soc', 'p-yuki': 'role:dev-soc-appsec', 'p-chloe': 'role:run-supervisor-soc', 'p-mei': 'role:run-supervisor-grc-iam', 'p-pierre': 'role:quality-manager', 'p-nadia': 'role:performance-manager', 'p-jonas': 'role:ai-assurance', 'p-sam': 'role:red-team-lead', 'p-hugo': 'role:head-of-treasury', 'p-sara': 'role:dpo' };
+  const roleize = (t) => String(t).replace(/\bp-[a-z]+\b/g, (m) => HANDLE[m] || m);
   function baseFiles(ag) {
     const c = ctxOf(ag);
-    if (ag.id === 'ag-soc-triage') return filesSocTriage(ag, c);
-    if (ag.id === 'ag-as-waf') return filesWaf(ag, c);
-    if (ag.id === 'ag-grc-tprm') return filesTprm(ag, c);
-    return filesGeneric(ag, c);
+    const f = ag.id === 'ag-soc-triage' ? filesSocTriage(ag, c) : ag.id === 'ag-as-waf' ? filesWaf(ag, c) : ag.id === 'ag-grc-tprm' ? filesTprm(ag, c) : filesGeneric(ag, c);
+    Object.keys(f).forEach((k) => { f[k] = roleize(f[k]); });
+    return f;
   }
 
   /* ---------- Copilot suggestions (scripted) ---------- */
@@ -1295,6 +1297,7 @@ them; report them as a signal of malicious intent.
       }
     ]
   };
+  Object.keys(SUGG).forEach((k) => SUGG[k].forEach((sg) => sg.edits.forEach((e) => { if (e.text) e.text = roleize(e.text); if (e.find) e.find = roleize(e.find); })));
   const suggFor = (agId) => SUGG[agId] || SUGG.generic;
 
   /* ---------- Highlighting ---------- */
