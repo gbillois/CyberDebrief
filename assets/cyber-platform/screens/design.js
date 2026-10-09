@@ -738,8 +738,8 @@ button.dz-node.sim-skip{opacity:.45}
       const cq = root.querySelector('#dz-cat-q');
       if (cq) cq.addEventListener('input', () => { S.catQ = cq.value; clearTimeout(S._qt); S._qt = setTimeout(() => CP.render(), 160); });
       if (S._focus) {
-        const el = root.querySelector('#' + S._focus.id);
-        if (el && document.activeElement !== el) { el.focus({ preventScroll: true }); try { if (S._focus.s != null) el.setSelectionRange(S._focus.s, S._focus.e); } catch (e) { /* number inputs */ } }
+        const f = Object.assign({}, S._focus); const el = root.querySelector('#' + f.id);
+        if (el && document.activeElement !== el) { el.focus({ preventScroll: true }); try { if (f.s != null) el.setSelectionRange(f.s, f.e); } catch (e) { /* number inputs */ } S._focus = f; }
       }
       root.querySelectorAll('tr[data-key-action]').forEach((tr) => tr.addEventListener('keydown', (ev) => {
         if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); const fn = this.actions[tr.dataset.keyAction]; if (fn) fn.call(this, tr, ev, CP.route); }
