@@ -11,6 +11,9 @@
   const U = CP.ui;
   const I = (n) => CP.icon(n);
   const pname = (id) => (CP.person(id) || {}).name || id;
+  /* Role name inside a sentence: lower case, except acronyms and proper nouns (DPO, CISO, Engage...). */
+  const KEEP = ['Engage', 'Run', 'Treasury', 'Build', 'Business', 'CISO'];
+  const lc = (name) => String(name).split(' ').map((w) => (/^[A-Z0-9]{2,}$/.test(w) || KEEP.indexOf(w) >= 0 ? w : w.toLowerCase())).join(' ');
 
   /* ================================================================
      Styles (prefixed .dz-)
@@ -553,7 +556,7 @@ button.dz-node.sim-skip{opacity:.45}
       if (!n.timeout) n.timeout = n.kind === 'gate' ? (GATE_TO[n.decider] || '30 min') : ({ L3: '2 min', L2: '15 min', L1: '30 min', L0: '4 h' }[n.level] || '15 min');
       if (n.kind !== 'gate' && n.fallback == null) {
         const ag = CP.agent(n.agent);
-        n.fallback = ag ? 'Retry once, then hand over to the ' + pname(ag.supervisor).toLowerCase() + ' with the full context.' : n.lane === 'human' ? 'Reminder at half the timeout, then the deputy is called.' : 'Escalate to the Run supervisor on duty.';
+        n.fallback = ag ? 'Retry once, then hand over to the ' + lc(pname(ag.supervisor)) + ' with the full context.' : n.lane === 'human' ? 'Reminder at half the timeout, then the deputy is called.' : 'Escalate to the Run supervisor on duty.';
       }
     });
     BASE[key] = nodes;
@@ -617,10 +620,10 @@ button.dz-node.sim-skip{opacity:.45}
       const nm = '"' + n.title + '"';
       if (!n._reach) out.push({ sev: 'error', node: n.id, msg: 'Unreachable step: ' + nm + ' has no path from the trigger.', fix: n.after.length ? 'Its predecessors are unreachable too: reconnect the branch.' : 'Set "Runs after" in the inspector, or delete the step.' });
       if (n.kind === 'gate') {
-        if (!String(n.fallback || '').trim()) out.push({ sev: 'error', node: n.id, msg: 'Gate ' + nm + ' has no fallback: if the ' + pname(n.decider).toLowerCase() + ' rejects or does not answer in ' + n.timeout + ', the playbook stalls.', fix: 'Write what the platform does on reject or timeout.' });
+        if (!String(n.fallback || '').trim()) out.push({ sev: 'error', node: n.id, msg: 'Gate ' + nm + ' has no fallback: if the ' + lc(pname(n.decider)) + ' rejects or does not answer in ' + n.timeout + ', the playbook stalls.', fix: 'Write what the platform does on reject or timeout.' });
         if (!n.decider) out.push({ sev: 'error', node: n.id, msg: 'Gate ' + nm + ' has no decision holder.', fix: 'Pick the role that holds the decision right.' });
         const pd = n.policy != null ? P.dec[n.policy] : '';
-        if (pd && n.decider && pd !== n.decider) out.push({ sev: 'warn', node: n.id, msg: 'Gate ' + nm + ' asks the ' + pname(n.decider).toLowerCase() + ', but the policy gives this decision to the ' + pname(pd).toLowerCase() + '.', fix: 'Align the gate with the decision-rights policy, or change the policy.' });
+        if (pd && n.decider && pd !== n.decider) out.push({ sev: 'warn', node: n.id, msg: 'Gate ' + nm + ' asks the ' + lc(pname(n.decider)) + ', but the policy gives this decision to the ' + lc(pname(pd)) + '.', fix: 'Align the gate with the decision-rights policy, or change the policy.' });
         return;
       }
       if (n.agent) {
@@ -641,7 +644,7 @@ button.dz-node.sim-skip{opacity:.45}
           const viaGate = n.after.some((p) => { const g = F.byId[p]; return g && g.kind === 'gate' && g.policy === n.policy; });
           const sa = sas.find((x) => x.pol === n.policy && x.agent === n.agent && (x.status === 'active' || x.status === 'expiring'));
           if (viaGate) { /* executes a human decision: authorised */ } else if (sa) out.push({ sev: 'info', node: n.id, msg: nm + ' runs at ' + n.level + ' under standing approval ' + sa.id + ' (policy says ' + pl + ').', fix: 'Holder: ' + pname(sa.holder) + ', expires ' + dateAfter(sa.expDays) + '.' });
-          else out.push({ sev: 'warn', node: n.id, msg: nm + ' runs at ' + n.level + ' but the policy allows ' + pl + ' for "' + shortAct(n.policy) + '". At run time the orchestrator will stop and ask the ' + pname(P.dec[n.policy] || r.decider || 'p-chloe').toLowerCase() + '.', fix: 'Add a gate, lower the level, or create a standing approval.' });
+          else out.push({ sev: 'warn', node: n.id, msg: nm + ' runs at ' + n.level + ' but the policy allows ' + pl + ' for "' + shortAct(n.policy) + '". At run time the orchestrator will stop and ask the ' + lc(pname(P.dec[n.policy] || r.decider || 'p-chloe')) + '.', fix: 'Add a gate, lower the level, or create a standing approval.' });
         }
       }
     });
@@ -931,7 +934,7 @@ button.dz-node.sim-skip{opacity:.45}
           ((n.thr || []).length ? '<div class="dz-mini"><b style="color:var(--ink)">Thresholds that bring a human in:</b> ' + n.thr.map((k) => esc(THR_LABEL[k]) + ' (' + esc(((CP.data.thresholds || []).find((t) => t.k === THR_LABEL[k]) || {}).v || '') + ')').join('; ') + '</div>' : '') +
           (sa ? '<div class="dz-mini">' + I('key') + ' Standing approval <a href="#/design/approvals" data-action="openSa" data-id="' + sa.id + '">' + esc(sa.id) + '</a> (' + esc(sa.status) + ') covers this agent and action.</div>' : '') +
           '</div>' +
-          (n.kind !== 'gate' && n.lane !== 'human' && n.lane !== 'ext' ? '<div class="dz-eff">' + I('shieldCheck') + '<span>At run time: ' + (gated ? 'the orchestrator <b>stops and asks the ' + esc(pname(dec || 'p-chloe').toLowerCase()) + '</b> (policy ' + pl + ')' : 'executes at <b>' + eff + '</b> · ' + esc(((CP.data.autonomy || []).find((a) => a.id === eff) || {}).short || '')) + ', rollback point and trace kept.</span></div>' : '');
+          (n.kind !== 'gate' && n.lane !== 'human' && n.lane !== 'ext' ? '<div class="dz-eff">' + I('shieldCheck') + '<span>At run time: ' + (gated ? 'the orchestrator <b>stops and asks the ' + esc(lc(pname(dec || 'p-chloe'))) + '</b> (policy ' + pl + ')' : 'executes at <b>' + eff + '</b> · ' + esc(((CP.data.autonomy || []).find((a) => a.id === eff) || {}).short || '')) + ', rollback point and trace kept.</span></div>' : '');
       } else if (n.kind !== 'gate' && n.lane !== 'human') {
         h += '<div class="dz-pol"><div class="ttl">' + I('scale') + ' Policy that applies</div><div class="dz-mini">No action on the information system: read, analysis or human work. Logged in the trace.</div></div>';
       }
@@ -966,7 +969,7 @@ button.dz-node.sim-skip{opacity:.45}
         }
         simH = '<section><h3>' + I('sparkles') + ' Dry run on the digital twin ' + (sim.running ? '<span class="tag amber">running</span>' : '<span class="tag green">done</span>') + '</h3><div class="dz-simlog" aria-live="polite">' + (rows || '<div class="d">Starting the twin…</div>') + '</div>' + sum + '</section>';
       }
-      return '<div class="dz-res">' + (lintH || '') + (simH || '') + '</div>';
+      return '<div class="dz-res"' + (lintH && simH ? '' : ' style="grid-template-columns:1fr"') + '>' + (lintH || '') + (simH || '') + '</div>';
     },
 
     versionsCard(pb) {
@@ -1212,7 +1215,7 @@ button.dz-node.sim-skip{opacity:.45}
           sim.i++;
           if (sim.i >= sim.order.length) { sim.i = sim.order.length - 1; sim.running = false; CP.render(); const gs = F.nodes.filter((n) => n.kind === 'gate' && n._reach).length; CP.toast('Dry run complete: critical path ' + fmtDur(sim.total) + ', ' + gs + ' human decision(s), no action left the twin.'); return; }
           const n = F.byId[sim.order[sim.i].id];
-          if (n && n.kind !== 'gate') S._scrollTo = n.id;
+          if (n) S._scrollTo = n.id;
           CP.render();
           S._simT = setTimeout(tick, n && n.kind === 'gate' ? 1100 : Math.max(320, Math.min(650, 7000 / sim.order.length)));
         };
@@ -1309,7 +1312,7 @@ button.dz-node.sim-skip{opacity:.45}
       polSign() {
         const S = this.ui; const pol = S.pol; const n = policyDiff(pol.current, pol.draft).length;
         pol.ver++; pol.current = CP.clone(pol.draft); pol.stage = 'draft';
-        pol.history.unshift({ v: pol.ver, name: 'DR-2026.' + (pol.ver - 9), when: (CP.clock ? CP.clock.label() : 'Tue') + ' 2026', by: 'p-elena', reviewer: pol.reviewer || 'p-jonas', note: n + ' change(s) signed with a 30-day backtest', fresh: Date.now() });
+        pol.history.unshift({ v: pol.ver, name: 'DR-2026.' + (pol.ver - 9), when: 'Tue 13 Oct 2026', by: 'p-elena', reviewer: pol.reviewer || 'p-jonas', note: n + ' change(s) signed with a 30-day backtest', fresh: Date.now() });
         pol.note = '';
         CP.feed({ actor: 'p-elena', domain: 'human', level: 'decision', text: 'signed decision-rights policy DR-2026 v' + pol.ver + ': enforced by the orchestrator from now on.' });
         CP.toast('Policy v' + pol.ver + ' signed and active. Playbook lint now checks against it.');
@@ -1323,13 +1326,13 @@ button.dz-node.sim-skip{opacity:.45}
         const wasRevoked = x.status === 'revoked';
         x.expDays = (wasRevoked ? 0 : Math.max(0, x.expDays)) + 90; x.status = 'active'; x.manual = x.manual || false;
         CP.feed({ actor: x.holder, domain: 'human', level: 'decision', text: (wasRevoked ? 're-granted' : 'renewed') + ' standing approval ' + x.id + ' until ' + dateAfter(x.expDays) + '.' });
-        CP.toast(x.id + ' ' + (wasRevoked ? 're-granted' : 'renewed') + ' until ' + dateAfter(x.expDays) + ' (signed by the ' + pname(x.holder).toLowerCase() + ').');
+        CP.toast(x.id + ' ' + (wasRevoked ? 're-granted' : 'renewed') + ' until ' + dateAfter(x.expDays) + ' (signed by the ' + lc(pname(x.holder)) + ').');
         CP.render();
       },
       saResume(el) {
         const S = this.ui; const x = S.sa.find((s) => s.id === el.dataset.id); if (!x) return;
         x.manual = true; x.status = 'active';
-        CP.toast(x.id + ' resumed by the ' + pname(x.holder).toLowerCase() + ' after the fix.');
+        CP.toast(x.id + ' resumed by the ' + lc(pname(x.holder)) + ' after the fix.');
         CP.render();
       },
       saRevoke(el) {
@@ -1341,7 +1344,7 @@ button.dz-node.sim-skip{opacity:.45}
         const S = this.ui; const x = S.sa.find((s) => s.id === el.dataset.id); if (!x) return;
         x.status = 'revoked'; x.manual = true;
         CP.feed({ actor: x.holder, domain: 'human', level: 'decision', text: 'revoked standing approval ' + x.id + ': ' + x.title + '.' });
-        CP.closeModal(); CP.toast(x.id + ' revoked. Each use now needs the ' + pname(x.holder).toLowerCase() + '.', 'warn'); CP.render();
+        CP.closeModal(); CP.toast(x.id + ' revoked. Each use now needs the ' + lc(pname(x.holder)) + '.', 'warn'); CP.render();
       },
       saNew() {
         const agents = CP.store.get('agents');
@@ -1367,7 +1370,7 @@ button.dz-node.sim-skip{opacity:.45}
         S.sa.unshift({ id, title, agent: v('dz-sa-agent'), tool: t.id, pol: t.pol || null, holder, scope: title + '.', limits: v('dz-sa-lim').split('\n').map((s) => s.trim()).filter(Boolean), granted: 'Tue 13 Oct 2026', expDays: +v('dz-sa-exp') || 90, uses: 0, last: 'never', status: 'active', review: 'Quarterly by Trust & Challenge', manual: true });
         S.saSel = id;
         CP.feed({ actor: holder, domain: 'human', level: 'decision', text: 'granted standing approval ' + id + ': ' + title + '.' });
-        CP.closeModal(); CP.toast(id + ' granted by the ' + pname(holder).toLowerCase() + ', valid until ' + dateAfter(+v('dz-sa-exp') || 90) + '.'); CP.render();
+        CP.closeModal(); CP.toast(id + ' granted by the ' + lc(pname(holder)) + ', valid until ' + dateAfter(+v('dz-sa-exp') || 90) + '.'); CP.render();
       },
 
       /* catalogue */
