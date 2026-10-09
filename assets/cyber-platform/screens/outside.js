@@ -57,7 +57,7 @@
   CP.css('outside', `
 /* ===== Risk owner app ===== */
 .ow-wrap{display:grid;grid-template-columns:auto minmax(0,440px);gap:44px;justify-content:center;align-items:start;padding:6px 0 24px}
-.ow-phone{width:414px;height:804px;border:12px solid #17112b;border-radius:48px;background:#17112b;position:relative;box-shadow:0 30px 80px #1a0e3d40,0 0 0 1px #3a3155 inset;flex:none}
+.ow-phone{width:414px;height:clamp(600px,calc(100vh - 128px),804px);position:sticky;top:116px;border:12px solid #17112b;border-radius:48px;background:#17112b;box-shadow:0 30px 80px #1a0e3d40,0 0 0 1px #3a3155 inset;flex:none}
 .ow-notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:118px;height:30px;background:#17112b;border-radius:16px;z-index:9}
 .ow-screen{position:absolute;inset:0;background:#f6f5fa;border-radius:36px;overflow:hidden;display:flex;flex-direction:column}
 .ow-status{height:46px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:6px 26px 0 30px;font-size:14px;font-weight:650;color:var(--ink);background:#fff}
@@ -91,7 +91,7 @@
 .ow-due{display:inline-flex;gap:5px;align-items:center;font-size:12px;font-weight:700;color:#8a5a05;background:var(--amber-50);padding:3px 8px;border-radius:20px}
 .ow-due.red{color:var(--red-ink);background:var(--red-50)}
 .ow-calm{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
-.ow-calm .i{font-size:30px;color:var(--green-ink)}
+.ow-calm>.i{font-size:30px;color:var(--green-ink)}
 .ow-calm b{display:block;font-size:15px;margin:6px 0 4px}
 .ow-calm p{margin:0;font-size:13px;color:var(--muted);line-height:1.5}
 .ow-notes{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
@@ -221,15 +221,17 @@
 .ow-anat div{display:grid;grid-template-columns:26px 1fr;gap:8px;padding:7px 0;border-top:1px solid var(--line-2);font-size:13px;line-height:1.45}
 .ow-anat div::before{counter-increment:a;content:counter(a);width:22px;height:22px;background:var(--indigo-50);color:var(--indigo);display:grid;place-items:center;font-size:11px;font-weight:700}
 .ow-anat b{font-weight:650}
+.ow-demo{display:none!important;margin:12px auto 0}
 .ow-try{background:var(--dark);color:#fff;padding:16px 18px;border-top:3px solid var(--green)}
 .ow-try b{display:block;font-size:15px;margin-bottom:4px}
 .ow-try p{font-size:13px;color:#cfc6ea;margin:0 0 12px;line-height:1.5}
-@media(max-width:1100px){.ow-wrap{grid-template-columns:auto;justify-items:center}.ow-side{max-width:640px}}
+@media(max-width:1100px){.ow-wrap{grid-template-columns:auto;justify-items:center}.ow-phone{position:relative;top:auto}.ow-side{max-width:640px}}
 @media(max-width:600px){
   main.view:has(.ow-wrap) .subnav{display:none}
   .ow-wrap{display:block;margin:-6px -14px 0;padding:0}
   .ow-phone{width:auto;height:auto;border:0;border-radius:0;box-shadow:none;background:transparent}
   .ow-notch,.ow-status,.ow-lock,.ow-side{display:none}
+  .ow-demo{display:inline-flex!important}
   .ow-screen{position:static;border-radius:0;overflow:visible;min-height:calc(100vh - 110px)}
   .ow-head{position:sticky;top:96px;z-index:12}
   .ow-body{overflow:visible;padding-bottom:70px}
@@ -254,6 +256,7 @@
 .sp-alert .i{font-size:20px;color:var(--red-ink);margin-top:1px}
 .sp-alert b{display:block;font-size:15px;margin-bottom:3px}
 .sp-alert p{margin:0;font-size:13.5px;line-height:1.55;color:#4a2530}
+.sp-alert p b{display:inline;font-size:inherit;margin:0}
 .sp-alert.ok{background:var(--green-50);border-color:#a8e6c1;border-left-color:var(--green-ink)}
 .sp-alert.ok .i{color:var(--green-ink)}
 .sp-alert.ok p{color:#1f4d33}
@@ -328,7 +331,7 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
 .sp-flow span.n{border:1px solid var(--line);background:#fff;padding:6px 10px;font-weight:600}
 .sp-flow span.q{border:1px solid #f0b9c3;background:var(--red-50);color:var(--red-ink);padding:6px 10px;font-weight:700}
 .sp-flow span.okz{border:1px solid #a8e6c1;background:var(--green-50);color:#116539;padding:6px 10px;font-weight:700}
-@media(max-width:1100px){.sp-qs{grid-template-columns:1fr}.sp-req{grid-template-columns:34px minmax(0,1fr) auto}.sp-req .dl,.sp-req .stc{grid-column:2}.sp-comp{grid-template-columns:1fr 60px}.sp-comp .tip{grid-column:1/-1}}
+@media(max-width:1100px){.sp-qs{grid-template-columns:minmax(0,1fr)}.sp-req{grid-template-columns:34px minmax(0,1fr) auto}.sp-req .dl,.sp-req .stc{grid-column:2}.sp-comp{grid-template-columns:1fr 60px}.sp-comp .tip{grid-column:1/-1}}
 @media(max-width:600px){.sp-m{max-width:94%}.sp-brand h1{font-size:21px}.sp-brand .acts{margin-left:0}.sp-req{grid-template-columns:30px minmax(0,1fr)}.sp-req>*:last-child{grid-column:2}.sp-q .ans,.sp-q .src{margin-left:0}}
 
 /* ===== Evidence room ===== */
@@ -379,7 +382,10 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
 .ar-log div{display:grid;grid-template-columns:72px minmax(0,1fr);gap:8px;padding:6px 0;border-top:1px dashed var(--line-2)}
 .ar-log div:first-child{border-top:0}
 .ar-log time{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
-@media(max-width:1100px){.ar-samp-head{grid-template-columns:1fr 1fr}}
+.ar-nw,.ar-root .case-link{white-space:nowrap}
+.ar-split{grid-template-columns:minmax(0,3fr) minmax(260px,1fr)}
+@media(max-width:1100px){.ar-samp-head{grid-template-columns:1fr 1fr}.ar-nw,.ar-root .case-link{white-space:nowrap}
+.ar-split{grid-template-columns:1fr}}
 @media(max-width:600px){.ar-samp-head{grid-template-columns:1fr}.ar-filters input{min-width:0;width:100%}.ar-filters label{flex:1 1 140px}.ar-cust div{grid-template-columns:22px minmax(0,1fr)}.ar-cust div>span:last-child{grid-column:2}}
 `);
 
@@ -397,7 +403,7 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
       minutes: 15,
       happened: [
         'At 02:12 an attacker got into the account of one of your payment approvers (t.op-17) by flooding the operator with login requests until one was accepted.',
-        'The platform locked the attacker out at 02:14. Nobody else in your team is affected.',
+        'The platform locked the attacker out by 02:14. Nobody else in your team is affected.',
         'Before that, this account approved 3 payments worth €4.2 M. They are still in the queue for the 06:00 cut-off: nothing has left the bank yet.'
       ],
       stakes: [['€4.2 M', '3 payments in the 06:00 queue'], ['2 of 3', 'beneficiaries created yesterday'], ['1,200', 'client bank details copied']],
@@ -423,7 +429,7 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
         'id-6': 'Measured what was copied: 37 files, 1,200 client bank details. The DPO is informed.'
       },
       qa: [
-        ['Is the attacker still in?', 'No. Every session of the account was cut at 02:14, the device is blocked and the attacker\'s address is blocked since 02:18. No activity on the account since 02:14.'],
+        ['Is the attacker still in?', 'No. Every session of the account was cut by 02:14, the device is blocked and the attacker\'s address is blocked since 02:18. No activity on the account since 02:14.'],
         ['Can I release only the known supplier payment?', 'Yes. PAY-77131 (€0.75 M) goes to a known supplier with unchanged bank details: the platform rates it low risk. Approve the hold now, then release PAY-77131 from this app at 07:00 in one tap.'],
         ['Who else knows?', 'The CISO on duty sees this decision live. The Business CISO for Payments and the DPO are informed. Nobody outside Novalys has been contacted.'],
         ['Has this happened before?', 'Not in Treasury. The same technique hit Retail Banking twice in 2026; both times it was contained before any payment left.']
@@ -550,7 +556,7 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
           '<div class="t">' + esc(f.headline) + '</div><span class="m">' + I('bot') + ' Recommended: <b style="color:var(--ink)">' + esc(rec.label || '') + '</b> · confidence ' + Math.round((f.confidence || 0.85) * 100) + '%</span>' +
           '<span class="go">Review and decide ' + I('chevronRight') + '</span></button>';
       }).join('');
-      const calm = pend.length ? '' : '<div class="ow-calm">' + I('shieldCheck') + '<b>Your services are protected</b><p>You only get a notification when a decision is above the threshold you own: money, payments, or a key business account.</p></div>';
+      const calm = pend.length ? '' : '<div class="ow-calm">' + I('shieldCheck') + '<b>Your services are protected</b><p>You only get a notification when a decision is above the threshold you own: money, payments, or a key business account.</p><button class="small ow-demo" data-action="owSimulate">' + I('play') + ' Demo: run S2 to the 2 a.m. decision</button></div>';
       const notes = this.notes();
       return '<div class="ow-pad">' + hello + cards + calm +
         '<div class="ow-sec-t"><span>Updates · no action needed</span><span>' + notes.length + '</span></div>' +
@@ -906,7 +912,7 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
       const submitted = A.status === 'answered' || A.status === 'flagged';
       const head = '<div class="card-title"><div><h2>CVE-2026-41877 · FileBridge MFT</h2><div class="sub">From Novalys Third-Party Security · received Tue 09:00 · due Wed 09:00 (24 h, critical supplier)</div></div>' + ui.status(submitted ? 'submitted' : A.status === 'overdue' ? 'overdue' : 'pending', submitted ? 'Submitted' : A.status === 'overdue' ? 'Overdue' : 'To answer') + '</div>';
       if (submitted) {
-        const ans = A.status === 'flagged' ? FLAGGED_ANS : (A.q.portal || FLAGGED_ANS);
+        const ans = A.status === 'flagged' ? FLAGGED_ANS : (A.q.portal || (A.lifted ? Object.assign({}, FLAGGED_ANS, { q1: 'FileBridge MFT 9.1.4 (patched)', q2: 'Applied today' }) : FLAGGED_ANS));
         const review = A.status === 'flagged'
           ? '<div class="sp-alert" style="margin-top:14px">' + I('alert') + '<div><b>Reviewed by Novalys: still exploitable</b><p>Version 8.7 is vulnerable and actively exploited. Your flow was restricted at 12:42 to protect the payroll data; it is lifted once 9.1.4 is verified. <a href="' + CP.href('supplier', 'plan') + '">Open the remediation plan</a></p></div></div>'
           : '<div class="sp-alert ok" style="margin-top:14px">' + I('checkCircle') + '<div><b>Submitted ' + esc(A.q.answeredAt || '') + '</b><p>The third-party agent analyses your answers against what Novalys observes (external scan, evidence). A Novalys analyst reviews the result; you will be notified here.</p></div></div>';
@@ -1008,7 +1014,7 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
       get('comms').filter((c) => c.party === 'tp-atlas').forEach((c) => msgs.push({ id: c.id, ts: c.ts, key: 100000 + tsKey(c.ts), dir: c.author === 'p-supplier' ? 'out' : 'in', subject: c.subject, body: c.body && c.body.length > 30 && c.body.indexOf('...') < 0 ? c.body : (MSG_BODY[c.id] || c.subject), it: c }));
       if (A.m420) msgs.push({ id: 'M-420', ts: 'Mon 09:40', key: 100000 + tsKey('Mon 09:40'), dir: 'in', subject: A.m420.subject, body: MSG_BODY['M-420'], it: A.m420 });
       msgs.sort((a, b) => a.key - b.key);
-      const thread = '<div class="sp-thread" id="sp-thread">' + msgs.map((m) => '<div class="sp-m ' + m.dir + (m.it ? ui.newCls(m.it) : '') + '"><div class="mh">' + (m.dir === 'in' ? '<b>Novalys Third-Party Security</b>' + ui.tag(I('sparkles') + ' Prepared with AI, reviewed by a person', 'outline') : '<b>You · Supplier CISO</b>') + '<span>' + esc(m.ts) + '</span></div><div class="ms">' + esc(m.subject) + '</div><div class="mb">' + esc(m.body) + '</div></div>').join('') + '</div>';
+      const thread = '<div class="sp-thread" id="sp-thread">' + msgs.map((m) => '<div class="sp-m ' + m.dir + (m.it ? ui.newCls(m.it) : '') + '"><div class="mh">' + (m.dir === 'in' ? '<b>Novalys Third-Party Security</b>' + ui.tag(I('sparkles') + ' Prepared with AI, reviewed by a person', 'outline') : '<b>You · Supplier CISO</b>') + '<span>' + esc(m.ts) + '</span></div>' + (m.body && m.body.trim() === m.subject.trim() ? '' : '<div class="ms">' + esc(m.subject) + '</div>') + '<div class="mb">' + esc(m.body) + '</div></div>').join('') + '</div>';
       const compose = '<div class="sp-compose"><label class="small-txt muted" for="sp-msg">Reply to Novalys Third-Party Security</label><textarea id="sp-msg" placeholder="Write your message…">' + esc(this.ui.msg) + '</textarea><div class="row"><span class="small-txt muted">Delivered to the Novalys third-party team; urgent topics also trigger a call from their duty officer.</span><span class="spacer"></span><button class="primary" data-action="spSend">' + I('send') + ' Send</button></div></div>';
       return ui.card('Messages with Novalys', thread + compose, { cls: 'accent', sub: msgs.length + ' messages · one thread per supplier, kept for audit' });
     },
@@ -1077,7 +1083,8 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
         const ans = {}; CVE_Q.forEach((q) => { ans[q.id] = this.ui.q[q.id].value; });
         const corrected = CVE_Q.filter((q) => this.ui.q[q.id].state === 'corrected').length;
         const summary = ans.q1 + '; patch: ' + ans.q2 + '; IoC search: ' + ans.q3 + '; suspicious activity: ' + ans.q4;
-        const ts = clockLabel();
+        let ts = clockLabel();
+        if (tsKey(ts) < tsKey(tp.questionnaire.sentAt || 'Tue 09:00')) ts = dayOf(tp.questionnaire.sentAt || 'Tue 09:00') + ' ' + addMin(tp.questionnaire.sentAt || 'Tue 09:00', 34);
         CP.store.apply([
           { op: 'update', coll: 'thirdParties', id: 'tp-atlas', patch: { questionnaire: Object.assign({}, tp.questionnaire, { status: 'answered', answer: summary, answeredAt: ts, via: 'Supplier portal', portal: ans }) } },
           { op: 'add', coll: 'comms', item: { id: 'M-' + (430 + Math.floor(Math.random() * 60)), ts, party: 'tp-atlas', channel: 'Supplier portal', subject: 'Answers submitted: CVE-2026-41877 questionnaire (6 of 6)', status: 'answered', author: 'p-supplier', validator: '', body: 'Answers submitted through the portal.\n' + summary } }
@@ -1170,6 +1177,16 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
     } else {
       CP.store.apply({ op: 'add', coll: 'comms', item: { id: 'M-' + (800 + Math.floor(Math.random() * 90)), ts, party: 'tp-atlas', channel: 'Supplier portal', subject: 'Restriction kept for now', status: 'sent', author: 'ag-grc-tprm', validator: 'p-lucas', body: 'We keep the restriction for now while we complete checks. We will contact you within 2 hours.' } });
     }
+  });
+
+  /* A demo reset (or a scenario rewind) restores the baseline: forget the
+     transient state of the owner and supplier apps that referred to it. */
+  CP.bus.on('change', (reason) => {
+    if (reason !== 'reset') return;
+    const o = CP.screens.owner, sp = CP.screens.supplier;
+    if (o) Object.assign(o.ui, { unlocked: {}, sheet: null, call: null, chat: {}, draft: '', released: {}, toxic: null });
+    if (sp) Object.assign(sp.ui, { q: {}, editing: null, draft: {}, chain: null, chainRows: null, uploads: [], patched: false });
+    if (CP.route.id === 'owner' || CP.route.id === 'supplier') CP.render();
   });
 
   /* =====================================================================
@@ -1343,7 +1360,7 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
       if (pop === 'actions') {
         let x = r() * totalT, ag = agents[0]; for (const a of agents) { x -= a.tasksToday; if (x <= 0) { ag = a; break; } }
         const tl = TPL[ag.domain] || TPL.soc;
-        out.push({ id: 'A-' + (9000 - idx % 9000 + 100000), when, who: ag.id, what: tl[Math.floor(r() * tl.length)], lvl: ag.mode, pop });
+        out.push({ id: 'A-' + (900000 - idx), when, who: ag.id, what: tl[Math.floor(r() * tl.length)], lvl: ag.mode, pop });
       } else if (pop === 'decisions') {
         if (idx < real.length) { const a = real[idx]; out.push({ id: a.id, when: a.decidedAt, who: a.decidedBy || a.decider, what: (a.status === 'approved' ? 'Approved: ' : 'Rejected: ') + a.title, lvl: a.autonomy, pop }); continue; }
         const d = DEC_TPL[Math.floor(r() * DEC_TPL.length)];
@@ -1376,7 +1393,7 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
       else if (sub === 'sampling') body = this.rSampling();
       else if (sub === 'register') body = this.rRegister();
       else body = this.rControls();
-      return ui.tabbar('auditor', groups, sub, persona('p-auditor', ui.tag(I('lock') + ' Read-only', 'outline'))) + ro + body;
+      return ui.tabbar('auditor', groups, sub, persona('p-auditor')) + ro + body;
     },
     logAccess(what) { this.ui.access.unshift({ ts: hm(clockLabel()), what }); this.ui.access = this.ui.access.slice(0, 12); },
 
@@ -1401,7 +1418,7 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
       ], rows, { rowClass: () => 'clickable', rowAttrs: (r) => 'data-action="arCtl" data-id="' + r.c.id + '"' });
       const acc = ui.card('Your access log', this.ui.access.length ? '<div class="ar-log">' + this.ui.access.map((a) => '<div><time>' + esc(a.ts) + '</time><span>' + esc(a.what) + '</span></div>').join('') + '</div>' : '<div class="empty" style="padding:16px">Your views appear here. Internal audit\'s own access is logged like everyone else\'s.</div>', { sub: 'Visible to the audit committee chair' });
       const how = ui.card('Why you can rely on it', '<div class="kv"><dt>Collection</dt><dd>Read-only connectors, service account svc-evidence-ro</dd><dt>Integrity</dt><dd>SHA-256 at source, hash chain, write-once vault (10 years)</dd><dt>Independence</dt><dd>Evidence never comes from the acting agent\'s own report</dd><dt>Second line</dt><dd>LoD2 re-samples 10% against source systems</dd></div>');
-      return head + metrics + notice + '<div class="grid g-3-2" style="grid-template-columns:minmax(0,3fr) minmax(0,1fr)">' + ui.card('Key controls', tbl, { cls: 'accent', sub: 'Live results: scenario events update the controls they touch.' }) + '<div class="stack">' + how + acc + '</div></div>';
+      return head + metrics + notice + '<div class="grid ar-split">' + ui.card('Key controls', tbl, { cls: 'accent', sub: 'Live results: scenario events update the controls they touch.' }) + '<div class="stack">' + how + acc + '</div></div>';
     },
     ctlModal(id) {
       const c = CONTROLS.find((x) => x.id === id); if (!c) return;
@@ -1457,11 +1474,11 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
       const c2303 = find('cases', 'C-2303'); const resampled = c2303 && c2303.status === 'closed';
       const picked = [0, 10, 18];
       const tbl = ui.table([
-        { label: '#', render: (r) => '<span class="mono small-txt">EV-' + pad(r.i + 1) + '</span>' },
+        { label: '#', render: (r) => '<span class="mono small-txt ar-nw">EV-' + pad(r.i + 1) + '</span>' },
         { label: 'Evidence', render: (r) => esc(r.e[0]) },
         { label: 'DORA', render: (r) => '<span class="small-txt">' + esc(r.e[1]) + '</span>' },
         { label: 'Source', render: (r) => '<span class="small-txt">' + esc(r.e[2]) + '</span>' },
-        { label: 'Hash', render: (r) => r.i < s3.collected ? '<span class="ar-hash">' + shortHash('dora' + r.i) + '</span>' : '<span class="muted small-txt">pending</span>' },
+        { label: 'Hash', render: (r) => r.i < s3.collected ? '<span class="ar-hash ar-nw">' + shortHash('dora' + r.i) + '</span>' : '<span class="muted small-txt">pending</span>' },
         { label: 'LoD2', render: (r) => resampled && picked.indexOf(r.i) >= 0 ? ui.tag(I('check') + ' Re-sampled', 'green') : '' }
       ], DORA_ITEMS.map((e, i) => ({ e, i })), { max: 380 });
       CP.modal('DORA supervisory pack · R-DORA-REQ', '<div class="row wrap" style="margin-bottom:12px">' + ui.status(s3.status === 'submitted' ? 'submitted' : 'in-progress') + '<span class="small-txt muted">' + s3.collected + ' of 23 items · case <a href="#/cases/C-2303" data-close-modal>C-2303</a> · assembled by Evidence Collector and Controls &amp; Evidence Agent</span></div>' +
@@ -1488,7 +1505,7 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
         { label: 'Type', render: (e) => { const t = TTYPE[e.type] || TTYPE.event; return '<span class="ar-type" style="color:' + t[2] + '">' + I(t[0]) + esc(t[1]) + '</span>'; } },
         { label: 'Actor', render: (e) => ui.who(e.actor) },
         { label: 'What', render: (e) => '<span style="font-size:13px">' + esc(e.title) + '</span>' },
-        { label: 'Case', render: (e) => e.case ? '<a class="case-link" href="#/cases/' + esc(e.case) + '">' + esc(e.case) + '</a>' : '<span class="muted">·</span>' },
+        { label: 'Case', render: (e) => e.case ? '<a class="case-link ar-nw" href="#/cases/' + esc(e.case) + '">' + esc(e.case) + '</a>' : '<span class="muted">·</span>' },
         { label: 'Level', render: (e) => e.level ? ui.lvl(e.level) : '' },
         { label: 'Integrity', render: (e) => '<span class="ar-hash">' + e.hash.slice(0, 8) + '</span> <span class="ar-ver">' + I('check') + ' Signed</span>' }
       ], rows, { max: 640, empty: 'No entry matches these filters.', rowClass: () => 'clickable', rowAttrs: (e) => 'data-action="arEntry" data-k="' + esc(e.k) + '" data-text="' + esc((e.title + ' ' + e.actor + ' ' + CP.actor(e.actor).name + ' ' + (e.case || '') + ' ' + e.ts).toLowerCase()) + '"' });
@@ -1613,11 +1630,11 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
       },
       arExportCtl(el) { this.logAccess('Exported ' + el.dataset.id + ' with manifest'); CP.toast('Export prepared for ' + el.dataset.id + ': watermarked, with signed manifest. Logged in your access log.'); },
       arPack(el) { this.packModal(el.dataset.id); },
-      arEntry(el, ev) { if (ev.target.closest('a')) return; this.entryModal(el.dataset.k); },
+      arEntry(el, ev) { const a = ev.target.closest('a[href]'); if (a) { location.hash = a.getAttribute('href'); return; } this.entryModal(el.dataset.k); },
       arType(el) { this.ui.type = el.value; CP.render(); },
       arCase(el) { this.ui.caseF = el.value; CP.render(); },
       arChain() {
-        const n = 48211 + trailEntries().length - 1 - 48000 + 1284;
+        const n = CP.store.state.kpis.actionsToday + trailEntries().length;
         this.ui.chain = { running: true, n }; CP.render();
         setTimeout(() => { this.ui.chain = { done: true, n, at: hm(clockLabel()) }; this.logAccess('Verified the trail hash chain (' + CP.fmt(n) + ' entries)'); CP.toast('Hash chain intact: ' + CP.fmt(n) + ' entries, every signature verified, last anchor ' + dayOf(clockLabel()) + ' ' + hm(clockLabel()).slice(0, 2) + ':00.'); if (CP.route.id === 'auditor') CP.render(); }, 1300);
       },
