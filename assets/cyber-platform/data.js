@@ -75,6 +75,13 @@
 
   /* Modules of "The platform", grouped by function. roles: who can open it;
      for: whose daily work it is (shown with a dot). */
+  /* Simple mode: four essential screens per internal role. */
+  D.modulesSimple = [
+    { id: 's-home', label: 'Overview', icon: 'home', group: 'Essentials', roles: INTERNAL, mode: 'simple', twin: 'my' },
+    { id: 's-decisions', label: 'Decisions', icon: 'users', group: 'Essentials', roles: INTERNAL, mode: 'simple', twin: 'inbox' },
+    { id: 's-cases', label: 'Cases', icon: 'workflow', group: 'Essentials', roles: INTERNAL, mode: 'simple', twin: 'cases' },
+    { id: 's-agents', label: 'Agents', icon: 'bot', group: 'Essentials', roles: INTERNAL, mode: 'simple', twin: 'run' }
+  ];
   D.modules = [
     { id: 'my', label: 'My home', icon: 'home', group: 'Work', roles: INTERNAL },
     { id: 'inbox', label: 'Inbox', icon: 'bell', group: 'Work', roles: INTERNAL, for: ['analyst', 'run', 'engage'] },
@@ -86,10 +93,12 @@
     { id: 'run', label: 'Operate', icon: 'activity', group: 'Platform', roles: INTERNAL, for: ['run'] },
     { id: 'trust', label: 'Assurance', icon: 'shieldCheck', group: 'Assurance', roles: INTERNAL.concat(['auditor']), for: ['trust', 'auditor'] },
     { id: 'ciso', label: 'Steer', icon: 'gauge', group: 'Steer', roles: ['ciso', 'engage', 'build', 'run', 'trust'], for: ['ciso'] },
-    { id: 'owner', label: 'Risk owner app', icon: 'user', group: 'Business', roles: ['owner'] },
-    { id: 'supplier', label: 'Supplier portal', icon: 'building', group: 'External', roles: ['supplier'] },
-    { id: 'auditor', label: 'Evidence room', icon: 'search', group: 'Audit', roles: ['auditor'] }
+    { id: 'owner', mode: 'both', label: 'Risk owner app', icon: 'user', group: 'Business', roles: ['owner'] },
+    { id: 'supplier', mode: 'both', label: 'Supplier portal', icon: 'building', group: 'External', roles: ['supplier'] },
+    { id: 'auditor', mode: 'both', label: 'Evidence room', icon: 'search', group: 'Audit', roles: ['auditor'] }
   ];
+  D.modules.forEach((m) => { if (!m.mode) m.mode = 'complete'; });
+  D.modules = D.modulesSimple.concat(D.modules);
 
 
   /* Non-agent actors that appear in logs and timelines. */

@@ -562,6 +562,12 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
 .btn-demo.btn-alt{background:#fff;color:var(--dark)}
 .subnav .persona b,.subnav .persona strong{color:var(--ink)}
 .opts-note{font-size:11.5px;color:var(--muted);margin:2px 10px 6px;line-height:1.4}
+/* Simple / Complete switch of The platform */
+.pmode{display:flex;border:1px solid var(--line);height:36px}
+.pmode button{border:0;min-height:0;height:100%;padding:0 12px;font-size:12.5px;background:#fff;color:var(--muted)}
+.pmode button.on{background:var(--indigo);color:#fff}
+@media(max-width:760px){.pmode button{padding:0 8px;font-size:11.5px}}
+@media(max-width:1180px){.mode-pf .pf-role .lbl{display:none}.pmode button{padding:0 9px}}
 
 </style>
   <style>
@@ -823,6 +829,9 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
 @media(max-width:1560px){:root[data-theme="console"] .gsearch::after{display:none}:root[data-theme="console"] .gsearch:focus-within::after{display:inline}}
 :root[data-theme="console"] .opts-menu .th-sw{border-radius:5px}
 :root[data-theme="console"] .metric{min-width:0}:root[data-theme="console"] .metric .label,:root[data-theme="console"] .metric .foot,:root[data-theme="console"] .metric .value{overflow-wrap:anywhere;min-width:0}
+:root[data-theme="console"] .pmode{height:32px;border-color:var(--c-line);border-radius:8px;overflow:hidden;background:var(--c-panel)}
+:root[data-theme="console"] .pmode button{background:transparent;color:var(--c-muted);border-radius:0}
+:root[data-theme="console"] .pmode button.on{background:var(--c-accent-soft);color:#fff;box-shadow:inset 0 -2px var(--c-accent)}
 
 </style>
 </head>
@@ -1431,6 +1440,7 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
     root.className = 'view' + (scr.flush ? ' flush' : '');
     try {
       CP.theme.apply(CP.theme.forScreen(scr));
+      const modM = CP.module(scr.id); if (modM && modM.mode !== 'both' && modM.mode !== CP.mode) CP.setMode(modM.mode, false);
       if (scr.part === 2 && !CP.canSee(scr.id)) root.innerHTML = moduleRibbon(scr.id) + lockedHtml(scr);
       else root.innerHTML = (scr.part === 2 ? moduleRibbon(scr.id) : conceptRibbon(scr.id)) + scr.render.call(scr, CP.route);
       if (scr.mount) scr.mount.call(scr, root, CP.route);
@@ -1457,17 +1467,38 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
   function setRole(id, silent) {
     CP.currentRole = id;
     try { localStorage.setItem('cp-role', id); } catch (e) { /* storage blocked */ }
-    if (!silent) { const r = CP.role(id); if (r && r.screen) CP.go(r.screen); }
+    if (!silent) CP.go(CP.landing(id));
     renderTop();
   }
   CP.setRole = setRole;
+
+  /* Simple / Complete versions of The platform. Simple: four essential
+     screens per internal role. Complete: every module. */
+  CP.mode = 'simple';
+  try { CP.mode = localStorage.getItem('cp-mode') || 'simple'; } catch (e) { /* storage blocked */ }
+  CP.setMode = function (m, nav) {
+    CP.mode = m === 'complete' ? 'complete' : 'simple';
+    try { localStorage.setItem('cp-mode', CP.mode); } catch (e) { /* storage blocked */ }
+    if (nav === false) return;
+    const cur = CP.module(CP.route.id);
+    if (cur && cur.mode !== 'both' && cur.mode !== CP.mode) {
+      const twin = CP.mode === 'complete' ? (cur.twin && CP.canSee(cur.twin) ? cur.twin : null) : (CP.data.modules.find((x) => x.twin === cur.id) || {}).id;
+      CP.go(twin && CP.screens[twin] ? twin : CP.landing());
+    } else CP.render();
+  };
+  /* Landing page of a role in the current mode. */
+  CP.landing = function (roleId) {
+    const r = CP.role(roleId || CP.currentRole) || CP.data.roles[0];
+    if (CP.mode === 'simple' && CP.data.internalRoles.indexOf(r.id) >= 0 && CP.screens['s-home']) return 's-home';
+    return r.screen;
+  };
 
   /* Role-based access to platform modules. */
   CP.module = (id) => (CP.data.modules || []).find((m) => m.id === id);
   CP.canSee = (id, role) => { const m = CP.module(id); return !m || m.roles.indexOf(role || CP.currentRole) >= 0; };
   function moduleRibbon(active) {
     const role = CP.currentRole; const groups = [];
-    CP.data.modules.filter((m) => m.roles.indexOf(role) >= 0 && CP.screens[m.id]).forEach((m) => {
+    CP.data.modules.filter((m) => m.roles.indexOf(role) >= 0 && CP.screens[m.id] && (m.mode === 'both' || m.mode === CP.mode)).forEach((m) => {
       let g = groups.find((x) => x.label === m.group); if (!g) { g = { label: m.group, items: [] }; groups.push(g); }
       g.items.push(m);
     });
@@ -1484,7 +1515,7 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
   function lockedHtml(scr) {
     const m = CP.module(scr.id) || {}; const role = CP.role(CP.currentRole);
     const who = CP.data.roles.filter((r) => m.roles && m.roles.indexOf(r.id) >= 0).map((r) => r.label);
-    return '<div class="empty" style="margin-top:40px;padding:48px">' + CP.icon('lock') + '<h2 style="margin:10px 0 6px">' + esc(m.label || scr.label) + ' is not available for the ' + esc(role.label) + ' role</h2><p style="margin:0 0 16px">Role-based access: this module is open to ' + esc(who.join(', ')) + '.</p><a class="btn-demo" href="' + CP.href(role.screen) + '" style="display:inline-flex">Go to my home ' + CP.icon('arrowRight') + '</a></div>';
+    return '<div class="empty" style="margin-top:40px;padding:48px">' + CP.icon('lock') + '<h2 style="margin:10px 0 6px">' + esc(m.label || scr.label) + ' is not available for the ' + esc(role.label) + ' role</h2><p style="margin:0 0 16px">Role-based access: this module is open to ' + esc(who.join(', ')) + '.</p><a class="btn-demo" href="' + CP.href(CP.landing()) + '" style="display:inline-flex">Go to my home ' + CP.icon('arrowRight') + '</a></div>';
   }
 
   /* Dark ribbon for Part 1 pages and the guided demo (consoles draw their own). */
@@ -1522,9 +1553,11 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
         '<div class="mini-player">' + (st.playing ? '<button class="small" data-player="pause" title="Pause (space)" aria-label="Pause">' + CP.icon('pause') + '</button>' : '<button class="small" data-player="play" title="Play (space)" aria-label="Play"' + (st.done ? ' disabled' : '') + '>' + CP.icon('play') + '</button>') +
         '<button class="small" data-player="next" title="Next step (→)" aria-label="Next step"' + (st.done ? ' disabled' : '') + '>' + CP.icon('next') + '</button></div>'
       : '<div class="sim-pill"><span class="dot"></span>Simulated · <b>' + esc(CP.clock ? CP.clock.label() : '') + '</b></div>';
-    const canSearch = CP.canSee('graph-x');
+    const canSearch = CP.canSee('graph-x') && CP.mode === 'complete';
+    const showMode = scr.part === 2 && CP.data.internalRoles.indexOf(CP.currentRole) >= 0;
+    const modeSw = showMode ? '<div class="pmode" role="group" aria-label="Version of the platform"><button class="' + (CP.mode === 'simple' ? 'on' : '') + '" data-pmode="simple" aria-pressed="' + (CP.mode === 'simple') + '">Simple</button><button class="' + (CP.mode === 'complete' ? 'on' : '') + '" data-pmode="complete" aria-pressed="' + (CP.mode === 'complete') + '">Complete</button></div>' : '';
     const optsOpen = !!document.getElementById('opts-menu') && document.getElementById('opts-menu').classList.contains('open');
-    top.innerHTML = (canSearch ? '<form class="gsearch" data-gsearch role="search"><label class="sr" for="gs-in">Search the security graph</label>' + CP.icon('search') + '<input id="gs-in" name="q" placeholder="Search assets, identities, suppliers, CVEs…" autocomplete="off" value="' + esc(CP.route.id === 'graph-x' ? (CP.route.query.q || '') : '') + '"></form>' : '') + sim +
+    top.innerHTML = modeSw + (canSearch ? '<form class="gsearch" data-gsearch role="search"><label class="sr" for="gs-in">Search the security graph</label>' + CP.icon('search') + '<input id="gs-in" name="q" placeholder="Search assets, identities, suppliers, CVEs…" autocomplete="off" value="' + esc(CP.route.id === 'graph-x' ? (CP.route.query.q || '') : '') + '"></form>' : '') + sim +
       '<button class="bell' + (pend.length ? ' has' : '') + '" data-open-drawer title="Decisions awaiting a human">' + CP.icon('bell') + '<span class="lbl">Decisions</span>' + (pend.length ? '<span class="badge-n">' + pend.length + '</span>' : '') + '</button>' +
       '<a class="btn-demo" href="' + CP.href('demo') + '" title="Guided demo">' + CP.icon('play') + '<span class="lbl">Guided demo</span></a>' +
       '<div class="opts"><button class="opts-btn" data-opts-toggle aria-haspopup="true" aria-expanded="' + optsOpen + '" title="Options" aria-label="Options">' + CP.icon('gear') + '</button>' +
@@ -1554,6 +1587,7 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
   document.addEventListener('click', (ev) => {
     const om = document.getElementById('opts-menu');
     if (om && om.classList.contains('open') && !ev.target.closest('.opts')) om.classList.remove('open');
+    const pm = ev.target.closest('[data-pmode]'); if (pm) { CP.setMode(pm.dataset.pmode); return; }
     const tb = ev.target.closest('[data-opts-toggle],[data-theme-set]');
     if (tb) { if (tb.dataset.themeSet) { om.classList.remove('open'); CP.theme.set(tb.dataset.themeSet); } else om.classList.toggle('open'); return; }
     const t = ev.target.closest('[data-decide],[data-player],[data-open-drawer],[data-close-drawer],[data-role-toggle],[data-role],[data-drawer-filter],[data-close-modal],[data-go],[data-action],[data-scenario-start]');
@@ -1693,6 +1727,13 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
 
   /* Modules of "The platform", grouped by function. roles: who can open it;
      for: whose daily work it is (shown with a dot). */
+  /* Simple mode: four essential screens per internal role. */
+  D.modulesSimple = [
+    { id: 's-home', label: 'Overview', icon: 'home', group: 'Essentials', roles: INTERNAL, mode: 'simple', twin: 'my' },
+    { id: 's-decisions', label: 'Decisions', icon: 'users', group: 'Essentials', roles: INTERNAL, mode: 'simple', twin: 'inbox' },
+    { id: 's-cases', label: 'Cases', icon: 'workflow', group: 'Essentials', roles: INTERNAL, mode: 'simple', twin: 'cases' },
+    { id: 's-agents', label: 'Agents', icon: 'bot', group: 'Essentials', roles: INTERNAL, mode: 'simple', twin: 'run' }
+  ];
   D.modules = [
     { id: 'my', label: 'My home', icon: 'home', group: 'Work', roles: INTERNAL },
     { id: 'inbox', label: 'Inbox', icon: 'bell', group: 'Work', roles: INTERNAL, for: ['analyst', 'run', 'engage'] },
@@ -1704,10 +1745,12 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
     { id: 'run', label: 'Operate', icon: 'activity', group: 'Platform', roles: INTERNAL, for: ['run'] },
     { id: 'trust', label: 'Assurance', icon: 'shieldCheck', group: 'Assurance', roles: INTERNAL.concat(['auditor']), for: ['trust', 'auditor'] },
     { id: 'ciso', label: 'Steer', icon: 'gauge', group: 'Steer', roles: ['ciso', 'engage', 'build', 'run', 'trust'], for: ['ciso'] },
-    { id: 'owner', label: 'Risk owner app', icon: 'user', group: 'Business', roles: ['owner'] },
-    { id: 'supplier', label: 'Supplier portal', icon: 'building', group: 'External', roles: ['supplier'] },
-    { id: 'auditor', label: 'Evidence room', icon: 'search', group: 'Audit', roles: ['auditor'] }
+    { id: 'owner', mode: 'both', label: 'Risk owner app', icon: 'user', group: 'Business', roles: ['owner'] },
+    { id: 'supplier', mode: 'both', label: 'Supplier portal', icon: 'building', group: 'External', roles: ['supplier'] },
+    { id: 'auditor', mode: 'both', label: 'Evidence room', icon: 'search', group: 'Audit', roles: ['auditor'] }
   ];
+  D.modules.forEach((m) => { if (!m.mode) m.mode = 'complete'; });
+  D.modules = D.modulesSimple.concat(D.modules);
 
 
   /* Non-agent actors that appear in logs and timelines. */
@@ -2851,10 +2894,10 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
     const frame = simple ? { x: 236, y: 146, w: 1128, h: 462 } : { x: 236, y: 152, w: 1128, h: 832 };
     let s = '<svg class="arch" viewBox="0 0 ' + L.w + ' ' + L.h + '" role="img" aria-label="' + (simple ? 'Simple view of the cyber AI platform' : 'Detailed architecture of the cyber AI platform') + '" font-family="Inter, system-ui, sans-serif">' +
       '<defs>' +
-      '<marker id="ah-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#451dc7"/></marker>' +
-      '<marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#088a42"/></marker>' +
-      '<marker id="ah-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9a93ad"/></marker>' +
-      '<marker id="ah-ms" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M10 0L0 5L10 10z" fill="#9a93ad"/></marker>' +
+      '<marker id="ah-i" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#451dc7"/></marker>' +
+      '<marker id="ah-g" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#088a42"/></marker>' +
+      '<marker id="ah-m" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#9a93ad"/></marker>' +
+      '<marker id="ah-ms" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#9a93ad"/></marker>' +
       '<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
       '</defs>' +
       '<text x="105" y="' + (simple ? 182 : 172) + '" font-size="11" text-anchor="middle" fill="#8a5a05" font-weight="700" letter-spacing="1.2">OUTSIDE</text>' +
@@ -2875,21 +2918,53 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
   /* ------------------------------------------------------------------
      Flow animation
      ------------------------------------------------------------------ */
-  function anchors(a, b) {
+  /* Flow path between two blocks: leaves and enters each block straight
+     (short stubs perpendicular to the edge), with a cubic curve between, so
+     the arrowhead always sits square on the target. */
+  function anchors(a, b, off) {
+    if (a === b) return null;
+    off = off || 0;
     const ac = [a.x + a.w / 2, a.y + a.h / 2], bc = [b.x + b.w / 2, b.y + b.h / 2];
     const dx = bc[0] - ac[0], dy = bc[1] - ac[1];
-    let p1, p2, vertical;
-    if (Math.abs(dy) > Math.abs(dx) * 0.45) {
-      vertical = true;
-      p1 = [ac[0], dy > 0 ? a.y + a.h : a.y]; p2 = [bc[0], dy > 0 ? b.y : b.y + b.h];
+    const GAP = 3, STUB = 14;
+    const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+    /* Attach on the facing sides, at the point most aligned with the other block. */
+    const gy = Math.max(b.y - (a.y + a.h), a.y - (b.y + b.h)), gx = Math.max(b.x - (a.x + a.w), a.x - (b.x + b.w));
+    let p1, p2, vertical, sx, sy;
+    if (gy > 0 && gy * 1.8 >= gx) {
+      vertical = true; sy = dy > 0 ? 1 : -1; sx = 0;
+      const ox = (Math.max(a.x, b.x) + Math.min(a.x + a.w, b.x + b.w)) / 2; /* centre of the horizontal overlap, if any */
+      const overlap = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x) > 24;
+      const x1 = overlap ? ox : clamp(bc[0], a.x + 14, a.x + a.w - 14), x2 = overlap ? ox : clamp(ac[0], b.x + 14, b.x + b.w - 14);
+      p1 = [x1, dy > 0 ? a.y + a.h : a.y]; p2 = [x2, dy > 0 ? b.y - GAP : b.y + b.h + GAP];
     } else {
-      p1 = [dx > 0 ? a.x + a.w : a.x, ac[1]]; p2 = [dx > 0 ? b.x : b.x + b.w, bc[1]];
+      vertical = false; sx = dx > 0 ? 1 : -1; sy = 0;
+      const oy = (Math.max(a.y, b.y) + Math.min(a.y + a.h, b.y + b.h)) / 2;
+      const overlap = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y) > 16;
+      const y1 = overlap ? oy : clamp(bc[1], a.y + 10, a.y + a.h - 10), y2 = overlap ? oy : clamp(ac[1], b.y + 10, b.y + b.h - 10);
+      p1 = [dx > 0 ? a.x + a.w : a.x, y1]; p2 = [dx > 0 ? b.x - GAP : b.x + b.w + GAP, y2];
     }
-    const k = vertical ? Math.max(30, Math.abs(p2[1] - p1[1]) * 0.45) : Math.max(30, Math.abs(p2[0] - p1[0]) * 0.45);
-    const c1 = vertical ? [p1[0], p1[1] + (dy > 0 ? k : -k)] : [p1[0] + (dx > 0 ? k : -k), p1[1]];
-    const c2 = vertical ? [p2[0], p2[1] - (dy > 0 ? k : -k)] : [p2[0] - (dx > 0 ? k : -k), p2[1]];
-    if (a === b) return null;
-    return 'M' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1) + ' C' + c1[0].toFixed(1) + ' ' + c1[1].toFixed(1) + ' ' + c2[0].toFixed(1) + ' ' + c2[1].toFixed(1) + ' ' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
+    /* Sideways offset, used to separate a return flow from its outbound twin. */
+    if (vertical) { p1[0] += off; p2[0] += off; } else { p1[1] += off; p2[1] += off; }
+    const q1 = [p1[0] + sx * 6, p1[1] + sy * 6], q2 = [p2[0] - sx * STUB, p2[1] - sy * STUB];
+    const span = vertical ? Math.abs(q2[1] - q1[1]) : Math.abs(q2[0] - q1[0]);
+    const k = Math.max(24, span * 0.5);
+    const c1 = [q1[0] + sx * k, q1[1] + sy * k], c2 = [q2[0] - sx * k, q2[1] - sy * k];
+    const f = (pt) => pt[0].toFixed(1) + ' ' + pt[1].toFixed(1);
+    return 'M' + f(p1) + ' L' + f(q1) + ' C' + f(c1) + ' ' + f(c2) + ' ' + f(q2) + ' L' + f(p2);
+  }
+
+  /* One arrowhead marker per flow colour, so the head matches its flow. */
+  function flowMarker(svg, color) {
+    const id = 'ahf-' + color.replace(/[^0-9a-z]/gi, '');
+    if (!svg.querySelector('#' + id)) {
+      const m = document.createElementNS(SVGNS, 'marker');
+      m.setAttribute('id', id); m.setAttribute('viewBox', '0 0 12 12'); m.setAttribute('refX', '10.5'); m.setAttribute('refY', '6');
+      m.setAttribute('markerWidth', '12'); m.setAttribute('markerHeight', '12'); m.setAttribute('markerUnits', 'userSpaceOnUse'); m.setAttribute('orient', 'auto');
+      m.innerHTML = '<path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="' + color + '"/>';
+      svg.querySelector('defs').appendChild(m);
+    }
+    return 'url(#' + id + ')';
   }
 
   const view = { simple: true, layout: null, root: null, animId: 0 };
@@ -2931,14 +3006,16 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
     layer.innerHTML = ''; tok.innerHTML = '';
     if (!step) return;
     const color = colorFor(step);
-    const flows = viewFlows(step).map((f) => ({ f, d: anchors(nodeById(f[0]) || {}, nodeById(f[1]) || {}) })).filter((x) => x.d && nodeById(x.f[0]) && nodeById(x.f[1]));
+    const vf = viewFlows(step);
+    const keys = vf.map((f) => f[0] + '>' + f[1]);
+    const flows = vf.map((f) => ({ f, d: anchors(nodeById(f[0]) || {}, nodeById(f[1]) || {}, keys.indexOf(f[1] + '>' + f[0]) >= 0 && f[0] > f[1] ? 9 : (keys.indexOf(f[1] + '>' + f[0]) >= 0 ? -9 : 0)) })).filter((x) => x.d && nodeById(x.f[0]) && nodeById(x.f[1]));
     const id = ++view.animId;
     const speed = Math.max(1, (CP.player.status().speed || 1));
     const hop = 720 / Math.min(speed, 3);
     flows.forEach((x, i) => {
       const p = document.createElementNS(SVGNS, 'path');
       p.setAttribute('d', x.d); p.setAttribute('class', 'flow-path trail'); p.setAttribute('stroke', color);
-      p.setAttribute('marker-end', 'url(#ah-i)');
+      p.setAttribute('marker-end', flowMarker(svg, color));
       if (animate) p.style.opacity = '0';
       layer.appendChild(p);
       if (!animate) return;
@@ -3422,7 +3499,7 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
 
         '<div class="cx-parts">' +
         '<a class="cx-part" href="' + CP.href('arch-simple') + '" data-tour="part1"><span class="eyebrow green">Part 1 · How it works</span><h2>The concept, animated</h2><p>A simple view (the target picture) and a detailed architecture. Four scenarios play step by step: blocks light up, flows travel, every decision is shown with its autonomy level.</p><div class="chips">' + ['Simple view', 'Detailed view', 'Build it', 'Decision rights'].map((x) => ui.tag(esc(x), 'outline')).join('') + '</div><span class="go-l">Open the simple view ' + CP.icon('arrowRight') + '</span></a>' +
-        '<a class="cx-part" href="' + CP.href((CP.role(CP.currentRole) || {}).screen || 'ciso') + '" data-tour="part2"><span class="eyebrow">Part 2 · The platform</span><h2>The product, as its users see it</h2><p>One product organised around the work: an inbox of what needs you, cases that carry the whole story, the security graph one search away, then the modules to design, build, operate, assure and steer the platform. Nine roles, from the CISO to the SOC analyst, the business risk owner on a phone, an external supplier and the internal auditor.</p><div class="chips">' + ['Inbox', 'Cases', 'Graph', 'Engage', 'Design', 'Build', 'Operate', 'Assurance', 'Steer'].map((x) => ui.tag(esc(x), 'outline')).join('') + '</div><span class="go-l">Open the platform ' + CP.icon('arrowRight') + '</span></a></div>' +
+        '<a class="cx-part" href="' + CP.href(CP.landing()) + '" data-tour="part2"><span class="eyebrow">Part 2 · The platform</span><h2>The product, as its users see it</h2><p>One product organised around the work: an inbox of what needs you, cases that carry the whole story, the security graph one search away, then the modules to design, build, operate, assure and steer the platform. Nine roles, from the CISO to the SOC analyst, the business risk owner on a phone, an external supplier and the internal auditor.</p><div class="chips">' + ['Inbox', 'Cases', 'Graph', 'Engage', 'Design', 'Build', 'Operate', 'Assurance', 'Steer'].map((x) => ui.tag(esc(x), 'outline')).join('') + '</div><span class="go-l">Open the platform ' + CP.icon('arrowRight') + '</span></a></div>' +
 
         '<div class="card-title"><div><div class="eyebrow">Four scenarios</div><h2 style="margin:0">From one trigger to the board</h2></div><span class="small-txt muted">Click to play it on the simple view</span></div>' +
         '<div class="scn-cards" data-tour="home-scenarios">' + CP.scenarios.map((s) => '<button class="scn-card" data-scenario-start="' + s.id + '" data-goto="arch-simple"><span class="sn">' + s.n + ' · ' + esc(s.short) + '</span><h3>' + esc(s.title) + '</h3><p>' + esc(s.pitch) + '</p><span class="row wrap" style="gap:6px">' + s.domains.map((d) => ui.dom(d)).join('') + '</span><span class="row between small-txt" style="padding-top:8px;border-top:1px solid var(--line)"><span class="muted">' + esc(s.value.manual) + '</span><b style="color:var(--indigo)">→ ' + esc(s.value.platform) + '</b></span></button>').join('') + '</div>' +
@@ -7628,7 +7705,7 @@ release:
       const N = (id) => nodes.find((n) => n.id === id);
       const edges = [['app', 'svc', 'supports'], ['app', 'sup', 'supplied by'], ['id', 'app', 'has access'], ['app', 'asset', 'runs on'], ['vuln', 'asset', 'affects'], ['id', 'data', 'owns'], ['ctl', 'vuln', 'mitigates'], ['ttp', 'asset', 'targets'], ['det', 'ttp', 'detects'], ['app', 'data', 'stores in']];
       const cx = (n) => n.x + W / 2, cy = (n) => n.y + H / 2;
-      const svg = '<svg class="bd-schema" viewBox="0 0 810 390" role="img" aria-label="Security graph schema"><defs><marker id="bdar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9b95ab"/></marker></defs>' +
+      const svg = '<svg class="bd-schema" viewBox="0 0 810 390" role="img" aria-label="Security graph schema"><defs><marker id="bdar" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#9b95ab"/></marker></defs>' +
         edges.map((e) => { const a = N(e[0]), b = N(e[1]); const x1 = cx(a), y1 = cy(a), x2 = cx(b), y2 = cy(b); const dx = x2 - x1, dy = y2 - y1; const sx = Math.abs(dx) * H > Math.abs(dy) * W ? (W / 2) / Math.abs(dx) : (H / 2) / Math.abs(dy || 1); const ex = x2 - dx * sx, ey = y2 - dy * sx, bx = x1 + dx * sx, by = y1 + dy * sx; return '<line x1="' + bx + '" y1="' + by + '" x2="' + ex + '" y2="' + ey + '" stroke="#b9b3c9" stroke-width="1.4" marker-end="url(#bdar)"/><text x="' + ((bx + ex) / 2) + '" y="' + ((by + ey) / 2 - 4) + '" font-size="10" fill="#6d687e" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="4">' + e[2] + '</text>'; }).join('') +
         nodes.map((n) => '<g><rect x="' + n.x + '" y="' + n.y + '" width="' + W + '" height="' + H + '" fill="#fff" stroke="#dedbe8"/><rect x="' + n.x + '" y="' + n.y + '" width="4" height="' + H + '" fill="' + n.c + '"/><text x="' + (n.x + 14) + '" y="' + (n.y + 19) + '" font-size="12" font-weight="650" fill="#201c30">' + n.label + '</text><text x="' + (n.x + 14) + '" y="' + (n.y + 36) + '" font-size="12" font-weight="700" fill="' + n.c + '">' + CP.fmt(n.n) + '</text></g>').join('') + '</svg>';
       const sources = [
@@ -15924,8 +16001,8 @@ button.dz-node.sim-skip{opacity:.45}
       }).join('');
       /* edges */
       let edges = '<svg class="dz-edges" width="' + L.W + '" height="' + L.H + '" viewBox="0 0 ' + L.W + ' ' + L.H + '" aria-hidden="true"><defs>' +
-        '<marker id="dz-ar" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#b3adc5"/></marker>' +
-        '<marker id="dz-arg" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#088a42"/></marker></defs>';
+        '<marker id="dz-ar" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#b3adc5"/></marker>' +
+        '<marker id="dz-arg" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 0.8 L11 6 L0.5 11.2 L3.2 6 Z" fill="#088a42"/></marker></defs>';
       F.nodes.forEach((n) => n.after.forEach((pid) => {
         const p = F.byId[pid]; if (!p) return;
         const x1 = p._x + L.NW, y1 = p._y + L.NH / 2, x2 = n._x - 2, y2 = n._y + L.NH / 2;
@@ -18174,6 +18251,289 @@ input.sp-file:focus-visible+label{outline:3px solid #9173fa;outline-offset:2px}
       arExportWp() { this.logAccess('Exported a sampling workpaper'); CP.toast('Workpaper exported: population, seed, sample, results and conclusion, signed with your key.'); }
     }
   });
+})();
+
+</script>
+<script>
+/* Cyber AI Platform demo: the Simple version of The platform.
+   Four essential screens per internal role (Overview, Decisions, Cases,
+   Agents): one status sentence, a few big numbers, decisions with big
+   buttons, cases as a story with four stages, agents as traffic lights.
+   Every screen links to its detail in the Complete version. */
+(function () {
+  'use strict';
+  const CP = window.CP; const esc = CP.esc; const ui = CP.ui; const I = CP.icon;
+  const S = () => CP.store;
+
+  CP.css('simple', `
+  .sm{max-width:1280px;margin:0 auto}
+  .sm-hero{display:flex;align-items:center;gap:22px;padding:26px 28px;border:1px solid var(--line);background:#fff;margin-bottom:20px;position:relative;overflow:hidden}
+  .sm-hero::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--hc)}
+  .sm-hero .ic{width:64px;height:64px;display:grid;place-items:center;font-size:30px;flex:none;color:#fff;background:var(--hc)}
+  .sm-hero .tx{flex:1;min-width:0}
+  .sm-hero .k{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;color:var(--hc)}
+  .sm-hero h1{font-size:30px;margin:4px 0 6px;letter-spacing:-.8px}
+  .sm-hero p{margin:0;font-size:15px;color:var(--muted);max-width:760px}
+  .sm-hero .act{display:flex;gap:8px;flex-wrap:wrap}
+  .sm-hero .act button,.sm-hero .act a{min-height:46px;padding:0 18px;font-size:14.5px}
+  .sm-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:24px}
+  .sm-kpi{background:#fff;border:1px solid var(--line);padding:20px 22px}
+  .sm-kpi .v{font-size:44px;font-weight:700;letter-spacing:-1.6px;line-height:1;color:var(--indigo);font-variant-numeric:tabular-nums}
+  .sm-kpi .v small{font-size:18px;font-weight:600;letter-spacing:-.3px;margin-left:3px}
+  .sm-kpi .l{font-size:14px;font-weight:600;margin-top:10px}
+  .sm-kpi .s{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .sm-kpi.good .v{color:var(--green-ink)}.sm-kpi.warn .v{color:#b8770f}.sm-kpi.bad .v{color:var(--red)}
+  .sm-sec{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:6px 0 12px}
+  .sm-sec h2{font-size:19px;margin:0}
+  .sm-sec a{font-size:13px;font-weight:600}
+  .sm-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:start}
+  .sm-dec{border:1px solid #f1c27a;border-left:5px solid #ffb648;background:#fffaf0;padding:18px 20px;margin-bottom:12px}
+  .sm-dec .who{font-size:12.5px;color:#8a5a05;font-weight:600;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .sm-dec h3{font-size:18px;margin:8px 0 6px;line-height:1.3}
+  .sm-dec p{margin:0 0 12px;font-size:14px;color:#3b3550;line-height:1.55}
+  .sm-dec .row{gap:10px}
+  .sm-dec .row button{min-height:46px;padding:0 20px;font-size:14.5px}
+  .sm-dec.done{border-color:var(--line);border-left-color:var(--green-ink);background:#fff}
+  .sm-dec.ro{border-left-color:#b9b3c9;background:#fff}
+  .sm-case{background:#fff;border:1px solid var(--line);border-left:5px solid var(--sc);padding:16px 18px;margin-bottom:12px}
+  .sm-case .top{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+  .sm-case h3{font-size:16.5px;margin:6px 0 4px;line-height:1.3}
+  .sm-case p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5}
+  .sm-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:12px 0 4px}
+  .sm-stages div{font-size:11.5px;font-weight:600;color:var(--muted);text-align:center;padding-top:8px;border-top:5px solid #e5e1ef}
+  .sm-stages div.on{color:var(--ink);border-top-color:var(--green-ink)}
+  .sm-stages div.cur{color:var(--ink);border-top-color:#ffb648}
+  .sm-case .acts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .sm-story{margin:12px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+  .sm-story li{display:grid;grid-template-columns:58px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.45}
+  .sm-story .t{font-family:var(--mono);font-size:11.5px;color:var(--muted);padding-top:2px}
+  .sm-story b{font-weight:600}
+  .sm-today{background:#fff;border:1px solid var(--line);padding:18px 20px}
+  .sm-today li{font-size:14.5px;line-height:1.5;margin:0 0 10px}
+  .sm-today ul{margin:0;padding-left:20px}
+  .sm-empty{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);padding:22px}
+  .sm-empty .ok{width:48px;height:48px;display:grid;place-items:center;background:var(--green-ink);color:#fff;font-size:24px;flex:none}
+  .sm-empty b{display:block;font-size:16.5px;margin-bottom:3px}
+  .sm-empty span{font-size:13.5px;color:var(--muted)}
+  .sm-agents{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .sm-agent{background:#fff;border:1px solid var(--line);padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+  .sm-light{width:14px;height:14px;border-radius:50%;flex:none;margin-top:4px;background:var(--lc);box-shadow:0 0 0 4px color-mix(in srgb,var(--lc) 18%,transparent)}
+  .sm-agent b{display:block;font-size:14.5px}
+  .sm-agent .d{font-size:12px;color:var(--muted);margin-top:2px}
+  .sm-agent .m{font-size:13px;margin-top:8px;font-weight:600}
+  .sm-agent .n{font-size:12px;color:var(--muted)}
+  .sm-dom{font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;color:var(--muted);margin:18px 0 8px;display:flex;gap:8px;align-items:center}
+  .sm-dom i{width:10px;height:10px;display:inline-block}
+  .sm-more{margin-top:26px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;border:1px dashed var(--line);flex-wrap:wrap}
+  .sm-more span{font-size:13.5px;color:var(--muted)}
+  @media(max-width:1100px){.sm-kpis,.sm-agents{grid-template-columns:repeat(2,minmax(0,1fr))}.sm-grid{grid-template-columns:1fr}}
+  @media(max-width:760px){.sm-hero{flex-direction:column;align-items:flex-start;padding:20px}.sm-hero h1{font-size:23px}.sm-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.sm-kpi{padding:14px}.sm-kpi .v{font-size:32px}.sm-agents{grid-template-columns:1fr}.sm-dec .row button{flex:1}}
+  :root[data-theme="console"] .sm-hero,:root[data-theme="console"] .sm-kpi,:root[data-theme="console"] .sm-case,:root[data-theme="console"] .sm-today,:root[data-theme="console"] .sm-empty,:root[data-theme="console"] .sm-agent{border-radius:12px}
+  :root[data-theme="console"] .sm-hero .ic,:root[data-theme="console"] .sm-empty .ok{border-radius:12px}
+  :root[data-theme="console"] .sm-kpi .v{color:#fff}
+  :root[data-theme="console"] .sm-kpi.good .v{color:#5cf0b0}:root[data-theme="console"] .sm-kpi.warn .v{color:#ffc078}:root[data-theme="console"] .sm-kpi.bad .v{color:#ff8fa3}
+  :root[data-theme="console"] .sm-dec{border-radius:12px;background:linear-gradient(90deg,rgba(255,159,67,.1),rgba(255,159,67,.02));border-color:rgba(255,159,67,.35)}
+  :root[data-theme="console"] .sm-dec h3{color:#fff}
+  :root[data-theme="console"] .sm-dec p{color:var(--c-ink-2)}
+  :root[data-theme="console"] .sm-dec .who{color:#ffc078}
+  :root[data-theme="console"] .sm-dec.done,:root[data-theme="console"] .sm-dec.ro{background:var(--c-panel);border-color:var(--c-line)}
+  :root[data-theme="console"] .sm-stages div{border-top-color:#2a3142}
+  :root[data-theme="console"] .sm-stages div.on{border-top-color:#3ddc97}
+  :root[data-theme="console"] .sm-stages div.cur{border-top-color:#ffb648}
+  :root[data-theme="console"] .sm-more{border-color:var(--c-line-strong);border-radius:12px}
+  `);
+
+  const AUTONOMY_WORDS = { L0: 'Suggests only', L1: 'Asks first', L2: 'Acts and notifies', L3: 'Acts alone' };
+  const SEV = { critical: ['var(--red)', 'Critical'], high: ['#e0662b', 'High'], medium: ['#c8861a', 'Medium'], low: ['#2f7de1', 'Low'] };
+  const role = () => CP.currentRole;
+  const roleObj = () => CP.role(role()) || CP.data.roles[0];
+  const K = () => S().state.kpis;
+
+  function pending() { return S().pendingApprovals().filter((a) => CP.roleSees(a)); }
+  function mine() { return S().pendingApprovals().filter((a) => a.role === role()); }
+  function openCases() { return S().get('cases').filter((c) => c.status !== 'closed').sort((a, b) => sevRank(a) - sevRank(b)); }
+  function sevRank(c) { return ['critical', 'high', 'medium', 'low'].indexOf(c.severity); }
+  function agentsState() {
+    const A = S().get('agents');
+    const bad = A.filter((a) => a.status === 'suspended' || a.status === 'paused');
+    const warn = A.filter((a) => a.status === 'degraded' || a.status === 'canary');
+    const devs = S().get('deviations').filter((d) => d.status !== 'closed');
+    return { A, bad, warn, devs, ok: !bad.length && !warn.length && !devs.length };
+  }
+
+  /* ---------------- Status hero ---------------- */
+  function hero() {
+    const m = mine(); const p = pending(); const oc = openCases(); const ag = agentsState();
+    const crit = oc.filter((c) => c.severity === 'critical');
+    const st = CP.player.status();
+    let c, icon, k, title, sub, act;
+    if (m.length) {
+      c = '#ffb648'; icon = 'users'; k = 'Your decision is needed';
+      title = m.length === 1 ? 'One decision is waiting for you' : m.length + ' decisions are waiting for you';
+      sub = m[0].title + '. The platform has prepared everything; it acts as soon as you decide.';
+      act = '<button class="go" data-go="s-decisions">' + I('arrowRight') + ' Decide now</button>';
+    } else if (crit.length) {
+      c = 'var(--red)'; icon = 'alert'; k = 'Critical case in progress';
+      title = crit[0].title;
+      sub = crit[0].summary + ' The agents are handling it; you will be called if a decision crosses your threshold.';
+      act = '<button class="primary" data-go="s-cases">' + I('workflow') + ' Follow the case</button>';
+    } else if (!ag.ok) {
+      c = '#ffb648'; icon = 'eye'; k = 'An agent needs attention';
+      title = ag.devs.length ? 'An agent is behaving unusually' : 'An agent runs with reduced autonomy';
+      sub = ag.devs.length ? ag.devs[0].signal + '.' : (ag.warn.concat(ag.bad)[0] || {}).name + ' is ' + (ag.warn.concat(ag.bad)[0] || {}).status + ' while Trust & Challenge and Run check it.';
+      act = '<button class="primary" data-go="s-agents">' + I('bot') + ' See the agents</button>';
+    } else {
+      c = 'var(--green-ink)'; icon = 'shieldCheck'; k = 'All under control';
+      title = 'Nothing needs you right now';
+      sub = CP.fmt(K().actionsToday) + ' actions today, ' + K().autonomousShare + '% handled by the agents alone. ' + (oc.length ? oc.length + ' cases in progress, none critical.' : 'No open case.');
+      act = st.scenario ? '' : '<button class="primary" data-scenario-start="cti">' + I('play') + ' Show me a real case</button>';
+    }
+    if (p.length && !m.length && c === 'var(--green-ink)') sub += ' ' + p.length + ' decision' + (p.length > 1 ? 's' : '') + ' waiting for another role.';
+    return '<section class="sm-hero" style="--hc:' + c + '" data-tour="simple-status"><span class="ic">' + I(icon) + '</span><div class="tx"><div class="k">' + esc(k) + '</div><h1>' + esc(title) + '</h1><p>' + esc(sub) + '</p></div><div class="act">' + act + '</div></section>';
+  }
+
+  /* ---------------- KPIs per role ---------------- */
+  function kpis() {
+    const k = K(); const r = role(); const ag = agentsState(); const tp = S().get('thirdParties');
+    const comms = S().get('comms').filter((m) => m.status === 'awaiting').length;
+    const rel = S().get('releases').filter((x) => x.status !== 'done').length;
+    const back = S().get('backlog').filter((x) => x.status === 'new').length;
+    const evAvg = S().get('evals').reduce((a, e) => a + e.score, 0) / Math.max(1, S().get('evals').length);
+    const regs = S().get('regulatory').filter((x) => x.status === 'at-risk').length;
+    const L = {
+      ciso: [[k.riskScore, '/100', 'Cyber risk score', '-6 points this quarter', 'good'], [k.mttcMinutes, 'min', 'Time to contain', 'was 5 h 40 before the platform', 'good'], [k.hoursSaved, 'h', 'Hours saved this month', '≈ ' + CP.fmt(k.hoursSaved / 61, 1) + ' people freed', 'good'], [k.humanDecisions, '', 'Decisions taken by humans today', 'everything else stayed inside guardrails', '']],
+      engage: [[tp.filter((t) => ['overdue', 'flagged'].indexOf(t.questionnaire.status) >= 0).length, '', 'Suppliers to chase', 'late or flagged answers', 'warn'], [regs, '', 'Regulatory deadlines at risk', 'of ' + S().get('regulatory').length + ' tracked', regs ? 'warn' : 'good'], [comms, '', 'Messages to validate', 'drafted by the agents', comms ? 'warn' : ''], [tp.filter((t) => t.criticality === 'critical').length, '', 'Critical suppliers', 'followed continuously', '']],
+      build: [[rel, '', 'Releases in the pipeline', 'evals, red team, canary', ''], [back, '', 'New requests in the backlog', 'from Engage, Run, Trust', back ? 'warn' : ''], [CP.fmt(evAvg, 1), '%', 'Average eval score', 'across all agents', 'good'], [S().get('agents').filter((a) => a.status === 'canary').length, '', 'Agents in canary', 'new versions under watch', '']],
+      run: [[ag.A.length - ag.bad.length - ag.warn.length, '/' + ag.A.length, 'Agents healthy', ag.ok ? 'all within guardrails' : 'some under watch', ag.ok ? 'good' : 'warn'], [CP.fmt(k.actionsToday), '', 'Actions today', k.autonomousShare + '% without a human', ''], [S().pendingApprovals('run').length, '', 'Waiting for Run', 'kill-switch, rollback, autonomy', S().pendingApprovals('run').length ? 'warn' : 'good'], [CP.eur(k.aiCostToday), '', 'AI cost today', 'budget €2,100 a day', '']],
+      trust: [[ag.devs.length, '', 'Open deviations', 'agents behaving unusually', ag.devs.length ? 'bad' : 'good'], [S().get('redteam').filter((x) => x.result === 'bypassed').length, '', 'Red-team bypasses open', 'attacks that got through', S().get('redteam').some((x) => x.result === 'bypassed') ? 'bad' : 'good'], [CP.fmt(evAvg, 1), '%', 'Average eval score', 'on gold sets', 'good'], [ag.ok ? 'Yes' : 'Watch', '', 'Agents under control', ag.ok ? 'no open issue' : 'see Agents', ag.ok ? 'good' : 'warn']],
+      analyst: [[openCases().length, '', 'Cases in progress', 'agents work them with you', ''], [pending().length, '', 'Decisions to follow', 'yours or in the loop', pending().length ? 'warn' : 'good'], [CP.fmt(k.alertsTriaged), '', 'Alerts triaged by agents', 'today, sampled by QA', ''], [k.mttcMinutes, 'min', 'Time to contain', 'mean, last 30 days', 'good']]
+    };
+    return '<div class="sm-kpis" data-tour="simple-kpis">' + (L[r] || L.ciso).map((x) => '<div class="sm-kpi ' + x[4] + '"><div class="v">' + esc(String(x[0])) + (x[1] ? '<small>' + esc(x[1]) + '</small>' : '') + '</div><div class="l">' + esc(x[2]) + '</div><div class="s">' + esc(x[3]) + '</div></div>').join('') + '</div>';
+  }
+
+  /* ---------------- Decisions ---------------- */
+  function decisionCard(a) {
+    const can = a.role === role();
+    const dec = CP.person(a.decider);
+    if (a.status !== 'pending') {
+      return '<div class="sm-dec done"><div class="who">' + ui.status(a.status) + ' ' + esc(a.decidedAt || '') + (a.decidedBy ? ' · ' + esc((CP.person(a.decidedBy) || {}).name || '') : '') + '</div><h3>' + esc(a.title) + '</h3></div>';
+    }
+    return '<div class="sm-dec' + (can ? '' : ' ro') + '" data-tour="decision-' + esc(a.id) + '"><div class="who">' + I('users') + ' ' + (can ? 'You decide' : esc(dec ? dec.name : '') + ' decides') + ' · ' + esc(a.threshold ? 'above threshold: ' + a.threshold : 'above threshold') + '</div>' +
+      '<h3>' + esc(a.title) + '</h3><p>' + esc(a.summary || '') + (a.recommendation ? ' <b>Recommendation:</b> ' + esc(a.recommendation) : '') + '</p>' +
+      (can ? '<div class="row wrap"><button class="go" data-decide="' + esc(a.id) + '" data-decision="approve">' + I('check') + ' ' + esc(a.approveLabel || 'Approve') + '</button><button class="danger" data-decide="' + esc(a.id) + '" data-decision="reject">' + I('x') + ' ' + esc(a.rejectLabel || 'Reject') + '</button><button class="ghost" data-go="inbox">Details</button></div>'
+        : '<div class="small-txt muted">You are kept in the loop; the decision belongs to ' + esc(dec ? dec.name : 'another role') + '.</div>') + '</div>';
+  }
+  function noDecision(text) {
+    return '<div class="sm-empty"><span class="ok">' + I('check') + '</span><div><b>Nothing to decide</b><span>' + esc(text || 'Below their thresholds the agents act alone. You are called only when blast radius, money, a message leaving the group, low confidence or a first time require a human.') + '</span></div></div>';
+  }
+
+  /* ---------------- Cases ---------------- */
+  function stages(c) {
+    const scn = (CP.scenarios || []).find((s) => s.caseId === c.id);
+    const tr = S().get('traces').filter((t) => t.case === c.id);
+    const acted = c.status !== 'open' || S().get('actions').some((a) => scn && a.scenario === scn.id) || tr.some((t) => t.level === 'L2' || t.level === 'L3');
+    const aps = S().get('approvals').filter((a) => scn && a.scenario === scn.id);
+    const decided = c.status === 'closed' || (aps.length && aps.every((a) => a.status !== 'pending'));
+    const closed = c.status === 'closed';
+    const list = [['Detected', true], ['Protected', acted], ['Decided', !!decided], ['Closed', closed]];
+    const cur = list.findIndex((x) => !x[1]);
+    return '<div class="sm-stages">' + list.map((x, i) => '<div class="' + (x[1] ? 'on' : i === cur ? 'cur' : '') + '">' + esc(x[0]) + '</div>').join('') + '</div>';
+  }
+  function story(c) {
+    const tr = S().get('traces').filter((t) => t.case === c.id);
+    if (!tr.length) return '<ul class="sm-story"><li><span class="t">' + esc(c.opened) + '</span><span>' + esc(c.summary) + '</span></li></ul>';
+    return '<ul class="sm-story">' + tr.map((t) => '<li><span class="t">' + esc(t.ts.slice(4)) + '</span><span><b>' + esc(CP.actor(t.actor).name) + '</b>: ' + esc(t.title) + (t.metric ? ' · ' + esc(t.metric.value) : '') + '</span></li>').join('') + '</ul>';
+  }
+  function caseCard(c, open) {
+    const s = SEV[c.severity] || SEV.low;
+    const scn = (CP.scenarios || []).find((x) => x.caseId === c.id);
+    return '<article class="sm-case" style="--sc:' + s[0] + '"><div class="top">' + ui.sev(c.severity) + ui.status(c.status) + '<span>' + esc(c.id) + ' · opened ' + esc(c.opened) + '</span></div>' +
+      '<h3>' + esc(c.title) + '</h3><p>' + esc(c.summary) + '</p>' + stages(c) +
+      (open ? story(c) : '') +
+      '<div class="acts"><button class="small" data-action="smStory" data-id="' + esc(c.id) + '">' + I(open ? 'chevronDown' : 'list') + ' ' + (open ? 'Hide the story' : 'See the story') + '</button><button class="small" data-go="cases/' + esc(c.id) + '">' + I('external') + ' Full case</button>' + (scn && !S().get('traces').some((t) => t.case === c.id) ? '<button class="small" data-scenario-start="' + scn.id + '">' + I('play') + ' Play it</button>' : '') + '</div></article>';
+  }
+
+  /* ---------------- Agents ---------------- */
+  function light(a) {
+    if (a.status === 'suspended' || a.status === 'paused') return ['var(--red)', 'Stopped'];
+    if (a.status === 'degraded') return ['#ffb648', 'Under watch'];
+    if (a.status === 'canary') return ['#8b7cff', 'New version on trial'];
+    return ['var(--green-ink)', 'Working normally'];
+  }
+  function agentTile(a) {
+    const l = light(a); const d = CP.domain(a.domain);
+    return '<div class="sm-agent"><span class="sm-light" style="--lc:' + l[0] + '"></span><div><b>' + esc(a.name) + '</b><div class="d">' + esc(d.label) + ' · ' + esc(l[1]) + '</div><div class="m">' + esc(AUTONOMY_WORDS[a.mode] || a.mode) + '</div><div class="n">' + CP.fmt(a.tasksToday) + ' tasks today</div></div></div>';
+  }
+
+  function more(target, label) {
+    return '<div class="sm-more"><span>' + I('layers') + ' The Complete version shows every module, filter and detail.</span><button data-action="smComplete" data-to="' + esc(target) + '">' + esc(label) + ' ' + I('arrowRight') + '</button></div>';
+  }
+  function live() {
+    const st = CP.player.status(); if (!st.scenario) return '';
+    return '<div class="notice info" style="margin:-6px 0 18px">' + I('activity') + ' <b>' + esc(st.scenario.n + ' · ' + st.scenario.short) + '</b> is running: step ' + (st.index + 1) + ' of ' + st.total + (st.step ? ': ' + esc(st.step.title) : '') + '. Everything on this page updates live.</div>';
+  }
+
+  /* ---------------- Screens ---------------- */
+  const base = { part: 2, ui: { open: {} } };
+  const actions = {
+    smStory(el) { const id = el.dataset.id; CP.screens['s-cases'].ui.open[id] = !CP.screens['s-cases'].ui.open[id]; CP.render(); },
+    smComplete(el) { CP.setMode('complete', false); CP.go(el.dataset.to); }
+  };
+
+  CP.screen(Object.assign({}, base, {
+    id: 's-home', label: 'Overview', icon: 'home', actions,
+    render() {
+      const r = roleObj(); const oc = openCases().slice(0, 3); const m = pending().slice(0, 3);
+      const A = S().get('agents'); const top = A.slice().sort((a, b) => b.tasksToday - a.tasksToday)[0];
+      const rb = S().get('actions').filter((a) => a.status === 'rolled-back').length;
+      return '<div class="sm">' + '<div class="eyebrow">' + esc(r.label) + ' · Simple view</div>' + live() + hero() + kpis() +
+        '<div class="sm-grid"><div><div class="sm-sec"><h2>Needs you</h2><a href="' + CP.href('s-decisions') + '">All decisions</a></div>' + (m.length ? m.map(decisionCard).join('') : noDecision()) + '</div>' +
+        '<div><div class="sm-sec"><h2>Happening now</h2><a href="' + CP.href('s-cases') + '">All cases</a></div>' + (oc.length ? oc.map((c) => caseCard(c, false)).join('') : noDecision('No case in progress.')) +
+        '<div class="sm-sec" style="margin-top:18px"><h2>Today, the agents</h2><a href="' + CP.href('s-agents') + '">All agents</a></div><div class="sm-today"><ul>' +
+        '<li><b>' + CP.fmt(K().actionsToday) + ' actions</b>, ' + K().autonomousShare + '% of them alone, inside their guardrails.</li>' +
+        '<li><b>' + CP.fmt(K().humanDecisions) + ' decisions</b> asked a human, only above threshold.</li>' +
+        '<li>Busiest: <b>' + esc(top.name) + '</b>, ' + CP.fmt(top.tasksToday) + ' tasks.</li>' +
+        '<li>' + (rb ? '<b>' + rb + ' action' + (rb > 1 ? 's' : '') + ' rolled back</b> by Run.' : 'No action had to be rolled back.') + '</li></ul></div></div></div>' +
+        more(CP.role(role()).screen === 'ciso' ? 'ciso' : 'my', 'Open the complete console') + '</div>';
+    }
+  }));
+
+  CP.screen(Object.assign({}, base, {
+    id: 's-decisions', label: 'Decisions', icon: 'users', actions,
+    render() {
+      const p = pending(); const done = S().get('approvals').filter((a) => a.status !== 'pending' && CP.roleSees(a)).slice(0, 5);
+      return '<div class="sm"><div class="eyebrow">' + esc(roleObj().label) + ' · Simple view</div>' + CP.ui.head('', 'Decisions', 'Only what crosses a threshold reaches a human. Each decision comes ready to execute, with the platform\'s recommendation.') + live() +
+        (p.length ? p.map(decisionCard).join('') : noDecision()) +
+        (done.length ? '<div class="sm-sec" style="margin-top:22px"><h2>Already decided</h2></div>' + done.map(decisionCard).join('') : '') +
+        more('inbox', 'Open the full inbox') + '</div>';
+    }
+  }));
+
+  CP.screen(Object.assign({}, base, {
+    id: 's-cases', label: 'Cases', icon: 'workflow', actions,
+    render() {
+      const all = S().get('cases'); const oc = openCases(); const closed = all.filter((c) => c.status === 'closed');
+      const open = this.ui.open;
+      return '<div class="sm"><div class="eyebrow">' + esc(roleObj().label) + ' · Simple view</div>' + CP.ui.head('', 'Cases', 'Every case follows four stages: detected, protected, decided, closed. Open the story to read what the agents did, in plain words.') + live() +
+        '<div class="sm-sec"><h2>In progress · ' + oc.length + '</h2></div>' + (oc.length ? oc.map((c) => caseCard(c, !!open[c.id])).join('') : noDecision('No case in progress.')) +
+        (closed.length ? '<div class="sm-sec" style="margin-top:22px"><h2>Closed · ' + closed.length + '</h2></div>' + closed.map((c) => caseCard(c, !!open[c.id])).join('') : '') +
+        '<div class="sm-sec" style="margin-top:22px"><h2>Play a scenario</h2></div><div class="row wrap">' + CP.scenarios.map((s) => '<button data-scenario-start="' + s.id + '">' + I('play') + ' ' + esc(s.n + ' · ' + s.short) + '</button>').join('') + '</div>' +
+        more('cases', 'Open the case queue') + '</div>';
+    }
+  }));
+
+  CP.screen(Object.assign({}, base, {
+    id: 's-agents', label: 'Agents', icon: 'bot', actions,
+    render() {
+      const ag = agentsState();
+      const head = ag.ok ? 'All ' + ag.A.length + ' agents are working normally' : (ag.bad.length + ag.warn.length) + ' agent' + (ag.bad.length + ag.warn.length > 1 ? 's' : '') + ' under watch, ' + (ag.A.length - ag.bad.length - ag.warn.length) + ' working normally';
+      const doms = ['soc', 'cti', 'appsec', 'grc', 'iam', 'data'];
+      return '<div class="sm"><div class="eyebrow">' + esc(roleObj().label) + ' · Simple view</div>' + CP.ui.head('', 'Agents', 'Green: working normally. Amber: under watch or new version on trial. Red: stopped by the kill-switch. Under each agent, what it is allowed to do.') + live() +
+        '<section class="sm-hero" style="--hc:' + (ag.ok ? 'var(--green-ink)' : '#ffb648') + '"><span class="ic">' + I(ag.ok ? 'shieldCheck' : 'eye') + '</span><div class="tx"><div class="k">' + (ag.ok ? 'Agents under control' : 'Attention') + '</div><h1>' + esc(head) + '</h1><p>' + esc(ag.devs.length ? 'Open deviation: ' + ag.devs[0].signal + '.' : 'Kill-switches pulled this week: ' + K().killSwitches + '. Every action keeps a rollback point.') + '</p></div></section>' +
+        doms.map((d) => { const list = ag.A.filter((a) => a.domain === d); if (!list.length) return ''; const D = CP.domain(d); return '<div class="sm-dom"><i style="background:' + D.color + '"></i>' + esc(D.label) + '</div><div class="sm-agents">' + list.map(agentTile).join('') + '</div>'; }).join('') +
+        more('run', 'Open live operations') + '</div>';
+    }
+  }));
 })();
 
 </script>

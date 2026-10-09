@@ -578,6 +578,7 @@
     root.className = 'view' + (scr.flush ? ' flush' : '');
     try {
       CP.theme.apply(CP.theme.forScreen(scr));
+      const modM = CP.module(scr.id); if (modM && modM.mode !== 'both' && modM.mode !== CP.mode) CP.setMode(modM.mode, false);
       if (scr.part === 2 && !CP.canSee(scr.id)) root.innerHTML = moduleRibbon(scr.id) + lockedHtml(scr);
       else root.innerHTML = (scr.part === 2 ? moduleRibbon(scr.id) : conceptRibbon(scr.id)) + scr.render.call(scr, CP.route);
       if (scr.mount) scr.mount.call(scr, root, CP.route);
@@ -604,17 +605,38 @@
   function setRole(id, silent) {
     CP.currentRole = id;
     try { localStorage.setItem('cp-role', id); } catch (e) { /* storage blocked */ }
-    if (!silent) { const r = CP.role(id); if (r && r.screen) CP.go(r.screen); }
+    if (!silent) CP.go(CP.landing(id));
     renderTop();
   }
   CP.setRole = setRole;
+
+  /* Simple / Complete versions of The platform. Simple: four essential
+     screens per internal role. Complete: every module. */
+  CP.mode = 'simple';
+  try { CP.mode = localStorage.getItem('cp-mode') || 'simple'; } catch (e) { /* storage blocked */ }
+  CP.setMode = function (m, nav) {
+    CP.mode = m === 'complete' ? 'complete' : 'simple';
+    try { localStorage.setItem('cp-mode', CP.mode); } catch (e) { /* storage blocked */ }
+    if (nav === false) return;
+    const cur = CP.module(CP.route.id);
+    if (cur && cur.mode !== 'both' && cur.mode !== CP.mode) {
+      const twin = CP.mode === 'complete' ? (cur.twin && CP.canSee(cur.twin) ? cur.twin : null) : (CP.data.modules.find((x) => x.twin === cur.id) || {}).id;
+      CP.go(twin && CP.screens[twin] ? twin : CP.landing());
+    } else CP.render();
+  };
+  /* Landing page of a role in the current mode. */
+  CP.landing = function (roleId) {
+    const r = CP.role(roleId || CP.currentRole) || CP.data.roles[0];
+    if (CP.mode === 'simple' && CP.data.internalRoles.indexOf(r.id) >= 0 && CP.screens['s-home']) return 's-home';
+    return r.screen;
+  };
 
   /* Role-based access to platform modules. */
   CP.module = (id) => (CP.data.modules || []).find((m) => m.id === id);
   CP.canSee = (id, role) => { const m = CP.module(id); return !m || m.roles.indexOf(role || CP.currentRole) >= 0; };
   function moduleRibbon(active) {
     const role = CP.currentRole; const groups = [];
-    CP.data.modules.filter((m) => m.roles.indexOf(role) >= 0 && CP.screens[m.id]).forEach((m) => {
+    CP.data.modules.filter((m) => m.roles.indexOf(role) >= 0 && CP.screens[m.id] && (m.mode === 'both' || m.mode === CP.mode)).forEach((m) => {
       let g = groups.find((x) => x.label === m.group); if (!g) { g = { label: m.group, items: [] }; groups.push(g); }
       g.items.push(m);
     });
@@ -631,7 +653,7 @@
   function lockedHtml(scr) {
     const m = CP.module(scr.id) || {}; const role = CP.role(CP.currentRole);
     const who = CP.data.roles.filter((r) => m.roles && m.roles.indexOf(r.id) >= 0).map((r) => r.label);
-    return '<div class="empty" style="margin-top:40px;padding:48px">' + CP.icon('lock') + '<h2 style="margin:10px 0 6px">' + esc(m.label || scr.label) + ' is not available for the ' + esc(role.label) + ' role</h2><p style="margin:0 0 16px">Role-based access: this module is open to ' + esc(who.join(', ')) + '.</p><a class="btn-demo" href="' + CP.href(role.screen) + '" style="display:inline-flex">Go to my home ' + CP.icon('arrowRight') + '</a></div>';
+    return '<div class="empty" style="margin-top:40px;padding:48px">' + CP.icon('lock') + '<h2 style="margin:10px 0 6px">' + esc(m.label || scr.label) + ' is not available for the ' + esc(role.label) + ' role</h2><p style="margin:0 0 16px">Role-based access: this module is open to ' + esc(who.join(', ')) + '.</p><a class="btn-demo" href="' + CP.href(CP.landing()) + '" style="display:inline-flex">Go to my home ' + CP.icon('arrowRight') + '</a></div>';
   }
 
   /* Dark ribbon for Part 1 pages and the guided demo (consoles draw their own). */
@@ -669,9 +691,11 @@
         '<div class="mini-player">' + (st.playing ? '<button class="small" data-player="pause" title="Pause (space)" aria-label="Pause">' + CP.icon('pause') + '</button>' : '<button class="small" data-player="play" title="Play (space)" aria-label="Play"' + (st.done ? ' disabled' : '') + '>' + CP.icon('play') + '</button>') +
         '<button class="small" data-player="next" title="Next step (→)" aria-label="Next step"' + (st.done ? ' disabled' : '') + '>' + CP.icon('next') + '</button></div>'
       : '<div class="sim-pill"><span class="dot"></span>Simulated · <b>' + esc(CP.clock ? CP.clock.label() : '') + '</b></div>';
-    const canSearch = CP.canSee('graph-x');
+    const canSearch = CP.canSee('graph-x') && CP.mode === 'complete';
+    const showMode = scr.part === 2 && CP.data.internalRoles.indexOf(CP.currentRole) >= 0;
+    const modeSw = showMode ? '<div class="pmode" role="group" aria-label="Version of the platform"><button class="' + (CP.mode === 'simple' ? 'on' : '') + '" data-pmode="simple" aria-pressed="' + (CP.mode === 'simple') + '">Simple</button><button class="' + (CP.mode === 'complete' ? 'on' : '') + '" data-pmode="complete" aria-pressed="' + (CP.mode === 'complete') + '">Complete</button></div>' : '';
     const optsOpen = !!document.getElementById('opts-menu') && document.getElementById('opts-menu').classList.contains('open');
-    top.innerHTML = (canSearch ? '<form class="gsearch" data-gsearch role="search"><label class="sr" for="gs-in">Search the security graph</label>' + CP.icon('search') + '<input id="gs-in" name="q" placeholder="Search assets, identities, suppliers, CVEs…" autocomplete="off" value="' + esc(CP.route.id === 'graph-x' ? (CP.route.query.q || '') : '') + '"></form>' : '') + sim +
+    top.innerHTML = modeSw + (canSearch ? '<form class="gsearch" data-gsearch role="search"><label class="sr" for="gs-in">Search the security graph</label>' + CP.icon('search') + '<input id="gs-in" name="q" placeholder="Search assets, identities, suppliers, CVEs…" autocomplete="off" value="' + esc(CP.route.id === 'graph-x' ? (CP.route.query.q || '') : '') + '"></form>' : '') + sim +
       '<button class="bell' + (pend.length ? ' has' : '') + '" data-open-drawer title="Decisions awaiting a human">' + CP.icon('bell') + '<span class="lbl">Decisions</span>' + (pend.length ? '<span class="badge-n">' + pend.length + '</span>' : '') + '</button>' +
       '<a class="btn-demo" href="' + CP.href('demo') + '" title="Guided demo">' + CP.icon('play') + '<span class="lbl">Guided demo</span></a>' +
       '<div class="opts"><button class="opts-btn" data-opts-toggle aria-haspopup="true" aria-expanded="' + optsOpen + '" title="Options" aria-label="Options">' + CP.icon('gear') + '</button>' +
@@ -701,6 +725,7 @@
   document.addEventListener('click', (ev) => {
     const om = document.getElementById('opts-menu');
     if (om && om.classList.contains('open') && !ev.target.closest('.opts')) om.classList.remove('open');
+    const pm = ev.target.closest('[data-pmode]'); if (pm) { CP.setMode(pm.dataset.pmode); return; }
     const tb = ev.target.closest('[data-opts-toggle],[data-theme-set]');
     if (tb) { if (tb.dataset.themeSet) { om.classList.remove('open'); CP.theme.set(tb.dataset.themeSet); } else om.classList.toggle('open'); return; }
     const t = ev.target.closest('[data-decide],[data-player],[data-open-drawer],[data-close-drawer],[data-role-toggle],[data-role],[data-drawer-filter],[data-close-modal],[data-go],[data-action],[data-scenario-start]');

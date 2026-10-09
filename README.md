@@ -72,7 +72,16 @@ the scenario control band, flows, a swimlane timeline with a NOW line, the
 event log and the value of the scenario), Build it (four waves, stack, RACI),
 Decision rights (autonomy ladder L0 to L3, threshold simulator, matrix).
 
-**Part 2 · The platform** (the product) is designed around the work, not the
+**Part 2 · The platform** comes in two versions, switched with **Simple |
+Complete** in the top bar (remembered in the browser). **Simple** (default) shows
+four essential screens per internal role (`screens/simple.js`): Overview (one
+status sentence, four big numbers for the role, decisions with big buttons,
+cases in progress, what the agents did today), Decisions, Cases (four stages:
+detected, protected, decided, closed, with the story in plain words) and Agents
+(traffic lights and what each agent may do). Each screen links to its twin in
+the Complete version; opening a Complete screen switches the version.
+
+The Complete version is designed around the work, not the
 org chart: one product with modules grouped by function, and a role picker
 that sets the landing page, the inbox and the visible modules (role-based
 access).
