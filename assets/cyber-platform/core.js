@@ -40,6 +40,7 @@
     restart: '<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>',
     chevronDown: '<path d="m6 9 6 6 6-6"/>',
     chevronRight: '<path d="m9 6 6 6-6 6"/>',
+    chevronLeft: '<path d="m15 6-6 6 6 6"/>',
     alert: '<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17v.5"/>',
     eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
     target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
@@ -567,6 +568,8 @@
     if (ev.target.closest('input,textarea,select,[contenteditable]')) return;
     if (ev.key === 'Escape') { CP.closeDrawer(); const m = document.getElementById('role-menu'); if (m) m.classList.remove('open'); }
     if (!CP.player) return;
+    const cur = CP.screens[CP.route.id];
+    if (cur && cur.ownKeys) return;
     if (ev.key === ' ' && CP.player.status().scenario) { ev.preventDefault(); CP.player.toggle(); }
     if (ev.key === 'ArrowRight' && CP.player.status().scenario && !(CP.tour && CP.tour.active)) { ev.preventDefault(); CP.player.next(); }
   });

@@ -30,7 +30,7 @@
 .rn-banner.dark .rn-b-tx span{color:#d6cfea}
 .rn-banner.dark .rn-b-ic{background:var(--red);color:#fff}
 @keyframes rnRed{50%{box-shadow:0 0 0 4px #d8412f30}}
-.rn-fleet{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:10px}
+.rn-fleet{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 .rn-ag{border:1px solid var(--line);border-left:4px solid var(--c);background:#fff;padding:11px 12px 10px;cursor:pointer;display:grid;gap:8px;position:relative;transition:box-shadow .15s,transform .15s}
 .rn-ag:hover,.rn-ag:focus-visible{box-shadow:3px 3px 0 var(--indigo);transform:translate(-1px,-1px)}
 .rn-ag-h{display:flex;align-items:flex-start;gap:9px}
@@ -105,6 +105,8 @@
 .rn-bigred{background:var(--red);border:2px solid #ff8f80;color:#fff;font-size:16px;padding:16px 24px;min-height:66px;font-weight:700;letter-spacing:.2px;box-shadow:0 0 0 5px #d8412f40;display:flex;gap:12px;align-items:center}
 .rn-bigred svg.i{font-size:24px}
 .rn-bigred:hover{background:#b8301f;border-color:#fff}
+.rn-bigred span,.rn-biggreen span{display:block;text-align:left}
+.rn-biggreen small{display:block;font-weight:500;font-size:11.5px;opacity:.85;margin-top:3px}
 .rn-bigred small{display:block;font-weight:500;font-size:11.5px;opacity:.85;margin-top:3px;text-align:left}
 .rn-biggreen{background:var(--green);border:2px solid var(--green);color:#10291b;font-size:16px;padding:16px 24px;min-height:66px;font-weight:700;display:flex;gap:12px;align-items:center}
 .rn-steps{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin:8px 0 4px}
@@ -165,8 +167,8 @@
 .rn-person .p small{color:var(--muted);font-size:12px}
 .rn-tick{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
 .rn-tick .rn-pulse{margin:0;width:8px;height:8px}
-@media(max-width:1280px){.rn-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.rn-roster{grid-template-columns:repeat(2,minmax(0,1fr))}.rn-steps{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:14px}}
-@media(max-width:1100px){.rn-kill{grid-template-columns:1fr}.rn-banner{flex-wrap:wrap}.rn-conn{grid-template-columns:1fr}}
+@media(max-width:1280px){.rn-fleet{grid-template-columns:repeat(3,minmax(0,1fr))}.rn-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.rn-roster{grid-template-columns:repeat(2,minmax(0,1fr))}.rn-steps{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:14px}}
+@media(max-width:1100px){.rn-fleet{grid-template-columns:repeat(2,minmax(0,1fr))}.rn-kill{grid-template-columns:1fr}.rn-banner{flex-wrap:wrap}.rn-conn{grid-template-columns:1fr}}
 @media(max-width:760px){
 .rn-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.rn-metrics .metric{padding:12px}.rn-metrics .metric .value{font-size:22px}.rn-metrics .metric .spark{display:none}
 .rn-roster{grid-template-columns:1fr}.rn-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.rn-mini{grid-template-columns:repeat(2,1fr)}
@@ -183,6 +185,7 @@
 .rn-root .card{padding:16px}
 .rn-root .page-head{flex-direction:column;align-items:flex-start}
 .rn-root .table-wrap{max-width:100%;-webkit-overflow-scrolling:touch}
+.rn-root table.t{min-width:640px}.rn-jt table.t{min-width:1040px}.rn-root table.t td,.rn-root table.t th{padding:9px 10px}
 .rn-big{font-size:28px}
 .rn-qa .a button{flex:1;justify-content:center;min-height:44px}
 dialog.modal.rn-modal{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0}
@@ -208,10 +211,10 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
     { id: 'A-9779', ts: 'Mon 21:44', agent: 'ag-soc-triage', system: 'EDR', action: 'Isolated workstation WS-LYO-0412 (commodity infostealer, user notified)', level: 'L3', status: 'done', rollback: true },
     { id: 'A-9772', ts: 'Mon 19:02', agent: 'ag-soc-detect', system: 'SIEM', action: 'Raised threshold of D-397 from 500 to 800 files (noise budget)', level: 'L2', status: 'done', rollback: true },
     { id: 'A-9768', ts: 'Mon 17:35', agent: 'ag-grc-tprm', system: 'Supplier portal', action: 'Sent reminder to LexAdvisors (validated by the third-party risk lead)', level: 'L1', status: 'done', rollback: false },
-    { id: 'A-9761', ts: 'Mon 16:26', agent: 'ag-iam-resp', system: 'Entra ID', action: 'Reset credentials of 3 users who clicked the HR-portal phishing link', level: 'L3', status: 'done', rollback: true },
+    { id: 'A-9761', ts: 'Mon 16:26', agent: 'ag-iam-resp', system: 'Identity provider', action: 'Reset credentials of 3 users who clicked the HR-portal phishing link', level: 'L3', status: 'done', rollback: true },
     { id: 'A-9760', ts: 'Mon 16:24', agent: 'ag-soc-triage', system: 'Mail gateway', action: 'Quarantined 212 emails impersonating the HR portal', level: 'L3', status: 'done', rollback: true },
     { id: 'A-9755', ts: 'Mon 15:10', agent: 'ag-as-code', system: 'Source control', action: 'Blocked merge of PR #4398 (hard-coded secret in payments-api)', level: 'L2', status: 'done', rollback: true },
-    { id: 'A-9748', ts: 'Mon 14:02', agent: 'ag-dt-dlp', system: 'M365', action: 'Removed public sharing link on "Q3 claims extract.xlsx"', level: 'L2', status: 'done', rollback: true },
+    { id: 'A-9748', ts: 'Mon 14:02', agent: 'ag-dt-dlp', system: 'Collaboration suite', action: 'Removed public sharing link on "Q3 claims extract.xlsx"', level: 'L2', status: 'done', rollback: true },
     { id: 'A-9741', ts: 'Mon 11:20', agent: 'ag-vuln', system: 'ITSM', action: 'Raised renewal change for the broker API TLS certificate', level: 'L2', status: 'done', rollback: true },
     { id: 'A-9733', ts: 'Mon 09:48', agent: 'ag-iam-review', system: 'IGA', action: 'Launched micro-campaign on 11 toxic combinations in Trade Finance', level: 'L1', status: 'done', rollback: false },
     { id: 'A-9726', ts: 'Mon 08:15', agent: 'ag-grc-controls', system: 'GRC tool', action: 'Uploaded 64 evidence files to the NIS2 control set', level: 'L2', status: 'done', rollback: true },
@@ -234,15 +237,15 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
     { id: 'lake', name: 'Cyber data lake', sub: '412 TB · 90 days hot', k: 'p95 search', base: 1.9, dec: 1, unit: ' s', jit: 1, spark: [1.8, 2.1, 1.9, 2.0, 1.9, 1.8, 1.9, 1.9] },
     { id: 'exec', name: 'Executor', sub: 'Signed actions, rollback journal', k: 'success', base: 99.7, dec: 1, unit: '%', spark: [99.6, 99.8, 99.7, 99.7, 99.9, 99.6, 99.7, 99.7] }
   ];
-  const CONNECTORS = [['Entra ID', 118], ['SIEM', 342], ['EDR', 205], ['WAF', 92], ['Mail gateway', 176], ['ITSM', 412], ['IGA', 288], ['TPRM portal', 534], ['CMDB', 261], ['Proxy', 140], ['Firewall manager', 388], ['M365 audit', 620]];
-  const CONN_SLO = { 'TPRM portal': 500, 'M365 audit': 900 };
+  const CONNECTORS = [['Identity provider', 118], ['SIEM', 342], ['EDR', 205], ['WAF', 92], ['Mail gateway', 176], ['ITSM', 412], ['IGA', 288], ['TPRM portal', 534], ['CMDB', 261], ['Proxy', 140], ['Firewall manager', 388], ['Collaboration audit', 620]];
+  const CONN_SLO = { 'TPRM portal': 500, 'Collaboration audit': 900 };
 
   const AGREE = { 'ag-cti-collect': 99.2, 'ag-cti-analyst': 95.1, 'ag-grc-tprm': 96.4, 'ag-grc-controls': 94.8, 'ag-grc-policy': 97.0, 'ag-as-waf': 98.9, 'ag-as-code': 91.6, 'ag-dt-dlp': 95.3, 'ag-dt-evidence': 99.6, 'ag-iam-resp': 98.1, 'ag-iam-review': 96.2, 'ag-soc-triage': 97.4, 'ag-soc-detect': 94.7, 'ag-soc-forensic': 93.8, 'ag-soc-hunt': 94.0, 'ag-vuln': 96.6 };
   const QA_TREND = [95.8, 96.1, 96.0, 96.3, 95.9, 96.4, 96.6, 96.2, 96.5, 96.7, 96.3, 96.4, 96.4];
 
   const QA_BASE = [
-    { id: 'QA-5521', agent: 'ag-soc-triage', conf: 0.93, decision: 'Closed alert "Suspicious PowerShell on WS-PAR-2231" as benign', evidence: 'Script signed by Group IT, runs every Tuesday from the SCCM service account; 41 identical executions in 30 days.' },
-    { id: 'QA-5522', agent: 'ag-iam-review', conf: 0.89, decision: 'Proposed removal of SWIFT Alliance read access for 3 users moved to Retail Banking', evidence: 'HR movers feed on 2 Oct; no SWIFT log-in since; managers confirmed 2 of 3.' },
+    { id: 'QA-5521', agent: 'ag-soc-triage', conf: 0.93, decision: 'Closed alert "Suspicious script execution on WS-PAR-2231" as benign', evidence: 'Script signed by Group IT, runs every Tuesday from the endpoint management service account; 41 identical executions in 30 days.' },
+    { id: 'QA-5522', agent: 'ag-iam-review', conf: 0.89, decision: 'Proposed removal of SWIFT gateway read access for 3 users moved to Retail Banking', evidence: 'HR movers feed on 2 Oct; no SWIFT log-in since; managers confirmed 2 of 3.' },
     { id: 'QA-5523', agent: 'ag-as-code', conf: 0.71, decision: 'Flagged SQL injection in claims-api PR #4471 (ClaimSearchRepository.java)', evidence: 'Query built with string concatenation, but the parameter is an enum validated upstream.' },
     { id: 'QA-5524', agent: 'ag-grc-tprm', conf: 0.86, decision: 'Scored the LexAdvisors remediation answer as "insufficient"', evidence: 'Password reset confirmed, but no MFA rollout date and no evidence of log review.' },
     { id: 'QA-5525', agent: 'ag-iam-resp', conf: 0.95, decision: 'Revoked sessions of m.keller after impossible travel (Lyon then Singapore in 40 min)', evidence: 'Second sign-in from a residential ISP, unmanaged device, no VPN egress match.' },
@@ -265,7 +268,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
     { id: 'soc', sup: 'p-chloe', backup: 'p-pierre', oncall: 'p-chloe', until: '20:00', next: 'SOC analyst L2 · night (MSSP), escalation to the agent supervisor' },
     { id: 'cti', sup: 'p-chloe', backup: 'p-pierre', oncall: 'p-chloe', until: '20:00', next: 'Threat Hunter Agent on watch, page the Head of Run' },
     { id: 'appsec', sup: 'p-chloe', backup: 'p-pierre', oncall: 'p-pierre', until: '18:00', next: 'Head of Run' },
-    { id: 'grc', sup: 'p-mei', backup: 'p-nadia', oncall: 'p-mei', until: '19:00', next: 'No night on-call (business hours only)' },
+    { id: 'grc', sup: 'p-mei', backup: 'p-nadia', oncall: 'p-mei', until: '19:00', next: 'no night on-call (business hours only)' },
     { id: 'iam', sup: 'p-mei', backup: 'p-chloe', oncall: 'p-mei', until: '20:00', next: 'Head of Run (payment-related identities)' },
     { id: 'data', sup: 'p-mei', backup: 'p-pierre', oncall: 'p-pierre', until: '18:00', next: 'Agent supervisor GRC & IAM' }
   ];
@@ -292,6 +295,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
   const now = () => (CP.clock ? CP.clock.label() : '');
   const hash = (s) => String(s).split('').reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
   const series = (id, base, n, amp) => { const h = hash(id); const out = []; for (let i = 0; i < n; i++) out.push(Math.max(0, base * (1 + amp * Math.sin(h % 7 + i * (0.7 + (h % 5) / 10)) * 0.5 + ((h >> (i % 8)) % 7 - 3) * amp / 20))); return out; };
+  const pulseCls = (x) => ({ active: 'green', degraded: 'red', canary: 'indigo', paused: 'grey', suspended: 'red' })[x] || 'amber';
   const findApproval = (id) => st().find('approvals', id);
   const pname = (id) => (CP.person(id) || {}).name || id;
   const domOfActor = (id) => { const a = CP.agent(id); return a ? a.domain : null; };
@@ -338,7 +342,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
   /* ---------------- Shared fragments ---------------- */
   function banners(where) {
     const s = s4(); let h = '';
-    if (frozen()) {
+    if (frozen() && where !== 'safety') {
       const f = SCR.ui.freeze;
       h += '<div class="rn-banner dark" role="alert"><span class="rn-b-ic">' + I('power') + '</span><div class="rn-b-tx"><b>Global freeze active · all 16 agents at L0 (suggest-only)</b><span>Frozen at ' + esc(f.at) + ' by ' + esc(pname('p-chloe')) + '. Reason: ' + esc(f.reason) + '. Agents keep reading and proposing; every action now needs a human. Previous levels are saved for one-click restore.</span></div><div class="rn-b-act"><button class="go" data-action="restoreAll">' + I('restart') + ' Restore previous autonomy</button></div></div>';
     }
@@ -366,7 +370,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
   function agentTile(a) {
     const d = CP.domain(a.domain);
     const bump = (SCR.ui.bump || {})[a.id] || 0;
-    const pc = { active: '', degraded: 'red', canary: 'indigo', paused: 'grey', suspended: 'red' }[a.status] || 'amber';
+    const pc = pulseCls(a.status);
     const flag = a.status === 'degraded' ? '<span class="rn-ks">Kill-switch</span>' : a.status === 'canary' ? '<span class="rn-ks indigo">Canary</span>' : a.status === 'paused' ? '<span class="rn-ks grey">Frozen</span>' : '';
     const auto = a.mode === 'L0' ? 0 : a.autoRate;
     return '<div class="rn-ag st-' + esc(a.status) + newCls(a) + '" style="--c:' + d.color + '" role="button" tabindex="0" data-action="agent" data-id="' + esc(a.id) + '" aria-label="' + esc(a.name + ', ' + a.status + ', ' + a.mode + ': open details') + '">' + flag +
@@ -410,7 +414,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
     st().get('wafRules').forEach((w) => out.push({ it: w, kind: 'WAF', cls: 'waf', title: w.id + ' · ' + w.name, sub: [w.app, 'mode ' + w.mode, 'FP ' + w.fp], status: w.status, by: w.author }));
     st().get('detections').forEach((d) => out.push({ it: d, kind: d.platform, cls: 'siem', title: d.id + ' · ' + d.name, sub: [d.backtest, (d.mitre || []).join(', ')], status: d.status, by: d.author }));
     st().get('forensics').forEach((f) => out.push({ it: f, kind: 'FORENSIC', cls: 'fx', title: f.id + ' · ' + f.host + ': ' + f.verdict, sub: [f.findings], status: f.status, by: f.agent }));
-    st().get('actions').filter((a) => /entra|exchange|proxy|firewall|payment|mail/i.test(a.system)).forEach((a) => out.push({ it: a, kind: /entra|exchange|payment/i.test(a.system) ? 'IDENTITY' : 'NETWORK', cls: /entra|exchange|payment/i.test(a.system) ? 'iam' : 'net', title: a.action, sub: [a.system, a.ts, a.level], status: a.status, by: a.agent }));
+    st().get('actions').filter((a) => /identity|mail|proxy|firewall|payment/i.test(a.system)).forEach((a) => out.push({ it: a, kind: /identity|mail system|payment/i.test(a.system) ? 'IDENTITY' : 'NETWORK', cls: /identity|mail system|payment/i.test(a.system) ? 'iam' : 'net', title: a.action, sub: [a.system, a.ts, a.level], status: a.status, by: a.agent }));
     out.forEach((o, i) => { o.order = (o.it._new || 0) * 10 + (o.it.scenario ? 5e12 : 0) - i; });
     out.sort((a, b) => b.order - a.order);
     return out.map(tag);
@@ -423,13 +427,13 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
     if (a.undo) { p.what = 'Restore the autonomy levels recorded just before this change (' + (a.undoNote || 'previous levels') + ').'; p.point = 'Orchestrator policy journal'; p.systems = 'Orchestrator'; p.informed = 'Agent supervisors, product owners'; }
     else if (a.id === 'A-9890') { p.what = 'Raise the SOC Triage Agent back from L0 to L2 and status active.'; p.point = 'Orchestrator policy journal'; p.warn = 'Deviation DV-34 is still open: the agent would close phishing reports on its own again, with the injection still working on v2.5.0.'; }
     else if (a.id === 'A-9830' || /waf/.test(s)) { p.what = a.id === 'A-9830' ? 'Remove virtual patch W-121 from mft-prd-01 and restore WAF snapshot waf-snap-20261013-0848.' : 'Restore the WAF policy snapshot taken before the change.'; p.point = a.id === 'A-9830' ? 'waf-snap-20261013-0848' : 'waf-snap-' + a.id.slice(2); if (a.id === 'A-9830') p.warn = 'mft-prd-01 loses its virtual protection against CVE-2026-41877 while COBALT LYNX is active.'; }
-    else if (/entra/.test(s)) { p.what = 'Lift the forced re-authentication and unblock the device. Revoked sessions are not restored: users simply sign in again.'; }
-    else if (/exchange/.test(s)) { p.what = 'Re-create the deleted inbox rule from the evidence copy.'; p.warn = 'Not recommended: this rule hides payment-hub emails and was created by the attacker.'; }
     else if (/payment/.test(s)) { p.block = 'Releasing held payments is above threshold: only the Head of Treasury can decide it.'; }
+    else if (/proxy/.test(s)) { p.what = 'Remove the domains and IPs from the block list' + (/identity/.test(s) ? ' and lift the forced MFA re-registration.' : '.'); }
+    else if (/identity/.test(s)) { p.what = 'Lift the forced re-authentication and unblock the device. Revoked sessions are not restored: users simply sign in again.'; }
+    else if (/mail system/.test(s)) { p.what = 'Re-create the deleted inbox rule from the evidence copy.'; p.warn = 'Not recommended: this rule hides payment-hub emails and was created by the attacker.'; }
     else if (/mail/.test(s)) { p.what = 'Release the quarantined emails to the original inboxes, with a warning banner.'; }
     else if (/itsm/.test(s)) { p.what = /chg-88412/i.test(a.action) ? 'Uninstall FileBridge 9.1.4 and reinstall 8.x from the pre-change image.' : 'Cancel the change requests that are not yet executed; executed ones are listed for manual review.'; if (/chg-88412/i.test(a.action)) p.warn = 'Not recommended: the server would be vulnerable to an exploited CVE again.'; }
     else if (/iga/.test(s)) { p.what = 'Re-enable the accounts with their previous group memberships.'; }
-    else if (/proxy/.test(s)) { p.what = 'Remove the domains and IPs from the block list.'; }
     else if (/firewall/.test(s)) { p.what = 'Move the Atlas Payroll SFTP flow back from the quarantine zone to production.'; p.warn = 'Atlas Payroll still runs FileBridge 8.7 (vulnerable).'; }
     else if (/siem/.test(s)) { p.what = 'Restore the previous version of the detection rule.'; }
     else if (/edr/.test(s)) { p.what = 'Release the host from network isolation.'; }
@@ -457,7 +461,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
           { id: 'performance', label: 'Performance', icon: 'euro' }] },
         { label: 'TEAMS', tabs: [{ id: 'supervision', label: 'Supervision', icon: 'users' }] }
       ];
-      const right = ui.av('p-chloe', 'sm') + '<span>Head of Run · Agent supervisor SOC</span><span class="rn-tick"><span class="rn-pulse"></span>on call until 20:00</span>';
+      const right = ui.av('p-chloe', 'sm') + '<span>Head of Run · on call until 20:00</span>';
       let body = '';
       if (sub === 'ops') body = renderOps();
       if (sub === 'journal') body = renderJournal();
@@ -566,7 +570,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
 
     const decisions = '<section class="card" id="rn-decisions" data-tour="run-decisions" style="' + (pendRun.length ? 'border-top:3px solid #ffb648' : '') + '"><div class="card-title"><div><h2>' + I('users') + ' Decisions for Run</h2><div class="sub">Above threshold, the orchestrator stops and asks the Run supervisor (autonomy changes, kill-switch, rollback beyond guardrails)</div></div>' + (pendRun.length ? ui.tag(pendRun.length + ' pending', 'amber') : ui.tag('Nothing pending', 'green')) + '</div>' +
       (pendRun.length ? '<div class="stack" style="gap:10px">' + pendRun.map((a) => ui.decision(a, { pulse: true })).join('') + '</div>'
-        : '<div class="empty" style="padding:16px">No decision waiting for Run. ' + (pendAll.length ? pendAll.length + ' decision(s) wait for other roles.' : 'The fleet is working inside its guardrails.') + '</div>' +
+        : '<div class="empty" style="padding:16px">No decision waiting for Run. ' + (pendAll.length ? pendAll.length + ' decision(s) wait for other roles.' : A.some((x) => x.status !== 'active') ? 'Restricted agents are flagged in the fleet below.' : 'The fleet is working inside its guardrails.') + '</div>' +
           (decidedRun.length ? '<div style="margin-top:10px" class="stack">' + decidedRun.slice(0, 1).map((a) => ui.decision(a)).join('') + '</div>' : '')) +
       '<div class="rn-sub">Queues and SLA</div>' + queuesTable() + '</section>';
 
@@ -775,7 +779,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
       ui.metric({ label: 'With a rollback point', icon: 'rollback', value: '100', unit: '%', foot: 'L2 and L3 actions · restore < 5 min' }) +
       ui.metric({ label: 'Rolled back (7 d)', icon: 'restart', value: 3 + rolled, foot: 'of ' + CP.fmt(8640) + ' actions · 0.05%' }) +
       ui.metric({ label: 'Journal integrity', icon: 'lock', value: 'OK', color: 'var(--green-ink)', foot: 'hash chain verified ' + esc(now()) }) + '</div>' +
-      '<section class="card" data-tour="run-journal"><div class="card-title"><div><h2>' + I('list') + ' Journal · ' + rows.length + ' of ' + all.length + ' entries</h2><div class="sub">Click an ID for details. Rollback asks for confirmation and shows exactly what will be undone.</div></div></div>' + filters + table + '</section>';
+      '<section class="card rn-jt" data-tour="run-journal"><div class="card-title"><div><h2>' + I('list') + ' Journal · ' + rows.length + ' of ' + all.length + ' entries</h2><div class="sub">Click an ID for details. Rollback asks for confirmation and shows exactly what will be undone.</div></div></div>' + filters + table + '</section>';
   }
 
   function rollbackModal(id, detailOnly) {
@@ -863,7 +867,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
 
     /* Per-agent autonomy table */
     const autoTable = ui.table([
-      { label: 'Agent', render: (a) => '<div class="row" style="gap:8px"><span class="rn-pulse ' + ({ active: '', degraded: 'red', canary: 'indigo', paused: 'grey' }[a.status] || 'amber') + '" style="margin:0"></span><div><b style="font-weight:600">' + esc(a.name) + '</b><div class="muted small-txt">v' + esc(a.version) + ' · ' + esc(pname(a.supervisor)) + '</div></div></div>' },
+      { label: 'Agent', render: (a) => '<div class="row" style="gap:8px"><span class="rn-pulse ' + pulseCls(a.status) + '" style="margin:0"></span><div><b style="font-weight:600">' + esc(a.name) + '</b><div class="muted small-txt">v' + esc(a.version) + ' · ' + esc(pname(a.supervisor)) + '</div></div></div>' },
       { label: 'Domain', render: (a) => ui.dom(a.domain) },
       { label: 'Status', render: (a) => ui.status(a.status) },
       { label: 'Autonomy', w: '190px', render: seg },
@@ -887,7 +891,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
     ], [
       ['WAF twin', '38 internet-facing apps, 7 days of traffic', '06:00', w121 ? 'W-121 · 182,400 req · 0 FP' : '942100 tuning · 0 FP', 'healthy'],
       ['mft-prd-01 twin', 'Supplier file exchange', '08:40', w121 ? 'FileBridge 9.1.4 patch test' : 'none today', 'healthy'],
-      ['Entra ID twin', '61,000 synthetic identities', '06:00', 'CA policy test · 0 lockout', 'healthy'],
+      ['Identity provider twin', '61,000 synthetic identities', '06:00', 'Access policy test · 0 lockout', 'healthy'],
       ['Mail flow twin', '4,200 phishing samples', '07:30', s.phase !== 'none' ? 'Injection variants (red team)' : 'Triage regression set', s.phase === 'killed' ? 'warn' : 'healthy']
     ]), { sub: 'Every L2 change is replayed here before production' });
 
@@ -911,13 +915,13 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
     if (s.rel) points.push(['agent:soc-triage@2.5.0', 'Previous agent version, kept warm 7 days', s.rel.id]);
     if (w121) points.push(['waf-snap-20261013-0848', 'WAF policy before W-121 (mft-prd-01)', 'A-9830']);
     if (st().find('detections', 'D-418')) points.push(['siem-rules@v413', 'SIEM rule set before D-418', 'D-418']);
-    if (st().find('actions', 'A-9870')) points.push(['entra-snap-20261014-0214', 'Entra ID sessions and CA state before containment', 'A-9870']);
+    if (st().find('actions', 'A-9870')) points.push(['idp-snap-20261014-0214', 'Identity provider sessions and access policies before containment', 'A-9870']);
     points.push(['iga-snap-20261013-0731', '42 dormant accounts before disable', 'A-9801'], ['waf-snap-20261012-2210', 'Broker portal before rule 942100 tuning', 'A-9783'], ['policy-bundle@v58', 'Orchestrator decision rights and guardrails', 'weekly']);
     const rp = ui.card(I('rollback') + ' Rollback points', '<div class="list">' + points.map((p) => '<div class="list-item"><div class="li-main"><div class="li-title mono" style="font-size:12.5px">' + esc(p[0]) + '</div><div class="li-sub">' + esc(p[1]) + ' · ' + esc(p[2]) + '</div></div><button class="small" data-action="restorePoint" data-id="' + esc(p[0]) + '" data-label="' + esc(p[1]) + '">' + I('restart') + ' Restore</button></div>').join('') + '</div>', { sub: 'Snapshots taken by the executor before each change' });
 
     const ksDyn = allActions().filter((a) => a.kind === 'ks' || a.id === 'A-9890').map((a) => ({ ts: a.ts, who: a.agent === 'orchestrator' ? 'p-chloe' : a.agent, scope: a.action, change: a.status === 'rolled-back' ? 'rolled back' : '', dur: a.status === 'rolled-back' ? 'ended' : 'in force', reason: a.id === 'A-9890' ? 'DV-34 prompt injection (approved by the Head of Run)' : 'Run supervisor decision', result: a.id === 'A-9890' ? (s.phase === 'restored' ? 'Restored to L2 after canary' : s.phase === 'canary' ? 'Canary at L1' : 'In force') : '', live: true }));
     const ks = ui.card(I('power') + ' Kill-switch history', ui.table([
-      { label: 'When', render: (r) => '<span class="mono small-txt">' + esc(r.ts) + '</span>' },
+      { label: 'When', render: (r) => '<span class="mono small-txt" style="white-space:nowrap">' + esc(r.ts) + '</span>' },
       { label: 'By', render: (r) => ui.av(r.who, 'sm') },
       { label: 'Scope and change', render: (r) => '<b style="font-weight:600">' + esc(r.scope) + '</b>' + (r.change ? ' <span class="mono small-txt">' + esc(r.change) + '</span>' : '') + (r.live ? ' ' + ui.tag('today', 'red') : '') + '<div class="muted small-txt">' + esc(r.reason) + '</div>' },
       { label: 'Outcome', render: (r) => '<span class="small-txt">' + esc(r.result || r.dur) + '</span>' }
@@ -926,7 +930,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
     return banners('safety') + CP.ui.head('Platform Operations · Run', 'Kill-switch & autonomy', 'Decide how much each agent may do alone, stop one agent, one domain or the whole fleet in seconds, and bring autonomy back step by step.', '') +
       kill + pendHtml + lifecycle +
       '<div class="grid g-2-1" style="margin-top:18px">' + ui.card(I('gauge') + ' Autonomy per agent', autoTable, { sub: 'L0 suggest · L1 act on approval · L2 act and notify · L3 autonomous. Lowering is immediate; raising is capped by the ceiling.' }) + '<div class="stack">' + domSwitches + rp + '</div></div>' +
-      '<div class="grid g3" style="margin-top:18px">' + guard + sandbox + ks + '</div>';
+      '<div class="grid g2" style="margin-top:18px">' + guard + '<div class="stack">' + ks + sandbox + '</div></div>';
   }
 
   function restorePointModal(id, label) {
@@ -995,7 +999,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
       { label: 'Baseline → observed', render: (d) => '<span class="mono small-txt">' + esc(d.baseline) + ' → ' + esc(d.observed) + '</span>' },
       { label: 'Status', render: (d) => ui.status(d.status) },
       { label: 'Detected', render: (d) => '<span class="small-txt">' + esc(d.detected) + '</span>' }
-    ], devs, { empty: 'No investigation open.' }), { sub: 'Deviations raised by the deviation hunt (Trust & Challenge) and by quality sampling' });
+    ], devs, { empty: 'No investigation open.' }) + '<div class="rn-sub">Disagreement log · 7 days</div><div class="list">' + disagreeLog().map((d) => '<div class="list-item"><span class="mono small-txt muted" style="min-width:62px">' + esc(d[0]) + '</span><div class="li-main"><div class="li-title" style="font-size:13px">' + esc(d[1]) + '</div><div class="li-sub">' + esc(d[2]) + '</div></div>' + ui.status(d[3]) + '</div>').join('') + '</div>', { sub: 'Deviations raised by the deviation hunt (Trust & Challenge) and by quality sampling' });
 
     const checks = securityChecks();
     const sec = ui.card(I('lock') + ' Platform security checks', '<div class="list">' + checks.map((c) => '<div class="list-item"><span class="rn-dot ' + (c.status === 'fail' ? 'crit' : c.status === 'warn' ? 'warn' : '') + '" style="margin-top:6px"></span><div class="li-main"><div class="li-title">' + esc(c.name) + ' ' + ui.status(c.status) + '</div><div class="li-sub">' + esc(c.detail) + ' · last run ' + esc(c.last) + '</div></div>' +
@@ -1009,6 +1013,16 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
       ui.metric({ label: 'Security checks', icon: 'lock', value: checks.filter((c) => c.status === 'pass').length + '<small>/ ' + checks.length + '</small>', foot: checks.filter((c) => c.status !== 'pass').length + ' to fix' }) + '</div>' +
       '<div class="grid g-1-2"><div class="stack">' + chart + trend + '</div>' + queue + '</div>' +
       '<div class="grid g2" style="margin-top:18px">' + inv + sec + '</div>';
+  }
+
+  function disagreeLog() {
+    const out = [];
+    qaItems().filter((q) => SCR.ui.qa[q.id] === 'disagree').forEach((q) => out.push([q.id, (CP.agent(q.agent) || {}).name + ': ' + q.decision, 'Logged ' + now() + ' · sent to the product owner, added to the eval set', 'new']));
+    return out.concat([
+      ['QA-5488', 'Code Review Agent: flagged XSS in a server-side PDF template', 'False positive · Java rules rework in REL-77 (B-305)', 'in-progress'],
+      ['QA-5463', 'Forensic Agent: "not compromised" with only 3 of 5 artefacts collected', 'Collection timeout on EDR; rule added: no verdict under 5 artefacts', 'done'],
+      ['QA-5441', 'Controls & Evidence Agent: mapped an expired pentest report to DORA Art. 25', 'Evidence freshness check added to the agent', 'done']
+    ]);
   }
 
   function securityChecks() {
@@ -1090,10 +1104,10 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
     const days = ['30', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'Today'];
     const hist = [1690].concat(COST_HIST).concat([cost]);
     const cols = ui.columns(hist.map((v, i) => ({ label: days[i], parts: [{ v: Math.round(v * 0.06), color: TIER.S.color, name: 'Small on-prem' }, { v: Math.round(v * 0.44), color: TIER.M.color, name: 'Frontier-M' }, { v: Math.round(v * 0.5), color: TIER.L.color, name: 'Frontier-L' }] })), { h: 170, max: 2400, label: 'Daily AI cost by tier' });
-    const daily = ui.card(I('euro') + ' Daily AI cost by tier, 14 days', cols + '<div class="rn-legend">' + ['L', 'M', 'S'].map((x) => '<span><i style="background:' + TIER[x].color + '"></i>' + TIER[x].label + '</span>').join('') + '<span><i style="background:var(--red);height:2px"></i>Daily budget €' + CP.fmt(DAY_BUDGET) + '</span></div>', { sub: 'Euros per day (one axis)' });
+    const daily = ui.card(I('euro') + ' Daily AI cost by tier, 14 days', cols + '<div class="rn-legend">' + ['L', 'M', 'S'].map((x) => '<span><i style="background:' + TIER[x].color + '"></i>' + TIER[x].label + '</span>').join('') + '</div>', { sub: 'Euros per day (one axis)' });
 
     let cum = 0; const cumVals = hist.slice(1).map((v) => (cum += v));
-    const burn = ui.card(I('trending') + ' Month burn vs budget', ui.line([{ label: 'Actual', color: '#451dc7', values: cumVals }, { label: 'Budget', color: '#d8412f', dash: true, values: cumVals.map((_, i) => Math.round(MONTH_BUDGET / 31 * (i + 1))) }], days.slice(1), { h: 170, unit: '', dec: 0, label: 'Cumulative cost' }), { sub: 'Cumulative euros since 1 October (one axis)' });
+    const burn = ui.card(I('trending') + ' Month burn vs budget', ui.line([{ label: 'Actual', color: '#451dc7', values: cumVals.map((v) => v / 1000) }, { label: 'Budget', color: '#d8412f', dash: true, values: cumVals.map((_, i) => MONTH_BUDGET / 31 * (i + 1) / 1000) }], days.slice(1), { h: 170, unit: 'k', dec: 0, min: 0, label: 'Cumulative cost' }), { sub: 'Cumulative spend since 1 October, thousands of euros (one axis)' });
 
     const recos = ui.card(I('sparkles') + ' Optimisation recommendations', '<div>' + RECOS.map((r) => {
       const a = CP.agent(r.agent) || {}; const done = (a.optims || []).indexOf(r.id) >= 0;
@@ -1138,7 +1152,7 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
       return '<div class="rn-dom" style="--c:' + d.color + '"><div class="h"><h3>' + ui.dom(D.id) + '</h3>' + (restricted ? ui.tag(restricted + ' restricted', 'red') : ui.tag('nominal', 'green')) + '</div>' +
         '<div class="row wrap" style="gap:14px;font-size:12.5px"><span class="muted">Supervisor</span>' + ui.who(D.sup) + '<span class="muted">Backup</span>' + ui.av(D.backup, 'sm') + '<span>' + esc(pname(D.backup)) + '</span></div>' +
         '<div class="rn-mini"><div>Workload<b>' + CP.fmt(tasks) + '</b></div><div>Autonomous<b>' + CP.fmt(autoW) + '%</b></div><div>Escalations<b>' + esc2 + '</b></div><div>Open items<b class="' + (open ? 'warn' : '') + '">' + open + '</b></div></div>' +
-        '<div>' + list.map((a) => '<div class="rn-agrow"><span class="rn-pulse ' + ({ active: '', degraded: 'red', canary: 'indigo', paused: 'grey' }[a.status] || 'amber') + '" style="margin:0;width:8px;height:8px"></span><span><b style="font-weight:600">' + esc(a.name) + '</b> <span class="muted">· ' + CP.fmt(a.tasksToday) + ' tasks</span></span>' + ui.status(a.status) + lvlTag(a.mode) + '</div>').join('') + '</div>' +
+        '<div>' + list.map((a) => '<div class="rn-agrow"><span class="rn-pulse ' + pulseCls(a.status) + '" style="margin:0;width:8px;height:8px"></span><span><b style="font-weight:600">' + esc(a.name) + '</b> <span class="muted">· ' + CP.fmt(a.tasksToday) + ' tasks</span></span>' + ui.status(a.status) + lvlTag(a.mode) + '</div>').join('') + '</div>' +
         '<div class="row between" style="font-size:12.5px;border-top:1px solid var(--line-2);padding-top:10px"><span><span class="muted">On call:</span> <b>' + esc(pname(D.oncall)) + '</b> until ' + esc(D.until) + '<div class="muted small-txt">then ' + esc(D.next) + '</div></span><span class="row" style="gap:6px"><button class="small" data-action="page" data-p="' + D.oncall + '" data-dom="' + esc(d.label) + '">' + I('bell') + ' Page</button><button class="small" data-action="handover" data-sup="' + D.sup + '">' + I('send') + ' Handover</button></span></div></div>';
     }).join('');
 
@@ -1153,8 +1167,8 @@ dialog.modal.rn-modal .modal-foot{flex-wrap:wrap}dialog.modal.rn-modal .modal-fo
 
     const rota = ui.card(I('clock') + ' On-call rota · week 42', ui.table([
       { label: 'Day', render: (r) => '<b style="font-weight:600">' + r[0] + '</b>' + (r[0] === 'Tue' ? ' ' + ui.tag('today', 'indigo') : '') },
-      { label: 'Day shift 08:00 to 20:00', render: (r) => ui.who(r[1]) },
-      { label: 'Night escalation', render: (r) => ui.who(r[2]) }
+      { label: 'Day shift 08:00 to 20:00', render: (r) => '<span class="row" style="gap:8px">' + ui.av(r[1], 'sm') + esc(pname(r[1])) + '</span>' },
+      { label: 'Night escalation', render: (r) => '<span class="row" style="gap:8px">' + ui.av(r[2], 'sm') + esc(pname(r[2])) + '</span><div class="muted small-txt">after SOC analyst L2 · night (MSSP)</div>' }
     ], ROTA), { sub: 'Agents work 24/7; humans are paged only above threshold' });
 
     return banners('supervision') + CP.ui.head('Platform Operations · Run', 'Supervision', 'One agent supervisor per group of domains: the Head of Run for SOC, CTI and AppSec, the agent supervisor GRC & IAM for GRC, IAM and Data. Workload, escalations, open items and who is on call.', '') +

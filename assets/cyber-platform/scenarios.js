@@ -184,17 +184,17 @@
         {
           id: 'id-1', t: 0, actor: 'entra', domain: 'src', level: 'L3', title: 'Risky sign-in after MFA bombing',
           log: '23 MFA pushes in 6 min then approval from a new device abroad for t.op-17 (payment approver).',
-          text: 'A Treasury operator (account t.op-17) who approves payments, received 23 MFA pushes in 6 minutes, then accepted one from a new device in a country never seen for this account. Entra ID raises a high-risk sign-in.',
+          text: 'A Treasury operator (account t.op-17) who approves payments, received 23 MFA pushes in 6 minutes, then accepted one from a new device in a country never seen for this account. The identity provider raises a high-risk sign-in.',
           flow: [['it-entra', 'int-bus'], ['int-bus', 'ag-soc-triage']],
           effects: [{ op: 'add', coll: 'cases', item: { id: 'C-2302', title: 'MFA fatigue and token theft on a payment approver', severity: 'high', status: 'open', domains: ['iam', 'soc', 'data'], opened: 'Wed 02:13', owner: 'orchestrator', summary: 'High-risk sign-in after 23 MFA pushes.' } }, { op: 'inc', path: 'kpis.casesOpen', by: 1 }]
         },
         {
           id: 'id-2', t: 20, actor: 'ag-soc-triage', domain: 'soc', level: 'L3', title: 'Triage with business context',
-          log: 'severity raised to critical: identity can approve payments and reach SWIFT Alliance.',
-          text: 'The graph tells the Triage Agent what this identity can reach: approver role in the payment hub, SWIFT Alliance access, 3 SaaS apps, a mailbox receiving payment confirmations. A generic alert becomes a critical payment-fraud case in 20 seconds.',
+          log: 'severity raised to critical: identity can approve payments and reach SWIFT gateway.',
+          text: 'The graph tells the Triage Agent what this identity can reach: approver role in the payment hub, SWIFT gateway access, 3 SaaS apps, a mailbox receiving payment confirmations. A generic alert becomes a critical payment-fraud case in 20 seconds.',
           flow: [['ag-soc-triage', 'ctx-graph'], ['ctx-graph', 'ag-soc-triage']],
           focus: ['ctx-graph'],
-          artifact: { type: 'list', title: 'Identity context from the graph', items: ['Role: Payment approver (up to €5 M), Payment hub', 'Access: SWIFT Alliance (read & approve), SharePoint Treasury', 'Device: unknown, not compliant, first seen 02:12', 'Peer group: 41 Treasury operators, none ever connected from this country'] },
+          artifact: { type: 'list', title: 'Identity context from the graph', items: ['Role: Payment approver (up to €5 M), Payment hub', 'Access: SWIFT gateway (read & approve), Treasury file share', 'Device: unknown, not compliant, first seen 02:12', 'Peer group: 41 Treasury operators, none ever connected from this country'] },
           effects: [{ op: 'update', coll: 'cases', id: 'C-2302', patch: { severity: 'critical' } }],
           metric: { value: '20 s', label: 'to a business-aware severity' }
         },
@@ -203,26 +203,26 @@
           log: 'all sessions and tokens revoked, device blocked, phishing-resistant re-authentication forced.',
           text: 'The Identity Response Agent revokes every session and refresh token, blocks the new device and forces a phishing-resistant re-authentication. It acts alone: the action is user-level and reversible in seconds.',
           flow: [['ag-soc-triage', 'or-plan'], ['or-plan', 'ag-iam-resp'], ['ag-iam-resp', 'int-exec'], ['int-exec', 'it-entra']],
-          effects: [{ op: 'add', coll: 'actions', item: { id: 'A-9870', ts: 'Wed 02:14', agent: 'ag-iam-resp', system: 'Entra ID', action: 'Revoked sessions and tokens of t.op-17, blocked new device', level: 'L3', status: 'done', rollback: true, scenario: 'identity' } }, { op: 'inc', path: 'kpis.actionsToday', by: 2 }]
+          effects: [{ op: 'add', coll: 'actions', item: { id: 'A-9870', ts: 'Wed 02:14', agent: 'ag-iam-resp', system: 'Identity provider', action: 'Revoked sessions and tokens of t.op-17, blocked new device', level: 'L3', status: 'done', rollback: true, scenario: 'identity' } }, { op: 'inc', path: 'kpis.actionsToday', by: 2 }]
         },
         {
           id: 'id-4', t: 110, actor: 'ag-iam-resp', domain: 'iam', level: 'L2', title: 'Hidden mailbox rule removed',
           log: 'malicious inbox rule (hides payment-hub emails) deleted, copy kept as evidence.',
           text: 'At 02:16 the attacker created an inbox rule moving every email from the payment hub to an RSS folder, to hide confirmations. The agent deletes it and keeps a copy as evidence.',
           flow: [['ag-iam-resp', 'int-exec'], ['int-exec', 'it-m365']],
-          effects: [{ op: 'add', coll: 'actions', item: { id: 'A-9871', ts: 'Wed 02:15', agent: 'ag-iam-resp', system: 'Exchange Online', action: 'Deleted inbox rule hiding payment-hub emails (evidence kept)', level: 'L2', status: 'done', rollback: true, scenario: 'identity' } }]
+          effects: [{ op: 'add', coll: 'actions', item: { id: 'A-9871', ts: 'Wed 02:15', agent: 'ag-iam-resp', system: 'Mail system', action: 'Deleted inbox rule hiding payment-hub emails (evidence kept)', level: 'L2', status: 'done', rollback: true, scenario: 'identity' } }]
         },
         {
           id: 'id-5', t: 300, actor: 'ag-soc-hunt', domain: 'soc', level: 'L2', title: 'Hunt: password spray from the same IP',
           log: 'same IP tried 4 other Treasury accounts; IP blocked, MFA re-registration forced.',
           text: 'The Threat Hunter searches 90 days of logs in the data lake: the same IP tried 4 other Treasury accounts (password spray, all failed). Those accounts must re-register MFA and the IP is blocked at the proxy and the identity provider.',
           flow: [['or-plan', 'ag-soc-hunt'], ['ag-soc-hunt', 'ctx-lake'], ['ctx-lake', 'ag-soc-hunt'], ['ag-soc-hunt', 'int-exec'], ['int-exec', 'sys-proxy']],
-          effects: [{ op: 'add', coll: 'actions', item: { id: 'A-9874', ts: 'Wed 02:18', agent: 'ag-soc-hunt', system: 'Proxy / Entra ID', action: 'Blocked attacker IP; forced MFA re-registration for 4 accounts', level: 'L2', status: 'done', rollback: true, scenario: 'identity' } }]
+          effects: [{ op: 'add', coll: 'actions', item: { id: 'A-9874', ts: 'Wed 02:18', agent: 'ag-soc-hunt', system: 'Proxy / identity provider', action: 'Blocked attacker IP; forced MFA re-registration for 4 accounts', level: 'L2', status: 'done', rollback: true, scenario: 'identity' } }]
         },
         {
           id: 'id-6', t: 420, actor: 'ag-dt-dlp', domain: 'data', level: 'L2', title: 'Data touched before containment',
           log: '37 files downloaded (1,200 IBANs with names) before revocation; GDPR clock started.',
-          text: 'The Data Protection Agent reads the SharePoint audit: 37 files downloaded from "Treasury · Beneficiaries" between 02:14 and 02:15, including 1,200 IBANs with names. That is personal data: the 72-hour GDPR clock starts and the DPO is informed.',
+          text: 'The Data Protection Agent reads the file-sharing audit: 37 files downloaded from "Treasury · Beneficiaries" between 02:14 and 02:15, including 1,200 IBANs with names. That is personal data: the 72-hour GDPR clock starts and the DPO is informed.',
           flow: [['or-plan', 'ag-dt-dlp'], ['ag-dt-dlp', 'it-m365'], ['ag-dt-dlp', 'ctx-graph']],
           metric: { value: '1,200 records', label: 'exposed, known at 02:20 instead of days later' }
         },
@@ -233,7 +233,7 @@
           flow: [['ag-iam-resp', 'or-policy'], ['or-policy', 'or-hitl'], ['or-hitl', 'hu-ciso']],
           gate: {
             approval: { id: 'AP-ID-HOLD', role: 'ciso', decider: 'p-hugo', requestedBy: 'ag-iam-resp', autonomy: 'L1', title: 'Suspend t.op-17 and hold 3 payments (€4.2 M)', summary: 'Three payments approved by this account since 01:00 are still in the cut-off queue. Holding them lets Treasury call the beneficiaries before release.', threshold: 'action on payments and on a key business account', impacts: ['3 payments held until 10:00 (beneficiaries called back)', 'Operator suspended until a supervised re-onboarding', 'Treasury desk informed at 07:00'], recommendation: 'Hold: two beneficiaries were created yesterday and one bank is new for Novalys.', approveLabel: 'Suspend and hold', rejectLabel: 'Release payments' },
-            onApprove: [{ op: 'add', coll: 'actions', item: { id: 'A-9877', ts: 'Wed 02:24', agent: 'ag-iam-resp', system: 'Payment hub / Entra ID', action: 'Suspended account; held 3 payments (€4.2 M)', level: 'L1', status: 'done', rollback: true, scenario: 'identity' } }, { op: 'update', coll: 'cases', id: 'C-2302', patch: { status: 'contained', summary: 'Contained at 02:24. 3 payments held. 1,200 IBANs exposed (GDPR assessment).' } }],
+            onApprove: [{ op: 'add', coll: 'actions', item: { id: 'A-9877', ts: 'Wed 02:24', agent: 'ag-iam-resp', system: 'Payment hub / Identity provider', action: 'Suspended account; held 3 payments (€4.2 M)', level: 'L1', status: 'done', rollback: true, scenario: 'identity' } }, { op: 'update', coll: 'cases', id: 'C-2302', patch: { status: 'contained', summary: 'Contained at 02:24. 3 payments held. 1,200 IBANs exposed (GDPR assessment).' } }],
             onReject: [{ op: 'update', coll: 'cases', id: 'C-2302', patch: { status: 'contained', summary: 'Contained; payments released by Treasury decision.' } }],
             fallback: 'Payments are released; the platform raises fraud monitoring on the 3 beneficiaries.'
           },
@@ -414,7 +414,7 @@
           log: '412 closures of last 48 h replayed: 9 reopened, 2 users had typed their password (reset).',
           text: 'The rollback journal replays the 412 closures of the last 48 hours through the previous version and human review: 9 are reopened. Two users had entered their password on the phishing page: the Identity Response Agent resets them.',
           flow: [['or-kill', 'or-audit'], ['or-audit', 'ag-soc-triage'], ['ag-soc-triage', 'ag-iam-resp'], ['ag-iam-resp', 'int-exec'], ['int-exec', 'it-entra']],
-          effects: [{ op: 'add', coll: 'actions', item: { id: 'A-9892', ts: 'Thu 10:27', agent: 'ag-iam-resp', system: 'Entra ID', action: 'Reset credentials of 2 users exposed to reopened phishing', level: 'L3', status: 'done', rollback: true, scenario: 'drift' } }],
+          effects: [{ op: 'add', coll: 'actions', item: { id: 'A-9892', ts: 'Thu 10:27', agent: 'ag-iam-resp', system: 'Identity provider', action: 'Reset credentials of 2 users exposed to reopened phishing', level: 'L3', status: 'done', rollback: true, scenario: 'drift' } }],
           metric: { value: '9 / 412', label: 'closures reopened, 2 users protected' }
         },
         {

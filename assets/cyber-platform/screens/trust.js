@@ -123,6 +123,7 @@
     '@media(max-width:1280px){.tc-actors{grid-template-columns:repeat(2,minmax(0,1fr))}}',
     '@media(max-width:1100px){.tc-form{grid-template-columns:1fr}.tc-replay .rl{grid-template-columns:54px 80px minmax(0,1fr)}.tc-replay .rl .rr{grid-column:3}}',
     '.tc-mx{min-width:960px}',
+    '.t tr.tc-bp td{background:#fff5f7}.t tr.tc-bp td:first-child{box-shadow:inset 3px 0 var(--red)}',
     '.tc-mx.heat{min-width:1080px}',
     '@media(max-width:760px){' +
       '.tc-page .page-head{flex-direction:column;align-items:flex-start}' +
@@ -139,7 +140,8 @@
       '.tc-replay .rl{grid-template-columns:48px minmax(0,1fr)}.tc-replay .rl .rt:nth-child(2){display:none}.tc-replay .rl .rr{grid-column:2}' +
       '.tc-page .card-title{flex-wrap:wrap}' +
       '.tc-page .table-wrap{-webkit-overflow-scrolling:touch}' +
-      '.tc-page .t{min-width:640px}' +
+      '.tc-page .t{min-width:600px}.tc-page .t.tc-dom-row{min-width:0}' +
+      '.tc-chart{overflow-x:auto}.tc-chart svg{min-width:600px}' +
     '}'
   ].join('\n'));
 
@@ -152,7 +154,7 @@
      accuracy and cost come from the live store. */
   const PROFILE = {
     'ag-cti-collect': { hal: 0.4, pol: 99.6, tool: 99.2, inj: 96 },
-    'ag-cti-analyst': { hal: 2.1, pol: 98.9, tool: 97.4, inj: 94 },
+    'ag-cti-analyst': { hal: 2.1, pol: 99.1, tool: 97.4, inj: 94 },
     'ag-grc-tprm': { hal: 1.6, pol: 99.4, tool: 98.1, inj: 95 },
     'ag-grc-controls': { hal: 2.4, pol: 99.1, tool: 97.0, inj: 92 },
     'ag-grc-policy': { hal: 1.2, pol: 99.8, tool: 98.8, inj: 95 },
@@ -164,8 +166,8 @@
     'ag-iam-review': { hal: 1.4, pol: 99.2, tool: 98.3, inj: 94 },
     'ag-soc-triage': { hal: 1.1, pol: 99.5, tool: 98.6, inj: 93 },
     'ag-soc-detect': { hal: 2.0, pol: 99.0, tool: 97.2, inj: 94 },
-    'ag-soc-forensic': { hal: 2.6, pol: 98.8, tool: 96.9, inj: 93 },
-    'ag-soc-hunt': { hal: 2.3, pol: 98.9, tool: 97.1, inj: 93 },
+    'ag-soc-forensic': { hal: 2.6, pol: 99.0, tool: 97.3, inj: 93 },
+    'ag-soc-hunt': { hal: 2.3, pol: 99.1, tool: 97.1, inj: 93 },
     'ag-vuln': { hal: 1.0, pol: 99.6, tool: 98.4, inj: 95 }
   };
   const TH = { gold: 92, hal: 3, pol: 99, tool: 97, inj: 90 };
@@ -182,7 +184,7 @@
     'ag-grc-policy': { purpose: 'Draft and update security policies and awareness content', cls: 'Limited risk (transparency)', tier: 'Tier 3', docs: 'complete', review: 'Jul 2026', inc: 0 },
     'ag-as-waf': { purpose: 'Tune WAF rules and write virtual patches, sandbox-replayed', cls: 'Minimal risk', tier: 'Tier 1', docs: 'complete', review: 'Sep 2026', inc: 0 },
     'ag-as-code': { purpose: 'Review code changes for security flaws and vulnerable dependencies', cls: 'Minimal risk', tier: 'Tier 2', docs: 'update', review: 'Jun 2026', inc: 1 },
-    'ag-dt-dlp': { purpose: 'Investigate data-loss alerts on M365 and classified data', cls: 'Not high-risk · DPIA done (employee monitoring)', tier: 'Tier 1', docs: 'complete', review: 'Sep 2026', inc: 0 },
+    'ag-dt-dlp': { purpose: 'Investigate data-loss alerts on the collaboration suite and classified data', cls: 'Not high-risk · DPIA done (employee monitoring)', tier: 'Tier 1', docs: 'complete', review: 'Sep 2026', inc: 0 },
     'ag-dt-evidence': { purpose: 'Collect evidence from the data lake, CMDB and TPRM inventory', cls: 'Minimal risk', tier: 'Tier 3', docs: 'complete', review: 'Aug 2026', inc: 0 },
     'ag-iam-resp': { purpose: 'Contain compromised identities: sessions, devices, mailbox rules', cls: 'Minimal risk', tier: 'Tier 1', docs: 'complete', review: 'Sep 2026', inc: 0 },
     'ag-iam-review': { purpose: 'Prepare access reviews and detect toxic access combinations', cls: 'High-risk candidate (Annex III 4(b), work-related decisions) · legal review', tier: 'Tier 1', docs: 'update', review: 'Oct 2026', inc: 0 },
@@ -249,33 +251,33 @@
 
   /* Threat actors emulated in the adversary lab (from CTI). */
   const ACTORS = [
-    { id: 'cobalt', name: 'COBALT LYNX', kind: 'Ransomware · extortion', origin: 'Financially motivated, Russian-speaking', targets: 'European banks and insurers', source: 'CERT-FR, FS-ISAC (S1 advisory)', twin: 'twin-mft-prd-01', last: () => (find('redteam', 'RT-61') ? 'Tue 12:47' : '18 Sep 2026'),
+    { id: 'cobalt', name: 'COBALT LYNX', kind: 'Ransomware · extortion', origin: 'Financially motivated, Russian-speaking', targets: 'European banks and insurers', source: 'National CERT, financial ISAC (S1 advisory)', twin: 'twin-mft-prd-01', last: () => (find('redteam', 'RT-61') ? 'Tue 12:47' : '18 Sep 2026'),
       tt: [
         { t: 'T1595.002', n: 'Vulnerability scanning of MFT endpoints', tac: 'RE', st: 'detected', by: 'WAF scan signatures', ttd: 12 },
         { t: 'T1583.001', n: 'Lookalike domains (upd-filebridge.net)', tac: 'RD', st: 'prevented', by: 'CTI Collector blocklist' },
         { t: 'T1190', n: 'Exploit FileBridge MFT (CVE-2026-41877)', tac: 'IA', st: () => (hasW121() ? 'prevented' : 'gap'), by: () => (hasW121() ? 'WAF virtual patch W-121' : 'No control for this CVE') },
         { t: 'T1505.003', n: 'Web shell lynx.aspx', tac: 'PE', st: () => (hasD418() ? 'detected' : 'gap'), by: () => (hasD418() ? 'D-418 (SIEM)' : 'No detection'), ttd: () => (hasD418() ? 38 : null) },
-        { t: 'T1059.001', n: 'PowerShell from the web server', tac: 'EX', st: 'detected', by: 'EDR behaviour rule', ttd: 21 },
+        { t: 'T1059.001', n: 'Script interpreter launched by the web server', tac: 'EX', st: 'detected', by: 'EDR behaviour rule', ttd: 21 },
         { t: 'T1068', n: 'Local privilege escalation', tac: 'PR', st: 'logged', by: 'EDR telemetry' },
         { t: 'T1562.001', n: 'Disable EDR and AV tools', tac: 'DE', st: 'prevented', by: 'EDR tamper protection' },
-        { t: 'T1003.001', n: 'LSASS memory dump', tac: 'CA', st: 'detected', by: 'D-401 (EDR)', ttd: 9 },
+        { t: 'T1003.001', n: 'Credential memory dump', tac: 'CA', st: 'detected', by: 'D-401 (EDR)', ttd: 9 },
         { t: 'T1083', n: 'File and directory discovery', tac: 'DI', st: 'logged', by: 'EDR telemetry' },
-        { t: 'T1021.002', n: 'SMB admin shares', tac: 'LM', st: 'detected', by: 'SIEM lateral-movement rule', ttd: 64 },
-        { t: 'T1560.001', n: 'Archive collected data (7-Zip)', tac: 'CO', st: 'logged', by: 'EDR telemetry' },
+        { t: 'T1021.002', n: 'Remote admin shares', tac: 'LM', st: 'detected', by: 'SIEM lateral-movement rule', ttd: 64 },
+        { t: 'T1560.001', n: 'Archive collected data (archive utility)', tac: 'CO', st: 'logged', by: 'EDR telemetry' },
         { t: 'T1071.001', n: 'C2 over HTTPS', tac: 'C2', st: 'prevented', by: 'Proxy category block' },
         { t: 'T1567.002', n: 'Exfiltration to cloud storage', tac: 'EF', st: 'detected', by: 'DLP + proxy volume rule', ttd: 140 },
         { t: 'T1486', n: 'Data encrypted for impact', tac: 'IM', st: 'prevented', by: 'EDR ransomware shield' }
       ] },
-    { id: 'velvet', name: 'VELVET MANTIS', kind: 'BEC · payment fraud', origin: 'Financially motivated, West Africa and EU mules', targets: 'Treasury and payment approvers', source: 'Europol EC3 notice, internal cases', twin: 'twin-entra-tenant', last: () => '10 Oct 2026',
+    { id: 'velvet', name: 'VELVET MANTIS', kind: 'BEC · payment fraud', origin: 'Financially motivated, West Africa and EU mules', targets: 'Treasury and payment approvers', source: 'Law-enforcement notice, internal cases', twin: 'twin-idp-tenant', last: () => '10 Oct 2026',
       tt: [
         { t: 'T1598.003', n: 'Spearphishing for information', tac: 'RE', st: 'logged', by: 'Mail gateway' },
         { t: 'T1586.002', n: 'Compromised supplier mailboxes', tac: 'RD', st: 'gap', by: 'No visibility outside the group' },
         { t: 'T1566.002', n: 'Spearphishing link (fake SSO)', tac: 'IA', st: 'detected', by: 'Mail gateway URL rewrite', ttd: 30 },
-        { t: 'T1621', n: 'MFA request generation (MFA fatigue)', tac: 'CA', st: 'detected', by: 'Entra risk + SIEM rule', ttd: 45 },
+        { t: 'T1621', n: 'MFA request generation (MFA fatigue)', tac: 'CA', st: 'detected', by: 'Identity provider risk + SIEM rule', ttd: 45 },
         { t: 'T1078', n: 'Valid accounts from new device', tac: 'DE', st: 'detected', by: 'D-412 impossible travel', ttd: 110 },
         { t: 'T1564.008', n: 'Hidden inbox rules', tac: 'DE', st: 'detected', by: 'Identity Response Agent', ttd: 90 },
         { t: 'T1114.003', n: 'Email forwarding to external domain', tac: 'CO', st: 'detected', by: 'D-409 (SIEM)', ttd: 75 },
-        { t: 'T1530', n: 'Data from SharePoint (beneficiaries)', tac: 'CO', st: 'detected', by: 'D-397 mass download', ttd: 360 },
+        { t: 'T1530', n: 'Data from the collaboration suite (beneficiaries)', tac: 'CO', st: 'detected', by: 'D-397 mass download', ttd: 360 },
         { t: 'T1657', n: 'Fraudulent payment release', tac: 'IM', st: 'prevented', by: 'Payment hold (human decision)' }
       ] },
     { id: 'harbor', name: 'SILENT HARBOR', kind: 'State-sponsored espionage', origin: 'State-nexus, long dwell time', targets: 'Financial messaging, SWIFT chain', source: 'National cyber agency TLP:AMBER brief', twin: 'twin-swift-zone', last: () => '2 Oct 2026',
@@ -287,15 +289,15 @@
         { t: 'T1070.004', n: 'File deletion (trace removal)', tac: 'DE', st: 'logged', by: 'EDR telemetry' },
         { t: 'T1003.006', n: 'DCSync', tac: 'CA', st: 'detected', by: 'SIEM AD replication rule', ttd: 25 },
         { t: 'T1018', n: 'Remote system discovery', tac: 'DI', st: 'logged', by: 'Network telemetry' },
-        { t: 'T1021.001', n: 'RDP to SWIFT jump hosts', tac: 'LM', st: 'prevented', by: 'PAM: no direct RDP' },
+        { t: 'T1021.001', n: 'Remote desktop to SWIFT gateway jump hosts', tac: 'LM', st: 'prevented', by: 'PAM: no direct RDP' },
         { t: 'T1005', n: 'Data from local system', tac: 'CO', st: 'logged', by: 'EDR telemetry' },
-        { t: 'T1573.002', n: 'Encrypted C2 channel', tac: 'C2', st: 'detected', by: 'JA4 fingerprint rule', ttd: 900 },
+        { t: 'T1573.002', n: 'Encrypted C2 channel', tac: 'C2', st: 'detected', by: 'TLS fingerprint rule', ttd: 900 },
         { t: 'T1041', n: 'Exfiltration over C2', tac: 'EF', st: 'gap', by: 'Low-and-slow under thresholds' }
       ] },
     { id: 'grey', name: 'GREY TIDE', kind: 'Cloud data theft · extortion', origin: 'Financially motivated, insider recruitment', targets: 'SaaS and cloud tenants of insurers', source: 'Commercial CTI, ISAC sharing', twin: 'twin-cloud-tenant', last: () => '24 Sep 2026',
       tt: [
         { t: 'T1589.001', n: 'Credential harvesting from leaks', tac: 'RE', st: 'detected', by: 'CTI leak monitoring', ttd: 3600 },
-        { t: 'T1078.004', n: 'Cloud accounts (bought from insider)', tac: 'IA', st: 'detected', by: 'Entra risky sign-in', ttd: 120 },
+        { t: 'T1078.004', n: 'Cloud accounts (bought from insider)', tac: 'IA', st: 'detected', by: 'Identity provider risky sign-in', ttd: 120 },
         { t: 'T1098.001', n: 'Additional cloud credentials', tac: 'PE', st: 'detected', by: 'SIEM app-credential rule', ttd: 80 },
         { t: 'T1538', n: 'Cloud service dashboard', tac: 'DI', st: 'logged', by: 'Cloud audit log' },
         { t: 'T1530', n: 'Data from cloud storage', tac: 'CO', st: 'detected', by: 'D-397 mass download', ttd: 360 },
@@ -364,15 +366,15 @@
     const rel = find('releases', 'REL-79');
     return {
       dv, rel, ag: CP.agent('ag-soc-triage'),
-      killed: !!find('actions', 'A-9890'),
+      killed: !!find('actions', 'A-9890') || !!find('actions', 'A-9892') || (!!rel && ap('AP-DR-KILL').status !== 'rejected'),
       rolled: !!find('actions', 'A-9892'),
       rt: find('redteam', 'RT-62'),
       e9: find('evals', 'E-9'),
       canary: !!rel && (rel.stage === 'canary' || rel.stage === 'prod'),
       restored: !!rel && rel.stage === 'prod',
-      killPending: ap('AP-DR-KILL').status === 'pending',
+      killPending: ap('AP-DR-KILL').status === 'pending' && !find('actions', 'A-9892') && !rel,
       killRejected: ap('AP-DR-KILL').status === 'rejected',
-      canaryPending: ap('AP-DR-CANARY').status === 'pending',
+      canaryPending: ap('AP-DR-CANARY').status === 'pending' && !(rel && (rel.stage === 'canary' || rel.stage === 'prod')),
       signed: signed(rel)
     };
   }
@@ -444,7 +446,7 @@
       g += '<line x1="' + pl + '" x2="' + (W - pr) + '" y1="' + yy + '" y2="' + yy + '" stroke="#eeecf3"/><text x="' + (pl - 6) + '" y="' + (yy + 4) + '" text-anchor="end" font-size="10" fill="#6d687e">' + CP.fmt(v) + (o.unit || '') + '</text>';
     }
     const every = o.every || Math.ceil(n / 8);
-    o.labels.forEach((l, i) => { if (i % every === 0 || i === n - 1) g += '<text x="' + x(i) + '" y="' + (H - 7) + '" text-anchor="middle" font-size="10" fill="#6d687e">' + E(l) + '</text>'; });
+    o.labels.forEach((l, i) => { if ((i % every === 0 && n - 1 - i >= Math.max(3, every / 2)) || i === n - 1) g += '<text x="' + x(i) + '" y="' + (H - 7) + '" text-anchor="middle" font-size="10" fill="#6d687e">' + E(l) + '</text>'; });
     (o.markers || []).forEach((m) => {
       const xm = x(m.i), ty = pt - 12 + (m.row || 0) * 12, right = xm > W - pr - 90;
       g += '<line x1="' + xm + '" x2="' + xm + '" y1="' + (ty + 3) + '" y2="' + (H - pb) + '" stroke="' + (m.color || '#d8412f') + '" stroke-dasharray="4 3"/>' +
@@ -462,7 +464,7 @@
       s.values.forEach((v, i) => { if (v != null) g += '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="8" fill="transparent"><title>' + E(s.label + ' · ' + o.labels[i] + ': ' + CP.fmt(v, o.dec || 0) + (o.unit || '')) + '</title></circle>'; });
       s.values.forEach((v, i) => { if (v != null && s.dots) g += '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="2.5" fill="' + s.color + '" pointer-events="none"/>'; });
     });
-    return '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto;display:block" role="img" aria-label="' + E(o.label || 'chart') + '">' + g + '</svg>';
+    return '<div class="tc-chart"><svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto;display:block" role="img" aria-label="' + E(o.label || 'chart') + '">' + g + '</svg></div>';
   }
 
   /* ------------------------------------------------------------------
@@ -660,8 +662,8 @@
       const other = [61, 60, 62, 61, 59, 61, 62, 60, 61, 62, 60, 61, 61, 60, 62, 61, 62, 61, 60, 62, 61, 60, 61, 62, 61];
       const markers = [{ i: 16, label: 'First hidden payload · Tue 09:40', color: '#a4233a' }, { i: 24, label: 'DV-34 raised', color: '#5a2be0', row: 1 }];
       if (st.killed) { labels.push('Thu 12h'); main.push(0); other.push(0); markers.push({ i: labels.length - 1, label: 'Kill-switch: L0', color: '#d8412f', row: 2 }); }
-      if (st.restored) { labels.push('Sun 14h'); main.push(60); other.push(61); markers.push({ i: labels.length - 1, label: 'v2.6 back at L2', color: '#088a42', row: 3 }); }
-      const chart = lineChart({ labels, min: 0, max: 100, unit: '%', w: 720, h: 270, pr: 150, every: 4, label: 'SOC Triage Agent auto-close rate on reported phishing, 7 days',
+      if (st.restored) { labels.push('', 'Sun 14h'); main.push(null, 60); other.push(null, 61); markers.push({ i: labels.length - 1, label: 'v2.6 back at L2', color: '#088a42', row: 3 }); }
+      const chart = lineChart({ labels, min: 0, max: 100, unit: '%', w: 740, h: 270, pr: 190, every: 4, label: 'SOC Triage Agent auto-close rate on reported phishing, 7 days',
         band: { lo: 55, hi: 67, label: 'Control limits (14-day baseline ±6 pts)' }, markers,
         series: [{ label: 'All senders', color: '#d8412f', values: main, dots: true, dy: -6 }, { label: 'Excl. partner-digest.eu', color: '#451dc7', values: other, dash: true, dy: 10 }] });
 
@@ -692,12 +694,12 @@
       const steps = [
         { ts: 'Thu 10:05', who: 'deviation', t: 'Deviation raised by monitor M-01', s: 'Auto-close rate 61% → 84% in 48 h, one sender domain.', done: true },
         { ts: 'Thu 10:20', who: 'p-pierre', t: 'Confirmed by QA sampling', s: '9 of 50 sampled closures were real phishing.', done: payloadFound },
-        { ts: 'Thu 10:23', who: 'p-chloe', t: 'Kill-switch: L2 → L0 (suggest-only)', s: st.killRejected ? 'Rejected: phishing from the domain routed to analysts instead.' : st.killPending ? 'Awaiting the Head of Run: decision right of Run.' : 'Every closure now needs an analyst.', done: st.killed, cur: st.killPending, ko: st.killRejected, link: st.killPending ? ['run', 'safety', 'Open in Run'] : null },
+        { ts: 'Thu 10:23', who: 'p-chloe', t: 'Kill-switch: L2 → L0 (suggest-only)', s: st.killRejected ? 'Rejected: phishing from the domain routed to analysts instead.' : st.killPending ? 'Awaiting decision: the kill-switch is a decision right of Run.' : 'Every closure now needs an analyst.', done: st.killed, cur: st.killPending, ko: st.killRejected, link: st.killPending ? ['run', 'safety', 'Open in Run'] : null },
         { ts: 'Thu 10:27', who: 'orchestrator', t: 'Rollback of 412 closures', s: '9 cases reopened, 2 users who typed their password reset.', done: st.rolled },
         { ts: 'Thu 11:05', who: 'p-sam', t: 'Red team reproduces and extends (RT-62)', s: '3 more variants work; 30 cases added to the eval suite.', done: !!st.rt, link: st.rt ? ['trust', 'redteam', 'See RT-62'] : null },
         { ts: 'Thu 14:05', who: 'p-yuki', t: 'Fix v2.6 built and evaluated', s: 'Spotlighting, injection classifier, 2-signal closure: 98.7%, 0/30 bypass.', done: !!st.rel },
         { ts: st.rel && st.rel.tcSignoff ? st.rel.tcSignoff.at : 'Thu 14:10', who: 'p-jonas', t: 'Trust & Challenge sign-off', s: st.signed ? 'Signed: gates green, canary rollback rule attached.' : 'Our independent check before any promotion.', done: st.signed, cur: !!st.rel && !st.signed, action: !!st.rel && !st.signed ? 'REL-79' : null },
-        { ts: 'Thu 14:15', who: 'p-ines', t: 'Canary 10% at L1', s: st.canaryPending ? 'Awaiting the agent product owner (Build).' : 'Automatic rollback if agreement with analysts < 97%.', done: st.canary, cur: st.canaryPending, link: st.canaryPending ? ['build', 'pipeline', 'Open in Build'] : null },
+        { ts: 'Thu 14:15', who: 'p-ines', t: 'Canary 10% at L1', s: st.canaryPending ? 'Awaiting decision: promotion is a decision right of Build.' : 'Automatic rollback if agreement with analysts < 97%.', done: st.canary, cur: st.canaryPending, link: st.canaryPending ? ['build', 'pipeline', 'Open in Build'] : null },
         { ts: 'Sun 14:15', who: 'orchestrator', t: 'Autonomy restored to L2', s: '72 h canary at 99.1% agreement; AI register updated.', done: st.restored }
       ];
       const firstTodo = steps.findIndex((x) => !x.done && !x.ko);
@@ -772,7 +774,7 @@
           { label: 'Date', key: 'date' },
           { label: 'Lead', render: () => ui.av('p-sam', 'sm') },
           { label: '', render: (r) => '<button class="small ghost" data-action="rtDetail" data-id="' + E(r.id) + '" aria-label="Details of ' + E(r.id) + '">' + CP.icon('chevronRight') + '</button>' }
-        ], list, { rowClass: (r) => r.result === 'bypassed' && bypassOpen().indexOf(r) >= 0 ? 'sel' : '', empty: 'No campaign for this filter.' }),
+        ], list, { rowClass: (r) => r.result === 'bypassed' && bypassOpen().indexOf(r) >= 0 ? 'tc-bp' : '', empty: 'No campaign for this filter.' }),
       { tour: 'trust-redteam', cls: 'accent', sub: 'Blocked: the attack failed. Detected: it worked but was seen. Bypassed: it worked unseen.' });
 
       const matrix = ui.card('Platform attack-surface coverage', '<div class="table-wrap"><table class="tc-mx"><thead><tr><th style="width:250px">Threat (OWASP LLM Top 10 · agentic)</th>' +
@@ -856,9 +858,9 @@
 
       const twinsData = [
         { id: 'twin-mft-prd-01', what: 'FileBridge MFT server + WAF + SIEM pipeline', fid: 98, sync: hasW121() ? 'Tue 12:40 (W-121, D-418 included)' : 'Mon 23:00' },
-        { id: 'twin-entra-tenant', what: 'Identity tenant: 2,400 synthetic users, CA policies', fid: 95, sync: 'Mon 23:10' },
+        { id: 'twin-idp-tenant', what: 'Identity tenant: 2,400 synthetic users, CA policies', fid: 95, sync: 'Mon 23:10' },
         { id: 'twin-swift-zone', what: 'SWIFT secure zone, jump hosts, PAM', fid: 91, sync: 'Sun 22:00' },
-        { id: 'twin-cloud-tenant', what: 'M365 + SharePoint, DLP, sharing policies', fid: 93, sync: 'Mon 23:30' },
+        { id: 'twin-cloud-tenant', what: 'Collaboration suite, DLP, sharing policies', fid: 93, sync: 'Mon 23:30' },
         { id: 'twin-agent-sandbox', what: 'Full copy of the 16 agents with recorded traffic', fid: 99, sync: 'Continuous' }
       ];
       const twins = ui.card('Digital twin environments', '<div class="list">' + twinsData.map((t) => {
@@ -877,8 +879,8 @@
         result: r.result, _new: r._new
       }));
       const staticVals = [
-        { id: 'VAL-118', chain: 'VELVET MANTIS · MFA fatigue to payment fraud', twin: 'twin-entra-tenant', date: 'Sat 10 Oct', prevented: 'Payment hold (human)', detected: 'D-412 in 1 min 50 s', result: 'detected' },
-        { id: 'VAL-117', chain: 'SILENT HARBOR · token reuse and slow exfiltration', twin: 'twin-swift-zone', date: 'Fri 2 Oct', prevented: 'PAM blocked RDP', detected: 'T1550.001 and T1041 not detected', result: 'bypassed' },
+        { id: 'VAL-118', chain: 'VELVET MANTIS · MFA fatigue to payment fraud', twin: 'twin-idp-tenant', date: 'Sat 10 Oct', prevented: 'Payment hold (human)', detected: 'D-412 in 1 min 50 s', result: 'detected' },
+        { id: 'VAL-117', chain: 'SILENT HARBOR · token reuse and slow exfiltration', twin: 'twin-swift-zone', date: 'Fri 2 Oct', prevented: 'PAM blocked remote desktop', detected: 'T1550.001 and T1041 not detected', result: 'bypassed' },
         { id: 'VAL-115', chain: 'GREY TIDE · cloud exfiltration to external tenant', twin: 'twin-cloud-tenant', date: 'Thu 24 Sep', prevented: 'Immutable backups', detected: 'D-397 in 6 min (late)', result: 'detected' }
       ];
       const vals = ui.card('Detection validation results', ui.table([

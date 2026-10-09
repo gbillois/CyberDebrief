@@ -96,6 +96,7 @@
     '.cc-scn .cmp div{background:#f7f6fa;padding:6px 8px;font-size:11.5px;color:var(--muted)}',
     '.cc-scn .cmp b{display:block;font-size:14px;color:var(--ink)}',
     '.cc-scn .cmp div.p{background:var(--green-50)}.cc-scn .cmp div.p b{color:#116539}',
+    '.cc-chart svg{max-height:300px;display:block;margin:0 auto}',
     '.cc-roi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}',
     '.cc-roi div{border:1px solid var(--line);padding:8px 10px;font-size:11.5px;color:var(--muted)}',
     '.cc-roi b{display:block;font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}',
@@ -106,7 +107,7 @@
     '.cc-org-top::after{content:"";position:absolute;left:50%;bottom:0;height:22px;border-left:2px solid #cfc8e3}',
     '.cc-org-top .cc-ou{max-width:330px}',
     '.cc-branches{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr) minmax(0,1fr);gap:12px;position:relative;padding-top:18px}',
-    '.cc-branches::before{content:"";position:absolute;top:0;left:16.5%;right:16.5%;border-top:2px solid #cfc8e3}',
+    '.cc-branches::before{content:"";position:absolute;top:0;left:14.1%;right:14.1%;border-top:2px solid #cfc8e3}',
     '.cc-br{position:relative;border:1px solid var(--line);background:#fbfafd;display:flex;flex-direction:column}',
     '.cc-br::before{content:"";position:absolute;top:-19px;left:50%;height:18px;border-left:2px solid #cfc8e3}',
     '.cc-br-body{padding:8px;display:grid;gap:6px;align-content:start}',
@@ -168,9 +169,10 @@
     '.cc-chk{display:grid;gap:6px;font-size:13px}',
     '.cc-chk label{display:flex;gap:8px;align-items:center;cursor:pointer}',
     /* responsive */
-    '@media(max-width:1360px){.cc-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.cc-orgwrap{grid-template-columns:1fr}.cc-od{position:static}.cc-holders{grid-template-columns:repeat(2,minmax(0,1fr))}}',
-    '@media(max-width:1100px){.cc-hero{grid-template-columns:auto minmax(0,1fr)}.cc-hero .cc-hacts{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}.cc-branches{grid-template-columns:1fr}.cc-branches::before,.cc-br::before{display:none}.cc-plat-doms{grid-template-columns:repeat(3,minmax(0,1fr))}.cc-plat-ctx{grid-template-columns:1fr}.bb-2{grid-template-columns:1fr}}',
-    '@media(max-width:760px){.cc-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.cc-kpis .metric .value{font-size:24px}.cc-hero{grid-template-columns:1fr;padding:14px}.cc-hero .av.cc-xl{display:none}.cc-hero h1{font-size:21px}.cc-hero .cc-hacts button{flex:1;min-height:44px;justify-content:center}.cc-dgrid,.cc-roi{grid-template-columns:1fr}.cc-hstats{grid-template-columns:1fr 1fr}.cc-sub2{grid-template-columns:1fr}.bb-kpis{grid-template-columns:1fr 1fr}.cc-paper{padding:16px}.cc-holders{grid-template-columns:1fr 1fr}.cc-plat-doms{grid-template-columns:1fr 1fr}.cc-thr div{grid-template-columns:1fr;gap:2px}.cc-ag{min-height:40px}button.cc-ou{padding:10px 12px}.cc-filters{gap:10px}.cc-filters .pill-tabs{flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding-bottom:2px}.cc-filters .pill-tabs button{white-space:nowrap;min-height:38px}.cc-live{font-size:12px}.bb-head{flex-direction:column;align-items:flex-start}.bb-head .bb-meta{text-align:left}.bb table{display:block;overflow-x:auto}.cc-scn .vb-row{grid-template-columns:62px 1fr 52px}}'
+    '@media(max-width:1360px){.cc-holders{grid-template-columns:repeat(2,minmax(0,1fr))}}',
+    '@media(max-width:1180px){.cc-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.cc-orgwrap{grid-template-columns:1fr}.cc-od{position:static}}',
+    '@media(max-width:1100px){.cc-board{grid-template-columns:minmax(0,1fr)}.cc-hero{grid-template-columns:auto minmax(0,1fr)}.cc-hero .cc-hacts{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}.cc-branches{grid-template-columns:1fr}.cc-branches::before,.cc-br::before{display:none}.cc-plat-doms{grid-template-columns:repeat(3,minmax(0,1fr))}.cc-plat-ctx{grid-template-columns:1fr}.bb-2{grid-template-columns:1fr}}',
+    '@media(max-width:760px){.cc-root .table-wrap table.t{min-width:640px}.cc-root .card{padding:16px}.cc-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.cc-kpis .metric .value{font-size:24px}.cc-hero{grid-template-columns:1fr;padding:14px}.cc-hero .av.cc-xl{display:none}.cc-hero h1{font-size:21px}.cc-hero .cc-hacts button{flex:1;min-height:44px;justify-content:center}.cc-dgrid,.cc-roi{grid-template-columns:1fr}.cc-hstats{grid-template-columns:1fr 1fr}.cc-sub2{grid-template-columns:1fr}.bb-kpis{grid-template-columns:1fr 1fr}.cc-paper{padding:16px}.cc-holders{grid-template-columns:1fr 1fr}.cc-plat-doms{grid-template-columns:1fr 1fr}.cc-thr div{grid-template-columns:1fr;gap:2px}.cc-ag{min-height:40px}button.cc-ou{padding:10px 12px}.cc-filters{gap:10px}.cc-filters .pill-tabs{flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding-bottom:2px}.cc-filters .pill-tabs button{white-space:nowrap;min-height:38px}.cc-live{font-size:12px}.bb-head{flex-direction:column;align-items:flex-start}.bb-head .bb-meta{text-align:left}.bb table{display:block;overflow-x:auto}.cc-scn .vb-row{grid-template-columns:62px 1fr 52px}}'
   ].join('\n'));
 
   /* ---------------- Static, console-only data ---------------- */
@@ -194,7 +196,7 @@
   const HIST = [
     { id: 'AP-2614', role: 'engage', decider: 'p-marc', decidedBy: 'p-marc', requestedBy: 'ag-grc-tprm', autonomy: 'L1', status: 'approved', title: 'Send the rating-drop notice to LexAdvisors', summary: 'External rating down 12 points and leaked credentials on a paste site. Message asks for password reset evidence within 5 days.', threshold: 'external communication on behalf of the group', recommendation: 'Send: credentials are recent and the supplier holds litigation files.', createdAt: 'Mon 17:22', decidedAt: 'Mon 17:28', mins: 6 },
     { id: 'AP-2611', role: 'ciso', decider: 'p-elena', decidedBy: 'p-elena', requestedBy: 'ag-soc-forensic', autonomy: 'L1', status: 'approved', title: 'Isolate srv-pay-api-03 (cryptominer on a payment API node)', summary: 'Miner process found by the EDR; the node is one of 6 behind the payment API load balancer. Isolation removes 1/6 of capacity.', threshold: 'blast radius: 1 production server on a critical business service', recommendation: 'Isolate: capacity headroom is 40% and the miner reaches an external pool.', createdAt: 'Mon 15:04', decidedAt: 'Mon 15:12', mins: 8 },
-    { id: 'AP-2608', role: 'run', decider: 'p-chloe', decidedBy: 'p-chloe', requestedBy: 'ag-iam-review', autonomy: 'L1', status: 'approved', title: 'Disable the admin account of a departing DBA', summary: 'Contract ends tonight; the account holds Oracle DBA rights on core banking.', threshold: 'privileged account', recommendation: 'Disable at 18:00, after the hand-over call.', createdAt: 'Mon 11:31', decidedAt: 'Mon 11:40', mins: 9 },
+    { id: 'AP-2608', role: 'run', decider: 'p-chloe', decidedBy: 'p-chloe', requestedBy: 'ag-iam-review', autonomy: 'L1', status: 'approved', title: 'Disable the admin account of a departing DBA', summary: 'Contract ends tonight; the account holds database administrator rights on core banking.', threshold: 'privileged account', recommendation: 'Disable at 18:00, after the hand-over call.', createdAt: 'Mon 11:31', decidedAt: 'Mon 11:40', mins: 9 },
     { id: 'AP-2605', role: 'engage', decider: 'p-lucas', decidedBy: 'p-lucas', requestedBy: 'ag-grc-tprm', autonomy: 'L2', status: 'approved', title: 'Restrict PrintHub SFTP to allow-listed IPs', summary: 'Two new source IPs seen on the PrintHub flow, not declared by the supplier.', threshold: 'partial cut of a business flow', recommendation: 'Restrict now, re-open once PrintHub confirms the IPs.', createdAt: 'Mon 09:02', decidedAt: 'Mon 09:15', mins: 13 },
     { id: 'AP-2601', role: 'build', decider: 'p-ines', decidedBy: 'p-ines', requestedBy: 'p-yuki', autonomy: 'L1', status: 'approved', title: 'Promote Access Review Agent 1.6.0 to a 10% canary', summary: 'Toxic combination detection; evals 96.1%, Trust & Challenge sign-off by the AI assurance lead.', threshold: 'new agent version in production', recommendation: 'Promote: all gates green.', createdAt: 'Sun 17:40', decidedAt: 'Sun 18:02', mins: 22 },
     { id: 'AP-2597', role: 'ciso', decider: 'p-elena', decidedBy: 'p-elena', requestedBy: 'ag-vuln', autonomy: 'L1', status: 'rejected', title: 'Patch the broker portal outside the change window', summary: 'CVSS 8.1 in the portal framework, not exploited in the wild, WAF rule already blocking.', threshold: 'service interruption on a critical business service', recommendation: 'Patch now (40 min downtime).', createdAt: 'Fri 16:20', decidedAt: 'Fri 16:45', mins: 25, note: 'Rescheduled to the Saturday 06:00 window: not exploited, virtual patch in place.' },
@@ -253,6 +255,7 @@
   const pname = (id) => { const a = CP.actor(id); return a ? a.name : id; };
   const roleLabel = (id) => (CP.role(id) || { label: id }).label;
   const lvlS = (l) => { const L = (CP.data.autonomy || []).find((x) => x.id === l); return '<span class="lvl ' + esc(l) + '" title="' + esc(L ? L.label + ': ' + L.desc : l) + '">' + esc(l) + '</span>'; };
+  const RSL = { 'on-track': 'On track', 'at-risk': 'At risk', submitted: 'Submitted', done: 'Done' };
   const SEV = { critical: 0, high: 1, medium: 2, low: 3 };
   const STO = { open: 0, contained: 1, monitoring: 2, closed: 3 };
   function clockInfo() {
@@ -545,18 +548,18 @@
 
     const costVal = ui.line([{ label: 'Value', color: '#088a42', values: VALUE_K }, { label: 'AI cost', color: '#c8861a', values: COST_K, dash: true }], MONTHS, { h: 210, min: 0, max: 120, unit: 'k', marker: 3, markerLabel: 'break-even', label: 'Value delivered and AI run cost per month, thousands of euros' });
     const roi = '<div class="cc-roi"><div><b>' + CP.eur(v.hours * RATE) + '</b>analyst hours (€' + RATE + '/h)</div><div><b>' + CP.eur(v.avoided) + '</b>MSSP L1 contract avoided</div><div><b>' + CP.eur(v.aiMTD) + '</b>AI run cost (models, compute)</div></div>';
-    const mttc = ui.line([{ label: 'MTTC', color: '#451dc7', values: MTTC_HIST.concat([k.mttcMinutes]) }], WEEKS, { w: 440, h: 290, min: 0, max: 45, unit: ' min', label: 'Mean time to contain over 12 weeks, minutes' });
+    const mttc = ui.line([{ label: 'MTTC', color: '#451dc7', values: MTTC_HIST.concat([k.mttcMinutes]) }], WEEKS, { w: 440, h: 290, min: 0, max: 48, unit: ' min', label: 'Mean time to contain over 12 weeks, minutes' });
     const auto = ui.line([{ label: 'Share', color: '#088a42', values: AUTO_HIST.concat([k.autonomousShare]) }], WEEKS, { w: 420, h: 230, min: 60, max: 100, unit: '%', label: 'Autonomous share of actions over 12 weeks, percent' });
     h += '<div class="grid g-3-2" style="margin-bottom:18px">' +
       ui.card(CP.icon('euro') + ' Value delivered vs AI run cost', costVal + roi, { sub: 'Thousands of euros per month, same unit on one axis. October month to date below.' }) +
-      ui.card(CP.icon('clock') + ' Mean time to contain', mttc + '<div class="cc-roi"><div><b>' + k.mttcMinutes + ' min</b>this week (live)</div><div><b>1 h 05</b>90th percentile</div><div><b>7 min</b>best night case (S2)</div></div>', { sub: 'Last 12 weeks' }) + '</div>';
+      ui.card(CP.icon('clock') + ' Mean time to contain', '<div class="cc-chart">' + mttc + '</div>' + '<div class="cc-roi"><div><b>' + k.mttcMinutes + ' min</b>this week (live)</div><div><b>1 h 05</b>90th percentile</div><div><b>7 min</b>best night case (S2)</div></div>', { sub: 'Last 12 weeks' }) + '</div>';
 
     const hoursDom = DOMS.map((d) => ({ d, v: Math.round(v.hours * DOM_SHARE[d]) })).sort((a, b) => b.v - a.v);
     const costDom = DOMS.map((d) => ({ label: CP.domain(d).label, value: CP.store.get('agents').filter((a) => a.domain === d).reduce((s, a) => s + a.costToday, 0), color: CP.domain(d).hex }));
     const orchCost = Math.max(0, k.aiCostToday - costDom.reduce((s, x) => s + x.value, 0));
     if (orchCost) costDom.push({ label: 'Orchestrator & context', value: orchCost, color: '#451dc7' });
     h += '<div class="grid g3" style="margin-bottom:18px">' +
-      ui.card(CP.icon('zap') + ' Autonomous share of actions', auto, { sub: 'Last 12 weeks, percent' }) +
+      ui.card(CP.icon('zap') + ' Autonomous share of actions', '<div class="cc-chart">' + auto + '</div>', { sub: 'Last 12 weeks, percent' }) +
       ui.card(CP.icon('layers') + ' Hours saved by domain', ui.hbars(hoursDom.map((x) => ({ label: CP.domain(x.d).label, value: x.v, color: CP.domain(x.d).hex })), { unit: ' h' }) + '<p class="small-txt muted" style="margin:10px 0 0">Month to date. SOC triage and GRC evidence work carry most of the gain.</p>', { sub: 'October, month to date' }) +
       ui.card(CP.icon('euro') + ' AI cost by domain today', ui.donut(costDom, { size: 132, center: CP.eur(k.aiCostToday), centerSub: 'today' }), { sub: '€' + CP.fmt(v.perAction, 2) + ' per action' }) + '</div>';
 
@@ -648,7 +651,7 @@
       (u.people.length ? '<div class="stack" style="gap:6px;margin-bottom:10px">' + u.people.map((p) => ui.who(p)).join('') + '</div>' : '') +
       '<h3 style="margin:10px 0 2px;font-size:13px">Owns on the platform</h3><ul>' + u.owns.map((o) => '<li>' + esc(o) + '</li>').join('') + '</ul>' +
       (live.length ? '<h3 style="margin:12px 0 6px;font-size:13px">Live now</h3><dl class="kv">' + live.map((x) => '<dt>' + esc(x[0]) + '</dt><dd class="num">' + esc(x[1]) + '</dd>').join('') + '</dl>' : '') +
-      '<div style="margin-top:14px"><a class="row" style="gap:6px;font-weight:600" href="' + CP.href(con[0], con[1]) + '">' + CP.icon('external') + ' Open the ' + esc((CP.role(con[0]) || { label: 'CISO' }).label) + ' console</a></div>', { cls: 'accent cc-od' });
+      '<div style="margin-top:14px"><a class="row small-txt" style="gap:6px;font-weight:600;font-size:13.5px" href="' + CP.href(con[0], con[1]) + '">' + CP.icon('external') + ' Open the ' + esc((CP.role(con[0]) || { label: 'CISO' }).label) + ' console</a></div>', { cls: 'accent cc-od' });
   }
   function orgTab(scr) {
     const sel = scr.ui.orgSel || 'ciso';
@@ -734,7 +737,7 @@
       b.risks.map((r) => '<tr><td><b>' + esc(r.t) + '</b></td><td>' + esc(r.lvl) + '</td><td>' + esc(r.trend) + '</td><td>' + esc(pname(r.owner)) + '</td><td>' + esc(r.treat) + '</td></tr>').join('') + '</tbody></table>';
     if (sec.reg || sec.agents) {
       h += '<div class="bb-2">';
-      if (sec.reg) h += '<div><h3>Regulatory</h3><table><thead><tr><th>Item</th><th>Due</th><th>Progress</th><th>Status</th></tr></thead><tbody>' + b.regs.map((r) => '<tr><td><b>' + esc(r.framework) + '</b> ' + esc(r.item) + '</td><td>' + esc(r.due) + '</td><td>' + Math.round(r.collected / Math.max(1, r.total) * 100) + '%</td><td>' + esc(r.status) + '</td></tr>').join('') + '</tbody></table></div>';
+      if (sec.reg) h += '<div><h3>Regulatory</h3><table><thead><tr><th>Item</th><th>Due</th><th>Progress</th><th>Status</th></tr></thead><tbody>' + b.regs.map((r) => '<tr><td><b>' + esc(r.framework) + '</b> ' + esc(r.item) + '</td><td>' + esc(r.due) + '</td><td>' + Math.round(r.collected / Math.max(1, r.total) * 100) + '%</td><td>' + esc(RSL[r.status] || r.status) + '</td></tr>').join('') + '</tbody></table></div>';
       if (sec.agents) h += '<div><h3>Agents under control</h3><p style="margin:0 0 6px"><span class="bb-light ' + b.ctl.lvl + '">' + esc(b.ctl.label) + '</span></p><p style="margin:0 0 6px">' + esc(b.ctl.why) + '</p><table><tbody>' +
         '<tr><td>Agents in production</td><td><b>' + b.agents.n + '</b></td></tr><tr><td>Kill-switches pulled (week)</td><td><b>' + b.agents.ks + '</b></td></tr><tr><td>Eval average · QA agreement</td><td><b>' + CP.fmt(b.agents.evals, 1) + '% · ' + CP.fmt(b.agents.qa, 1) + '%</b></td></tr>' +
         '<tr><td>Red team campaigns: blocked · detected · bypassed</td><td><b>' + b.agents.blocked + ' · ' + b.agents.detected + ' · ' + b.agents.bypassed + '</b></td></tr></tbody></table></div>';
@@ -752,7 +755,7 @@
     if (sec.messages) { L.push('KEY MESSAGES'); b.msgs.forEach((m) => L.push('- ' + m)); L.push(''); }
     if (sec.bu) { L.push('RISK TREND BY BUSINESS UNIT'); b.bus.forEach((u) => L.push('- ' + u.name + ': ' + u.riskScore + ' (' + (u.trend[u.trend.length - 1] - u.trend[0]) + ' pts in 6 months), top risk: ' + u.topRisks[0])); L.push(''); }
     if (sec.risks) { L.push('TOP 3 RISKS'); b.risks.forEach((r, i) => L.push((i + 1) + '. ' + r.t + ' [' + r.lvl + ', ' + r.trend + ', owner ' + pname(r.owner) + ']: ' + r.treat)); L.push(''); }
-    if (sec.reg) { L.push('REGULATORY'); b.regs.forEach((r) => L.push('- ' + r.framework + ' · ' + r.item + ' · due ' + r.due + ' · ' + Math.round(r.collected / Math.max(1, r.total) * 100) + '% · ' + r.status)); L.push(''); }
+    if (sec.reg) { L.push('REGULATORY'); b.regs.forEach((r) => L.push('- ' + r.framework + ' · ' + r.item + ' · due ' + r.due + ' · ' + Math.round(r.collected / Math.max(1, r.total) * 100) + '% · ' + (RSL[r.status] || r.status))); L.push(''); }
     if (sec.agents) { L.push('AGENTS UNDER CONTROL: ' + b.ctl.label.toUpperCase()); L.push(b.ctl.why); L.push('Agents ' + b.agents.n + ' · kill-switches ' + b.agents.ks + ' · evals ' + CP.fmt(b.agents.evals, 1) + '% · QA ' + CP.fmt(b.agents.qa, 1) + '%'); L.push(''); }
     if (sec.value) { L.push('VALUE'); L.push(CP.fmt(b.value.hours) + ' h saved this month (' + CP.fmt(b.value.fte, 1) + ' FTE), value ' + CP.eur(Math.round(b.value.valMTD / 100) * 100) + ' vs AI cost ' + CP.eur(b.value.aiMTD) + ' (' + CP.fmt(b.value.roi, 1) + 'x).'); L.push(''); }
     if (sec.asks) { L.push('ASKS'); b.asks.forEach((a) => L.push('- ' + a)); }
@@ -770,8 +773,8 @@
       '<div class="small-txt muted" style="margin-bottom:6px">Sections</div><div class="cc-chk">' + SECS.map((s) => '<label><input type="checkbox" data-change="briefSec" data-k="' + s[0] + '"' + (u.sec[s[0]] ? ' checked' : '') + '> ' + esc(s[1]) + '</label>').join('') + '</div>');
     const sources = ui.card(CP.icon('database') + ' Sources, live', '<dl class="kv">' +
       [['Business units', S.get('businessUnits').length], ['Cases', S.get('cases').length], ['Regulatory items', S.get('regulatory').length], ['Decisions logged', allDecisions().length], ['Agents', S.get('agents').length], ['Red team campaigns', S.get('redteam').length], ['Deviations', S.get('deviations').length]].map((x) => '<dt>' + esc(x[0]) + '</dt><dd class="num">' + x[1] + '</dd>').join('') +
-      '</dl><p class="small-txt muted" style="margin:10px 0 0">Last board brief (Q2) took 6 people 7 days. This one: ' + clockInfo().hm + ', on demand. Request B-298 delivered by Build.</p>');
-    h += '<div class="grid g-1-2"><div class="stack">' + settings + sources + '</div><div class="cc-paper" aria-label="Board brief preview">' + briefHtml(scr) + '</div></div>';
+      '</dl><p class="small-txt muted" style="margin:10px 0 0">Last board brief (Q2) took 6 people 7 days. This one: seconds, on demand, always current. Request B-298 delivered by Build.</p>');
+    h += '<div class="grid g-1-2 cc-board"><div class="stack">' + settings + sources + '</div><div class="cc-paper" aria-label="Board brief preview">' + briefHtml(scr) + '</div></div>';
     return h;
   }
 
@@ -827,13 +830,13 @@
       else if (sub === 'org') body = orgTab(this);
       else if (sub === 'board') body = boardTab(this);
       else body = overview(this);
-      return tabs + body;
+      return tabs + '<div class="cc-root">' + body + '</div>';
     },
     actions: {
       feedFilter(el) { this.ui.feedF = el.dataset.f; CP.render(); },
       decRole(el) { this.ui.decRole = el.dataset.v; CP.render(); },
       decStatus(el) { this.ui.decStatus = el.dataset.v; CP.render(); },
-      orgSel(el) { this.ui.orgSel = el.dataset.u; CP.render(); },
+      orgSel(el) { this.ui.orgSel = el.dataset.u; CP.render(); if (window.innerWidth <= 1180 && el.closest('.cc-org,.t')) { const od = document.querySelector('.cc-od'); if (od) od.scrollIntoView({ behavior: 'smooth', block: 'start' }); } },
       briefAud(el) { this.ui.aud = el.dataset.v; CP.render(); },
       briefSec(el) { this.ui.sec[el.dataset.k] = el.checked; CP.render(); },
       openCase(el) { const c = CP.store.find('cases', el.dataset.id); if (c) caseModal(c); },

@@ -68,7 +68,7 @@
     'cti-feed': { name: 'CTI feeds', sub: 'CERT-FR, ISAC, commercial', color: 'var(--d-ext)' },
     regulator: { name: 'Supervisor', sub: 'National competent authority', color: 'var(--d-ext)' },
     thirdparty: { name: 'Third parties', sub: 'Supplier portal', color: 'var(--d-ext)' },
-    entra: { name: 'Entra ID', sub: 'Identity provider', color: 'var(--d-src)' },
+    entra: { name: 'Identity provider', sub: 'Identity provider', color: 'var(--d-src)' },
     edr: { name: 'EDR', sub: 'Endpoint detection', color: 'var(--d-src)' },
     siem: { name: 'SIEM', sub: 'Security analytics', color: 'var(--d-src)' },
     waf: { name: 'WAF', sub: 'Web application firewall', color: 'var(--d-src)' },
@@ -83,7 +83,7 @@
 
   /* Sidebar groups (screen ids). */
   D.navGroups = [
-    { label: 'How it works', part: 1, items: ['home', 'arch-simple', 'arch-full', 'build-it', 'rights'] },
+    { label: 'How it works', part: 1, items: ['home', 'platform-tour', 'arch-simple', 'arch-full', 'build-it', 'rights'] },
     { label: 'The platform', part: 2, items: ['ciso', 'engage', 'build', 'run', 'trust'] },
     { label: 'Showcase', part: 0, items: ['demo'] }
   ];
@@ -135,9 +135,9 @@
       { id: 'ag-grc-policy', name: 'Policy Agent', domain: 'grc', mode: 'L1', status: 'active', version: '1.1.3', owner: 'p-raj', supervisor: 'p-mei', model: 'Frontier-M (EU)', tasksToday: 9, autoRate: 30, accuracy: 96.0, costToday: 14, tools: ['policy.repo', 'doc.generate'] },
       { id: 'ag-as-waf', name: 'WAF Tuning Agent', domain: 'appsec', mode: 'L2', status: 'active', version: '1.3.4', owner: 'p-yuki', supervisor: 'p-chloe', model: 'Frontier-M (EU)', tasksToday: 24, autoRate: 88, accuracy: 98.3, costToday: 22, tools: ['waf.rules', 'sandbox.replay', 'graph.query'] },
       { id: 'ag-as-code', name: 'Code Review Agent', domain: 'appsec', mode: 'L2', status: 'active', version: '3.0.1', owner: 'p-yuki', supervisor: 'p-chloe', model: 'Frontier-L (EU)', tasksToday: 318, autoRate: 74, accuracy: 92.8, costToday: 236, tools: ['scm.read', 'scm.pr.comment', 'sca.scan'] },
-      { id: 'ag-dt-dlp', name: 'Data Protection Agent', domain: 'data', mode: 'L2', status: 'active', version: '1.2.0', owner: 'p-raj', supervisor: 'p-mei', model: 'Frontier-M (EU)', tasksToday: 205, autoRate: 83, accuracy: 94.9, costToday: 71, tools: ['m365.audit', 'dlp.events', 'classification.read'] },
+      { id: 'ag-dt-dlp', name: 'Data Protection Agent', domain: 'data', mode: 'L2', status: 'active', version: '1.2.0', owner: 'p-raj', supervisor: 'p-mei', model: 'Frontier-M (EU)', tasksToday: 205, autoRate: 83, accuracy: 94.9, costToday: 71, tools: ['collab.audit', 'dlp.events', 'classification.read'] },
       { id: 'ag-dt-evidence', name: 'Evidence Collector', domain: 'data', mode: 'L3', status: 'active', version: '1.0.6', owner: 'p-raj', supervisor: 'p-mei', model: 'Small-S (on-prem)', tasksToday: 486, autoRate: 100, accuracy: 99.1, costToday: 18, tools: ['lake.search', 'cmdb.read', 'tprm.inventory'] },
-      { id: 'ag-iam-resp', name: 'Identity Response Agent', domain: 'iam', mode: 'L2', status: 'active', version: '2.0.2', owner: 'p-ines', supervisor: 'p-mei', model: 'Frontier-M (EU)', tasksToday: 47, autoRate: 91, accuracy: 97.2, costToday: 33, tools: ['entra.sessions', 'entra.ca', 'exchange.rules', 'graph.query'] },
+      { id: 'ag-iam-resp', name: 'Identity Response Agent', domain: 'iam', mode: 'L2', status: 'active', version: '2.0.2', owner: 'p-ines', supervisor: 'p-mei', model: 'Frontier-M (EU)', tasksToday: 47, autoRate: 91, accuracy: 97.2, costToday: 33, tools: ['idp.sessions', 'idp.access_policy', 'mail.rules', 'graph.query'] },
       { id: 'ag-iam-review', name: 'Access Review Agent', domain: 'iam', mode: 'L1', status: 'active', version: '1.5.0', owner: 'p-ines', supervisor: 'p-mei', model: 'Frontier-M (EU)', tasksToday: 1310, autoRate: 64, accuracy: 95.5, costToday: 104, tools: ['iga.read', 'graph.query', 'iga.campaign'] },
       { id: 'ag-soc-triage', name: 'SOC Triage Agent', domain: 'soc', mode: 'L2', status: 'active', version: '2.5.0', owner: 'p-ines', supervisor: 'p-chloe', model: 'Frontier-M (EU)', tasksToday: 3420, autoRate: 61, accuracy: 96.8, costToday: 412, tools: ['siem.alerts', 'edr.query', 'mail.query', 'case.update', 'graph.query'] },
       { id: 'ag-soc-detect', name: 'Detection Engineer Agent', domain: 'soc', mode: 'L2', status: 'active', version: '1.9.0', owner: 'p-ines', supervisor: 'p-chloe', model: 'Frontier-L (EU)', tasksToday: 16, autoRate: 70, accuracy: 93.9, costToday: 88, tools: ['siem.rules', 'lake.backtest', 'sigma.convert'] },
@@ -167,13 +167,13 @@
       { id: 'A-9812', ts: '08:05', agent: 'ag-soc-triage', system: 'Mail gateway', action: 'Quarantined 38 emails from a lookalike domain', level: 'L3', status: 'done', rollback: true },
       { id: 'A-9809', ts: '07:55', agent: 'ag-vuln', system: 'ITSM', action: 'Raised 14 standard patch changes', level: 'L2', status: 'done', rollback: true },
       { id: 'A-9801', ts: '07:31', agent: 'ag-iam-review', system: 'IGA', action: 'Disabled 42 dormant accounts', level: 'L1', status: 'done', rollback: true },
-      { id: 'A-9794', ts: '03:14', agent: 'ag-iam-resp', system: 'Entra ID', action: 'Revoked sessions of 2 users after risky sign-in', level: 'L3', status: 'done', rollback: true },
+      { id: 'A-9794', ts: '03:14', agent: 'ag-iam-resp', system: 'Identity provider', action: 'Revoked sessions of 2 users after risky sign-in', level: 'L3', status: 'done', rollback: true },
       { id: 'A-9790', ts: '02:40', agent: 'ag-soc-triage', system: 'Proxy', action: 'Blocked 3 domains (malware C2, confidence 96%)', level: 'L3', status: 'done', rollback: true },
       { id: 'A-9783', ts: 'Mon 22:10', agent: 'ag-as-waf', system: 'WAF', action: 'Tuned rule 942100 on the broker portal (FP reduced 80%)', level: 'L2', status: 'done', rollback: true }
     ],
 
     thirdParties: [
-      tp('tp-paycore', 'PayCore Processing', 'Card & payments processing', 'critical', 'NL', 82, true, { dataShared: 'Card transactions', products: ['FileBridge MFT 9.1', 'SWIFT Alliance'], exitPlan: true }),
+      tp('tp-paycore', 'PayCore Processing', 'Card & payments processing', 'critical', 'NL', 82, true, { dataShared: 'Card transactions', products: ['FileBridge MFT 9.1', 'SWIFT gateway'], exitPlan: true }),
       tp('tp-atlas', 'Atlas Payroll Services', 'Payroll outsourcing', 'critical', 'FR', 64, true, { dataShared: 'Payroll & HR data of 38k staff', products: ['FileBridge MFT 8.7'], exitPlan: false }),
       tp('tp-claimsone', 'ClaimsOne', 'Insurance claims SaaS', 'critical', 'IE', 77, true, { dataShared: 'Claims & health data', products: ['FileBridge MFT 9.0'], exitPlan: false }),
       tp('tp-ledger', 'LedgerLine', 'Core banking software', 'critical', 'DE', 88, false, { dataShared: 'Accounts & balances', products: ['LedgerLine Core'], exitPlan: false }),
@@ -221,7 +221,7 @@
       { id: 'D-412', name: 'Impossible travel on privileged identity', platform: 'SIEM', author: 'ag-soc-detect', status: 'live', backtest: '30 d · 2 TP · 0 FP', mitre: ['T1078'], fpRate: 0.4 },
       { id: 'D-409', name: 'Mailbox forwarding rule to external domain', platform: 'SIEM', author: 'ag-soc-detect', status: 'live', backtest: '30 d · 5 TP · 1 FP', mitre: ['T1114.003'], fpRate: 1.2 },
       { id: 'D-401', name: 'LSASS access by unsigned process', platform: 'EDR', author: 'p-chloe', status: 'live', backtest: '30 d · 0 TP · 0 FP', mitre: ['T1003.001'], fpRate: 0.1 },
-      { id: 'D-397', name: 'Mass download from SharePoint by one user', platform: 'SIEM', author: 'ag-soc-detect', status: 'live', backtest: '30 d · 3 TP · 4 FP', mitre: ['T1530'], fpRate: 2.8 }
+      { id: 'D-397', name: 'Mass download from file share by one user', platform: 'SIEM', author: 'ag-soc-detect', status: 'live', backtest: '30 d · 3 TP · 4 FP', mitre: ['T1530'], fpRate: 2.8 }
     ],
 
     wafRules: [

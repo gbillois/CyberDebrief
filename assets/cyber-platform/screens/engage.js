@@ -13,7 +13,7 @@
 
   CP.css('engage', `
 .eg-split{display:grid;grid-template-columns:minmax(0,1fr) 470px;gap:18px;align-items:start}
-.eg-panel{position:sticky;top:120px;max-height:calc(100vh - 136px);overflow:auto;background:#fff;border:1px solid var(--line);border-top:3px solid var(--indigo)}
+.eg-panel{scroll-margin-top:118px;position:sticky;top:120px;max-height:calc(100vh - 136px);overflow:auto;background:#fff;border:1px solid var(--line);border-top:3px solid var(--indigo)}
 .eg-ph{padding:16px 18px 14px;background:var(--dark);color:#fff;position:sticky;top:0;z-index:2}
 .eg-ph .eg-kind{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:#9d8fc4;font-weight:700;display:flex;align-items:center;gap:6px}
 .eg-ph h2{margin:6px 0 4px;font-size:19px;color:#fff}
@@ -112,7 +112,7 @@
 .eg-countdown .s{font-size:12.5px;color:#f1cdd4;margin-top:3px}
 .eg-countdown .progress{background:#ffffff26;margin-top:10px}
 .eg-countdown .progress span{background:#ff7a8a}
-.eg-ev{display:grid;grid-template-columns:28px minmax(0,1fr) 92px 110px;gap:8px;align-items:center;font-size:12.5px;padding:7px 0;border-bottom:1px solid var(--line-2)}
+.eg-ev{display:grid;grid-template-columns:28px minmax(0,1fr) 120px 150px;gap:8px;align-items:center;font-size:12.5px;padding:7px 0;border-bottom:1px solid var(--line-2)}
 .eg-ev .n{font-family:var(--mono);color:var(--muted);font-size:11px}
 .eg-ev .src{color:var(--muted);font-size:11.5px}
 .eg-ev-group{font-size:10.5px;text-transform:uppercase;letter-spacing:1.2px;color:var(--indigo);font-weight:700;padding:12px 0 4px;border-bottom:1px solid var(--line)}
@@ -154,11 +154,12 @@
 .eg-filters label{flex:1 1 140px}.eg-filters input,.eg-filters select{width:100%;min-width:0}
 .eg-campaign{padding:14px}.eg-campaign .eg-c-counts{margin-left:0;width:100%}.eg-cnt{flex:1;min-width:56px;padding:6px 4px}
 .eg-countdown{padding:14px}.eg-countdown .big{font-size:28px}
-.eg-panel{border-left:0;border-right:0;margin:0 -16px}.eg-ph{position:static}.eg-ph h2{padding-right:44px}
+.eg-panel{border-left:1px solid var(--line);border-right:1px solid var(--line)}.eg-ph{position:static}.eg-ph h2{padding-right:44px}
 .eg-tl-i{grid-template-columns:64px 16px minmax(0,1fr)}
 .eg-clk{grid-template-columns:110px minmax(0,1fr) 44px!important}
 .eg-mail .eg-mh span{width:auto;margin-right:6px}.eg-textarea{min-height:200px}
-.eg .grid{gap:12px}.eg .stack{gap:12px}}
+.eg .grid{gap:12px}.eg .stack{gap:12px}
+.eg .table-wrap table.t{min-width:640px}.eg .eg-panel .table-wrap table.t{min-width:420px}.eg-cnt span{font-size:8.5px;letter-spacing:.3px}.eg-ev{grid-template-columns:24px minmax(0,1fr) auto}}
 `);
 
   /* ------------------------------------------------------------------
@@ -197,7 +198,7 @@
       contract: { ref: 'CTR-2019-0412', value: '€2.4 M / year', renewal: 'Jun 2027', clauses: 'Audit right yes · 24 h incident notice no · exit assistance 6 months' },
       assets: ['mft-prd-01 · SFTP flow "payroll-out" (monthly, 38k records)', 'HR data hub · API read-only', 'Payroll approval workflow (Group HR)'],
       graph: { edges: 46, docs: 312 },
-      meeting: { title: 'Quarterly service review · Atlas Payroll', when: 'Thu 15 Oct · 10:00', where: 'Teams + Atlas Lyon office', attendees: 'Atlas CISO, Group HR payroll lead, Third-party risk lead, Business CISO' },
+      meeting: { title: 'Quarterly service review · Atlas Payroll', when: 'Thu 15 Oct · 10:00', where: 'Video call + Atlas Lyon office', attendees: 'Atlas CISO, Group HR payroll lead, Third-party risk lead, Business CISO' },
       history: [
         { d: '24 Sep 2026', ic: 'users', t: 'Quarterly service review: payroll run SLA 99.7%, security score stable at 64.' },
         { d: '02 Jul 2026', ic: 'file', t: 'Annual DORA questionnaire answered: 11 findings, 3 open (MFA on admin portal, log retention, exit plan).' },
@@ -214,9 +215,9 @@
     'tp-paycore': {
       contact: 'Supplier head of security · PayCore Processing', owner: 'p-marc', bizOwner: 'Payments & Treasury',
       contract: { ref: 'CTR-2017-0088', value: '€11.8 M / year', renewal: 'Dec 2027', clauses: 'Audit right yes · 4 h incident notice · tested exit plan (2025)' },
-      assets: ['mft-prd-01 · card clearing files (hourly)', 'SWIFT Alliance gateway', 'Card authorisation API'],
+      assets: ['mft-prd-01 · card clearing files (hourly)', 'Payment messaging gateway', 'Card authorisation API'],
       graph: { edges: 88, docs: 641 },
-      meeting: { title: 'Strategic supplier committee · PayCore', when: 'Tue 20 Oct · 14:00', where: 'Amsterdam + Teams', attendees: 'PayCore head of security, Head of Payments, Business CISO, Third-party risk lead' },
+      meeting: { title: 'Strategic supplier committee · PayCore', when: 'Tue 20 Oct · 14:00', where: 'Amsterdam + video call', attendees: 'PayCore head of security, Head of Payments, Business CISO, Third-party risk lead' },
       history: [
         { d: '30 Sep 2026', ic: 'users', t: 'Strategic supplier committee: PCI DSS 4.0 report shared, 0 open findings.' },
         { d: '12 Jun 2026', ic: 'shield', t: 'Joint resilience test (card clearing failover): RTO 38 min against 2 h target.' },
@@ -230,7 +231,7 @@
       contract: { ref: 'CTR-2021-0311', value: '€3.1 M / year', renewal: 'Mar 2027', clauses: 'Audit right yes · 24 h incident notice · no exit plan' },
       assets: ['mft-prd-01 · claims documents (daily)', 'Health data vault (pseudonymised)'],
       graph: { edges: 54, docs: 388 },
-      meeting: { title: 'Service review · ClaimsOne', when: 'Mon 19 Oct · 11:00', where: 'Teams', attendees: 'ClaimsOne CISO, Insurance operations lead, Third-party risk lead' },
+      meeting: { title: 'Service review · ClaimsOne', when: 'Mon 19 Oct · 11:00', where: 'Video call', attendees: 'ClaimsOne CISO, Insurance operations lead, Third-party risk lead' },
       history: [
         { d: '18 Sep 2026', ic: 'users', t: 'Service review: health data processing addendum signed (GDPR Art. 28).' },
         { d: '04 May 2026', ic: 'file', t: 'DORA questionnaire answered, score 77; exit plan missing.' }
@@ -243,7 +244,7 @@
       contract: { ref: 'CTR-2020-0190', value: '€0.9 M / year', renewal: 'Jan 2027', clauses: 'Confidentiality yes · no security annex' },
       assets: ['mft-prd-01 · litigation files (weekly)'],
       graph: { edges: 19, docs: 96 },
-      meeting: { title: 'Security follow-up · LexAdvisors', when: 'Wed 14 Oct · 16:00', where: 'Teams', attendees: 'LexAdvisors managing partner, Group Legal, Third-party risk lead' },
+      meeting: { title: 'Security follow-up · LexAdvisors', when: 'Wed 14 Oct · 16:00', where: 'Video call', attendees: 'LexAdvisors managing partner, Group Legal, Third-party risk lead' },
       history: [
         { d: 'Fri 9 Oct', ic: 'alert', t: 'External rating down 12 points; leaked credentials found on a paste site (case C-2279).' },
         { d: '14 Apr 2026', ic: 'file', t: 'DORA questionnaire answered late (21 days), score 70.' }
@@ -275,7 +276,7 @@
       requests: [
         { id: 'RQ-119', type: 'Exception', t: 'Postpone phishing-resistant MFA for 41 Treasury operators until January', from: 'Treasury desk', age: '6 d', ai: 'Not recommended: Treasury operators approve up to €5 M. Propose number matching by end of October as an interim step.' },
         { id: 'RQ-123', type: 'SaaS onboarding', t: 'Instant payments fraud scoring SaaS (real-time, EU hosted)', from: 'Payments product', age: '3 d', ai: 'TPRM Agent: critical function (DORA). Full due diligence and exit plan required before go-live.' },
-        { id: 'RQ-127', type: 'New project', t: 'SWIFT CSP 2027 attestation scope review', from: 'Payments IT', age: '5 d', ai: 'Controls Agent pre-mapped 27 of 32 controls from existing evidence.' }
+        { id: 'RQ-127', type: 'New project', t: 'Payment network security attestation 2027: scope review', from: 'Payments IT', age: '5 d', ai: 'Controls Agent pre-mapped 27 of 32 controls from existing evidence.' }
       ],
       projects: [{ n: 'Instant payments (SEPA Inst) at scale', ph: 'Build', st: 'on-track', note: 'Fraud and abuse cases reviewed with the BISO' }, { n: 'Payment hub segregation of duties', ph: 'Run', st: 'at-risk', note: 'Toxic combinations under review (C-2284)' }] },
     'bu-cib': { owner: 'Head of Corporate & Investment Banking', committee: 'CIB operational risk committee · Mon 26 Oct', suppliers: ['tp-swiftnet', 'tp-insight'],
@@ -298,7 +299,7 @@
       projects: [{ n: 'Portfolio management system upgrade', ph: 'Test', st: 'on-track', note: 'Privileged access reviewed' }] },
     'bu-it': { owner: 'Group CIO', committee: 'IT & Operations risk committee · Fri 23 Oct', suppliers: ['tp-nimbus', 'tp-atlas', 'tp-hrcloud', 'tp-docusafe', 'tp-shred', 'tp-fleet'],
       requests: [
-        { id: 'RQ-110', type: 'Exception', t: 'Windows Server 2012 R2 on 38 legacy servers until June 2027', from: 'Infrastructure', age: '21 d', ai: 'VulnOps Agent: 9 are internet reachable. Exception only for the 29 internal ones, with EDR enforced.' },
+        { id: 'RQ-110', type: 'Exception', t: 'End-of-life server OS on 38 legacy servers until June 2027', from: 'Infrastructure', age: '21 d', ai: 'VulnOps Agent: 9 are internet reachable. Exception only for the 29 internal ones, with EDR enforced.' },
         { id: 'RQ-111', type: 'New project', t: 'Move the payroll interface to an API (replace SFTP with Atlas)', from: 'HR IT', age: '18 d', ai: 'Would remove the FileBridge dependency for payroll. Recommend acceleration.' },
         { id: 'RQ-113', type: 'Access', t: 'Break-glass accounts for the cloud landing zone', from: 'Cloud team', age: '11 d', ai: 'IAM: 2 accounts, hardware keys, alerting on every use. Approve.' },
         { id: 'RQ-114', type: 'SaaS onboarding', t: 'IT asset discovery SaaS', from: 'IT operations', age: '9 d', ai: 'Feeds the security graph. Low risk, read-only connectors.' },
@@ -343,17 +344,33 @@
     'M-398': 'Retail Banking · monthly cyber risk review (September)\n\nRisk score 58 (down 1). Top risks: account takeover (credential stuffing blocked by W-112, 0.00% false positives) and mobile app fraud (2 new malware families targeting banking apps in the EU).\n\nDecisions needed at the next committee: SmartBudget SaaS onboarding (RQ-118) and the TLS 1.0 exception on ATM gateways (RQ-121).\n\nPrepared by the Controls & Evidence Agent, validated by the Business CISO.',
     'M-410': 'Dear security contact,\n\nA critical vulnerability in FileBridge MFT (CVE-2026-41877) is being exploited by the ransomware group COBALT LYNX against the financial sector. Our records show you use FileBridge to exchange files with Novalys.\n\n1. Which FileBridge version do you run? (we believe: {version})\n2. Is the vendor patch 9.1.4 applied? If not, when?\n3. Have you searched for the indicators attached?\n4. Have you seen any suspicious activity since 1 October?\n\nCritical suppliers: please answer within 24 hours.\n\nThird-Party Security, Novalys Group',
     'M-412': 'Dear Atlas Payroll security team,\n\nThank you for your quick answer. FileBridge 8.7 is exploitable through CVE-2026-41877 and COBALT LYNX is actively scanning for it.\n\nAs a precaution, the SFTP flow between Atlas Payroll and Novalys has been moved to a quarantine zone at 12:42: files are still received but scanned and held for manual release. This will remain until we confirm the patch.\n\nWe ask you to:\n1. install FileBridge 9.1.4 within 24 hours (by Wednesday 12:45);\n2. run the attached indicator search on your server and share the result;\n3. confirm in writing once done, so we can restore the normal flow.\n\nOur third-party risk lead will call you this afternoon to agree the plan.\n\nThird-Party Security, Novalys Group',
-    'M-415': 'To: Data protection authority · breach notification desk\nNotification under Article 33 GDPR (initial notification)\n\nController: Novalys Group (lead establishment).\nDPO: Data Protection Officer, dpo@novalys.example.\n\n1. Nature of the breach: unauthorised access to a Treasury employee account after an MFA fatigue attack, on Wednesday between 02:12 and 02:14. The attacker downloaded 37 files from the "Treasury · Beneficiaries" SharePoint library.\n2. Categories and approximate number: about 1,200 data subjects (payment beneficiaries, mostly corporate contacts); data: names, IBANs, bank names. No special category data.\n3. Likely consequences: risk of targeted payment fraud and phishing using the beneficiary data.\n4. Measures taken: sessions and tokens revoked at 02:14, malicious mailbox rule removed, attacker IP blocked, account suspended, 3 payments held for verification, phishing-resistant MFA being enforced for all payment approvers.\n5. Communication to data subjects: under assessment with the DPO; affected corporate clients will be contacted by their relationship managers.\n\nFurther information will be provided in phases (Art. 33(4)).',
+    'M-415': 'To: Data protection authority · breach notification desk\nNotification under Article 33 GDPR (initial notification)\n\nController: Novalys Group (lead establishment).\nDPO: Data Protection Officer, dpo@novalys.example.\n\n1. Nature of the breach: unauthorised access to a Treasury employee account after an MFA fatigue attack, on Wednesday between 02:12 and 02:14. The attacker downloaded 37 files from the "Treasury · Beneficiaries" library of the collaboration suite.\n2. Categories and approximate number: about 1,200 data subjects (payment beneficiaries, mostly corporate contacts); data: names, IBANs, bank names. No special category data.\n3. Likely consequences: risk of targeted payment fraud and phishing using the beneficiary data.\n4. Measures taken: sessions and tokens revoked at 02:14, malicious mailbox rule removed, attacker IP blocked, account suspended, 3 payments held for verification, phishing-resistant MFA being enforced for all payment approvers.\n5. Communication to data subjects: under assessment with the DPO; affected corporate clients will be contacted by their relationship managers.\n\nFurther information will be provided in phases (Art. 33(4)).',
     'M-416': 'Subject: 3 minutes: say no to the 23rd MFA push\n\nLast week, an attacker sent one of our colleagues 23 MFA notifications at 2 a.m. until one was accepted. This 3-minute module shows what happened (anonymised), why "push fatigue" works, and what to do: never approve a request you did not start, report it with one click, and switch to number matching today.\n\nAudience: 312 finance staff still using push MFA. Completion tracked per team; managers receive a summary on Friday.',
     'M-420': 'Dear provider,\n\nUnder the EU Digital Operational Resilience Act (Art. 28), Novalys keeps a register of its ICT arrangements, including the sub-contractors that support them.\n\nWe have pre-filled the sub-contracting chain we know for the services you provide. Please confirm or complete it in the supplier portal (rank 1 and rank 2 sub-contractors, country, data location) within 10 business days.\n\nThis request uses the standard template approved by Engage (standing approval SA-2026-07).\n\nThird-Party Security, Novalys Group'
   };
 
+  /* Earlier messages kept in the memory (read-only archive, before today). */
+  const ARCHIVE = [
+    { id: 'M-396', ts: 'Fri 16:05', party: 'tp-paycore', channel: 'Supplier portal', subject: 'Request: SOC 2 Type II report 2026', status: 'answered', author: 'ag-grc-tprm', validator: 'p-marc', _arch: true },
+    { id: 'M-394', ts: 'Fri 11:20', party: 'reg-sup', channel: 'Regulator portal', subject: 'Quarterly update: register of information quality (Q3)', status: 'sent', author: 'ag-grc-controls', validator: 'p-amira', _arch: true },
+    { id: 'M-392', ts: 'Thu 15:40', party: 'tp-atlas', channel: 'Supplier portal', subject: 'Reminder: MFA on the payroll admin portal (commitment due 30 Sep)', status: 'sent', author: 'ag-grc-tprm', validator: 'p-marc', _arch: true },
+    { id: 'M-390', ts: 'Thu 09:10', party: 'bu-ins', channel: 'Email', subject: 'Pre-assessment: telematics data platform (RQ-112)', status: 'answered', author: 'ag-grc-controls', validator: 'p-lucas', _arch: true },
+    { id: 'M-387', ts: 'Wed 14:30', party: 'staff', partyLabel: 'Executives and assistants (186)', channel: 'Learning platform', subject: 'Spot a deepfake CFO call (L-402 reminder)', status: 'sent', author: 'ag-grc-policy', validator: 'p-leo', _arch: true },
+    { id: 'M-385', ts: 'Wed 10:00', party: 'tp-claimsone', channel: 'Supplier portal', subject: 'Exit plan for the claims platform: proposed template', status: 'sent', author: 'ag-grc-tprm', validator: 'p-marc', _arch: true }
+  ];
+  BODIES['M-396'] = 'Dear PayCore security team,\n\nAs agreed at the strategic supplier committee of 30 September, could you share your SOC 2 Type II report for 2026 through the supplier portal by 31 October?\n\nThird-Party Security, Novalys Group';
+  BODIES['M-392'] = 'Dear Atlas Payroll security team,\n\nAt the service review of 24 September you committed to enforce MFA on the payroll admin portal by 30 September. Our external scan still shows password-only access. Could you confirm the new date?\n\nThird-Party Security, Novalys Group';
+  const allComms = () => CP.store.get('comms').concat(ARCHIVE.filter((a) => !CP.store.find('comms', a.id)));
+  const findComm = (id) => CP.store.find('comms', id) || ARCHIVE.find((a) => a.id === id);
   const SEQ = { n: 430 };
   const now = () => (CP.clock ? CP.clock.label() : 'Tue 08:30');
   const seedTp = (id) => (CP.data.seed.thirdParties || []).find((t) => t.id === id) || {};
   const critRank = { critical: 0, high: 1, medium: 2, low: 3 };
   const scoreCls = (s) => (s < 60 ? 'red' : s < 75 ? 'amber' : 'green');
   const hash = (s) => { let h = 7; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 9973; return h; };
+
+  /* Compact "who": avatar + role name (role names are self-explanatory). */
+  const whoS = (id) => '<span class="row" style="gap:7px;display:inline-flex;white-space:nowrap">' + ui.av(id, 'sm') + '<b style="font-weight:600">' + esc(CP.actor(id).name) + '</b></span>';
 
   function party(id) {
     if (!id) return null;
@@ -364,7 +381,7 @@
   }
   function partyLabel(m) { if (m.partyLabel) return m.partyLabel; const p = party(m.party); return p ? p.name : (m.party || ''); }
   function commsFor(id) {
-    return CP.store.get('comms').filter((m) => m.party === id || (COMM_PARTIES[m.id] || []).indexOf(id) >= 0);
+    return allComms().filter((m) => m.party === id || (COMM_PARTIES[m.id] || []).indexOf(id) >= 0);
   }
   function casesFor(id) { return CP.store.get('cases').filter((c) => (CASE_PARTIES[c.id] || []).indexOf(id) >= 0); }
   function regItemsFor(regId) { return CP.store.get('regulatory').filter((r) => REG_BY_NAME[r.regulator] === regId); }
@@ -380,7 +397,7 @@
       contract: { ref: 'CTR-20' + (16 + (h % 9)) + '-0' + (100 + (h % 800)), value: '€' + (0.3 + (h % 40) / 10).toFixed(1) + ' M / year', renewal: ['Mar', 'Jun', 'Sep', 'Dec'][h % 4] + ' 20' + (27 + (h % 2)), clauses: 'Audit right ' + (h % 3 ? 'yes' : 'no') + ' · ' + (t.criticality === 'critical' || t.criticality === 'high' ? '24 h' : '72 h') + ' incident notice' },
       assets: fbVersion(t) ? ['mft-prd-01 · file exchange (' + (t.dataShared || 'files') + ')'] : [t.products && t.products[0] ? t.products[0] + ' · ' + (t.dataShared || '') : 'No technical interconnection'],
       graph: { edges: 8 + (h % 40), docs: 30 + (h % 200) },
-      meeting: { title: 'Service review · ' + t.name, when: ['Mon 19 Oct · 10:00', 'Wed 21 Oct · 15:00', 'Tue 27 Oct · 11:00'][h % 3], where: 'Teams', attendees: t.name + ' security contact, ' + (bu ? CP.store.find('businessUnits', bu).name + ' service owner, ' : '') + 'Third-party risk lead' },
+      meeting: { title: 'Service review · ' + t.name, when: ['Mon 19 Oct · 10:00', 'Wed 21 Oct · 15:00', 'Tue 27 Oct · 11:00'][h % 3], where: 'Video call', attendees: t.name + ' security contact, ' + (bu ? CP.store.find('businessUnits', bu).name + ' service owner, ' : '') + 'Third-party risk lead' },
       history: [
         { d: t.lastAssessment || 'Mar 2026', ic: 'file', t: 'DORA questionnaire answered, score ' + seedTp(t.id).score + '.' },
         { d: 'Nov 2025', ic: 'users', t: 'Annual service review with the business owner.' }
@@ -483,7 +500,7 @@
     return '<aside class="eg-panel" data-tour="engage-party360" aria-label="Party 360">' + panelHead(p, tags) + srcStrip(m, '<span class="eg-chip">' + I('file') + ' TPRM · contracts</span>') +
       (live.alerts.length ? sec('What changed', alertsHtml(live.alerts), 'live') : '') +
       sec('Profile', '<dl class="kv"><dt>Service</dt><dd>' + esc(t.service) + '</dd><dt>Data shared</dt><dd>' + esc(t.dataShared || '') + '</dd><dt>Products</dt><dd>' + esc((t.products || []).join(', ')) + '</dd>' +
-        '<dt>Business owner</dt><dd>' + esc(m.bizOwner) + '</dd><dt>Contact</dt><dd>' + esc(m.contact) + '</dd><dt>Relationship</dt><dd>' + ui.who(m.owner) + '</dd>' +
+        '<dt>Business owner</dt><dd>' + esc(m.bizOwner) + '</dd><dt>Contact</dt><dd>' + esc(m.contact) + '</dd><dt>Relationship</dt><dd>' + whoS(m.owner) + '</dd>' +
         '<dt>Contract</dt><dd>' + esc(m.contract.ref + ' · ' + m.contract.value + ' · renewal ' + m.contract.renewal) + '</dd><dt>Clauses</dt><dd>' + esc(m.contract.clauses) + '</dd>' +
         '<dt>Sub-contractors</dt><dd>' + esc(t.subcontractors) + ' known (rank 1)</dd><dt>Exit plan</dt><dd>' + (t.exitPlan ? ui.status('done', 'Documented') : ui.status('overdue', 'Missing')) + '</dd><dt>Last assessment</dt><dd>' + esc(t.lastAssessment) + '</dd></dl>') +
       sec('Exposure in the graph', '<ul class="eg-tp" style="font-size:12.5px">' + CP.map(m.assets, (a) => '<li>' + esc(a) + '</li>') + '</ul>' + (v ? '<div class="small-txt muted" style="margin-top:4px">' + I('box') + ' FileBridge MFT ' + esc(v) + (/^9\.1/.test(v) && !(q.status === 'flagged') ? '' : ' · below 9.1.4') + '</div>' : '')) +
@@ -504,7 +521,7 @@
     return '<aside class="eg-panel" data-tour="engage-party360" aria-label="Party 360">' + panelHead(p, ui.tag(esc(r.fw), 'teal') + ui.tag('Since ' + esc(r.since), 'outline')) +
       srcStrip({ graph: { edges: 20 + items.length * 9, docs: 140 + items.length * 37 } }, '<span class="eg-chip">' + I('gavel') + ' Regulatory register</span>') +
       (alerts.length ? sec('What changed', alertsHtml(alerts), 'live') : '') +
-      sec('Relationship', '<dl class="kv"><dt>Authority</dt><dd>' + esc(r.full) + '</dd><dt>Main contact</dt><dd>' + esc(r.contact) + '</dd><dt>Relationship owner</dt><dd>' + ui.who('p-amira') + '</dd><dt>Climate</dt><dd>' + esc(r.rating) + '</dd></dl>') +
+      sec('Relationship', '<dl class="kv"><dt>Authority</dt><dd>' + esc(r.full) + '</dd><dt>Main contact</dt><dd>' + esc(r.contact) + '</dd><dt>Relationship owner</dt><dd>' + whoS('p-amira') + '</dd><dt>Climate</dt><dd>' + esc(r.rating) + '</dd></dl>') +
       sec('Upcoming deadlines', items.length ? CP.map(items, (x) => '<div class="eg-cm"><span>' + esc(x.item) + '<br><small>' + esc(x.framework) + ' · owner ' + esc((CP.person(x.owner) || {}).name || '') + ' · ' + CP.pct(x.total ? x.collected / x.total * 100 : 0) + ' evidence</small></span><span style="text-align:right">' + ui.status(x.status) + '<br><small class="num">' + esc(x.due) + '</small></span></div>') : '<div class="small-txt muted">No open item.</div>') +
       sec('Commitments made to this authority', cmHtml(cm)) +
       sec('Past inspections and reviews', CP.map(m.inspections, (x) => '<div class="eg-cm"><span>' + esc(x.t) + '<br><small>' + esc(x.d) + '</small></span><small>' + esc(x.r) + '</small></div>')) +
@@ -539,13 +556,14 @@
         pts.push('Ask for the CVE-2026-41877 answers on the spot: version, patch status, indicator search.');
       }
       if (q.gap || !t.exitPlan) pts.push('Exit plan: ' + (q.gap ? 'the supervisor will see that it is untested. ' : 'still missing. ') + 'Agree a desk test date before Q1 2027 (DORA Art. 28.8).');
-      if (m.commitments.some((c) => c.st === 'late')) pts.push('Follow up on late commitments: ' + m.commitments.filter((c) => c.st === 'late').map((c) => c.t.toLowerCase()).join('; ') + '.');
-      pts.push('Contract ' + m.contract.ref + ' renews ' + m.contract.renewal + ': plan the missing clauses now (' + m.contract.clauses.split(' · ').filter((x) => / no|72 h/.test(x)).join(', ') + (m.contract.clauses.indexOf(' no') < 0 ? 'none missing' : '') + ').');
+      if (m.commitments.some((c) => c.st === 'late')) pts.push('Follow up on late commitments: ' + m.commitments.filter((c) => c.st === 'late').map((c) => c.t.charAt(0).toLowerCase() + c.t.slice(1)).join('; ') + '.');
+      const miss = m.contract.clauses.split(' · ').filter((x) => / no$/.test(x)).map((x) => x.replace(/ no$/, ''));
+      pts.push('Contract ' + m.contract.ref + ' renews ' + m.contract.renewal + (miss.length ? ': negotiate the missing clauses now (' + miss.join(', ') + ').' : ': clauses complete, keep the audit right in use.'));
       asks.push('Updated sub-contracting chain for the DORA register.');
       raise.push('Questionnaire fatigue: remind them that pre-filled answers come from the platform and only changes are needed.');
     } else if (p.kind === 'bu') {
       const b = p.raw, mb = MEM_BU[b.id]; agent = 'ag-grc-controls'; nSrc = 21;
-      meet = { title: mb.committee.split(' · ')[0], when: mb.committee.split(' · ')[1], where: 'Business committee room + Teams', attendees: mb.owner + ', Business CISO, risk and compliance leads' };
+      meet = { title: mb.committee.split(' · ')[0], when: mb.committee.split(' · ')[1], where: 'Business committee room + video call', attendees: mb.owner + ', Business CISO, risk and compliance leads' };
       const reqs = mb.requests;
       summary = b.name + ': cyber risk score ' + b.riskScore + ' (trend ' + (b.trend[0] - b.riskScore > 0 ? 'down ' + (b.trend[0] - b.riskScore) + ' pts in 6 months' : 'stable') + '), ' + b.apps + ' applications, ' + reqs.length + ' open requests from the business.';
       casesFor(b.id).forEach((c) => since.push(c.opened + ' · ' + c.id + ' ' + c.title + ' (' + c.status + ')'));
@@ -627,14 +645,14 @@
     const pend = all.filter((a) => a.status === 'pending');
     const done = all.filter((a) => a.status !== 'pending').slice(0, 2);
     return '<div class="eg-dec" data-tour="engage-decisions">' +
-      (pend.length ? CP.map(pend, (a) => ui.decision(a, { pulse: true })) : '<div class="eg-dec-empty">' + I('checkCircle') + '<span>No decision waiting for Engage. Agents act alone below threshold; anything leaving the group (suppliers, regulators, press) comes here first.</span></div>') +
+      (pend.length ? CP.map(pend, (a) => ui.decision(a, { pulse: true })) : '<div class="eg-dec-empty">' + I('checkCircle') + '<span>' + (done.length ? 'No decision waiting. Recent Engage decisions below.' : 'No decision waiting for Engage. Agents act alone below threshold; anything leaving the group (suppliers, regulators, press) comes here first.') + '</span></div>') +
       CP.map(done, (a) => ui.decision(a)) + '</div>';
   }
 
   function commRowActions(m) {
     const gate = GATED[m.id] && CP.store.find('approvals', GATED[m.id]);
     if (m.status === 'awaiting' && gate && gate.status === 'pending') return '<button class="small" data-open-drawer>' + I('users') + ' Decide (' + esc(gate.id) + ')</button>';
-    if (m.status === 'awaiting') return '<div class="row" style="gap:6px"><button class="small" data-action="review" data-id="' + esc(m.id) + '">' + I('eye') + ' Review</button><button class="small go" data-action="validate" data-id="' + esc(m.id) + '">' + I('send') + ' Validate and send</button></div>';
+    if (m.status === 'awaiting') return '<div class="row" style="gap:6px;white-space:nowrap"><button class="small" data-action="review" data-id="' + esc(m.id) + '">' + I('eye') + ' Review</button><button class="small go" data-action="validate" data-id="' + esc(m.id) + '">' + I('send') + ' Validate and send</button></div>';
     if (m.status === 'draft') return '<button class="small" data-action="resubmit" data-id="' + esc(m.id) + '">' + I('rollback') + ' Resubmit</button>';
     return '<button class="small ghost" data-action="review" data-id="' + esc(m.id) + '">' + I('eye') + ' View</button>';
   }
@@ -719,7 +737,7 @@
       const attn = tps.filter((t) => ['flagged', 'overdue'].indexOf(t.questionnaire.status) >= 0 || t.questionnaire.gap || (t.criticality === 'critical' && !t.exitPlan) || t.score < 65).slice(0, 7);
       right = '<aside class="eg-panel" data-tour="engage-party360" aria-label="Party 360"><div class="eg-ph"><div class="eg-kind">' + I('compass') + 'Party 360 · stakeholder memory</div><h2>Everything we know, in one place</h2><div class="eg-sub">Pick a supplier: profile, contracts, data shared, exposure in the graph, questionnaire answers, score history, every message exchanged, open commitments, and a meeting brief written by the agent.</div></div>' +
         sec('Needs your attention', '<div class="eg-attn">' + CP.map(attn, (t) => '<button data-action="selTp" data-id="' + esc(t.id) + '"><span class="l"><b>' + esc(t.name) + '</b><small>' + esc(t.questionnaire.status === 'flagged' ? 'Flagged on ' + CAMPAIGN : t.questionnaire.status === 'overdue' ? 'Questionnaire overdue' : t.questionnaire.gap ? t.questionnaire.gap : t.score < 65 ? 'Score ' + t.score + ' (below 65)' : 'Critical, no exit plan') + '</small></span>' + I('chevronRight') + '</button>') + '</div>') +
-        sec('What the memory holds', '<dl class="kv"><dt>Parties</dt><dd>1,240 suppliers · 6 business units · 4 authorities</dd><dt>Messages</dt><dd>' + CP.fmt(18420 + CP.store.get('comms').length) + ' archived, 100% agent-drafted since June</dd><dt>Documents</dt><dd>41,300 contracts, answers and reports</dd><dt>Refresh</dt><dd>Graph sync every 15 min</dd></dl>') + '</aside>';
+        sec('What the memory holds', '<dl class="kv"><dt>Parties</dt><dd>1,240 suppliers · 6 business units · 4 authorities</dd><dt>Messages</dt><dd>' + CP.fmt(18420 + allComms().length) + ' archived, 100% agent-drafted since June</dd><dt>Documents</dt><dd>41,300 contracts, answers and reports</dd><dt>Refresh</dt><dd>Graph sync every 15 min</dd></dl>') + '</aside>';
     }
 
     return ui.head('Engage · Third parties', 'Third-party risk', 'One memory for 1,240 ICT suppliers. The TPRM Agent questions, reads and scores; the third-party risk lead validates what leaves the group.',
@@ -820,13 +838,11 @@
     const ap = CP.store.find('approvals', 'AP-RG-SUBMIT');
     const m420 = CP.store.find('comms', 'M-420');
     const b316 = CP.store.find('backlog', 'B-316'), b317 = CP.store.find('backlog', 'B-317');
-    const plan = gapsKnown ? ui.table([
-      { label: 'Gap', key: 'g' }, { label: 'Remediation', key: 'r' }, { label: 'Owner', render: (x) => ui.who(x.o) }, { label: 'Due', key: 'd' }, { label: 'Status', render: (x) => ui.status(x.s) }
-    ], [
+    const plan = gapsKnown ? '<div class="list">' + CP.map([
       { g: '31 sub-contracting chains missing', r: '12 providers asked to complete pre-filled chains' + (m420 ? ' (' + m420.id + ' sent)' : ''), o: 'p-marc', d: '15 Nov 2026', s: m420 ? 'in-progress' : 'new' },
       { g: '7 exit plans untested', r: 'Desk tests with business owners: Atlas Payroll, ClaimsOne, LedgerLine, SwiftNet and 3 others', o: 'p-lucas', d: 'Q1 2027', s: 'new' },
       { g: '2 late notifications (> 4 h)', r: 'Control monitor on the 4-hour deadline' + (b317 ? ' (' + b317.id + ')' : '') + ' and daily register refresh' + (b316 ? ' (' + b316.id + ')' : ''), o: 'p-raj', d: '30 Nov 2026', s: b317 ? 'in-progress' : 'new' }
-    ]) : '<div class="empty">Cross-checks running. Gaps will appear here before the supervisor sees them.</div>';
+    ], (x) => '<div class="list-item"><div class="li-main"><div class="li-title" style="color:var(--red-ink)">' + I('alert') + ' ' + esc(x.g) + '</div><div class="li-sub">' + esc(x.r) + '</div><div class="row wrap small-txt" style="margin-top:6px;gap:8px">' + whoS(x.o) + '<span class="muted">due ' + esc(x.d) + '</span></div></div>' + ui.status(x.s) + '</div>') + '</div>' : '<div class="empty">Cross-checks running. Gaps will appear here before the supervisor sees them.</div>';
     const pct = req.collected / req.total * 100;
     return ui.card(I('gavel') + ' Supervisory request · evidence pack', '<div class="grid g-3-2"><div>' +
       '<div class="row wrap" style="margin-bottom:10px">' + ui.status(req.status) + '<span class="small-txt muted">Received Mon 13 Oct · due ' + esc(req.due) + ' (5 business days) · owner Head of Engage</span></div>' +
@@ -864,7 +880,7 @@
       { label: 'Framework', render: (x) => ui.tag(esc(x.framework), 'teal') },
       { label: 'Item', render: (x) => '<span class="eg-name"><b>' + esc(x.item) + '</b><small>' + esc(x.regulator) + ' · ' + esc(x.id) + '</small></span>' },
       { label: 'Due', render: (x) => '<span class="num">' + esc(x.due) + '</span>' },
-      { label: 'Owner', render: (x) => ui.who(x.owner) },
+      { label: 'Owner', render: (x) => whoS(x.owner) },
       { label: 'Evidence', w: '150px', render: (x) => '<div class="small-txt num" style="margin-bottom:3px">' + CP.fmt(x.collected) + ' / ' + CP.fmt(x.total) + '</div>' + ui.progress(x.collected / x.total * 100, x.status === 'at-risk' ? 'amber' : x.status === 'submitted' ? 'green' : '') },
       { label: 'Status', render: (x) => ui.status(x.status) }
     ], items, { rowClass: (x) => 'clickable' + (REG_BY_NAME[x.regulator] === r.id ? ' sel' : ''), rowAttrs: (x) => 'data-action="selReg" data-id="' + esc(REG_BY_NAME[x.regulator] || 'reg-sup') + '"' });
@@ -924,6 +940,7 @@
       map.clients = st('todo', '1,200 beneficiaries: letter HS-04 drafted, DPO to decide on Art. 34.');
       map.staff = m416 ? st('done', 'Micro-training M-416 sent to 312 finance staff.') : st('todo', 'Treasury desk note HS-03 ready for 08:30.');
       map.press = st('todo', 'Reactive line on file; no media interest detected.');
+      map.biz = st('done', 'Head of Treasury in the loop for the payment decision; Payments BISO briefed.');
     }
     return [
       ['excom', 'ExCom and CISO', 'users'], ['biz', 'Business owners', 'building'], ['dpo', 'DPO', 'lock'], ['reg', 'Regulators', 'gavel'],
@@ -973,7 +990,7 @@
       }), { sub: 'Agents draft from the facts in the case; nothing leaves without Engage' }) +
       '</div><div class="stack">' +
       ui.card('Crisis timeline', tl.length ? ui.feed(tl, 8) : '<div class="empty">No incident timeline. During an incident, every agent action and human decision lands here, time-stamped.</div>', { sub: 'Shared log of the incident' }) +
-      ui.card('On-call roster · week 42', '<div class="list">' + CP.map([['Crisis manager on duty', 'p-tom'], ['Deputy (business)', 'p-lucas'], ['CISO', 'p-elena'], ['DPO', 'p-sara'], ['Run supervisor', 'p-chloe'], ['Business owner, payments', 'p-hugo']], (x) => '<div class="list-item"><div class="li-main"><div class="li-sub">' + esc(x[0]) + '</div></div>' + ui.who(x[1]) + '</div>') +
+      ui.card('On-call roster · week 42', '<div class="list">' + CP.map([['Crisis manager on duty', 'p-tom'], ['Deputy (business)', 'p-lucas'], ['CISO', 'p-elena'], ['DPO', 'p-sara'], ['Run supervisor', 'p-chloe'], ['Business owner, payments', 'p-hugo']], (x) => '<div class="list-item"><div class="li-main"><div class="li-sub">' + esc(x[0]) + '</div></div>' + whoS(x[1]) + '</div>') +
         '<div class="list-item"><div class="li-main"><div class="li-sub">Group communications</div></div><b class="small-txt">Comms duty officer (on call)</b></div></div>', { sub: 'Paged by the orchestrator when a decision needs them' }) +
       ui.card('Next crisis exercise', '<div class="eyebrow" style="margin-bottom:4px">Thu 5 Nov 2026 · 09:00 to 12:30</div><h3 style="margin:0 0 6px">Operation Black Ledger</h3><p class="small-txt" style="margin:0 0 10px">Ransomware on the payments chain with a supplier twist. ExCom and crisis cell, run in CrisisMaker. Injects drafted by the platform from real cases' + (CP.store.find('cases', 'C-2301') ? ' (C-2301' + (CP.store.find('cases', 'C-2302') ? ', C-2302' : '') + ')' : '') + '.</p>' +
         '<div class="row between small-txt"><span>Preparation</span><b class="num">' + (60 + (CP.store.find('cases', 'C-2301') ? 10 : 0) + (CP.store.find('cases', 'C-2302') ? 10 : 0)) + '%</b></div>' + ui.progress(60 + (CP.store.find('cases', 'C-2301') ? 10 : 0) + (CP.store.find('cases', 'C-2302') ? 10 : 0)) +
@@ -1043,16 +1060,16 @@
      ------------------------------------------------------------------ */
   function renderComms() {
     const S = this.ui;
-    const all = CP.store.get('comms');
+    const all = allComms();
     const f = S.out || 'all';
     const rows = all.filter((m) => f === 'all' || m.status === f);
     const n = (s) => all.filter((m) => m.status === s).length;
     const table = ui.table([
       { label: 'Time', render: (m) => '<span class="num small-txt mono">' + esc(m.ts) + '</span>' },
-      { label: 'Message', render: (m) => '<span class="eg-name"><b>' + esc(m.subject) + '</b><small>' + esc(m.id) + ' · ' + esc(m.channel) + (m.scenario ? ' · ' + esc((CP.scenarioById(m.scenario) || {}).n || '') : '') + '</small></span>' },
+      { label: 'Message', render: (m) => '<span class="eg-name" style="display:block;min-width:240px"><b>' + esc(m.subject) + '</b><small>' + esc(m.id) + ' · ' + esc(m.channel) + (m.scenario ? ' · ' + esc((CP.scenarioById(m.scenario) || {}).n || '') : '') + '</small></span>' },
       { label: 'Party', render: (m) => { const p = party(m.party); return p ? '<a href="#/engage/' + (p.kind === 'tp' ? 'thirdparties' : p.kind === 'bu' ? 'business' : 'regulators') + '?id=' + esc(p.id) + '">' + esc(partyLabel(m)) + '</a>' : '<span>' + esc(partyLabel(m)) + '</span>'; } },
-      { label: 'Drafted by', render: (m) => ui.who(m.author) },
-      { label: 'Validator', render: (m) => m.validator ? ui.who(m.validator) : '<span class="muted">Standing approval</span>' },
+      { label: 'Drafted by', render: (m) => whoS(m.author) },
+      { label: 'Validator', render: (m) => m.validator ? whoS(m.validator) : '<span class="muted">Standing approval</span>' },
       { label: 'Status', render: (m) => ui.status(m.status) + (GATED[m.id] ? '<div class="small-txt muted" style="margin-top:3px">gate ' + esc(GATED[m.id]) + '</div>' : '') },
       { label: '', render: commRowActions }
     ], rows, { empty: 'No message with this status.' });
@@ -1063,8 +1080,8 @@
       ui.metric({ label: 'Sent this week', icon: 'send', value: String(212 + n('sent') + n('answered')), foot: '100% drafted by agents' }) +
       ui.metric({ label: 'Median validation time', icon: 'clock', value: '6', unit: 'min', delta: '-3 h', deltaDir: 'up', foot: 'vs manual drafting' }) +
       ui.metric({ label: 'Answer rate', icon: 'message', value: '91', unit: '%', foot: 'suppliers within deadline (was 54%)' }) + '</div>' +
-      '<div class="grid g-2-1"><div>' + ui.card('Messages', '<div class="pill-tabs" style="margin-bottom:12px">' + pill('all', 'All · ' + all.length) + pill('awaiting', 'Awaiting · ' + n('awaiting')) + pill('draft', 'Draft · ' + n('draft')) + pill('sent', 'Sent · ' + n('sent')) + pill('answered', 'Answered · ' + n('answered')) + '</div>' + table, { sub: 'Store comms: suppliers, regulators, business units, staff' }) + '</div>' +
-      '<div class="stack">' + ui.card('Who validates what', CP.map([
+      '<div class="stack">' + ui.card('Messages', '<div class="pill-tabs" style="margin-bottom:12px">' + pill('all', 'All · ' + all.length) + pill('awaiting', 'Awaiting · ' + n('awaiting')) + pill('draft', 'Draft · ' + n('draft')) + pill('sent', 'Sent · ' + n('sent')) + pill('answered', 'Answered · ' + n('answered')) + '</div>' + table, { sub: 'Store comms and the archive: suppliers, regulators, business units, staff' }) +
+      '<div class="grid g2">' + ui.card('Who validates what', CP.map([
         ['send', 'Suppliers (portal, phone)', 'Third-party risk lead · L1', 'Standing approval for the DORA sub-contracting template (SA-2026-07).'],
         ['gavel', 'Regulators and authorities', 'Head of Engage · L1', 'CISO co-signs any disclosure of a gap.'],
         ['building', 'Business units', 'Business CISO · L1', 'Monthly reviews pre-approved by format.'],
@@ -1085,12 +1102,12 @@
     return b;
   }
   function openReview(id) {
-    const m = CP.store.find('comms', id); if (!m) return;
+    const m = findComm(id); if (!m) return;
     const gate = GATED[m.id] && CP.store.find('approvals', GATED[m.id]);
     const from = m.channel === 'Regulator portal' ? 'Head of Engage · Compliance & regulators, Novalys Group' : m.channel === 'Learning platform' ? 'Cyber Culture team <cyberculture@novalys.example>' : m.channel === 'Supplier portal' || m.channel === 'Phone + portal' ? 'Novalys Third-Party Security <tprm@novalys.example>' : 'Novalys Cyber <cyber@novalys.example>';
-    const body = '<div class="row wrap" style="margin-bottom:12px">' + ui.status(m.status) + ui.tag(esc(m.channel), 'outline') + '<span class="small-txt muted">' + esc(m.id) + ' · ' + esc(m.ts) + '</span><span class="spacer"></span><span class="small-txt">Drafted by</span>' + ui.who(m.author) + (m.validator ? '<span class="small-txt">Validator</span>' + ui.who(m.validator) : '') + '</div>' +
+    const body = '<div class="row wrap" style="margin-bottom:12px">' + ui.status(m.status) + ui.tag(esc(m.channel), 'outline') + '<span class="small-txt muted">' + esc(m.id) + ' · ' + esc(m.ts) + '</span><span class="spacer"></span><span class="small-txt">Drafted by</span>' + whoS(m.author) + (m.validator ? '<span class="small-txt">Validator</span>' + whoS(m.validator) : '') + '</div>' +
       '<div class="eg-mail"><div class="eg-mh"><div><span>From</span>' + esc(from) + '</div><div><span>To</span>' + esc(partyLabel(m)) + '</div><div><span>Subject</span><b>' + esc(m.subject) + '</b></div></div><div class="eg-mb">' + esc(commBody(m)) + '</div></div>' +
-      (m.status === 'awaiting' ? '<div class="notice info" style="margin-top:12px">' + I('bot') + ' Checks by the platform: facts traced to ' + (m.scenario === 'identity' ? 'case C-2302 and the SharePoint audit log' : m.scenario === 'cti' ? 'case C-2301 and the security graph' : 'the Party 360 memory') + ' · no confidential indicator leaked · tone policy passed · recipient verified in the directory.</div>' : '') +
+      (m.status === 'awaiting' ? '<div class="notice info" style="margin-top:12px">' + I('bot') + ' Checks by the platform: facts traced to ' + (m.scenario === 'identity' ? 'case C-2302 and the collaboration suite audit log' : m.scenario === 'cti' ? 'case C-2301 and the security graph' : 'the Party 360 memory') + ' · no confidential indicator leaked · tone policy passed · recipient verified in the directory.</div>' : '') +
       (m.validatedBy ? '<div class="small-txt muted" style="margin-top:10px">Validated by ' + esc((CP.person(m.validatedBy) || {}).name || '') + ' at ' + esc(m.validatedAt || '') + '</div>' : '');
     let foot = '<button data-close-modal>Close</button>';
     if (m.status === 'awaiting' && gate && gate.status === 'pending') foot = '<button data-close-modal>Close</button><button class="primary" data-open-drawer>' + I('users') + ' Decide in the decisions drawer</button>';
@@ -1126,7 +1143,7 @@
         ] },
         { label: 'WORKSPACE', tabs: [{ id: 'comms', label: 'Outbox', icon: 'send', count: awaiting || '', warn: true }] }
       ];
-      const right = ui.av('p-amira', 'sm') + '<span>Head of Engage · Compliance & regulators</span>' + (pendE ? '<span class="tag amber" style="cursor:pointer" data-open-drawer>' + pendE + ' decision' + (pendE > 1 ? 's' : '') + '</span>' : '');
+      const right = ui.av('p-amira', 'sm') + '<span>' + esc(CP.person('p-amira').name) + '</span>';
       const R = { thirdparties: renderThirdParties, business: renderBusiness, regulators: renderRegulators, crisis: renderCrisis, culture: renderCulture, comms: renderComms }[sub] || renderThirdParties;
       return ui.tabbar('engage', groups, sub, right) + '<div class="eg">' + R.call(this, route) + '</div>';
     },
@@ -1170,10 +1187,10 @@
       ask(el) {
         const id = el.dataset.id; const p = party(id); const d = askDraft(id);
         CP.modal(I('message') + ' Ask a question · ' + esc(p.name),
-          '<div class="row wrap" style="margin-bottom:10px">' + ui.who(d.author) + '<span class="small-txt muted">drafted this from the Party 360 memory in 3 s · channel ' + esc(d.channel) + ' · validator</span>' + ui.who(d.validator) + '</div>' +
+          '<div class="row wrap" style="margin-bottom:10px">' + whoS(d.author) + '<span class="small-txt muted">drafted this from the Party 360 memory in 3 s · channel ' + esc(d.channel) + ' · validator</span>' + whoS(d.validator) + '</div>' +
           '<label class="small-txt muted" for="eg-ask-subj">Subject</label><input id="eg-ask-subj" style="width:100%;border:1px solid var(--line);padding:8px 10px;margin:4px 0 10px" value="' + esc(d.subject) + '">' +
           '<label class="small-txt muted" for="eg-ask-body">Message (edit freely)</label><textarea id="eg-ask-body" class="eg-textarea">' + esc(d.text) + '</textarea>' +
-          '<div class="notice info" style="margin-top:10px">' + I('lock') + ' External communication is L1: the message goes to the Outbox and leaves only once ' + esc((CP.person(d.validator) || {}).name || '') + ' validates it.</div>',
+          '<div class="notice info" style="margin-top:10px">' + I('lock') + ' External communication is L1: the message goes to the Outbox and leaves only once the ' + esc(((CP.person(d.validator) || {}).name || '').toLowerCase()) + ' validates it.</div>',
           '<button data-close-modal>Cancel</button><button class="primary" data-action="askSubmit" data-id="' + esc(id) + '">' + I('send') + ' Submit for validation</button>');
       },
       askSubmit(el) {
@@ -1184,7 +1201,7 @@
         BODIES[mid] = body;
         CP.store.apply({ op: 'add', coll: 'comms', item: { id: mid, ts: now(), party: id, channel: d.channel, subject: subj, status: 'awaiting', author: d.author, validator: d.validator } });
         CP.feed({ actor: d.author, domain: 'grc', level: 'action', text: 'drafted ' + mid + ' to ' + p.name + ' ("' + subj + '"), awaiting validation.' });
-        CP.closeModal(); CP.toast(mid + ' queued in the Outbox for ' + ((CP.person(d.validator) || {}).name || 'validation') + '.');
+        CP.closeModal(); CP.toast(mid + ' queued in the Outbox for the ' + ((CP.person(d.validator) || {}).name || 'validator').toLowerCase() + '.');
       },
       review(el) { openReview(el.dataset.id); },
       validate(el) {
@@ -1223,7 +1240,7 @@
       hsReview(el) {
         const h = HOLDING.find((x) => x.id === el.dataset.id); if (!h) return;
         const ok = this.ui.hs[h.id];
-        CP.modal(I('megaphone') + ' ' + esc(h.t), '<div class="row wrap" style="margin-bottom:10px">' + ui.who(h.agent) + '<span class="small-txt muted">for ' + esc(h.who) + (h.cs ? ' · case ' + esc(h.cs) : '') + '</span></div><div class="eg-mail"><div class="eg-mb">' + esc(h.x) + '</div></div>' +
+        CP.modal(I('megaphone') + ' ' + esc(h.t), '<div class="row wrap" style="margin-bottom:10px">' + whoS(h.agent) + '<span class="small-txt muted">for ' + esc(h.who) + (h.cs ? ' · case ' + esc(h.cs) : '') + '</span></div><div class="eg-mail"><div class="eg-mb">' + esc(h.x) + '</div></div>' +
           '<div class="notice info" style="margin-top:10px">' + I('bot') + ' Facts checked against the case. No supplier named, no technical indicator, no unconfirmed figure. Legal pre-approved wording family: "cyber event, under control".</div>',
           '<button data-close-modal>Close</button>' + (ok ? '' : '<button class="go" data-action="hsValidate" data-id="' + esc(h.id) + '">' + I('check') + ' Validate</button>'));
       },
@@ -1235,7 +1252,7 @@
       },
       inform(el) {
         const key = el.dataset.id;
-        const map = { press: ['HS-01', 'Press desk'], clients: ['HS-04', '1,200 beneficiaries'], staff: ['HS-03', 'Treasury staff (41)'], sup: [null, 'Suppliers'], excom: [null, 'ExCom'], reg: [null, 'Regulators'], dpo: [null, 'DPO'], biz: [null, 'Business owners'] };
+        const map = { press: [CP.store.find('cases', 'C-2301') ? 'HS-01' : 'HS-00', 'Press desk'], clients: ['HS-04', '1,200 beneficiaries'], staff: ['HS-03', 'Treasury staff (41)'], sup: [null, 'Suppliers'], excom: [null, 'ExCom'], reg: [null, 'Regulators'], dpo: [null, 'DPO'], biz: [null, 'Business owners'] };
         const hs = map[key] && map[key][0] && HOLDING.find((x) => x.id === map[key][0]);
         if (hs) { this.actions.hsReview.call(this, { dataset: { id: hs.id } }); return; }
         const mid = 'M-' + (++SEQ.n);
@@ -1246,7 +1263,7 @@
       playbook(el) {
         const p = PLAYBOOKS[+el.dataset.id || 0];
         const steps = ['Qualify the event and the crisis level (orchestrator proposes, crisis manager confirms)', 'Page the on-call roster and open the crisis room', 'Freeze evidence and start the incident timeline (agents)', 'Map impacted services, suppliers and data in the graph', 'Decide containment above threshold (CISO, business owner)', 'Draft stakeholder messages: ExCom, DPO, regulators, clients, press (agents draft, Engage validates)', 'Regulatory clocks: DORA 4 h / 72 h, GDPR 72 h, NIS2 24 h', 'Recovery, lessons learned and playbook update'];
-        CP.modal(I('book') + ' Playbook · ' + esc(p[0]), '<div class="row wrap" style="margin-bottom:12px"><span class="small-txt muted">Owner</span>' + ui.who(p[1]) + '<span class="small-txt muted">· last exercised ' + esc(p[2]) + ' · last used ' + esc(p[3]) + ' · ' + p[4] + '% of steps automated</span></div><ol class="eg-tp">' + CP.map(steps, (s, i) => '<li>' + esc(s) + (i === 2 || i === 3 || i === 5 ? ' ' + ui.tag(I('bot') + ' agents', 'teal') : i === 4 ? ' ' + ui.tag(I('users') + ' humans decide', 'amber') : '') + '</li>') + '</ol>',
+        CP.modal(I('book') + ' Playbook · ' + esc(p[0]), '<div class="row wrap" style="margin-bottom:12px"><span class="small-txt muted">Owner</span>' + whoS(p[1]) + '<span class="small-txt muted">· last exercised ' + esc(p[2]) + ' · last used ' + esc(p[3]) + ' · ' + p[4] + '% of steps automated</span></div><ol class="eg-tp">' + CP.map(steps, (s, i) => '<li>' + esc(s) + (i === 2 || i === 3 || i === 5 ? ' ' + ui.tag(I('bot') + ' agents', 'teal') : i === 4 ? ' ' + ui.tag(I('users') + ' humans decide', 'amber') : '') + '</li>') + '</ol>',
           '<button data-close-modal>Close</button><button class="primary" data-action="exercise">' + I('play') + ' Exercise it in CrisisMaker</button>');
       },
       exercise() {

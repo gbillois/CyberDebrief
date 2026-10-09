@@ -31,7 +31,7 @@
     N.push({ id: 'out-reg', x: 20, y: 420, w: 170, h: 84, kind: 'ext', label: 'Regulators', sub: 'DORA, NIS2, AI Act' });
     PEOPLE.forEach((p, i) => N.push({ id: p[0], x: 1410, y: 160 + i * 96, w: 170, h: 80, kind: 'human', label: p[1], person: p[2] }));
     N.push({ id: 'cyber', x: 240, y: 22, w: 550, h: 76, kind: 'sys', label: 'CYBER SYSTEMS & TOOLS', sub: 'EDR, FW, Proxy, WAF, IAM…' });
-    N.push({ id: 'it', x: 830, y: 22, w: 540, h: 76, kind: 'sys', label: 'IT SYSTEMS & BUS. APPS', sub: 'CMDB, AD/Entra, Data Lake…' });
+    N.push({ id: 'it', x: 830, y: 22, w: 540, h: 76, kind: 'sys', label: 'IT SYSTEMS & BUS. APPS', sub: 'CMDB, directory, cloud, data lake…' });
     N.push({ id: 'orch', x: 250, y: 186, w: 1100, h: 104, kind: 'orch', label: 'AI CYBER ORCHESTRATOR', sub: '& Integration layer', desc: 'Assigns the work, enforces decision rights, escalates' });
     N.push({ id: 'humans', x: 920, y: 210, w: 200, h: 56, kind: 'pill', label: 'HUMANS DECIDE', sub: '(above threshold)' });
     N.push({ id: 'safety', x: 1136, y: 210, w: 200, h: 56, kind: 'pill2', label: 'SANDBOX, KILL-SWITCH', sub: '& ROLLBACK' });
@@ -49,7 +49,7 @@
     N.push({ id: 'out-reg', x: 20, y: 390, w: 170, h: 80, kind: 'ext', label: 'Regulator portals', sub: 'notifications, evidence' });
     PEOPLE.forEach((p, i) => N.push({ id: p[0], x: 1410, y: 190 + i * 96, w: 170, h: 80, kind: 'human', label: p[1], person: p[2] }));
     const sys = [['sys-edr', 'EDR'], ['sys-siem', 'SIEM'], ['sys-waf', 'WAF'], ['sys-fw', 'Firewall'], ['sys-proxy', 'Proxy'], ['sys-mail', 'Mail gateway'], ['sys-vuln', 'Vuln scanner'], ['sys-pam', 'PAM']];
-    const it = [['it-cmdb', 'CMDB'], ['it-entra', 'AD / Entra ID'], ['it-itsm', 'ITSM'], ['it-m365', 'M365 / SharePoint'], ['it-apps', 'Business apps'], ['it-hr', 'HR system']];
+    const it = [['it-cmdb', 'CMDB'], ['it-entra', 'Directory / IdP'], ['it-itsm', 'ITSM'], ['it-m365', 'Collaboration suite'], ['it-apps', 'Business apps'], ['it-hr', 'HR system']];
     N.push({ id: 'g-cyber', x: 240, y: 14, w: 550, h: 122, kind: 'group', label: 'CYBER SYSTEMS & TOOLS' });
     N.push({ id: 'g-it', x: 830, y: 14, w: 540, h: 122, kind: 'group', label: 'IT SYSTEMS & BUSINESS APPS' });
     sys.forEach((s, i) => N.push({ id: s[0], x: 254 + (i % 4) * 132, y: 44 + Math.floor(i / 4) * 44, w: 124, h: 36, kind: 'sys', label: s[1], parent: 'cyber' }));
@@ -112,7 +112,7 @@
     'out-tp': ['Outside world', 'Third parties reached through the supplier portal: questionnaires, evidence, answers. Every message leaving the group is validated by Engage (L1), unless a standing approval exists.'],
     'out-reg': ['Outside world', 'Supervisors and authorities: DORA, NIS2, AI Act, GDPR. Requests come in, evidence and notifications go out, always signed off by a human.'],
     cyber: ['Systems', 'The security tools the platform reads (alerts, logs, configurations) and drives (rules, blocks, isolation) through APIs and MCP servers. Agents never touch them directly: orders go through deterministic executors.'],
-    it: ['Systems', 'The IT and business systems that give context and receive changes: CMDB, Entra ID, ITSM, M365, business applications, HR. Changes follow the change process, raised by the platform.'],
+    it: ['Systems', 'The IT and business systems that give context and receive changes: CMDB, identity provider, ITSM, collaboration suite, cloud, business applications, HR. Changes follow the change process, raised by the platform.'],
     orch: ['Platform core', 'The AI cyber orchestrator: receives events, plans the response, assigns tasks to agents, checks the decision rights of every action and escalates to humans above threshold. With the integration layer, it is the only path between agents and systems.'],
     humans: ['Governance', 'Above a threshold (blast radius, reversibility, money, external exposure, novelty, low confidence), the orchestrator stops and asks the person who holds the decision right, with a ready-to-execute option and a recommendation.'],
     safety: ['Safety layer', 'Every change is first replayed in a sandbox (digital twin). Every action has a rollback point. Any agent, domain or the whole fleet can be dropped to suggest-only with a kill-switch.'],
@@ -590,5 +590,5 @@
 
   CP.screen({ id: 'arch-simple', part: 1, label: 'Simple view', icon: 'layers', live: false, render() { return renderArch(true); }, mount: mountArch, actions });
   CP.screen({ id: 'arch-full', part: 1, label: 'Detailed view', icon: 'network', live: false, render() { return renderArch(false); }, mount: mountArch, actions });
-  CP.arch = { simpleLayout, fullLayout, info };
+  CP.arch = { simpleLayout, fullLayout, info, drawSvg };
 })();

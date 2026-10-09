@@ -502,3 +502,5 @@ main.view{padding-top:0}
   .scn-card{padding:14px}
 }
 @media(max-width:380px){.mode-switch>a .i,.mode-switch>.mode-pf>button>.i{display:none}}
+svg.arch.dim .n-box{opacity:.32}
+svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
