@@ -38,7 +38,7 @@
       const screen = inConsole ? step.see[0] : (i % 3 === 2 ? 'arch-full' : 'arch-simple');
       const sub = inConsole ? step.see[1] : null;
       let hl = null;
-      if (inConsole) hl = step.gate ? 'decision-' + step.gate.approval.id : (HOOKS[screen + '/' + (sub || '')] || 'tab-' + screen + '-' + sub);
+      if (inConsole) hl = screen === 'owner' ? 'owner-phone' : step.gate ? 'decision-' + step.gate.approval.id : (HOOKS[screen + '/' + (sub || '')] || 'tab-' + screen + '-' + sub);
       else hl = step.gate ? 'arch-caption' : 'arch-stage';
       stops.push({
         kicker: s.n + ' · Step ' + (i + 1) + ' of ' + s.steps.length + (inConsole ? ' · seen in ' + (CP.screens[screen] || {}).label : ' · ' + (screen === 'arch-full' ? 'detailed view' : 'simple view')),
@@ -53,12 +53,21 @@
     const intro = { kicker: 'Guided demo', title: 'One platform, one context, many agents', text: 'You will follow one real-world trigger through the platform. On the architecture you see how the concept works; in the consoles you see what each role of the new organisation sees and decides. Use Next (or →), and approve decisions yourself when a human is needed.', screen: 'home', hl: 'part1', run: () => { CP.player.stop(); CP.store.reset(); } };
     if (id === 'full') {
       const s = CP.scenarioById('cti');
+      const steps = scenarioStops(s);
+      const keepRun = () => { const st = CP.player.status(); if (st.waiting) CP.decide(st.waiting, 'approve'); };
       const ptour = { kicker: 'Guided demo · the components', title: 'A tour of the platform', text: 'Before the scenario, the building blocks: the systems around the platform, the orchestrator, the specialized agents, the shared graph and data lake, the humans who decide and the safety layer. The full tour is in Part 1 (13 stops); here is the big picture.', screen: 'platform-tour', hl: 'ptour-stage' };
-      return [intro, ptour].concat(scenarioStops(s)).concat([
-        { kicker: 'Value', title: 'What the CISO gets', text: 'A case that used to take 3 to 5 days and 46 hours of expert effort was handled in about 4 hours, with 5 human hours and two decisions. The CISO sees the value, the decisions taken and the residual risk in one place.', screen: 'ciso', sub: 'value', hl: 'ciso-value', run: () => { const st = CP.player.status(); if (st.waiting) CP.decide(st.waiting, 'approve'); } },
-        { kicker: 'Organisation', title: 'The teams behind the platform', text: 'Engage speaks to the outside, Build codes and evolves the agents, Run supervises and controls costs, Trust & Challenge tests everything. Each has its console: switch role with the dropdown on "The platform".', screen: 'ciso', sub: 'org', hl: 'ciso-org' },
-        { kicker: 'Who watches the agents?', title: 'Build evolves, Trust & Challenge checks', text: 'Agents are products: versioned, evaluated, red-teamed, released through gates. Scenario S4 shows an agent fooled by hidden instructions, caught by deviation hunt, switched off, fixed and restored. Play it from the Showcase page.', screen: 'build', sub: 'studio', hl: 'build-studio' },
-        { kicker: 'End of the guided demo', title: 'Explore freely', text: 'Play the other scenarios on the simple or detailed view, open any console with the role picker, and use the Decisions button to act as the humans who decide.', screen: 'demo', hl: null, run: () => { const st = CP.player.status(); if (st.waiting) CP.decide(st.waiting, 'approve'); } }
+      const graph = { kicker: 'S1 · the same answer, for humans', title: 'Context one search away', text: 'The agent asked the graph who runs FileBridge. Any analyst gets the same answer in the Graph explorer: the exposed server, its business service, the 14 suppliers, with the source and freshness of every attribute.', screen: 'graph-x', query: { q: 'FileBridge' }, hl: 'graph-canvas', run: keepRun };
+      const supplier = { kicker: 'S1 · the other side', title: 'What the supplier sees', text: 'Switching role to an external supplier, Atlas Payroll: the questionnaire arrives pre-filled with what Novalys already knows. The supplier confirms or corrects, uploads evidence, and sees how to lift the restriction on its file flow. Nothing internal leaks.', screen: 'supplier', role: 'supplier', hl: 'supplier-requests', run: keepRun };
+      const caseWs = { kicker: 'S1 · the golden thread', title: 'The whole case in one place', text: 'Every step, agent, tool call, policy check, decision, message and piece of evidence of the case, from the advisory to the lessons. Select any step to see why the platform did it. This is what an analyst, the CISO or an auditor opens.', screen: 'cases', sub: 'C-2301', role: 'ciso', hl: 'case-timeline', run: keepRun };
+      /* Insert the graph stop after step 2, the supplier stop after step 10. */
+      const story = steps.slice(0, 2).concat([graph]).concat(steps.slice(2, 10)).concat([supplier]).concat(steps.slice(10)).concat([caseWs]);
+      return [intro, ptour].concat(story).concat([
+        { kicker: 'Value', title: 'What the CISO gets', text: 'A case that used to take 3 to 5 days and 46 hours of expert effort was handled in about 4 hours, with 5 human hours and two decisions. The CISO sees the value, the decisions taken and the residual risk in one place.', screen: 'ciso', sub: 'value', role: 'ciso', hl: 'ciso-value', run: keepRun },
+        { kicker: 'One product, nine roles', title: 'Everyone works on the same platform', text: 'The role picker on "The platform" shows the product through each user: the SOC analyst starts from an inbox, the Head of Treasury decides on a phone, a supplier answers in its portal, the internal auditor samples the signed trail. Same data, role-based access.', screen: 'inbox', role: 'analyst', hl: 'mode-platform' },
+        { kicker: 'The business decides', title: 'A decision framed for the decider', text: 'In scenario S2, the Head of Treasury receives at 2 a.m. a decision written in business terms: what happened, what is at stake in euros, the options, what happens without an answer, and whether it can be undone.', screen: 'owner', role: 'owner', hl: 'owner-phone' },
+        { kicker: 'Design time', title: 'Playbooks and decision rights are designed, then run', text: 'The response you watched is a playbook: designed in lanes, validated, simulated on the digital twin and versioned. Decision rights are policy as code, backtested on 30 days of actions before the CISO signs.', screen: 'design', role: 'build', hl: 'design-playbooks' },
+        { kicker: 'Who watches the agents?', title: 'Trust & Challenge does not take agents at their word', text: 'Evals, deviation hunt, red team and adversary lab. Scenario S4 shows an agent fooled by hidden instructions, caught, switched off, fixed and restored step by step.', screen: 'trust', role: 'trust', hl: 'trust-evals' },
+        { kicker: 'End of the guided demo', title: 'Explore freely', text: 'Play the other scenarios on the simple or detailed view, switch role with the dropdown on "The platform", and use the Decisions button to act as the humans who decide.', screen: 'demo', role: 'ciso', hl: null, run: keepRun }
       ]);
     }
     const s = CP.scenarioById(id);
@@ -95,13 +104,17 @@
   function show(i) {
     T.i = Math.max(0, Math.min(T.stops.length - 1, i));
     const stop = T.stops[T.i];
-    const target = stop.screen + (stop.sub ? '/' + stop.sub : '');
-    const cur = CP.route.id + (CP.route.sub ? '/' + CP.route.sub : '');
+    /* Switch role when the stop needs a module the current role cannot open. */
+    const mod = CP.module(stop.screen);
+    if (stop.role && stop.role !== CP.currentRole) CP.setRole(stop.role, true);
+    else if (mod && !CP.canSee(stop.screen)) CP.setRole(mod.roles.indexOf('ciso') >= 0 ? 'ciso' : mod.roles[0], true);
+    const target = stop.screen + (stop.sub ? '/' + stop.sub : '') + (stop.query ? '?' + Object.keys(stop.query).map((k) => k + '=' + encodeURIComponent(stop.query[k])).join('&') : '');
+    const cur = CP.route.id + (CP.route.sub ? '/' + CP.route.sub : '') + (location.hash.indexOf('?') >= 0 ? '?' + location.hash.split('?')[1] : '');
     const after = () => {
       if (stop.run) stop.run();
       setTimeout(() => { applyHl(stop); panel(); }, 120);
     };
-    if (target !== cur) { CP.go(stop.screen, stop.sub); setTimeout(after, 80); } else after();
+    if (target !== cur) { CP.go(stop.screen, stop.sub, stop.query); setTimeout(after, 80); } else after();
   }
 
   T.start = function (id) {
@@ -153,8 +166,8 @@
     id: 'demo', part: 0, label: 'Guided demo', icon: 'compass', live: false,
     render() {
       return ui.head('Showcase', 'Guided demo', 'A narrated walk through the concept and the consoles. It drives the scenario engine for you and stops whenever a human must decide, so you can approve live in front of the audience.') +
-        '<div class="dm-grid"><div class="dm-main" data-tour="demo-main"><span class="eyebrow" style="color:var(--green)">Recommended · 12 minutes</span><h2>The full story: one CTI alert, every role</h2><p>A zero-day hits a file-transfer product used by 14 suppliers. Follow it from the advisory to the board: architecture, Engage, Run, the CISO cockpit, the adversary lab, Build and the organisation.</p>' +
-        '<ol><li>The concept and the trigger</li><li>12 steps, each on the architecture or in the console where it lands</li><li>Two live decisions: suppliers (Engage), emergency patch (CISO)</li><li>Value, organisation and how agents are kept under control</li></ol>' +
+        '<div class="dm-grid"><div class="dm-main" data-tour="demo-main"><span class="eyebrow" style="color:var(--green)">Recommended · 15 minutes</span><h2>The full story: one CTI alert, every role</h2><p>A zero-day hits a file-transfer product used by 14 suppliers. Follow it from the advisory to the board: the components, the architecture, the graph, Engage, the supplier portal, Run, the CISO, the case workspace, then the other roles: SOC analyst, business risk owner, Design and Trust & Challenge.</p>' +
+        '<ol><li>The concept and the trigger</li><li>12 steps, each on the architecture or in the module where it lands, plus the graph and the supplier\'s view</li><li>Two live decisions: suppliers (Engage), emergency patch (CISO)</li><li>Value, organisation and how agents are kept under control</li></ol>' +
         '<div><button class="go" data-action="startTour" data-id="full" style="min-height:46px;padding:0 20px;font-size:15px">' + CP.icon('play') + ' Start the full story</button></div></div>' +
         '<div class="dm-tips"><div class="dm-tip">' + CP.icon('info') + '<div><b>Presenter keys</b><br><kbd>→</kbd> next stop · <kbd>←</kbd> back · <kbd>Esc</kbd> exit. Outside the tour: <kbd>Space</kbd> play or pause a scenario, <kbd>→</kbd> next step.</div></div>' +
         '<div class="dm-tip">' + CP.icon('users') + '<div><b>Act as the humans</b><br>When a decision is pending, approve or reject it on the card, in the Decisions drawer or in the role\'s console. Rejecting applies the fallback.</div></div>' +

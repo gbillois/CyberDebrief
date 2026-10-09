@@ -47,41 +47,61 @@ graph and cyber data lake), specialized agents per domain, an orchestrator
 that enforces decision rights, humans who decide above threshold, and a
 safety layer (sandbox, kill-switch, rollback). The company, Novalys Group (a
 European bank and insurer), and every figure are fictitious. Personas are
-named by role only. English UI; the hub card is in French.
+named by role only, and no real product or vendor is named. English UI; the
+hub card is in French.
 
 The shell follows CrisisMaker: a white top ribbon with the Wavestone logo,
 two buttons, **How it works** (Part 1) and **The platform** (Part 2, whose
-dropdown is the role picker), the Decisions drawer, the Guided demo, and a
-dark tab ribbon underneath. Cards, metrics and tables follow EBIOS RM.
+dropdown is the role picker), graph search, the Decisions drawer, the Guided
+demo, and a dark ribbon underneath. Cards, metrics and tables follow EBIOS RM.
 
-| Part | Screens |
-|------|---------|
-| 1 · How it works | Overview, Simple view (the "Toward one centralized cyber platform" diagram), Detailed view (components and flows), Build it (four waves, stack, RACI), Decision rights (autonomy ladder L0 to L3, threshold simulator, matrix) |
-| 2 · The platform | CISO cockpit, Engage, Platform Ops Build, Platform Ops Run, Trust & Challenge: one console per role of the new organisation |
-| Showcase | Guided demo: the full story (S1 across every console) and one short tour per scenario |
+**Part 1 · How it works** (the concept): Overview, Platform tour (13 stops
+on the target diagram, from the components to "perimeter by perimeter" and
+"never frozen"), Simple view and Detailed view (animated architecture with
+the scenario control band, flows, a swimlane timeline with a NOW line, the
+event log and the value of the scenario), Build it (four waves, stack, RACI),
+Decision rights (autonomy ladder L0 to L3, threshold simulator, matrix).
+
+**Part 2 · The platform** (the product) is designed around the work, not the
+org chart: one product with modules grouped by function, and a role picker
+that sets the landing page, the inbox and the visible modules (role-based
+access).
+
+| Group | Modules |
+|-------|---------|
+| Work | My home (per role), Inbox (what needs me now, with SLAs and agent proposals), Cases (queue and case workspace: golden thread, agent trace with policy check, blast radius, decisions, evidence, ask the case), Graph (search, saved questions, entity 360 with provenance, blast radius) |
+| Engage | Third parties with Party 360, business units, regulators, crisis, culture, outbox |
+| Platform | Design (playbook designer, decision-rights policy with 30-day backtest, standing approvals, tool catalogue), Build (agent catalog, studio, pipeline, connectors, graph model, backlog, roadmap), Operate (live ops, action journal with rollback, kill-switch, quality, cost, supervision) |
+| Assurance | Model evals, deviation hunt, red team, adversary lab, LoD2 assurance, AI register |
+| Steer | CISO cockpit, decisions, value and ROI, organisation, board brief |
+| Outside roles | Risk owner app (phone, business framing), Supplier portal (external view), Evidence room (internal audit, read-only) |
+
+Roles: CISO, Engage, Platform Ops Build, Platform Ops Run, Trust & Challenge,
+SOC analyst, Risk owner (business), Supplier (external), Internal auditor.
 
 Four scenarios run on a global engine (`engine.js`), so a scenario keeps
-running while you browse the consoles and its effects appear live there:
+running while you browse the platform and its effects appear live there:
 S1 CTI zero-day (WAF virtual patch, SIEM rule, quick forensic, supplier
-questionnaire), S2 compromised identity (MFA fatigue on a payment approver),
-S3 regulator request (DORA evidence in 5 days), S4 agent drift (prompt
-injection caught by Trust & Challenge, kill-switch, fix, canary). Steps above
-threshold create a decision that pauses the scenario until someone approves
-or rejects it (on the step, in the Decisions drawer or in the role console).
-The architecture views show the control band, the animated flows, a
-swimlane timeline with a NOW line (CrisisMaker storyline style), the event
-log and the value of the scenario. Keys: `Space` play or pause, `→` next
-step; in the guided demo `→` / `←` / `Esc`.
+questionnaire), S2 compromised identity (MFA fatigue on a payment approver,
+the payment hold decided on the risk owner's phone), S3 regulator request
+(DORA evidence in 5 days), S4 agent drift (prompt injection caught by Trust &
+Challenge, kill-switch, fix, canary). Each scenario has its case (C-2301 to
+C-2304) and stores an agent trace per step. Steps above threshold create a
+decision that pauses the scenario until someone approves or rejects it. The
+**Guided demo** tells the full S1 story across Part 1 and the modules,
+switching roles on the way (supplier, analyst, risk owner, Build, Trust &
+Challenge), plus one short tour per scenario. Keys: `Space` play or pause,
+`→` next step; in the guided demo `→` / `←` / `Esc`.
 
-Sources in `assets/cyber-platform/`: `core.js` (store, router, shell, UI
-kit, charts), `data.js` (the world: people, agents, suppliers, baseline
-state), `scenarios.js` (steps, flows, artifacts, effects, decision gates),
-`engine.js`, `architecture.js`, `tour.js`, `platform.css` and one file per
-screen in `screens/`. Plain scripts, no build step: the page also runs from
+Sources in `assets/cyber-platform/`: `core.js` (store, router, shell, role
+access, UI kit, charts), `data.js` (the world: roles, modules, people,
+agents, suppliers, baseline state), `scenarios.js`, `engine.js`,
+`architecture.js`, `tour.js`, `platform.css` and one file per screen or
+module in `screens/`. Plain scripts, no build step: the page also runs from
 `file://`. `cyber-ai-platform-standalone.html` is the same demo in one file
 (styles, scripts and fonts inlined), generated by
 `python3 tools/build-cyber-platform.py`: never edit it by hand. Works on
-phones (390 px): the diagram scrolls sideways inside its frame.
+phones (390 px).
 
 ## Deployment
 

@@ -1126,7 +1126,7 @@ table.cs-t{border-collapse:collapse;width:100%;font-size:13px}
     else if (sc && playerOn(sc) && !ps.done) banner = '<div class="cs-banner live"><span class="dot"></span><b>Live.</b> <span>The agents are working this case: step ' + (ps.index + 1) + ' of ' + ps.total + ' (' + esc(sc.n + ' · ' + sc.short) + '). New steps appear in the thread as they happen.</span></div>';
     else if (p) banner = '<div class="cs-banner wait"><span class="dot"></span><b>' + p + ' decision' + (p > 1 ? 's' : '') + ' waiting for a human.</b><button data-action="scrollTo" data-target="case-decisions">' + I('users') + ' Review</button></div>';
     if (c.escalated) banner += '<div class="cs-banner esc">' + I('arrowRight') + '<b>Escalated to ' + esc(pname(c.escalated.to)) + '</b><span class="muted">' + esc(c.escalated.at) + (c.escalated.reason ? ' · ' + esc(c.escalated.reason) : '') + '</span></div>';
-    const agents = {}; evs.forEach((e) => { if (CP.agent(e.actor)) agents[e.actor] = 1; });
+    const agents = {}; evs.forEach((e) => { if (CP.agent(e.actor)) agents[e.actor] = 1; ((e.flow || (e.trace && e.trace.flow) || (e.tr && e.tr.flow) || [])).forEach((f) => f.forEach((n) => { if (CP.agent(n)) agents[n] = 1; })); });
     const autoN = evs.filter((e) => CP.agent(e.actor) && (e.level === 'L2' || e.level === 'L3')).length;
     const decN = decisionsOf(c).filter((d) => d.a.status !== 'pending').length;
     const costT = evs.reduce((sum, e) => { const v = cost(e).v; return sum + (v[0] === '€' ? +v.slice(1) : 0); }, 0);

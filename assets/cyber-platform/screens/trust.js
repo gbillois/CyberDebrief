@@ -672,7 +672,7 @@
       const domains = [
         { d: 'partner-digest.eu', note: 'registered 9 days ago · lookalike newsletter', rep: 214, cl: 205, hot: true },
         { d: 'novalys-hr-portal.com', note: 'lookalike (case C-2291)', rep: 22, cl: 13 },
-        { d: 'm365-notice.net', note: 'credential phishing kit', rep: 18, cl: 11 },
+        { d: 'office-notice.net', note: 'credential phishing kit', rep: 18, cl: 11 },
         { d: '181 other domains', note: 'baseline behaviour', rep: 297, cl: 183 }
       ];
       const conc = ui.card('Concentration by sender domain', '<div class="tc-mini" style="margin-bottom:8px">Last 48 h · 551 reported emails · 412 auto-closed</div>' +
