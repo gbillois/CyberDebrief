@@ -155,6 +155,7 @@
       clearTimer();
       const wasPlaying = playing; playing = false;
       if (i <= idx) { CP.store.reset(); const s = S.id; CP.player.load(s); }
+      if (waiting && i > idx) { const g = S.steps[idx]; waiting = null; resolveGate(g, 'approve', true); }
       while (idx < i && idx < S.steps.length - 1) { waiting = null; exec(idx + 1, true); }
       waiting = null;
       CP.store.changed('jump');

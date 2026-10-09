@@ -59,7 +59,7 @@
 .bd-edtabs .modes button.on{background:#ffffff1f;color:#fff;border-color:#ffffff77}
 .bd-ed{display:flex;flex:1;min-height:540px;position:relative;overflow:hidden}
 .bd-gutter{width:44px;flex:none;overflow:hidden;border-right:1px solid #2a1d5a;color:#6f63a0;font-family:var(--mono);font-size:12.5px;line-height:20px;text-align:right;user-select:none}
-.bd-gutter div{padding:10px 8px 10px 0;white-space:pre}
+.bd-gutter{position:relative}.bd-gutter div{position:absolute;top:0;left:0;right:0;padding:10px 8px 10px 0;white-space:pre}
 .bd-area{position:relative;flex:1;min-width:0;overflow:hidden}
 .bd-area pre,.bd-area textarea{margin:0;padding:10px 14px;font-family:var(--mono);font-size:12.5px;line-height:20px;tab-size:2;-moz-tab-size:2;white-space:pre;letter-spacing:0;border:0;font-weight:400}
 .bd-area pre{position:absolute;top:0;left:0;min-width:100%;color:#e7e1ff;pointer-events:none}
@@ -150,6 +150,7 @@
 .bd-conn{grid-template-columns:minmax(0,2.3fr) minmax(300px,1fr);align-items:start}
 .bd-conn>.card.accent{position:sticky;top:120px}
 /* Backlog */
+.bd-blgrid{grid-template-columns:minmax(0,3fr) minmax(0,1fr)}
 .bd-bl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .bd-bl .bd-col-b{min-height:200px}
 .bd-item{background:#fff;border:1px solid var(--line);padding:11px 12px;font-size:12.5px}
@@ -173,7 +174,7 @@
 .bd-rmi.done{opacity:.65}
 .bd-rmi.fresh{outline:2px solid var(--green-ink)}
 .bd-today{position:absolute;top:0;bottom:0;width:0;z-index:0;border-left:2px dashed var(--red);pointer-events:none}
-.bd-today span{position:absolute;top:2px;left:4px;font-size:10px;color:var(--red-ink);font-weight:700;white-space:nowrap;background:#fff;padding:0 3px}
+.bd-today span{position:absolute;bottom:2px;left:4px;font-size:10px;color:var(--red-ink);font-weight:700;white-space:nowrap;background:#fff;padding:0 3px}
 /* Graph */
 .bd-schema{width:100%;height:auto;display:block}
 .bd-schema text{font-family:Inter,sans-serif}
@@ -193,7 +194,7 @@
 .bd-log .ok{color:#04f06a}
 .bd-detail .kv{font-size:12.5px}
 @media(max-width:1280px){.bd-ide{grid-template-columns:190px minmax(0,1fr) 300px}}
-@media(max-width:1100px){.bd-conn{grid-template-columns:1fr}.bd-conn>.card.accent{position:static}.bd-ide{grid-template-columns:180px minmax(0,1fr)}.bd-side{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}.bd-side .bd-sec{border-bottom:0;border-right:1px solid var(--line)}.bd-opts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1100px){.bd-blgrid{grid-template-columns:1fr}.bd-conn{grid-template-columns:1fr}.bd-conn>.card.accent{position:static}.bd-ide{grid-template-columns:180px minmax(0,1fr)}.bd-side{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}.bd-side .bd-sec{border-bottom:0;border-right:1px solid var(--line)}.bd-opts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){
 .bd-ide{grid-template-columns:1fr}.bd-tree{padding:0}.bd-tree .bd-tree-full{display:none}.bd-tree-sel{display:block}
 .bd-side{display:flex;grid-template-columns:none}.bd-side .bd-sec{border-right:0;border-bottom:1px solid var(--line)}
@@ -1419,7 +1420,7 @@ them; report them as a signal of malicious intent.
       if (ui._lastSub !== sub) { ui._focus = null; ui._lastSub = sub; }
       const q = route.query || {};
       if (q.agent && q.agent !== ui._qAgent) { ui._qAgent = q.agent; if (CP.agent(q.agent)) ui.agent = q.agent; if (q.file && FILES.indexOf(q.file) >= 0) ui.file = q.file; }
-      if (q.rel && q.rel !== ui._qRel) { ui._qRel = q.rel; ui.selRel = q.rel; }
+      if (q.rel && q.rel !== ui._qRel) { ui._qRel = q.rel; ui.selRel = q.rel; ui._userSel = true; }
 
       const ags = CP.store.get('agents');
       const inflight = releases().filter((r) => r.stage !== 'prod' && r.status !== 'rolled-back' && r.status !== 'blocked');
@@ -1748,6 +1749,8 @@ them; report them as a signal of malicious intent.
       const rels = releases();
       const pend = CP.store.pendingApprovals('build');
       const decided = CP.store.get('approvals').filter((a) => a.role === 'build' && a.status !== 'pending').slice(0, 2);
+      const hot = rels.find((r) => r.id === 'REL-79' && r.status === 'in-progress');
+      if (hot && !ui._userSel) ui.selRel = hot.id;
       if (!ui.selRel || !rels.some((r) => r.id === ui.selRel)) {
         const r79 = rels.find((r) => r.id === 'REL-79');
         ui.selRel = (r79 || rels.find((r) => r.status === 'in-progress') || rels[0] || {}).id;
@@ -1768,10 +1771,16 @@ them; report them as a signal of malicious intent.
         CP.ui.metric({ label: 'Lead time for changes', icon: 'clock', value: '2.1', unit: 'days', foot: 'commit to production, median', delta: '-0.6 d / quarter' }) +
         CP.ui.metric({ label: 'Change failure rate', icon: 'alert', value: '4.2', unit: '%', foot: '1 rollback in the last 24 releases' }) +
         CP.ui.metric({ label: 'Time to restore', icon: 'rollback', value: '40', unit: 's', foot: 'one-click rollback to the pinned version' }) + '</div>' +
-        (pend.length || decided.length ? '<div class="grid g2" style="margin-bottom:18px">' + pend.map((a) => CP.ui.decision(a, { pulse: true })).join('') + decided.map((a) => CP.ui.decision(a)).join('') + '</div>' : '') +
+        (pend.length || decided.length ? '<div class="grid g2" style="margin-bottom:18px">' + pend.map((a) => CP.ui.decision(a, { pulse: true })).join('') + decided.map((a) => CP.ui.decision(a)).join('') + ((pend.length + decided.length) % 2 ? this.rightsCard() : '') + '</div>' : '') +
         '<section class="card" data-tour="build-pipeline" style="padding:16px"><div class="card-title"><div><h2>Release train</h2><div class="sub">' + rels.filter((r) => r.status === 'in-progress').length + ' releases in flight · gates per card: eval score, red-team suite, T&C sign-off, PO approval</div></div><span class="bd-mini">Click a card for its change record</span></div>' +
         '<div class="bd-kan-wrap"><div class="bd-kan">' + cols + '</div></div></section>' +
         (sel ? '<div class="grid g-3-2" style="margin-top:18px">' + this.changeRecord(sel) + this.rollbackCard(sel) + '</div>' : '');
+    },
+    rightsCard() {
+      const rows = CP.data.rights.filter((r) => r.domain === 'orch');
+      return CP.ui.card('Why Build decides here', '<div class="small-txt muted" style="margin-bottom:10px;line-height:1.55">A new agent version is a change to who acts on the information system. The platform applies the same decision rights to Build as to any agent: the release stops and the decision holder is asked.</div>' +
+        '<div class="list">' + rows.map((r) => '<div class="list-item">' + CP.ui.lvl(r.level) + '<div class="li-main"><div class="li-title">' + esc(r.action) + '</div><div class="li-sub">Decider: ' + esc(pname(r.decider)) + ' · ' + esc(r.why) + '</div></div></div>').join('') + '</div>' +
+        '<div class="notice info" style="margin-top:10px">Threshold: ' + esc((CP.data.thresholds.find((t) => t.k === 'Novelty') || {}).v || 'an action never performed in production') + '.</div>', { cls: 'accent' });
     },
     changeRecord(r) {
       const ag = CP.agent(r.agent) || { name: r.agent };
@@ -1959,7 +1968,7 @@ release:
         CP.ui.metric({ label: 'High priority', icon: 'alert', value: all.filter((b) => b.priority === 'high' && b.status !== 'done').length, foot: 'triaged by the platform manager weekly' }) +
         CP.ui.metric({ label: 'Created by live events', icon: 'zap', value: fromScn.length, foot: fromScn.length ? fromScn.map((b) => b.id).join(', ') : 'run S2 or S3 to see items arrive', flash: fromScn.some(fresh) }) +
         CP.ui.metric({ label: 'Lead time, idea to prod', icon: 'clock', value: '11', unit: 'days', foot: 'median, last quarter', delta: '-4 d' }) + '</div>' +
-        '<div class="grid g-3-2" style="grid-template-columns:minmax(0,3fr) minmax(0,1fr)"><section class="card" style="padding:16px" data-tour="build-backlog"><div class="row wrap between" style="margin-bottom:12px"><div class="pill-tabs">' +
+        '<div class="grid bd-blgrid"><section class="card" style="padding:16px" data-tour="build-backlog"><div class="row wrap between" style="margin-bottom:12px"><div class="pill-tabs">' +
         [['all', 'All origins']].concat(Object.keys(ORIGIN).map((k) => [k, ORIGIN[k].label])).map((x) => '<button class="' + (ui.blOrigin === x[0] ? 'active' : '') + '" data-action="blOrigin" data-id="' + x[0] + '">' + esc(x[1]) + '</button>').join('') + '</div><span class="bd-mini">' + list.length + ' items</span></div>' +
         '<div class="bd-bl">' + col('new', 'New', 'sparkles') + col('in-progress', 'In progress', 'activity') + col('done', 'Done', 'checkCircle') + '</div></section>' +
         '<div class="stack">' + CP.ui.card('Open items by origin', CP.ui.hbars(byOrigin, { max: Math.max(1, ...byOrigin.map((x) => x.value)) }), { sub: 'Who asks Build for what' }) +
@@ -2180,7 +2189,7 @@ release:
       },
 
       /* pipeline */
-      selRel(el, ev) { if (ev && ev.target.closest('button')) return; this.ui.selRel = el.dataset.id; this.refresh(); },
+      selRel(el, ev) { if (ev && ev.target.closest('button')) return; this.ui.selRel = el.dataset.id; this.ui._userSel = true; this.refresh(); },
       advance(el) {
         const ui = this.ui, self = this;
         const r = releases().find((x) => x.id === el.dataset.id); if (!r) return;

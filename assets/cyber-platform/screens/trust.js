@@ -543,8 +543,9 @@
       /* Agent detail: trend chart + suites */
       const a = selRow.a;
       const g = trendGold(selRow), inj = trendInj(selRow);
-      const minV = Math.floor(Math.min.apply(null, g.concat(inj)) / 5) * 5 - 5;
-      const chart = lineChart({ labels: WEEKS, min: Math.max(50, minV), max: 100, unit: '%', w: 620, h: 230, pr: 150, dec: 1, label: 'Eval trend for ' + a.name,
+      const lo = Math.min.apply(null, g.concat(inj));
+      const minV = lo >= 89 ? 88 : lo >= 81 ? 80 : 60;
+      const chart = lineChart({ labels: WEEKS, min: minV, max: 100, unit: '%', w: 620, h: 230, pr: 150, dec: 1, label: 'Eval trend for ' + a.name,
         series: [{ label: 'Task accuracy', color: '#451dc7', values: g, dots: true, dy: -6 }, { label: 'Injection robustness', color: '#e0662b', values: inj, dash: true, dots: true, dy: 8 }],
         band: null, markers: a.id === 'ag-soc-triage' && s4().rt && !s4().canary ? [{ i: 11, label: 'RT-62 bypass', color: '#d8412f' }] : [] });
       const runs = get('evals').filter((e) => e.agent === a.id);
