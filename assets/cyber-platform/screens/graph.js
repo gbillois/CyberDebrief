@@ -105,7 +105,7 @@
 .gx-n.center .bx{fill:var(--c)}
 .gx-n.center .ic{stroke:#fff}
 .gx-n .halo{fill:none;stroke:var(--c);stroke-width:1;opacity:.45;stroke-dasharray:3 3}
-.gx-n .lb{font-size:11px;font-weight:600;fill:#201c30;text-anchor:middle;paint-order:stroke;stroke:#fff;stroke-width:3.5px;stroke-linejoin:round;pointer-events:none}
+.gx-n .lb{font-size:11px;font-weight:600;fill:#201c30;text-anchor:middle;paint-order:stroke;stroke:#fff;stroke-width:3.5px;stroke-linejoin:round}
 .gx-n.center .lb{font-size:13px;font-weight:700}
 .gx-n .sb{font-size:9.5px;fill:#6d687e;text-anchor:middle;paint-order:stroke;stroke:#fff;stroke-width:3px;pointer-events:none;letter-spacing:.3px;text-transform:uppercase}
 .gx-n .bd{stroke:#fff;stroke-width:1.5}
@@ -175,7 +175,7 @@
 .gx-log-i .tx{line-height:1.45}
 .gx-log-i .tx small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
 .gx-log-i.new{animation:newrow 2.4s}
-.gx-link{background:none;border:0;padding:0;min-height:0;color:var(--indigo);font-weight:600;text-decoration:underline;text-underline-offset:2px;font-size:inherit;display:inline;cursor:pointer}
+.gx-link{background:none;border:0;padding:0;min-height:0;text-align:left;color:var(--indigo);font-weight:600;text-decoration:underline;text-underline-offset:2px;font-size:inherit;display:inline;cursor:pointer}
 .gx-link:hover{background:none}
 .gx-qcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .gx-qc{border:1px solid var(--line);background:#fff;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
@@ -692,8 +692,7 @@
       if (st.dv) setA('id-ag-triage', 'Deviation', st.dv.signal + ' (' + st.dv.status + ')', 'agent', st.dv.detected, { by: 'deviation' });
       if (st.kill) setA('id-ag-triage', 'Kill-switch', 'Lowered from L2 to L0 by the Run supervisor', 'registry', st.kill.ts);
     }
-    if (st.gaps.length) flag('ctl-sod', 'amber', '6 failing combinations');
-    else flag('ctl-sod', 'amber', 'Failing: 6 combinations');
+    flag('ctl-sod', 'amber', 'Failing: 6 combinations');
 
     /* Adjacency (undirected) */
     const adj = {};
@@ -989,8 +988,7 @@
     }
     /* Path nodes are always shown, attached along the path. */
     if (path) {
-      const pn = path.nodes; const ci = pn.indexOf(center);
-      const order = ci >= 0 ? pn.slice(ci).concat(pn.slice(0, ci).reverse()) : pn;
+      const pn = path.nodes;
       for (let k = 0; k < 2; k++) {
         pn.forEach((id, i) => {
           if (id in dist) return;
@@ -998,7 +996,6 @@
           if (nb) { dist[id] = dist[nb] + 1; parent[id] = nb; kids[id] = []; kids[nb].push(id); }
         });
       }
-      if (order) { /* keeps lint quiet */ }
     }
     /* Collapse large fan-outs. */
     const removed = {};
@@ -1017,30 +1014,55 @@
       }
     });
     const vis = Object.keys(dist).filter((id) => !removed[id]);
-    /* Angular wedges proportional to leaf count. */
-    const w = {};
-    const weight = (u) => { const k = (kids[u] || []).filter((v) => !removed[v]); w[u] = k.length ? k.reduce((s, v) => s + weight(v), 0) : 1; return w[u]; };
-    weight(center);
+    /* Rings: depth 1 evenly spaced (type order), deeper rings start at their
+       parent's angle and are spread apart with a minimum arc. Deterministic. */
     const byD = {}; vis.forEach((id) => { (byD[dist[id]] = byD[dist[id]] || []).push(id); });
-    const R = [0]; const maxD = Math.max.apply(null, Object.keys(byD).map(Number));
+    const maxD = Math.max.apply(null, Object.keys(byD).map(Number));
+    const SP = 78; const R = [0]; const ang = {}; const pos = { [center]: { x: 0, y: 0, a: 0 } };
+    const TAU = 2 * Math.PI;
     for (let d = 1; d <= maxD; d++) {
-      const nD = (byD[d] || []).length;
-      R[d] = Math.max(R[d - 1] + (d === 1 ? 170 : 150), nD * 62 / (2 * Math.PI));
+      const ring = byD[d] || []; const n = ring.length;
+      R[d] = Math.max(R[d - 1] + (d === 1 ? 175 : 165), n * SP / TAU);
+      if (d === 1) {
+        const ord = (kids[center] || []).filter((v) => !removed[v]);
+        ord.forEach((id, i) => { ang[id] = -Math.PI / 2 + (i + 0.5) * TAU / Math.max(1, ord.length) - (ord.length === 1 ? 0.5 * TAU : 0); });
+      } else {
+        const want = [];
+        ring.forEach((id) => {
+          const sib = (kids[parent[id]] || []).filter((v) => !removed[v]); const k = sib.indexOf(id);
+          const spread = Math.min(TAU / 3, (sib.length - 1) * (SP * 0.9) / R[d]);
+          want.push({ id, a: ang[parent[id]] + (sib.length > 1 ? -spread / 2 + spread * k / (sib.length - 1) : 0) });
+        });
+        want.sort((a, b) => a.a - b.a);
+        const g = Math.min(SP / R[d], TAU / Math.max(1, n));
+        const a = want.map((w) => w.a);
+        for (let it = 0; it < 80; it++) {
+          let moved = false;
+          for (let i = 0; i < n; i++) {
+            const j = (i + 1) % n; let diff = (j === 0 ? a[j] + TAU : a[j]) - a[i];
+            if (n > 1 && diff < g) { const push = (g - diff) / 2 + 1e-4; a[i] -= push; a[j] += push; moved = true; }
+          }
+          if (!moved) break;
+        }
+        want.forEach((w, i) => { ang[w.id] = a[i]; });
+      }
+      ring.forEach((id) => { pos[id] = { x: R[d] * Math.cos(ang[id]), y: R[d] * Math.sin(ang[id]), a: ang[id] }; });
     }
-    const pos = {};
-    const place = (u, a0, a1) => {
-      const d = dist[u]; const a = (a0 + a1) / 2;
-      pos[u] = d === 0 ? { x: 0, y: 0 } : { x: R[d] * Math.cos(a), y: R[d] * Math.sin(a) };
-      let s = a0; const k = (kids[u] || []).filter((v) => !removed[v]);
-      k.forEach((v) => { const span = (a1 - a0) * w[v] / w[u]; place(v, s, s + span); s += span; });
-    };
-    const k0 = (kids[center] || []).filter((v) => !removed[v]).length;
-    const start = -Math.PI / 2 - (k0 === 1 ? 0 : Math.PI / Math.max(2, w[center]));
-    place(center, start, start + 2 * Math.PI);
     let x0 = 0, y0 = 0, x1 = 0, y1 = 0;
     vis.forEach((id) => { const p = pos[id]; x0 = Math.min(x0, p.x); x1 = Math.max(x1, p.x); y0 = Math.min(y0, p.y); y1 = Math.max(y1, p.y); });
-    const m = 90;
-    return { vis, dist, parent, pos, bounds: { x: x0 - m, y: y0 - m + 10, w: x1 - x0 + 2 * m, h: y1 - y0 + 2 * m + 10 } };
+    const mx = 150, my = 70;
+    return { vis, dist, parent, pos, bounds: { x: x0 - mx, y: y0 - my, w: x1 - x0 + 2 * mx, h: y1 - y0 + 2 * my } };
+  }
+
+  /* Label beside the node, on the outer side (left / right / above / below). */
+  function labelSvg(c, p, lab, sub) {
+    if (c) return '<text class="lb" y="42">' + esc(lab) + '</text>' + (sub ? '<text class="sb" y="55">' + esc(sub) + '</text>' : '');
+    const cx = Math.cos(p.a), cy = Math.sin(p.a);
+    let x = 0, y = 31, anc = 'middle', y2 = 43;
+    if (cx > 0.45) { x = 23; y = sub ? 0 : 4; anc = 'start'; y2 = 12; }
+    else if (cx < -0.45) { x = -23; y = sub ? 0 : 4; anc = 'end'; y2 = 12; }
+    else if (cy < 0) { y = sub ? -36 : -25; y2 = -25; }
+    return '<text class="lb" x="' + x + '" y="' + y + '" style="text-anchor:' + anc + '">' + esc(lab) + '</text>' + (sub ? '<text class="sb" x="' + x + '" y="' + y2 + '" style="text-anchor:' + anc + '">' + esc(sub) + '</text>' : '');
   }
 
   function canvasSvg(G, L2, center, edgeOn, path) {
@@ -1076,7 +1098,7 @@
       const n = G.nodes[id]; const p = L2.pos[id]; const t = T[n.type];
       const c = id === center; const f = topFlag(n);
       const s = c ? 1.3 : 1;
-      const lab = n.label.length > 22 ? n.label.slice(0, 20) + '…' : n.label;
+      const lab = !c && n.label.length > 21 ? n.label.slice(0, 19) + '…' : n.label;
       const cls = 'gx-n' + (c ? ' center' : '') + (n.type === 'more' ? ' more' : '') + (f ? ' ' + f.cls : '') + (n.fresh ? ' fresh' : '') + (path && !pset[id] ? ' dim' : '');
       nh += '<g class="' + cls + '" transform="translate(' + p.x.toFixed(1) + ',' + p.y.toFixed(1) + ')" style="--c:' + t.color + '" data-action="node" data-id="' + esc(id) + '" tabindex="0" role="button" aria-label="' + esc(tLabel(n) + ': ' + n.label + (f ? ', ' + f.text : '') + '. Recentre the graph') + '">' +
         '<title>' + esc(n.label + ' · ' + tLabel(n) + (n.sub ? ' · ' + n.sub : '') + (f ? ' · ' + f.text : '')) + '</title>' +
@@ -1084,8 +1106,7 @@
         '<rect class="bx" x="-17" y="-17" width="34" height="34"/>' +
         '<g class="ic" transform="translate(-9,-9) scale(.75)">' + (CP.icons[tIcon(n)] || CP.icons.info) + '</g>' +
         (f ? '<rect class="bd ' + f.cls + '" x="9" y="-23" width="13" height="13"/><text class="bdt" x="15.5" y="-13.5">' + ({ red: '!', dark: '×', amber: '!', indigo: '•', grey: '?', green: '✓' }[f.cls]) + '</text>' : '') + '</g>' +
-        '<text class="lb" y="' + (c ? 40 : 31) + '">' + esc(lab) + '</text>' +
-        (c || L2.dist[id] === 1 ? '<text class="sb" y="' + (c ? 53 : 43) + '">' + esc(tLabel(n)) + '</text>' : '') + '</g>';
+        labelSvg(c, p, lab, (c || L2.dist[id] === 1) ? tLabel(n) : '') + '</g>';
     });
     const b = L2.bounds;
     return '<svg role="img" aria-label="Neighbourhood of ' + esc(G.nodes[center].label) + ': ' + L2.vis.length + ' entities" data-vb="' + [b.x, b.y, b.w, b.h].map((v) => v.toFixed(1)).join(' ') + '" viewBox="' + [b.x, b.y, b.w, b.h].map((v) => v.toFixed(1)).join(' ') + '" width="' + Math.round(b.w) + '" height="' + Math.round(b.h) + '">' +
@@ -1265,7 +1286,7 @@
       rows.map((r) => '<tr class="clickable' + (r.off ? ' gx-off' : '') + (r.id === this.ui.center ? ' sel' : '') + '" data-action="pick" data-id="' + esc(r.id) + '">' + r.cells.map((c) => '<td>' + c + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>'
       : '<div class="empty">' + esc(R.empty || 'No result.') + '</div>';
     return '<section class="gx-res" aria-label="Query and results">' +
-      '<div class="gx-res-q"><div class="h">' + I(kind === 'search' ? 'search' : 'message') + (kind === 'search' ? ' Search' : ' Question') + '<span style="margin-left:auto" class="row" style="gap:4px"><button class="small on-dark" data-action="clear" aria-label="Clear the query">' + I('x') + '</button></span></div>' +
+      '<div class="gx-res-q"><div class="h">' + I(kind === 'search' ? 'search' : 'message') + (kind === 'search' ? ' Search' : ' Question') + '<button class="small on-dark" style="margin-left:auto" data-action="clear" aria-label="Clear the query">' + I('x') + ' Clear</button></div>' +
       '<div class="title">' + esc(R.title) + '</div>' +
       '<pre aria-label="Graph query">' + hlGql(R.gql) + '</pre>' +
       '<div class="meta"><span>read-only</span><span>' + (R.ms || (18 + (R.gql.length % 40))) + ' ms</span><span>' + rows.length + ' rows</span><span>as of ' + esc(CP.clock.label()) + '</span></div>' +
@@ -1278,6 +1299,10 @@
      11. Screen
      ====================================================================== */
   const DEPTHS = [1, 2, 3];
+  /* Mouse drag-to-pan on the canvas (one set of window listeners for the module). */
+  let DRAG = null;
+  window.addEventListener('pointermove', (ev) => { if (!DRAG) return; DRAG.el.scrollLeft = DRAG.l - (ev.clientX - DRAG.x); DRAG.el.scrollTop = DRAG.t - (ev.clientY - DRAG.y); });
+  window.addEventListener('pointerup', () => { if (DRAG) { DRAG.el.classList.remove('drag'); DRAG = null; } });
 
   CP.screen({
     id: 'graph-x', part: 2, label: 'Graph', icon: 'network',
@@ -1354,7 +1379,7 @@
       const counts = {}; L2.vis.forEach((id) => { const t = G.nodes[id].type; counts[t] = (counts[t] || 0) + 1; });
       const pathOpts = PATHS.filter((p) => pathFor(G, p.id, u.center)).map((p) => '<option value="' + p.id + '"' + (u.path === p.id ? ' selected' : '') + '>' + esc(p.label) + '</option>').join('');
       const toOpts = JEWELS.filter((j) => j !== u.center && G.nodes[j]).map((j) => '<option value="to:' + j + '"' + (u.path === 'to:' + j ? ' selected' : '') + '>' + esc(G.nodes[j].label) + '</option>').join('');
-      const qcounts = {}; QS.forEach((q) => { const r = runQuestion(G, q.id); qcounts[q.id] = r ? r.rows.length : 0; });
+      const qcounts = {}; QS.forEach((q) => { const r = runQuestion(G, q.id); qcounts[q.id] = r ? r.rows.filter((x) => !x.off).length : 0; });
 
       const searchCard = '<section class="gx-search" data-tour="graph-search" aria-label="Search the security graph">' +
         '<form class="gx-sbox" data-gx-form role="search" autocomplete="off"><label class="sr" for="gx-q">Search entities or ask a question</label>' +
@@ -1398,7 +1423,7 @@
     renderQuestions(G) {
       const groups = {}; QS.forEach((q) => { (groups[q.group] = groups[q.group] || []).push(q); });
       const cards = QS.map((q) => {
-        const r = runQuestion(G, q.id); const n = r ? r.rows.length : 0;
+        const r = runQuestion(G, q.id); const n = r ? r.rows.filter((x) => !x.off).length : 0;
         const hot = (q.id === 'q-inet' && G.st.s1 && !G.st.patched) || (q.id === 'q-reach-top17' && G.st.s2) || (q.id === 'q-exit' && G.st.gaps.length);
         return '<article class="gx-qc"><div class="g"><span>' + esc(q.group) + '</span>' + (hot ? ui.tag('Live', 'green') : '') + '</div><h3>' + esc(q.text) + '</h3><p>' + esc(q.desc) + '</p>' +
           '<div class="f"><span class="big' + (q.id === 'q-inet' && n && !G.st.patched ? ' red' : '') + '">' + n + '</span><span>result' + (n === 1 ? '' : 's') + ' now</span><span class="spacer"></span><button class="primary small" data-action="ask" data-q="' + q.id + '">' + I('play') + ' Run</button></div></article>';
@@ -1431,8 +1456,8 @@
         ui.metric({ label: 'Freshness', icon: 'clock', value: '96.1', unit: '%', foot: 'attributes refreshed in 24 h · median 41 min' }) +
         ui.metric({ label: 'Unknown owners', icon: 'user', value: '312', foot: 'assets (1.7%) · ' + unk.length + ' suggested here', color: '#8a5a05' }) +
         ui.metric({ label: 'Open conflicts', icon: 'alert', value: String(21 + open), foot: open + ' in this view, others in triage', color: '#8a5a05' }) + '</div>' +
-        '<div class="grid g-2-1" style="align-items:start;margin-bottom:18px">' + ui.card('Conflicting attributes', cTbl, { sub: 'Two sources disagree: the platform applies the precedence rule, keeps both values and asks for a fix' }) + ui.card('Coverage by entity type', covH, { sub: 'Graph-wide' }) + '</div>' +
-        '<div class="grid g2" style="align-items:start">' + ui.card('Unknown owners', uTbl, { sub: 'Assets nobody is accountable for: the first thing an incident needs and the last thing a CMDB knows' }) + ui.card('Connectors feeding the graph', conn, { sub: 'Freshness against SLA' }) + '</div>';
+        '<div style="margin-bottom:18px">' + ui.card('Conflicting attributes', cTbl, { sub: 'Two sources disagree: the platform applies the precedence rule, keeps both values and asks for a fix' }) + '</div>' +
+        '<div class="grid g-3-2" style="align-items:start"><div class="stack">' + ui.card('Unknown owners', uTbl, { sub: 'Assets nobody is accountable for: the first thing an incident needs and the last thing a CMDB knows' }) + ui.card('Coverage by entity type', covH, { sub: 'Graph-wide' }) + '</div>' + ui.card('Connectors feeding the graph', conn, { sub: 'Freshness against SLA' }) + '</div>';
     },
 
     renderModel(G) {
@@ -1446,13 +1471,13 @@
         ['control', 'Controls', '1,436', 'WAF rules, detections, policies, SoD rules', 'WAF, SIEM, control library'],
         ['bu', 'Business units', '6', 'Owners of risk and services', 'HR, BIA']
       ];
-      const rels = [['ROUTES_TO', 'net', 'Network reachability: internet, WAF, firewalls, zones'], ['RUNS / HOSTS', 'runs', 'Asset runs software; supplier runs a product'], ['SUPPORTS / FLOWS_TO', 'supports', 'Application supports a business service; data flows between applications'], ['HAS_ACCESS', 'access', 'Identity has a right on an application or asset, with privilege'], ['PROVIDES / EXCHANGES_WITH', 'supplier', 'Supplier provides a service; business service exchanges with a supplier'], ['STORES / ACCESSED', 'data', 'Where data lives, who touched it'], ['AFFECTED_BY / EXPLOITS / PROBED', 'exposure', 'Vulnerabilities, threat actors and indicators'], ['PROTECTED_BY / MONITORED_BY', 'control', 'Controls in front of or watching an entity']];
+      const rels = [['ROUTES_TO', 'net', 'Network reachability: internet, WAF, firewalls, zones', 48200], ['RUNS / HOSTS', 'runs', 'Asset runs software; supplier runs a product', 61400], ['SUPPORTS / FLOWS_TO', 'supports', 'Application supports a business service; data flows between applications', 9870], ['HAS_ACCESS', 'access', 'Identity has a right on an application or asset, with privilege', 1912000], ['PROVIDES / EXCHANGES_WITH', 'supplier', 'Supplier provides a service; business service exchanges with a supplier', 3860], ['STORES / ACCESSED', 'data', 'Where data lives, who touched it', 14300], ['AFFECTED_BY / EXPLOITS / PROBED', 'exposure', 'Vulnerabilities, threat actors and indicators', 112400], ['PROTECTED_BY / MONITORED_BY', 'control', 'Controls in front of or watching an entity', 26700]];
       const prec = [['PR-01', 'Owner', 'CMDB > ITSM change history > platform suggestion (needs human confirmation)'], ['PR-02', 'Internet-facing', 'Attack surface scan > firewall config > CMDB'], ['PR-03', 'Manager, department', 'HR system > identity provider'], ['PR-04', 'Software version', 'Vulnerability scanner > EDR > CMDB (freshest wins within 24 h)'], ['PR-05', 'Supplier software', 'Latest supplier attestation > TPRM inventory > contract annex'], ['PR-06', 'Criticality', 'Business impact analysis > CMDB'], ['PR-07', 'Data classification', 'Most restrictive observed value (DLP scan) > declared value']];
       return ui.head('Graph · Trust the data', 'Model & sources', 'What the graph knows, where each fact comes from, and which source wins when they disagree. Agents and humans read the same model through the same read-only API.', '') +
         '<div class="gx-types" style="margin-bottom:18px">' + types.map((t) => '<div class="gx-type">' + '<span class="gx-ti" style="background:' + T[t[0]].color + ';width:34px;height:34px;font-size:17px">' + I(T[t[0]].icon) + '</span><div><b>' + esc(t[1]) + '</b><div class="num">' + esc(t[2]) + '</div><small>' + esc(t[3]) + '</small><small>Sources: ' + esc(t[4]) + '</small></div></div>').join('') + '</div>' +
         '<div class="grid g2" style="align-items:start">' +
-        ui.card('Relationship types', '<div class="table-wrap"><table class="t"><thead><tr><th>Relationship</th><th>Meaning</th><th>Edges</th></tr></thead><tbody>' + rels.map((r) => '<tr><td><span class="row" style="gap:8px"><i style="width:16px;height:3px;display:inline-block;background:' + E[r[1]].color + '"></i><code class="mono small-txt">' + esc(r[0]) + '</code></span></td><td class="small-txt">' + esc(r[2]) + '</td><td class="num small-txt">' + CP.fmt(G.edges.filter((e) => e.type === r[1]).length * 1873 + 412) + '</td></tr>').join('') + '</tbody></table></div>', { sub: 'Edge counts graph-wide' }) +
-        ui.card('Source precedence rules', '<div class="table-wrap"><table class="t"><thead><tr><th>Rule</th><th>Attribute</th><th>Order</th></tr></thead><tbody>' + prec.map((p) => '<tr><td class="mono small-txt">' + esc(p[0]) + '</td><td><b style="font-weight:600">' + esc(p[1]) + '</b></td><td class="small-txt">' + esc(p[2]) + '</td></tr>').join('') + '</tbody></table></div><div class="notice info" style="margin-top:12px">Agent findings (forensic verdicts, owner suggestions, exit-plan gaps) are written as attributes with the agent as source and the case as evidence. They never overwrite an authoritative source silently.</div>', { sub: 'Versioned with the platform policies (Design)' }) + '</div>';
+        ui.card('Relationship types', '<div class="table-wrap"><table class="t"><thead><tr><th>Relationship</th><th>Meaning</th><th>Edges</th></tr></thead><tbody>' + rels.map((r) => '<tr><td><span class="row" style="gap:8px"><i style="width:16px;height:3px;display:inline-block;background:' + E[r[1]].color + '"></i><code class="mono small-txt">' + esc(r[0]) + '</code></span></td><td class="small-txt">' + esc(r[2]) + '</td><td class="num small-txt">' + CP.fmt(r[3]) + '</td></tr>').join('') + '</tbody></table></div>', { sub: 'Edge counts graph-wide' }) +
+        ui.card('Source precedence rules', '<div class="table-wrap"><table class="t"><thead><tr><th>Rule</th><th>Attribute</th><th>Order</th></tr></thead><tbody>' + prec.map((p) => '<tr><td class="mono small-txt" style="white-space:nowrap">' + esc(p[0]) + '</td><td><b style="font-weight:600">' + esc(p[1]) + '</b></td><td class="small-txt">' + esc(p[2]) + '</td></tr>').join('') + '</tbody></table></div><div class="notice info" style="margin-top:12px">Agent findings (forensic verdicts, owner suggestions, exit-plan gaps) are written as attributes with the agent as source and the case as evidence. They never overwrite an authoritative source silently.</div>', { sub: 'Versioned with the platform policies (Design)' }) + '</div>';
     },
 
     mount(root) {
@@ -1535,15 +1560,12 @@
           u.view = { z, px, py };
         };
         const centerPt = () => ({ px: x0 + (stage.scrollLeft + stage.clientWidth / 2) / z, py: y0 + (stage.scrollTop + stage.clientHeight / 2) / z });
-        const fit = () => { const f = Math.min(stage.clientWidth / vbo.w, stage.clientHeight / vbo.h); apply(Math.max(0.42, Math.min(1.15, f)), 0, 0); };
+        const fit = () => { const f = Math.min(stage.clientWidth / vbo.w, stage.clientHeight / vbo.h); const narrow = stage.clientWidth < 600; apply(Math.max(narrow ? 0.55 : 0.42, Math.min(1.15, f)), narrow ? 0 : vbo.cx, narrow ? 0 : vbo.cy); };
         if (u.needFit || !u.view) { fit(); u.needFit = false; } else apply(u.view.z, u.view.px, u.view.py);
         self._zoom = (k) => { if (k === 'fit') { fit(); return; } const c = centerPt(); apply(z * (k === 'in' ? 1.25 : 0.8), c.px, c.py); };
         stage.addEventListener('scroll', () => { const c = centerPt(); u.view = { z, px: c.px, py: c.py }; }, { passive: true });
         stage.addEventListener('wheel', (ev) => { if (!ev.ctrlKey && !ev.metaKey) return; ev.preventDefault(); const c = centerPt(); apply(z * (ev.deltaY < 0 ? 1.12 : 0.89), c.px, c.py); }, { passive: false });
-        let drag = null;
-        stage.addEventListener('pointerdown', (ev) => { if (ev.pointerType !== 'mouse' || ev.button !== 0 || ev.target.closest('.gx-n')) return; drag = { x: ev.clientX, y: ev.clientY, l: stage.scrollLeft, t: stage.scrollTop }; stage.classList.add('drag'); });
-        window.addEventListener('pointermove', (ev) => { if (!drag) return; stage.scrollLeft = drag.l - (ev.clientX - drag.x); stage.scrollTop = drag.t - (ev.clientY - drag.y); });
-        window.addEventListener('pointerup', () => { if (drag) { drag = null; stage.classList.remove('drag'); } });
+        stage.addEventListener('pointerdown', (ev) => { if (ev.pointerType !== 'mouse' || ev.button !== 0 || ev.target.closest('.gx-n')) return; DRAG = { el: stage, x: ev.clientX, y: ev.clientY, l: stage.scrollLeft, t: stage.scrollTop }; stage.classList.add('drag'); });
         stage.addEventListener('keydown', (ev) => {
           const g = ev.target.closest('.gx-n');
           if (g && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); g.dispatchEvent(new MouseEvent('click', { bubbles: true })); return; }
