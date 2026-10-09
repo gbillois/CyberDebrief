@@ -527,3 +527,6 @@ svg.arch.dim .n-box.hot,svg.arch.dim .n-box.keep{opacity:1}
 @media(max-width:760px){.gsearch{display:none}.subnav{margin-top:-4px}}
 @media(max-width:1500px){.btn-demo .lbl{display:none}.btn-demo{padding:0 11px}}
 .case-link{color:var(--indigo);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.toolbar{min-width:0;flex-shrink:1}
+@media(max-width:1560px){.sim-pill{display:none}.gsearch{width:40px;padding:0 11px}.gsearch input{width:0}.gsearch:focus-within{width:240px}.gsearch:focus-within input{width:100%}}
+@media(max-width:1400px){.mode-pf .pf-role .lbl{max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
