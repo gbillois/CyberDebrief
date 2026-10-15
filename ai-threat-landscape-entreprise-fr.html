@@ -1790,39 +1790,73 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .scene.t-twochat .tc-h{font-size:1.6rem!important;line-height:1.2}
 .scene.t-twochat .tc-q,.scene.t-twochat .tc-a{font-size:1.12rem;line-height:1.42;padding:.9rem 1.15rem}
 
-/* Why now: the acceleration chart (a light prop, like the screenshot it holds) and its two blocks */
-.race{flex:1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:center;min-height:0}
-.race-c{background:#fff;color:#16121F;border-radius:.9rem;padding:1.2rem 1.4rem 1rem;min-width:0;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+/* Why now: documentary screens of part 7 */
+/* the chart: a light print pinned on the dark stage, the strongest climb boxed */
+.race{flex:1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:4rem;align-items:center;min-height:0}
+.race-c{position:relative;background:#fff;color:#16121F;border-radius:.5rem;padding:1.3rem 1.4rem 1rem;min-width:0;transform:rotate(-1.2deg);box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.08)}
+.race-c::before{content:'';position:absolute;top:-.7rem;left:50%;width:7rem;height:1.4rem;transform:translateX(-50%) rotate(2deg);background:rgba(255,255,255,.55);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.scene.live .race-c{animation:raceIn 1.2s var(--sk-ease) .2s backwards}
+@keyframes raceIn{from{opacity:0;transform:translateY(2rem) rotate(-4deg)}}
 .race-top{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;margin-bottom:.6rem}
 .race-k{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:#514C63;max-width:30ch}
 .race-d{text-align:right}
-.race-d b{display:block;font-family:var(--f-display);font-weight:800;font-size:2.3rem;line-height:1;color:#451DC7;letter-spacing:-.02em}
+.race-d b{display:block;font-family:var(--f-display);font-weight:800;font-size:2.6rem;line-height:1;color:#451DC7;letter-spacing:-.03em}
 .race-d span{font-size:.82rem;color:#514C63}
 .race-img{position:relative}
-.race-img img{display:block;width:100%;height:auto;max-height:48vh;object-fit:contain}
-.race-dim{position:absolute;left:0;top:9%;bottom:7%;background:rgba(255,255,255,.55);animation:rxIn 1s ease .8s backwards}
-.race-band{position:absolute;top:9%;bottom:7%;border:2px solid #451DC7;border-radius:.4rem;background:rgba(69,29,199,.06);animation:rxIn .8s ease 1.2s backwards}
+.race-img img{display:block;width:100%;height:auto;max-height:46vh;object-fit:contain}
+.race-dim{position:absolute;left:0;top:9%;bottom:7%;background:rgba(255,255,255,.6);animation:rxIn 1s ease 1.2s backwards}
+.race-band{position:absolute;top:9%;bottom:7%;border:2px solid #451DC7;border-radius:.4rem;background:rgba(69,29,199,.06);box-shadow:0 0 0 4px rgba(69,29,199,.12);animation:rxIn .8s ease 1.6s backwards}
 .race-band span{position:absolute;left:.4rem;bottom:.4rem;background:#451DC7;color:#fff;font:600 .78rem var(--f-body);padding:.15rem .5rem;border-radius:.3rem;white-space:nowrap}
 @keyframes rxIn{from{opacity:0}}
+.scene.t-race .pb-dark img{filter:saturate(.45) brightness(.7)}
+.scene.t-race .pb-dark::after{background:linear-gradient(90deg,rgba(7,4,15,.82) 0%,rgba(7,4,15,.6) 55%,rgba(7,4,15,.85) 100%)}
 .race-f{margin:.6rem 0 0;font-size:.82rem;line-height:1.4;color:#514C63}
-.race-b{display:grid;gap:1.2rem}
-.blk{display:grid;grid-template-columns:3rem 1fr;gap:1rem;padding:1.3rem 1.4rem;border-radius:.9rem;background:var(--glass);border:1px solid var(--glass-line);border-left:4px solid var(--tone);backdrop-filter:blur(10px)}
-.blk-i{width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--tone) 16%,transparent);color:var(--tone)}
-.blk-i .ic{width:1.5rem;height:1.5rem}
-.blk-k{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tone)}
-.blk h3{font-family:var(--f-display);font-weight:700;font-size:1.45rem;line-height:1.2;margin:.25rem 0 .4rem;color:var(--heading)}
-.blk p,.pil li span{color:var(--muted)}
-.blk p{margin:0;font-size:1rem;line-height:1.45;color:var(--muted)}
-.pil{flex:1;display:grid;grid-template-columns:repeat(var(--n,2),minmax(0,1fr));gap:2rem;align-content:center}
-.pil-c{background:var(--glass);border:1px solid var(--glass-line);border-top:4px solid var(--tone);border-radius:.9rem;padding:1.4rem 1.7rem .6rem;backdrop-filter:blur(10px)}
-.pil-h{display:flex;align-items:center;gap:.9rem;margin-bottom:.7rem}
-.pil-h b{font-family:var(--f-display);font-weight:700;font-size:1.45rem;color:var(--tone)}
-.pil ul{list-style:none;margin:0;padding:0}
-.pil li{padding:.8rem 0;border-top:1px solid var(--ws-ink-100)}
-.pil li b{display:block;font-family:var(--f-display);font-weight:600;font-size:1.15rem;color:var(--ws-ink-900)}
-.pil li span{display:block;font-size:.98rem;line-height:1.45;color:var(--muted)}
-.pil-f{margin-top:1.4rem}
-@media(max-width:760px){.race,.pil{grid-template-columns:1fr}.race-f{flex-direction:column}.race-f p{text-align:left}}
+.race-b{display:grid;gap:2.6rem}
+.rb{position:relative;padding-left:1.8rem;border-left:2px solid var(--tone);box-shadow:-14px 0 30px -18px var(--tone)}
+.rb-k{font-family:var(--f-display);font-weight:800;font-size:3.4rem;line-height:1;letter-spacing:-.03em;color:var(--tone);text-shadow:0 0 40px var(--tone)}
+.rb h3{font-family:var(--f-display);font-weight:700;font-size:1.55rem;line-height:1.2;margin:.7rem 0 .45rem;color:#fff}
+.rb p{margin:0;font-size:1.1rem;line-height:1.5;color:var(--muted)}
+
+/* what holds, what changes: a split screen around a beam of light */
+.scene.t-shift::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(45% 60% at 20% 60%,rgba(4,240,106,.07),transparent 70%),radial-gradient(45% 60% at 82% 60%,rgba(255,107,90,.12),transparent 70%)}
+.shift{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 2px minmax(0,1fr);gap:4.5rem;align-items:center;min-height:0}
+.sh-k{font-family:var(--f-mono);font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.8rem}
+.sh-l .sh-k{color:var(--green)} .sh-r .sh-k{color:var(--coral)}
+.sh-l ul{list-style:none;margin:0;padding:0;display:grid;gap:1.7rem}
+.sh-l li{display:grid;grid-template-columns:2.6rem 1fr;gap:1.1rem;align-items:start}
+.sh-i{width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;color:var(--green);background:rgba(4,240,106,.1);box-shadow:0 0 24px rgba(4,240,106,.35)}
+.sh-i .ic{width:1.4rem;height:1.4rem}
+.sh-l b{display:block;font-family:var(--f-display);font-weight:700;font-size:2rem;line-height:1.1;letter-spacing:-.02em;color:#fff}
+.sh-l li span:not(.sh-i){display:block;margin-top:.3rem;font-size:1.1rem;line-height:1.45;color:var(--muted)}
+.sh-m{align-self:stretch;background:linear-gradient(180deg,transparent,rgba(255,255,255,.55) 30%,rgba(255,255,255,.55) 70%,transparent);box-shadow:0 0 24px rgba(182,166,255,.6)}
+.sh-w + .sh-w{margin-top:2rem}
+.sh-w b{display:block;font-family:var(--f-display);font-weight:800;font-size:5.6rem;line-height:.95;letter-spacing:-.045em;color:var(--coral);text-shadow:0 0 50px rgba(255,107,90,.55)}
+.sh-w span{display:block;margin-top:.5rem;font-size:1.15rem;line-height:1.45;color:var(--muted);max-width:30ch}
+.sh-t{margin-top:2rem;font-family:var(--f-display);font-weight:700;font-size:1.9rem;line-height:1.2;letter-spacing:-.02em;color:#fff;text-shadow:0 0 40px rgba(122,92,255,.5)}
+
+/* rebuilding: bricks laid on a blueprint, foundation first */
+.bk{flex:1;position:relative;display:flex;flex-direction:column;justify-content:center;gap:1rem;min-height:0;padding:3rem 3rem 2.4rem;border:1px solid rgba(122,92,255,.28);border-radius:1rem;
+  background:linear-gradient(rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,linear-gradient(90deg,rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,radial-gradient(80% 90% at 50% 100%,rgba(69,29,199,.28),transparent 70%)}
+.bk-plan{position:absolute;top:1rem;left:1.4rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#B6A6FF}
+.bk-row{display:grid;grid-template-columns:10rem 1fr;gap:1.4rem;align-items:stretch}
+.bk-k{align-self:center;font-family:var(--f-mono);font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tone);text-align:right}
+.bk-bs{display:flex;gap:.8rem;justify-content:center}
+.bk-b{flex:1;max-width:19rem;padding:1.1rem 1.2rem 1.2rem;border-radius:.35rem;border:1px solid color-mix(in srgb,var(--tone) 55%,transparent);border-top:3px solid var(--tone);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--tone) 24%,#0E0822),color-mix(in srgb,var(--tone) 8%,#07040F));box-shadow:0 0 34px -6px color-mix(in srgb,var(--tone) 45%,transparent),inset 0 1px 0 rgba(255,255,255,.08)}
+.bk-row.on .bk-b{animation:bkDrop .8s var(--sk-ease) backwards;animation-delay:calc(var(--d) * .14s)}
+@keyframes bkDrop{from{opacity:0;transform:translateY(-2.4rem)}}
+.bk-b b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.3rem;line-height:1.15;color:#fff}
+.bk-b span{display:block;margin-top:.4rem;font-size:.95rem;line-height:1.4;color:var(--muted)}
+.bk-g{height:.9rem;margin-left:11.4rem;border-top:2px solid rgba(182,166,255,.6);background:repeating-linear-gradient(-45deg,rgba(182,166,255,.28) 0 2px,transparent 2px 10px);box-shadow:0 -6px 24px -8px rgba(122,92,255,.7)}
+
+/* AI for cyber: three giant letters */
+.aaa{flex:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3rem;align-items:start;align-content:center}
+.a3{position:relative;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.18)}
+.a3-l{font-family:var(--f-display);font-weight:800;font-size:12rem;line-height:.85;letter-spacing:-.05em;background:linear-gradient(180deg,#fff 15%,#8B6DFF 95%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 30px rgba(122,92,255,.65))}
+.a3-w{margin-top:1rem;font-family:var(--f-display);font-weight:800;font-size:2.1rem;letter-spacing:-.01em;color:var(--green);text-shadow:0 0 30px rgba(4,240,106,.45)}
+.a3 p{margin:.5rem 0 0;font-size:1.15rem;line-height:1.45;color:var(--muted);max-width:28ch}
+
+@media(max-width:760px){.race,.shift,.aaa{grid-template-columns:1fr}.sh-m{display:none}.sh-w b{font-size:3.4rem}.bk{padding:2.4rem 1rem 1.4rem}.bk-row{grid-template-columns:1fr}.bk-k{text-align:left}.bk-bs{flex-direction:column}.bk-g{margin-left:0}.a3-l{font-size:6rem}.race-c{transform:none}}
 </style>
 </head>
 <body>
@@ -2343,46 +2377,46 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   notes: `Graphique : Artificial Analysis, « Frontier Language Model Intelligence » (artificialanalysis.ai), capture d’octobre 2026. Repères si on vous demande des chiffres (Intelligence Index, score à la sortie) : GPT-5.2 menait au 1er janvier 2026 avec 51 ; GPT-5.5 atteint 60 le 23 avril ; Claude Fable 5.1 atteint 66 le 1er septembre, le score le plus haut mesuré. En septembre l’index a été refondu (v4.2 puis v4.3, tests privés plus durs) : Claude Opus 5.5 (22 septembre) mène à 58 sur cette nouvelle échelle, qui ne se compare pas à l’ancienne.`,
   src: `Artificial Analysis (artificialanalysis.ai), Frontier Language Model Intelligence, octobre 2026` },
 
-{ ch: 'c4', type: 'pillars', title: 'Pas la fin du monde',
-  heading: 'Ce n’est pas la fin du monde', wide: true,
-  cols: [
-    { tone: 'green', i: 'shield', k: 'Ce que l’IA ne change pas', items: [
-      { h: 'Les fondamentaux', p: 'Connaître ses actifs, corriger, contrôler les accès, détecter, réagir : les bases tiennent toujours.' },
-      { h: 'Le Zero Trust', p: 'Ne jamais faire confiance, toujours vérifier, moindre privilège : c’est toujours le bon niveau.' },
-      { h: 'Nos approches de sécurité', p: 'Analyse de risque, défense en profondeur, gestion de crise : elles s’appliquent toujours.' },
+{ ch: 'c4', type: 'shift', title: 'Pas la fin du monde',
+  heading: 'Ce n’est pas la fin du monde.',
+  keep: { k: 'Ce qui ne change pas', items: [
+    { h: 'Les fondamentaux', p: 'Connaître, protéger, détecter, réagir.' },
+    { h: 'Le Zero Trust', p: 'Ne jamais faire confiance, toujours vérifier.' },
+    { h: 'Le modèle de confiance', p: 'Celui déjà en place : qui accède à quoi, et pourquoi.' },
+  ] },
+  change: { k: 'Ce que l’IA change', items: [
+    { h: 'Vitesse', p: 'Des semaines d’attaque deviennent quelques heures.' },
+    { h: 'Profondeur', p: 'Plus de failles trouvées, plus de cibles étudiées, des scénarios plus crédibles.' },
+  ] },
+  punch: 'L’IA ne change pas les règles du jeu. Elle en change le rythme.',
+  vo: `Maintenant, la bonne nouvelle : ce n’est pas la fin du monde. Les fondamentaux ne changent pas. Le Zero Trust reste le bon modèle, et le modèle de confiance déjà en place reste valable. Ce que l’IA change, c’est la vitesse et la profondeur des attaques.` },
+
+{ ch: 'c4', type: 'bricks', title: 'Reconstruire les fondations',
+  heading: 'L’occasion de reconstruire nos fondations',
+  plan: 'Plan de reconstruction',
+  // drawn bottom to top: the architecture is the foundation, the software sits on it
+  layers: [
+    { tone: 'indigo', k: 'Architecture', bricks: [
+      { h: 'Identités', p: 'Renforcer l’authentification et les privilèges, humains et agents IA.' },
+      { h: 'Réseau', p: 'Repenser la segmentation : une brèche n’ouvre plus tout.' },
+      { h: 'Zero Trust', p: 'Lui donner un nouvel élan : chaque accès vérifié.' },
+      { h: 'Données', p: 'Savoir où sont les données sensibles, les classifier, les chiffrer.' },
     ] },
-    { tone: 'coral', i: 'target', k: 'Ce que l’IA change', items: [
-      { h: 'La rapidité', p: 'Des attaques qui prenaient des semaines prennent désormais quelques heures. Le temps pour réagir se réduit.' },
-      { h: 'La profondeur', p: 'L’IA va plus loin : plus de failles trouvées, plus de cibles étudiées, des scénarios plus crédibles.' },
+    { tone: 'teal', k: 'Logiciel', bricks: [
+      { h: 'Trouver nos failles en premier', p: 'L’IA revoit le code et teste les applications avant les attaquants.' },
+      { h: 'Corriger plus vite', p: 'Moins de temps entre la faille et le correctif.' },
+      { h: 'Sécurité dès la conception', p: 'Dans chaque nouveau projet, projets IA compris.' },
     ] },
   ],
-  foot: 'L’IA ne change pas les règles du jeu. Elle en change le rythme.',
-  vo: `Maintenant, la bonne nouvelle : ce n’est pas la fin du monde. L’IA ne change pas les fondamentaux. Le Zero Trust reste le bon niveau, et nos approches de sécurité s’appliquent toujours. Ce que l’IA change, c’est la rapidité et la profondeur des attaques.` },
+  vo: `C’est donc le moment de reconstruire nos fondations. D’abord l’architecture : renforcer les identités, repenser le réseau, donner un nouvel élan au Zero Trust et à la protection des données. Puis, posé dessus, le logiciel : trouver nos failles avant les autres, les corriger plus vite, et intégrer la sécurité dès la conception.` },
 
-{ ch: 'c4', type: 'pillars', title: 'Reconstruire les fondations',
-  heading: 'L’occasion de reconstruire nos fondations', wide: true,
-  cols: [
-    { tone: 'indigo', i: 'building', k: 'Architecture', items: [
-      { h: 'Les identités', p: 'Renforcer l’authentification et les privilèges, pour les personnes et désormais pour les agents IA.' },
-      { h: 'Le réseau', p: 'Repenser la segmentation, pour qu’une seule brèche n’ouvre plus tout.' },
-      { h: 'Le Zero Trust', p: 'Lui donner un nouvel élan : vérifier chaque accès, à chaque fois.' },
-      { h: 'La protection des données', p: 'Savoir où sont les données sensibles, les classifier, les chiffrer.' },
-    ] },
-    { tone: 'teal', i: 'code', k: 'Logiciel', items: [
-      { h: 'Trouver nos failles en premier', p: 'Utiliser l’IA pour revoir le code et tester les applications avant les attaquants.' },
-      { h: 'Corriger plus vite', p: 'Réduire le délai entre la découverte d’une faille et son correctif.' },
-      { h: 'La sécurité dès la conception', p: 'L’intégrer aux nouveaux développements, projets IA compris, dès le premier jour.' },
-    ] },
-  ],
-  vo: `C’est donc le moment de reconstruire nos fondations. Côté architecture : renforcer les identités, repenser le réseau, donner un nouvel élan au Zero Trust et à la protection des données. Et côté logiciel : trouver nos failles avant les autres, les corriger plus vite, et intégrer la sécurité dès la conception.` },
-
-{ ch: 'c4', type: 'rules', title: 'L’IA pour la cyber : AAA',
-  stamp: 'L’IA pour la cyber', heading: 'Pour atteindre ce socle, il faut l’IA pour la cyber', wide: true,
+{ ch: 'c4', type: 'aaa', title: 'L’IA pour la cyber : AAA',
+  stamp: 'L’IA pour la cyber', heading: 'Pour atteindre ce socle, il faut l’IA pour la cyber',
   lede: 'Les attaquants travaillent déjà à la vitesse de la machine. La défense doit suivre.',
-  rules: [
-    { n: 'A', h: 'Anticiper', p: 'Fermer les expositions avant qu’elles ne soient exploitées.' },
-    { n: 'A', h: 'Automatiser', p: 'Travailler sur tous les domaines, de la GRC au SOC, sans rupture entre les équipes.' },
-    { n: 'A', h: 'Agir', p: 'Aller à la vitesse de la machine, sous contrôle humain.' },
+  items: [
+    { h: 'Anticiper', p: 'Fermer les expositions avant qu’elles ne soient exploitées.' },
+    { h: 'Automatiser', p: 'Travailler sur tous les domaines, de la GRC au SOC, sans rupture entre les équipes.' },
+    { h: 'Agir', p: 'Aller à la vitesse de la machine, sous contrôle humain.' },
   ],
   vo: `Et pour atteindre ce socle à la vitesse de la menace, il faut l’IA pour la cyber. Trois A. Anticiper : fermer les expositions avant qu’elles ne soient exploitées. Automatiser : travailler sur tous les domaines, de la gouvernance au SOC, sans rupture. Agir : à la vitesse de la machine, sous contrôle humain.` },
 
@@ -3086,7 +3120,7 @@ const R = {
     </div>${s.after ? `<div class="ph-after"${fa(s.after.f)}><b>${ICON('phone')}${s.after.t}</b><ol>${s.after.steps.map(x => `<li><em>${x.d}</em><span>${x.t}</span></li>`).join('')}</ol><strong>${s.after.s}</strong></div>` : ''}${srcLine(s)}`;
   },
 
-  rules: s => `<div class="head">${textBlock(s)}</div><ol class="rules">${s.rules.map((r, i) => `<li${fa(i)}><span class="rn">${r.n ?? i + 1}</span><div><h3>${r.h}${r.tag ? ` <span class="tag">${r.tag}</span>` : ''}</h3><p>${r.p}</p></div></li>`).join('')}</ol>${s.foot ? `<div class="bar-foot">${s.foot}</div>` : ''}${srcLine(s)}`,
+  rules: s => `<div class="head">${textBlock(s)}</div><ol class="rules">${s.rules.map((r, i) => `<li${fa(i)}><span class="rn">${i + 1}</span><div><h3>${r.h}${r.tag ? ` <span class="tag">${r.tag}</span>` : ''}</h3><p>${r.p}</p></div></li>`).join('')}</ol>${s.foot ? `<div class="bar-foot">${s.foot}</div>` : ''}${srcLine(s)}`,
 
   chat: s => `<div class="split"><div class="txt">${textBlock(s)}</div><div class="vis"><div class="chatbox"><div class="cb-h">AI assistant · illustration</div><div class="cb-q">${s.chat.q}</div><div class="cb-a">${s.chat.a.map(x => `<p${fa(x.f)}>${x.t}</p>`).join('')}</div></div></div></div>${srcLine(s)}`,
 
@@ -3142,17 +3176,29 @@ const R = {
 
   closing: s => `${bgMap([[2.35, 48.86]])}<div style="position:relative;z-index:2"><h2 class="cl-a">${s.a}</h2><p class="cl-b"${fa(1)}>${s.b}</p><div class="cl-c"${fa(2)}>${s.c}</div></div>`,
 
-  // A chart screenshot on the left with one period highlighted, two blocks on the right
+  // A chart screenshot on the left, pinned like an exhibit, with one period highlighted; two statements on the right
   race: s => { const c = s.chart;
-    const blk = (b, i) => `<div class="blk tone-${b.tone}"${fa(i + 1)}><div class="blk-i">${ICON(b.i)}</div><div><div class="blk-k">${b.k}</div><h3>${b.h}</h3><p>${b.p}</p></div></div>`;
+    const blk = (b, i) => `<div class="rb tone-${b.tone}"${fa(i + 1)}><div class="rb-k">${b.k}</div><h3>${b.h}</h3><p>${b.p}</p></div>`;
     return `<div class="head">${textBlock(s)}</div><div class="race">
       <div class="race-c"><div class="race-top"><div class="race-k">${c.k}</div><div class="race-d"><b>${c.badge}</b><span>${c.badgeSub}</span></div></div>
         <div class="race-img"><img src="${c.img}" alt="${c.alt}" onerror="mediaMissing(this)"><div class="race-dim" style="width:${c.band[0]}%"></div><div class="race-band" style="left:${c.band[0]}%;width:${c.band[1]}%"><span>${c.bandLabel}</span></div></div>
         <p class="race-f">${c.foot}</p></div>
       <div class="race-b">${s.blocks.map(blk).join('')}</div></div>${srcLine(s)}`; },
 
-  // Columns of short statements, each under a coloured header
-  pillars: s => `<div class="head">${textBlock(s)}</div><div class="pil" style="--n:${s.cols.length}">${s.cols.map((c, i) => `<div class="pil-c tone-${c.tone}"${fa(i)}><div class="pil-h"><div class="blk-i">${ICON(c.i)}</div><b>${c.k}</b></div><ul>${c.items.map(x => `<li><b>${x.h}</b><span>${x.p}</span></li>`).join('')}</ul></div>`).join('')}</div>${s.foot ? `<div class="take pil-f"${fa(s.cols.length)}>${s.foot}</div>` : ''}${srcLine(s)}`,
+  // What holds on the left, what changes on the right, split by a beam of light
+  shift: s => `<div class="head">${textBlock(s)}</div><div class="shift">
+      <div class="sh-l"${fa(0)}><div class="sh-k">${s.keep.k}</div><ul>${s.keep.items.map(x => `<li><span class="sh-i">${ICON('check')}</span><div><b>${x.h}</b><span>${x.p}</span></div></li>`).join('')}</ul></div>
+      <div class="sh-m" aria-hidden="true"></div>
+      <div class="sh-r"${fa(1)}><div class="sh-k">${s.change.k}</div>${s.change.items.map(x => `<div class="sh-w"><b>${x.h}</b><span>${x.p}</span></div>`).join('')}</div>
+    </div>${s.punch ? `<div class="sh-t"${fa(2)}>${s.punch}</div>` : ''}${srcLine(s)}`,
+
+  // Foundations laid brick by brick on a blueprint, bottom layer first
+  bricks: s => `<div class="head">${textBlock(s)}</div><div class="bk"><div class="bk-plan">${s.plan}</div>
+      ${s.layers.map((l, i) => ({ l, i })).reverse().map(({ l, i }) => `<div class="bk-row tone-${l.tone}"${fa(i)}><div class="bk-k">${l.k}</div><div class="bk-bs">${l.bricks.map((b, j) => `<div class="bk-b" style="--d:${j}"><b>${b.h}</b><span>${b.p}</span></div>`).join('')}</div></div>`).join('')}
+      <div class="bk-g" aria-hidden="true"></div></div>${srcLine(s)}`,
+
+  // Three giant letters, one per click
+  aaa: s => `<div class="head">${textBlock(s)}</div><div class="aaa">${s.items.map((x, i) => `<div class="a3"${fa(i + 1)}><div class="a3-l" aria-hidden="true">${x.h[0]}</div><div class="a3-w">${x.h}</div><p>${x.p}</p></div>`).join('')}</div>${srcLine(s)}`,
 
   sources: s => `<div class="head"><h2 class="h">${s.heading}</h2></div><div class="srcs">${s.groups.map(([g, list]) => `<h4>${g}</h4><ul>${list.map(([t, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${t}</a></li>`).join('')}</ul>`).join('')}</div>`,
 };
@@ -3574,7 +3620,7 @@ const PHOTOSET = {
   'Chapter 5 in one sentence':          { bg: PH('hong-kong', 'side') },
   'Chapter 6: The Body':                { bg: PH('humanoid', 'brand') },
   'Chapter 6 in one sentence':          { bg: PH('robot-dog', 'side', '45% 50%') },
-  'Chapitre 7 : Pourquoi maintenant': { bg: PH('racks', 'brand') },
+  'Chapitre 7 : Pourquoi maintenant': { bg: PH('san-francisco', 'brand') },
   'Chapter 8: What Works':              { bg: PH('padlock', 'brand') },
   'Question for the room':              { bg: PH('audience', 'dark') },
   ...(MODE === 'long' ? {
@@ -3607,6 +3653,7 @@ const SLEEKSET = {
   '16 July 2026': { bg: PH('racks', 'dark') },
   'No attacker': { bg: PH('servers', 'dark') },
   'Two kinds of risk': { bg: PH('keyboard', 'dark', '50% 30%') },
+  'L’accélération': { bg: PH('chip', 'dark') },
 };
 SCENES.forEach(s => { const p = SLEEKSET[s.title]; if (p && p.bg && !s.bg) s.bg = p.bg; });
 
