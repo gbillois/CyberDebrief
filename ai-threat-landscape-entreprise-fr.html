@@ -1790,30 +1790,21 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .scene.t-twochat .tc-h{font-size:1.6rem!important;line-height:1.2}
 .scene.t-twochat .tc-q,.scene.t-twochat .tc-a{font-size:1.12rem;line-height:1.42;padding:.9rem 1.15rem}
 
-/* Why now: the acceleration chart and its two blocks */
+/* Why now: the acceleration chart (a light prop, like the screenshot it holds) and its two blocks */
 .race{flex:1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:center;min-height:0}
-.race-c{background:var(--glass);border:1px solid var(--glass-line);border-radius:.9rem;backdrop-filter:blur(10px);padding:1.2rem 1.4rem 1rem;min-width:0}
-.race-top{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem}
-.race-k{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);max-width:26ch}
+.race-c{background:#fff;color:#16121F;border-radius:.9rem;padding:1.2rem 1.4rem 1rem;min-width:0;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.race-top{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;margin-bottom:.6rem}
+.race-k{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:#514C63;max-width:30ch}
 .race-d{text-align:right}
-.race-d b{display:block;font-family:var(--f-display);font-weight:800;font-size:2.3rem;line-height:1;color:var(--green);letter-spacing:-.02em}
-.race-d span{font-size:.82rem;color:var(--muted)}
-.race svg{display:block;width:100%;height:auto;max-height:50vh;overflow:visible}
-.rx-grid line{stroke:var(--ws-ink-100)}
-.rx-grid text,.rx-ax text{fill:var(--ws-ink-400);font:11px var(--f-mono)}
-.rx-area{fill:var(--ws-indigo-50);animation:rxIn 1s ease .4s backwards}
-.rx-line{fill:none;stroke:var(--ws-indigo-500);stroke-width:3;filter:drop-shadow(0 0 6px rgba(122,92,255,.6));stroke-linejoin:round;stroke-dasharray:100;animation:rxDraw 2.2s var(--ease) .4s backwards}
-.rx-pt{animation:rxIn .5s ease var(--dl) backwards}
-.rx-pt circle{fill:var(--sk-bg);stroke:var(--lab);stroke-width:3}
-.rx-pt text{font:600 13px var(--f-body);fill:var(--ws-ink-900)}
-.rx-pt tspan{fill:var(--lab);font-weight:700}
-@keyframes rxDraw{from{stroke-dashoffset:100}}
+.race-d b{display:block;font-family:var(--f-display);font-weight:800;font-size:2.3rem;line-height:1;color:#451DC7;letter-spacing:-.02em}
+.race-d span{font-size:.82rem;color:#514C63}
+.race-img{position:relative}
+.race-img img{display:block;width:100%;height:auto;max-height:48vh;object-fit:contain}
+.race-dim{position:absolute;left:0;top:9%;bottom:7%;background:rgba(255,255,255,.55);animation:rxIn 1s ease .8s backwards}
+.race-band{position:absolute;top:9%;bottom:7%;border:2px solid #451DC7;border-radius:.4rem;background:rgba(69,29,199,.06);animation:rxIn .8s ease 1.2s backwards}
+.race-band span{position:absolute;left:.4rem;bottom:.4rem;background:#451DC7;color:#fff;font:600 .78rem var(--f-body);padding:.15rem .5rem;border-radius:.3rem;white-space:nowrap}
 @keyframes rxIn{from{opacity:0}}
-.lab-openai{--lab:#fff} .lab-anthropic{--lab:var(--amber)} .lab-google{--lab:var(--teal)}
-.race-f{display:flex;justify-content:space-between;gap:1.2rem;align-items:baseline;margin-top:.4rem}
-.race-f p{margin:0;font-size:.74rem;line-height:1.4;color:var(--subtle);max-width:44ch;text-align:right}
-.race-leg{display:flex;gap:1rem;font-size:.8rem;color:var(--muted);white-space:nowrap}
-.race-leg i{display:inline-block;width:.6rem;height:.6rem;border-radius:50%;background:var(--lab);margin-right:.35rem}
+.race-f{margin:.6rem 0 0;font-size:.82rem;line-height:1.4;color:#514C63}
 .race-b{display:grid;gap:1.2rem}
 .blk{display:grid;grid-template-columns:3rem 1fr;gap:1rem;padding:1.3rem 1.4rem;border-radius:.9rem;background:var(--glass);border:1px solid var(--glass-line);border-left:4px solid var(--tone);backdrop-filter:blur(10px)}
 .blk-i{width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--tone) 16%,transparent);color:var(--tone)}
@@ -1881,7 +1872,7 @@ const CH = {
   cr: { n: '04', title: 'The Rules',              mins: [18, 21], q: 'Who sets the rules?',              a: 'Everyone now agrees on the risk. Nobody agrees yet on the rules.' },
   ca: { n: '05', title: 'The Attackers Level Up', mins: [21, 27], q: 'And what about real attackers?',   a: 'From one fake call to swarms of AI agents: attackers already use AI against companies.' },
   c3: { n: '06', title: 'The Body',               mins: [27, 30], q: 'What happens when AI gets a body?', a: 'Robots inherit every weakness of computers, and add physical risk.' },
-  c4: { n: '07', title: 'Why Now',                mins: [30, 35], q: 'Why are we in this situation?',    a: 'Models leapt ahead in a few months. The fundamentals hold: rebuild them, with AI for cyber.' },
+  c4: { n: '07', title: 'Pourquoi maintenant',    mins: [30, 35], q: 'Pourquoi en sommes-nous là ?',     a: 'Les modèles ont fait un bond en quelques mois. Les fondamentaux tiennent : il faut les reconstruire, avec l’IA pour la cyber.' },
   c5: { n: '08', title: 'What Works',             mins: [35, 40], q: 'What can I do?',                   a: 'Simple reflexes still win, and AI can be on your side.' },
 };
 
@@ -2328,79 +2319,72 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   notes: `Signs: UniPwn Bluetooth takeover of Unitree robots (September 2025); a humanoid sending telemetry home every few minutes (Alias Robotics); FCC restrictions on foreign robots (28 July 2026); two new flaws in August 2026 (CVE-2026-76639, CVE-2026-76640).`,
   src: `arXiv 2509.14096 · boschko.ca · FCC (July 2026) · The Hacker News (August 2026)` },
 
-// ─── CHAPTER 7 · WHY NOW ──────────────────────────────────────────────────
-{ ch: 'c4', type: 'chapter', title: 'Chapter 7: Why Now', sub: 'Faster models, same fundamentals',
-  vo: `Seventh question: why are we in this situation? Because in a few months, AI models have made a leap.` },
+// ─── CHAPTER 7 · WHY NOW (in French in this edition) ──────────────────────
+{ ch: 'c4', type: 'chapter', title: 'Chapitre 7 : Pourquoi maintenant', sub: 'Des modèles plus puissants, les mêmes fondamentaux',
+  vo: `Septième question : pourquoi en sommes-nous là ? Parce qu’en quelques mois, les modèles d’IA ont fait un bond.` },
 
-{ ch: 'c4', type: 'race', title: 'The acceleration',
-  heading: 'In nine months, AI models made a leap', wide: true,
+{ ch: 'c4', type: 'race', title: 'L’accélération',
+  heading: 'Une accélération forte de la capacité des modèles', wide: true,
   chart: {
-    from: '2026-01-01', to: '2026-10-01', min: 45, max: 70,
-    k: 'Artificial Analysis Intelligence Index · best model available',
-    delta: '+15 pts', deltaSub: 'in 9 months · 5 new leaders',
-    // each new leader, with its score at launch; pos places the label (a: above, b: below, ae: above, to the left)
-    pts: [
-      { d: '2026-01-01', v: 51, m: 'GPT-5.2', lab: 'openai', pos: 'b' },
-      { d: '2026-02-05', v: 53, m: 'Claude Opus 4.6', lab: 'anthropic', pos: 'b' },
-      { d: '2026-02-19', v: 57, m: 'Gemini 3.1 Pro', lab: 'google', pos: 'a' },
-      { d: '2026-04-23', v: 60, m: 'GPT-5.5', lab: 'openai', pos: 'a' },
-      { d: '2026-06-09', v: 60, m: 'Claude Fable 5', lab: 'anthropic', pos: 'b' },
-      { d: '2026-09-01', v: 66, m: 'Claude Fable 5.1', lab: 'anthropic', pos: 'ae' },
-    ],
-    labs: { openai: 'OpenAI', anthropic: 'Anthropic', google: 'Google' },
-    foot: 'Score of each new leader at launch. The index was rebuilt in September (v4.2, v4.3): later models are scored on a new scale.' },
+    img: 'assets/ai/charts/aa-frontier-intelligence.png',
+    alt: 'Graphique Artificial Analysis : intelligence des modèles frontier par laboratoire, de mai 2024 à octobre 2026',
+    k: 'Intelligence des modèles frontier, par laboratoire',
+    badge: '2026', badgeSub: 'l’accélération la plus forte',
+    // the 1 January - 1 October 2026 slice, in % of the image width (axis: Oct 25 at 61 %, Oct 26 at 97 %)
+    band: [69.8, 27.1], bandLabel: 'janv. → oct. 2026',
+    foot: 'Chaque carré est un nouveau modèle, chaque couleur un laboratoire. Plus c’est haut, plus le modèle est capable.' },
   blocks: [
-    { tone: 'green', i: 'chip', k: 'Opportunity', h: 'More raw power for the business',
-      p: `Each new model does more on its own: reading, writing, coding, running whole business processes. This is what is speeding up AI adoption in companies.` },
-    { tone: 'coral', i: 'bug', k: 'Risk', h: 'More power for attackers too',
-      p: `Today's frontier models find vulnerabilities and build attack scenarios in hours. What took an expert team weeks is now within reach of far more people.` },
+    { tone: 'green', i: 'chip', k: 'Opportunité', h: 'Une puissance brute en forte hausse',
+      p: `Une puissance très utilisée pour les processus métier, qui accélère l’adoption de l’IA en entreprise.` },
+    { tone: 'coral', i: 'bug', k: 'Risque', h: 'Un niveau de risque qui augmente aussi',
+      p: `À l’inverse, les modèles frontier sont aujourd’hui capables de trouver des failles et de créer des scénarios d’attaque rapidement.` },
   ],
-  vo: `Why are we here? Because the models have made a leap. Look at the best model available at each point of the year: plus fifteen points in nine months, and five new leaders. That raw power is what companies are adopting for their business processes. But it cuts both ways: the same frontier models now find vulnerabilities and build attack scenarios in hours.`,
-  notes: `Curve: Artificial Analysis Intelligence Index, score of each new number one at launch (v4.0 then v4.1). GPT-5.2 (December 2025) was leading on 1 January. Claude Opus 4.6: 53. Gemini 3.1 Pro: 57. GPT-5.5 (23 April): 60, ahead of a three-way tie at 57. Claude Fable 5 took first place on 9 June. Claude Fable 5.1 (1 September): 66, the highest score measured. In September the index moved to v4.2 then v4.3, with harder private tests: Claude Opus 5.5 (22 September) leads at 58 on that new scale, which cannot be compared with the curve.`,
-  src: `Artificial Analysis Intelligence Index (artificialanalysis.ai), launch evaluations January - September 2026` },
+  vo: `Pourquoi en sommes-nous là ? Parce que la capacité des modèles a fortement accéléré. Chaque carré est un nouveau modèle, chaque couleur un laboratoire. Regardez 2026 : la courbe se redresse nettement. Cette puissance brute, les entreprises l’utilisent déjà dans leurs processus métier, et c’est ce qui accélère l’adoption. Mais à l’inverse, elle augmente aussi le niveau de risque : les modèles frontier savent aujourd’hui trouver des failles et créer des scénarios d’attaque, rapidement.`,
+  notes: `Graphique : Artificial Analysis, « Frontier Language Model Intelligence » (artificialanalysis.ai), capture d’octobre 2026. Repères si on vous demande des chiffres (Intelligence Index, score à la sortie) : GPT-5.2 menait au 1er janvier 2026 avec 51 ; GPT-5.5 atteint 60 le 23 avril ; Claude Fable 5.1 atteint 66 le 1er septembre, le score le plus haut mesuré. En septembre l’index a été refondu (v4.2 puis v4.3, tests privés plus durs) : Claude Opus 5.5 (22 septembre) mène à 58 sur cette nouvelle échelle, qui ne se compare pas à l’ancienne.`,
+  src: `Artificial Analysis (artificialanalysis.ai), Frontier Language Model Intelligence, octobre 2026` },
 
-{ ch: 'c4', type: 'pillars', title: 'Not the end of the world',
-  heading: 'This is not the end of the world', wide: true,
+{ ch: 'c4', type: 'pillars', title: 'Pas la fin du monde',
+  heading: 'Ce n’est pas la fin du monde', wide: true,
   cols: [
-    { tone: 'green', i: 'shield', k: 'What AI does not change', items: [
-      { h: 'The fundamentals', p: 'Know your assets, patch, control access, detect, respond: the basics still hold.' },
-      { h: 'Zero Trust', p: 'Never trust, always verify, least privilege: still the right level to aim for.' },
-      { h: 'Our security approaches', p: 'Risk analysis, defence in depth, crisis management: they all still apply.' },
+    { tone: 'green', i: 'shield', k: 'Ce que l’IA ne change pas', items: [
+      { h: 'Les fondamentaux', p: 'Connaître ses actifs, corriger, contrôler les accès, détecter, réagir : les bases tiennent toujours.' },
+      { h: 'Le Zero Trust', p: 'Ne jamais faire confiance, toujours vérifier, moindre privilège : c’est toujours le bon niveau.' },
+      { h: 'Nos approches de sécurité', p: 'Analyse de risque, défense en profondeur, gestion de crise : elles s’appliquent toujours.' },
     ] },
-    { tone: 'coral', i: 'target', k: 'What AI changes', items: [
-      { h: 'Speed', p: 'Attacks that took weeks now take hours. The window to react shrinks.' },
-      { h: 'Depth', p: 'AI digs further: more flaws found, more targets studied, more convincing scenarios.' },
+    { tone: 'coral', i: 'target', k: 'Ce que l’IA change', items: [
+      { h: 'La rapidité', p: 'Des attaques qui prenaient des semaines prennent désormais quelques heures. Le temps pour réagir se réduit.' },
+      { h: 'La profondeur', p: 'L’IA va plus loin : plus de failles trouvées, plus de cibles étudiées, des scénarios plus crédibles.' },
     ] },
   ],
-  foot: 'AI does not change the rules of the game. It changes its pace.',
-  vo: `Now the good news: this is not the end of the world. AI does not change the fundamentals. Zero Trust is still the right level to aim for, and our security approaches still apply. What AI changes is the speed, and the depth, of attacks.` },
+  foot: 'L’IA ne change pas les règles du jeu. Elle en change le rythme.',
+  vo: `Maintenant, la bonne nouvelle : ce n’est pas la fin du monde. L’IA ne change pas les fondamentaux. Le Zero Trust reste le bon niveau, et nos approches de sécurité s’appliquent toujours. Ce que l’IA change, c’est la rapidité et la profondeur des attaques.` },
 
-{ ch: 'c4', type: 'pillars', title: 'Rebuild the foundations',
-  heading: 'An opportunity to rebuild our foundations', wide: true,
+{ ch: 'c4', type: 'pillars', title: 'Reconstruire les fondations',
+  heading: 'L’occasion de reconstruire nos fondations', wide: true,
   cols: [
     { tone: 'indigo', i: 'building', k: 'Architecture', items: [
-      { h: 'Identities', p: 'Strengthen authentication and privileges, for people and now for AI agents.' },
-      { h: 'Network', p: 'Rethink segmentation, so that one breach no longer opens everything.' },
-      { h: 'Zero Trust', p: 'Give it new momentum: verify every access, every time.' },
-      { h: 'Data protection', p: 'Know where sensitive data lives, classify it, encrypt it.' },
+      { h: 'Les identités', p: 'Renforcer l’authentification et les privilèges, pour les personnes et désormais pour les agents IA.' },
+      { h: 'Le réseau', p: 'Repenser la segmentation, pour qu’une seule brèche n’ouvre plus tout.' },
+      { h: 'Le Zero Trust', p: 'Lui donner un nouvel élan : vérifier chaque accès, à chaque fois.' },
+      { h: 'La protection des données', p: 'Savoir où sont les données sensibles, les classifier, les chiffrer.' },
     ] },
-    { tone: 'teal', i: 'code', k: 'Software', items: [
-      { h: 'Find our flaws first', p: 'Use AI to review code and test applications before attackers do.' },
-      { h: 'Fix faster', p: 'Shorten the time between finding a flaw and patching it.' },
-      { h: 'Secure by design', p: 'Build security into new developments, AI projects included, from day one.' },
+    { tone: 'teal', i: 'code', k: 'Logiciel', items: [
+      { h: 'Trouver nos failles en premier', p: 'Utiliser l’IA pour revoir le code et tester les applications avant les attaquants.' },
+      { h: 'Corriger plus vite', p: 'Réduire le délai entre la découverte d’une faille et son correctif.' },
+      { h: 'La sécurité dès la conception', p: 'L’intégrer aux nouveaux développements, projets IA compris, dès le premier jour.' },
     ] },
   ],
-  vo: `So this is the moment to rebuild our foundations. On the architecture side: strengthen identities, rethink the network, give Zero Trust and data protection a new start. And on the software side: find our own flaws first, fix them faster, and build security in from day one.` },
+  vo: `C’est donc le moment de reconstruire nos fondations. Côté architecture : renforcer les identités, repenser le réseau, donner un nouvel élan au Zero Trust et à la protection des données. Et côté logiciel : trouver nos failles avant les autres, les corriger plus vite, et intégrer la sécurité dès la conception.` },
 
-{ ch: 'c4', type: 'rules', title: 'AI for cyber: AAA',
-  stamp: 'AI for cyber', heading: 'To reach this baseline, we need AI for cyber', wide: true,
-  lede: 'Attackers already work at machine speed. Defence has to as well.',
+{ ch: 'c4', type: 'rules', title: 'L’IA pour la cyber : AAA',
+  stamp: 'L’IA pour la cyber', heading: 'Pour atteindre ce socle, il faut l’IA pour la cyber', wide: true,
+  lede: 'Les attaquants travaillent déjà à la vitesse de la machine. La défense doit suivre.',
   rules: [
-    { n: 'A', h: 'Anticipate', p: 'Close exposures before they are exploited.' },
-    { n: 'A', h: 'Automate', p: 'Work across domains, from GRC to SOC, with no hand-offs.' },
-    { n: 'A', h: 'Act', p: 'Move at machine speed, under human control.' },
+    { n: 'A', h: 'Anticiper', p: 'Fermer les expositions avant qu’elles ne soient exploitées.' },
+    { n: 'A', h: 'Automatiser', p: 'Travailler sur tous les domaines, de la GRC au SOC, sans rupture entre les équipes.' },
+    { n: 'A', h: 'Agir', p: 'Aller à la vitesse de la machine, sous contrôle humain.' },
   ],
-  vo: `And to reach that baseline at the speed of the threat, we need AI for cyber. Three A's. Anticipate: close exposures before they are exploited. Automate: work across domains, from governance to the SOC, with no hand-offs. Act: move at machine speed, under human control.` },
+  vo: `Et pour atteindre ce socle à la vitesse de la menace, il faut l’IA pour la cyber. Trois A. Anticiper : fermer les expositions avant qu’elles ne soient exploitées. Automatiser : travailler sur tous les domaines, de la gouvernance au SOC, sans rupture. Agir : à la vitesse de la machine, sous contrôle humain.` },
 
 // ─── CHAPTER 7 · WHAT WORKS ───────────────────────────────────────────────
 { ch: 'c5', type: 'chapter', title: 'Chapter 8: What Works', sub: 'Simple reflexes, and AI on your side',
@@ -2497,7 +2481,8 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
 { ch: 'c5', type: 'sources', title: 'Sources',
   heading: 'Sources',
   groups: [
-    ['Why now', [
+    ['Pourquoi maintenant', [
+      ['Artificial Analysis, Frontier Language Model Intelligence (chart, October 2026)', 'https://artificialanalysis.ai/'],
       ['Artificial Analysis, Intelligence Index and launch evaluations (2026)', 'https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index'],
       ['Artificial Analysis, Claude Fable 5.1 (1 September 2026)', 'https://artificialanalysis.ai/articles/claude-fable-5-1'],
       ['Artificial Analysis, Intelligence Index v4.3', 'https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3'],
@@ -3157,27 +3142,13 @@ const R = {
 
   closing: s => `${bgMap([[2.35, 48.86]])}<div style="position:relative;z-index:2"><h2 class="cl-a">${s.a}</h2><p class="cl-b"${fa(1)}>${s.b}</p><div class="cl-c"${fa(2)}>${s.c}</div></div>`,
 
-  // A step chart of the best model over time on the left, two blocks on the right
-  race: s => { const c = s.chart, W = 640, H = 380, L = 40, RR = 16, T = 28, B = 34;
-    const x0 = D(c.from), x1 = D(c.to);
-    const X = d => L + (Math.max(D(d), x0) - x0) / (x1 - x0) * (W - L - RR), Y = v => T + (1 - (v - c.min) / (c.max - c.min)) * (H - T - B);
-    let grid = '', ax = '';
-    for (let v = c.min; v <= c.max; v += 5) grid += `<line x1="${L}" x2="${W - RR}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}"/><text x="${L - 8}" y="${(Y(v) + 4).toFixed(1)}" text-anchor="end">${v}</text>`;
-    for (let m = 0; m <= 9; m++) { const x = X(`2026-${String(m + 1).padStart(2, '0')}-01`).toFixed(1); ax += `<text x="${x}" y="${H - 10}" text-anchor="middle">${MOIS[m]}</text>`; }
-    const p = c.pts;
-    let d = `M${X(c.from).toFixed(1)},${Y(p[0].v).toFixed(1)}`;
-    p.slice(1).forEach(q => { d += ` H${X(q.d).toFixed(1)} V${Y(q.v).toFixed(1)}`; });
-    d += ` H${X(c.to).toFixed(1)}`;
-    const area = `${d} V${Y(c.min).toFixed(1)} H${X(c.from).toFixed(1)} Z`;
-    const off = { a: [6, -12, 'start'], b: [6, 22, 'start'], ae: [-10, -12, 'end'] };
-    const dots = p.map((q, i) => { const [dx, dy, an] = off[q.pos || 'a'], x = X(q.d), y = Y(q.v);
-      return `<g class="rx-pt lab-${q.lab}" style="--dl:${(.6 + i * .3).toFixed(2)}s"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6"/><text x="${(x + dx).toFixed(1)}" y="${(y + dy).toFixed(1)}" text-anchor="${an}">${q.m} <tspan>${q.v}</tspan></text></g>`; }).join('');
-    const leg = Object.entries(c.labs).map(([k, t]) => `<span class="lab-${k}"><i></i>${t}</span>`).join('');
+  // A chart screenshot on the left with one period highlighted, two blocks on the right
+  race: s => { const c = s.chart;
     const blk = (b, i) => `<div class="blk tone-${b.tone}"${fa(i + 1)}><div class="blk-i">${ICON(b.i)}</div><div><div class="blk-k">${b.k}</div><h3>${b.h}</h3><p>${b.p}</p></div></div>`;
     return `<div class="head">${textBlock(s)}</div><div class="race">
-      <div class="race-c"><div class="race-top"><div class="race-k">${c.k}</div><div class="race-d"><b>${c.delta}</b><span>${c.deltaSub}</span></div></div>
-        <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${c.k}"><g class="rx-grid">${grid}</g><g class="rx-ax">${ax}</g><path class="rx-area" d="${area}"/><path class="rx-line" d="${d}" pathLength="100"/>${dots}</svg>
-        <div class="race-f"><div class="race-leg">${leg}</div><p>${c.foot}</p></div></div>
+      <div class="race-c"><div class="race-top"><div class="race-k">${c.k}</div><div class="race-d"><b>${c.badge}</b><span>${c.badgeSub}</span></div></div>
+        <div class="race-img"><img src="${c.img}" alt="${c.alt}" onerror="mediaMissing(this)"><div class="race-dim" style="width:${c.band[0]}%"></div><div class="race-band" style="left:${c.band[0]}%;width:${c.band[1]}%"><span>${c.bandLabel}</span></div></div>
+        <p class="race-f">${c.foot}</p></div>
       <div class="race-b">${s.blocks.map(blk).join('')}</div></div>${srcLine(s)}`; },
 
   // Columns of short statements, each under a coloured header
@@ -3603,7 +3574,7 @@ const PHOTOSET = {
   'Chapter 5 in one sentence':          { bg: PH('hong-kong', 'side') },
   'Chapter 6: The Body':                { bg: PH('humanoid', 'brand') },
   'Chapter 6 in one sentence':          { bg: PH('robot-dog', 'side', '45% 50%') },
-  'Chapter 7: Why Now':                 { bg: PH('racks', 'brand') },
+  'Chapitre 7 : Pourquoi maintenant': { bg: PH('racks', 'brand') },
   'Chapter 8: What Works':              { bg: PH('padlock', 'brand') },
   'Question for the room':              { bg: PH('audience', 'dark') },
   ...(MODE === 'long' ? {

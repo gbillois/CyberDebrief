@@ -77,6 +77,7 @@ ignore rule; full source downloads and temporary files remain outside the repo.
 | 10 · The call | `hf-disclosure.jpg` | Screenshot of Hugging Face's 16 July 2026 post, with "used LLM still not known" visible | huggingface.co/blog/security-incident-july-2026 |
 | French version only · DseWiki | `dsewiki.jpg` | Screenshot of the Nightingale Collective analysis | collusion.wiki |
 | 56 · Fake evidence | `refund-fraud.jpg` | A published example of an AI-generated or AI-altered "damaged product" photo | South China Morning Post (2025), Modern Retail (2026) |
+| `ai-threat-landscape-entreprise-fr.html` · L’accélération (included) | `charts/aa-frontier-intelligence.png` | Artificial Analysis chart "Frontier Language Model Intelligence" by lab, May 2024 - October 2026, cropped (legend and page controls removed) | artificialanalysis.ai (supplied by the author, October 2026) |
 | Portraits (included) | `people/*.jpg` | 480 px square crops, see the table below | Wikimedia Commons |
 
 ### Portraits (included, openly licensed)
