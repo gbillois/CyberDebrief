@@ -2071,6 +2071,42 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .og-card.off span{color:rgba(255,255,255,.45)}
 @media (max-height:820px){.og-card{padding:.7rem .85rem}.og-card b{font-size:1.08rem}.og-card span{font-size:.9rem}.og-dom{min-height:4.4rem}.og-dom b{font-size:.92rem}.og-top{padding-bottom:1.8rem}.og-top::after{height:1.8rem}}
 @media(max-width:760px){.og-cols{grid-template-columns:repeat(2,1fr)}.og-cols::before,.og-col::before{display:none}.og-top{flex-wrap:wrap;gap:.6rem}}
+/* New roles: the CISO, three pillars with their teams, the two platforms at the bottom */
+.rl-lede{margin:-.6rem 0 .8rem;max-width:none;font-style:italic;color:var(--muted)} .rl-lede u{text-decoration-color:#04F06A;text-underline-offset:.2em;color:#fff}
+.rl{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;--rl-fs:clamp(.7rem,1.55vh,.92rem)}
+.rl-top{position:relative;display:flex;justify-content:center;padding-bottom:1.3rem}
+.rl-top::after{content:'';position:absolute;left:50%;bottom:0;width:2px;height:1.3rem;background:rgba(255,255,255,.55)}
+.rl-top .og-head{padding:.5rem 1.4rem} .rl-top .og-head b{font-size:1.25rem} .rl-top .og-head span{font-size:.95rem}
+.rl-cols{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.8fr) minmax(0,1fr);gap:1.1rem;padding-top:1.3rem}
+.rl-cols::before{content:'';position:absolute;top:0;left:calc((100% - 2.2rem) / 7.6);right:calc((100% - 2.2rem) / 7.6);border-top:2px solid rgba(255,255,255,.55)}
+.rl-pil{position:relative;display:flex;flex-direction:column;gap:.7rem;min-width:0}
+.rl-pil::before{content:'';position:absolute;left:50%;top:-1.3rem;height:1.3rem;width:2px;background:rgba(255,255,255,.55)}
+.rl-ph{position:relative;padding:1.15rem .8rem .45rem;border-radius:.35rem;background:#A99BE0;color:#16103A;text-align:center}
+.rl-ph b{display:block;font-family:var(--f-display);font-weight:800;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase}
+.rl-ph > span:last-child{display:block;font-size:calc(var(--rl-fs) * .92);font-style:italic;line-height:1.25}
+.rl-ph .og-ic{top:-1.1rem;width:2.1rem;height:2.1rem}
+.rl-grps{display:grid;grid-template-columns:repeat(var(--g),minmax(0,1fr));gap:.8rem}
+.rl-grp{display:flex;flex-direction:column;gap:.45rem;min-width:0}
+.rl-gk{padding:.35rem .6rem;border-radius:.35rem;text-align:center}
+.rl-gk b{display:block;font-family:var(--f-display);font-weight:800;font-size:calc(var(--rl-fs) * .95);letter-spacing:.06em;text-transform:uppercase}
+.rl-gk span{display:block;font-size:calc(var(--rl-fs) * .85);font-style:italic}
+.rl-grp.t-g .rl-gk{background:#DDF7E8;color:#07040F}
+.rl-grp.t-l .rl-gk{background:#B9ACF0;color:#16103A}
+.rl-list{position:relative;display:flex;flex-direction:column;gap:.4rem;padding-left:1rem}
+.rl-list::before{content:'';position:absolute;left:.25rem;top:0;bottom:1.1rem;width:2px;background:rgba(255,255,255,.4)}
+.rl-card{position:relative;padding:.4rem .7rem;border-radius:.4rem;background:#1B0E5C;border:1px solid rgba(169,155,224,.75);color:#fff}
+.rl-card::before{content:'';position:absolute;left:calc(-.75rem - 1px);top:1.05rem;width:.75rem;border-top:2px solid rgba(255,255,255,.4)}
+.rl-card b{display:block;font-family:var(--f-display);font-weight:700;font-size:var(--rl-fs);line-height:1.2}
+.rl-card span{display:block;margin-top:.1rem;font-size:calc(var(--rl-fs) * .86);font-style:italic;line-height:1.25;color:rgba(255,255,255,.72)}
+.rl-grp.t-l .rl-card{padding:.55rem .7rem}
+.rl-bot{display:grid;grid-template-columns:minmax(0,2.8fr) minmax(0,1fr);gap:1.1rem;margin-top:1rem;align-items:stretch}
+.rl-plat{padding:.5rem .7rem .35rem;border-radius:.5rem;border:1.5px solid #04F06A;background:rgba(4,240,106,.06)}
+.rl-chips{display:flex;align-items:center;gap:.5rem}
+.rl-chips span{flex:1;padding:.4rem .3rem;border-radius:.4rem;background:#5A2BE0;color:#fff;font-weight:700;font-size:calc(var(--rl-fs) * .92);text-align:center;white-space:nowrap}
+.rl-chips em{flex:none;font-size:calc(var(--rl-fs) * .85);color:var(--muted)}
+.rl-pk{display:block;margin-top:.3rem;font-family:var(--f-display);font-weight:800;font-size:calc(var(--rl-fs) * .9);letter-spacing:.08em;text-transform:uppercase;color:#04F06A}
+.rl-as{display:grid;place-items:center;padding:.5rem .8rem;border-radius:.5rem;border:1.5px solid #A99BE0;color:#DCD4FF;font-family:var(--f-display);font-weight:800;font-size:calc(var(--rl-fs) * .92);letter-spacing:.06em;text-transform:uppercase;text-align:center}
+@media(max-width:760px){.rl-cols,.rl-bot{grid-template-columns:1fr}.rl-cols::before,.rl-pil::before{display:none}.rl-chips{flex-wrap:wrap}}
 </style>
 </head>
 <body>
@@ -2135,7 +2171,7 @@ const SCENES = [
 
 // ─── PROLOGUE ─────────────────────────────────────────────────────────────
 { ch: 'p', type: 'title', title: 'Title', noCh: true,
-  ver: 'Version of 16 October 2026 · 45 slides',
+  ver: 'Version of 16 October 2026 · 46 slides',
   kicker: 'Out of the Sandbox',
   heading: `How is the threat changing with AI, and what can we do?`,
   sub: `An awareness session, from one real case to your own reflexes.`,
@@ -2575,6 +2611,39 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   ],
   vo: `This unified AI calls for a new organization. The starting point: one AI platform per capability, under the CISO, working with the Data and AI office. GRC, application security, infrastructure security, identities, defense, resilience: some capabilities already have their AI platform, like the SOC or AI pentesting, others not yet. The next step: one shared context for all of them.`,
   notes: `Clicks: the CISO and the Data & AI office, the six domains, then the capabilities. The greyed cards (IGA / PAM, business continuity) are not AI-enabled yet.` },
+
+{ ch: 'c4', type: 'roles', title: 'Unified AI: new roles',
+  heading: 'Unified AI: <em>a new organization</em>',
+  lede: 'Agents act, humans <u>steer</u>: new roles emerge',
+  head: { k: 'CISO', s: 'Chief Information Security Officer' },
+  pillars: [
+    { i: 'person', k: 'Engage', s: 'Speak for cyber outside the CISO org', groups: [
+      { items: [
+        { h: 'Strategy, Anticipation & Policy', s: 'Framework, threat anticipation' },
+        { h: 'Business CISO & Policy', s: 'BISOs, security by design with IT' },
+        { h: 'Crisis & incident management', s: 'Prepare, run, learn' },
+        { h: 'Compliance & Regulator', s: 'Incl. TPRM, NIS2, DORA, AI Act' },
+        { h: 'Culture & Engagement', s: 'Awareness, training' },
+      ] } ] },
+    { i: 'server', k: 'Platform operations', s: 'Anticipate threats, evolve the platform & the cyber products and run them efficiently', groups: [
+      { k: 'Build', tone: 'g', items: [
+        { h: 'Agent product owners', s: 'Per domain' },
+        { h: 'Agent developers', s: 'Per domain' },
+        { h: 'Program & Platform manager', s: 'Security products & platform' },
+      ] },
+      { k: 'Run', tone: 'g', items: [
+        { h: 'Agent supervisors', s: 'Per domain' },
+        { h: 'Platform quality manager', s: 'QA, advanced investigation, platform security' },
+        { h: 'Performance manager', s: 'AI costs, efficiency & ROI' },
+      ] } ] },
+    { i: 'shield', k: 'Trust & challenge', s: 'Constantly check trust & efficiency', groups: [
+      { k: 'AI assurance', s: 'Data scientists', tone: 'l', items: [{ h: 'Model evals' }, { h: 'Deviation hunt' }] },
+      { k: 'Offensive', s: 'Attack IS & platform', tone: 'l', items: [{ h: 'Red team' }, { h: 'Adversary lab' }] } ] },
+  ],
+  plat: { k: 'Cyber AI platform', chips: ['GRC', 'SOC / VulnOps', 'CTI', 'App Sec', 'Data', 'IAM…'], ctx: 'one shared context' },
+  assure: 'Cyber assurance / LOD2 platform',
+  vo: `In the end, agents act and humans steer: new roles emerge around the CISO. A first pillar speaks for cyber outside the CISO organization: strategy, business CISOs, crisis management, compliance, culture. At the centre, platform operations: building the agents, with product owners and developers per domain, and running them, with agent supervisors, a platform quality manager and a performance manager who tracks costs and return on investment. Finally, a trust and challenge pillar checks constantly: it evaluates the models, hunts for deviations, and attacks both the information system and the platform. All of it rests on the cyber AI platform and its shared context, overseen by a second-line assurance platform.`,
+  notes: `Clicks: the CISO and the three pillars, then Engage, then platform operations (build and run), then trust and challenge, and finally the two platforms. BISO: a security officer embedded in a business line. LOD2: the second line of defence, independent risk oversight.` },
 // ─── CHAPTER 8 · WHAT WORKS ───────────────────────────────────────────────
 { ch: 'end', type: 'finale', title: 'Questions',
   bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
@@ -3301,6 +3370,15 @@ const R = {
       <div class="og-top"${fa(0)}><div class="og-head"><b>${s.head.k}</b><span>${s.head.s}</span></div><i class="og-dash"></i><div class="og-side">${s.side}</div></div>
       <div class="og-cols" style="--n:${s.cols.length}">${s.cols.map(c => `<div class="og-col"><div class="og-dom"${fa(1)}><span class="og-ic">${ICON(c.i)}</span><b>${c.k}</b></div><div class="og-cards"${fa(2)}>${c.cards.map(x => `<div class="og-card${x.off ? ' off' : ''}"><b>${x.h}</b><span>${x.s}</span></div>`).join('')}</div></div>`).join('')}</div>
     </div>${srcLine(s)}`,
+
+  // New roles around the CISO: three pillars, their teams, and the two platforms underneath
+  roles: s => { const card = x => `<div class="rl-card"><b>${x.h}</b>${x.s ? `<span>${x.s}</span>` : ''}</div>`;
+    const grp = g => `<div class="rl-grp${g.tone ? ' t-' + g.tone : ''}">${g.k ? `<div class="rl-gk"><b>${g.k}</b>${g.s ? `<span>${g.s}</span>` : ''}</div>` : ''}<div class="rl-list">${g.items.map(card).join('')}</div></div>`;
+    return `<h2 class="sw-big bk-t">${s.heading}</h2><p class="lede rl-lede">${s.lede}</p><div class="rl">
+      <div class="rl-top"${fa(0)}><div class="og-head"><b>${s.head.k}</b><span>${s.head.s}</span></div></div>
+      <div class="rl-cols">${s.pillars.map((p, i) => `<div class="rl-pil"><div class="rl-ph"${fa(0)}><span class="og-ic">${ICON(p.i)}</span><b>${p.k}</b><span>${p.s}</span></div><div class="rl-grps" style="--g:${p.groups.length}"${fa(i + 1)}>${p.groups.map(grp).join('')}</div></div>`).join('')}</div>
+      <div class="rl-bot"${fa(4)}><div class="rl-plat"><div class="rl-chips">${s.plat.chips.map(c => `<span>${c}</span>`).join('')}<em>${s.plat.ctx}</em></div><b class="rl-pk">${s.plat.k}</b></div><div class="rl-as"><span>${s.assure}</span></div></div>
+    </div>${srcLine(s)}`; },
 
   // A triptych of photo panels: each lights up with its letter on its click; the human band last
   aaa: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="tri">${s.items.map((x, i) => `<div class="tri-p" data-hl="${i + 1}"><div class="tri-ph" style="background-image:url('${x.photo}')"></div><div class="tri-n">0${i + 1}</div><div class="tri-a" aria-hidden="true">${x.h[0]}</div><div class="tri-w">${x.h}</div><p>${x.p}</p></div>`).join('')}</div>
