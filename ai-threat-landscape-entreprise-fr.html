@@ -1864,8 +1864,8 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .bk{flex:1;position:relative;display:flex;flex-direction:column;justify-content:center;gap:1.6rem;min-height:0;padding:2.8rem 3rem 2.4rem;border:1px solid rgba(122,92,255,.28);border-radius:1rem;
   background:linear-gradient(rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,linear-gradient(90deg,rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,radial-gradient(80% 90% at 50% 100%,rgba(69,29,199,.3),transparent 70%)}
 .bk-plan{position:absolute;top:1rem;left:1.4rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#B6A6FF}
-.bk-row{flex:1;max-height:15rem;display:grid;grid-template-columns:10rem 1fr;gap:1.4rem;align-items:stretch}
-.bk-k{align-self:center;font-family:var(--f-mono);font-size:.95rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tone);text-align:right}
+.bk-row{flex:1;max-height:15rem;display:grid;grid-template-columns:14.5rem 1fr;gap:1.4rem;align-items:stretch}
+.bk-k{align-self:stretch;display:flex;align-items:center;padding-left:1.1rem;border-left:4px solid var(--tone);font-family:var(--f-display);font-weight:800;font-size:2rem;line-height:1.05;letter-spacing:-.03em;color:var(--tone);text-shadow:0 0 30px var(--tone);box-shadow:-10px 0 24px -14px var(--tone)}
 .bk-bs{display:flex;gap:1rem;justify-content:center;align-items:stretch}
 .bk-b{position:relative;flex:1;max-width:21rem;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;padding:1.4rem 1.5rem 1.5rem;border-radius:.35rem;border:1px solid color-mix(in srgb,var(--tone) 55%,transparent);border-top:3px solid var(--tone);
   background:linear-gradient(180deg,color-mix(in srgb,var(--tone) 26%,#0E0822),color-mix(in srgb,var(--tone) 8%,#07040F));box-shadow:0 0 34px -6px color-mix(in srgb,var(--tone) 45%,transparent),inset 0 1px 0 rgba(255,255,255,.08)}
@@ -1873,7 +1873,7 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .bk-i .ic{width:6.5rem;height:6.5rem;stroke-width:1.2}
 .bk-row.on .bk-b{animation:bkDrop .8s var(--sk-ease) backwards;animation-delay:calc(var(--d) * .14s)}
 @keyframes bkDrop{from{opacity:0;transform:translateY(-2.4rem)}}
-.bk-b b{position:relative;display:block;font-family:var(--f-display);font-weight:800;font-size:1.65rem;line-height:1.15;color:#fff}
+.bk-b b{position:relative;display:block;font-family:var(--f-display);font-weight:800;font-size:1.5rem;line-height:1.15;color:#fff}
 .bk-b span{position:relative;display:block;margin-top:.5rem;font-size:1.05rem;line-height:1.4;color:var(--muted)}
 
 /* the new baseline: a clock that starts at the event */
@@ -2467,7 +2467,6 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
     { h: 'Vitesse', l: 'L’attaque va plus vite.', v: '&lt; 10 h', t: 'pour une intrusion qui prenait environ deux semaines' },
     { h: 'Profondeur', l: 'L’attaque va plus loin.', v: '50+', t: 'techniques d’attaque enchaînées par des agents IA, replanifiées en temps réel' },
   ] },
-  punch: 'L’IA ne change pas les règles du jeu. <em>Elle en change le rythme.</em>',
   vo: `Maintenant, la bonne nouvelle : ce n’est pas la fin du monde. L’IA ne change pas les fondamentaux. Le Zero Trust reste le bon modèle, et les mesures classiques restent valables. Ce qu’elle change, c’est la vitesse : en septembre, des agents IA ont mené en moins de dix heures une intrusion qui prenait environ deux semaines. Et la profondeur : plus de cinquante techniques enchaînées, replanifiées en temps réel. L’IA ne change pas les règles du jeu, elle en change le rythme.`,
   notes: `Les deux chiffres viennent du même cas, déjà vu dans la carte des attaquants : Unit 42 (Palo Alto Networks), 2 septembre 2026, victime non divulguée, « compressed weeks of methodical intrusion tradecraft into less than 10 hours ».`,
   src: `Unit 42, Palo Alto Networks (2 septembre 2026) · Photos : FlyD et Henry Lai sur Unsplash` },
@@ -2477,10 +2476,9 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   plan: 'Plan de reconstruction',
   layers: [
     { tone: 'indigo', k: 'Architecture', bricks: [
-      { i: 'key', h: 'Identités', p: 'Renforcer l’authentification et les privilèges, humains et agents IA.' },
-      { i: 'wifi', h: 'Réseau', p: 'Repenser la segmentation : une brèche n’ouvre plus tout.' },
-      { i: 'shield', h: 'Zero Trust', p: 'Lui donner un nouvel élan : chaque accès vérifié.' },
-      { i: 'lock', h: 'Données', p: 'Savoir où sont les données sensibles, les classifier, les chiffrer.' },
+      { i: 'key', h: 'Combler les failles d’identité', p: 'MFA résistant au phishing partout, PAM juste-à-temps pour les accès critiques.' },
+      { i: 'wifi', h: 'Repenser le réseau', p: 'Filtrer l’entrant et le sortant contre l’injection de prompt et la pollution des données. Revoir l’exposition, limiter le rayon d’impact.' },
+      { i: 'shield', h: 'Relancer le Zero Trust et la protection des données', p: 'Couvrir aussi les identités agentiques, DLP et accès aux données compris.' },
     ] },
     { tone: 'teal', k: 'Logiciel Factory', bricks: [
       { i: 'search', h: 'Trouver nos failles en premier', p: 'L’IA revoit le code et teste les applications avant les attaquants.' },
@@ -2488,7 +2486,7 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
       { i: 'code', h: 'Sécurité dès la conception', p: 'Dans chaque nouveau projet, projets IA compris.' },
     ] },
   ],
-  vo: `C’est donc le moment de reconstruire nos fondations, et de finir les grands chantiers. Côté architecture : les identités, le réseau, un nouvel élan pour le Zero Trust, et la protection des données. Et côté Logiciel Factory : trouver nos failles avant les autres, les corriger plus vite, et intégrer la sécurité dès la conception.` },
+  vo: `C’est donc le moment de reconstruire nos fondations, et de finir les grands chantiers. Côté architecture : combler les failles d’identité, avec du MFA résistant au phishing et du PAM juste-à-temps ; repenser le réseau, en filtrant l’entrant et le sortant et en limitant le rayon d’impact ; et relancer le Zero Trust et la protection des données, en couvrant aussi les identités des agents IA. Et côté Logiciel Factory : trouver nos failles avant les autres, les corriger plus vite, et intégrer la sécurité dès la conception.` },
 
 { ch: 'c4', type: 'kpi', title: 'La nouvelle baseline',
   stamp: 'Au-delà des fondations', heading: 'Fixer une nouvelle baseline cyber',
