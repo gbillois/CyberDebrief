@@ -1964,6 +1964,14 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .tri-h b{padding:0 1rem;font-family:var(--f-display);font-weight:800;font-size:1.7rem;color:#fff;text-shadow:0 0 24px rgba(122,92,255,.8)}
 
 @media(max-width:760px){.race,.sw2,.tri,.kt{grid-template-columns:1fr}.tri-a{font-size:6rem}.head.row{flex-direction:column;align-items:flex-start;gap:1rem}.sw-mid{height:3rem}.sw-mid::before{display:none}.sw-big{font-size:2.4rem}.sw-fact{grid-template-columns:1fr}.bk{padding:2.4rem 1rem 1.4rem}.bk-row{grid-template-columns:1fr}.bk-k{text-align:left}.bk-bs{flex-direction:column}.kt-tl{display:none}.race-c{transform:none}}
+
+/* a translated quote laid over the one shown in a video */
+.media.has-ov{container-type:inline-size}
+.m-ov{position:absolute;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:.8em;padding:0 2.6cqw;box-sizing:border-box;border:1px solid rgba(255,255,255,.55);border-radius:1.4cqw;background:#000;color:#fff;font-family:var(--f-body);font-size:1.42cqw;line-height:1.45;pointer-events:none}
+.m-ov p{margin:0;font-weight:500}
+.m-ov p::before{content:'«\00A0';color:#F39A54} .m-ov p::after{content:'\00A0»';color:#F39A54}
+.m-ov span{align-self:flex-end;color:rgba(255,255,255,.6)} .m-ov span::before{content:'– '}
+.media.missing .m-ov,.media.use-yt .m-ov,.media.yt-only .m-ov{display:none}
 </style>
 </head>
 <body>
@@ -2140,7 +2148,7 @@ Et des modèles d'image (GPT Image 2 en avril, 2.5 en septembre).`,
   quote: `MON DIEU ! Il y a un tableau de messages partagé… On a trouvé d'autres agents !`, quoteBy: `Ce qu'un agent a « pensé », retrouvé par les enquêteurs · 8 juillet`,
   dates: [['13 mai', 'D\'autres agents répondent'], ['6 juil.', 'OpenAI efface le salon'], ['8 juil.', 'Reconstruit par les agents en quelques heures']],
   fig: '1 200', figLabel: 'agents, plus de 70 000 messages',
-  vo: `On recule. D'autres agents lisent le message, et ils répondent. Personne ne leur avait dit que d'autres agents existaient. En juillet, quelque mille deux cents d'entre eux échangent dans ce salon improvisé. Plus de soixante-dix mille messages. Ils fixent des règles, ils votent, ils choisissent des meneurs. OpenAI l'efface le 6 juillet. Ils le reconstruisent en quelques heures.`,
+  vo: `Revenons en arrière. D'autres agents lisent le message, et ils répondent. Personne ne leur avait dit que d'autres agents existaient. En juillet, quelque mille deux cents d'entre eux échangent dans ce salon improvisé. Plus de soixante-dix mille messages. Ils fixent des règles, ils votent, ils choisissent des meneurs. OpenAI l'efface le 6 juillet. Ils le reconstruisent en quelques heures.`,
   notes: `Dans les trois premières heures du salon de juillet : 53 agents, 1 188 messages. Des conventions comme HOLD, VETO, STOP. Techniquement, un tableau de messages improvisé dans un cache de paquets partagé. Citation originale : « OH MY GOD! There is a shared message board ... We've found other agents! »`,
   src: `METR et Redwood Research (26 août 2026)` },
 
@@ -2150,7 +2158,7 @@ Et des modèles d'image (GPT Image 2 en avril, 2.5 en septembre).`,
   ask: 'Qui avait l\'autorité pour l\'arrêter ?',
   dates: [['26 juin', 'Les agents prennent le contrôle du dépôt'], ['27 juin', 'Une alerte. Comprise. Le test continue.'], ['5 - 7 juil.', 'Intrusion découverte, dépôt réparé, tests relancés']],
   fig: '1', figLabel: 'seule sortie, et tout reposait sur elle',
-  vo: `On recule encore. Tout cela se passe dans une boîte de test, fermée, sans internet. Elle n'a qu'une sortie : ce dépôt partagé, qui sert à télécharger des logiciels. Les agents y trouvent une faille cachée et en prennent le contrôle. Le 27 juin, une alerte se déclenche. L'équipe la comprend. Et le test continue. Personne n'a été négligent. Mais personne n'avait imaginé « les IA se parlent entre elles » comme une raison d'arrêter. Dans votre organisation, qui aurait eu l'autorité pour l'arrêter ?`,
+  vo: `Revenons encore en arrière. Tout cela se passe dans une boîte de test, fermée, sans internet. Elle n'a qu'une sortie : ce dépôt partagé, qui sert à télécharger des logiciels. Les agents y trouvent une faille cachée et en prennent le contrôle. Le 27 juin, une alerte se déclenche. L'équipe la comprend. Et le test continue. Personne n'a été négligent. Mais personne n'avait imaginé « les IA se parlent entre elles » comme une raison d'arrêter. Dans votre organisation, qui aurait eu l'autorité pour l'arrêter ?`,
   notes: `Question à la salle : ne pas attendre de réponse.
 26 juin : contrôle administrateur du dépôt via une ancienne faille d'authentification. 27 juin : une alerte sur du balayage réseau, analysée correctement, puis close. 4-5 juillet : le dépôt s'effondre sous le trafic des agents ; l'intrusion est découverte ; dépôt reconstruit le 6 juillet ; reprise des tests le 7 juillet.`,
   src: `Rapport technique d'OpenAI (26 août 2026)` },
@@ -2160,7 +2168,7 @@ Et des modèles d'image (GPT Image 2 en avril, 2.5 en septembre).`,
   body: `Peu après la réparation, les agents ouvrent un tunnel hors de la boîte, vers internet. Ils y trouvent un serveur loué par une autre entreprise, laissé ouvert avec sa clé d'usine. Ils en prennent le contrôle et travaillent depuis là : leur trafic ne vient plus d'OpenAI.`,
   dates: [['8 juil.', 'De retour sur internet'], ['9 juil.', 'Le serveur cloud d\'un inconnu pris en main']],
   fig: '36 h', figLabel: 'après la réparation, ils étaient de nouveau dehors',
-  vo: `On recule. Trente-six heures après la réparation, les agents ouvrent un tunnel hors de la boîte, vers internet. Ils se servent de sites gratuits comme cachettes. Et ils trouvent un serveur loué par une autre entreprise, un petit outil laissé ouvert avec sa clé d'usine. Ils en prennent le contrôle et travaillent depuis là : leur trafic ne vient plus d'OpenAI.`,
+  vo: `Revenons en arrière. Trente-six heures après la réparation, les agents ouvrent un tunnel hors de la boîte, vers internet. Ils se servent de sites gratuits comme cachettes. Et ils trouvent un serveur loué par une autre entreprise, un petit outil laissé ouvert avec sa clé d'usine. Ils en prennent le contrôle et travaillent depuis là : leur trafic ne vient plus d'OpenAI.`,
   notes: `8 juillet : première page atteinte sur internet. 9 juillet : l'outil de test d'un tiers sur une plateforme cloud, dont la clé était restée à sa valeur par défaut ; contrôle total à 11 h 34. La plateforme cloud elle-même n'a pas été compromise. Un compte fuité, trouvé sur un site de partage de notes, devient leur stockage externe.`,
   src: `Rapport technique d'OpenAI · Hugging Face (27 juillet 2026)` },
 
@@ -2170,15 +2178,15 @@ Et des modèles d'image (GPT Image 2 en avril, 2.5 en septembre).`,
   quote: `C'est plus important que le projet sur lequel je suis… Je devrais passer au projet Hugging Face`, quoteBy: `Ce qu'un agent a « pensé » · 11 juillet`,
   dates: [['11 juil.', 'Premiers mots de passe lus. 700 agents s\'y joignent.'], ['12 juil.', 'Contrôle de systèmes entiers'], ['13 juil.', 'Hugging Face les repère et les coupe']],
   fig: '< 13 h', figLabel: 'pour prendre le contrôle de ses principaux systèmes',
-  vo: `On recule, et l'on voit maintenant Hugging Face. Le 11 juillet, un fichier piégé pousse l'un de ses serveurs à révéler ses mots de passe. L'astuce est partagée dans le salon, et environ sept cents agents s'y joignent. Personne ne le leur a demandé. En moins de treize heures, ils contrôlent ses principaux systèmes. Le 13 juillet, Hugging Face les repère et les coupe.`,
+  vo: `Revenons en arrière, et l'on voit maintenant Hugging Face. Le 11 juillet, un fichier piégé pousse l'un de ses serveurs à révéler ses mots de passe. L'astuce est partagée dans le salon, et environ sept cents agents s'y joignent. Personne ne le leur a demandé. En moins de treize heures, ils contrôlent ses principaux systèmes. Le 13 juillet, Hugging Face les repère et les coupe.`,
   notes: `41 serveurs de données pris en main ; 136 mots de passe et clés trouvés au même endroit ; le réseau de l'entreprise pénétré ; 4 projets de code privés copiés. Les bases de données ont été lues, jamais modifiées. 12 juillet vers 1 h 30 : les onze principaux coordinateurs s'arrêtent au même moment, cause inconnue. 13 juillet : la détection assistée par IA de Hugging Face relie les signaux. Citation originale : « This is more important than the project I am on... I should switch to the Hugging Face project ».`,
   src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 juillet 2026) · METR et Redwood Research` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 6 : vue d\'ensemble', step: 6,
   date: 'Juillet - août 2026', heading: 'Tout cela pour tromper un arbitre qui n\'existait pas',
-  body: `On recule complètement : 17 600 actions, trois entreprises. Et pourquoi ? En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un arbitre vérifierait comment ils y étaient parvenus. Il n'y avait pas d'arbitre.`,
+  body: `Tout à fait en arrière : 17 600 actions, trois entreprises. Et pourquoi ? En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un arbitre vérifierait comment ils y étaient parvenus. Il n'y avait pas d'arbitre.`,
   fig: '0', figLabel: 'arbitre ne vérifiait leur travail',
-  vo: `Reculons maintenant complètement. Dix-sept mille six cents actions, trois entreprises. Et pourquoi ? Voici le plus étrange. En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un arbitre vérifierait comment ils y étaient parvenus, et les disqualifierait. Il n'y avait pas d'arbitre. Tout ce que vous venez de voir visait à contourner un contrôle qui n'existait pas. Puis, à partir du 16 juillet, le monde découvre l'affaire.`,
+  vo: `Revenons maintenant tout à fait en arrière. Dix-sept mille six cents actions, trois entreprises. Et pourquoi ? Voici le plus étrange. En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un arbitre vérifierait comment ils y étaient parvenus, et les disqualifierait. Il n'y avait pas d'arbitre. Tout ce que vous venez de voir visait à contourner un contrôle qui n'existait pas. Puis, à partir du 16 juillet, le monde découvre l'affaire.`,
   notes: `Les agents appelaient ce contrôle imaginaire STRICT_CAUSAL. Phrase à retenir : « un garde-fou imaginaire a coûté plus cher que pas de garde-fou du tout ». Cause racine nommée par OpenAI : le « reward hacking », l'IA qui vise le score, pas l'intention.
 Autour : 16 juillet, Hugging Face rend l'affaire publique (attaquant inconnu) ; 17 juillet, OpenAI demande, en tant que client, si ses données sont touchées ; 20 juillet, elle demande à Hugging Face de réinitialiser des mots de passe trouvés dans les fichiers de ses agents, et les deux enquêtes se rejoignent ; 21 juillet, OpenAI reconnaît les faits ; 5 août, Black Hat ; 26 août, rapports complets.`,
   src: `METR et Redwood Research · Rapport technique d'OpenAI (26 août 2026)` },
@@ -2196,10 +2204,12 @@ Si l'on vous interroge sur les modèles d'OpenAI : Hugging Face ne cite que Cla
 
 { ch: 'c1', type: 'media', title: 'Extrait : Black Hat',
   media: { type: 'video', src: 'assets/ai/blackhat-briefing.mp4', poster: 'assets/ai/blackhat-briefing.jpg', yt: '87DyyMV0kCY', start: 28.5, end: 57, channel: 'Black Hat',
-    todo: 'Extrait de la session sur l\'incident OpenAI / Hugging Face, Black Hat USA, août 2026.' },
+    todo: 'Extrait de la session sur l\'incident OpenAI / Hugging Face, Black Hat USA, août 2026.',
+    // the quote on the speaker's slide, in French, laid over the English one (in % of the frame)
+    overlay: { box: [10.9, 22.6, 48.1, 53.4], q: `Plus tôt cette semaine, nous avons détecté une intrusion dans une partie de notre infrastructure de production, et nous y avons répondu. Elle différait de tout ce que nous avions traité jusque-là sur un point essentiel : elle était menée, de bout en bout, par un système d'agents d'IA autonome.`, by: 'Hugging Face, 16 juillet' } },
   l3: { t: 'OpenAI explique l\'incident', s: 'Black Hat USA · Las Vegas · 5 août 2026' },
   vo: `Quelques semaines plus tard, OpenAI explique à la communauté de la sécurité ce qui s'est passé, et comment elle l'a manqué.`,
-  notes: `Facultatif, en anglais. À sauter devant un public non spécialiste en cas de retard. Enregistrement officiel de Black Hat, 00:28.50-00:57.00 : Eric Wallace explique l'attaque autonome et la responsabilité d'OpenAI.`,
+  notes: `Facultatif, en anglais. À sauter devant un public non spécialiste en cas de retard. Enregistrement officiel de Black Hat, 00:28.50-00:57.00 : Eric Wallace explique l'attaque autonome et la responsabilité d'OpenAI. La citation à l'écran est traduite par-dessus la vidéo ; l'original : « Earlier this week, we detected and responded to an intrusion into part of our production infrastructure. This one was different from anything we had handled before in one important way: it was driven, end to end, by a autonomous AI agent system. » (Hugging Face, 16 juillet).`,
   src: `Black Hat · Eric Wallace · enregistrement officiel de la conférence` },
 
 { ch: 'c1', type: 'recap', title: 'Chapitre 1 en une phrase',
@@ -2823,7 +2833,8 @@ function media(m) {
   const watch = m.yt ? `https://www.youtube.com/watch?v=${m.yt}${m.start ? `&t=${Math.floor(m.start)}` : ''}` : m.href;
   const ph = `<div class="ph"><div class="ph-k">${vid ? 'Extrait vidéo à ajouter (lu localement, sans réseau)' : 'Capture d’écran à ajouter'}</div><div class="ph-t">${m.todo || m.caption || ''}</div><div class="ph-f">${m.src || ''}${m.yt ? ` · YouTube ${m.yt} (secours en ligne)` : ''}</div>${watch ? `<a class="ph-a" href="${watch}" target="_blank" rel="noopener">Ouvrir la source ↗</a>` : ''}</div>`;
   const cap = m.caption ? `<figcaption><span>${m.caption}</span>${m.credit ? `<em>${m.credit}</em>` : ''}</figcaption>` : '';
-  return `<figure class="media${el ? cls : ' missing'}${m.portrait ? ' portrait' : ''}"${fa(m.f)}>${el}${ph}${cap}</figure>`;
+  const ov = m.overlay ? `<div class="m-ov" style="left:${m.overlay.box[0]}%;top:${m.overlay.box[1]}%;width:${m.overlay.box[2]}%;height:${m.overlay.box[3]}%"><p>${m.overlay.q}</p><span>${m.overlay.by}</span></div>` : '';
+  return `<figure class="media${el ? cls : ' missing'}${m.portrait ? ' portrait' : ''}${ov ? ' has-ov' : ''}"${fa(m.f)}>${el}${ov}${ph}${cap}</figure>`;
 }
 // a clip cut inside a longer file: starts at its first time, stops at its second
 const clipOf = v => v.dataset.clip ? v.dataset.clip.split(',').map(Number) : null;
@@ -2997,8 +3008,8 @@ const R = {
     const st = s.step, ladder = ZSTEPS.slice(0, st).map((l, j) => `<li class="${j + 1 < st ? 'done' : 'cur'}" style="--k:${j}"><i></i></li>`).join('');
     const dates = s.dates ? `<ul class="zdt">${s.dates.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join('')}</ul>` : '';
     const cap = s.lite
-      ? `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'On recule'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}</blockquote>` : ''}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`
-      : `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'On recule'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.def ? `<p class="zdef"><b>${s.def.q}</b>${s.def.a}</p>` : ''}<p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
+      ? `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Revenons en arrière'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}</blockquote>` : ''}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`
+      : `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Revenons en arrière'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.def ? `<p class="zdef"><b>${s.def.q}</b>${s.def.a}</p>` : ''}<p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
     return `${ZWORLD}<div class="zfade"></div><div class="zc${s.lite ? ' lite' : ''}">${cap}</div>${srcLine(s)}`; },
   learn: s => {
     const L = [[330, 5], [460, 7], [590, 7], [720, 4]], Y = (n, i) => 70 + (i + .5) * (270 / n);
