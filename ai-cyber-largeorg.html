@@ -1476,6 +1476,10 @@ body::after{inset:-5%;opacity:.07;animation:sk-grain .9s steps(4) infinite}
 #hud{color:var(--subtle)}
 #prog div{background:rgba(255,255,255,.1)!important}
 #prog div i{background:linear-gradient(90deg,#7A5CFF,#04F06A)!important;box-shadow:0 0 12px rgba(4,240,106,.6)}
+/* the chapter bar: a taller hit area around the thin line */
+#prog{height:17px}
+#prog div{box-sizing:border-box;height:100%;border-top:7px solid transparent;border-bottom:7px solid transparent;background-clip:padding-box!important;transition:filter .2s}
+#prog div:hover{filter:brightness(1.8)}
 #hint{color:var(--subtle)}
 
 /* glass: every panel that is not a real-world object */
@@ -4327,7 +4331,7 @@ if (!PRESENTER) {
   // the first gesture lets the sound start, if the browser held it back
   ['pointerdown', 'keydown', 'touchstart'].forEach(t => document.addEventListener(t, () => { if (skLoop.ac && skLoop.ac.state === 'suspended' && skLoop.want) skLoop.ac.resume().catch(() => {}); }, true));
   document.addEventListener('click', e => {
-    const m = e.target.closest('[data-mode]');
+    const m = e.target.closest('button[data-mode]');
     if (m) { e.stopPropagation(); if (m.dataset.mode !== MODE) setMode(m.dataset.mode); return; }
     const b = e.target.closest('[data-sk]'); if (!b) return;
     e.stopPropagation(); b.blur();
