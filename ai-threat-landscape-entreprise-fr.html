@@ -2045,6 +2045,32 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .pf-lake span{display:block;font-size:.8rem;font-style:italic;opacity:.75}
 @media (max-height:820px){.pf-ars{height:2.4rem}.pf-plat{padding-top:1.9rem}.pf-row p{font-size:.94rem}}
 @media(max-width:760px){.pf-top{grid-template-columns:1fr}.pf-row,.pf-ag{grid-template-columns:1fr}.pf-chips{grid-template-columns:repeat(3,1fr)}.pf-pills{flex-wrap:wrap}}
+/* Unified AI, a new organisation: the CISO on top, a bus to six domains, the capability cards below */
+.og-lede{margin:-.6rem 0 1.4rem;max-width:none;font-style:italic;color:var(--muted)} .og-lede b{color:#04F06A;font-weight:700}
+.og{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center}
+.og-top{position:relative;display:flex;justify-content:center;align-items:center;gap:0;padding-bottom:2.2rem}
+.og-top::after{content:'';position:absolute;left:50%;bottom:0;width:2px;height:2.2rem;background:rgba(255,255,255,.55)}
+.og-head{display:flex;align-items:baseline;gap:.8rem;padding:.7rem 1.6rem;border-radius:.5rem;background:#04F06A;color:#07040F;box-shadow:0 0 40px rgba(4,240,106,.35)}
+.og-head b{font-family:var(--f-display);font-weight:800;font-size:1.5rem;letter-spacing:.04em}
+.og-head span{font-size:1.08rem}
+.og-dash{width:3rem;border-top:2px dashed rgba(255,255,255,.55)}
+.og-side{padding:.7rem 1.4rem;border-radius:.5rem;background:#DDF7E8;color:#07040F;font-family:var(--f-display);font-weight:700;font-size:1.12rem}
+.og-cols{position:relative;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:1.2rem;padding-top:2rem}
+.og-cols::before{content:'';position:absolute;top:0;left:calc(100% / var(--n) / 2);right:calc(100% / var(--n) / 2);border-top:2px solid rgba(255,255,255,.55)}
+.og-col{position:relative;display:flex;flex-direction:column;gap:1rem}
+.og-col::before{content:'';position:absolute;left:50%;top:-2rem;height:2rem;width:2px;background:rgba(255,255,255,.55)}
+.og-dom{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:4.6rem;padding:1.3rem .6rem .6rem;border-radius:.35rem;background:#A99BE0;color:#16103A;text-align:center}
+.og-dom b{font-family:var(--f-display);font-weight:800;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;line-height:1.15}
+.og-ic{position:absolute;top:-1.15rem;left:50%;transform:translateX(-50%);width:2.3rem;height:2.3rem;border-radius:50%;background:#3A1FB0;border:2px solid #A99BE0;display:grid;place-items:center}
+.og-ic svg{width:1.25rem;height:1.25rem;stroke:#fff}
+.og-cards{flex:1;display:flex;flex-direction:column;gap:.7rem}
+.og-card{flex:1;min-height:clamp(5rem,11vh,7.5rem);padding:1rem 1.1rem;border-radius:.6rem;background:#1B0E5C;border:2px solid #04F06A;box-shadow:0 0 30px rgba(4,240,106,.18);color:#fff}
+.og-card b{display:block;font-family:var(--f-display);font-weight:800;font-size:1.28rem;line-height:1.2}
+.og-card span{display:block;margin-top:.35rem;font-size:1rem;font-style:italic;line-height:1.35;color:rgba(255,255,255,.75)}
+.og-card.off{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.22);box-shadow:none;color:rgba(255,255,255,.55)}
+.og-card.off span{color:rgba(255,255,255,.45)}
+@media (max-height:820px){.og-card{padding:.7rem .85rem}.og-card b{font-size:1.08rem}.og-card span{font-size:.9rem}.og-dom{min-height:4.4rem}.og-dom b{font-size:.92rem}.og-top{padding-bottom:1.8rem}.og-top::after{height:1.8rem}}
+@media(max-width:760px){.og-cols{grid-template-columns:repeat(2,1fr)}.og-cols::before,.og-col::before{display:none}.og-top{flex-wrap:wrap;gap:.6rem}}
 </style>
 </head>
 <body>
@@ -2109,7 +2135,7 @@ const SCENES = [
 
 // ─── PROLOGUE ─────────────────────────────────────────────────────────────
 { ch: 'p', type: 'title', title: 'Titre', noCh: true,
-  ver: 'Version du 16 octobre 2026 · 44 slides',
+  ver: 'Version du 16 octobre 2026 · 45 slides',
   kicker: 'Hors du bac à sable',
   heading: `Comment la menace change-t-elle avec l'IA, et que pouvons-nous faire ?`,
   sub: `Une session de sensibilisation, d'un cas réel à vos propres réflexes.`,
@@ -2533,6 +2559,22 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   graph: { k: 'Graphe de sécurité cyber', t: 'Contexte partagé : actifs, identités, expositions et relations', lake: 'Lac de données cyber', lakeS: 'mémoire à long terme' },
   vo: `Concrètement, cela mène vers une plateforme cyber centralisée, avec un contexte unique pour héberger de nombreux agents. En haut, les outils et systèmes cyber, l’IT et les applications métier : ils envoient leurs données et leurs événements, et reçoivent des ordres déterministes. Au cœur, un orchestrateur distribue le travail, applique les droits de décision et escalade : au-delà d’un seuil, ce sont les humains qui décident, avec bac à sable, arrêt d’urgence et retour arrière. Il pilote des agents spécialisés, un ou plusieurs par domaine. Et tous partagent le même contexte : un graphe de sécurité qui relie actifs, identités, expositions et relations, adossé à un lac de données cyber qui sert de mémoire à long terme.`,
   notes: `Un clic par étage : les systèmes du SI, l’orchestrateur, les agents, puis le graphe de sécurité partagé.` },
+
+{ ch: 'c4', type: 'org', title: 'IA unifiée : une nouvelle organisation',
+  heading: 'IA unifiée : <em>une nouvelle organisation</em>',
+  lede: 'Point de départ : une plateforme d’IA par capacité · <b>ensuite, un contexte partagé</b>',
+  head: { k: 'RSSI', s: 'Responsable de la sécurité des systèmes d’information' },
+  side: 'Direction Data & IA',
+  cols: [
+    { i: 'check', k: 'GRC', cards: [{ h: 'GRC native IA', s: 'Contrôles et risque fournisseurs' }] },
+    { i: 'code', k: 'Sécurité applicative', cards: [{ h: 'Sécurité des applications', s: 'Posture, code et chaînes de déploiement' }] },
+    { i: 'server', k: 'Sécurité des infrastructures', cards: [{ h: 'Protection des données', s: 'DLP, DSPM et risque data' }] },
+    { i: 'person', k: 'IAM', cards: [{ h: 'IGA / PAM', s: 'Humains, machines et agents', off: true }] },
+    { i: 'search', k: 'Défense', cards: [{ h: 'SOC IA', s: 'Détecter et répondre' }, { h: 'Pentest IA', s: 'Valider l’exposition' }] },
+    { i: 'target', k: 'Résilience', cards: [{ h: 'Continuité d’activité', s: 'Analyse d’impact et reprise', off: true }] },
+  ],
+  vo: `Cette IA unifiée appelle une nouvelle organisation. Point de départ : une plateforme d’IA par capacité, sous la responsabilité du RSSI, en lien avec la direction Data et IA. GRC, sécurité applicative, sécurité des infrastructures, identités, défense, résilience : certaines capacités sont déjà outillées, comme le SOC ou le pentest par l’IA, d’autres pas encore. L’étape suivante : que toutes partagent le même contexte.`,
+  notes: `Clics : le RSSI et la direction Data et IA, les six domaines, puis les capacités. Les cartes grisées (IGA / PAM, continuité d’activité) ne sont pas encore outillées par l’IA.` },
 // ─── CHAPITRE 8 · CE QUI MARCHE ───────────────────────────────────────────
 { ch: 'end', type: 'finale', title: 'Questions',
   bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
@@ -3253,6 +3295,12 @@ const R = {
         <div class="pf-row pf-ag"${fa(2)}><div class="pf-h"><b>${s.agents.k}</b><span>${s.agents.s}</span></div><div class="pf-chips">${s.agents.list.map(c => `<span class="pf-chip">${c}</span>`).join('')}</div></div>
         <div class="pf-row pf-gr"${fa(3)}><div class="pf-h"><b>${s.graph.k}</b></div><p>${s.graph.t}</p><div class="pf-lake"><b>${s.graph.lake}</b><span>${s.graph.lakeS}</span></div></div>
       </div></div>${srcLine(s)}`; },
+
+  // The security organisation behind unified AI: the CISO, six domains, one AI capability card or more each
+  org: s => `<h2 class="sw-big bk-t">${s.heading}</h2><p class="lede og-lede">${s.lede}</p><div class="og">
+      <div class="og-top"${fa(0)}><div class="og-head"><b>${s.head.k}</b><span>${s.head.s}</span></div><i class="og-dash"></i><div class="og-side">${s.side}</div></div>
+      <div class="og-cols" style="--n:${s.cols.length}">${s.cols.map(c => `<div class="og-col"><div class="og-dom"${fa(1)}><span class="og-ic">${ICON(c.i)}</span><b>${c.k}</b></div><div class="og-cards"${fa(2)}>${c.cards.map(x => `<div class="og-card${x.off ? ' off' : ''}"><b>${x.h}</b><span>${x.s}</span></div>`).join('')}</div></div>`).join('')}</div>
+    </div>${srcLine(s)}`,
 
   // A triptych of photo panels: each lights up with its letter on its click; the human band last
   aaa: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="tri">${s.items.map((x, i) => `<div class="tri-p" data-hl="${i + 1}"><div class="tri-ph" style="background-image:url('${x.photo}')"></div><div class="tri-n">0${i + 1}</div><div class="tri-a" aria-hidden="true">${x.h[0]}</div><div class="tri-w">${x.h}</div><p>${x.p}</p></div>`).join('')}</div>
