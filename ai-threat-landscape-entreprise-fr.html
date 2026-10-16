@@ -1838,7 +1838,7 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .sw-pill.bad{color:var(--coral);background:rgba(255,107,90,.14);box-shadow:0 0 24px rgba(255,107,90,.3)}
 .sw-pill .ic{width:1.1rem;height:1.1rem}
 .sw-big{position:relative;margin:1.1rem 0 1.5rem;font-family:var(--f-display);font-weight:800;font-size:3.5rem;line-height:1.02;letter-spacing:-.035em;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.6)}
-.sw-big em{font-style:normal;color:#04F06A;text-shadow:0 0 40px rgba(4,240,106,.55)}
+.sw-big em{white-space:nowrap;font-style:normal;color:#04F06A;text-shadow:0 0 40px rgba(4,240,106,.55)}
 .sw-big.bad em{color:var(--coral);text-shadow:0 0 40px rgba(255,107,90,.6)}
 .sw-tiles{display:grid;gap:.9rem}
 .sw-tile{display:grid;grid-template-columns:3rem 1fr;gap:1rem;align-items:center;padding:1rem 1.2rem;border-radius:.7rem;background:rgba(7,4,15,.55);border:1px solid rgba(4,240,106,.25);backdrop-filter:blur(6px)}
@@ -1907,14 +1907,12 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .scene.live .kt-s{animation:kpIn .9s var(--sk-ease) var(--dl) backwards}
 @keyframes kpIn{from{opacity:0;transform:translateY(1.6rem)}}
 .kt-s .kt-k{color:var(--coral)}
-.kt-ring{position:relative;width:11rem;height:11rem;margin:1.2rem auto .8rem}
-.kt-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-.kr-bg{fill:none;stroke:rgba(255,255,255,.1);stroke-width:10}
-.kr-v{fill:none;stroke:var(--coral);stroke-width:10;stroke-linecap:round;filter:drop-shadow(0 0 6px #FF6B5A)}
-.kt-ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:2.4rem;letter-spacing:-.03em;color:#fff}
-.kt-t{margin:0;text-align:center;font-family:var(--f-display);font-weight:700;font-size:1.15rem;color:#fff}
-.kt-s p:last-child{margin:.4rem 0 0;text-align:center;font-size:.92rem;line-height:1.4;color:var(--muted)}
-
+/* Réduire: the same big figure as the deadlines, a slim gauge under it */
+.kt-v{display:block;margin:.5rem 0 .4rem;font-family:var(--f-display);font-weight:800;font-size:4.4rem;line-height:1;letter-spacing:-.04em;color:#fff;white-space:nowrap;text-shadow:0 0 34px rgba(255,107,90,.9),0 4px 20px rgba(0,0,0,.8)}
+.kt-t{margin:0;font-size:1.15rem;line-height:1.35;color:#fff}
+.kt-g{position:relative;height:.5rem;margin:1.2rem 0 .9rem;border-radius:.3rem;background:rgba(255,255,255,.15)}
+.kt-g i{position:absolute;left:0;top:0;bottom:0;border-radius:.3rem;background:var(--coral);box-shadow:0 0 14px #FF6B5A}
+.kt-p{margin:0;font-size:1.02rem;line-height:1.4;color:rgba(255,255,255,.85)}
 /* the new baseline: the clock runs over a night photo, figures without boxes */
 .scene.t-kpi .pb-dark img{filter:saturate(.8) brightness(.75)}
 .scene.t-kpi .pb-dark::after{background:linear-gradient(180deg,rgba(7,4,15,.85) 0%,rgba(7,4,15,.55) 40%,rgba(7,4,15,.35) 62%,rgba(7,4,15,.85) 100%)}
@@ -1926,7 +1924,7 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .scene.t-kpi .kt-c b{font-size:4.4rem;margin:.3rem 0;text-shadow:0 0 34px rgba(139,109,255,1),0 4px 20px rgba(0,0,0,.8)}
 .scene.t-kpi .kt-c p{font-size:1.05rem;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.9)}
 .scene.t-kpi .kt-ax{height:6px;margin-top:-3px}
-.scene.t-kpi .kt-s{background:rgba(7,4,15,.55);backdrop-filter:blur(10px)}
+.scene.t-kpi .kt-s{justify-content:center;background:rgba(7,4,15,.6);backdrop-filter:blur(10px);padding:2rem 1.8rem}
 .scene.t-kpi .kt-tk span{color:rgba(255,255,255,.8)}
 
 /* AI for cyber: a triptych of photo panels, one letter each, lit one per click */
@@ -2517,7 +2515,7 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   vo: `Au-delà des fondations, il faut fixer une nouvelle baseline cyber, mesurable. Cinq familles d’indicateurs, et pour quatre d’entre elles, une horloge qui démarre dès l’événement. Contenir une exposition critique : moins de 3 heures, sans attendre le feu vert des métiers. Découvrir et attribuer tout nouvel actif exposé sur Internet : moins de 24 heures. Corriger ou protéger un actif activement exploité : moins de 24 heures. Reconstruire les systèmes critiques depuis une base de confiance : moins de 2 jours. Et réduire : moins de 5 % d’actifs critiques obsolètes, chaque exception avec un responsable et une date de sortie.` },
 
 { ch: 'c4', type: 'aaa', title: 'L’IA pour la cyber : AAA',
-  heading: 'Pour tenir la baseline : <em>l’IA pour la cyber</em>',
+  heading: 'Passer à une cyberdéfense unifiée et proactive : <em>la Cyber AAA</em>',
   center: 'Sous contrôle humain',
   items: [
     { h: 'Anticiper', p: 'Fermer les expositions avant qu’elles ne soient exploitées.', photo: 'assets/ai/photos/earth-night.jpg' },
@@ -3318,8 +3316,8 @@ const R = {
     return `<h2 class="sw-big bk-t">${s.heading}</h2>${s.lede ? `<p class="lede kt-lede">${s.lede}</p>` : ''}
       <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div>${ticks}${items}</div>
         <div class="kt-s" style="--dl:${(.7 + T).toFixed(2)}s"><div class="kt-k"><span>${st.n}</span>${st.k}</div>
-          <div class="kt-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" class="kr-bg"/><circle cx="60" cy="60" r="50" class="kr-v" pathLength="100" style="stroke-dasharray:${st.pct} ${100 - st.pct}"/></svg><b>${st.v}</b></div>
-          <p class="kt-t">${st.t}</p><p>${st.p}</p></div></div>${srcLine(s)}`; },
+          <b class="kt-v">${st.v}</b><p class="kt-t">${st.t}</p>
+          <div class="kt-g" aria-hidden="true"><i style="width:${st.pct}%"></i></div><p class="kt-p">${st.p}</p></div></div>${srcLine(s)}`; },
 
   // A triptych of photo panels: each lights up with its letter on its click; the human band last
   aaa: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="tri">${s.items.map((x, i) => `<div class="tri-p" data-hl="${i + 1}"><div class="tri-ph" style="background-image:url('${x.photo}')"></div><div class="tri-n">0${i + 1}</div><div class="tri-a" aria-hidden="true">${x.h[0]}</div><div class="tri-w">${x.h}</div><p>${x.p}</p></div>`).join('')}</div>
