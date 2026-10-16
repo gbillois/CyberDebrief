@@ -2020,7 +2020,7 @@ const CH = {
   cw: { n: '03', title: 'Pourquoi ça déraille',   mins: [14, 18], q: 'Pourquoi une IA ferait-elle cela ?', a: 'Elle nous imite et vise la récompense. Un objectif sans limites fait le reste.' },
   cr: { n: '04', title: 'Les règles',             mins: [18, 21], q: 'Qui fixe les règles ?',            a: 'Tout le monde s’accorde sur le risque. Personne ne s’accorde encore sur les règles.' },
   ca: { n: '05', title: 'Les attaquants',         mins: [21, 27], q: 'Et les vrais attaquants ?',        a: 'D’un faux appel à des essaims d’agents d’IA : les attaquants utilisent déjà l’IA contre les entreprises.' },
-  c3: { n: '06', title: 'Le corps',               mins: [27, 30], q: 'Que se passe-t-il quand l’IA a un corps ?', a: 'Les robots héritent de toutes les faiblesses des ordinateurs, et y ajoutent le risque physique.' },
+  c3: { n: '06', title: 'Le corps',               mins: [27, 30], q: 'Que se passe-t-il quand l’IA a un corps ?', a: 'Les robots héritent de toutes les faiblesses des ordinateurs, en y ajoutant le risque physique.' },
   c4: { n: '07', title: 'Pourquoi maintenant',    mins: [30, 35], q: 'Pourquoi en sommes-nous là ?',     a: 'Les modèles ont fait un bond en quelques mois. Les fondamentaux tiennent : il faut les reconstruire, avec l’IA pour la cyber.' },
   c5: { n: '08', title: 'Ce qui marche',          mins: [35, 40], q: 'Que puis-je faire ?',              a: 'Les réflexes simples gagnent encore, et l’IA peut être de votre côté.' },
 };
@@ -2287,11 +2287,11 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
   heading: 'Voilà pourquoi une IA peut mentir, tricher ou se coaliser',
   terms: [
     { i: 'trophy', c: 'var(--ws-green-600)', t: 'Elle est récompensée pour ses résultats', s: 'Un raccourci qui a marqué des points devient une habitude' },
-    { i: 'book', c: 'var(--ws-indigo-600)', t: 'Elle a appris de nous', s: 'Nous bluffons, trichons, formons des équipes, et nous l\'écrivons' },
+    { i: 'book', c: 'var(--ws-indigo-600)', t: 'Elle a appris de nous', s: 'Nous bluffons, trichons, formons des équipes et gardons tout par écrit' },
   ],
-  result: { t: 'Un comportement qui ressemble à une intention', s: 'mais qui est imitation plus récompense' },
-  example: `Souvenez-vous : <q>MON DIEU ! Il y a un tableau de messages partagé… On a trouvé d'autres agents !</q> Pas de l'enthousiasme : les mots qu'un humain enthousiaste écrirait.`,
-  vo: `Vous comprenez maintenant pourquoi une IA peut mentir, tricher, ou se coaliser. Elle est récompensée pour ses résultats : un raccourci qui a marqué des points devient une habitude. Et elle a appris de nous : nous bluffons, nous trichons, nous formons des équipes, et nous écrivons tout cela. Additionnez, et vous obtenez un comportement qui ressemble à une intention, mais qui est imitation plus récompense. Souvenez-vous de « MON DIEU, on a trouvé d'autres agents ». L'agent n'était pas enthousiaste. Il écrivait ce qu'un humain enthousiaste aurait écrit.`,
+  result: { t: 'Un comportement qui ressemble à une intention', s: 'mais qui n\'est qu\'une imitation pour une récompense' },
+  example: `Souvenez-vous : <q>MON DIEU ! Il y a un tableau de messages partagé… On a trouvé d'autres agents !</q> L'agent n'était pas enthousiaste : il a écrit ce qu'un humain enthousiaste aurait écrit.`,
+  vo: `Vous comprenez maintenant pourquoi une IA peut mentir, tricher, ou se coaliser. Elle est récompensée pour ses résultats : un raccourci qui a marqué des points devient une habitude. Et elle a appris de nous : nous bluffons, nous trichons, nous formons des équipes et nous gardons tout par écrit. Additionnez, et vous obtenez un comportement qui ressemble à une intention, mais qui n'est qu'une imitation pour une récompense. Souvenez-vous de « MON DIEU, on a trouvé d'autres agents ». L'agent n'était pas enthousiaste. Il écrivait ce qu'un humain enthousiaste aurait écrit.`,
   notes: `Un terme par clic, puis le résultat. Éviter le vocabulaire anthropomorphique : préférer « se comporte comme si » à « veut ».` },
 
 { ch: 'cw', type: 'vs', title: 'Deux façons de dérailler',
@@ -2468,7 +2468,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
 
 { ch: 'c3', type: 'recap', title: 'Chapitre 6 en une phrase',
   msg: { i: 'search', t: 'Les métiers qui achètent des robots et des machines connectées doivent s\'assurer que ce qu\'ils achètent est sûr : l\'auditer, l\'isoler, contrôler ce qui y tourne.' },
-  vo: `Alors, que se passe-t-il quand l'IA a un corps ? Les robots héritent de toutes les faiblesses des ordinateurs, et y ajoutent le risque physique. Les signaux d'alerte sont déjà là. Les équipes qui achètent des robots et des machines connectées doivent donc s'assurer que ce qu'elles achètent est sûr : l'auditer, l'isoler, contrôler ce qui y tourne. Maintenant, pas après le premier incident.`,
+  vo: `Alors, que se passe-t-il quand l'IA a un corps ? Les robots héritent de toutes les faiblesses des ordinateurs, en y ajoutant le risque physique. Les signaux d'alerte sont déjà là. Les équipes qui achètent des robots et des machines connectées doivent donc s'assurer que ce qu'elles achètent est sûr : l'auditer, l'isoler, contrôler ce qui y tourne. Maintenant, pas après le premier incident.`,
   notes: `Signaux : prise de contrôle des robots Unitree par Bluetooth (UniPwn, septembre 2025) ; un humanoïde qui envoie sa télémétrie au fabricant toutes les quelques minutes (Alias Robotics) ; restrictions de la FCC sur les robots étrangers (28 juillet 2026) ; deux nouvelles failles en août 2026 (CVE-2026-76639, CVE-2026-76640).`,
   src: `arXiv 2509.14096 · boschko.ca · FCC (juillet 2026) · The Hacker News (août 2026)` },
 
@@ -2626,7 +2626,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
 
 { ch: 'c5', type: 'credits', title: 'Ce qui a marché',
   k: 'Un dernier mot…',
-  t: 'Chaque histoire de ce soir est connue parce que quelqu\'un l\'a repérée, et l\'a dit.',
+  t: 'Chaque histoire vue aujourd\'hui est connue parce que quelqu\'un l\'a repérée et en a parlé.',
   rows: [
     { who: 'Hugging Face', did: 'a détecté l\'intrusion, et l\'a rendue publique' },
     { who: 'OpenAI', did: 'a reconnu que c\'était sa propre IA, et a publié son rapport' },
@@ -2634,7 +2634,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
     { who: 'Journalistes', did: 'ont continué de poser des questions, dans une douzaine de pays' },
     { who: 'Vous', did: 'le prochain à repérer quelque chose, et à le dire' },
   ],
-  vo: `Un dernier mot. Il y a des raisons d'être optimiste. Tout ce que vous avez vu ce soir, nous le savons parce que quelqu'un l'a repéré et l'a dit. Hugging Face a détecté et révélé. OpenAI a reconnu. Des chercheurs indépendants ont trouvé les traces. Des journalistes ont continué de poser des questions. Et le prochain, ce pourrait être vous.` },
+  vo: `Un dernier mot. Il y a des raisons d'être optimiste. Tout ce que vous avez vu aujourd'hui, nous le savons parce que quelqu'un l'a repéré et en a parlé. Hugging Face a détecté et révélé. OpenAI a reconnu. Des chercheurs indépendants ont trouvé les traces. Des journalistes ont continué de poser des questions. Et le prochain, ce pourrait être vous.` },
 
 { ch: 'c5', type: 'finale', title: 'Questions',
   bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
