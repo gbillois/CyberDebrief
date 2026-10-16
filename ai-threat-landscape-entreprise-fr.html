@@ -2107,6 +2107,24 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .rl-pk{display:block;margin-top:.3rem;font-family:var(--f-display);font-weight:800;font-size:calc(var(--rl-fs) * .9);letter-spacing:.08em;text-transform:uppercase;color:#04F06A}
 .rl-as{display:grid;place-items:center;padding:.5rem .8rem;border-radius:.5rem;border:1.5px solid #A99BE0;color:#DCD4FF;font-family:var(--f-display);font-weight:800;font-size:calc(var(--rl-fs) * .92);letter-spacing:.06em;text-transform:uppercase;text-align:center}
 @media(max-width:760px){.rl-cols,.rl-bot{grid-template-columns:1fr}.rl-cols::before,.rl-pil::before{display:none}.rl-chips{flex-wrap:wrap}}
+/* Leading the shift: three lanes across the slide, a marker on each, the tracks below, the human shift last */
+.ld-t{text-align:center;margin-bottom:.4rem}
+.ld{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;--lg:2rem;--ly:clamp(1.7rem,4vh,2.5rem);--lh:clamp(.6rem,1.3vh,.85rem)}
+.ld-lanes{position:relative;height:calc(var(--ly) * 2 + var(--lh));margin-bottom:clamp(2rem,6vh,3.6rem)}
+.ld-lane{position:absolute;left:-5.5rem;right:-5.5rem;top:calc(var(--i) * var(--ly));height:var(--lh);background:linear-gradient(90deg,rgba(122,92,255,.75) 0%,rgba(122,92,255,.45) 40%,rgba(4,180,106,.55) 70%,rgba(4,240,106,.75) 100%)}
+.ld-mk{position:absolute;top:calc(var(--i) * var(--ly) + var(--lh) / 2);left:calc(var(--i) * ((100% - 2 * var(--lg)) / 3 + var(--lg)) + 1.4rem);transform:translate(-50%,-50%);width:1.7rem;height:1.7rem;border-radius:50%;background:#fff;color:#2A1680;display:grid;place-items:center;font-weight:800;font-size:1.25rem;line-height:1;box-shadow:0 0 0 .3rem rgba(255,255,255,.18),0 0 24px rgba(4,240,106,.5)}
+.ld-mk.on{transform:translate(-50%,-50%)}
+.ld-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--lg)}
+.ld-col{position:relative;padding-left:.2rem}
+.ld-col::before{content:'';position:absolute;left:1.4rem;bottom:calc(100% + .5rem);height:calc((2 - var(--i)) * var(--ly) + clamp(2rem,6vh,3.6rem) - 1.4rem);border-left:2px dotted rgba(255,255,255,.7)}
+.ld h3{margin:0 0 .7rem;font-family:var(--f-display);font-weight:800;font-size:clamp(1.4rem,3.3vh,2.1rem);letter-spacing:.01em;text-transform:uppercase;color:#04F06A;text-shadow:0 0 30px rgba(4,240,106,.35)}
+.ld ul{list-style:none;margin:0;padding:0;display:grid;gap:.35rem}
+.ld li{position:relative;padding-left:1.1rem;font-size:clamp(.95rem,2.15vh,1.25rem);line-height:1.35;color:rgba(255,255,255,.92)}
+.ld li::before{content:'›';position:absolute;left:0;color:#04F06A;font-weight:800}
+.ld li b{color:#fff;font-weight:800}
+.ld-hum{margin:clamp(1.6rem,5vh,3rem) auto 0;text-align:center}
+.ld-hum ul{justify-items:center}
+@media(max-width:760px){.ld-cols{grid-template-columns:1fr}.ld-lanes,.ld-col::before{display:none}}
 </style>
 </head>
 <body>
@@ -2157,7 +2175,7 @@ const CH = {
   ca: { n: '05', title: 'Les attaquants',         mins: [21, 27], q: 'Et les vrais attaquants ?',        a: 'D’un faux appel à des essaims d’agents d’IA : les attaquants utilisent déjà l’IA contre les entreprises.' },
   c3: { n: '06', title: 'La robotique',               mins: [27, 30], q: 'Quand l’IA arrive dans le monde physique', a: 'Les robots héritent de toutes les faiblesses des ordinateurs, avec, en plus, des risques physiques !' },
   c4: { n: '07', title: 'Pourquoi maintenant',    mins: [30, 35], q: 'Pourquoi maintenant et comment réagir ?',     a: 'Les modèles ont fait un bond en quelques mois. Les fondamentaux restent valables : c’est l’occasion de les reconstruire, avec l’IA au service de la cyber.' },
-  end: { n: '', title: 'Questions', mins: [35, 40] },
+  end: { n: '', title: 'Conclusion', mins: [35, 40] },
 };
 
 // ════════════════════════════════════════════════════════════════════════
@@ -2645,13 +2663,17 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   vo: `À terme, les agents agissent et les humains pilotent : de nouveaux rôles émergent autour du RSSI. Un premier pôle porte la voix de la cyber hors de son organisation : stratégie, RSSI métier, gestion de crise, conformité, culture. Au centre, les opérations de la plateforme : construire les agents, avec des product owners et des développeurs par domaine, et les exploiter, avec des superviseurs d’agents, un responsable qualité et un responsable de la performance qui suit les coûts et le retour sur investissement. Enfin, un pôle de confiance et de contradiction vérifie en continu : il évalue les modèles, traque les dérives, et attaque le système d’information comme la plateforme. Le tout s’appuie sur la plateforme cyber IA et son contexte partagé, contrôlée par une plateforme d’assurance de deuxième ligne.`,
   notes: `Clics : le RSSI et les trois pôles, puis Engager, puis les opérations de la plateforme (construire et exploiter), puis confiance et contradiction, enfin les deux plateformes. BISO : responsable sécurité rattaché à un métier. Deuxième ligne de défense (LOD2) : le contrôle indépendant des risques.` },
 // ─── CHAPITRE 8 · CE QUI MARCHE ───────────────────────────────────────────
-{ ch: 'end', type: 'finale', title: 'Questions',
-  bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
-  a: `La technologie a changé d'échelle.`,
-  b: `Les réflexes qui nous protègent restent simples, humains, et à la portée de chacun.`,
-  c: 'Merci. Vos questions ?',
-  vo: `Sept questions, sept réponses. La technologie a changé d'échelle. Les réflexes qui nous protègent restent simples, humains, et à la portée de chacun. Merci. Je suis à votre disposition pour vos questions.`,
-  notes: `Laisser cet écran pendant les questions : la question et la réponse de chaque chapitre y figurent. Cliquer sur une carte pour revenir au chapitre correspondant.` },
+{ ch: 'end', type: 'lead', title: 'Piloter le virage de l’IA',
+  bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'brand' },
+  heading: 'Comment <em>piloter le virage</em> de l’IA ?',
+  cols: [
+    { k: 'Cyber pour l’IA', items: ['<b>Découvrir</b> chaque agent', '<b>Protéger</b> vos plateformes', '<b>Construire</b> l’identité de vos agents'] },
+    { k: 'Cyber contre l’IA', items: ['Reconstruire vos <b>fondations</b>', 'Adopter une <b>nouvelle baseline défensive</b>', 'Disposer d’un <b>droit d’action d’urgence</b>'] },
+    { k: 'Cyber avec l’IA', items: ['Commencer par des <b>cas d’usage dans chaque équipe</b>', 'Créer la <b>direction Data & IA</b>', '<b>Connecter les plateformes d’IA</b> en maillage', 'Lancer la construction de la <b>plateforme IA Cyber AAA</b>'] },
+  ],
+  human: { k: 'Mener la transformation humaine', items: ['<b>Repenser</b> l’organisation et les parcours de carrière', '<b>Former</b> en profondeur et en continu'] },
+  vo: `Alors, comment piloter ce virage ? Sur trois voies à la fois. La cyber pour l’IA : découvrir chaque agent, protéger vos plateformes, construire l’identité de vos agents. La cyber contre l’IA : reconstruire vos fondations, adopter une nouvelle baseline défensive, et disposer d’un droit d’action d’urgence. La cyber avec l’IA : commencer par des cas d’usage dans chaque équipe, créer la direction Data et IA, connecter les plateformes d’IA entre elles, et lancer la construction de la plateforme Cyber AAA. Et surtout, mener la transformation humaine : repenser l’organisation et les parcours de carrière, et former, en profondeur et en continu. Merci. Je suis à votre disposition pour vos questions.`,
+  notes: `Un clic par voie, puis la transformation humaine. Laisser cet écran pendant les questions.` },
 
 { ch: 'end', type: 'sources', title: 'Sources',
   heading: 'Sources',
@@ -3379,6 +3401,13 @@ const R = {
       <div class="rl-cols">${s.pillars.map((p, i) => `<div class="rl-pil"><div class="rl-ph"${fa(0)}><span class="og-ic">${ICON(p.i)}</span><b>${p.k}</b><span>${p.s}</span></div><div class="rl-grps" style="--g:${p.groups.length}"${fa(i + 1)}>${p.groups.map(grp).join('')}</div></div>`).join('')}</div>
       <div class="rl-bot"${fa(4)}><div class="rl-plat"><div class="rl-chips">${s.plat.chips.map(c => `<span>${c}</span>`).join('')}<em>${s.plat.ctx}</em></div><b class="rl-pk">${s.plat.k}</b></div><div class="rl-as"><span>${s.assure}</span></div></div>
     </div>${srcLine(s)}`; },
+
+  // How to lead the shift: three tracks, each picked up on its own lane, then the human shift
+  lead: s => `<h2 class="sw-big ld-t">${s.heading}</h2><div class="ld">
+      <div class="ld-lanes">${s.cols.map((c, i) => `<i class="ld-lane" style="--i:${i}"></i>`).join('')}${s.cols.map((c, i) => `<span class="ld-mk" style="--i:${i}"${fa(i)}>›</span>`).join('')}</div>
+      <div class="ld-cols">${s.cols.map((c, i) => `<div class="ld-col" style="--i:${i}"${fa(i)}><h3>${c.k}</h3><ul>${c.items.map(t => `<li>${t}</li>`).join('')}</ul></div>`).join('')}</div>
+      <div class="ld-hum"${fa(s.cols.length)}><h3>${s.human.k}</h3><ul>${s.human.items.map(t => `<li>${t}</li>`).join('')}</ul></div>
+    </div>${srcLine(s)}`,
 
   // A triptych of photo panels: each lights up with its letter on its click; the human band last
   aaa: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="tri">${s.items.map((x, i) => `<div class="tri-p" data-hl="${i + 1}"><div class="tri-ph" style="background-image:url('${x.photo}')"></div><div class="tri-n">0${i + 1}</div><div class="tri-a" aria-hidden="true">${x.h[0]}</div><div class="tri-w">${x.h}</div><p>${x.p}</p></div>`).join('')}</div>

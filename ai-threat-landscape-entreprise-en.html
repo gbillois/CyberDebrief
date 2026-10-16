@@ -2107,6 +2107,24 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .rl-pk{display:block;margin-top:.3rem;font-family:var(--f-display);font-weight:800;font-size:calc(var(--rl-fs) * .9);letter-spacing:.08em;text-transform:uppercase;color:#04F06A}
 .rl-as{display:grid;place-items:center;padding:.5rem .8rem;border-radius:.5rem;border:1.5px solid #A99BE0;color:#DCD4FF;font-family:var(--f-display);font-weight:800;font-size:calc(var(--rl-fs) * .92);letter-spacing:.06em;text-transform:uppercase;text-align:center}
 @media(max-width:760px){.rl-cols,.rl-bot{grid-template-columns:1fr}.rl-cols::before,.rl-pil::before{display:none}.rl-chips{flex-wrap:wrap}}
+/* Leading the shift: three lanes across the slide, a marker on each, the tracks below, the human shift last */
+.ld-t{text-align:center;margin-bottom:.4rem}
+.ld{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;--lg:2rem;--ly:clamp(1.7rem,4vh,2.5rem);--lh:clamp(.6rem,1.3vh,.85rem)}
+.ld-lanes{position:relative;height:calc(var(--ly) * 2 + var(--lh));margin-bottom:clamp(2rem,6vh,3.6rem)}
+.ld-lane{position:absolute;left:-5.5rem;right:-5.5rem;top:calc(var(--i) * var(--ly));height:var(--lh);background:linear-gradient(90deg,rgba(122,92,255,.75) 0%,rgba(122,92,255,.45) 40%,rgba(4,180,106,.55) 70%,rgba(4,240,106,.75) 100%)}
+.ld-mk{position:absolute;top:calc(var(--i) * var(--ly) + var(--lh) / 2);left:calc(var(--i) * ((100% - 2 * var(--lg)) / 3 + var(--lg)) + 1.4rem);transform:translate(-50%,-50%);width:1.7rem;height:1.7rem;border-radius:50%;background:#fff;color:#2A1680;display:grid;place-items:center;font-weight:800;font-size:1.25rem;line-height:1;box-shadow:0 0 0 .3rem rgba(255,255,255,.18),0 0 24px rgba(4,240,106,.5)}
+.ld-mk.on{transform:translate(-50%,-50%)}
+.ld-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--lg)}
+.ld-col{position:relative;padding-left:.2rem}
+.ld-col::before{content:'';position:absolute;left:1.4rem;bottom:calc(100% + .5rem);height:calc((2 - var(--i)) * var(--ly) + clamp(2rem,6vh,3.6rem) - 1.4rem);border-left:2px dotted rgba(255,255,255,.7)}
+.ld h3{margin:0 0 .7rem;font-family:var(--f-display);font-weight:800;font-size:clamp(1.4rem,3.3vh,2.1rem);letter-spacing:.01em;text-transform:uppercase;color:#04F06A;text-shadow:0 0 30px rgba(4,240,106,.35)}
+.ld ul{list-style:none;margin:0;padding:0;display:grid;gap:.35rem}
+.ld li{position:relative;padding-left:1.1rem;font-size:clamp(.95rem,2.15vh,1.25rem);line-height:1.35;color:rgba(255,255,255,.92)}
+.ld li::before{content:'›';position:absolute;left:0;color:#04F06A;font-weight:800}
+.ld li b{color:#fff;font-weight:800}
+.ld-hum{margin:clamp(1.6rem,5vh,3rem) auto 0;text-align:center}
+.ld-hum ul{justify-items:center}
+@media(max-width:760px){.ld-cols{grid-template-columns:1fr}.ld-lanes,.ld-col::before{display:none}}
 </style>
 </head>
 <body>
@@ -2157,7 +2175,7 @@ const CH = {
   ca: { n: '05', title: 'The attackers',          mins: [21, 27], q: 'And what about real attackers?',        a: 'From one fake call to swarms of AI agents: attackers already use AI against companies.' },
   c3: { n: '06', title: 'Robotics',               mins: [27, 30], q: 'When AI enters the physical world', a: 'Robots inherit every weakness of computers, and on top of that, physical risks!' },
   c4: { n: '07', title: 'Why now',                mins: [30, 35], q: 'Why now, and how should we respond?',     a: 'Models have leapt ahead in a few months. The fundamentals still hold: this is the chance to rebuild them, with AI working for cybersecurity.' },
-  end: { n: '', title: 'Questions', mins: [35, 40] },
+  end: { n: '', title: 'Conclusion', mins: [35, 40] },
 };
 
 // ════════════════════════════════════════════════════════════════════════
@@ -2645,13 +2663,17 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   vo: `In the end, agents act and humans steer: new roles emerge around the CISO. A first pillar speaks for cyber outside the CISO organization: strategy, business CISOs, crisis management, compliance, culture. At the centre, platform operations: building the agents, with product owners and developers per domain, and running them, with agent supervisors, a platform quality manager and a performance manager who tracks costs and return on investment. Finally, a trust and challenge pillar checks constantly: it evaluates the models, hunts for deviations, and attacks both the information system and the platform. All of it rests on the cyber AI platform and its shared context, overseen by a second-line assurance platform.`,
   notes: `Clicks: the CISO and the three pillars, then Engage, then platform operations (build and run), then trust and challenge, and finally the two platforms. BISO: a security officer embedded in a business line. LOD2: the second line of defence, independent risk oversight.` },
 // ─── CHAPTER 8 · WHAT WORKS ───────────────────────────────────────────────
-{ ch: 'end', type: 'finale', title: 'Questions',
-  bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
-  a: `The technology has changed scale.`,
-  b: `The reflexes that protect us remain simple, human, and within everyone's reach.`,
-  c: 'Thank you. Your questions?',
-  vo: `Seven questions, seven answers. The technology has changed scale. The reflexes that protect us remain simple, human, and within everyone's reach. Thank you. I am happy to take your questions.`,
-  notes: `Leave this screen up during the questions: every chapter's question and answer are on it. Click any card to jump back to that chapter.` },
+{ ch: 'end', type: 'lead', title: 'Leading the shift to AI',
+  bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'brand' },
+  heading: 'How do you <em>lead the shift</em> to AI?',
+  cols: [
+    { k: 'Cyber for AI', items: ['<b>Discover</b> every agent', '<b>Protect</b> your platforms', '<b>Build</b> your agentic identity'] },
+    { k: 'Cyber against AI', items: ['Rebuild your <b>foundation</b>', 'Adopt a <b>new defensive baseline</b>', 'Have your emergency <b>right of action</b>'] },
+    { k: 'Cyber with AI', items: ['Start with <b>use cases in every team</b>', 'Create the <b>Data & AI Office</b>', '<b>Connect AI platforms</b> in a mesh', 'Start building the <b>Cyber AAA AI platform</b>'] },
+  ],
+  human: { k: 'Lead the human shift', items: ['<b>Redesign</b> the organization and the career paths', '<b>Train</b> in depth and continuously'] },
+  vo: `So how do you lead this shift? On three tracks at once. Cyber for AI: discover every agent, protect your platforms, build your agentic identity. Cyber against AI: rebuild your foundation, adopt a new defensive baseline, and have your emergency right of action. Cyber with AI: start with use cases in every team, create the Data and AI office, connect AI platforms in a mesh, and start building the Cyber AAA AI platform. And above all, lead the human shift: redesign the organization and the career paths, and train, in depth and continuously. Thank you. I am happy to take your questions.`,
+  notes: `One click per track, then the human shift. Leave this screen up during the questions.` },
 
 { ch: 'end', type: 'sources', title: 'Sources',
   heading: 'Sources',
@@ -3379,6 +3401,13 @@ const R = {
       <div class="rl-cols">${s.pillars.map((p, i) => `<div class="rl-pil"><div class="rl-ph"${fa(0)}><span class="og-ic">${ICON(p.i)}</span><b>${p.k}</b><span>${p.s}</span></div><div class="rl-grps" style="--g:${p.groups.length}"${fa(i + 1)}>${p.groups.map(grp).join('')}</div></div>`).join('')}</div>
       <div class="rl-bot"${fa(4)}><div class="rl-plat"><div class="rl-chips">${s.plat.chips.map(c => `<span>${c}</span>`).join('')}<em>${s.plat.ctx}</em></div><b class="rl-pk">${s.plat.k}</b></div><div class="rl-as"><span>${s.assure}</span></div></div>
     </div>${srcLine(s)}`; },
+
+  // How to lead the shift: three tracks, each picked up on its own lane, then the human shift
+  lead: s => `<h2 class="sw-big ld-t">${s.heading}</h2><div class="ld">
+      <div class="ld-lanes">${s.cols.map((c, i) => `<i class="ld-lane" style="--i:${i}"></i>`).join('')}${s.cols.map((c, i) => `<span class="ld-mk" style="--i:${i}"${fa(i)}>›</span>`).join('')}</div>
+      <div class="ld-cols">${s.cols.map((c, i) => `<div class="ld-col" style="--i:${i}"${fa(i)}><h3>${c.k}</h3><ul>${c.items.map(t => `<li>${t}</li>`).join('')}</ul></div>`).join('')}</div>
+      <div class="ld-hum"${fa(s.cols.length)}><h3>${s.human.k}</h3><ul>${s.human.items.map(t => `<li>${t}</li>`).join('')}</ul></div>
+    </div>${srcLine(s)}`,
 
   // A triptych of photo panels: each lights up with its letter on its click; the human band last
   aaa: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="tri">${s.items.map((x, i) => `<div class="tri-p" data-hl="${i + 1}"><div class="tri-ph" style="background-image:url('${x.photo}')"></div><div class="tri-n">0${i + 1}</div><div class="tri-a" aria-hidden="true">${x.h[0]}</div><div class="tri-w">${x.h}</div><p>${x.p}</p></div>`).join('')}</div>
