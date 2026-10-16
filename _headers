@@ -1,0 +1,3 @@
+# The decks change often: the browser checks for a new version on every visit
+/ai-threat-landscape-*
+  Cache-Control: no-cache

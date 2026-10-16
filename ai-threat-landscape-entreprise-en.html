@@ -4114,7 +4114,7 @@ if (!PRESENTER) {
   ['pointerdown', 'keydown', 'touchstart'].forEach(t => document.addEventListener(t, () => { if (skLoop.ac && skLoop.ac.state === 'suspended' && skLoop.want) skLoop.ac.resume().catch(() => {}); }, true));
   document.addEventListener('click', e => {
     const m = e.target.closest('button[data-lang]');
-    if (m) { e.stopPropagation(); if (m.dataset.lang !== LANG) location.href = LANGS[m.dataset.lang].file + '#1'; return; }
+    if (m) { e.stopPropagation(); if (m.dataset.lang !== LANG) location.href = LANGS[m.dataset.lang].file + '?r=' + Date.now() + '#1'; return; }
     const b = e.target.closest('[data-sk]'); if (!b) return;
     e.stopPropagation(); b.blur();
     const k = b.dataset.sk;
