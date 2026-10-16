@@ -1979,6 +1979,13 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .m-sub.on{opacity:1}
 .media.missing .m-sub,.media.use-yt .m-sub,.media.yt-only .m-sub{display:none}
 .mb .m-sub,.fo-c .m-sub{bottom:8%;max-width:94%}
+/* slide 26: the subtitles sit under the clip, so the speaker stays visible */
+.fo-m:has(.has-sub){padding:.4rem 0 4.4rem}
+.fo-m .m-sub{top:calc(100% + .7rem);bottom:auto;max-width:min(54rem,80vw);text-wrap:balance;font-size:1.15rem;background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.14)}
+/* the chapter bar: a taller hit area around the thin line */
+#prog{height:17px}
+#prog div{box-sizing:border-box;height:100%;border-top:7px solid transparent;border-bottom:7px solid transparent;background-clip:padding-box!important;transition:filter .2s}
+#prog div:hover{filter:brightness(1.8)}
 </style>
 </head>
 <body>
@@ -4208,7 +4215,7 @@ if (!PRESENTER) {
   // the first gesture lets the sound start, if the browser held it back
   ['pointerdown', 'keydown', 'touchstart'].forEach(t => document.addEventListener(t, () => { if (skLoop.ac && skLoop.ac.state === 'suspended' && skLoop.want) skLoop.ac.resume().catch(() => {}); }, true));
   document.addEventListener('click', e => {
-    const m = e.target.closest('[data-mode]');
+    const m = e.target.closest('button[data-mode]');
     if (m) { e.stopPropagation(); if (m.dataset.mode !== MODE) setMode(m.dataset.mode); return; }
     const b = e.target.closest('[data-sk]'); if (!b) return;
     e.stopPropagation(); b.blur();
