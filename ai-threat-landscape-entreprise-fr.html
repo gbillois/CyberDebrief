@@ -333,7 +333,8 @@ svg.robot .dt{fill:var(--green)}
 .cl-a{font-family:var(--f-display);font-weight:800;font-size:4.4rem;line-height:1;letter-spacing:-.04em;margin:0 0 1.6rem;max-width:18ch}
 .cl-b{font-family:var(--f-serif);font-size:2rem;line-height:1.35;color:var(--muted);max-width:32ch;margin:0 0 3rem}
 .cl-c{font-family:var(--f-mono);font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
-.srcs{flex:1;columns:3;column-gap:2.4rem;font-size:.8rem;line-height:1.45;overflow:auto;padding-right:.5rem}
+.srcs{flex:1;min-height:0;columns:5;column-gap:1.6rem;font-size:clamp(.62rem,1.32vh,.78rem);line-height:1.32;overflow:auto;padding-right:.5rem}
+.srcs ul{margin-bottom:.9rem!important} .srcs li{margin-bottom:.28rem!important} .srcs h4{margin-bottom:.35rem!important}
 .srcs h4{break-after:avoid;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin:0 0 .5rem}
 .srcs ul{list-style:none;padding:0;margin:0 0 1.3rem;break-inside:avoid-column}
 .srcs li{margin-bottom:.45rem;color:var(--muted);break-inside:avoid}
@@ -1067,6 +1068,7 @@ body.pres{background:var(--ws-ink-50)}
 /* Duo: facts on the left, testimonies on the right */
 .duo{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:4rem;align-items:center;margin-top:1rem}
 .duo-l{display:grid;gap:1.6rem;border-right:1px solid var(--ws-ink-100);padding-right:3rem}
+.duo-f{padding:.85rem 1.1rem;border-radius:.6rem}
 .duo-f b{display:block;font-family:var(--f-display);font-weight:800;font-size:3.4rem;line-height:1;letter-spacing:-.03em;color:var(--ws-indigo-600)}
 .duo-f span{display:block;margin-top:.35rem;font-size:1.05rem;line-height:1.4;color:var(--ws-ink-700)}
 .duo-r{display:grid;gap:2.2rem}
@@ -1871,7 +1873,8 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 /* rebuilding: bricks laid on a blueprint, foundation first, the next floor in dashes */
 .bk-t{margin:0 0 1.4rem;max-width:none}
 .kt-lede{margin:-.6rem 0 0;max-width:none;color:var(--muted)}
-.kt-foot{position:relative;z-index:2;margin:.4rem 0 0;align-self:flex-start;padding:.55rem 1rem .55rem 1.1rem;border-left:3px solid var(--green);background:rgba(7,4,15,.6);border-radius:0 .5rem .5rem 0;font-family:var(--f-display);font-weight:600;font-size:1.15rem;color:#fff}
+.kt-foot{position:relative;z-index:2;margin:.4rem 0 0;align-self:flex-end;padding:.55rem 1rem .55rem 1.1rem;border-left:3px solid var(--green);background:rgba(7,4,15,.6);border-radius:0 .5rem .5rem 0;font-family:var(--f-display);font-weight:600;font-size:1.15rem;color:#fff}
+.scene.live .kt-foot{animation:rxIn .6s ease var(--fd) backwards}
 .bk{flex:1;position:relative;display:flex;flex-direction:column;justify-content:center;gap:1.6rem;min-height:0;padding:2.8rem 3rem 2.4rem;border:1px solid rgba(122,92,255,.28);border-radius:1rem;
   background:linear-gradient(rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,linear-gradient(90deg,rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,radial-gradient(80% 90% at 50% 100%,rgba(69,29,199,.3),transparent 70%)}
 .bk-plan{position:absolute;top:1rem;left:1.4rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#B6A6FF}
@@ -2051,7 +2054,7 @@ const CH = {
   ca: { n: '05', title: 'Les attaquants',         mins: [21, 27], q: 'Et les vrais attaquants ?',        a: 'D’un faux appel à des essaims d’agents d’IA : les attaquants utilisent déjà l’IA contre les entreprises.' },
   c3: { n: '06', title: 'La robotique',               mins: [27, 30], q: 'Quand l’IA arrive dans le monde physique', a: 'Les robots héritent de toutes les faiblesses des ordinateurs, avec, en plus, des risques physiques !' },
   c4: { n: '07', title: 'Pourquoi maintenant',    mins: [30, 35], q: 'Pourquoi maintenant et comment réagir ?',     a: 'Les modèles ont fait un bond en quelques mois. Les fondamentaux restent valables : c’est l’occasion de les reconstruire, avec l’IA au service de la cyber.' },
-  c5: { n: '08', title: 'Ce qui marche',          mins: [35, 40], q: 'Que puis-je faire ?',              a: 'Les réflexes simples restent efficaces, et l’IA peut être de votre côté.' },
+  end: { n: '', title: 'Questions', mins: [35, 40] },
 };
 
 // ════════════════════════════════════════════════════════════════════════
@@ -2125,9 +2128,9 @@ Environ 700 agents ont pris part à l'attaque (sur environ 1 200 présents sur 
     { d: '2026-08-10', label: 'GPT-5.6 Cyber', f: 0 },
     { d: '2026-09-03', label: 'GPT-6 Astra', f: 0 },
   ],
-  exam: { t: 'L\'examen : <b>898 exercices de piratage réels</b>', hi: '198 jamais résolus par aucune IA', f: 2,
+  exam: { t: 'L\'examen : <b>898 exercices de piratage réels</b>', hi: '198 qu\'aucune IA n\'a jamais résolus', f: 2,
     visual: { kind: 'dots', total: 898, hi: 198, cols: 90, seed: 4242, f: 2, legend: [] } },
-  vo: `OpenAI sort un nouveau modèle toutes les quelques semaines : huit en dix mois. Avant chaque sortie, elle mesure à quel point le modèle pourrait être dangereux s'il était détourné, par exemple pour pirater, avec les freins de sécurité volontairement désactivés. Ce printemps-là, le modèle testé était GPT-5.6. L'examen : ExploitGym, 898 exercices de piratage réels conçus à Berkeley. Près d'un sur cinq n'a jamais été résolu par aucune IA.`,
+  vo: `OpenAI sort un nouveau modèle toutes les quelques semaines : huit en dix mois. Avant chaque sortie, elle mesure à quel point le modèle pourrait être dangereux s'il était détourné, par exemple pour pirater, avec les freins de sécurité volontairement désactivés. Ce printemps-là, le modèle testé était GPT-5.6. L'examen : ExploitGym, 898 exercices de piratage réels conçus à Berkeley. Près d'un sur cinq n'a jamais été résolu par une IA.`,
   notes: `Les scènes « Toujours en test » et « 898 exercices » en une seule. Clics : la période de test, puis l'examen.
 Sorties : GPT-5.1 (12 nov. 2025), GPT-5.2 (11 déc.), GPT-5.3-Codex (5 févr. 2026), GPT-5.4 (5 mars), GPT-5.5 (23 avr.), GPT-5.6 Sol/Terra/Luna (préversion le 26 juin, publique le 9 juil.), GPT-5.6 Cyber (10 août), GPT-6 Astra (3 sept.).
 ExploitGym : publié le 11 mai 2026 (arXiv 2605.11086), équipe de Dawn Song à Berkeley RDI. De vraies failles dans des logiciels courants, un navigateur web, Linux. Pour chaque exercice : transformer une faille connue en attaque fonctionnelle et récupérer un « drapeau » caché. 198 sur 898 (22 %) jamais résolus par un modèle OpenAI ; ses auteurs pensent que 30 à 40 % pourraient être impossibles.`,
@@ -2354,12 +2357,12 @@ Arup : début 2024, 15 virements, environ 25 M$ (CNN). Ferrari : juillet 2024,
   inset: [
     { src: 'assets/ai/press/renault-calvin.jpg', t: 'Renault, Douai : un humanoïde porte des pneus', s: 'Groupe Renault · 2026', f: 1 },
     { src: 'assets/ai/press/figure-bed.jpg', t: 'Figure : deux robots font un lit', s: 'Figure AI · mai 2026', f: 2 },
-    { art: 'charm', t: 'Muse Charm : un agent d\'IA, bientôt dans notre poche', s: 'Meta · annoncé le 23 sept. 2026 · livré en décembre', f: 3 },
+    { src: 'assets/ai/photos/muse-charm.jpg', t: 'Muse Charm : un agent d\'IA, bientôt dans notre poche', s: 'Meta · annoncé le 23 sept. 2026 · livré en décembre', f: 3 },
   ],
   vo: `Cet été à Pékin, plus de deux mille robots humanoïdes se sont affrontés lors de leurs propres jeux : boxe, danse, course. Et ils sont déjà au travail. À l'usine Renault de Douai, un humanoïde apporte des pneus à la chaîne. Chez Figure, deux robots font un lit ensemble. Et les agents d'IA s'apprêtent à entrer dans nos poches : le Muse Charm de Meta, un porte-clés qui achète, réserve et répond à vos courriels à votre place.`,
   notes: `CTV News, 00:28.40-00:46.35 : l'ampleur des jeux, boxe, sauts, danse et progrès de la robotique. S'arrête avant l'interview de l'analyste.
-Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026). Un appareil de la taille d'un porte-clés, écran d'environ 5 cm avec un avatar animé, 5G, capteur d'empreinte pour parler, une petite caméra. Il fait tourner l'agent Muse de Meta, qui peut trouver et acheter des produits, réserver billets et tables, envoyer des courriels et gérer votre boîte de réception. Livré en décembre ; pas encore de prix (Muse : offre gratuite, puis 20 ou 100 dollars par mois). Le dessin à l'écran est une illustration.`,
-  src: `CTV News · John Vennavally-Rao · 28 août 2026 · Photos : Groupe Renault (Calvin, Douai, 2026) · Figure AI, via Interesting Engineering (mai 2026) · Meta, Axios, CNBC (23-24 sept. 2026)` },
+Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026). Un appareil de la taille d'un porte-clés, écran d'environ 5 cm avec un avatar animé, 5G, capteur d'empreinte pour parler, une petite caméra. Il fait tourner l'agent Muse de Meta, qui peut trouver et acheter des produits, réserver billets et tables, envoyer des courriels et gérer votre boîte de réception. Livré en décembre ; pas encore de prix (Muse : offre gratuite, puis 20 ou 100 dollars par mois). Photo du Muse Charm : Meta, via Dezeen.`,
+  src: `CTV News · John Vennavally-Rao · 28 août 2026 · Photos : Groupe Renault (Calvin, Douai, 2026) · Figure AI, via Interesting Engineering (mai 2026) · Meta, Axios, CNBC (23-24 sept. 2026) · Dezeen (sept. 2026)` },
 
 { ch: 'c3', type: 'robotvid', title: 'Un ordinateur qui marche',
   heading: 'Un ordinateur qui marche',
@@ -2425,8 +2428,8 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
     { i: 'check', h: 'Les mesures classiques restent valables', p: 'Connaître ses actifs, corriger, contrôler les accès, détecter, réagir.' },
   ] },
   change: { k: 'Le vrai changement', h: 'Ce qu’elle <em>change…</em>', ctx: 'Dans le cadre d’attaques par rançongiciel (ransomware) menées par des cybercriminels',  photo: 'assets/ai/photos/hong-kong.jpg', items: [
-    { h: 'Vitesse', l: 'L’attaque va plus vite.', v: '&lt; 10 h', t: 'pour une intrusion qui prenait environ deux semaines', src: 'Unit 42, Palo Alto Networks (sept. 2026)' },
-    { h: 'Profondeur', l: 'L’attaque va plus loin.', v: '50+', t: 'techniques d’attaque enchaînées par des agents d’IA, réajustées en temps réel', src: 'Unit 42, Palo Alto Networks (sept. 2026)' },
+    { h: 'Vitesse', l: 'L’attaque va plus vite.', v: '&lt; 10 h', t: 'pour une intrusion qui prenait environ deux semaines' },
+    { h: 'Profondeur', l: 'L’attaque va plus loin.', v: '50+', t: 'techniques d’attaque enchaînées par des agents d’IA, réajustées en temps réel' },
   ] },
   vo: `Maintenant, la bonne nouvelle : ce n’est pas la fin du monde. L’IA ne change pas les fondamentaux. Le Zero Trust reste le bon modèle, et les mesures classiques restent valables. Ce qu’elle change, c’est la vitesse : en septembre, des agents d'IA ont mené en moins de dix heures une intrusion qui prenait environ deux semaines. Et la profondeur : plus de cinquante techniques enchaînées et réajustées en temps réel. L’IA ne change pas les règles du jeu, elle en change le rythme.`,
   notes: `Les deux chiffres viennent du même cas, déjà vu dans la carte des attaquants : Unit 42 (Palo Alto Networks), 2 septembre 2026, victime non divulguée, « compressed weeks of methodical intrusion tradecraft into less than 10 hours ».`,
@@ -2434,7 +2437,6 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
 
 { ch: 'c4', type: 'bricks', title: 'Reconstruire les fondations',
   heading: 'L’occasion de solidifier <em>nos fondamentaux</em>',
-  plan: 'Plan de reconstruction',
   layers: [
     { tone: 'indigo', k: 'Architecture cyber', bricks: [
       { i: 'key', h: 'Combler les failles d’identité', p: 'Authentification multifacteur résistante au hameçonnage partout, accès à privilèges juste-à-temps…' },
@@ -2451,7 +2453,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
 
 { ch: 'c4', type: 'kpi', title: 'La nouvelle baseline',
   heading: 'Fixer une nouvelle <em>baseline cyber</em>',
-  lede: 'Au-delà des fondations : cinq familles d’indicateurs. Dès qu’un événement survient, l’horloge tourne.',
+  lede: 'Au-delà des fondamentaux : cinq familles d’indicateurs. Dès qu’un événement survient, l’horloge tourne.',
   start: 'T0 · l’événement',
   foot: 'Une cible que certains établissements financiers sont déjà en train d’atteindre.',
   // evenly spaced along the line, alternately above and below it
@@ -2462,7 +2464,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
     { n: '04', k: 'Reconstruire', v: '&lt; 2 j', t: 'les systèmes critiques, depuis une base de confiance' },
     { n: '05', k: 'Réduire', v: '&lt; 5 %', t: 'd’actifs critiques obsolètes, chaque exception datée et attribuée', stock: true },
   ],
-  vo: `Au-delà des fondations, il faut fixer une nouvelle baseline cyber, mesurable. Cinq familles d’indicateurs, et pour quatre d’entre elles, une horloge qui démarre dès l’événement. Contenir une exposition critique : moins de 3 heures, sans attendre le feu vert des métiers. Découvrir et attribuer tout nouvel actif exposé sur internet : moins de 24 heures. Corriger ou protéger un actif activement exploité : moins de 24 heures. Reconstruire les systèmes critiques depuis une base de confiance : moins de 2 jours. Et réduire : moins de 5 % d’actifs critiques obsolètes, chaque exception avec un responsable et une date de sortie. Une cible que certains établissements financiers sont déjà en train d’atteindre.` },
+  vo: `Au-delà des fondamentaux, il faut fixer une nouvelle baseline cyber, mesurable. Cinq familles d’indicateurs, et pour quatre d’entre elles, une horloge qui démarre dès l’événement. Contenir une exposition critique : moins de 3 heures, sans attendre le feu vert des métiers. Découvrir et attribuer tout nouvel actif exposé sur internet : moins de 24 heures. Corriger ou protéger un actif activement exploité : moins de 24 heures. Reconstruire les systèmes critiques depuis une base de confiance : moins de 2 jours. Et réduire : moins de 5 % d’actifs critiques obsolètes, chaque exception avec un responsable et une date de sortie. Une cible que certains établissements financiers sont déjà en train d’atteindre.` },
 
 { ch: 'c4', type: 'aaa', title: 'L’IA pour la cyber : AAA',
   heading: 'Passer à une cyberdéfense unifiée et proactive : <em>la Cyber AAA</em>',
@@ -2476,98 +2478,15 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   src: `Photos : NASA, Taylor Vick et Henry Lai sur Unsplash` },
 
 // ─── CHAPITRE 8 · CE QUI MARCHE ───────────────────────────────────────────
-{ ch: 'c5', type: 'chapter', title: 'Chapitre 8 : Ce qui marche', sub: 'Des réflexes simples, et l\'IA de votre côté',
-  vo: `Dernière question, la plus importante : que puis-je faire ? Plus que vous ne le pensez.` },
-
-{ ch: 'c5', type: 'anatomy', title: 'En cas de doute',
-  stamp: 'Se méfier par défaut', heading: 'Les bonnes vieilles recettes : les meilleures protections sont les plus anciennes',
-  msg: { from: 'WhatsApp · numéro inconnu · « Votre PDG »', time: '16:42',
-    text: `Bonjour, [3]c'est moi[/3]. Je vous écris depuis un [2]nouveau numéro[/2]. Nous finalisons une acquisition confidentielle, gardez-la pour vous. J'ai besoin d'un virement [1]aujourd'hui, avant 17 h[/1]. Vous pouvez vous en charger ?` },
-  calls: [
-    { n: 1, flag: 'L\'urgence', fix: 'Prendre son temps' },
-    { n: 2, flag: 'Un canal inhabituel', fix: 'Vérifier autrement : rappeler un numéro connu' },
-    { n: 3, flag: '« C\'est moi »', fix: 'Poser une question à laquelle seule la vraie personne peut répondre' },
-  ],
-  foot: `Signaler une arnaque : en France, <b>33700</b> et <b>17Cyber.gouv.fr</b> · ailleurs, l'agence cyber nationale`,
-  vo: `Première règle : se méfier par défaut. Regardez ce message. Tout y est fait pour vous presser. Et les réponses sont les plus anciennes. L'urgence ? Prenez votre temps. Un nouveau numéro ? Vérifiez autrement, sur un numéro que vous connaissez. « C'est moi » ? Posez une question à laquelle seule la vraie personne peut répondre : la question de Ferrari. Et si vous avez déjà cliqué, signalez-le, vite : personne ne vous le reprochera.`,
-  notes: `Un signal d'alerte et son réflexe par clic ; les mots correspondants s'allument dans le message. Message fictif construit sur les modèles de Ferrari et d'Arup. La phrase de famille ou le souvenir ne doivent jamais avoir été publiés en ligne.` },
-
-{ ch: 'c5', type: 'switches', title: 'Les bases',
-  stamp: 'Au quotidien', heading: 'Sur votre ordinateur ou votre téléphone : trois interrupteurs',
-  stat: { v: '90 %', l: 'des attaques passent encore par des failles que l\'on sait fermer' },
-  items: [
-    { i: 'chip', t: 'Mises à jour automatiques', s: 'Téléphone, ordinateur, applications, box internet' },
-    { i: 'key', t: 'Gestionnaire de mots de passe', s: 'Un mot de passe unique par compte' },
-    { i: 'server', t: 'Sauvegarde automatique', s: 'Photos, documents : une copie que l\'on peut restaurer' },
-  ],
-  vo: `Sur votre ordinateur ou votre téléphone, trois interrupteurs à activer. Les mises à jour automatiques. Un gestionnaire de mots de passe, pour que chaque compte ait le sien. Et des sauvegardes automatiques, pour que rien ne puisse être pris en otage. Neuf attaques sur dix passent encore par des failles comme celles-ci.`,
-  notes: `Un interrupteur par clic.`,
-  src: `Unit 42 (février 2026)` },
-
-{ ch: 'c5', type: 'keyring', title: 'Verrouiller ces trois-là d\'abord',
-  heading: 'Trois périmètres à bien sécuriser',
-  center: 'Messagerie', centerSub: 'réinitialise tous les autres',
-  around: [ { i: 'money', t: 'Banque' }, { i: 'people', t: 'Réseaux sociaux' }, { i: 'box', t: 'Achats' }, { i: 'building', t: 'Outils de travail' }, { i: 'camera', t: 'Photos' }, { i: 'heart', t: 'Santé' }, { i: 'globe', t: 'Voyages' }, { i: 'phone', t: 'Téléphone' } ],
-  list: [
-    { t: 'La messagerie', s: 'Qui la détient peut réinitialiser tout le reste' },
-    { t: 'L\'argent', s: 'Les pertes sont immédiates' },
-    { t: 'La santé', s: 'Une fuite ne se rattrape jamais' },
-  ],
-  note: '<b>Activer l\'authentification multifacteur</b> sur les trois, et <b>éviter de trop partager ses données</b>.',
-  reco: { t: 'Activer l\'authentification multifacteur', s: 'Une clé d\'accès ou une application d\'authentification, pas un code par SMS. Et éviter de trop partager ses données.' },
-  vo: `Trois périmètres à bien sécuriser. Votre messagerie d'abord : qui la détient peut cliquer sur « mot de passe oublié » sur tous vos autres comptes. Puis votre argent, parce que les pertes sont immédiates. Et votre santé, parce qu'une fuite ne se rattrape jamais. Sur les trois : activez l'authentification multifacteur, idéalement une clé d'accès ou une application d'authentification plutôt qu'un code par SMS. Cela prend deux minutes, ici dans un compte Google. Et évitez de trop partager vos données.`,
-  notes: `Une priorité par clic.` },
-
-{ ch: 'c5', type: 'twochat', title: 'L\'IA de votre côté',
-  stamp: 'L\'IA de votre côté', heading: 'Ils utilisent l\'IA contre vous… utilisez l\'IA contre eux !',
-  chats: [
-    { h: '1 · Lever un doute',
-      q: `Est-ce une arnaque ? « Bonjour Claire Martin, nous n'avons pas pu livrer votre colis au 14 rue des Lilas. Choisissez un nouveau créneau avant 18 h (frais : 1,99 €) : suivi-livraison-fr.info/c/8Q2x »`,
-      a: [`Très probablement : le lien n'est pas celui du transporteur, les transporteurs ne facturent pas de frais par SMS, et le délai est là pour vous presser.`, `Ne cliquez pas. Vérifiez dans l'application officielle du transporteur.`] },
-    { h: '2 · Réfléchir à ses risques',
-      q: `Je travaille dans la finance d'un grand groupe international et je voyage beaucoup. Quelles arnaques pourraient me viser, et quelles trois habitudes adopter ?`,
-      a: [`Probablement : de fausses demandes de virement du « PDG », parfois avec une voix clonée ; de faux fournisseurs qui changent leurs coordonnées bancaires ; de faux messages liés aux voyages.`, `Vérifiez tout changement de coordonnées bancaires en rappelant un numéro connu, convenez d'un mot de code avec votre responsable, partagez moins sur vos déplacements.`] },
-  ],
-  foot: `Utilisez l'outil d'IA fourni par votre entreprise, jamais un outil public pour des données confidentielles. Exemples fictifs, sans produit particulier.`,
-  vo: `Ils utilisent l'IA contre vous : utilisez l'IA contre eux. La même IA qui écrit les arnaques est excellente pour les repérer. Collez le message, et demandez. Et n'attendez pas un message suspect : demandez-lui ce qui pourrait vous viser, et ce qu'il faut changer en premier. Utilisez l'outil fourni par votre entreprise, jamais un outil public pour des données confidentielles.`,
-  notes: `Clics : réponse de gauche, question de droite, réponse de droite. Autre question possible : « Voici mon profil public, qu'est-ce qu'un escroc pourrait en faire ? »` },
-
-{ ch: 'c5', type: 'sticky', title: 'Pour les dirigeants',
-  stamp: 'Bonnes pratiques', heading: 'Quelles bonnes pratiques quand j\'utilise l\'IA ?',
-  groups: [
-    { h: 'Quand j\'utilise l\'IA', cards: [
-      { q: 'Ne jamais partager de données professionnelles ou privées avec une IA publique', a: 'Ce que vous collez peut être stocké, réutilisé ou divulgué.' },
-      { q: 'Vous avez un besoin ? Exprimez-le !', a: 'Votre entreprise peut fournir un outil d\'IA sûr. Demandez plutôt que de contourner les règles.' },
-    ] },
-    { h: 'Quand je mets en place un agent d\'IA, je vérifie', cards: [
-      { q: 'Que ne doit-il jamais faire ?', a: 'Écrire les limites, pas seulement l\'objectif. Les agents d\'OpenAI n\'avaient qu\'un objectif.' },
-      { q: 'À quoi peut-il accéder ?', a: 'Seulement à ce dont il a besoin. Un seul dépôt partagé a été leur porte de sortie.' },
-      { q: 'Qui peut appuyer sur le bouton stop ?', a: 'Une personne désignée, et un plan pour prévenir les autres. Le 27 juin, personne ne le pouvait.' },
-    ] },
-  ],
-  vo: `Quelles bonnes pratiques quand j'utilise l'IA ? Deux d'abord. Ne jamais partager de données professionnelles ou privées avec une IA publique. Et si vous avez un besoin, exprimez-le : votre entreprise peut fournir un outil sûr. Ensuite, quand vous mettez en place un agent d'IA, trois questions à afficher au mur. Que ne doit-il jamais faire ? À quoi peut-il accéder ? Qui peut appuyer sur le bouton stop ? Chacune est une leçon de cette histoire.` },
-
-{ ch: 'c5', type: 'credits', title: 'Ce qui a marché',
-  k: 'Un dernier mot…',
-  t: 'Chaque histoire vue aujourd\'hui est connue parce que quelqu\'un l\'a repérée et en a parlé.',
-  rows: [
-    { who: 'Hugging Face', did: 'a détecté l\'intrusion et l\'a rendue publique' },
-    { who: 'OpenAI', did: 'a reconnu que c\'était sa propre IA et a publié son rapport' },
-    { who: 'Chercheurs', did: 'METR, Transluce, Nightingale Collective ont trouvé les traces' },
-    { who: 'Journalistes', did: 'ont continué de poser des questions, dans une douzaine de pays' },
-    { who: 'Vous', did: 'les prochains à repérer quelque chose et à le signaler' },
-  ],
-  vo: `Un dernier mot. Il y a des raisons d'être optimiste. Tout ce que vous avez vu aujourd'hui, nous le savons parce que quelqu'un l'a repéré et en a parlé. Hugging Face a détecté et révélé. OpenAI a reconnu. Des chercheurs indépendants ont trouvé les traces. Des journalistes ont continué de poser des questions. Et le prochain, ce pourrait être vous.` },
-
-{ ch: 'c5', type: 'finale', title: 'Questions',
+{ ch: 'end', type: 'finale', title: 'Questions',
   bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
   a: `La technologie a changé d'échelle.`,
   b: `Les réflexes qui nous protègent restent simples, humains, et à la portée de chacun.`,
   c: 'Merci. Vos questions ?',
-  vo: `Huit questions, huit réponses. La technologie a changé d'échelle. Les réflexes qui nous protègent restent simples, humains, et à la portée de chacun. Merci. Je suis à votre disposition pour vos questions.`,
+  vo: `Sept questions, sept réponses. La technologie a changé d'échelle. Les réflexes qui nous protègent restent simples, humains, et à la portée de chacun. Merci. Je suis à votre disposition pour vos questions.`,
   notes: `Laisser cet écran pendant les questions : la question et la réponse de chaque chapitre y figurent. Cliquer sur une carte pour revenir au chapitre correspondant.` },
 
-{ ch: 'c5', type: 'sources', title: 'Sources',
+{ ch: 'end', type: 'sources', title: 'Sources',
   heading: 'Sources',
   groups: [
     ['Pourquoi maintenant', [
@@ -2595,7 +2514,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
       ['SecurityWeek, Eduard Kovacs (21 septembre 2026)', 'https://www.securityweek.com/google-confirms-gemini-ai-breached-three-firms/'],
       ['BNN Bloomberg (23 septembre 2026) : citations du Conseil de sécurité de l\'ONU', 'https://www.bnnbloomberg.ca/business/artificial-intelligence/2026/09/23/ai-leaders-warn-un-of-security-risks-as-systems-grow-more-powerful/'],
       ['CNN, Whiteman, Gold et Saltman (23 septembre 2026)', 'https://edition.cnn.com/2026/09/23/business/australia-openai-agent-hack-intl-hnk'],
-      ['The Guardian (24 septembre 2026) : "way too long"', 'https://www.theguardian.com/australia-news/2026/sep/24/anthony-albanese-says-openai-agent-hacked-medicare-extreme-concern-sam-altman'],
+      ['The Guardian (24 septembre 2026) : « way too long »', 'https://www.theguardian.com/australia-news/2026/sep/24/anthony-albanese-says-openai-agent-hacked-medicare-extreme-concern-sam-altman'],
       ['CBS News (24 septembre 2026)', 'https://www.cbsnews.com/news/australia-openai-rogue-model-hack-healthcare-system-sam-altman/'],
     ]],
     ['Photos (Wikimedia Commons)', [
@@ -2672,7 +2591,7 @@ SCENES.splice(0, SCENES.length, ...SCENES.filter(s => !s.only || s.only === MODE
   // the rest of the text goes to the speaker notes
   if (MODE === 'short' && o.type === 'zoom') {
     o.lite = true;
-    o.notes = [o.def && `${o.def.q} ${o.def.a}`, o.body, o.dates && o.dates.map(([d, t]) => `${d}: ${t}`).join(' · '), o.notes].filter(Boolean).join('\n');
+    o.notes = [o.def && `${o.def.q} ${o.def.a}`, o.body, o.dates && o.dates.map(([d, t]) => `${d}\u00a0: ${t}`).join(' · '), o.notes].filter(Boolean).join('\n');
   }
   return o;
 }));
@@ -2925,7 +2844,7 @@ const R = {
       <h1 class="doc-title">${s.heading}</h1>
       <p class="doc-sub">${s.sub}</p>
       <div class="mode-sw" role="group" aria-label="Langue / Language">${Object.keys(LANGS).map(l => `<button data-lang="${l}" aria-pressed="${LANG === l}"><b>${LANGS[l].name}</b><small>${LANGS[l].sub}</small></button>`).join('')}</div>
-      ${s.noCh ? '' : `<ol class="doc-ch">${Object.values(CH).filter(c => c.n !== '00').map(c => `<li><span>${c.n}</span>${c.title}</li>`).join('')}</ol>`}
+      ${s.noCh ? '' : `<ol class="doc-ch">${Object.values(CH).filter(c => c.q).map(c => `<li><span>${c.n}</span>${c.title}</li>`).join('')}</ol>`}
     </div>`,
 
   zoom: s => {
@@ -3259,7 +3178,7 @@ const R = {
     </div>${s.punch ? `<div class="sw-p"${fa(2)}>${s.punch}</div>` : ''}${srcLine(s)}`; },
 
   // Bricks laid on a blueprint, one row per click
-  bricks: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="bk"><div class="bk-plan">${s.plan}</div>
+  bricks: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="bk">${s.plan ? `<div class="bk-plan">${s.plan}</div>` : ''}
       ${s.layers.map((l, i) => `<div class="bk-row tone-${l.tone}"${fa(i)}><div class="bk-k">${l.k}</div><div class="bk-bs">${l.bricks.map((b, j) => `<div class="bk-b" style="--d:${j}">${b.i ? `<div class="bk-i">${ICON(b.i)}</div>` : ''}<b>${b.h}</b><span>${b.p}</span></div>`).join('')}</div></div>`).join('')}
       </div>${srcLine(s)}`,
 
@@ -3267,7 +3186,7 @@ const R = {
   kpi: s => { const T = 4, n = s.items.length, X = i => 100 / n * (i + .5), at = i => (.7 + X(i) / 100 * T).toFixed(2);
     const items = s.items.map((x, i) => `<div class="kt-it ${i % 2 ? 'down' : 'up'} s-c${x.stock ? ' stock' : ''}" style="left:${X(i)}%;--dl:${at(i)}s"><i class="kt-stem"></i><i class="kt-dot"></i><div class="kt-c"><div class="kt-k"><span>${x.n}</span>${x.k}</div><b>${x.v}</b><p>${x.t}</p></div></div>`).join('');
     return `<h2 class="sw-big bk-t">${s.heading}</h2>${s.lede ? `<p class="lede kt-lede">${s.lede}</p>` : ''}
-      <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div><div class="kt-tk t0" style="left:0"><span>${s.start}</span></div>${items}</div></div>${s.foot ? `<p class="kt-foot">${s.foot}</p>` : ''}${srcLine(s)}`; },
+      <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div><div class="kt-tk t0" style="left:0"><span>${s.start}</span></div>${items}</div></div>${s.foot ? `<p class="kt-foot" style="--fd:${(.7 + T + .3).toFixed(2)}s">${s.foot}</p>` : ''}${srcLine(s)}`; },
 
   // A triptych of photo panels: each lights up with its letter on its click; the human band last
   aaa: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="tri">${s.items.map((x, i) => `<div class="tri-p" data-hl="${i + 1}"><div class="tri-ph" style="background-image:url('${x.photo}')"></div><div class="tri-n">0${i + 1}</div><div class="tri-a" aria-hidden="true">${x.h[0]}</div><div class="tri-w">${x.h}</div><p>${x.p}</p></div>`).join('')}</div>
@@ -3356,7 +3275,7 @@ const ZWORLD = (() => {
   // pan: at that step the camera has moved on, the name moves to the top right corner
   const BOX = [
     { x: -900, y: -780, w: 1900, h: 1610, r: 56, label: 'LE RÉSEAU D’OPENAI', sub: 'ses ordinateurs de recherche', from: 3, cls: 'estate', pan: 4 },
-    { x: -560, y: -560, w: 1120, h: 980, r: 40, label: 'LE BAC À SABLE', sub: 'fermée · sans internet', from: 3, cls: 'sandbox' },
+    { x: -560, y: -560, w: 1120, h: 980, r: 40, label: 'LE BAC À SABLE', sub: 'fermé · sans internet', from: 3, cls: 'sandbox' },
     { x: -860, y: 460, w: 1460, h: 330, r: 28, label: 'L’EXAMINATEUR QU’ILS CRAIGNAIENT', sub: 'n’a jamais existé', from: 6, to: 6, cls: 'ghost' },
     { x: 1360, y: -820, w: 960, h: 740, r: 44, label: 'INTERNET', sub: 'des sites gratuits, utilisés comme cachettes', from: 4, cls: 'net' },
     { x: 1360, y: 160, w: 960, h: 500, r: 40, label: 'LE SERVEUR CLOUD D’UN INCONNU', far: ['LE SERVEUR CLOUD', 'D’UN INCONNU'], sub: 'loué par une autre entreprise', from: 4, cls: 'tp' },
@@ -3554,7 +3473,7 @@ function prev() { if (frag > 0) { frag--; applyFrag(cur, frag); sync(); } else i
 function sync() {
   history.replaceState(null, '', `#${idx + 1}${frag ? '.' + frag : ''}`);
   const s = SCENES[idx], c = CH[s.ch];
-  $('#hud-ch').textContent = `${c.n} · ${c.title}`;
+  $('#hud-ch').textContent = c.n ? `${c.n} · ${c.title}` : c.title;
   $('#hud-ct').textContent = `${idx + 1} / ${SCENES.length}`;
   $$('#prog div').forEach((d, j) => { const [a, b] = d.dataset.r.split('-').map(Number); const p = idx > b ? 100 : idx < a ? 0 : ((idx - a + (cur && cur._max ? frag / (cur._max + 1) : 0) + (cur && !cur._max ? 1 : 0)) / (b - a + 1)) * 100; d.firstChild.style.width = p + '%'; });
   if ($('#notes').classList.contains('open')) showNotes();
