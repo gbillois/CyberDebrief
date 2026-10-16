@@ -1938,7 +1938,9 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .scene.t-kpi .kt-t{font-size:1.4rem;font-weight:600}
 .scene.t-kpi .kt-p{font-size:1.2rem;color:#fff}
 .scene.t-kpi .kt-tk span{font-size:.9rem}
-.scene.t-kpi .kt{grid-template-columns:minmax(0,1fr) 19rem}
+.scene.t-kpi .kt{grid-template-columns:1fr}
+.scene.t-kpi .kt-it.stock .kt-c b{text-shadow:0 0 34px rgba(255,107,90,1),0 4px 20px rgba(0,0,0,.8)}
+.scene.t-kpi .kt-it.stock .kt-k{color:#FF8A7A}
 
 /* AI for cyber: a triptych of photo panels, one letter each, lit one per click */
 .tri{flex:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem;min-height:0}
@@ -2516,15 +2518,15 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
 { ch: 'c4', type: 'kpi', title: 'La nouvelle baseline',
   heading: 'Fixer une nouvelle <em>baseline cyber</em>',
   lede: 'Au-delà des fondations : cinq familles d’indicateurs. Dès qu’un événement survient, l’horloge tourne.',
-  axis: [[0, 'T0 · l’événement'], [3, '3 h'], [24, '24 h'], [48, '48 h']],
-  // h: the deadline in hours, placed on the clock; up / down and the side of the card keep the labels apart
+  start: 'T0 · l’événement',
+  // evenly spaced along the line, alternately above and below it
   items: [
-    { n: '02', k: 'Détecter et contenir', v: '&lt; 3 h', h: 3, pos: 'up', side: 'c', t: 'une exposition critique, sans attendre le métier' },
-    { n: '01', k: 'Découvrir', v: '&lt; 24 h', h: 24, off: -1.6, pos: 'up', side: 'c', t: 'tout nouvel actif exposé sur Internet' },
-    { n: '03', k: 'Remédier', v: '&lt; 24 h', h: 24, off: 1.6, pos: 'down', side: 'l', t: 'tout actif activement exploité' },
-    { n: '04', k: 'Reconstruire', v: '&lt; 2 j', h: 48, pos: 'down', side: 'l', t: 'les systèmes critiques, depuis une base de confiance' },
+    { n: '02', k: 'Détecter et contenir', v: '&lt; 3 h', t: 'une exposition critique, sans attendre le métier' },
+    { n: '01', k: 'Découvrir', v: '&lt; 24 h', t: 'tout nouvel actif exposé sur Internet' },
+    { n: '03', k: 'Remédier', v: '&lt; 24 h', t: 'tout actif activement exploité' },
+    { n: '04', k: 'Reconstruire', v: '&lt; 2 j', t: 'les systèmes critiques, depuis une base de confiance' },
+    { n: '05', k: 'Réduire', v: '&lt; 5 %', t: 'd’actifs critiques obsolètes, chaque exception datée et attribuée', stock: true },
   ],
-  stock: { n: '05', k: 'Réduire', v: '&lt; 5 %', pct: 5, t: 'd’actifs critiques obsolètes', p: 'Chaque exception : un responsable, une date de sortie.' },
   vo: `Au-delà des fondations, il faut fixer une nouvelle baseline cyber, mesurable. Cinq familles d’indicateurs, et pour quatre d’entre elles, une horloge qui démarre dès l’événement. Contenir une exposition critique : moins de 3 heures, sans attendre le feu vert des métiers. Découvrir et attribuer tout nouvel actif exposé sur Internet : moins de 24 heures. Corriger ou protéger un actif activement exploité : moins de 24 heures. Reconstruire les systèmes critiques depuis une base de confiance : moins de 2 jours. Et réduire : moins de 5 % d’actifs critiques obsolètes, chaque exception avec un responsable et une date de sortie.` },
 
 { ch: 'c4', type: 'aaa', title: 'L’IA pour la cyber : AAA',
@@ -3323,14 +3325,10 @@ const R = {
       </div>${srcLine(s)}`,
 
   // A clock that starts at the event: each deadline lights up as the cursor reaches it; the stock indicator on the side
-  kpi: s => { const T = 4, X = h => h <= 3 ? h / 3 * 22 : h <= 24 ? 22 + (h - 3) / 21 * 40 : 62 + (h - 24) / 24 * 34, at = h => (.7 + X(h) / 100 * T).toFixed(2), st = s.stock;
-    const ticks = s.axis.map(([h, l], i) => `<div class="kt-tk${i ? '' : ' t0'}" style="left:${X(h)}%"><span>${l}</span></div>`).join('');
-    const items = s.items.map(x => `<div class="kt-it ${x.pos} s-${x.side}" style="left:${X(x.h) + (x.off || 0)}%;--dl:${at(x.h)}s"><i class="kt-stem"></i><i class="kt-dot"></i><div class="kt-c"><div class="kt-k"><span>${x.n}</span>${x.k}</div><b>${x.v}</b><p>${x.t}</p></div></div>`).join('');
+  kpi: s => { const T = 4, n = s.items.length, X = i => 100 / n * (i + .5), at = i => (.7 + X(i) / 100 * T).toFixed(2);
+    const items = s.items.map((x, i) => `<div class="kt-it ${i % 2 ? 'down' : 'up'} s-c${x.stock ? ' stock' : ''}" style="left:${X(i)}%;--dl:${at(i)}s"><i class="kt-stem"></i><i class="kt-dot"></i><div class="kt-c"><div class="kt-k"><span>${x.n}</span>${x.k}</div><b>${x.v}</b><p>${x.t}</p></div></div>`).join('');
     return `<h2 class="sw-big bk-t">${s.heading}</h2>${s.lede ? `<p class="lede kt-lede">${s.lede}</p>` : ''}
-      <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div>${ticks}${items}<div class="kt-it kt-end" style="left:100%;--dl:${(.7 + T).toFixed(2)}s"><i class="kt-dot"></i></div></div>
-        <div class="kt-s" style="--dl:${(.7 + T).toFixed(2)}s"><div class="kt-k"><span>${st.n}</span>${st.k}</div>
-          <b class="kt-v">${st.v}</b><p class="kt-t">${st.t}</p>
-          <div class="kt-g" aria-hidden="true"><i style="width:${st.pct}%"></i></div><p class="kt-p">${st.p}</p></div></div>${srcLine(s)}`; },
+      <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div><div class="kt-tk t0" style="left:0"><span>${s.start}</span></div>${items}</div></div>${srcLine(s)}`; },
 
   // A triptych of photo panels: each lights up with its letter on its click; the human band last
   aaa: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="tri">${s.items.map((x, i) => `<div class="tri-p" data-hl="${i + 1}"><div class="tri-ph" style="background-image:url('${x.photo}')"></div><div class="tri-n">0${i + 1}</div><div class="tri-a" aria-hidden="true">${x.h[0]}</div><div class="tri-w">${x.h}</div><p>${x.p}</p></div>`).join('')}</div>
