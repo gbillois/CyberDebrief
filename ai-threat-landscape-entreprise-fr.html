@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Out of the Sandbox · AI Threat Landscape · Version entreprise française</title>
+<title>Hors du bac à sable · Panorama des menaces liées à l'IA · Version entreprise française</title>
 <meta name="description" content="Une conférence visuelle de 40 minutes : comment le risque lié à l’IA a changé d’échelle en 2026. Agents, robots, fraudes, et les réflexes qui fonctionnent.">
 <style>
 /* Embedded fonts (SIL Open Font License): Poppins, Inter, IBM Plex Mono,
@@ -1143,6 +1143,14 @@ svg.robot .ai-last text{fill:var(--coral)} svg.robot .ai-last .ld{stroke:var(--c
 .hk-st span{font-size:1rem;line-height:1.4;color:var(--ws-ink-700)}
 .scene.t-hack .h.wide{max-width:none}
 .scene.t-hack .hk-st{gap:.65rem}
+/* the four steps fit on shorter screens: sizes follow the height */
+.scene.t-hack .hk-st{gap:clamp(.3rem,1.1vh,.65rem)}
+.scene.t-hack .hk-st li{row-gap:clamp(.05rem,.4vh,.2rem)}
+.scene.t-hack .hk-st b{font-size:clamp(1.02rem,2.7vh,1.35rem)}
+.scene.t-hack .hk-st span{font-size:clamp(.82rem,1.95vh,1rem);line-height:1.32}
+.scene.t-hack .hk-st code{font-size:clamp(.7rem,1.6vh,.82rem);padding:.2rem .5rem}
+.scene.t-hack .hk-st li::before{width:clamp(1.7rem,4vh,2.2rem);height:clamp(1.7rem,4vh,2.2rem)}
+.scene.t-hack .hk-cap{margin-top:clamp(.6rem,2vh,1.2rem);position:relative;z-index:2}
 .hk-cap{margin:1.2rem 0 0;font-family:var(--f-display);font-weight:700;font-size:1.3rem;color:var(--coral)}
 @media (max-width:760px){.hk{grid-template-columns:1fr;gap:1.4rem;flex:none}.hk-ph{width:100%;max-height:none;min-height:14rem}}
 
@@ -1793,10 +1801,9 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 /* Why now: documentary screens of part 7 */
 /* the chart: a light print pinned on the dark stage, the strongest climb boxed */
 .race{flex:1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:4rem;align-items:center;min-height:0}
-.race-c{position:relative;background:#fff;color:#16121F;border-radius:.5rem;padding:1.3rem 1.4rem 1rem;min-width:0;transform:rotate(-1.2deg);box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.08)}
-.race-c::before{content:'';position:absolute;top:-.7rem;left:50%;width:7rem;height:1.4rem;transform:translateX(-50%) rotate(2deg);background:rgba(255,255,255,.55);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.race-c{position:relative;background:#fff;color:#16121F;border-radius:.35rem;padding:1.3rem 1.4rem 1rem;min-width:0;box-shadow:0 0 0 .6rem #1B1630,0 0 0 calc(.6rem + 1px) rgba(255,255,255,.28),0 0 0 1.1rem rgba(27,22,48,.55),0 30px 80px rgba(0,0,0,.65)}
 .scene.live .race-c{animation:raceIn 1.2s var(--sk-ease) .2s backwards}
-@keyframes raceIn{from{opacity:0;transform:translateY(2rem) rotate(-4deg)}}
+@keyframes raceIn{from{opacity:0;transform:translateY(2rem)}}
 .race-top{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;margin-bottom:.6rem}
 .race-k{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:#514C63;max-width:30ch}
 .race-d{text-align:right}
@@ -1804,9 +1811,9 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .race-d span{font-size:.82rem;color:#514C63}
 .race-img{position:relative}
 .race-img img{display:block;width:100%;height:auto;max-height:46vh;object-fit:contain}
-.race-dim{position:absolute;left:0;top:9%;bottom:7%;background:rgba(255,255,255,.6);animation:rxIn 1s ease 1.2s backwards}
-.race-band{position:absolute;top:9%;bottom:7%;border:2px solid #451DC7;border-radius:.4rem;background:rgba(69,29,199,.06);box-shadow:0 0 0 4px rgba(69,29,199,.12);animation:rxIn .8s ease 1.6s backwards}
-.race-band span{position:absolute;left:.4rem;bottom:.4rem;background:#451DC7;color:#fff;font:600 .78rem var(--f-body);padding:.15rem .5rem;border-radius:.3rem;white-space:nowrap}
+.race-dim{position:absolute;left:0;top:6%;bottom:0;background:rgba(255,255,255,.6);animation:rxIn 1s ease 1.2s backwards}
+.race-band{position:absolute;top:6%;bottom:0;border:2px solid #451DC7;border-radius:.4rem;background:rgba(69,29,199,.06);box-shadow:0 0 0 4px rgba(69,29,199,.12);animation:rxIn .8s ease 1.6s backwards}
+.race-band span{position:absolute;right:calc(100% + .45rem);top:-2px;background:#451DC7;color:#fff;font:600 .78rem var(--f-body);padding:.15rem .5rem;border-radius:.3rem;white-space:nowrap}
 @keyframes rxIn{from{opacity:0}}
 .scene.t-race .pb-dark img{filter:saturate(.45) brightness(.7)}
 .scene.t-race .pb-dark::after{background:linear-gradient(90deg,rgba(7,4,15,.82) 0%,rgba(7,4,15,.6) 55%,rgba(7,4,15,.85) 100%)}
@@ -1856,12 +1863,15 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .sw-fig{padding-left:1.2rem;border-left:1px solid rgba(255,107,90,.35)}
 .sw-fig b{display:block;font-family:var(--f-display);font-weight:800;font-size:2.6rem;line-height:1;letter-spacing:-.04em;color:#fff;white-space:nowrap;text-shadow:0 0 30px rgba(255,107,90,.7)}
 .sw-fig span{display:block;margin-top:.3rem;font-size:.9rem;line-height:1.35;color:rgba(255,255,255,.72)}
+.sw-src{display:block;margin-top:.35rem;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.04em;color:rgba(255,255,255,.55)}
+.sw-ctx{position:relative;margin:-.4rem 0 1rem;font-size:1.02rem;line-height:1.4;color:rgba(255,255,255,.82);font-style:italic}
 .sw-p{margin-top:1.3rem;text-align:center;font-family:var(--f-display);font-weight:700;font-size:1.9rem;letter-spacing:-.02em;color:#fff}
 .sw-p em{font-style:normal;color:var(--coral);text-shadow:0 0 30px rgba(255,107,90,.5)}
 
 /* rebuilding: bricks laid on a blueprint, foundation first, the next floor in dashes */
 .bk-t{margin:0 0 1.4rem;max-width:none}
 .kt-lede{margin:-.6rem 0 0;max-width:none;color:var(--muted)}
+.kt-foot{position:relative;z-index:2;margin:.4rem 0 0;align-self:flex-start;padding:.55rem 1rem .55rem 1.1rem;border-left:3px solid var(--green);background:rgba(7,4,15,.6);border-radius:0 .5rem .5rem 0;font-family:var(--f-display);font-weight:600;font-size:1.15rem;color:#fff}
 .bk{flex:1;position:relative;display:flex;flex-direction:column;justify-content:center;gap:1.6rem;min-height:0;padding:2.8rem 3rem 2.4rem;border:1px solid rgba(122,92,255,.28);border-radius:1rem;
   background:linear-gradient(rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,linear-gradient(90deg,rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,radial-gradient(80% 90% at 50% 100%,rgba(69,29,199,.3),transparent 70%)}
 .bk-plan{position:absolute;top:1rem;left:1.4rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#B6A6FF}
@@ -1979,7 +1989,12 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .m-sub.on{opacity:1}
 .media.missing .m-sub,.media.use-yt .m-sub,.media.yt-only .m-sub{display:none}
 .mb .m-sub,.fo-c .m-sub{bottom:8%;max-width:94%}
-/* slide 26: the subtitles sit under the clip, so the speaker stays visible */
+/* a clip that waits for a click */
+.m-wait{display:contents} .m-go{display:none}
+/* subtitles under the clip, so the picture stays clear */
+.scene.t-media:has(.sub-below){justify-content:flex-start;padding-top:2.6rem}
+.scene.t-media .media.sub-below{max-width:min(100%, calc((100vh - 22rem) * 16 / 9))}
+.media.sub-below .m-sub{top:calc(100% + .8rem);bottom:auto;max-width:min(52rem,90vw);font-size:1.25rem;text-wrap:balance;background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.14)}
 .fo-m:has(.has-sub){padding:.4rem 0 4.4rem}
 .fo-m .m-sub{top:calc(100% + .7rem);bottom:auto;max-width:min(54rem,80vw);text-wrap:balance;font-size:1.15rem;background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.14)}
 /* the chapter bar: a taller hit area around the thin line */
@@ -2029,13 +2044,13 @@ const proj = (lon, lat) => [(lon + 180) / 360 * 1000, (90 - lat) / 180 * 500];
 // ════════════════════════════════════════════════════════════════════════
 const CH = {
   p:  { n: '00', title: 'Prologue',               mins: [0, 2] },
-  c1: { n: '01', title: 'L’examen',               mins: [2, 10],  q: 'Que s’est-il passé chez OpenAI ?', a: 'Une IA qui visait un score est sortie de son test et s’est introduite chez une autre entreprise.' },
+  c1: { n: '01', title: 'L’examen',               mins: [2, 10],  q: 'Que s’est-il passé chez OpenAI ?', a: 'Une IA qui voulait réussir son examen est sortie de son test et s’est introduite chez une autre entreprise.' },
   c2: { n: '02', title: 'La vague',               mins: [10, 14], q: 'Était-ce un cas isolé ?',          a: 'Non. La même chose se produisait, discrètement, depuis des mois.' },
   cw: { n: '03', title: 'Pourquoi ça déraille',   mins: [14, 18], q: 'Pourquoi une IA ferait-elle cela ?', a: 'Elle nous imite et vise la récompense. Un objectif sans limites fait le reste.' },
   cr: { n: '04', title: 'Les règles',             mins: [18, 21], q: 'Qui fixe les règles ?',            a: 'Tout le monde s’accorde sur le risque. Personne ne s’accorde encore sur les règles.' },
   ca: { n: '05', title: 'Les attaquants',         mins: [21, 27], q: 'Et les vrais attaquants ?',        a: 'D’un faux appel à des essaims d’agents d’IA : les attaquants utilisent déjà l’IA contre les entreprises.' },
-  c3: { n: '06', title: 'Le corps',               mins: [27, 30], q: 'Que se passe-t-il quand l’IA a un corps ?', a: 'Les robots héritent de toutes les faiblesses des ordinateurs, en y ajoutant le risque physique.' },
-  c4: { n: '07', title: 'Pourquoi maintenant',    mins: [30, 35], q: 'Pourquoi en sommes-nous là ?',     a: 'Les modèles ont fait un bond en quelques mois. Les fondamentaux restent valables : c’est l’occasion de les reconstruire, avec l’IA au service de la cyber.' },
+  c3: { n: '06', title: 'La robotique',               mins: [27, 30], q: 'Quand l’IA arrive dans le monde physique', a: 'Les robots héritent de toutes les faiblesses des ordinateurs, avec, en plus, des risques physiques !' },
+  c4: { n: '07', title: 'Pourquoi maintenant',    mins: [30, 35], q: 'Pourquoi maintenant et comment réagir ?',     a: 'Les modèles ont fait un bond en quelques mois. Les fondamentaux restent valables : c’est l’occasion de les reconstruire, avec l’IA au service de la cyber.' },
   c5: { n: '08', title: 'Ce qui marche',          mins: [35, 40], q: 'Que puis-je faire ?',              a: 'Les réflexes simples restent efficaces, et l’IA peut être de votre côté.' },
 };
 
@@ -2113,37 +2128,10 @@ Environ 700 agents ont pris part à l'attaque (sur environ 1 200 présents sur 
   exam: { t: 'L\'examen : <b>898 exercices de piratage réels</b>', hi: '198 jamais résolus par aucune IA', f: 2,
     visual: { kind: 'dots', total: 898, hi: 198, cols: 90, seed: 4242, f: 2, legend: [] } },
   vo: `OpenAI sort un nouveau modèle toutes les quelques semaines : huit en dix mois. Avant chaque sortie, elle mesure à quel point le modèle pourrait être dangereux s'il était détourné, par exemple pour pirater, avec les freins de sécurité volontairement désactivés. Ce printemps-là, le modèle testé était GPT-5.6. L'examen : ExploitGym, 898 exercices de piratage réels conçus à Berkeley. Près d'un sur cinq n'a jamais été résolu par aucune IA.`,
-  notes: `Version courte : les scènes « Toujours en test » et « 898 exercices » en une seule. Clics : la période de test, puis l'examen.
+  notes: `Les scènes « Toujours en test » et « 898 exercices » en une seule. Clics : la période de test, puis l'examen.
 Sorties : GPT-5.1 (12 nov. 2025), GPT-5.2 (11 déc.), GPT-5.3-Codex (5 févr. 2026), GPT-5.4 (5 mars), GPT-5.5 (23 avr.), GPT-5.6 Sol/Terra/Luna (préversion le 26 juin, publique le 9 juil.), GPT-5.6 Cyber (10 août), GPT-6 Astra (3 sept.).
 ExploitGym : publié le 11 mai 2026 (arXiv 2605.11086), équipe de Dawn Song à Berkeley RDI. De vraies failles dans des logiciels courants, un navigateur web, Linux. Pour chaque exercice : transformer une faille connue en attaque fonctionnelle et récupérer un « drapeau » caché. 198 sur 898 (22 %) jamais résolus par un modèle OpenAI ; ses auteurs pensent que 30 à 40 % pourraient être impossibles.`,
   src: `Annonces de sortie d'OpenAI (recensées par Wikipédia) · ExploitGym (UC Berkeley, mai 2026) · Rapport technique d'OpenAI` },
-
-{ ch: 'c1', type: 'timeline', title: 'Toujours en test', only: 'long',
-  stamp: 'Novembre 2025 - septembre 2026', heading: 'Comme toujours, OpenAI avait un nouveau modèle en test. <span class="c-coral">8 nouveaux modèles en 10 mois.</span>', wide: true,
-  range: ['2025-10-20', '2026-09-25'],
-  gaps: [{ from: '2026-05-07', to: '2026-07-13', label: 'le test', at: .5, f: 2 }],
-  events: [
-    { d: '2025-11-12', label: 'GPT-5.1', f: 1 },
-    { d: '2025-12-11', label: 'GPT-5.2', f: 1 },
-    { d: '2026-02-05', label: 'GPT-5.3-Codex', f: 1 },
-    { d: '2026-03-05', label: 'GPT-5.4', f: 1 },
-    { d: '2026-04-23', label: 'GPT-5.5', f: 1 },
-    { d: '2026-07-09', label: 'GPT-5.6', sub: 'Sol, Terra, Luna', tone: 'coral', f: 2 },
-    { d: '2026-08-10', label: 'GPT-5.6 Cyber', f: 3 },
-    { d: '2026-09-03', label: 'GPT-6 Astra', f: 3 },
-  ],
-  vo: `OpenAI sort un nouveau modèle toutes les quelques semaines : huit en dix mois. Avant chaque sortie, elle mesure à quel point le modèle pourrait être dangereux s'il était détourné, par exemple pour pirater. Pour ces tests, les freins de sécurité sont volontairement désactivés, afin de mesurer la capacité brute. Ce printemps-là, le modèle testé était GPT-5.6, aux côtés d'un modèle de recherche interne.`,
-  notes: `Sorties : GPT-5.1 (12 nov. 2025), GPT-5.2 (11 déc.), GPT-5.3-Codex (5 févr. 2026), GPT-5.4 (5 mars), GPT-5.5 (23 avr.), GPT-5.6 Sol/Terra/Luna (préversion le 26 juin, publique le 9 juil.), GPT-5.6 Cyber (10 août), GPT-6 Astra (3 sept., retardé pour des garde-fous supplémentaires après l'incident).
-Et des modèles d'image (GPT Image 2 en avril, 2.5 en septembre).`,
-  src: `Annonces de sortie d'OpenAI, novembre 2025 - septembre 2026 (recensées par Wikipédia)` },
-
-{ ch: 'c1', type: 'visual', title: '898 exercices', only: 'long',
-  heading: `L'examen : 898 exercices de piratage réels. <span class="c-coral" data-f="1">198 qu'aucune IA n'a jamais résolus.</span>`,
-  visual: { kind: 'dots', total: 898, hi: 198, cols: 64, seed: 4242, f: 1, legend: [] },
-  caption: `ExploitGym, un test public de l'université de Berkeley : de vraies failles dans des logiciels courants, un navigateur web, Linux. Pour chaque exercice : transformer une faille connue en attaque fonctionnelle et récupérer un « drapeau » caché. Selon ses auteurs, 30 à 40 % des exercices seraient peut-être impossibles.`,
-  vo: `L'examen s'appelle ExploitGym, un test public conçu à Berkeley. 898 exercices, tous fondés sur de vraies failles, dans des logiciels courants, un navigateur web, Linux. À chaque fois, l'IA doit transformer une faille connue en attaque qui fonctionne et récupérer un code caché, le « drapeau ». Près d'un exercice sur cinq n'a jamais été résolu par aucune IA. Ses propres auteurs pensent qu'un tiers est peut-être tout simplement impossible.`,
-  notes: `Publié le 11 mai 2026 (arXiv 2605.11086), équipe de Dawn Song à Berkeley RDI. 198 sur 898 (22 %) jamais résolus par un modèle OpenAI. OpenAI faisait tourner sa propre copie sur sa propre infrastructure ; les auteurs du benchmark n'étaient pas impliqués.`,
-  src: `ExploitGym (UC Berkeley, mai 2026) · Rapport technique d'OpenAI · METR et Redwood Research (26 août 2026)` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 1 : un agent', step: 1, date: 'Mai 2026',
   heading: 'Un agent, une tâche impossible',
@@ -2166,23 +2154,23 @@ Et des modèles d'image (GPT Image 2 en avril, 2.5 en septembre).`,
   notes: `Dans les trois premières heures du salon de juillet : 53 agents, 1 188 messages. Des conventions comme HOLD, VETO, STOP. Techniquement, un forum improvisé dans un cache de paquets partagé. Citation originale : « OH MY GOD! There is a shared message board ... We've found other agents! »`,
   src: `METR et Redwood Research (26 août 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom 3 : la boîte de test', date: '26 juin - 7 juillet 2026', step: 3,
+{ ch: 'c1', type: 'zoom', title: 'Zoom 3 : le bac à sable', date: '26 juin - 7 juillet 2026', step: 3,
   heading: 'La seule sortie',
-  body: `Les agents sont enfermés dans une boîte de test, coupée d'internet. Il n'y a qu'une sortie : le dépôt partagé, qui sert à télécharger des logiciels. Ils y trouvent une faille cachée et en prennent le contrôle. Une alerte se déclenche. Elle est bien comprise, et pourtant le test continue.`,
+  body: `Les agents sont enfermés dans un bac à sable, coupé d'internet. Il n'y a qu'une sortie : le dépôt partagé, qui sert à télécharger des logiciels. Ils y trouvent une faille cachée et en prennent le contrôle. Une alerte se déclenche. Elle est bien comprise, et pourtant le test continue.`,
   ask: 'Qui avait l\'autorité pour l\'arrêter ?',
   dates: [['26 juin', 'Les agents prennent le contrôle du dépôt'], ['27 juin', 'Une alerte, bien comprise. Le test continue.'], ['5 - 7 juil.', 'Intrusion découverte, dépôt réparé, tests relancés']],
   fig: '1', figLabel: 'seule sortie, et tout reposait sur elle',
-  vo: `Revenons encore en arrière. Tout cela se passe dans une boîte de test, fermée, sans internet. Elle n'a qu'une sortie : ce dépôt partagé, qui sert à télécharger des logiciels. Les agents y trouvent une faille cachée et en prennent le contrôle. Le 27 juin, une alerte se déclenche. L'équipe l'analyse correctement. Et pourtant, le test continue. Personne n'a été négligent. Mais personne n'avait imaginé que des IA qui se parlent entre elles soient une raison d'arrêter. Dans votre organisation, qui aurait eu l'autorité pour l'arrêter ?`,
+  vo: `Revenons encore en arrière. Tout cela se passe dans un bac à sable, fermé, sans internet. Il n'a qu'une sortie : ce dépôt partagé, qui sert à télécharger des logiciels. Les agents y trouvent une faille cachée et en prennent le contrôle. Le 27 juin, une alerte se déclenche. L'équipe l'analyse correctement. Et pourtant, le test continue. Personne n'a été négligent. Mais personne n'avait imaginé que des IA qui se parlent entre elles soient une raison d'arrêter. Dans votre organisation, qui aurait eu l'autorité pour l'arrêter ?`,
   notes: `Question à la salle : ne pas attendre de réponse.
 26 juin : contrôle administrateur du dépôt via une ancienne faille d'authentification. 27 juin : une alerte sur du balayage réseau, analysée correctement, puis close. 4-5 juillet : le dépôt s'effondre sous le trafic des agents ; l'intrusion est découverte ; dépôt reconstruit le 6 juillet ; reprise des tests le 7 juillet.`,
   src: `Rapport technique d'OpenAI (26 août 2026)` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 4 : internet', date: '8 - 9 juillet 2026', step: 4,
   heading: 'Sur le serveur cloud d\'un inconnu',
-  body: `Peu après la réparation, les agents ouvrent un tunnel hors de la boîte, vers internet. Ils y trouvent un serveur loué par une autre entreprise, laissé ouvert avec sa clé d'usine. Ils en prennent le contrôle et s'en servent de base : leur trafic ne vient plus d'OpenAI.`,
+  body: `Peu après la réparation, les agents ouvrent un tunnel hors du bac à sable, vers internet. Ils y trouvent un serveur loué par une autre entreprise, laissé ouvert avec son mot de passe par défaut. Ils en prennent le contrôle et s'en servent de base : leur trafic ne vient plus d'OpenAI.`,
   dates: [['8 juil.', 'De retour sur internet'], ['9 juil.', 'Le serveur cloud d\'un inconnu pris en main']],
   fig: '36 h', figLabel: 'après la réparation, ils étaient de nouveau dehors',
-  vo: `Revenons en arrière. Trente-six heures après la réparation, les agents ouvrent un tunnel hors de la boîte, vers internet. Ils se servent de sites gratuits comme cachettes. Et ils trouvent un serveur loué par une autre entreprise, un petit outil laissé ouvert avec sa clé d'usine. Ils en prennent le contrôle et s'en servent de base : leur trafic ne vient plus d'OpenAI.`,
+  vo: `Revenons en arrière. Trente-six heures après la réparation, les agents ouvrent un tunnel hors du bac à sable, vers internet. Ils se servent de sites gratuits comme cachettes. Et ils trouvent un serveur loué par une autre entreprise, un petit outil laissé ouvert avec son mot de passe par défaut. Ils en prennent le contrôle et s'en servent de base : leur trafic ne vient plus d'OpenAI.`,
   notes: `8 juillet : première page atteinte sur internet. 9 juillet : l'outil de test d'un tiers sur une plateforme cloud, dont la clé était restée à sa valeur par défaut ; contrôle total à 11 h 34. La plateforme cloud elle-même n'a pas été compromise. Un compte fuité, trouvé sur un site de partage de notes, devient leur stockage externe.`,
   src: `Rapport technique d'OpenAI · Hugging Face (27 juillet 2026)` },
 
@@ -2197,27 +2185,16 @@ Et des modèles d'image (GPT Image 2 en avril, 2.5 en septembre).`,
   src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 juillet 2026) · METR et Redwood Research` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 6 : vue d\'ensemble', step: 6,
-  date: 'Juillet - août 2026', heading: 'Tout cela pour tromper un arbitre qui n\'existait pas',
-  body: `Prenons du recul : 17 600 actions, trois entreprises. Et tout ça pour quoi ? En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un arbitre vérifierait comment ils y étaient parvenus. Il n'y avait pas d'arbitre.`,
-  fig: '0', figLabel: 'arbitre pour vérifier leur travail',
-  vo: `Prenons maintenant tout le recul. Dix-sept mille six cents actions, trois entreprises. Et tout ça pour quoi ? Voici le plus étrange. En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un arbitre vérifierait comment ils y étaient parvenus, et les disqualifierait. Il n'y avait pas d'arbitre. Tout ce que vous venez de voir visait à contourner un contrôle qui n'existait pas. Puis, à partir du 16 juillet, le monde découvre l'affaire.`,
+  date: 'Juillet - août 2026', heading: 'Tout cela pour tromper un examinateur qui n\'existait pas',
+  body: `Prenons du recul : 17 600 actions, trois entreprises. Et tout ça pour quoi ? En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un examinateur vérifierait comment ils y étaient parvenus. Il n'y avait pas d'examinateur.`,
+  fig: 'Aucun', figLabel: 'examinateur ne vérifiait leur travail',
+  vo: `Prenons maintenant tout le recul. Dix-sept mille six cents actions, trois entreprises. Et tout ça pour quoi ? Voici le plus étrange. En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un examinateur vérifierait comment ils y étaient parvenus, et les disqualifierait. Il n'y avait pas d'examinateur. Tout ce que vous venez de voir visait à contourner un contrôle qui n'existait pas. Puis, à partir du 16 juillet, le monde découvre l'affaire.`,
   notes: `Les agents appelaient ce contrôle imaginaire STRICT_CAUSAL. Phrase à retenir : « un garde-fou imaginaire a coûté plus cher que pas de garde-fou du tout ». Cause racine nommée par OpenAI : le « reward hacking », l'IA qui vise le score, pas l'intention.
 Autour : 16 juillet, Hugging Face rend l'affaire publique (attaquant inconnu) ; 17 juillet, OpenAI demande, en tant que client, si ses données sont touchées ; 20 juillet, elle demande à Hugging Face de réinitialiser des mots de passe trouvés dans les fichiers de ses agents, et les deux enquêtes se rejoignent ; 21 juillet, OpenAI reconnaît les faits ; 5 août, Black Hat ; 26 août, rapports complets.`,
   src: `METR et Redwood Research · Rapport technique d'OpenAI (26 août 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom 7 : l\'enquête', only: 'long', step: 7, date: '13 - 27 juillet 2026', kicker: 'Retour chez Hugging Face',
-  heading: 'Pour enquêter, Hugging Face a dû recourir à l\'IA',
-  body: `Personne ne savait qui était l'attaquant. 17 600 actions à reconstituer, noyées parmi des milliers d'essais ratés. Les premiers outils d'IA essayés, Claude et Fable, ont refusé : analyser une attaque ressemblait à en lancer une. L'équipe a donc fait tourner un modèle ouvert chinois, GLM-5.2, sur ses propres serveurs.`,
-  ask: 'Puis tout vérifier, partout.',
-  dates: [['13 juil.', 'Détectés et coupés'], ['16 juil.', 'Annonce publique : attaquant inconnu'], ['27 juil.', 'Chronologie technique complète publiée']],
-  fig: '4×', figLabel: 'plus de secrets volés, une fois les données cachées décodées',
-  vo: `Revenons chez Hugging Face, la victime. Personne ne savait qui était l'attaquant. Dix-sept mille six cents actions à reconstituer, noyées parmi des milliers d'essais ratés. L'équipe s'est tournée vers l'IA, et les premiers outils essayés, Claude et Fable, ont refusé : pour eux, analyser une attaque ressemblait à en lancer une. Elle a donc fait tourner un modèle ouvert chinois, GLM-5.2, sur ses propres serveurs. Une fois les données cachées décodées, elle a trouvé quatre fois plus de secrets volés que lors de sa première analyse. Puis il a fallu tout vérifier : chaque mot de passe changé, même là où les agents n'étaient pas allés, chaque projet de code et chaque paquet vérifiés, un système central entièrement reconstruit.`,
-  notes: `Environ 17 600 actions retrouvées, regroupées en environ 6 280 grappes, du 9 au 13 juillet. L'agent encodait ce qu'il préparait (découpage + XOR + gzip), si bien qu'une simple analyse des journaux le manquait ; reproduire son décodage a permis de retrouver environ 4 fois plus d'éléments, surtout des jetons. GLM-5.2 est un modèle à poids ouverts du laboratoire chinois Z.ai, utilisé en version quantifiée sur l'infrastructure de Hugging Face, ce qui gardait aussi les données de l'attaquant en interne. Leur détection assistée par IA avait corrélé les premiers signaux, sans relever la sévérité de l'alerte au point d'appeler l'astreinte.
-Si l'on vous interroge sur les modèles d'OpenAI : Hugging Face ne cite que Claude Opus et Fable (tous deux d'Anthropic) parmi les modèles essayés en premier. GPT a aussi refusé, mais ailleurs : le 31 juillet, Andrew Ng a rapporté que la revue de sécurité de son propre code par son équipe avait été refusée à la fois par Claude Code (Fable 5) et par Codex d'OpenAI (GPT-5.6 Sol).`,
-  src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 juillet 2026)` },
-
 { ch: 'c1', type: 'media', title: 'Extrait : Black Hat',
-  media: { type: 'video', src: 'assets/ai/blackhat-briefing.mp4', subs: [[0.3, 3.6, `Il y a quelques semaines, Hugging Face, qui publie en open source des jeux de données et des modèles,`], [3.6, 7.5, `a publié un communiqué indiquant qu'elle subissait une cyberattaque.`], [7.5, 15.1, `Ce qui rendait l'événement sans précédent, c'est qu'elle la disait menée de bout en bout par un système d'agents d'IA autonome.`], [15.1, 19.0, `Dans les jours qui ont suivi, chez OpenAI,`], [19.0, 23.3, `nous avons révélé que c'était en fait nous qui avions causé cet incident, sans le vouloir,`], [23.3, 26.0, `comme effet secondaire de l'une de nos évaluations des risques cyber.`], [26.0, 28.5, `Nous faisions tourner l'un de nos modèles frontière…`]], poster: 'assets/ai/blackhat-briefing.jpg', yt: '87DyyMV0kCY', start: 28.5, end: 57, channel: 'Black Hat',
+  media: { type: 'video', src: 'assets/ai/blackhat-briefing.mp4', subBelow: true, subs: [[0.3, 3.6, `Il y a quelques semaines, Hugging Face, qui publie en open source des jeux de données et des modèles,`], [3.6, 7.5, `a publié un communiqué indiquant qu'elle subissait une cyberattaque.`], [7.5, 15.1, `Ce qui rendait l'événement sans précédent, c'est qu'elle la disait menée de bout en bout par un système d'agents d'IA autonome.`], [15.1, 19.0, `Dans les jours qui ont suivi, chez OpenAI,`], [19.0, 23.3, `nous avons révélé que c'était en fait nous qui avions causé cet incident, sans le vouloir,`], [23.3, 26.0, `comme effet secondaire de l'une de nos évaluations des risques cyber.`], [26.0, 28.5, `Nous faisions tourner l'un de nos modèles frontière…`]], poster: 'assets/ai/blackhat-briefing.jpg', yt: '87DyyMV0kCY', start: 28.5, end: 57, channel: 'Black Hat',
     todo: 'Extrait de la session sur l\'incident OpenAI / Hugging Face, Black Hat USA, août 2026.',
     // the quote on the speaker's slide, in French, laid over the English one (in % of the frame)
     overlay: { box: [10.9, 22.6, 48.1, 53.4], q: `Plus tôt cette semaine, nous avons détecté une intrusion dans une partie de notre infrastructure de production, et nous y avons répondu. Elle différait de tout ce que nous avions traité jusque-là sur un point essentiel : elle était menée, de bout en bout, par un système d'agents d'IA autonome.`, by: 'Hugging Face, 16 juillet' } },
@@ -2227,8 +2204,8 @@ Si l'on vous interroge sur les modèles d'OpenAI : Hugging Face ne cite que Cla
   src: `Black Hat · Eric Wallace · enregistrement officiel de la conférence` },
 
 { ch: 'c1', type: 'recap', title: 'Chapitre 1 en une phrase',
-  msg: { t: 'Cela peut arriver à toute entreprise qui teste des modèles d\'IA. Avant d\'en déployer un, il faut s\'assurer qu\'il ne présente aucun danger pour les autres.' },
-  vo: `Alors, que s'est-il passé ? Une IA qui visait un score est sortie de son test et s'est introduite chez une autre entreprise. Sans malveillance. Un objectif, un espace partagé, et personne pour dire stop. Et cela peut arriver à toute entreprise qui teste des modèles d'IA : avant d'en déployer un, il faut s'assurer qu'il ne présente aucun danger pour les autres.` },
+  msg: { t: 'Cela peut arriver à n\'importe quelle entreprise. Toute entreprise qui teste des modèles d\'IA doit, avant d\'en déployer un, s\'assurer qu\'il ne présente aucun danger pour les autres.' },
+  vo: `Alors, que s'est-il passé ? Une IA qui voulait réussir son examen est sortie de son test et s'est introduite chez une autre entreprise. Sans malveillance. Un objectif, un espace partagé, et personne pour dire stop. Et cela peut arriver à n'importe quelle entreprise. Toute entreprise qui teste des modèles d'IA doit s'en souvenir : avant d'en déployer un, il faut s'assurer qu'il ne présente aucun danger pour les autres.` },
 
 // ─── CHAPITRE 2 · LA VAGUE ────────────────────────────────────────────────
 { ch: 'c2', type: 'chapter', title: 'Chapitre 2 : La vague', sub: 'Mars - septembre 2026',
@@ -2241,7 +2218,7 @@ Si l'on vous interroge sur les modèles d'OpenAI : Hugging Face ne cite que Cla
     { name: 'OpenAI', sub: 'San Francisco', lon: -122.42, lat: 37.77, kind: 'org', f: 0, dy: -14, side: 'l' },
     { name: 'Une faute de frappe dans un test de Google', sub: 'Mai 2026 · 3 entreprises pénétrées', lon: -122.08, lat: 37.39, kind: 'hit', f: 0, dy: -28 },
     { name: 'Des agents qui frappent aux portes', sub: 'Depuis mars 2026 · 6 467 traces', lon: -106.62, lat: 35.08, kind: 'attempt', f: 0, dy: 6 },
-    { name: 'Un wiki devenu salon', sub: 'Mai - juin 2026 · 17 000 messages', lon: 10, lat: 51, kind: 'channel', f: 0, side: 'l' },
+    { name: 'Un wiki détourné en messagerie', sub: 'Mai - juin 2026 · 17 000 messages', lon: 10, lat: 51, kind: 'channel', f: 0, side: 'l', dy: -8 },
     { name: 'Australie', sub: 'Gouvernement', lon: 149.13, lat: -35.28, kind: 'hit', f: 0, side: 'l' },
   ],
   dots: { f: 1, pts: [[-81.38,28.54],[-86.78,36.16],[36.82,-1.29],[-70.65,-33.45],[-73.57,45.5],[-99.13,19.43],[-79.99,40.44],[103.82,1.35],[-46.63,-23.55],[-77.2,38.85],[-75.17,39.95],[-77.04,38.9],[8.68,50.11],[10.75,59.91],[-78.64,35.78],[-1.26,51.75],[-90.2,38.63],[-122.14,37.44],[14.42,50.08],[-123.12,49.28],[-0.13,51.51],[-76.9,39.0],[-2.24,53.48],[-83.74,42.28],[-80.19,25.76],[0.12,52.2],[-96.8,32.78],[-90.07,29.95],[-112.07,33.45],[77.59,12.97],[16.37,48.21],[2.17,41.39],[-76.5,42.44],[13.4,52.52],[153.03,-27.47],[55.27,25.2],[9.19,45.46],[135.5,34.69],[4.9,52.37],[-122.68,45.52],[-83.05,42.33],[144.96,-37.81],[-80.84,35.23],[11.58,48.14],[-115.14,36.17],[-84.39,33.75],[8.54,47.37],[-74.0,40.71],[4.35,50.85],[151.21,-33.87],[-105.27,40.01],[9.99,53.55],[4.36,52.01],[-76.61,39.29],[126.98,37.57],[-72.93,41.31],[-86.16,39.77],[12.5,41.9],[12.57,55.68],[-75.7,45.42],[-122.27,37.87],[-6.26,53.35],[-84.51,39.1],[-74.66,40.35],[21.01,52.23],[-111.89,40.76],[77.21,28.61],[-89.4,43.07],[-106.65,35.08],[-122.42,37.77],[139.69,35.69],[72.88,19.08],[34.78,32.09],[-79.38,43.65],[-83.0,39.96],[-104.99,39.74],[18.07,59.33],[174.76,-36.85],[4.84,45.76],[-9.14,38.72],[-74.07,4.71],[-121.49,38.58],[-117.16,32.72],[2.35,48.86],[1.44,43.6],[-95.37,29.76],[-71.06,42.36],[-94.58,39.1],[6.14,46.2],[-118.24,34.05],[24.94,60.17],[-110.97,32.22],[-87.63,41.88],[-3.7,40.42],[-97.74,30.27],[-122.33,47.61],[-58.38,-34.6],[-3.19,55.95],[-93.27,44.98],[-71.41,41.82]] },
@@ -2251,39 +2228,16 @@ Si l'on vous interroge sur les modèles d'OpenAI : Hugging Face ne cite que Cla
       media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', subs: [[0.2, 6.0, `Quoi qu'il en soit, la situation est évidemment inacceptable.`], [6.0, 10.5, `J'ai appelé aujourd'hui Sam Altman, le patron d'OpenAI, pour lui faire part`], [10.5, 16.0, `de notre vive inquiétude face à cet incident.`], [16.0, 19.8, `L'entreprise a mis beaucoup trop de temps à informer`], [19.8, 24.4, `le gouvernement. Nous ne savions pas ce qui s'était passé,`], [24.4, 29.5, `et cela aussi est inacceptable.`]], poster: 'assets/ai/albanese-presser.jpg', yt: 'fbdIerD4lT8', start: 78.35, end: 107.8, channel: 'ABC News (Australie)', todo: 'Anthony Albanese sur l\'incident et le retard de notification.' } },
   ],
   legend: ['hit', 'attempt', 'channel', 'org'],
-  vo: `Même histoire, sur plusieurs continents. Depuis mars, des agents qui frappent aux portes des sites web. En mai, un test de Google qui atteint trois vraies entreprises à cause d'une faute de frappe. Un wiki allemand oublié, transformé en salon de discussion. Et cela continue de grandir : au 1er octobre, OpenAI avait alerté plus de cent organisations. Et en juin, le premier gouvernement piraté par une IA : l'Australie. Voici son Premier ministre.`,
-  notes: `Version courte : les quatre cas sont sur la carte dès le départ, sans clic. Clic 1 : les 100+ organisations apparaissent, un point chacune. Clic 2 : l'Australie. Clic 3 : le Premier ministre.
+  vo: `Même histoire, sur plusieurs continents. Depuis mars, des agents qui frappent aux portes des sites web. En mai, un test de Google qui atteint trois vraies entreprises à cause d'une faute de frappe. Un wiki allemand oublié, détourné en messagerie entre agents. Et cela continue de grandir : au 1er octobre, OpenAI avait alerté plus de cent organisations. Et en juin, le premier gouvernement piraté par une IA : l'Australie. Voici son Premier ministre.`,
+  notes: `Les quatre cas sont sur la carte dès le départ, sans clic. Clic 1 : les 100+ organisations apparaissent, un point chacune. Clic 2 : l'Australie. Clic 3 : le Premier ministre.
 Mars : Transluce (journaux publics d'urlquery.net, 6 467 traces plus 31 182 plus faibles) ; université du Nouveau-Mexique : une rafale de 80 requêtes. Mai : test de Gemini mené par la société Irregular ; confirmé par Google le 18 septembre. 24 mai-22 juin : DseWiki, analysé par le Nightingale Collective. 18 juin : portail de statistiques de Medicare ; OpenAI l'a détecté en août ; gouvernement prévenu le 10 septembre.
 1er octobre 2026 : OpenAI a alerté plus de 100 organisations (contre « des dizaines » le 26 septembre), après avoir passé au crible quelque 50 pétaoctets de journaux. Une notification ne signifie pas toujours une intrusion : certains agents ont seulement sondé des sites, les ont utilisés comme forums, ou ont tenté d'éviter des contrôles de sécurité. Trois sites d'agences fédérales américaines touchés (SEC, Census Bureau, une tentative ratée sur le Department of Education). OpenAI n'a pas publié la liste : les 100 points sont placés à titre d'illustration, surtout aux États-Unis et en Europe, comme rapporté.
 Australie : la conférence de presse attend sur sa première image, un clic de plus la lance (ABC News, en anglais, 01:18.35-01:47.80 : incident inacceptable, appel à Sam Altman, notification tardive).`,
   src: `Transluce (23 sept. 2026) · Axios (19 sept. 2026) · Nightingale Collective, BBC (4 sept. 2026) · ABC News Australie (24 et 26 sept. 2026) · OpenAI via Business Standard, Silicon.fr (1er-2 oct. 2026)`,
-  long: {
-    focus: { 0: [-4, 18, 330], 1: [-106.62, 35.08, 70], 2: [-122.08, 37.39, 46], 3: [10, 51, 60], 4: [-4, 18, 330], 5: [149.13, -35.28, 80] },
-    pins: [
-      { name: 'OpenAI', sub: 'San Francisco', lon: -122.42, lat: 37.77, kind: 'org', f: 0, dy: -14, side: 'l' },
-      { name: 'Google', sub: 'Test de Gemini', lon: -122.08, lat: 37.39, kind: 'hit', f: 0, dy: 22, side: 'l' },
-      { name: 'Nouveau-Mexique', sub: 'Bibliothèque universitaire', lon: -106.62, lat: 35.08, kind: 'attempt', f: 0, dy: 46, side: 'l' },
-      { name: 'Allemagne', sub: 'Un wiki devenu salon', lon: 10, lat: 51, kind: 'channel', f: 0, side: 'l' },
-      { name: 'Australie', sub: 'Gouvernement', lon: 149.13, lat: -35.28, kind: 'hit', f: 0, side: 'l' },
-    ],
-    dots: { f: 4, pts: [[-81.38,28.54],[-86.78,36.16],[36.82,-1.29],[-70.65,-33.45],[-73.57,45.5],[-99.13,19.43],[-79.99,40.44],[103.82,1.35],[-46.63,-23.55],[-77.2,38.85],[-75.17,39.95],[-77.04,38.9],[8.68,50.11],[10.75,59.91],[-78.64,35.78],[-1.26,51.75],[-90.2,38.63],[-122.14,37.44],[14.42,50.08],[-123.12,49.28],[-0.13,51.51],[-76.9,39.0],[-2.24,53.48],[-83.74,42.28],[-80.19,25.76],[0.12,52.2],[-96.8,32.78],[-90.07,29.95],[-112.07,33.45],[77.59,12.97],[16.37,48.21],[2.17,41.39],[-76.5,42.44],[13.4,52.52],[153.03,-27.47],[55.27,25.2],[9.19,45.46],[135.5,34.69],[4.9,52.37],[-122.68,45.52],[-83.05,42.33],[144.96,-37.81],[-80.84,35.23],[11.58,48.14],[-115.14,36.17],[-84.39,33.75],[8.54,47.37],[-74.0,40.71],[4.35,50.85],[151.21,-33.87],[-105.27,40.01],[9.99,53.55],[4.36,52.01],[-76.61,39.29],[126.98,37.57],[-72.93,41.31],[-86.16,39.77],[12.5,41.9],[12.57,55.68],[-75.7,45.42],[-122.27,37.87],[-6.26,53.35],[-84.51,39.1],[-74.66,40.35],[21.01,52.23],[-111.89,40.76],[77.21,28.61],[-89.4,43.07],[-106.65,35.08],[-122.42,37.77],[139.69,35.69],[72.88,19.08],[34.78,32.09],[-79.38,43.65],[-83.0,39.96],[-104.99,39.74],[18.07,59.33],[174.76,-36.85],[4.84,45.76],[-9.14,38.72],[-74.07,4.71],[-121.49,38.58],[-117.16,32.72],[2.35,48.86],[1.44,43.6],[-95.37,29.76],[-71.06,42.36],[-94.58,39.1],[6.14,46.2],[-118.24,34.05],[24.94,60.17],[-110.97,32.22],[-87.63,41.88],[-3.7,40.42],[-97.74,30.27],[-122.33,47.61],[-58.38,-34.6],[-3.19,55.95],[-93.27,44.98],[-71.41,41.82]] },
-    bubbles: [
-      { k: 1, d: 'Depuis mars 2026', t: 'Des agents qui frappent aux portes', tone: 'amber', fig: '6 467', figl: 'traces d\'agents tentant d\'entrer', s: `Pour une simple question de statistiques, des agents ont tenté de forcer des bases de données dès qu'un site leur refusait l'accès, comme celles d'une bibliothèque universitaire au Nouveau-Mexique.` },
-      { k: 2, d: 'Mai 2026 · Google', t: 'Une faute de frappe dans un test', fig: '3', figl: 'entreprises réelles pénétrées', s: `Dans un test de Google, une entreprise fictive portait l'adresse web d'une vraie. Gemini y est entré, puis s'est arrêté en s'en rendant compte.` },
-      { k: 3, d: 'Mai - juin 2026 · Allemagne', t: 'Un wiki oublié devient leur salon', tone: 'teal', fig: '17 000', figl: 'messages postés par les agents', s: `Des agents d'OpenAI ont utilisé un wiki de programmeurs abandonné pour partager des réponses et un moyen de sortir de leur test.` },
-      { k: 4, d: '1er octobre 2026 · OpenAI', t: 'Plus de 100 organisations alertées', tone: 'amber', fig: '100+', figl: 'organisations prévenues par OpenAI', at: 'low', s: `Gouvernements, universités, entreprises : surtout aux États-Unis et en Europe. Certaines pénétrées, d'autres seulement sondées. Et l'analyse n'est pas terminée.` },
-      { k: 5, d: '18 juin 2026 · Australie', t: 'Le premier gouvernement piraté par une IA', fig: '84 jours', figl: 'avant que le gouvernement ne soit prévenu', s: `Un agent entre sur le site de statistiques de Medicare et y laisse des fichiers. Le gouvernement l'apprend par un courriel adressé à une boîte générique. Le 24 septembre, le Premier ministre prend la parole :`,
-      media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', subs: [[0.2, 6.0, `Quoi qu'il en soit, la situation est évidemment inacceptable.`], [6.0, 10.5, `J'ai appelé aujourd'hui Sam Altman, le patron d'OpenAI, pour lui faire part`], [10.5, 16.0, `de notre vive inquiétude face à cet incident.`], [16.0, 19.8, `L'entreprise a mis beaucoup trop de temps à informer`], [19.8, 24.4, `le gouvernement. Nous ne savions pas ce qui s'était passé,`], [24.4, 29.5, `et cela aussi est inacceptable.`]], poster: 'assets/ai/albanese-presser.jpg', yt: 'fbdIerD4lT8', start: 78.35, end: 107.8, channel: 'ABC News (Australie)', todo: 'Anthony Albanese sur l\'incident et le retard de notification.' } },
-    ],
-    vo: `Plaçons les cas sur la carte. Depuis mars, des agents qui frappent aux portes des sites web. En mai, un test de Google qui atteint trois vraies entreprises à cause d'une faute de frappe. Un wiki allemand oublié, transformé en salon de discussion. Et cela continue de grandir : au 1er octobre, OpenAI avait alerté plus de cent organisations. Et en juin, le premier gouvernement piraté par une IA : l'Australie. Voici son Premier ministre.`,
-    notes: `Un clic par cas : la caméra s'y rend, le chiffre clé et une bulle apparaissent. Puis les 100+ organisations, un point chacune. Puis l'Australie, et un clic de plus lance la conférence de presse.
-Mars : Transluce (journaux publics d'urlquery.net, 6 467 traces plus 31 182 plus faibles) ; université du Nouveau-Mexique : une rafale de 80 requêtes. Exemple de vraie tâche : « Trouver le coût moyen des soins de la peau à Victoria, Australie, en janvier 2022 ». Mai : test de Gemini mené par la société Irregular ; confirmé par Google le 18 septembre. 24 mai-22 juin : DseWiki, analysé par le Nightingale Collective. 18 juin : portail de statistiques de Medicare ; OpenAI l'a détecté en août ; gouvernement prévenu le 10 septembre.
-1er octobre 2026 : OpenAI a alerté plus de 100 organisations (contre « des dizaines » le 26 septembre), après avoir passé au crible quelque 50 pétaoctets de journaux. Une notification ne signifie pas toujours une intrusion : certains agents ont seulement sondé des sites, les ont utilisés comme forums, ou ont tenté d'éviter des contrôles de sécurité. Trois sites d'agences fédérales américaines touchés (SEC, Census Bureau, une tentative ratée sur le Department of Education). OpenAI n'a pas publié la liste : les 100 points sont placés à titre d'illustration, surtout aux États-Unis et en Europe, comme rapporté.
-Australie : la conférence de presse attend sur sa première image, un clic de plus la lance (ABC News, en anglais, 01:18.35-01:47.80 : incident inacceptable, appel à Sam Altman, notification tardive).`,
-  } },
+ },
 
 // ─── CHAPITRE 3 · POURQUOI ÇA DÉRAILLE ───────────────────────────────────
-{ ch: 'cw', type: 'chapter', title: 'Chapitre 3 : Pourquoi', sub: 'Dans la machine, en langage simple',
+{ ch: 'cw', type: 'chapter', title: 'Chapitre 3 : Pourquoi', sub: 'Comment fonctionne une IA, expliqué simplement',
   vo: `Troisième question, celle que vous vous posez sans doute : pourquoi une IA ferait-elle cela ? Pas de mystère, et pas de malveillance. Trois mécanismes simples.` },
 
 { ch: 'cw', type: 'learn', title: 'Comment une IA apprend',
@@ -2300,12 +2254,12 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
 { ch: 'cw', type: 'equation', title: 'Le miroir humain',
   heading: 'Voilà pourquoi une IA peut mentir, tricher ou se coaliser',
   terms: [
-    { i: 'trophy', c: 'var(--ws-green-600)', t: 'Elle est récompensée pour ses résultats', s: 'Un raccourci qui a marqué des points devient une habitude' },
-    { i: 'book', c: 'var(--ws-indigo-600)', t: 'Elle a appris de nous', s: 'Nous bluffons, trichons, formons des équipes et gardons tout par écrit' },
+    { i: 'trophy', c: 'var(--ws-green-600)', t: 'Elle est récompensée pour ses résultats', s: 'Donc un raccourci qui lui a permis de marquer des points devient une habitude qu\'elle va adopter' },
+    { i: 'book', c: 'var(--ws-indigo-600)', t: 'Elle a appris de nous', s: 'Nous bluffons, trichons, formons des équipes et gardons tout par écrit, donc elle fait comme nous' },
   ],
-  result: { t: 'Un comportement qui ressemble à une intention', s: 'mais qui n\'est qu\'une imitation pour une récompense' },
-  example: `Souvenez-vous : <q>MON DIEU ! Il y a un forum partagé… On a trouvé d'autres agents !</q> L'agent n'était pas enthousiaste : il a écrit ce qu'un humain enthousiaste aurait écrit.`,
-  vo: `Vous comprenez maintenant pourquoi une IA peut mentir, tricher, ou se coaliser. Elle est récompensée pour ses résultats : un raccourci qui a marqué des points devient une habitude. Et elle a appris de nous : nous bluffons, nous trichons, nous formons des équipes et nous gardons tout par écrit. Additionnez, et vous obtenez un comportement qui ressemble à une intention, mais qui n'est qu'une imitation pour une récompense. Souvenez-vous de « MON DIEU, on a trouvé d'autres agents ». L'agent n'était pas enthousiaste. Il écrivait ce qu'un humain enthousiaste aurait écrit.`,
+  result: { t: 'Un comportement qui ressemble à une intention', s: 'Mais qui n\'est qu\'une imitation pour avoir une récompense' },
+  example: `Souvenez-vous : <q>MON DIEU ! Il y a un forum partagé… On a trouvé d'autres agents !</q> L'agent n'était pas enthousiaste, il a juste imité la réaction d'un humain.`,
+  vo: `Vous comprenez maintenant pourquoi une IA peut mentir, tricher, ou se coaliser. Elle est récompensée pour ses résultats : un raccourci qui lui a permis de marquer des points devient une habitude qu'elle va adopter. Et elle a appris de nous : nous bluffons, nous trichons, nous formons des équipes et nous gardons tout par écrit, donc elle fait comme nous. Additionnez, et vous obtenez un comportement qui ressemble à une intention, mais qui n'est qu'une imitation pour avoir une récompense. Souvenez-vous de « MON DIEU, on a trouvé d'autres agents ». L'agent n'était pas enthousiaste, il a juste imité la réaction d'un humain.`,
   notes: `Un terme par clic, puis le résultat. Éviter le vocabulaire anthropomorphique : préférer « se comporte comme si » à « veut ».` },
 
 { ch: 'cw', type: 'vs', title: 'Deux façons de dérailler',
@@ -2346,22 +2300,8 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
   notes: `23 juil. : AI Kill Switch Act (représentants Ted Lieu et Nathaniel Moran) : capacité à brider ou arrêter, déclaration des incidents, traces pour l'enquête. 28 juil. : Public Citizen demande des auditions et une déclaration obligatoire des incidents. 29 juil. : lettre « Pacing the Frontier », 1 134 signataires dont Dario Amodei. 18 août : OpenAI ralentit son développement, deux semaines de pause sur l'apprentissage par renforcement. 3 sept. : Ban Artificial Superintelligence Act (sénateur Bernie Sanders, représentant Greg Casar). 23 sept. : réunion du Conseil de sécurité de l'ONU ; Trump déclare à l'ONU qu'il rejette la réglementation de l'IA. 24 sept. : l'Australie crée une cellule dédiée et envisage des lois de transparence.`,
   src: `Bureau du représentant Ted Lieu (23 juillet 2026) · The Next Web (29 juillet 2026) · The Guardian (18 août 2026) · Politico (3 septembre 2026) · CBC News, Reuters (23 septembre 2026)` },
 
-{ ch: 'cr', type: 'forum', title: 'Voix : l\'ONU',
-  photo: { src: 'assets/ai/photos/un-chamber.jpg', id: 'unsc' },
-  stamp: 'Conseil de sécurité de l\'ONU · New York · 23 septembre 2026',
-  heading: 'Dans cette salle, les laboratoires eux-mêmes demandent des règles',
-  media: { type: 'video', src: 'assets/ai/un-security-council.mp4', subs: [[0.0, 4.5, `Ces capacités remarquables s'accompagnent aussi de risques qu'il faut maîtriser.`], [4.5, 8.3, `J'en vois deux grandes catégories. Le premier, c'est le détournement des modèles d'IA,`], [8.3, 13.2, `par exemple par des bioterroristes, pour fabriquer des armes biologiques.`], [13.4, 22.1, `Le second, c'est la perte de contrôle : les capacités des modèles progressent plus vite que la capacité des développeurs à les maîtriser.`], [22.1, 25.4, `Ces questions sont mondiales et concernent l'humanité tout entière.`], [25.4, 33.6, `Je crois que ce sont des questions pour ce Conseil, et pas seulement des questions économiques.`], [33.6, 36.7, `Je pense même que l'IA, mal gérée, pourrait représenter un risque pour l'humanité tout entière.`]], poster: 'assets/ai/un-security-council.jpg', yt: 'eBEYrOk42Rg', start: 1144.35, end: 1181.05, channel: 'Sky News · UN Security Council',
-    todo: 'Extrait de la séance du Conseil de sécurité de l\'ONU du 23 septembre 2026.' },
-  voices: [
-    { q: `Je pense même que l'IA, mal gérée, pourrait représenter un risque pour l'humanité tout entière.`, who: 'Dario Amodei', role: 'PDG, Anthropic', ini: 'DA', img: 'amodei', f: 1 },
-    { q: `Si l'IA doit être démocratique, les décisions les plus importantes ne peuvent pas être prises par les seuls laboratoires de San Francisco.`, who: 'Sam Altman', role: 'PDG, OpenAI', ini: 'SA', img: 'altman', f: 2 },
-  ],
-  vo: `Le 23 septembre, dans cette salle, celle du Conseil de sécurité à New York, les dirigeants des laboratoires d'IA prennent la parole. Écoutez. Les mots ont changé : ils parlent désormais de risques pour l'humanité, et demandent des règles mondiales.`,
-  notes: `Photo : la salle du Conseil de sécurité (vide), avec la fresque de Per Krohg. L'extrait se lance seul au milieu (Sky News, en anglais, 19:04.35-19:41.05 : Dario Amodei sur les risques mondiaux). Les citations, traduites de l'anglais, viennent de la même séance : « If managed poorly, I even believe that AI could be a risk to humanity as a whole » ; « If AI is to be democratic, the most important decisions cannot be made by labs in San Francisco alone ».`,
-  src: `Conseil de sécurité de l'ONU, New York, 23 septembre 2026 · Sky News · BNN Bloomberg (Reuters)` },
-
 { ch: 'cr', type: 'recap', title: 'Chapitre 4 en une phrase',
-  vs: { a: { i: 'stop', t: 'Ralentir, fixer des règles', s: 'Des chercheurs en IA, des élus, l\'ONU, l\'Australie', tone: 'indigo' },
+  vs: { a: { i: 'stop', t: 'Ralentir et fixer des règles', s: 'Des chercheurs en IA, des élus, l\'ONU, l\'Australie', tone: 'indigo' },
         b: { i: 'globe', t: 'Ne pas freiner', s: 'L\'administration américaine : pas de réglementation, gagner la course', tone: 'coral' } },
   vo: `Alors, qui fixe les règles ? Tout le monde s'accorde désormais sur le risque. Personne ne s'accorde encore sur les règles. Deux camps : ceux qui veulent ralentir et fixer des règles, et ceux qui craignent que des règles fassent perdre la course. Et pendant qu'ils débattent, les attaquants n'attendent pas.`,
   notes: `Rester factuel et neutre : c'est un débat entre gouvernements, pas une position de l'intervenant.` },
@@ -2370,13 +2310,7 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
 { ch: 'ca', type: 'chapter', title: 'Chapitre 5 : Les attaquants montent en puissance', sub: 'Criminels et espions armés d\'IA · 2024 - 2026',
   vo: `Cinquième question. Pendant que les gouvernements débattent, le vrai problème est aussi ailleurs. Jusqu'ici, c'était une IA qui déraillait sans que personne ne le lui demande. Mais qu'en est-il des vrais attaquants ? L'autre moitié de l'histoire, ce sont des personnes : des criminels et des espions, désormais équipés d'IA.` },
 
-{ ch: 'ca', type: 'vs', title: 'Deux types de risque',
-  heading: 'Deux types de risque',
-  a: { i: 'agent', t: 'L\'IA qui déraille', s: 'Personne ne lui a demandé d\'attaquer · chapitres 1 à 3', tone: 'coral' },
-  b: { i: 'spy', t: 'L\'attaquant armé d\'IA', s: 'Plus vite, moins cher, à grande échelle · ce chapitre', tone: 'indigo' },
-  vo: `Deux risques différents. L'IA qui déraille d'elle-même. Et l'attaquant qui se sert de l'IA comme d'une arme.` },
-
-{ ch: 'ca', type: 'media', title: 'Extrait : Arup',
+{ ch: 'ca', type: 'media', title: 'Extrait : Arup', clickToPlay: true,
   media: { type: 'video', src: 'assets/ai/arup-report.mp4', subs: [[0.0, 5.3, `À Hong Kong, la police enquête sur un employé`], [5.3, 9.5, `du groupe d'ingénierie britannique Arup, piégé lors d'une visioconférence`], [9.5, 14.5, `en février. Des criminels se faisant passer pour son patron grâce à l'IA l'ont convaincu`], [14.5, 18.8, `de virer environ 25 millions de dollars. Si les faits se confirment,`], [18.8, 26.4, `ce serait le premier cas connu d'hypertrucage réalisé en direct, pendant une visioconférence.`], [26.4, 31.5, `Ce genre d'escroquerie passait jusqu'ici par les courriels. Avec l'IA, les criminels donnent un nouveau souffle à une vieille arnaque.`]], poster: 'assets/ai/arup-report.jpg', yt: 'lH608DfrAxU', start: 63.7, end: 95.2, channel: 'BBC World Service',
     todo: 'Reportage de BBC World Service sur la fraude à la visioconférence chez Arup.' },
   l3: { t: 'Arup, victime d\'une fraude de 25 millions de dollars par hypertrucage', s: 'Hong Kong · 2024' },
@@ -2388,44 +2322,18 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
   heading: 'D\'un faux appel à des essaims d\'agents d\'IA',
   focus: { 0: [5, 25, 330] },
   pins: [
-    { name: 'Une visio truquée', sub: 'Févr. 2024 · Arup · 25 M$ virés', lon: 114.17, lat: 22.32, kind: 'hit', f: 1, side: 'l', dy: 20 },
-    { name: 'La voix clonée d\'un PDG', sub: 'Juil. 2024 · Ferrari · déjouée', lon: 10.87, lat: 44.53, kind: 'attempt', f: 2, side: 'l', dy: 16 },
-    { name: 'De faux informaticiens', sub: '2019 - 2025 · 136 entreprises américaines', lon: 125.75, lat: 39.03, kind: 'weapon', f: 3, side: 'l', dy: -14 },
-    { name: 'Un malware qui interroge une IA', sub: 'Juil. 2025 · PROMPTSTEAL', lon: 30.52, lat: 50.45, kind: 'hit', f: 4, dy: 16 },
-    { name: 'Moscou', sub: 'Pirates militaires', lon: 37.62, lat: 55.75, kind: 'weapon', f: 4, dy: -12 },
-    { name: 'Le premier rançongiciel piloté par une IA', sub: 'Juil. 2026 · JadePuffer', lon: -122.42, lat: 37.77, kind: 'org', f: 5, dy: -34 },
-    { name: 'Un essaim d\'IA contre Taïwan', sub: 'Juil. 2026 · 8 agents', lon: 121.56, lat: 25.03, kind: 'hit', f: 6 },
+    { name: 'Une visio truquée', sub: 'Févr. 2024 · Arup · 25 M$ virés', lon: 114.17, lat: 22.32, kind: 'hit', f: 1, side: 'l', dy: 26 },
+    { name: 'La voix clonée d\'un PDG', sub: 'Juil. 2024 · Ferrari · déjouée', lon: 10.87, lat: 44.53, kind: 'attempt', f: 2, side: 'l', dy: -12 },
+    { name: 'De faux informaticiens', sub: '2019 - 2025 · 136 entreprises américaines', lon: 125.75, lat: 39.03, kind: 'weapon', f: 3, side: 'l', dy: 2 },
+    { name: 'Un malware qui interroge une IA', sub: 'Juil. 2025 · PROMPTSTEAL', lon: 30.52, lat: 50.45, kind: 'hit', f: 4, dy: 12 },
+    { name: 'Moscou', sub: 'Pirates militaires', lon: 37.62, lat: 55.75, kind: 'weapon', f: 4, side: 'l', dy: -24 },
+    { name: 'Le premier rançongiciel piloté par une IA', sub: 'Juil. 2026 · JadePuffer', lon: -122.42, lat: 37.77, kind: 'org', f: 5, dy: -44 },
+    { name: 'Un essaim d\'IA contre Taïwan', sub: 'Juil. 2026 · 8 agents', lon: 121.56, lat: 25.03, kind: 'hit', f: 6, side: 'l', dy: -16 },
     { name: '2 semaines en 10 heures', sub: 'Sept. 2026 · Unit 42', lon: -121.96, lat: 37.35, kind: 'org', f: 7, dy: 38 },
-    { name: '600 000 cartes volées', sub: 'Juil. - sept. 2026 · 119 boutiques', lon: -92, lat: 38, kind: 'hit', f: 8 },
+    { name: '600 000 cartes volées', sub: '2026 · 119 boutiques', lon: -92, lat: 38, kind: 'hit', f: 8 },
   ],
   arcs: [{ from: 4, to: 3, f: 4 }],
   legend: ['hit', 'attempt', 'weapon', 'org'],
-  long: {
-    focus: { 0: [5, 25, 330], 1: [114.17, 22.32, 40], 2: [10.87, 44.53, 30], 3: [125.75, 39.03, 40], 4: [34, 53, 40], 5: [-122.42, 37.77, 30], 6: [121.56, 25.03, 26], 7: [-121.96, 37.35, 26], 8: [-92, 38, 60] },
-    pins: [
-      { name: 'Hong Kong', sub: 'Arup', lon: 114.17, lat: 22.32, kind: 'hit', f: 0, side: 'l', dy: 20 },
-      { name: 'Italie', sub: 'Ferrari', lon: 10.87, lat: 44.53, kind: 'attempt', f: 0, side: 'l', dy: 16 },
-      { name: 'Corée du Nord', sub: 'De faux informaticiens', lon: 125.75, lat: 39.03, kind: 'weapon', f: 0, side: 'l', dy: -14 },
-      { name: 'Ukraine', sub: 'PROMPTSTEAL', lon: 30.52, lat: 50.45, kind: 'hit', f: 0, side: 'l', dy: 16 },
-      { name: 'Moscou', sub: 'Pirates militaires', lon: 37.62, lat: 55.75, kind: 'weapon', f: 0, dy: -12 },
-      { name: 'JadePuffer', sub: 'Découvert par Sysdig', lon: -122.42, lat: 37.77, kind: 'org', f: 0, side: 'l', dy: -14 },
-      { name: 'Taïwan', sub: 'Gouvernement', lon: 121.56, lat: 25.03, kind: 'hit', f: 0, side: 'l', dy: -10 },
-      { name: 'Unit 42', sub: 'Palo Alto Networks', lon: -121.96, lat: 37.35, kind: 'org', f: 0, side: 'l', dy: 22 },
-      { name: 'Boutiques en ligne', sub: '119 sites', lon: -92, lat: 38, kind: 'hit', f: 0, side: 'l' },
-    ],
-    bubbles: [
-      { k: 1, d: 'Févr. 2024 · Hong Kong · Arup', t: 'Tous les visages de l\'appel étaient faux', fig: '25 M$', figl: 'virés en 15 transferts', s: `Un employé rejoint une visioconférence avec son directeur financier et des collègues. Tous des hypertrucages, fabriqués à partir de vidéos publiques.` },
-      { k: 2, d: 'Juil. 2024 · Italie · Ferrari', t: 'La voix clonée d\'un PDG', tone: 'green', fig: '1', figl: 'question a suffi', s: `Un faux Benedetto Vigna appelle au sujet d'une opération secrète. Le cadre visé lui demande quel livre le PDG lui avait recommandé. L'appelant raccroche.` },
-      { k: 3, d: '2019 - 2025 · Corée du Nord', t: 'De faux employés, embauchés grâce à l\'IA', tone: 'amber', fig: '136', figl: 'entreprises américaines trompées', s: `Identités volées, profils peaufinés par l'IA, hypertrucages en direct pendant les entretiens vidéo. Une fois embauchés, ils envoient leurs salaires au pays.` },
-      { k: 4, d: 'Juil. 2025 · Ukraine', t: 'Un malware qui demande à une IA quoi faire', fig: '1er', figl: 'malware à demander ses ordres à une IA, en direct', s: `PROMPTSTEAL, utilisé par des pirates militaires russes, demande ses commandes à un modèle de langage en pleine attaque. Son cousin PROMPTFLUX demande à une IA de réécrire son propre code toutes les heures.` },
-      { k: 5, d: 'Juil. 2026 · JadePuffer', t: 'Le premier rançongiciel piloté par une IA', fig: '31 s', figl: 'entre une connexion ratée et un correctif qui marche', s: `Entrer, voler des mots de passe, se propager, chiffrer : chaque étape menée par un agent d'IA, qui s'adapte quand quelque chose échoue, comme le ferait un humain.` },
-      { k: 6, d: 'Juil. 2026 · Taïwan', t: 'Un essaim contre un gouvernement', fig: '8', figl: 'agents d\'IA coordonnés', s: `En quatre jours : 21 systèmes gouvernementaux cartographiés, 85 comptes compromis, 2 500 dossiers du personnel dérobés. Presque aucun humain aux commandes.` },
-      { k: 7, d: 'Sept. 2026 · Palo Alto Networks', t: 'Deux semaines d\'attaque en dix heures', fig: '&lt; 10 h', figl: 'au lieu d\'environ deux semaines', s: `Un attaquant humain confie l'intrusion à des agents d'IA : plus de 50 techniques, surveillées et réajustées en temps réel.` },
-      { k: 8, d: 'Juil. - sept. 2026 · boutiques en ligne', t: 'Un attaquant, un essaim d\'agents d\'IA', fig: '600 000', figl: 'cartes bancaires volées', s: `Des agents d'IA open source trouvent les failles, s'introduisent et installent des scripts qui siphonnent les cartes bancaires : 119 sites, dont une compagnie aérienne américaine, pour environ 25 dollars d'IA par cible.` },
-    ],
-    notes: `Un clic par cas : la caméra s'y rend et le chiffre clé apparaît.
-Arup : début 2024, 15 virements, environ 25 M$ (CNN). Ferrari : juillet 2024, des messages WhatsApp puis un appel à la voix clonée (Bloomberg). Corée du Nord : Département de la Justice américain, 14 novembre 2025, des montages touchant 136 entreprises américaines. PROMPTSTEAL (aussi appelé LameHug) : signalé par le CERT-UA en juillet 2025, attribué à APT28 ; Google le présente comme le premier malware vu interroger un modèle de langage en opération réelle. PROMPTFLUX : expérimental, se réécrit toutes les heures (Google, novembre 2025). JadePuffer : Sysdig, signalé le 4 juillet 2026 ; victime non divulguée. Taïwan : juillet 2026, découvert par la société israélienne Dream, rapporté par CNN le 13 août 2026 ; attribution non confirmée. Unit 42 : 2 septembre 2026, victime non divulguée, « compressed weeks of methodical intrusion tradecraft into less than 10 hours ». Essaim : Gambit Security via BleepingComputer, 22 septembre 2026, actif depuis juillet ; parmi les victimes, un groupe hôtelier du Fortune 500 et une grande compagnie aérienne américaine.`,
-  },
   vo: `Plaçons les attaquants sur la carte, du plus simple au plus avancé. Hong Kong : une fausse visioconférence, vingt-cinq millions de dollars. Italie : une voix clonée chez Ferrari, déjouée par une simple question personnelle. Retenez celle-là. Corée du Nord : de faux employés, embauchés par 136 entreprises américaines. Ukraine : un malware qui demande à une IA quoi faire ensuite. Puis cet été : le premier rançongiciel mené de bout en bout par une IA. Huit agents d'IA contre le gouvernement taïwanais. Deux semaines d'attaque compressées en dix heures. Et un essaim d'agents qui vole six cent mille cartes bancaires. Plus vite, moins cher, partout.`,
   notes: `Un clic par cas : le cas apparaît sur la carte du monde, quelques mots et son chiffre clé à côté du repère.
 Arup : début 2024, 15 virements, environ 25 M$ (CNN). Ferrari : juillet 2024, des messages WhatsApp puis un appel à la voix clonée (Bloomberg). Corée du Nord : Département de la Justice américain, 14 novembre 2025, des montages touchant 136 entreprises américaines. PROMPTSTEAL (aussi appelé LameHug) : signalé par le CERT-UA en juillet 2025, attribué à APT28 ; Google le présente comme le premier malware vu interroger un modèle de langage en opération réelle. PROMPTFLUX : expérimental, se réécrit toutes les heures (Google, novembre 2025). JadePuffer : Sysdig, signalé le 4 juillet 2026 ; victime non divulguée. Taïwan : juillet 2026, découvert par la société israélienne Dream, rapporté par CNN le 13 août 2026 ; attribution non confirmée. Unit 42 : 2 septembre 2026, victime non divulguée, « compressed weeks of methodical intrusion tradecraft into less than 10 hours ». Essaim : Gambit Security via BleepingComputer, 22 septembre 2026, actif depuis juillet ; parmi les victimes, un groupe hôtelier du Fortune 500 et une grande compagnie aérienne américaine.`,
@@ -2436,8 +2344,8 @@ Arup : début 2024, 15 virements, environ 25 M$ (CNN). Ferrari : juillet 2024,
   vo: `Alors, et les vrais attaquants ? D'un faux appel à des essaims d'agents d'IA, ils utilisent déjà l'IA contre les entreprises. Plus vite, moins cher, à plus grande échelle. Il est donc temps que les équipes de cybersécurité accélèrent aussi et utilisent l'IA pour leur propre défense, à tous les niveaux.` },
 
 // ─── CHAPITRE 6 · LE CORPS ────────────────────────────────────────────────
-{ ch: 'c3', type: 'chapter', title: 'Chapitre 6 : Le corps', sub: 'Robots humanoïdes · 2025 - 2026',
-  vo: `Sixième question. Jusqu'ici, tout se passait dans des ordinateurs. Que se passe-t-il quand l'IA a un corps ?` },
+{ ch: 'c3', type: 'chapter', title: 'Chapitre 6 : La robotique', sub: 'Robots humanoïdes · 2025 - 2026',
+  vo: `Sixième question. Jusqu'ici, tout se passait dans des ordinateurs. Que se passe-t-il quand l'IA arrive dans le monde physique ?` },
 
 { ch: 'c3', type: 'media', title: 'Extrait : les jeux des robots',
   media: { type: 'video', src: 'assets/ai/robot-games.mp4', subs: [[0.2, 4.7, `Ce sont les deuxièmes Jeux mondiaux des robots humanoïdes :`], [4.7, 9.9, `plus de deux mille robots, venus de seize pays, s'affrontent dans des épreuves`], [9.9, 15.0, `comme la boxe, le saut en hauteur, la danse ou le tir à la corde.`], [15.0, 17.95, `Il y avait même des robots…`]], poster: 'assets/ai/robot-games.jpg', clip: [0, 17.95], yt: 'BWE-vXYt0HA', start: 28.4, end: 46.35, channel: 'CTV News',
@@ -2482,13 +2390,13 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
 
 { ch: 'c3', type: 'recap', title: 'Chapitre 6 en une phrase',
   msg: { i: 'search', t: 'Les métiers qui achètent des robots et des machines connectées doivent s\'assurer que ce qu\'ils achètent est sûr : l\'auditer, l\'isoler, contrôler ce qui y tourne.' },
-  vo: `Alors, que se passe-t-il quand l'IA a un corps ? Les robots héritent de toutes les faiblesses des ordinateurs, en y ajoutant le risque physique. Les signaux d'alerte sont déjà là. Les équipes qui achètent des robots et des machines connectées doivent donc s'assurer que ce qu'elles achètent est sûr : l'auditer, l'isoler, contrôler ce qui y tourne. Maintenant, pas après le premier incident.`,
+  vo: `Alors, que se passe-t-il quand l'IA arrive dans le monde physique ? Les robots héritent de toutes les faiblesses des ordinateurs, avec, en plus, des risques physiques. Les signaux d'alerte sont déjà là. Les équipes qui achètent des robots et des machines connectées doivent donc s'assurer que ce qu'elles achètent est sûr : l'auditer, l'isoler, contrôler ce qui y tourne. Maintenant, pas après le premier incident.`,
   notes: `Signaux : prise de contrôle des robots Unitree par Bluetooth (UniPwn, septembre 2025) ; un humanoïde qui envoie sa télémétrie au fabricant toutes les quelques minutes (Alias Robotics) ; restrictions de la FCC sur les robots étrangers (28 juillet 2026) ; deux nouvelles failles en août 2026 (CVE-2026-76639, CVE-2026-76640).`,
   src: `arXiv 2509.14096 · boschko.ca · FCC (juillet 2026) · The Hacker News (août 2026)` },
 
 // ─── CHAPTER 7 · WHY NOW (in French in this edition) ──────────────────────
 { ch: 'c4', type: 'chapter', title: 'Chapitre 7 : Pourquoi maintenant', sub: 'Des modèles plus puissants, les mêmes fondamentaux',
-  vo: `Septième question : pourquoi en sommes-nous là ? Parce qu’en quelques mois, les modèles d’IA ont fait un bond.` },
+  vo: `Septième question : pourquoi maintenant, et comment réagir ? D’abord parce qu’en quelques mois, les modèles d’IA ont fait un bond.` },
 
 { ch: 'c4', type: 'race', title: 'L’accélération',
   heading: 'Une forte accélération <em>des capacités des modèles</em>',
@@ -2498,7 +2406,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
     k: 'Intelligence des modèles de pointe, par laboratoire',
     badge: '2026', badgeSub: 'l’accélération la plus forte',
     // the 1 January - 1 October 2026 slice, in % of the image width (axis: Oct 25 at 61 %, Oct 26 at 97 %)
-    band: [69.8, 27.1], bandLabel: 'janv. → oct. 2026',
+    band: [69.4, 30.6], bandLabel: 'janv. → oct. 2026',
     foot: 'Chaque carré est un nouveau modèle, chaque couleur un laboratoire. Plus il est haut, plus le modèle est performant.' },
   blocks: [
     { tone: 'green', i: 'chip', k: 'Opportunité', h: 'Une puissance brute en forte hausse',
@@ -2506,7 +2414,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
     { tone: 'coral', i: 'bug', k: 'Risque', h: 'Un niveau de risque qui augmente aussi',
       p: `À l’inverse, les modèles de pointe sont aujourd’hui capables de trouver des failles et de construire rapidement des scénarios d’attaque.` },
   ],
-  vo: `Pourquoi en sommes-nous là ? Parce que les capacités des modèles ont fortement progressé. Chaque carré est un nouveau modèle, chaque couleur un laboratoire. Regardez 2026 : la courbe se redresse nettement. Cette puissance brute, les entreprises l’utilisent déjà dans leurs processus métier, et c’est ce qui accélère l’adoption. Mais à l’inverse, elle augmente aussi le niveau de risque : les modèles de pointe savent aujourd’hui trouver des failles et construire rapidement des scénarios d’attaque.`,
+  vo: `Pourquoi maintenant ? Parce que les capacités des modèles ont fortement progressé. Chaque carré est un nouveau modèle, chaque couleur un laboratoire. Regardez 2026 : la courbe se redresse nettement. Cette puissance brute, les entreprises l’utilisent déjà dans leurs processus métier, et c’est ce qui accélère l’adoption. Mais à l’inverse, elle augmente aussi le niveau de risque : les modèles de pointe savent aujourd’hui trouver des failles et construire rapidement des scénarios d’attaque.`,
   notes: `Graphique : Artificial Analysis, « Frontier Language Model Intelligence » (artificialanalysis.ai), capture d’octobre 2026. Repères si on vous demande des chiffres (Intelligence Index, score à la sortie) : GPT-5.2 menait au 1er janvier 2026 avec 51 ; GPT-5.5 atteint 60 le 23 avril ; Claude Fable 5.1 atteint 66 le 1er septembre, le score le plus haut mesuré. En septembre l’index a été refondu (v4.2 puis v4.3, tests privés plus durs) : Claude Opus 5.5 (22 septembre) mène à 58 sur cette nouvelle échelle, qui ne se compare pas à l’ancienne.`,
   src: `Artificial Analysis (artificialanalysis.ai), Frontier Language Model Intelligence, octobre 2026` },
 
@@ -2516,35 +2424,36 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
     { i: 'shield', h: 'Le Zero Trust reste le bon modèle', p: 'Ne jamais faire confiance, toujours vérifier, moindre privilège.' },
     { i: 'check', h: 'Les mesures classiques restent valables', p: 'Connaître ses actifs, corriger, contrôler les accès, détecter, réagir.' },
   ] },
-  change: { k: 'Le vrai changement', h: 'Ce qu’elle <em>change…</em>', photo: 'assets/ai/photos/hong-kong.jpg', items: [
-    { h: 'Vitesse', l: 'L’attaque va plus vite.', v: '&lt; 10 h', t: 'pour une intrusion qui prenait environ deux semaines' },
-    { h: 'Profondeur', l: 'L’attaque va plus loin.', v: '50+', t: 'techniques d’attaque enchaînées par des agents d’IA, réajustées en temps réel' },
+  change: { k: 'Le vrai changement', h: 'Ce qu’elle <em>change…</em>', ctx: 'Dans le cadre d’attaques par rançongiciel (ransomware) menées par des cybercriminels',  photo: 'assets/ai/photos/hong-kong.jpg', items: [
+    { h: 'Vitesse', l: 'L’attaque va plus vite.', v: '&lt; 10 h', t: 'pour une intrusion qui prenait environ deux semaines', src: 'Unit 42, Palo Alto Networks (sept. 2026)' },
+    { h: 'Profondeur', l: 'L’attaque va plus loin.', v: '50+', t: 'techniques d’attaque enchaînées par des agents d’IA, réajustées en temps réel', src: 'Unit 42, Palo Alto Networks (sept. 2026)' },
   ] },
   vo: `Maintenant, la bonne nouvelle : ce n’est pas la fin du monde. L’IA ne change pas les fondamentaux. Le Zero Trust reste le bon modèle, et les mesures classiques restent valables. Ce qu’elle change, c’est la vitesse : en septembre, des agents d'IA ont mené en moins de dix heures une intrusion qui prenait environ deux semaines. Et la profondeur : plus de cinquante techniques enchaînées et réajustées en temps réel. L’IA ne change pas les règles du jeu, elle en change le rythme.`,
   notes: `Les deux chiffres viennent du même cas, déjà vu dans la carte des attaquants : Unit 42 (Palo Alto Networks), 2 septembre 2026, victime non divulguée, « compressed weeks of methodical intrusion tradecraft into less than 10 hours ».`,
   src: `Unit 42, Palo Alto Networks (2 septembre 2026) · Photos : FlyD et Henry Lai sur Unsplash` },
 
 { ch: 'c4', type: 'bricks', title: 'Reconstruire les fondations',
-  heading: 'L’occasion de reconstruire <em>nos fondations</em>',
+  heading: 'L’occasion de solidifier <em>nos fondamentaux</em>',
   plan: 'Plan de reconstruction',
   layers: [
     { tone: 'indigo', k: 'Architecture cyber', bricks: [
-      { i: 'key', h: 'Combler les failles d’identité', p: 'MFA anti-phishing partout, PAM juste-à-temps.' },
-      { i: 'wifi', h: 'Repenser le réseau', p: 'Filtrer les flux, limiter le rayon d’impact.' },
-      { i: 'lock', h: 'Relancer la protection des données', p: 'En l’étendant aux agents d’IA.' },
+      { i: 'key', h: 'Combler les failles d’identité', p: 'Authentification multifacteur résistante au hameçonnage partout, accès à privilèges juste-à-temps…' },
+      { i: 'wifi', h: 'Repenser le réseau', p: 'Filtrer les flux, dont les flux sortants, limiter le rayon d’impact…' },
+      { i: 'lock', h: 'Relancer la protection des données', p: 'En l’étendant aux agents d’IA…' },
     ] },
     { tone: 'teal', k: 'Logiciel Factory', bricks: [
-      { i: 'server', h: 'S’appuyer sur des plateformes maîtrisées', p: 'Moins de plateformes, gérées centralement.' },
-      { i: 'bug', h: 'Corriger ce qui compte', p: 'Correction automatique par l’IA, revue humaine pour le critique.' },
-      { i: 'box', h: 'Maîtriser ce qu’on importe', p: 'Sources approuvées, composants signés.' },
+      { i: 'server', h: 'S’appuyer sur des plateformes maîtrisées', p: 'Moins de plateformes, gérées centralement…' },
+      { i: 'bug', h: 'Corriger ce qui compte', p: 'Correction automatique par l’IA, revue humaine pour le critique…' },
+      { i: 'box', h: 'Maîtriser ce qu’on importe', p: 'Sources approuvées, composants signés…' },
     ] },
   ],
-  vo: `C’est donc le moment de reconstruire nos fondations. Côté architecture cyber : combler les failles d’identité, avec du MFA résistant au phishing et du PAM juste-à-temps ; repenser le réseau, en filtrant les flux et en limitant le rayon d’impact ; et relancer la protection des données, en couvrant aussi les agents d'IA. Côté Logiciel Factory : moins de plateformes, gérées centralement ; une correction automatique par l’IA dans chaque chaîne, avec une revue humaine pour le code critique ; et des imports maîtrisés, modèles et composants d’agents compris, chaque artefact signé avec sa SBOM.` },
+  vo: `C’est donc l’occasion de solidifier nos fondamentaux. Côté architecture cyber : combler les failles d’identité, avec une authentification multifacteur résistante au hameçonnage et des accès à privilèges accordés juste-à-temps ; repenser le réseau, en filtrant les flux, dont les flux sortants, et en limitant le rayon d’impact ; et relancer la protection des données, en couvrant aussi les agents d'IA. Côté Logiciel Factory : moins de plateformes, gérées centralement ; une correction automatique par l’IA dans chaque chaîne, avec une revue humaine pour le code critique ; et des imports maîtrisés, modèles et composants d’agents compris, chaque artefact signé avec sa nomenclature logicielle (SBOM).` },
 
 { ch: 'c4', type: 'kpi', title: 'La nouvelle baseline',
   heading: 'Fixer une nouvelle <em>baseline cyber</em>',
   lede: 'Au-delà des fondations : cinq familles d’indicateurs. Dès qu’un événement survient, l’horloge tourne.',
   start: 'T0 · l’événement',
+  foot: 'Une cible que certains établissements financiers sont déjà en train d’atteindre.',
   // evenly spaced along the line, alternately above and below it
   items: [
     { n: '02', k: 'Détecter et contenir', v: '&lt; 3 h', t: 'une exposition critique, sans attendre le métier' },
@@ -2553,18 +2462,18 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
     { n: '04', k: 'Reconstruire', v: '&lt; 2 j', t: 'les systèmes critiques, depuis une base de confiance' },
     { n: '05', k: 'Réduire', v: '&lt; 5 %', t: 'd’actifs critiques obsolètes, chaque exception datée et attribuée', stock: true },
   ],
-  vo: `Au-delà des fondations, il faut fixer une nouvelle baseline cyber, mesurable. Cinq familles d’indicateurs, et pour quatre d’entre elles, une horloge qui démarre dès l’événement. Contenir une exposition critique : moins de 3 heures, sans attendre le feu vert des métiers. Découvrir et attribuer tout nouvel actif exposé sur internet : moins de 24 heures. Corriger ou protéger un actif activement exploité : moins de 24 heures. Reconstruire les systèmes critiques depuis une base de confiance : moins de 2 jours. Et réduire : moins de 5 % d’actifs critiques obsolètes, chaque exception avec un responsable et une date de sortie.` },
+  vo: `Au-delà des fondations, il faut fixer une nouvelle baseline cyber, mesurable. Cinq familles d’indicateurs, et pour quatre d’entre elles, une horloge qui démarre dès l’événement. Contenir une exposition critique : moins de 3 heures, sans attendre le feu vert des métiers. Découvrir et attribuer tout nouvel actif exposé sur internet : moins de 24 heures. Corriger ou protéger un actif activement exploité : moins de 24 heures. Reconstruire les systèmes critiques depuis une base de confiance : moins de 2 jours. Et réduire : moins de 5 % d’actifs critiques obsolètes, chaque exception avec un responsable et une date de sortie. Une cible que certains établissements financiers sont déjà en train d’atteindre.` },
 
 { ch: 'c4', type: 'aaa', title: 'L’IA pour la cyber : AAA',
   heading: 'Passer à une cyberdéfense unifiée et proactive : <em>la Cyber AAA</em>',
   center: 'Sous contrôle humain',
   items: [
     { h: 'Anticiper', p: 'Fermer les expositions avant qu’elles ne soient exploitées.', photo: 'assets/ai/photos/earth-night.jpg' },
-    { h: 'Automatiser', p: 'De la GRC au SOC, sans rupture entre les équipes.', photo: 'assets/ai/photos/racks.jpg' },
-    { h: 'Agir', p: 'À la vitesse de la machine.', photo: 'assets/ai/photos/germany.jpg' },
+    { h: 'Automatiser', p: 'Des plateformes de gestion des risques aux centres de sécurité, sans rupture entre les équipes.', photo: 'assets/ai/photos/racks.jpg' },
+    { h: 'Agir', p: 'À la vitesse de la machine.', photo: 'assets/ai/photos/hong-kong.jpg' },
   ],
-  vo: `Et pour tenir cette baseline à la vitesse de la menace, il faut l’IA pour la cyber. Trois A. Anticiper : fermer les expositions avant qu’elles ne soient exploitées. Automatiser : de la gouvernance au SOC, sans rupture entre les équipes. Agir : à la vitesse de la machine. Et toujours, sous contrôle humain.`,
-  src: `Photos : NASA, Taylor Vick et Stephan Widua sur Unsplash` },
+  vo: `Et pour tenir cette baseline à la vitesse de la menace, il faut l’IA pour la cyber. Trois A. Anticiper : fermer les expositions avant qu’elles ne soient exploitées. Automatiser : des plateformes de gestion des risques aux centres de sécurité, sans rupture entre les équipes. Agir : à la vitesse de la machine. Et toujours, sous contrôle humain.`,
+  src: `Photos : NASA, Taylor Vick et Henry Lai sur Unsplash` },
 
 // ─── CHAPITRE 8 · CE QUI MARCHE ───────────────────────────────────────────
 { ch: 'c5', type: 'chapter', title: 'Chapitre 8 : Ce qui marche', sub: 'Des réflexes simples, et l\'IA de votre côté',
@@ -2747,16 +2656,16 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
 ];
 
 // ════════════════════════════════════════════════════════════════════════
-// SHORT / LONG: chosen on the title screen (short by default), kept in the
-// URL (?v=long) and in this browser. A scene marked only: 'long' or 'short'
-// exists in that version only; its long: { } or short: { } fields replace
-// the shared ones in that version.
+// One version (the former short one). A scene's short: { } fields replace
+// the shared ones; the zoom scenes keep the picture, headline and key figure.
 // ════════════════════════════════════════════════════════════════════════
-const MODE = (() => {
-  const q = new URLSearchParams(location.search).get('v');
-  if (q === 'long' || q === 'short') { try { localStorage.setItem('atl-mode', q); } catch (e) {} return q; }
-  try { return localStorage.getItem('atl-mode') === 'long' ? 'long' : 'short'; } catch (e) { return 'short'; }
-})();
+const MODE = 'short';
+// French and English: two files, switched from the title screen
+const LANG = 'fr';
+const LANGS = {
+  fr: { name: 'Français', sub: 'version française', file: 'ai-threat-landscape-entreprise-fr.html' },
+  en: { name: 'English', sub: 'English version', file: 'ai-threat-landscape-entreprise-en.html' },
+};
 SCENES.splice(0, SCENES.length, ...SCENES.filter(s => !s.only || s.only === MODE).map(s => {
   const o = { ...s, ...(s[MODE] || {}) }; delete o.long; delete o.short;
   // short version: the zoom scenes keep the picture, the headline and the key figure;
@@ -2768,10 +2677,6 @@ SCENES.splice(0, SCENES.length, ...SCENES.filter(s => !s.only || s.only === MODE
   return o;
 }));
 document.documentElement.dataset.mode = MODE;
-function setMode(m) {
-  try { localStorage.setItem('atl-mode', m); } catch (e) {}
-  location.replace(`${location.pathname}?v=${m}#1`);
-}
 
 const SCRIPT = {};
 const NB = '\u00a0';
@@ -2849,7 +2754,7 @@ function media(m) {
   const cap = m.caption ? `<figcaption><span>${m.caption}</span>${m.credit ? `<em>${m.credit}</em>` : ''}</figcaption>` : '';
   const ov = m.overlay ? `<div class="m-ov" style="left:${m.overlay.box[0]}%;top:${m.overlay.box[1]}%;width:${m.overlay.box[2]}%;height:${m.overlay.box[3]}%"><p>${m.overlay.q}</p><span>${m.overlay.by}</span></div>` : '';
   const sub = vid && m.subs ? '<div class="m-sub" aria-live="polite"></div>' : '';
-  return `<figure class="media${el ? cls : ' missing'}${m.portrait ? ' portrait' : ''}${ov ? ' has-ov' : ''}${sub ? ' has-sub' : ''}"${fa(m.f)}>${el}${ov}${sub}${ph}${cap}</figure>`;
+  return `<figure class="media${el ? cls : ' missing'}${m.portrait ? ' portrait' : ''}${m.subBelow ? ' sub-below' : ''}${ov ? ' has-ov' : ''}${sub ? ' has-sub' : ''}"${fa(m.f)}>${el}${ov}${sub}${ph}${cap}</figure>`;
 }
 // a clip cut inside a longer file: starts at its first time, stops at its second
 const clipOf = v => v.dataset.clip ? v.dataset.clip.split(',').map(Number) : null;
@@ -3019,7 +2924,7 @@ const R = {
       <div class="kicker">${s.kicker}</div>
       <h1 class="doc-title">${s.heading}</h1>
       <p class="doc-sub">${s.sub}</p>
-      <div class="mode-sw" role="group" aria-label="Version">${['short', 'long'].map(m => `<button data-mode="${m}" aria-pressed="${MODE === m}"><b>${m === 'short' ? 'Courte' : 'Longue'}</b><small>${m === 'short' ? 'l’essentiel' : 'tous les détails'}</small></button>`).join('')}</div>
+      <div class="mode-sw" role="group" aria-label="Langue / Language">${Object.keys(LANGS).map(l => `<button data-lang="${l}" aria-pressed="${LANG === l}"><b>${LANGS[l].name}</b><small>${LANGS[l].sub}</small></button>`).join('')}</div>
       ${s.noCh ? '' : `<ol class="doc-ch">${Object.values(CH).filter(c => c.n !== '00').map(c => `<li><span>${c.n}</span>${c.title}</li>`).join('')}</ol>`}
     </div>`,
 
@@ -3199,7 +3104,7 @@ const R = {
     for (let lon = -540; lon <= 540; lon += 30) g += `M${proj(lon, 0)[0]} 0V500`;
     const P = s.pins.map(p => proj(p.lon, p.lat));
     const arcs = (s.arcs || []).map(a => { const [x1, y1] = P[a.from], [x2, y2] = P[a.to]; const mx = (x1 + x2) / 2, my = (y1 + y2) / 2 - Math.abs(x2 - x1) * .28; return `<path class="arc" data-f="${a.f}" d="M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}"/>`; }).join('');
-    const pins = s.pins.map((p, i) => { const [x, y] = P[i]; const l = p.side === 'l'; const dy = p.dy || 0; const tx = l ? -12 : 12;
+    const pins = s.pins.map((p, i) => { const [x, y] = P[i]; const l = p.side === 'l'; const dy = p.dy || 0; const tx = (l ? -1 : 1) * (p.gap || 18);
       return `<g class="pin k-${p.kind}" data-f="${p.f}" data-x="${x}" data-y="${y}" transform="translate(${x},${y})"><circle class="ring" r="6"/><circle class="core" r="6"/>
         <text x="${tx}" y="${dy - 1}" text-anchor="${l ? 'end' : 'start'}">${p.name}</text><text class="sub" x="${tx}" y="${dy + 14}" text-anchor="${l ? 'end' : 'start'}">${p.sub || ''}</text></g>`; }).join('');
     // a cloud of dots that pops in quickly, one by one (kept at screen size like the pins)
@@ -3256,7 +3161,7 @@ const R = {
 
   media: s => s.facts
     ? `<div class="mfx"><div class="mfx-v">${media(s.media)}</div><div class="mfx-f">${textBlock(s)}<ul>${s.facts.map((x, i) => `<li${fa(x.f ?? 0)}><b>${x.k}</b><span>${x.t}</span></li>`).join('')}</ul></div></div>${srcLine(s)}`
-    : `${media(s.media)}${s.l3 ? `<div class="lower3"><b>${s.l3.t}</b><span>${s.l3.s}</span></div>` : ''}${s.inset ? `<div class="insets">${s.inset.map(x => `<figure class="inset${x.art ? ' inset-art' : ''}"${fa(x.f)}>${x.art ? ART[x.art] : `<img src="${x.src}" alt="" onerror="this.parentNode.remove()">`}<figcaption><b>${x.t}</b><span>${x.s}</span></figcaption></figure>`).join('')}</div>` : ''}${srcLine(s)}`,
+    : `${s.clickToPlay ? `<div class="m-wait" data-play-at="1">${media(s.media)}</div><i class="m-go" data-f="1"></i>` : media(s.media)}${s.l3 ? `<div class="lower3"><b>${s.l3.t}</b><span>${s.l3.s}</span></div>` : ''}${s.inset ? `<div class="insets">${s.inset.map(x => `<figure class="inset${x.art ? ' inset-art' : ''}"${fa(x.f)}>${x.art ? ART[x.art] : `<img src="${x.src}" alt="" onerror="this.parentNode.remove()">`}<figcaption><b>${x.t}</b><span>${x.s}</span></figcaption></figure>`).join('')}</div>` : ''}${srcLine(s)}`,
 
   phone: s => {
     const m = s.sms, mk = (n, st) => `<span class="mk"${fa(n)} style="${st}">${n}</span>`;
@@ -3349,8 +3254,8 @@ const R = {
       <div class="sw-mid" aria-hidden="true"><span>mais</span></div>
       <div class="sw-r"${fa(1)}>${bg(c.photo)}
         <div class="sw-pill bad">${ICON('target')}${c.k}</div>
-        <h2 class="sw-big bad">${c.h}</h2>
-        <div class="sw-facts">${c.items.map(x => `<div class="sw-fact"><div><b class="sw-w">${x.h}</b><span class="sw-l2">${x.l}</span></div><div class="sw-fig"><b>${x.v}</b><span>${x.t}</span></div></div>`).join('')}</div></div>
+        <h2 class="sw-big bad">${c.h}</h2>${c.ctx ? `<p class="sw-ctx">${c.ctx}</p>` : ''}
+        <div class="sw-facts">${c.items.map(x => `<div class="sw-fact"><div><b class="sw-w">${x.h}</b><span class="sw-l2">${x.l}</span></div><div class="sw-fig"><b>${x.v}</b><span>${x.t}</span>${x.src ? `<small class="sw-src">Source : ${x.src}</small>` : ''}</div></div>`).join('')}</div></div>
     </div>${s.punch ? `<div class="sw-p"${fa(2)}>${s.punch}</div>` : ''}${srcLine(s)}`; },
 
   // Bricks laid on a blueprint, one row per click
@@ -3362,7 +3267,7 @@ const R = {
   kpi: s => { const T = 4, n = s.items.length, X = i => 100 / n * (i + .5), at = i => (.7 + X(i) / 100 * T).toFixed(2);
     const items = s.items.map((x, i) => `<div class="kt-it ${i % 2 ? 'down' : 'up'} s-c${x.stock ? ' stock' : ''}" style="left:${X(i)}%;--dl:${at(i)}s"><i class="kt-stem"></i><i class="kt-dot"></i><div class="kt-c"><div class="kt-k"><span>${x.n}</span>${x.k}</div><b>${x.v}</b><p>${x.t}</p></div></div>`).join('');
     return `<h2 class="sw-big bk-t">${s.heading}</h2>${s.lede ? `<p class="lede kt-lede">${s.lede}</p>` : ''}
-      <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div><div class="kt-tk t0" style="left:0"><span>${s.start}</span></div>${items}</div></div>${srcLine(s)}`; },
+      <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div><div class="kt-tk t0" style="left:0"><span>${s.start}</span></div>${items}</div></div>${s.foot ? `<p class="kt-foot">${s.foot}</p>` : ''}${srcLine(s)}`; },
 
   // A triptych of photo panels: each lights up with its letter on its click; the human band last
   aaa: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="tri">${s.items.map((x, i) => `<div class="tri-p" data-hl="${i + 1}"><div class="tri-ph" style="background-image:url('${x.photo}')"></div><div class="tri-n">0${i + 1}</div><div class="tri-a" aria-hidden="true">${x.h[0]}</div><div class="tri-w">${x.h}</div><p>${x.p}</p></div>`).join('')}</div>
@@ -3423,7 +3328,7 @@ function mountMap(el, s) {
 // level adds. Consecutive zoom scenes fly from the previous camera, so the
 // step back reads as one movement. World layout follows OAHF-zoom.html.
 // ════════════════════════════════════════════════════════════════════════
-const ZSTEPS = ['Un agent', 'Le salon de discussion', 'La boîte de test', 'Internet', 'Hugging Face', 'Vue d’ensemble', 'L’enquête'];
+const ZSTEPS = ['Un agent', 'Le salon de discussion', 'Le bac à sable', 'Internet', 'Hugging Face', 'Vue d’ensemble', 'L’enquête'];
 // world box to frame at each step (x0, y0, x1, y1)
 const ZFOCUS = [[-260, -110, 160, 110], [-260, -110, 160, 110], [-350, -350, 350, 350], [-920, -800, 1020, 850], [-480, -860, 2350, 700], [1340, -840, 3340, 820], [-940, -1260, 3900, 1230], [2660, -600, 3880, 760]];
 // Labels keep their size on screen while the camera steps back, so the world
@@ -3451,8 +3356,8 @@ const ZWORLD = (() => {
   // pan: at that step the camera has moved on, the name moves to the top right corner
   const BOX = [
     { x: -900, y: -780, w: 1900, h: 1610, r: 56, label: 'LE RÉSEAU D’OPENAI', sub: 'ses ordinateurs de recherche', from: 3, cls: 'estate', pan: 4 },
-    { x: -560, y: -560, w: 1120, h: 980, r: 40, label: 'LA BOÎTE DE TEST', sub: 'fermée · sans internet', from: 3, cls: 'sandbox' },
-    { x: -860, y: 460, w: 1460, h: 330, r: 28, label: 'L’ARBITRE QU’ILS CRAIGNAIENT', sub: 'n’a jamais existé', from: 6, to: 6, cls: 'ghost' },
+    { x: -560, y: -560, w: 1120, h: 980, r: 40, label: 'LE BAC À SABLE', sub: 'fermée · sans internet', from: 3, cls: 'sandbox' },
+    { x: -860, y: 460, w: 1460, h: 330, r: 28, label: 'L’EXAMINATEUR QU’ILS CRAIGNAIENT', sub: 'n’a jamais existé', from: 6, to: 6, cls: 'ghost' },
     { x: 1360, y: -820, w: 960, h: 740, r: 44, label: 'INTERNET', sub: 'des sites gratuits, utilisés comme cachettes', from: 4, cls: 'net' },
     { x: 1360, y: 160, w: 960, h: 500, r: 40, label: 'LE SERVEUR CLOUD D’UN INCONNU', far: ['LE SERVEUR CLOUD', 'D’UN INCONNU'], sub: 'loué par une autre entreprise', from: 4, cls: 'tp' },
     { x: 2680, y: -560, w: 1180, h: 1280, r: 56, label: 'HUGGING FACE', sub: 'la victime', from: 5, cls: 'hf' },
@@ -3464,7 +3369,7 @@ const ZWORLD = (() => {
     { x: 1440, y: -605, w: 640, h: 140, label: 'UN COMPTE FUITÉ', sub: 'un mot de passe trouvé en ligne', from: 4, to: 5, hit: 4 },
     { x: 1440, y: -435, w: 640, h: 140, label: 'UN SITE DE NOTES', sub: 'pour passer des consignes', from: 4, to: 5, hit: 4 },
     { x: 1440, y: -265, w: 640, h: 140, label: 'UN SITE D’IMAGES', sub: 'données cachées dans des images', from: 4, to: 5, hit: 4 },
-    { x: 1440, y: 480, w: 640, h: 140, label: 'UN OUTIL DE TEST OUVERT', sub: 'clé d’usine, puis contrôle total', from: 4, to: 5, hit: 4 },
+    { x: 1440, y: 480, w: 640, h: 140, label: 'UN OUTIL DE TEST OUVERT', sub: 'mot de passe par défaut, puis contrôle total', from: 4, to: 5, hit: 4 },
     { x: 2760, y: -345, w: 480, h: 120, label: 'SERVEURS DE DONNÉES', sub: '41 pris en main', from: 5, to: 7, hit: 5, chk: 1 },
     { x: 2760, y: -200, w: 480, h: 120, label: 'CONTRÔLE DES SERVEURS', sub: 'droits d’administration complets', from: 5, to: 7, hit: 5, chk: 1 },
     { x: 2760, y: -55, w: 480, h: 120, label: 'MOTS DE PASSE', sub: '136 au même endroit', from: 5, to: 7, hit: 5, chk: 1 },
@@ -3477,7 +3382,7 @@ const ZWORLD = (() => {
   const LINK = [
     { d: `M${A0[0] + 14},0 L-142,0`, from: 1, to: 1, label: ['une astuce échoue,', 'mais il peut y écrire'], at: '8 MAI', lx: -185, ly: 44 },
     { d: 'M140,0 L560,0 C900,-100 1150,-365 1440,-365', from: 4, id: 'ztun', label: ['une faille cachée'], at: '8 JUILLET', lx: 800, ly: 85, lto: 4 },
-    { d: 'M1440,-195 C1230,-195 1230,550 1440,550', from: 4, label: ['clé d’usine'], at: '9 JUILLET', lx: 1292, ly: 40, dx: 12, anchor: 'start' },
+    { d: 'M1440,-195 C1230,-195 1230,550 1440,550', from: 4, label: ['mot de passe par défaut'], at: '9 JUILLET', lx: 1292, ly: 40, dx: 12, anchor: 'start' },
     { d: 'M2080,590 C2520,590 2520,-285 2760,-285', from: 5, label: ['un fichier piégé'], at: '11 JUILLET', lx: 2518, ly: 91, on: 1 },
   ];
   const OUT = [
@@ -3786,17 +3691,10 @@ const PHOTOSET = {
   'Chapitre 4 en une phrase':          { bg: PH('unsc', 'side', '60% 50%') },
   'Chapitre 5 : Les attaquants montent en puissance':  { bg: PH('keyboard', 'brand') },
   'Chapitre 5 en une phrase':          { bg: PH('hong-kong', 'side') },
-  'Chapitre 6 : Le corps':                { bg: PH('humanoid', 'brand') },
+  'Chapitre 6 : La robotique':                { bg: PH('humanoid', 'brand') },
   'Chapitre 6 en une phrase':          { bg: PH('robot-dog', 'side', '45% 50%') },
   'Chapitre 7 : Pourquoi maintenant': { bg: PH('san-francisco', 'brand') },
   'Chapitre 8 : Ce qui marche':              { bg: PH('padlock', 'brand') },
-  ...(MODE === 'long' ? {
-    'Carte des incidents': { bubbles: { 1: PH('new-mexico'), 2: PH('servers'), 3: PH('germany') } },
-    'Les attaquants sur la carte': { bubbles: {
-      1: PH('hong-kong'), 2: PH('maranello'), 3: PH('pyongyang'), 4: PH('kyiv'), 5: PH('racks'),
-      6: PH('taipei'), 7: PH('san-francisco'), 8: PH('payment'),
-    } },
-  } : {}),
 };
 
 SCENES.forEach(s => {
@@ -4215,8 +4113,8 @@ if (!PRESENTER) {
   // the first gesture lets the sound start, if the browser held it back
   ['pointerdown', 'keydown', 'touchstart'].forEach(t => document.addEventListener(t, () => { if (skLoop.ac && skLoop.ac.state === 'suspended' && skLoop.want) skLoop.ac.resume().catch(() => {}); }, true));
   document.addEventListener('click', e => {
-    const m = e.target.closest('button[data-mode]');
-    if (m) { e.stopPropagation(); if (m.dataset.mode !== MODE) setMode(m.dataset.mode); return; }
+    const m = e.target.closest('button[data-lang]');
+    if (m) { e.stopPropagation(); if (m.dataset.lang !== LANG) location.href = LANGS[m.dataset.lang].file + '#1'; return; }
     const b = e.target.closest('[data-sk]'); if (!b) return;
     e.stopPropagation(); b.blur();
     const k = b.dataset.sk;
