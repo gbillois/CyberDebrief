@@ -1893,6 +1893,8 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .kt-tk.t0 span{transform:none}
 .kt-it{position:absolute;top:50%;width:0}
 .scene.live .kt-it{animation:rxIn .5s ease var(--dl) backwards}
+.kt-end{z-index:2}
+.kt-end::after{content:'';position:absolute;left:.7rem;top:-1px;width:2.6rem;height:2px;background:repeating-linear-gradient(90deg,#04F06A 0 6px,transparent 6px 11px);box-shadow:0 0 10px rgba(4,240,106,.6)}
 .kt-dot{position:absolute;left:-.55rem;top:-.55rem;width:1.1rem;height:1.1rem;border-radius:50%;background:#04F06A;box-shadow:0 0 0 .3rem rgba(4,240,106,.2),0 0 24px #04F06A}
 .kt-stem{position:absolute;left:-1px;width:2px;height:3rem;background:linear-gradient(var(--sd,180deg),rgba(4,240,106,.8),rgba(4,240,106,0))}
 .kt-it.up .kt-stem{bottom:0;--sd:0deg} .kt-it.down .kt-stem{top:0}
@@ -1929,8 +1931,6 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 /* larger labels and lines, readable from the back of the room */
 .scene.t-kpi .kt-k{font-size:1.05rem;font-weight:600;letter-spacing:.1em;color:#3DF58C;text-shadow:0 2px 10px rgba(0,0,0,.9)}
 .scene.t-kpi .kt-k span{color:rgba(255,255,255,.75)}
-.scene.t-kpi .kt-k{align-items:center}
-.scene.t-kpi .kt-k::before{content:'';flex:none;width:.85rem;height:.85rem;border-radius:50%;background:#04F06A;box-shadow:0 0 0 .25rem rgba(4,240,106,.2),0 0 16px #04F06A}
 .scene.t-kpi .kt-c{width:19rem}
 .scene.t-kpi .kt-it.s-c .kt-c{left:-9.5rem}
 .scene.t-kpi .kt-c p{font-size:1.3rem;line-height:1.3;font-weight:500}
@@ -2520,8 +2520,8 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   // h: the deadline in hours, placed on the clock; up / down and the side of the card keep the labels apart
   items: [
     { n: '02', k: 'Détecter et contenir', v: '&lt; 3 h', h: 3, pos: 'up', side: 'c', t: 'une exposition critique, sans attendre le métier' },
-    { n: '01', k: 'Découvrir', v: '&lt; 24 h', h: 24, pos: 'up', side: 'c', t: 'tout nouvel actif exposé sur Internet' },
-    { n: '03', k: 'Remédier', v: '&lt; 24 h', h: 24, pos: 'down', side: 'l', t: 'tout actif activement exploité' },
+    { n: '01', k: 'Découvrir', v: '&lt; 24 h', h: 24, off: -1.6, pos: 'up', side: 'c', t: 'tout nouvel actif exposé sur Internet' },
+    { n: '03', k: 'Remédier', v: '&lt; 24 h', h: 24, off: 1.6, pos: 'down', side: 'l', t: 'tout actif activement exploité' },
     { n: '04', k: 'Reconstruire', v: '&lt; 2 j', h: 48, pos: 'down', side: 'l', t: 'les systèmes critiques, depuis une base de confiance' },
   ],
   stock: { n: '05', k: 'Réduire', v: '&lt; 5 %', pct: 5, t: 'd’actifs critiques obsolètes', p: 'Chaque exception : un responsable, une date de sortie.' },
@@ -3325,9 +3325,9 @@ const R = {
   // A clock that starts at the event: each deadline lights up as the cursor reaches it; the stock indicator on the side
   kpi: s => { const T = 4, X = h => h <= 3 ? h / 3 * 22 : h <= 24 ? 22 + (h - 3) / 21 * 40 : 62 + (h - 24) / 24 * 34, at = h => (.7 + X(h) / 100 * T).toFixed(2), st = s.stock;
     const ticks = s.axis.map(([h, l], i) => `<div class="kt-tk${i ? '' : ' t0'}" style="left:${X(h)}%"><span>${l}</span></div>`).join('');
-    const items = s.items.map(x => `<div class="kt-it ${x.pos} s-${x.side}" style="left:${X(x.h)}%;--dl:${at(x.h)}s"><i class="kt-stem"></i><i class="kt-dot"></i><div class="kt-c"><div class="kt-k"><span>${x.n}</span>${x.k}</div><b>${x.v}</b><p>${x.t}</p></div></div>`).join('');
+    const items = s.items.map(x => `<div class="kt-it ${x.pos} s-${x.side}" style="left:${X(x.h) + (x.off || 0)}%;--dl:${at(x.h)}s"><i class="kt-stem"></i><i class="kt-dot"></i><div class="kt-c"><div class="kt-k"><span>${x.n}</span>${x.k}</div><b>${x.v}</b><p>${x.t}</p></div></div>`).join('');
     return `<h2 class="sw-big bk-t">${s.heading}</h2>${s.lede ? `<p class="lede kt-lede">${s.lede}</p>` : ''}
-      <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div>${ticks}${items}</div>
+      <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div>${ticks}${items}<div class="kt-it kt-end" style="left:100%;--dl:${(.7 + T).toFixed(2)}s"><i class="kt-dot"></i></div></div>
         <div class="kt-s" style="--dl:${(.7 + T).toFixed(2)}s"><div class="kt-k"><span>${st.n}</span>${st.k}</div>
           <b class="kt-v">${st.v}</b><p class="kt-t">${st.t}</p>
           <div class="kt-g" aria-hidden="true"><i style="width:${st.pct}%"></i></div><p class="kt-p">${st.p}</p></div></div>${srcLine(s)}`; },
