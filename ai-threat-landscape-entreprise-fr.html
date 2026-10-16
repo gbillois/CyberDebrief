@@ -1822,72 +1822,59 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .head.row .h{margin-bottom:0;max-width:24ch}
 .head.row .lede{margin:0;max-width:34ch;color:var(--muted);font-size:1.2rem}
 
-/* what holds, what changes: the good news on the left, the turn in the middle */
-.sw2{flex:1;display:grid;grid-template-columns:minmax(0,1.05fr) 5rem minmax(0,1fr);align-items:stretch;min-height:0;margin-top:.4rem}
-.sw-l,.sw-r{position:relative;display:flex;flex-direction:column;justify-content:center;padding:2rem 2.2rem;border-radius:1rem;overflow:hidden}
-.sw-l{background:radial-gradient(90% 80% at 15% 30%,rgba(4,240,106,.16),transparent 65%),linear-gradient(160deg,rgba(4,240,106,.07),rgba(255,255,255,.02));border:1px solid rgba(4,240,106,.3);box-shadow:inset 0 0 60px rgba(4,240,106,.06)}
-.sw-r{background:radial-gradient(90% 80% at 85% 30%,rgba(255,107,90,.16),transparent 65%),linear-gradient(200deg,rgba(255,107,90,.07),rgba(255,255,255,.02));border:1px solid rgba(255,107,90,.3)}
-.sw-wm{position:absolute;right:-3rem;bottom:-4rem;color:rgba(4,240,106,.07);pointer-events:none}
-.sw-wm .ic{width:22rem;height:22rem;stroke-width:1}
-.sw-pill{align-self:flex-start;display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem .4rem .6rem;border-radius:2rem;font-family:var(--f-mono);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:#04F06A;background:rgba(4,240,106,.12);box-shadow:0 0 24px rgba(4,240,106,.3)}
-.sw-pill.bad{color:var(--coral);background:rgba(255,107,90,.12);box-shadow:0 0 24px rgba(255,107,90,.3)}
+/* what holds, what changes: two photo panels, the turn in the middle */
+.sw2{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 5rem minmax(0,1fr);align-items:stretch;min-height:0;margin-top:.4rem}
+.sw-l,.sw-r{position:relative;display:flex;flex-direction:column;justify-content:center;padding:2rem 2.2rem;border-radius:1rem;overflow:hidden;isolation:isolate}
+.sw-l{border:1px solid rgba(4,240,106,.35);box-shadow:0 0 50px -20px rgba(4,240,106,.6)}
+.sw-r{border:1px solid rgba(255,107,90,.35);box-shadow:0 0 50px -20px rgba(255,107,90,.6)}
+.sw-ph{position:absolute;inset:0;z-index:-1;background-size:cover;background-position:center;transform:scale(1.08);transition:transform 12s cubic-bezier(.2,.6,.3,1)}
+.scene.live .sw-ph{transform:scale(1)}
+.sw-l .sw-ph{filter:grayscale(1) brightness(.55) contrast(1.1)}
+.sw-r .sw-ph{filter:grayscale(1) brightness(.6) contrast(1.15)}
+.sw-ph::after{content:'';position:absolute;inset:0}
+.sw-l .sw-ph::after{background:linear-gradient(160deg,rgba(7,4,15,.55),rgba(3,40,22,.88)),radial-gradient(70% 60% at 20% 20%,rgba(4,240,106,.18),transparent 70%);mix-blend-mode:normal}
+.sw-r .sw-ph::after{background:linear-gradient(200deg,rgba(7,4,15,.5),rgba(60,12,8,.88)),radial-gradient(70% 60% at 80% 20%,rgba(255,107,90,.22),transparent 70%)}
+.sw-pill{align-self:flex-start;display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem .4rem .6rem;border-radius:2rem;font-family:var(--f-mono);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:#04F06A;background:rgba(4,240,106,.14);box-shadow:0 0 24px rgba(4,240,106,.3)}
+.sw-pill.bad{color:var(--coral);background:rgba(255,107,90,.14);box-shadow:0 0 24px rgba(255,107,90,.3)}
 .sw-pill .ic{width:1.1rem;height:1.1rem}
-.sw-big{position:relative;margin:1.2rem 0 1.6rem;font-family:var(--f-display);font-weight:800;font-size:3.9rem;line-height:1;letter-spacing:-.035em;color:#fff}
-.sw-big em{display:block;font-style:normal;color:#04F06A;text-shadow:0 0 40px rgba(4,240,106,.55)}
-.sw-tiles{position:relative;display:grid;gap:.9rem}
-.sw-tile{display:grid;grid-template-columns:3rem 1fr;gap:1rem;align-items:center;padding:1rem 1.2rem;border-radius:.7rem;background:rgba(7,4,15,.45);border:1px solid rgba(4,240,106,.22)}
-.sw-ti{width:3rem;height:3rem;border-radius:.7rem;display:grid;place-items:center;color:#04F06A;background:rgba(4,240,106,.12)}
+.sw-big{position:relative;margin:1.1rem 0 1.5rem;font-family:var(--f-display);font-weight:800;font-size:3.5rem;line-height:1.02;letter-spacing:-.035em;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.sw-big em{font-style:normal;color:#04F06A;text-shadow:0 0 40px rgba(4,240,106,.55)}
+.sw-big.bad em{color:var(--coral);text-shadow:0 0 40px rgba(255,107,90,.6)}
+.sw-tiles{display:grid;gap:.9rem}
+.sw-tile{display:grid;grid-template-columns:3rem 1fr;gap:1rem;align-items:center;padding:1rem 1.2rem;border-radius:.7rem;background:rgba(7,4,15,.55);border:1px solid rgba(4,240,106,.25);backdrop-filter:blur(6px)}
+.sw-ti{width:3rem;height:3rem;border-radius:.7rem;display:grid;place-items:center;color:#04F06A;background:rgba(4,240,106,.14)}
 .sw-ti .ic{width:1.6rem;height:1.6rem}
-.sw-tile b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.35rem;line-height:1.2;color:#fff}
-.sw-tile span{display:block;margin-top:.2rem;font-size:.98rem;line-height:1.4;color:var(--muted)}
+.sw-tile b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.3rem;line-height:1.2;color:#fff}
+.sw-tile span{display:block;margin-top:.2rem;font-size:.98rem;line-height:1.4;color:rgba(255,255,255,.75)}
 .sw-mid{position:relative;display:flex;align-items:center;justify-content:center}
 .sw-mid::before{content:'';position:absolute;top:8%;bottom:8%;left:50%;width:2px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.6) 30%,rgba(255,255,255,.6) 70%,transparent);box-shadow:0 0 24px rgba(182,166,255,.7)}
 .sw-mid span{position:relative;padding:.6rem .2rem;background:var(--sk-bg);font-family:var(--f-serif);font-style:italic;font-size:1.5rem;color:#fff;text-shadow:0 0 20px rgba(182,166,255,.8)}
-.sw-blk + .sw-blk{margin-top:1.6rem}
-.sw-w{display:block;margin:1rem 0 .7rem;font-family:var(--f-display);font-weight:800;font-size:4.2rem;line-height:.9;letter-spacing:-.045em;color:var(--coral);text-shadow:0 0 44px rgba(255,107,90,.55)}
-.sw-bar{position:relative;height:2.1rem;margin-top:.5rem}
-.sw-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:.3rem}
-.sw-bar.old i{width:100%;background:repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 calc(100%/6 - 3px),transparent calc(100%/6 - 3px) calc(100%/6))}
-.sw-bar.new i{width:9%;background:var(--coral);box-shadow:0 0 22px rgba(255,107,90,.8)}
-.sw-r.on .sw-bar.new i{animation:swShrink 1.6s var(--sk-ease) .5s backwards}
-@keyframes swShrink{from{width:100%;opacity:.5}}
-.sw-bar span{position:absolute;top:50%;transform:translateY(-50%);font-size:.9rem;font-weight:600;white-space:nowrap}
-.sw-bar.old span{left:.8rem;color:rgba(255,255,255,.75)}
-.sw-bar.new span{left:calc(9% + .8rem);color:var(--coral)}
-.sw-dp{display:grid;grid-template-columns:15rem 1fr;gap:1.4rem;align-items:center}
-.sw-st{position:relative}
-.sw-st div{padding:.32rem .8rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);border-top:1px solid rgba(255,107,90,.35);background:rgba(255,107,90,calc(.05 + var(--i) * .07))}
-.sw-drill{position:absolute;right:1.2rem;top:0;bottom:0;width:3px;background:linear-gradient(180deg,rgba(255,107,90,.3),#FF6B5A);box-shadow:0 0 14px rgba(255,107,90,.9);transform-origin:top}
-.sw-drill::after{content:'';position:absolute;left:50%;bottom:-.4rem;width:.8rem;height:.8rem;margin-left:-.4rem;border-radius:50%;background:#FF6B5A;box-shadow:0 0 18px #FF6B5A}
-.sw-r.on .sw-drill{animation:swDrill 1.4s var(--sk-ease) 1.2s backwards}
-@keyframes swDrill{from{transform:scaleY(0)}}
-.sw-dp p{margin:0;font-size:1.02rem;line-height:1.45;color:var(--muted)}
-.sw-p{margin-top:1.4rem;text-align:center;font-family:var(--f-display);font-weight:700;font-size:1.9rem;letter-spacing:-.02em;color:#fff}
+.sw-facts{display:grid;gap:.9rem}
+.sw-fact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:1.2rem;align-items:center;padding:1rem 1.2rem;border-radius:.7rem;background:rgba(7,4,15,.55);border:1px solid rgba(255,107,90,.28);backdrop-filter:blur(6px)}
+.sw-w{display:block;font-family:var(--f-display);font-weight:800;font-size:2.1rem;line-height:1;letter-spacing:-.03em;color:var(--coral);text-shadow:0 0 30px rgba(255,107,90,.55)}
+.sw-l2{display:block;margin-top:.35rem;font-size:1rem;color:rgba(255,255,255,.8)}
+.sw-fig{padding-left:1.2rem;border-left:1px solid rgba(255,107,90,.35)}
+.sw-fig b{display:block;font-family:var(--f-display);font-weight:800;font-size:2.6rem;line-height:1;letter-spacing:-.04em;color:#fff;white-space:nowrap;text-shadow:0 0 30px rgba(255,107,90,.7)}
+.sw-fig span{display:block;margin-top:.3rem;font-size:.9rem;line-height:1.35;color:rgba(255,255,255,.72)}
+.sw-p{margin-top:1.3rem;text-align:center;font-family:var(--f-display);font-weight:700;font-size:1.9rem;letter-spacing:-.02em;color:#fff}
 .sw-p em{font-style:normal;color:var(--coral);text-shadow:0 0 30px rgba(255,107,90,.5)}
 
 /* rebuilding: bricks laid on a blueprint, foundation first, the next floor in dashes */
-.bk{flex:1;position:relative;display:flex;flex-direction:column;justify-content:center;gap:1.2rem;min-height:0;margin-top:.6rem;padding:2.6rem 3rem 2rem;border:1px solid rgba(122,92,255,.28);border-radius:1rem;
+.bk-t{margin:0 0 1.4rem;max-width:none}
+.bk{flex:1;position:relative;display:flex;flex-direction:column;justify-content:center;gap:1.6rem;min-height:0;padding:2.8rem 3rem 2.4rem;border:1px solid rgba(122,92,255,.28);border-radius:1rem;
   background:linear-gradient(rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,linear-gradient(90deg,rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,radial-gradient(80% 90% at 50% 100%,rgba(69,29,199,.3),transparent 70%)}
 .bk-plan{position:absolute;top:1rem;left:1.4rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#B6A6FF}
-.bk-row{display:grid;grid-template-columns:9rem 1fr;gap:1.4rem;align-items:stretch}
-.bk-k{align-self:center;font-family:var(--f-mono);font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tone);text-align:right}
-.bk-bs{display:flex;gap:.8rem;justify-content:center}
-.bk-b{position:relative;flex:1;max-width:19rem;padding:1.3rem 1.3rem 1.4rem;border-radius:.35rem;border:1px solid color-mix(in srgb,var(--tone) 55%,transparent);border-top:3px solid var(--tone);
+.bk-row{flex:1;max-height:15rem;display:grid;grid-template-columns:10rem 1fr;gap:1.4rem;align-items:stretch}
+.bk-k{align-self:center;font-family:var(--f-mono);font-size:.95rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tone);text-align:right}
+.bk-bs{display:flex;gap:1rem;justify-content:center;align-items:stretch}
+.bk-b{position:relative;flex:1;max-width:21rem;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;padding:1.4rem 1.5rem 1.5rem;border-radius:.35rem;border:1px solid color-mix(in srgb,var(--tone) 55%,transparent);border-top:3px solid var(--tone);
   background:linear-gradient(180deg,color-mix(in srgb,var(--tone) 26%,#0E0822),color-mix(in srgb,var(--tone) 8%,#07040F));box-shadow:0 0 34px -6px color-mix(in srgb,var(--tone) 45%,transparent),inset 0 1px 0 rgba(255,255,255,.08)}
-.bk-i{position:absolute;top:.9rem;right:1rem;color:var(--tone);opacity:.9}
-.bk-i .ic{width:1.5rem;height:1.5rem}
+.bk-i{position:absolute;top:-.6rem;right:-.6rem;color:var(--tone);opacity:.22}
+.bk-i .ic{width:6.5rem;height:6.5rem;stroke-width:1.2}
 .bk-row.on .bk-b{animation:bkDrop .8s var(--sk-ease) backwards;animation-delay:calc(var(--d) * .14s)}
 @keyframes bkDrop{from{opacity:0;transform:translateY(-2.4rem)}}
-.bk-b b{display:block;padding-right:2rem;font-family:var(--f-display);font-weight:700;font-size:1.4rem;line-height:1.15;color:#fff}
-.bk-b span{display:block;margin-top:.45rem;font-size:1rem;line-height:1.4;color:var(--muted)}
-.bk-row.ghost{--tone:#B6A6FF}
-.bk-row.ghost .bk-b{max-width:none;padding:1rem 1.3rem;border:2px dashed rgba(182,166,255,.6);background:rgba(122,92,255,.06);box-shadow:none;display:flex;align-items:baseline;gap:1.4rem}
-.bk-row.ghost .bk-b b{color:#B6A6FF;padding:0}
-.bk-row.ghost .bk-b span{margin:0}
-.bk-row.ghost .bk-b span::after{content:' →';color:#B6A6FF}
-.bk-row.ghost.on .bk-b{animation:bkGhost 2.4s ease-in-out infinite}
-@keyframes bkGhost{50%{border-color:rgba(182,166,255,.25);background:rgba(122,92,255,.12)}}
-.bk-g{height:.9rem;margin-left:10.4rem;border-top:2px solid rgba(182,166,255,.6);background:repeating-linear-gradient(-45deg,rgba(182,166,255,.28) 0 2px,transparent 2px 10px);box-shadow:0 -6px 24px -8px rgba(122,92,255,.7)}
+.bk-b b{position:relative;display:block;font-family:var(--f-display);font-weight:800;font-size:1.65rem;line-height:1.15;color:#fff}
+.bk-b span{position:relative;display:block;margin-top:.5rem;font-size:1.05rem;line-height:1.4;color:var(--muted)}
 
 /* the new baseline: a clock that starts at the event */
 .kt{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 17rem;gap:3rem;align-items:stretch;min-height:0;margin-top:1rem}
@@ -1949,7 +1936,7 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .ao-c .ic{width:4.6rem;height:4.6rem;padding:1.1rem;border-radius:50%;background:rgba(122,92,255,.2);box-shadow:0 0 40px rgba(122,92,255,.7)}
 .ao-c b{font-family:var(--f-display);font-weight:700;font-size:1.25rem;line-height:1.15;color:#fff;max-width:9ch;text-shadow:0 0 20px rgba(122,92,255,.9)}
 
-@media(max-width:760px){.race,.sw2,.ao,.kt{grid-template-columns:1fr}.head.row{flex-direction:column;align-items:flex-start;gap:1rem}.sw-mid{height:3rem}.sw-mid::before{display:none}.sw-big{font-size:2.6rem}.sw-w{font-size:3rem}.sw-dp{grid-template-columns:1fr}.bk{padding:2.4rem 1rem 1.4rem}.bk-row{grid-template-columns:1fr}.bk-k{text-align:left}.bk-bs{flex-direction:column}.bk-g{margin-left:0}.kt-tl{display:none}.race-c{transform:none}}
+@media(max-width:760px){.race,.sw2,.ao,.kt{grid-template-columns:1fr}.head.row{flex-direction:column;align-items:flex-start;gap:1rem}.sw-mid{height:3rem}.sw-mid::before{display:none}.sw-big{font-size:2.4rem}.sw-fact{grid-template-columns:1fr}.bk{padding:2.4rem 1rem 1.4rem}.bk-row{grid-template-columns:1fr}.bk-k{text-align:left}.bk-bs{flex-direction:column}.kt-tl{display:none}.race-c{transform:none}}
 </style>
 </head>
 <body>
@@ -2472,21 +2459,22 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
 
 { ch: 'c4', type: 'shift', title: 'Pas la fin du monde',
   stamp: 'Ce n’est pas la fin du monde',
-  keep: { k: 'La bonne nouvelle', h: 'Les fondamentaux <em>ne changent pas.</em>', items: [
+  keep: { k: 'La bonne nouvelle', h: 'L’IA ne change pas <em>les fondamentaux…</em>', photo: 'assets/ai/photos/padlock.jpg', items: [
     { i: 'shield', h: 'Le Zero Trust reste le bon modèle', p: 'Ne jamais faire confiance, toujours vérifier, moindre privilège.' },
     { i: 'check', h: 'Les mesures classiques restent valables', p: 'Connaître ses actifs, corriger, contrôler les accès, détecter, réagir.' },
   ] },
-  change: { k: 'Ce qui change',
-    speed: { h: 'Vitesse', before: 'Avant : des semaines', after: 'Avec l’IA : quelques heures' },
-    depth: { h: 'Profondeur', layers: ['Surface exposée', 'Applications', 'Identités', 'Données'], p: 'Plus de failles trouvées, plus de cibles étudiées, des scénarios plus crédibles.' } },
+  change: { k: 'Le vrai changement', h: 'Ce qu’elle <em>change…</em>', photo: 'assets/ai/photos/hong-kong.jpg', items: [
+    { h: 'Vitesse', l: 'L’attaque va plus vite.', v: '&lt; 10 h', t: 'pour une intrusion qui prenait environ deux semaines' },
+    { h: 'Profondeur', l: 'L’attaque va plus loin.', v: '50+', t: 'techniques d’attaque enchaînées par des agents IA, replanifiées en temps réel' },
+  ] },
   punch: 'L’IA ne change pas les règles du jeu. <em>Elle en change le rythme.</em>',
-  vo: `Maintenant, la bonne nouvelle : ce n’est pas la fin du monde. Les fondamentaux ne changent pas. Le Zero Trust reste le bon modèle, et les mesures classiques restent valables. Ce qui change, ce sont deux choses : la vitesse, des semaines deviennent quelques heures, et la profondeur, l’attaque va plus loin. L’IA ne change pas les règles du jeu, elle en change le rythme.` },
+  vo: `Maintenant, la bonne nouvelle : ce n’est pas la fin du monde. L’IA ne change pas les fondamentaux. Le Zero Trust reste le bon modèle, et les mesures classiques restent valables. Ce qu’elle change, c’est la vitesse : en septembre, des agents IA ont mené en moins de dix heures une intrusion qui prenait environ deux semaines. Et la profondeur : plus de cinquante techniques enchaînées, replanifiées en temps réel. L’IA ne change pas les règles du jeu, elle en change le rythme.`,
+  notes: `Les deux chiffres viennent du même cas, déjà vu dans la carte des attaquants : Unit 42 (Palo Alto Networks), 2 septembre 2026, victime non divulguée, « compressed weeks of methodical intrusion tradecraft into less than 10 hours ».`,
+  src: `Unit 42, Palo Alto Networks (2 septembre 2026) · Photos : FlyD et Henry Lai sur Unsplash` },
 
 { ch: 'c4', type: 'bricks', title: 'Reconstruire les fondations',
-  heading: 'L’occasion de reconstruire nos fondations',
-  lede: 'La menace accélère : c’est le moment de finir les grands chantiers, côté architecture comme côté logiciel.',
+  heading: 'L’occasion de reconstruire <em>nos fondations</em>',
   plan: 'Plan de reconstruction',
-  // drawn bottom to top: the architecture is the foundation, the software sits on it, the baseline comes next
   layers: [
     { tone: 'indigo', k: 'Architecture', bricks: [
       { i: 'key', h: 'Identités', p: 'Renforcer l’authentification et les privilèges, humains et agents IA.' },
@@ -2494,14 +2482,13 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
       { i: 'shield', h: 'Zero Trust', p: 'Lui donner un nouvel élan : chaque accès vérifié.' },
       { i: 'lock', h: 'Données', p: 'Savoir où sont les données sensibles, les classifier, les chiffrer.' },
     ] },
-    { tone: 'teal', k: 'Logiciel', bricks: [
+    { tone: 'teal', k: 'Logiciel Factory', bricks: [
       { i: 'search', h: 'Trouver nos failles en premier', p: 'L’IA revoit le code et teste les applications avant les attaquants.' },
       { i: 'bug', h: 'Corriger plus vite', p: 'Moins de temps entre la faille et le correctif.' },
       { i: 'code', h: 'Sécurité dès la conception', p: 'Dans chaque nouveau projet, projets IA compris.' },
     ] },
   ],
-  ghost: { k: 'Ensuite', h: 'La nouvelle baseline cyber', p: 'Des indicateurs à tenir, au rythme de la menace' },
-  vo: `C’est donc le moment de reconstruire nos fondations, et de finir les grands chantiers. D’abord l’architecture : les identités, le réseau, un nouvel élan pour le Zero Trust, et la protection des données. Puis, posé dessus, le logiciel : trouver nos failles avant les autres, les corriger plus vite, et intégrer la sécurité dès la conception. Et au-dessus, il reste un étage à poser.` },
+  vo: `C’est donc le moment de reconstruire nos fondations, et de finir les grands chantiers. Côté architecture : les identités, le réseau, un nouvel élan pour le Zero Trust, et la protection des données. Et côté Logiciel Factory : trouver nos failles avant les autres, les corriger plus vite, et intégrer la sécurité dès la conception.` },
 
 { ch: 'c4', type: 'kpi', title: 'La nouvelle baseline',
   stamp: 'Au-delà des fondations', heading: 'Fixer une nouvelle baseline cyber',
@@ -3293,28 +3280,24 @@ const R = {
         <p class="race-f">${c.foot}</p></div>
       <div class="race-b">${s.blocks.map(blk).join('')}</div></div>${srcLine(s)}`; },
 
-  // The good news on the left, what changes on the right, the turn in the middle
-  shift: s => { const c = s.change;
+  // Two photo panels: what AI does not change on the left, what it changes on the right, the turn in the middle
+  shift: s => { const k = s.keep, c = s.change, bg = u => `<div class="sw-ph" style="background-image:url('${u}')"></div>`;
     return `${s.stamp ? `<div class="stamp">${s.stamp}</div>` : ''}<div class="sw2">
-      <div class="sw-l"${fa(0)}><div class="sw-wm" aria-hidden="true">${ICON('shield')}</div>
-        <div class="sw-pill">${ICON('check')}${s.keep.k}</div>
-        <h2 class="sw-big">${s.keep.h}</h2>
-        <div class="sw-tiles">${s.keep.items.map(x => `<div class="sw-tile"><div class="sw-ti">${ICON(x.i)}</div><div><b>${x.h}</b><span>${x.p}</span></div></div>`).join('')}</div></div>
+      <div class="sw-l"${fa(0)}>${bg(k.photo)}
+        <div class="sw-pill">${ICON('check')}${k.k}</div>
+        <h2 class="sw-big">${k.h}</h2>
+        <div class="sw-tiles">${k.items.map(x => `<div class="sw-tile"><div class="sw-ti">${ICON(x.i)}</div><div><b>${x.h}</b><span>${x.p}</span></div></div>`).join('')}</div></div>
       <div class="sw-mid" aria-hidden="true"><span>mais</span></div>
-      <div class="sw-r"${fa(1)}>
+      <div class="sw-r"${fa(1)}>${bg(c.photo)}
         <div class="sw-pill bad">${ICON('target')}${c.k}</div>
-        <div class="sw-blk"><b class="sw-w">${c.speed.h}</b>
-          <div class="sw-bar old"><i></i><span>${c.speed.before}</span></div><div class="sw-bar new"><i></i><span>${c.speed.after}</span></div></div>
-        <div class="sw-blk"><b class="sw-w">${c.depth.h}</b>
-          <div class="sw-dp"><div class="sw-st">${c.depth.layers.map((l, i) => `<div style="--i:${i}">${l}</div>`).join('')}<i class="sw-drill"></i></div><p>${c.depth.p}</p></div></div></div>
+        <h2 class="sw-big bad">${c.h}</h2>
+        <div class="sw-facts">${c.items.map(x => `<div class="sw-fact"><div><b class="sw-w">${x.h}</b><span class="sw-l2">${x.l}</span></div><div class="sw-fig"><b>${x.v}</b><span>${x.t}</span></div></div>`).join('')}</div></div>
     </div>${s.punch ? `<div class="sw-p"${fa(2)}>${s.punch}</div>` : ''}${srcLine(s)}`; },
 
-  // Foundations laid brick by brick on a blueprint, bottom layer first, the next floor drawn in dashes
-  bricks: s => { const row = (l, f, ghost) => `<div class="bk-row tone-${l.tone || 'n'}${ghost ? ' ghost' : ''}"${fa(f)}><div class="bk-k">${l.k}</div><div class="bk-bs">${l.bricks.map((b, j) => `<div class="bk-b" style="--d:${j}">${b.i ? `<div class="bk-i">${ICON(b.i)}</div>` : ''}<b>${b.h}</b><span>${b.p}</span></div>`).join('')}</div></div>`;
-    return `<div class="head row"><h2 class="h">${s.heading}</h2>${s.lede ? `<p class="lede">${s.lede}</p>` : ''}</div><div class="bk"><div class="bk-plan">${s.plan}</div>
-      ${s.ghost ? row({ k: s.ghost.k, bricks: [{ h: s.ghost.h, p: s.ghost.p }] }, s.layers.length, true) : ''}
-      ${s.layers.map((l, i) => ({ l, i })).reverse().map(({ l, i }) => row(l, i)).join('')}
-      <div class="bk-g" aria-hidden="true"></div></div>${srcLine(s)}`; },
+  // Bricks laid on a blueprint, one row per click
+  bricks: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="bk"><div class="bk-plan">${s.plan}</div>
+      ${s.layers.map((l, i) => `<div class="bk-row tone-${l.tone}"${fa(i)}><div class="bk-k">${l.k}</div><div class="bk-bs">${l.bricks.map((b, j) => `<div class="bk-b" style="--d:${j}">${b.i ? `<div class="bk-i">${ICON(b.i)}</div>` : ''}<b>${b.h}</b><span>${b.p}</span></div>`).join('')}</div></div>`).join('')}
+      </div>${srcLine(s)}`,
 
   // A clock that starts at the event: each deadline lights up as the cursor reaches it; the stock indicator on the side
   kpi: s => { const T = 4, X = h => h <= 3 ? h / 3 * 22 : h <= 24 ? 22 + (h - 3) / 21 * 40 : 62 + (h - 24) / 24 * 34, at = h => (.7 + X(h) / 100 * T).toFixed(2), st = s.stock;
