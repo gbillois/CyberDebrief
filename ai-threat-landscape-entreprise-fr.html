@@ -108,6 +108,7 @@ q{quotes:"\201C" "\201D"}
 .doc-ch{display:flex;gap:2.2rem;list-style:none;padding:1.4rem 0 0;margin:0;border-top:1px solid var(--line);flex-wrap:wrap}
 .doc-ch li{font-size:.95rem;color:var(--muted)} .doc-ch span{font-family:var(--f-mono);color:var(--green);margin-right:.55rem}
 .doc-meta{position:absolute;top:0;right:0;font-family:var(--f-mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--subtle);text-align:right}
+.doc-ver{display:block;margin-top:.5rem;opacity:.55;font-size:.85em}
 
 /* ── chapter card ───────────────────────────────────────────── */
 .scene.t-chapter{justify-content:center;background:radial-gradient(70% 70% at 15% 85%,rgba(90,43,224,.22),transparent 60%),var(--bg)}
@@ -1813,8 +1814,8 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .race-d span{font-size:.82rem;color:#514C63}
 .race-img{position:relative}
 .race-img img{display:block;width:100%;height:auto;max-height:46vh;object-fit:contain}
-.race-dim{position:absolute;left:0;top:6%;bottom:0;background:rgba(255,255,255,.6);animation:rxIn 1s ease 1.2s backwards}
-.race-band{position:absolute;top:6%;bottom:0;border:2px solid #451DC7;border-radius:.4rem;background:rgba(69,29,199,.06);box-shadow:0 0 0 4px rgba(69,29,199,.12);animation:rxIn .8s ease 1.6s backwards}
+.race-dim{position:absolute;left:0;top:9%;bottom:0;background:rgba(255,255,255,.6);animation:rxIn 1s ease 1.2s backwards}
+.race-band{position:absolute;top:9%;bottom:0;border:2px solid #451DC7;border-radius:.4rem;background:rgba(69,29,199,.06);box-shadow:0 0 0 4px rgba(69,29,199,.12);animation:rxIn .8s ease 1.6s backwards}
 .race-band span{position:absolute;right:calc(100% + .45rem);top:-2px;background:#451DC7;color:#fff;font:600 .78rem var(--f-body);padding:.15rem .5rem;border-radius:.3rem;white-space:nowrap}
 @keyframes rxIn{from{opacity:0}}
 .scene.t-race .pb-dark img{filter:saturate(.45) brightness(.7)}
@@ -2068,6 +2069,7 @@ const SCENES = [
 
 // ─── PROLOGUE ─────────────────────────────────────────────────────────────
 { ch: 'p', type: 'title', title: 'Titre', noCh: true,
+  ver: 'Version du 16 octobre 2026 · 43 slides',
   kicker: 'Hors du bac à sable',
   heading: `Comment la menace change-t-elle avec l'IA, et que pouvons-nous faire ?`,
   sub: `Une session de sensibilisation, d'un cas réel à vos propres réflexes.`,
@@ -2839,7 +2841,7 @@ const R = {
   cold: s => `<div class="cold">${s.lines.map((l, i) => { const o = typeof l === 'string' ? { t: l } : l; return `<p class="cold-l ${o.cls || ''}"${fa(i)}>${o.t}</p>`; }).join('')}</div>${srcLine(s)}`,
 
   title: s => `${bgMap([[-122.4, 37.8], [-74, 40.7], [149.1, -35.3], [10, 51], [2.35, 48.86], [114.2, 22.3], [104, 35]])}
-    <div class="tt"><div class="doc-meta">${s.meta}</div>
+    <div class="tt"><div class="doc-meta">${s.meta}${s.ver ? `<span class="doc-ver">${s.ver}</span>` : ''}</div>
       <div class="kicker">${s.kicker}</div>
       <h1 class="doc-title">${s.heading}</h1>
       <p class="doc-sub">${s.sub}</p>
