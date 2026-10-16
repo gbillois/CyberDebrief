@@ -1861,6 +1861,7 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 
 /* rebuilding: bricks laid on a blueprint, foundation first, the next floor in dashes */
 .bk-t{margin:0 0 1.4rem;max-width:none}
+.kt-lede{margin:-.6rem 0 0;max-width:none;color:var(--muted)}
 .bk{flex:1;position:relative;display:flex;flex-direction:column;justify-content:center;gap:1.6rem;min-height:0;padding:2.8rem 3rem 2.4rem;border:1px solid rgba(122,92,255,.28);border-radius:1rem;
   background:linear-gradient(rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,linear-gradient(90deg,rgba(122,92,255,.09) 1px,transparent 1px) 0 0/2.2rem 2.2rem,radial-gradient(80% 90% at 50% 100%,rgba(69,29,199,.3),transparent 70%)}
 .bk-plan{position:absolute;top:1rem;left:1.4rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#B6A6FF}
@@ -2438,7 +2439,7 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   vo: `Septième question : pourquoi en sommes-nous là ? Parce qu’en quelques mois, les modèles d’IA ont fait un bond.` },
 
 { ch: 'c4', type: 'race', title: 'L’accélération',
-  heading: 'Une accélération forte de la capacité des modèles', wide: true,
+  heading: 'Une accélération forte de <em>la capacité des modèles</em>',
   chart: {
     img: 'assets/ai/charts/aa-frontier-intelligence.png',
     alt: 'Graphique Artificial Analysis : intelligence des modèles frontier par laboratoire, de mai 2024 à octobre 2026',
@@ -2489,8 +2490,8 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   vo: `C’est donc le moment de reconstruire nos fondations. Côté architecture cyber : combler les failles d’identité, avec du MFA résistant au phishing et du PAM juste-à-temps ; repenser le réseau, en filtrant les flux et en limitant le rayon d’impact ; et relancer la protection des données, en couvrant aussi les agents IA. Côté Logiciel Factory : moins de plateformes, gérées centralement ; une correction automatique par l’IA dans chaque chaîne, avec une revue humaine sur le code critique ; et des imports maîtrisés, modèles et composants d’agents compris, chaque artefact signé avec sa SBOM.` },
 
 { ch: 'c4', type: 'kpi', title: 'La nouvelle baseline',
-  stamp: 'Au-delà des fondations', heading: 'Fixer une nouvelle baseline cyber',
-  lede: 'Cinq familles d’indicateurs. Dès qu’un événement survient, l’horloge tourne.',
+  heading: 'Fixer une nouvelle <em>baseline cyber</em>',
+  lede: 'Au-delà des fondations : cinq familles d’indicateurs. Dès qu’un événement survient, l’horloge tourne.',
   axis: [[0, 'T0 · l’événement'], [3, '3 h'], [24, '24 h'], [48, '48 h']],
   // h: the deadline in hours, placed on the clock; up / down and the side of the card keep the labels apart
   items: [
@@ -2503,7 +2504,7 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   vo: `Au-delà des fondations, il faut fixer une nouvelle baseline cyber, mesurable. Cinq familles d’indicateurs, et pour quatre d’entre elles, une horloge qui démarre dès l’événement. Contenir une exposition critique : moins de 3 heures, sans attendre le feu vert des métiers. Découvrir et attribuer tout nouvel actif exposé sur Internet : moins de 24 heures. Corriger ou protéger un actif activement exploité : moins de 24 heures. Reconstruire les systèmes critiques depuis une base de confiance : moins de 2 jours. Et réduire : moins de 5 % d’actifs critiques obsolètes, chaque exception avec un responsable et une date de sortie.` },
 
 { ch: 'c4', type: 'aaa', title: 'L’IA pour la cyber : AAA',
-  stamp: 'L’IA pour la cyber', heading: 'Pour atteindre cette baseline, il faut l’IA pour la cyber',
+  heading: 'Pour tenir la baseline : <em>l’IA pour la cyber</em>',
   lede: 'Les attaquants travaillent déjà à la vitesse de la machine. La défense doit suivre.',
   center: 'Sous contrôle humain',
   items: [
@@ -3272,7 +3273,7 @@ const R = {
   // A chart screenshot on the left, pinned like an exhibit, with one period highlighted; two statements on the right
   race: s => { const c = s.chart;
     const blk = (b, i) => `<div class="rb tone-${b.tone}"${fa(i + 1)}><div class="rb-k">${b.k}</div><h3>${b.h}</h3><p>${b.p}</p></div>`;
-    return `<div class="head">${textBlock(s)}</div><div class="race">
+    return `<h2 class="sw-big bk-t">${s.heading}</h2><div class="race">
       <div class="race-c"><div class="race-top"><div class="race-k">${c.k}</div><div class="race-d"><b>${c.badge}</b><span>${c.badgeSub}</span></div></div>
         <div class="race-img"><img src="${c.img}" alt="${c.alt}" onerror="mediaMissing(this)"><div class="race-dim" style="width:${c.band[0]}%"></div><div class="race-band" style="left:${c.band[0]}%;width:${c.band[1]}%"><span>${c.bandLabel}</span></div></div>
         <p class="race-f">${c.foot}</p></div>
@@ -3301,7 +3302,7 @@ const R = {
   kpi: s => { const T = 4, X = h => h <= 3 ? h / 3 * 22 : h <= 24 ? 22 + (h - 3) / 21 * 40 : 62 + (h - 24) / 24 * 34, at = h => (.7 + X(h) / 100 * T).toFixed(2), st = s.stock;
     const ticks = s.axis.map(([h, l], i) => `<div class="kt-tk${i ? '' : ' t0'}" style="left:${X(h)}%"><span>${l}</span></div>`).join('');
     const items = s.items.map(x => `<div class="kt-it ${x.pos} s-${x.side}" style="left:${X(x.h)}%;--dl:${at(x.h)}s"><i class="kt-stem"></i><i class="kt-dot"></i><div class="kt-c"><div class="kt-k"><span>${x.n}</span>${x.k}</div><b>${x.v}</b><p>${x.t}</p></div></div>`).join('');
-    return `<div class="head row"><div>${s.stamp ? `<div class="stamp">${s.stamp}</div>` : ''}<h2 class="h">${s.heading}</h2></div>${s.lede ? `<p class="lede">${s.lede}</p>` : ''}</div>
+    return `<h2 class="sw-big bk-t">${s.heading}</h2>${s.lede ? `<p class="lede kt-lede">${s.lede}</p>` : ''}
       <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div>${ticks}${items}</div>
         <div class="kt-s" style="--dl:${(.7 + T).toFixed(2)}s"><div class="kt-k"><span>${st.n}</span>${st.k}</div>
           <div class="kt-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" class="kr-bg"/><circle cx="60" cy="60" r="50" class="kr-v" pathLength="100" style="stroke-dasharray:${st.pct} ${100 - st.pct}"/></svg><b>${st.v}</b></div>
@@ -3311,7 +3312,7 @@ const R = {
   aaa: s => { const R = 180, pt = a => [250 + R * Math.cos(a * Math.PI / 180), 250 + R * Math.sin(a * Math.PI / 180)];
     const nodes = s.items.map((x, i) => { const [x0, y0] = pt(-90 + i * 120);
       return `<g class="ao-n"${fa(i + 1)}><circle cx="${x0.toFixed(1)}" cy="${y0.toFixed(1)}" r="44" class="ao-nc"/><text x="${x0.toFixed(1)}" y="${(y0 + 17).toFixed(1)}" class="ao-a">A</text><text x="${x0.toFixed(1)}" y="${(y0 + (i ? 72 : -58)).toFixed(1)}" class="ao-w">${x.h}</text></g>`; }).join('');
-    return `<div class="ao"><div class="ao-l">${textBlock(s)}<ol class="ao-list">${s.items.map((x, i) => `<li${fa(i + 1)}><span class="ao-k">A</span><div><b>${x.h}</b><p>${x.p}</p></div></li>`).join('')}</ol></div>
+    return `<h2 class="sw-big bk-t">${s.heading}</h2><div class="ao"><div class="ao-l">${s.lede ? `<p class="lede">${s.lede}</p>` : ''}<ol class="ao-list">${s.items.map((x, i) => `<li${fa(i + 1)}><span class="ao-k">A</span><div><b>${x.h}</b><p>${x.p}</p></div></li>`).join('')}</ol></div>
       <div class="ao-r"><svg viewBox="0 0 500 500" aria-hidden="true"><circle cx="250" cy="250" r="240" class="ao-glow"/><circle cx="250" cy="250" r="${R + 34}" class="ao-ring2"/><circle cx="250" cy="250" r="${R}" class="ao-ring"/>
         <path id="ao-path" d="M250,${250 - R} A${R},${R} 0 1,1 249.9,${250 - R}" fill="none"/><circle r="6" class="ao-comet"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#ao-path"/></animateMotion></circle>${nodes}</svg>
         <div class="ao-c">${ICON('person')}<b>${s.center}</b></div></div></div>${srcLine(s)}`; },
