@@ -2005,6 +2005,46 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 #prog{height:17px}
 #prog div{box-sizing:border-box;height:100%;border-top:7px solid transparent;border-bottom:7px solid transparent;background-clip:padding-box!important;transition:filter .2s}
 #prog div:hover{filter:brightness(1.8)}
+/* Toward one cyber platform: systems on top, the platform and its three layers below */
+.pf-lede{margin:-.6rem 0 1.2rem;max-width:none;color:var(--muted);font-style:italic}
+.pf{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:0;--pf-pad:clamp(.75rem,2.6vh,1.6rem);--pf-gap:.7rem}
+.pf-top{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem}
+.pf-sys{display:flex;flex-direction:column;align-items:center}
+.pf-box{width:100%;padding:.85rem 1.2rem;border-radius:.6rem;background:linear-gradient(180deg,rgba(139,109,255,.32),rgba(90,43,224,.22));border:1px solid rgba(139,109,255,.55);text-align:center;box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.pf-box b{font-family:var(--f-display);font-weight:700;font-size:1.05rem;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+.pf-box span{display:block;margin-top:.2rem;font-size:.92rem;color:rgba(255,255,255,.75)}
+.pf-ars{display:flex;justify-content:center;gap:3.2rem;height:3.1rem}
+.pf-ar{position:relative;display:flex;align-items:center;gap:.5rem;font-size:.82rem;font-style:italic;white-space:nowrap}
+.pf-ar i{position:relative;width:2px;height:100%;background:currentColor}
+.pf-ar i::after{content:'';position:absolute;left:50%;transform:translateX(-50%);border:6px solid transparent}
+.pf-ar.down{color:#A893FF} .pf-ar.down i::after{bottom:-2px;border-top-color:currentColor;border-bottom:0}
+.pf-ar.up{color:#04F06A} .pf-ar.up i::after{top:-2px;border-bottom-color:currentColor;border-top:0}
+.pf-ar.down span{order:-1}
+.pf-plat{position:relative;display:flex;flex-direction:column;gap:var(--pf-gap);padding:2.2rem 1.1rem 1.1rem;border-radius:.9rem;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.03)}
+.pf-k{position:absolute;left:1.2rem;top:.7rem;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.pf-row{display:grid;grid-template-columns:minmax(13rem,17rem) 1fr auto;align-items:center;gap:1.4rem;padding:var(--pf-pad) 1.3rem;border-radius:.6rem}
+.pf-h b{display:block;font-family:var(--f-display);font-weight:800;font-size:1.08rem;letter-spacing:.03em;text-transform:uppercase}
+.pf-h span{display:block;font-size:.85rem;font-style:italic;opacity:.8}
+.pf-row p{margin:0;font-size:1.02rem;line-height:1.4}
+.pf-orch{background:linear-gradient(90deg,#2A1680,#1B0E5C);border:1px solid rgba(139,109,255,.5);color:#fff;box-shadow:0 0 40px rgba(90,43,224,.35)}
+.pf-pills{display:flex;gap:.6rem}
+.pf-pill{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.45rem 1rem;border-radius:999px;background:#04F06A;color:#07040F;font-family:var(--f-mono);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;line-height:1.25}
+.pf-pill small{font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:.95em}
+.pf-pill.alt{background:transparent;color:#04F06A;border:1.5px solid #04F06A;max-width:13rem}
+.pf-ag{grid-template-columns:minmax(13rem,17rem) 1fr;background:#04F06A;color:#07040F;box-shadow:0 0 40px rgba(4,240,106,.3)}
+.pf-ag .pf-h span{opacity:.75}
+.pf-chips{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.6rem}
+.pf-chip{position:relative;padding:.65rem .4rem;border-radius:.45rem;background:#fff;color:#1B0E5C;font-weight:700;font-size:.95rem;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.18)}
+.pf-ag{position:relative;z-index:2;align-items:end}
+.pf-chip::after{content:'';position:absolute;left:50%;top:100%;width:2px;height:calc(var(--pf-pad) + var(--pf-gap) - 6px);background:#B8B0D8;transform:translateX(-50%)}
+.pf-chip::before{content:'';position:absolute;left:50%;top:calc(100% + var(--pf-pad) + var(--pf-gap) - 7px);transform:translateX(-50%);border:6px solid transparent;border-top-color:#B8B0D8;border-bottom:0}
+.pf-gr{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff}
+.pf-gr p{color:rgba(255,255,255,.85)}
+.pf-lake{padding:.55rem .9rem;border-radius:.45rem;border:1.5px dashed rgba(255,255,255,.55);text-align:center;white-space:nowrap}
+.pf-lake b{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+.pf-lake span{display:block;font-size:.8rem;font-style:italic;opacity:.75}
+@media (max-height:820px){.pf-ars{height:2.4rem}.pf-plat{padding-top:1.9rem}.pf-row p{font-size:.94rem}}
+@media(max-width:760px){.pf-top{grid-template-columns:1fr}.pf-row,.pf-ag{grid-template-columns:1fr}.pf-chips{grid-template-columns:repeat(3,1fr)}.pf-pills{flex-wrap:wrap}}
 </style>
 </head>
 <body>
@@ -2069,7 +2109,7 @@ const SCENES = [
 
 // ─── PROLOGUE ─────────────────────────────────────────────────────────────
 { ch: 'p', type: 'title', title: 'Title', noCh: true,
-  ver: 'Version of 16 October 2026 · 43 slides',
+  ver: 'Version of 16 October 2026 · 44 slides',
   kicker: 'Out of the Sandbox',
   heading: `How is the threat changing with AI, and what can we do?`,
   sub: `An awareness session, from one real case to your own reflexes.`,
@@ -2479,6 +2519,20 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   vo: `And to hold this baseline at the speed of the threat, we need AI for cyber. Three As. Anticipate: close exposures before they are exploited. Automate: from risk management platforms to security operations centres, with no break between teams. Act: at machine speed. And always, under human control.`,
   src: `Photos: NASA, Taylor Vick and Henry Lai on Unsplash` },
 
+
+{ ch: 'c4', type: 'platform', title: 'Centralised cyber platform',
+  heading: 'Toward one <em>centralized cyber platform</em>',
+  lede: 'With one context to host many agents',
+  top: [
+    { k: 'Cyber systems & tools', s: 'EDR, FW, Proxy, WAF, IAM…', down: 'data & events (API/MCP…)', up: 'deterministic orders' },
+    { k: 'IT systems & business apps', s: 'CMDB, AD/Entra, Data Lake…' },
+  ],
+  box: 'Cyber AI platform',
+  orch: { k: 'AI cyber orchestrator', s: '& integration layer', t: 'Assigns the work, enforces decision rights, escalates', pills: ['Humans decide<small>above threshold</small>', 'Sandbox, kill switch & rollback'] },
+  agents: { k: 'Specialized agents', s: 'One or many per domain, that act', list: ['GRC', 'AppSec', 'Data', 'IAM', 'SOC', 'Many more…'] },
+  graph: { k: 'Cyber security graph', t: 'Shared context: assets, identities, exposures and relationships', lake: 'Cyber data lake', lakeS: 'long-term memory' },
+  vo: `In practice, this leads to one centralized cyber platform, with one context to host many agents. At the top, the cyber systems and tools, IT and business applications: they send their data and events, and receive deterministic orders. At the core, an orchestrator assigns the work, enforces decision rights and escalates: above a threshold, humans decide, with a sandbox, a kill switch and rollback. It drives specialized agents, one or many per domain. And they all share the same context: a security graph linking assets, identities, exposures and relationships, backed by a cyber data lake as long-term memory.`,
+  notes: `One click per layer: the IT and security systems, the orchestrator, the agents, then the shared security graph.` },
 // ─── CHAPTER 8 · WHAT WORKS ───────────────────────────────────────────────
 { ch: 'end', type: 'finale', title: 'Questions',
   bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
@@ -3189,6 +3243,16 @@ const R = {
     const items = s.items.map((x, i) => `<div class="kt-it ${i % 2 ? 'down' : 'up'} s-c${x.stock ? ' stock' : ''}" style="left:${X(i)}%;--dl:${at(i)}s"><i class="kt-stem"></i><i class="kt-dot"></i><div class="kt-c"><div class="kt-k"><span>${x.n}</span>${x.k}</div><b>${x.v}</b><p>${x.t}</p></div></div>`).join('');
     return `<h2 class="sw-big bk-t">${s.heading}</h2>${s.lede ? `<p class="lede kt-lede">${s.lede}</p>` : ''}
       <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div><div class="kt-tk t0" style="left:0"><span>${s.start}</span></div>${items}</div></div>${s.foot ? `<p class="kt-foot" style="--fd:${(.7 + T + .3).toFixed(2)}s">${s.foot}</p>` : ''}${srcLine(s)}`; },
+
+  // One platform, one context, many agents: the layers appear one click at a time
+  platform: s => { const ar = (cls, label) => `<div class="pf-ar ${cls}"><i></i>${label ? `<span>${label}</span>` : ''}</div>`;
+    return `<h2 class="sw-big bk-t">${s.heading}</h2><p class="lede pf-lede">${s.lede}</p><div class="pf">
+      <div class="pf-top"${fa(0)}>${s.top.map(t => `<div class="pf-sys"><div class="pf-box"><b>${t.k}</b><span>${t.s}</span></div><div class="pf-ars">${ar('down', t.down)}${ar('up', t.up)}</div></div>`).join('')}</div>
+      <div class="pf-plat"><div class="pf-k">${s.box}</div>
+        <div class="pf-row pf-orch"${fa(1)}><div class="pf-h"><b>${s.orch.k}</b><span>${s.orch.s}</span></div><p>${s.orch.t}</p><div class="pf-pills">${s.orch.pills.map((p, i) => `<span class="pf-pill${i ? ' alt' : ''}">${p}</span>`).join('')}</div></div>
+        <div class="pf-row pf-ag"${fa(2)}><div class="pf-h"><b>${s.agents.k}</b><span>${s.agents.s}</span></div><div class="pf-chips">${s.agents.list.map(c => `<span class="pf-chip">${c}</span>`).join('')}</div></div>
+        <div class="pf-row pf-gr"${fa(3)}><div class="pf-h"><b>${s.graph.k}</b></div><p>${s.graph.t}</p><div class="pf-lake"><b>${s.graph.lake}</b><span>${s.graph.lakeS}</span></div></div>
+      </div></div>${srcLine(s)}`; },
 
   // A triptych of photo panels: each lights up with its letter on its click; the human band last
   aaa: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="tri">${s.items.map((x, i) => `<div class="tri-p" data-hl="${i + 1}"><div class="tri-ph" style="background-image:url('${x.photo}')"></div><div class="tri-n">0${i + 1}</div><div class="tri-a" aria-hidden="true">${x.h[0]}</div><div class="tri-w">${x.h}</div><p>${x.p}</p></div>`).join('')}</div>
