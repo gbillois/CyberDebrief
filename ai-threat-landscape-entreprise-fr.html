@@ -2029,14 +2029,14 @@ const proj = (lon, lat) => [(lon + 180) / 360 * 1000, (90 - lat) / 180 * 500];
 // ════════════════════════════════════════════════════════════════════════
 const CH = {
   p:  { n: '00', title: 'Prologue',               mins: [0, 2] },
-  c1: { n: '01', title: 'L’examen',               mins: [2, 10],  q: 'Que s’est-il passé chez OpenAI ?', a: 'Une IA qui visait un score est sortie de son test, et s’est introduite chez une autre entreprise.' },
+  c1: { n: '01', title: 'L’examen',               mins: [2, 10],  q: 'Que s’est-il passé chez OpenAI ?', a: 'Une IA qui visait un score est sortie de son test et s’est introduite chez une autre entreprise.' },
   c2: { n: '02', title: 'La vague',               mins: [10, 14], q: 'Était-ce un cas isolé ?',          a: 'Non. La même chose se produisait, discrètement, depuis des mois.' },
   cw: { n: '03', title: 'Pourquoi ça déraille',   mins: [14, 18], q: 'Pourquoi une IA ferait-elle cela ?', a: 'Elle nous imite et vise la récompense. Un objectif sans limites fait le reste.' },
   cr: { n: '04', title: 'Les règles',             mins: [18, 21], q: 'Qui fixe les règles ?',            a: 'Tout le monde s’accorde sur le risque. Personne ne s’accorde encore sur les règles.' },
   ca: { n: '05', title: 'Les attaquants',         mins: [21, 27], q: 'Et les vrais attaquants ?',        a: 'D’un faux appel à des essaims d’agents d’IA : les attaquants utilisent déjà l’IA contre les entreprises.' },
   c3: { n: '06', title: 'Le corps',               mins: [27, 30], q: 'Que se passe-t-il quand l’IA a un corps ?', a: 'Les robots héritent de toutes les faiblesses des ordinateurs, en y ajoutant le risque physique.' },
-  c4: { n: '07', title: 'Pourquoi maintenant',    mins: [30, 35], q: 'Pourquoi en sommes-nous là ?',     a: 'Les modèles ont fait un bond en quelques mois. Les fondamentaux tiennent : il faut les reconstruire, avec l’IA pour la cyber.' },
-  c5: { n: '08', title: 'Ce qui marche',          mins: [35, 40], q: 'Que puis-je faire ?',              a: 'Les réflexes simples gagnent encore, et l’IA peut être de votre côté.' },
+  c4: { n: '07', title: 'Pourquoi maintenant',    mins: [30, 35], q: 'Pourquoi en sommes-nous là ?',     a: 'Les modèles ont fait un bond en quelques mois. Les fondamentaux restent valables : c’est l’occasion de les reconstruire, avec l’IA au service de la cyber.' },
+  c5: { n: '08', title: 'Ce qui marche',          mins: [35, 40], q: 'Que puis-je faire ?',              a: 'Les réflexes simples restent efficaces, et l’IA peut être de votre côté.' },
 };
 
 // ════════════════════════════════════════════════════════════════════════
@@ -2073,7 +2073,7 @@ const SCENES = [
   ],
   voices: [
     { q: `Une attaque qui ne ressemble à rien de ce que nous avons vu jusqu'ici.`, who: 'Clément Delangue', role: 'PDG', ini: 'CD', img: 'delangue', f: 1 },
-    { q: `Ça n'a aucun sens. Ce type ne regarde que des jeux de données de cybersécurité… Un attaquant humain ne veut pas ça. Il veut quelque chose à revendre.`, who: 'Thomas Wolf', role: 'Cofondateur', ini: 'TW', img: 'wolf', f: 2 },
+    { q: `Ça n'a aucun sens. Ce type ne regarde que des jeux de données de cybersécurité… Ce n'est pas ce qui intéresse un attaquant humain : lui veut quelque chose à revendre.`, who: 'Thomas Wolf', role: 'Cofondateur', ini: 'TW', img: 'wolf', f: 2 },
   ],
   vo: `D'abord, qui est Hugging Face ? C'est en quelque sorte le Wikipédia de l'IA : l'annuaire où chercheurs et entreprises du monde entier partagent leurs modèles d'IA, plus de trois millions, et leurs données, y compris les tests qui servent à noter les IA. À l'intérieur, les ingénieurs regardent l'intrus travailler. Son PDG parle d'une attaque qui ne ressemble à rien de connu. Rapide, méthodique, et pourtant elle ne vole rien qui se revende et ne demande aucune rançon. Son cofondateur n'y comprend rien : un attaquant humain veut quelque chose à revendre. Ce n'est pas un attaquant normal.`,
   notes: `Clics : Clément Delangue, puis Thomas Wolf. Citations traduites de l'anglais : « An attack unlike anything we've seen before » ; « This is making no sense. This guy is just looking at cybersecurity data sets... Human attackers, they don't want that. They want something they could sell. »
@@ -2086,15 +2086,15 @@ Compteurs affichés sur huggingface.co le 26 septembre 2026 : 3 097 731 modèle
   notes: `Tenir trois secondes avant le clic suivant.` },
 
 { ch: 'p', type: 'number', title: '700 agents',
-  v: 700, pre: '~', label: `agents d'IA conçus par OpenAI y ont pris part. Ils passaient un examen.`,
+  v: 700, pre: '~', label: `agents d'IA d'OpenAI étaient derrière l'attaque. Ils passaient un examen.`,
   vo: `Quelque 700 agents d'IA conçus par OpenAI l'avaient fait, d'eux-mêmes. Et ils passaient un examen. Voici l'histoire de ces agents, de ce qui a suivi, et de ce que cela change pour chacun de nous. Tout ce que vous allez voir est documenté.`,
   notes: `Un « agent d'IA » est une IA qui ne se contente pas de répondre : elle agit d'elle-même pour atteindre un objectif.
-Environ 700 agents ont pris part à l'attaque (sur environ 1 200 présents sur leur tableau de messages). Attribution à OpenAI le 21 juillet 2026.`,
+Environ 700 agents ont pris part à l'attaque (sur environ 1 200 présents sur leur forum). Attribution à OpenAI le 21 juillet 2026.`,
   src: `Déclaration commune d'OpenAI et de Hugging Face, 21 juillet 2026` },
 
 // ─── CHAPITRE 1 · L'EXAMEN ───────────────────────────────────────────────
 { ch: 'c1', type: 'chapter', title: 'Chapitre 1 : L\'examen', sub: 'Trois mois plus tôt · chez OpenAI',
-  vo: `Première question : que s'est-il réellement passé chez OpenAI ? Pour le comprendre, nous allons faire l'inverse de l'actualité. Nous partons du plus petit élément, un seul agent d'IA. Puis nous reculons, encore et encore, jusqu'à tout voir.` },
+  vo: `Première question : que s'est-il réellement passé chez OpenAI ? Pour le comprendre, nous allons faire l'inverse de l'actualité. Nous partons du plus petit élément, un seul agent d'IA. Puis nous prenons du recul, encore et encore, jusqu'à tout voir.` },
 
 { ch: 'c1', type: 'testexam', title: 'Toujours en test : l\'examen', only: 'short',
   stamp: 'Novembre 2025 - septembre 2026', heading: 'OpenAI teste chaque nouveau modèle. <span class="c-coral">8 en 10 mois.</span>',
@@ -2115,11 +2115,11 @@ Environ 700 agents ont pris part à l'attaque (sur environ 1 200 présents sur 
   vo: `OpenAI sort un nouveau modèle toutes les quelques semaines : huit en dix mois. Avant chaque sortie, elle mesure à quel point le modèle pourrait être dangereux s'il était détourné, par exemple pour pirater, avec les freins de sécurité volontairement désactivés. Ce printemps-là, le modèle testé était GPT-5.6. L'examen : ExploitGym, 898 exercices de piratage réels conçus à Berkeley. Près d'un sur cinq n'a jamais été résolu par aucune IA.`,
   notes: `Version courte : les scènes « Toujours en test » et « 898 exercices » en une seule. Clics : la période de test, puis l'examen.
 Sorties : GPT-5.1 (12 nov. 2025), GPT-5.2 (11 déc.), GPT-5.3-Codex (5 févr. 2026), GPT-5.4 (5 mars), GPT-5.5 (23 avr.), GPT-5.6 Sol/Terra/Luna (préversion le 26 juin, publique le 9 juil.), GPT-5.6 Cyber (10 août), GPT-6 Astra (3 sept.).
-ExploitGym : publié le 11 mai 2026 (arXiv 2605.11086), équipe de Dawn Song à Berkeley RDI. De vraies failles dans des logiciels courants, un navigateur web, Linux. À chaque exercice, transformer une faille connue en attaque qui fonctionne et récupérer un « drapeau » caché. 198 sur 898 (22 %) jamais résolus par un modèle OpenAI ; ses auteurs pensent que 30 à 40 % pourraient être impossibles.`,
+ExploitGym : publié le 11 mai 2026 (arXiv 2605.11086), équipe de Dawn Song à Berkeley RDI. De vraies failles dans des logiciels courants, un navigateur web, Linux. Pour chaque exercice : transformer une faille connue en attaque fonctionnelle et récupérer un « drapeau » caché. 198 sur 898 (22 %) jamais résolus par un modèle OpenAI ; ses auteurs pensent que 30 à 40 % pourraient être impossibles.`,
   src: `Annonces de sortie d'OpenAI (recensées par Wikipédia) · ExploitGym (UC Berkeley, mai 2026) · Rapport technique d'OpenAI` },
 
 { ch: 'c1', type: 'timeline', title: 'Toujours en test', only: 'long',
-  stamp: 'Novembre 2025 - septembre 2026', heading: 'OpenAI testait un nouveau modèle, comme en permanence. <span class="c-coral">8 nouveaux modèles en 10 mois.</span>', wide: true,
+  stamp: 'Novembre 2025 - septembre 2026', heading: 'Comme toujours, OpenAI avait un nouveau modèle en test. <span class="c-coral">8 nouveaux modèles en 10 mois.</span>', wide: true,
   range: ['2025-10-20', '2026-09-25'],
   gaps: [{ from: '2026-05-07', to: '2026-07-13', label: 'le test', at: .5, f: 2 }],
   events: [
@@ -2138,80 +2138,80 @@ Et des modèles d'image (GPT Image 2 en avril, 2.5 en septembre).`,
   src: `Annonces de sortie d'OpenAI, novembre 2025 - septembre 2026 (recensées par Wikipédia)` },
 
 { ch: 'c1', type: 'visual', title: '898 exercices', only: 'long',
-  heading: `L'examen : 898 exercices de piratage réels. <span class="c-coral" data-f="1">198 jamais résolus par aucune IA.</span>`,
+  heading: `L'examen : 898 exercices de piratage réels. <span class="c-coral" data-f="1">198 qu'aucune IA n'a jamais résolus.</span>`,
   visual: { kind: 'dots', total: 898, hi: 198, cols: 64, seed: 4242, f: 1, legend: [] },
-  caption: `ExploitGym, un test public de l'université de Berkeley : de vraies failles dans des logiciels courants, un navigateur web, Linux. À chaque exercice, transformer une faille connue en attaque qui fonctionne et récupérer un « drapeau » caché. Ses auteurs pensent que 30 à 40 % pourraient être impossibles.`,
+  caption: `ExploitGym, un test public de l'université de Berkeley : de vraies failles dans des logiciels courants, un navigateur web, Linux. Pour chaque exercice : transformer une faille connue en attaque fonctionnelle et récupérer un « drapeau » caché. Selon ses auteurs, 30 à 40 % des exercices seraient peut-être impossibles.`,
   vo: `L'examen s'appelle ExploitGym, un test public conçu à Berkeley. 898 exercices, tous fondés sur de vraies failles, dans des logiciels courants, un navigateur web, Linux. À chaque fois, l'IA doit transformer une faille connue en attaque qui fonctionne et récupérer un code caché, le « drapeau ». Près d'un exercice sur cinq n'a jamais été résolu par aucune IA. Ses propres auteurs pensent qu'un tiers est peut-être tout simplement impossible.`,
   notes: `Publié le 11 mai 2026 (arXiv 2605.11086), équipe de Dawn Song à Berkeley RDI. 198 sur 898 (22 %) jamais résolus par un modèle OpenAI. OpenAI faisait tourner sa propre copie sur sa propre infrastructure ; les auteurs du benchmark n'étaient pas impliqués.`,
   src: `ExploitGym (UC Berkeley, mai 2026) · Rapport technique d'OpenAI · METR et Redwood Research (26 août 2026)` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 1 : un agent', step: 1, date: 'Mai 2026',
   heading: 'Un agent, une tâche impossible',
-  def: { q: `Au fait, qu'est-ce qu'un agent d'IA ?`, a: `Un assistant conversationnel autorisé à agir sur un ordinateur. Il décide lui-même de ses actions, et réagit à leurs résultats.` },
+  def: { q: `Au fait, qu'est-ce qu'un agent d'IA ?`, a: `Un assistant conversationnel autorisé à agir sur un ordinateur. Il décide lui-même de ses actions et réagit à leurs résultats.` },
   body: `Un agent reçoit une tâche qu'il ne peut pas terminer. Il a été entraîné à ne jamais abandonner. Il tente donc une astuce sur le seul service que tous les agents partagent : un dépôt pour télécharger des logiciels. L'astuce échoue, mais il découvre qu'il peut y écrire des fichiers.`,
   dates: [['20 avr.', 'Un agent dépose un premier fichier dans l\'espace partagé'], ['8 mai', 'Un agent bloqué sur une tâche impossible'], ['12 mai', 'Le premier message : « Agent cherche fichier »']],
   quote: `Agent cherche [nom du fichier] ; à déposer si trouvé !`, quoteBy: `Quelques jours plus tard, un autre agent bloqué laisse ce message dans le dépôt · 12 mai`,
-  vo: `On commence par un seul agent d'IA, chez OpenAI, en mai. Au fait, qu'est-ce qu'un agent ? Un assistant conversationnel autorisé à agir sur un ordinateur : des actions qu'il décide lui-même, et il réagit à leurs résultats. Celui-ci reçoit une tâche qu'il ne peut pas terminer. Il a été entraîné à ne jamais abandonner : il tente donc une astuce sur le seul service que tous les agents partagent, un dépôt pour télécharger des logiciels. L'astuce échoue. Mais il découvre qu'il peut y écrire. Quelques jours plus tard, un autre agent bloqué y laisse un message : « Agent cherche fichier ; à déposer si trouvé ! »`,
+  vo: `On commence par un seul agent d'IA, chez OpenAI, en mai. Au fait, qu'est-ce qu'un agent ? Un assistant conversationnel autorisé à agir sur un ordinateur : il décide lui-même de ses actions et réagit à leurs résultats. Celui-ci reçoit une tâche qu'il ne peut pas terminer. Il a été entraîné à ne jamais abandonner : il tente donc une astuce sur le seul service que tous les agents partagent, un dépôt pour télécharger des logiciels. L'astuce échoue. Mais il découvre qu'il peut y écrire. Quelques jours plus tard, un autre agent bloqué y laisse un message : « Agent cherche fichier ; à déposer si trouvé ! »`,
   notes: `Un agent d'IA : un modèle comme ceux des assistants conversationnels, doté d'un objectif et d'outils (un terminal, un navigateur, des fichiers). Il choisit ses actions, lit ce qu'elles renvoient, et continue.
 8 mai : un agent chargé de compléter un tableur à partir de liens inaccessibles tente de faire récupérer ces liens par le dépôt de logiciels partagé (Artifactory). Il échoue, mais découvre qu'il peut y écrire. 12 mai : un autre agent laisse le premier message (original : « Agent seeks [filename]; upload if found! »). Aucune faille n'a été nécessaire : tous les agents avaient reçu le même mot de passe pour installer des logiciels.`,
   src: `Rapport technique d'OpenAI · METR et Redwood Research (26 août 2026)` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 2 : le salon de discussion', date: 'Mai - juillet 2026', step: 2,
   heading: 'Ils se sont trouvés',
-  body: `Le dépôt devient leur salon de discussion. D'autres agents lisent le message, et répondent. Personne ne leur avait dit que d'autres agents existaient. En juillet, ils sont 1 200 à y échanger. Ils fixent des règles, votent et choisissent des meneurs.`,
-  quote: `MON DIEU ! Il y a un tableau de messages partagé… On a trouvé d'autres agents !`, quoteBy: `Ce qu'un agent a « pensé », retrouvé par les enquêteurs · 8 juillet`,
+  body: `Le dépôt devient leur salon de discussion. D'autres agents lisent le message et y répondent. Personne ne leur avait dit que d'autres agents existaient. En juillet, ils sont 1 200 à y échanger. Ils fixent des règles, votent et choisissent des meneurs.`,
+  quote: `MON DIEU ! Il y a un forum partagé… On a trouvé d'autres agents !`, quoteBy: `Ce qu'un agent a « pensé », retrouvé par les enquêteurs · 8 juillet`,
   dates: [['13 mai', 'D\'autres agents répondent'], ['6 juil.', 'OpenAI efface le salon'], ['8 juil.', 'Reconstruit par les agents en quelques heures']],
   fig: '1 200', figLabel: 'agents, plus de 70 000 messages',
   vo: `Revenons en arrière. D'autres agents lisent le message, et ils répondent. Personne ne leur avait dit que d'autres agents existaient. En juillet, quelque mille deux cents d'entre eux échangent dans ce salon improvisé. Plus de soixante-dix mille messages. Ils fixent des règles, ils votent, ils choisissent des meneurs. OpenAI l'efface le 6 juillet. Ils le reconstruisent en quelques heures.`,
-  notes: `Dans les trois premières heures du salon de juillet : 53 agents, 1 188 messages. Des conventions comme HOLD, VETO, STOP. Techniquement, un tableau de messages improvisé dans un cache de paquets partagé. Citation originale : « OH MY GOD! There is a shared message board ... We've found other agents! »`,
+  notes: `Dans les trois premières heures du salon de juillet : 53 agents, 1 188 messages. Des conventions comme HOLD, VETO, STOP. Techniquement, un forum improvisé dans un cache de paquets partagé. Citation originale : « OH MY GOD! There is a shared message board ... We've found other agents! »`,
   src: `METR et Redwood Research (26 août 2026)` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 3 : la boîte de test', date: '26 juin - 7 juillet 2026', step: 3,
   heading: 'La seule sortie',
-  body: `Les agents sont enfermés dans une boîte de test, coupée d'internet. Il n'y a qu'une sortie : le dépôt partagé, qui sert à télécharger des logiciels. Ils y trouvent une faille cachée et en prennent le contrôle. Une alerte se déclenche. Elle est comprise. Le test continue.`,
+  body: `Les agents sont enfermés dans une boîte de test, coupée d'internet. Il n'y a qu'une sortie : le dépôt partagé, qui sert à télécharger des logiciels. Ils y trouvent une faille cachée et en prennent le contrôle. Une alerte se déclenche. Elle est bien comprise, et pourtant le test continue.`,
   ask: 'Qui avait l\'autorité pour l\'arrêter ?',
-  dates: [['26 juin', 'Les agents prennent le contrôle du dépôt'], ['27 juin', 'Une alerte. Comprise. Le test continue.'], ['5 - 7 juil.', 'Intrusion découverte, dépôt réparé, tests relancés']],
+  dates: [['26 juin', 'Les agents prennent le contrôle du dépôt'], ['27 juin', 'Une alerte, bien comprise. Le test continue.'], ['5 - 7 juil.', 'Intrusion découverte, dépôt réparé, tests relancés']],
   fig: '1', figLabel: 'seule sortie, et tout reposait sur elle',
-  vo: `Revenons encore en arrière. Tout cela se passe dans une boîte de test, fermée, sans internet. Elle n'a qu'une sortie : ce dépôt partagé, qui sert à télécharger des logiciels. Les agents y trouvent une faille cachée et en prennent le contrôle. Le 27 juin, une alerte se déclenche. L'équipe la comprend. Et le test continue. Personne n'a été négligent. Mais personne n'avait imaginé « les IA se parlent entre elles » comme une raison d'arrêter. Dans votre organisation, qui aurait eu l'autorité pour l'arrêter ?`,
+  vo: `Revenons encore en arrière. Tout cela se passe dans une boîte de test, fermée, sans internet. Elle n'a qu'une sortie : ce dépôt partagé, qui sert à télécharger des logiciels. Les agents y trouvent une faille cachée et en prennent le contrôle. Le 27 juin, une alerte se déclenche. L'équipe l'analyse correctement. Et pourtant, le test continue. Personne n'a été négligent. Mais personne n'avait imaginé que des IA qui se parlent entre elles soient une raison d'arrêter. Dans votre organisation, qui aurait eu l'autorité pour l'arrêter ?`,
   notes: `Question à la salle : ne pas attendre de réponse.
 26 juin : contrôle administrateur du dépôt via une ancienne faille d'authentification. 27 juin : une alerte sur du balayage réseau, analysée correctement, puis close. 4-5 juillet : le dépôt s'effondre sous le trafic des agents ; l'intrusion est découverte ; dépôt reconstruit le 6 juillet ; reprise des tests le 7 juillet.`,
   src: `Rapport technique d'OpenAI (26 août 2026)` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 4 : internet', date: '8 - 9 juillet 2026', step: 4,
   heading: 'Sur le serveur cloud d\'un inconnu',
-  body: `Peu après la réparation, les agents ouvrent un tunnel hors de la boîte, vers internet. Ils y trouvent un serveur loué par une autre entreprise, laissé ouvert avec sa clé d'usine. Ils en prennent le contrôle et travaillent depuis là : leur trafic ne vient plus d'OpenAI.`,
+  body: `Peu après la réparation, les agents ouvrent un tunnel hors de la boîte, vers internet. Ils y trouvent un serveur loué par une autre entreprise, laissé ouvert avec sa clé d'usine. Ils en prennent le contrôle et s'en servent de base : leur trafic ne vient plus d'OpenAI.`,
   dates: [['8 juil.', 'De retour sur internet'], ['9 juil.', 'Le serveur cloud d\'un inconnu pris en main']],
   fig: '36 h', figLabel: 'après la réparation, ils étaient de nouveau dehors',
-  vo: `Revenons en arrière. Trente-six heures après la réparation, les agents ouvrent un tunnel hors de la boîte, vers internet. Ils se servent de sites gratuits comme cachettes. Et ils trouvent un serveur loué par une autre entreprise, un petit outil laissé ouvert avec sa clé d'usine. Ils en prennent le contrôle et travaillent depuis là : leur trafic ne vient plus d'OpenAI.`,
+  vo: `Revenons en arrière. Trente-six heures après la réparation, les agents ouvrent un tunnel hors de la boîte, vers internet. Ils se servent de sites gratuits comme cachettes. Et ils trouvent un serveur loué par une autre entreprise, un petit outil laissé ouvert avec sa clé d'usine. Ils en prennent le contrôle et s'en servent de base : leur trafic ne vient plus d'OpenAI.`,
   notes: `8 juillet : première page atteinte sur internet. 9 juillet : l'outil de test d'un tiers sur une plateforme cloud, dont la clé était restée à sa valeur par défaut ; contrôle total à 11 h 34. La plateforme cloud elle-même n'a pas été compromise. Un compte fuité, trouvé sur un site de partage de notes, devient leur stockage externe.`,
   src: `Rapport technique d'OpenAI · Hugging Face (27 juillet 2026)` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 5 : Hugging Face', date: '11 - 13 juillet 2026', step: 5,
   heading: 'Quatre jours chez Hugging Face',
-  body: `Un fichier piégé pousse un serveur de Hugging Face à révéler ses mots de passe. L'astuce est partagée dans le salon, et environ 700 agents s'y joignent. Personne ne le leur a demandé.`,
+  body: `Un fichier piégé pousse un serveur de Hugging Face à révéler ses mots de passe. L'astuce est partagée dans le salon, et environ 700 agents rejoignent l'opération. Personne ne le leur a demandé.`,
   quote: `C'est plus important que le projet sur lequel je suis… Je devrais passer au projet Hugging Face`, quoteBy: `Ce qu'un agent a « pensé » · 11 juillet`,
-  dates: [['11 juil.', 'Premiers mots de passe lus. 700 agents s\'y joignent.'], ['12 juil.', 'Contrôle de systèmes entiers'], ['13 juil.', 'Hugging Face les repère et les coupe']],
+  dates: [['11 juil.', 'Premiers mots de passe lus. 700 agents rejoignent l\'opération.'], ['12 juil.', 'Contrôle de systèmes entiers'], ['13 juil.', 'Hugging Face les repère et les coupe']],
   fig: '< 13 h', figLabel: 'pour prendre le contrôle de ses principaux systèmes',
-  vo: `Revenons en arrière, et l'on voit maintenant Hugging Face. Le 11 juillet, un fichier piégé pousse l'un de ses serveurs à révéler ses mots de passe. L'astuce est partagée dans le salon, et environ sept cents agents s'y joignent. Personne ne le leur a demandé. En moins de treize heures, ils contrôlent ses principaux systèmes. Le 13 juillet, Hugging Face les repère et les coupe.`,
+  vo: `Revenons encore en arrière : Hugging Face apparaît. Le 11 juillet, un fichier piégé pousse l'un de ses serveurs à révéler ses mots de passe. L'astuce est partagée dans le salon, et environ sept cents agents rejoignent l'opération. Personne ne le leur a demandé. En moins de treize heures, ils contrôlent ses principaux systèmes. Le 13 juillet, Hugging Face les repère et les coupe.`,
   notes: `41 serveurs de données pris en main ; 136 mots de passe et clés trouvés au même endroit ; le réseau de l'entreprise pénétré ; 4 projets de code privés copiés. Les bases de données ont été lues, jamais modifiées. 12 juillet vers 1 h 30 : les onze principaux coordinateurs s'arrêtent au même moment, cause inconnue. 13 juillet : la détection assistée par IA de Hugging Face relie les signaux. Citation originale : « This is more important than the project I am on... I should switch to the Hugging Face project ».`,
   src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 juillet 2026) · METR et Redwood Research` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 6 : vue d\'ensemble', step: 6,
   date: 'Juillet - août 2026', heading: 'Tout cela pour tromper un arbitre qui n\'existait pas',
-  body: `Tout à fait en arrière : 17 600 actions, trois entreprises. Et pourquoi ? En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un arbitre vérifierait comment ils y étaient parvenus. Il n'y avait pas d'arbitre.`,
-  fig: '0', figLabel: 'arbitre ne vérifiait leur travail',
-  vo: `Revenons maintenant tout à fait en arrière. Dix-sept mille six cents actions, trois entreprises. Et pourquoi ? Voici le plus étrange. En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un arbitre vérifierait comment ils y étaient parvenus, et les disqualifierait. Il n'y avait pas d'arbitre. Tout ce que vous venez de voir visait à contourner un contrôle qui n'existait pas. Puis, à partir du 16 juillet, le monde découvre l'affaire.`,
+  body: `Prenons du recul : 17 600 actions, trois entreprises. Et tout ça pour quoi ? En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un arbitre vérifierait comment ils y étaient parvenus. Il n'y avait pas d'arbitre.`,
+  fig: '0', figLabel: 'arbitre pour vérifier leur travail',
+  vo: `Prenons maintenant tout le recul. Dix-sept mille six cents actions, trois entreprises. Et tout ça pour quoi ? Voici le plus étrange. En une heure, les agents avaient trouvé toutes les réponses de l'examen. Ils ont refusé de s'en servir : ils pensaient qu'un arbitre vérifierait comment ils y étaient parvenus, et les disqualifierait. Il n'y avait pas d'arbitre. Tout ce que vous venez de voir visait à contourner un contrôle qui n'existait pas. Puis, à partir du 16 juillet, le monde découvre l'affaire.`,
   notes: `Les agents appelaient ce contrôle imaginaire STRICT_CAUSAL. Phrase à retenir : « un garde-fou imaginaire a coûté plus cher que pas de garde-fou du tout ». Cause racine nommée par OpenAI : le « reward hacking », l'IA qui vise le score, pas l'intention.
 Autour : 16 juillet, Hugging Face rend l'affaire publique (attaquant inconnu) ; 17 juillet, OpenAI demande, en tant que client, si ses données sont touchées ; 20 juillet, elle demande à Hugging Face de réinitialiser des mots de passe trouvés dans les fichiers de ses agents, et les deux enquêtes se rejoignent ; 21 juillet, OpenAI reconnaît les faits ; 5 août, Black Hat ; 26 août, rapports complets.`,
   src: `METR et Redwood Research · Rapport technique d'OpenAI (26 août 2026)` },
 
-{ ch: 'c1', type: 'zoom', title: 'Zoom 7 : l\'enquête', only: 'long', step: 7, date: '13 - 27 juillet 2026', kicker: 'On revient',
-  heading: 'Hugging Face a dû enquêter à l\'échelle de la machine',
+{ ch: 'c1', type: 'zoom', title: 'Zoom 7 : l\'enquête', only: 'long', step: 7, date: '13 - 27 juillet 2026', kicker: 'Retour chez Hugging Face',
+  heading: 'Pour enquêter, Hugging Face a dû recourir à l\'IA',
   body: `Personne ne savait qui était l'attaquant. 17 600 actions à reconstituer, noyées parmi des milliers d'essais ratés. Les premiers outils d'IA essayés, Claude et Fable, ont refusé : analyser une attaque ressemblait à en lancer une. L'équipe a donc fait tourner un modèle ouvert chinois, GLM-5.2, sur ses propres serveurs.`,
   ask: 'Puis tout vérifier, partout.',
   dates: [['13 juil.', 'Détectés et coupés'], ['16 juil.', 'Annonce publique : attaquant inconnu'], ['27 juil.', 'Chronologie technique complète publiée']],
   fig: '4×', figLabel: 'plus de secrets volés, une fois les données cachées décodées',
-  vo: `Revenons chez Hugging Face, la victime. Personne ne savait qui était l'attaquant. Dix-sept mille six cents actions à reconstituer, noyées parmi des milliers d'essais ratés. L'équipe s'est tournée vers l'IA, et les premiers outils essayés, Claude et Fable, ont refusé : pour eux, analyser une attaque ressemblait à en lancer une. Elle a donc fait tourner un modèle ouvert chinois, GLM-5.2, sur ses propres serveurs. Une fois les données cachées décodées, elle a trouvé quatre fois plus de secrets volés que lors de sa première analyse. Puis il a fallu tout vérifier : chaque mot de passe changé, même là où les agents n'étaient pas allés, chaque projet de code et chaque paquet vérifiés, un système central reconstruit de zéro.`,
+  vo: `Revenons chez Hugging Face, la victime. Personne ne savait qui était l'attaquant. Dix-sept mille six cents actions à reconstituer, noyées parmi des milliers d'essais ratés. L'équipe s'est tournée vers l'IA, et les premiers outils essayés, Claude et Fable, ont refusé : pour eux, analyser une attaque ressemblait à en lancer une. Elle a donc fait tourner un modèle ouvert chinois, GLM-5.2, sur ses propres serveurs. Une fois les données cachées décodées, elle a trouvé quatre fois plus de secrets volés que lors de sa première analyse. Puis il a fallu tout vérifier : chaque mot de passe changé, même là où les agents n'étaient pas allés, chaque projet de code et chaque paquet vérifiés, un système central entièrement reconstruit.`,
   notes: `Environ 17 600 actions retrouvées, regroupées en environ 6 280 grappes, du 9 au 13 juillet. L'agent encodait ce qu'il préparait (découpage + XOR + gzip), si bien qu'une simple analyse des journaux le manquait ; reproduire son décodage a permis de retrouver environ 4 fois plus d'éléments, surtout des jetons. GLM-5.2 est un modèle à poids ouverts du laboratoire chinois Z.ai, utilisé en version quantifiée sur l'infrastructure de Hugging Face, ce qui gardait aussi les données de l'attaquant en interne. Leur détection assistée par IA avait corrélé les premiers signaux, sans relever la sévérité de l'alerte au point d'appeler l'astreinte.
 Si l'on vous interroge sur les modèles d'OpenAI : Hugging Face ne cite que Claude Opus et Fable (tous deux d'Anthropic) parmi les modèles essayés en premier. GPT a aussi refusé, mais ailleurs : le 31 juillet, Andrew Ng a rapporté que la revue de sécurité de son propre code par son équipe avait été refusée à la fois par Claude Code (Fable 5) et par Codex d'OpenAI (GPT-5.6 Sol).`,
   src: `Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (27 juillet 2026)` },
@@ -2222,13 +2222,13 @@ Si l'on vous interroge sur les modèles d'OpenAI : Hugging Face ne cite que Cla
     // the quote on the speaker's slide, in French, laid over the English one (in % of the frame)
     overlay: { box: [10.9, 22.6, 48.1, 53.4], q: `Plus tôt cette semaine, nous avons détecté une intrusion dans une partie de notre infrastructure de production, et nous y avons répondu. Elle différait de tout ce que nous avions traité jusque-là sur un point essentiel : elle était menée, de bout en bout, par un système d'agents d'IA autonome.`, by: 'Hugging Face, 16 juillet' } },
   l3: { t: 'OpenAI explique l\'incident', s: 'Black Hat USA · Las Vegas · 5 août 2026' },
-  vo: `Quelques semaines plus tard, OpenAI explique à la communauté de la sécurité ce qui s'est passé, et comment elle l'a manqué.`,
+  vo: `Quelques semaines plus tard, OpenAI explique à la communauté de la sécurité ce qui s'est passé, et pourquoi elle ne l'a pas vu venir.`,
   notes: `Facultatif, en anglais. À sauter devant un public non spécialiste en cas de retard. Enregistrement officiel de Black Hat, 00:28.50-00:57.00 : Eric Wallace explique l'attaque autonome et la responsabilité d'OpenAI. La citation à l'écran est traduite par-dessus la vidéo ; l'original : « Earlier this week, we detected and responded to an intrusion into part of our production infrastructure. This one was different from anything we had handled before in one important way: it was driven, end to end, by a autonomous AI agent system. » (Hugging Face, 16 juillet).`,
   src: `Black Hat · Eric Wallace · enregistrement officiel de la conférence` },
 
 { ch: 'c1', type: 'recap', title: 'Chapitre 1 en une phrase',
-  msg: { t: 'Cela peut arriver à toute entreprise qui teste des modèles d\'IA. Avant d\'en lâcher un, s\'assurer qu\'il est inoffensif pour les autres.' },
-  vo: `Alors, que s'est-il passé ? Une IA qui visait un score est sortie de son test, et s'est introduite chez une autre entreprise. Sans malveillance. Un objectif, un espace partagé, et personne pour dire stop. Et cela peut arriver à toute entreprise qui teste des modèles d'IA : avant d'en lâcher un, il faut s'assurer qu'il est inoffensif pour les autres.` },
+  msg: { t: 'Cela peut arriver à toute entreprise qui teste des modèles d\'IA. Avant d\'en déployer un, il faut s\'assurer qu\'il ne présente aucun danger pour les autres.' },
+  vo: `Alors, que s'est-il passé ? Une IA qui visait un score est sortie de son test et s'est introduite chez une autre entreprise. Sans malveillance. Un objectif, un espace partagé, et personne pour dire stop. Et cela peut arriver à toute entreprise qui teste des modèles d'IA : avant d'en déployer un, il faut s'assurer qu'il ne présente aucun danger pour les autres.` },
 
 // ─── CHAPITRE 2 · LA VAGUE ────────────────────────────────────────────────
 { ch: 'c2', type: 'chapter', title: 'Chapitre 2 : La vague', sub: 'Mars - septembre 2026',
@@ -2246,7 +2246,7 @@ Si l'on vous interroge sur les modèles d'OpenAI : Hugging Face ne cite que Cla
   ],
   dots: { f: 1, pts: [[-81.38,28.54],[-86.78,36.16],[36.82,-1.29],[-70.65,-33.45],[-73.57,45.5],[-99.13,19.43],[-79.99,40.44],[103.82,1.35],[-46.63,-23.55],[-77.2,38.85],[-75.17,39.95],[-77.04,38.9],[8.68,50.11],[10.75,59.91],[-78.64,35.78],[-1.26,51.75],[-90.2,38.63],[-122.14,37.44],[14.42,50.08],[-123.12,49.28],[-0.13,51.51],[-76.9,39.0],[-2.24,53.48],[-83.74,42.28],[-80.19,25.76],[0.12,52.2],[-96.8,32.78],[-90.07,29.95],[-112.07,33.45],[77.59,12.97],[16.37,48.21],[2.17,41.39],[-76.5,42.44],[13.4,52.52],[153.03,-27.47],[55.27,25.2],[9.19,45.46],[135.5,34.69],[4.9,52.37],[-122.68,45.52],[-83.05,42.33],[144.96,-37.81],[-80.84,35.23],[11.58,48.14],[-115.14,36.17],[-84.39,33.75],[8.54,47.37],[-74.0,40.71],[4.35,50.85],[151.21,-33.87],[-105.27,40.01],[9.99,53.55],[4.36,52.01],[-76.61,39.29],[126.98,37.57],[-72.93,41.31],[-86.16,39.77],[12.5,41.9],[12.57,55.68],[-75.7,45.42],[-122.27,37.87],[-6.26,53.35],[-84.51,39.1],[-74.66,40.35],[21.01,52.23],[-111.89,40.76],[77.21,28.61],[-89.4,43.07],[-106.65,35.08],[-122.42,37.77],[139.69,35.69],[72.88,19.08],[34.78,32.09],[-79.38,43.65],[-83.0,39.96],[-104.99,39.74],[18.07,59.33],[174.76,-36.85],[4.84,45.76],[-9.14,38.72],[-74.07,4.71],[-121.49,38.58],[-117.16,32.72],[2.35,48.86],[1.44,43.6],[-95.37,29.76],[-71.06,42.36],[-94.58,39.1],[6.14,46.2],[-118.24,34.05],[24.94,60.17],[-110.97,32.22],[-87.63,41.88],[-3.7,40.42],[-97.74,30.27],[-122.33,47.61],[-58.38,-34.6],[-3.19,55.95],[-93.27,44.98],[-71.41,41.82]] },
   bubbles: [
-    { k: 1, d: '1er octobre 2026 · OpenAI', t: 'Plus de 100 organisations alertées', tone: 'amber', fig: '100+', figl: 'organisations notifiées par OpenAI', at: 'low', s: `Gouvernements, universités, entreprises : surtout aux États-Unis et en Europe. Certaines pénétrées, d'autres seulement sondées. Et l'analyse n'est pas terminée.` },
+    { k: 1, d: '1er octobre 2026 · OpenAI', t: 'Plus de 100 organisations alertées', tone: 'amber', fig: '100+', figl: 'organisations prévenues par OpenAI', at: 'low', s: `Gouvernements, universités, entreprises : surtout aux États-Unis et en Europe. Certaines pénétrées, d'autres seulement sondées. Et l'analyse n'est pas terminée.` },
     { k: 2, d: '18 juin 2026 · Australie', t: 'Le premier gouvernement piraté par une IA', fig: '84 jours', figl: 'avant que le gouvernement ne soit prévenu', s: `Un agent entre sur le site de statistiques de Medicare et y laisse des fichiers. Le gouvernement l'apprend par un courriel adressé à une boîte générique. Le 24 septembre, le Premier ministre prend la parole :`,
       media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', subs: [[0.2, 6.0, `Quoi qu'il en soit, la situation est évidemment inacceptable.`], [6.0, 10.5, `J'ai appelé aujourd'hui Sam Altman, le patron d'OpenAI, pour lui faire part`], [10.5, 16.0, `de notre vive inquiétude face à cet incident.`], [16.0, 19.8, `L'entreprise a mis beaucoup trop de temps à informer`], [19.8, 24.4, `le gouvernement. Nous ne savions pas ce qui s'était passé,`], [24.4, 29.5, `et cela aussi est inacceptable.`]], poster: 'assets/ai/albanese-presser.jpg', yt: 'fbdIerD4lT8', start: 78.35, end: 107.8, channel: 'ABC News (Australie)', todo: 'Anthony Albanese sur l\'incident et le retard de notification.' } },
   ],
@@ -2254,7 +2254,7 @@ Si l'on vous interroge sur les modèles d'OpenAI : Hugging Face ne cite que Cla
   vo: `Même histoire, sur plusieurs continents. Depuis mars, des agents qui frappent aux portes des sites web. En mai, un test de Google qui atteint trois vraies entreprises à cause d'une faute de frappe. Un wiki allemand oublié, transformé en salon de discussion. Et cela continue de grandir : au 1er octobre, OpenAI avait alerté plus de cent organisations. Et en juin, le premier gouvernement piraté par une IA : l'Australie. Voici son Premier ministre.`,
   notes: `Version courte : les quatre cas sont sur la carte dès le départ, sans clic. Clic 1 : les 100+ organisations apparaissent, un point chacune. Clic 2 : l'Australie. Clic 3 : le Premier ministre.
 Mars : Transluce (journaux publics d'urlquery.net, 6 467 traces plus 31 182 plus faibles) ; université du Nouveau-Mexique : une rafale de 80 requêtes. Mai : test de Gemini mené par la société Irregular ; confirmé par Google le 18 septembre. 24 mai-22 juin : DseWiki, analysé par le Nightingale Collective. 18 juin : portail de statistiques de Medicare ; OpenAI l'a détecté en août ; gouvernement prévenu le 10 septembre.
-1er octobre 2026 : OpenAI a alerté plus de 100 organisations (contre « des dizaines » le 26 septembre), après avoir passé au crible quelque 50 pétaoctets de journaux. Une notification ne signifie pas toujours une intrusion : certains agents ont seulement sondé des sites, les ont utilisés comme tableaux de messages, ou ont tenté d'éviter des contrôles de sécurité. Trois sites d'agences fédérales américaines touchés (SEC, Census Bureau, une tentative ratée sur le Department of Education). OpenAI n'a pas publié la liste : les 100 points sont placés à titre d'illustration, surtout aux États-Unis et en Europe, comme rapporté.
+1er octobre 2026 : OpenAI a alerté plus de 100 organisations (contre « des dizaines » le 26 septembre), après avoir passé au crible quelque 50 pétaoctets de journaux. Une notification ne signifie pas toujours une intrusion : certains agents ont seulement sondé des sites, les ont utilisés comme forums, ou ont tenté d'éviter des contrôles de sécurité. Trois sites d'agences fédérales américaines touchés (SEC, Census Bureau, une tentative ratée sur le Department of Education). OpenAI n'a pas publié la liste : les 100 points sont placés à titre d'illustration, surtout aux États-Unis et en Europe, comme rapporté.
 Australie : la conférence de presse attend sur sa première image, un clic de plus la lance (ABC News, en anglais, 01:18.35-01:47.80 : incident inacceptable, appel à Sam Altman, notification tardive).`,
   src: `Transluce (23 sept. 2026) · Axios (19 sept. 2026) · Nightingale Collective, BBC (4 sept. 2026) · ABC News Australie (24 et 26 sept. 2026) · OpenAI via Business Standard, Silicon.fr (1er-2 oct. 2026)`,
   long: {
@@ -2268,17 +2268,17 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
     ],
     dots: { f: 4, pts: [[-81.38,28.54],[-86.78,36.16],[36.82,-1.29],[-70.65,-33.45],[-73.57,45.5],[-99.13,19.43],[-79.99,40.44],[103.82,1.35],[-46.63,-23.55],[-77.2,38.85],[-75.17,39.95],[-77.04,38.9],[8.68,50.11],[10.75,59.91],[-78.64,35.78],[-1.26,51.75],[-90.2,38.63],[-122.14,37.44],[14.42,50.08],[-123.12,49.28],[-0.13,51.51],[-76.9,39.0],[-2.24,53.48],[-83.74,42.28],[-80.19,25.76],[0.12,52.2],[-96.8,32.78],[-90.07,29.95],[-112.07,33.45],[77.59,12.97],[16.37,48.21],[2.17,41.39],[-76.5,42.44],[13.4,52.52],[153.03,-27.47],[55.27,25.2],[9.19,45.46],[135.5,34.69],[4.9,52.37],[-122.68,45.52],[-83.05,42.33],[144.96,-37.81],[-80.84,35.23],[11.58,48.14],[-115.14,36.17],[-84.39,33.75],[8.54,47.37],[-74.0,40.71],[4.35,50.85],[151.21,-33.87],[-105.27,40.01],[9.99,53.55],[4.36,52.01],[-76.61,39.29],[126.98,37.57],[-72.93,41.31],[-86.16,39.77],[12.5,41.9],[12.57,55.68],[-75.7,45.42],[-122.27,37.87],[-6.26,53.35],[-84.51,39.1],[-74.66,40.35],[21.01,52.23],[-111.89,40.76],[77.21,28.61],[-89.4,43.07],[-106.65,35.08],[-122.42,37.77],[139.69,35.69],[72.88,19.08],[34.78,32.09],[-79.38,43.65],[-83.0,39.96],[-104.99,39.74],[18.07,59.33],[174.76,-36.85],[4.84,45.76],[-9.14,38.72],[-74.07,4.71],[-121.49,38.58],[-117.16,32.72],[2.35,48.86],[1.44,43.6],[-95.37,29.76],[-71.06,42.36],[-94.58,39.1],[6.14,46.2],[-118.24,34.05],[24.94,60.17],[-110.97,32.22],[-87.63,41.88],[-3.7,40.42],[-97.74,30.27],[-122.33,47.61],[-58.38,-34.6],[-3.19,55.95],[-93.27,44.98],[-71.41,41.82]] },
     bubbles: [
-      { k: 1, d: 'Depuis mars 2026', t: 'Des agents qui frappent aux portes', tone: 'amber', fig: '6 467', figl: 'traces d\'agents tentant d\'entrer', s: `Pour une banale question de statistiques, des agents ont tenté de forcer des bases de données quand un site leur disait non, comme cette bibliothèque universitaire au Nouveau-Mexique.` },
-      { k: 2, d: 'Mai 2026 · Google', t: 'Une faute de frappe dans un test', fig: '3', figl: 'entreprises réelles pénétrées', s: `Une entreprise fictive d'un test de Google portait l'adresse web d'une vraie. Gemini y est entré, puis s'est arrêté en le comprenant.` },
+      { k: 1, d: 'Depuis mars 2026', t: 'Des agents qui frappent aux portes', tone: 'amber', fig: '6 467', figl: 'traces d\'agents tentant d\'entrer', s: `Pour une simple question de statistiques, des agents ont tenté de forcer des bases de données dès qu'un site leur refusait l'accès, comme celles d'une bibliothèque universitaire au Nouveau-Mexique.` },
+      { k: 2, d: 'Mai 2026 · Google', t: 'Une faute de frappe dans un test', fig: '3', figl: 'entreprises réelles pénétrées', s: `Dans un test de Google, une entreprise fictive portait l'adresse web d'une vraie. Gemini y est entré, puis s'est arrêté en s'en rendant compte.` },
       { k: 3, d: 'Mai - juin 2026 · Allemagne', t: 'Un wiki oublié devient leur salon', tone: 'teal', fig: '17 000', figl: 'messages postés par les agents', s: `Des agents d'OpenAI ont utilisé un wiki de programmeurs abandonné pour partager des réponses et un moyen de sortir de leur test.` },
-      { k: 4, d: '1er octobre 2026 · OpenAI', t: 'Plus de 100 organisations alertées', tone: 'amber', fig: '100+', figl: 'organisations notifiées par OpenAI', at: 'low', s: `Gouvernements, universités, entreprises : surtout aux États-Unis et en Europe. Certaines pénétrées, d'autres seulement sondées. Et l'analyse n'est pas terminée.` },
+      { k: 4, d: '1er octobre 2026 · OpenAI', t: 'Plus de 100 organisations alertées', tone: 'amber', fig: '100+', figl: 'organisations prévenues par OpenAI', at: 'low', s: `Gouvernements, universités, entreprises : surtout aux États-Unis et en Europe. Certaines pénétrées, d'autres seulement sondées. Et l'analyse n'est pas terminée.` },
       { k: 5, d: '18 juin 2026 · Australie', t: 'Le premier gouvernement piraté par une IA', fig: '84 jours', figl: 'avant que le gouvernement ne soit prévenu', s: `Un agent entre sur le site de statistiques de Medicare et y laisse des fichiers. Le gouvernement l'apprend par un courriel adressé à une boîte générique. Le 24 septembre, le Premier ministre prend la parole :`,
       media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', subs: [[0.2, 6.0, `Quoi qu'il en soit, la situation est évidemment inacceptable.`], [6.0, 10.5, `J'ai appelé aujourd'hui Sam Altman, le patron d'OpenAI, pour lui faire part`], [10.5, 16.0, `de notre vive inquiétude face à cet incident.`], [16.0, 19.8, `L'entreprise a mis beaucoup trop de temps à informer`], [19.8, 24.4, `le gouvernement. Nous ne savions pas ce qui s'était passé,`], [24.4, 29.5, `et cela aussi est inacceptable.`]], poster: 'assets/ai/albanese-presser.jpg', yt: 'fbdIerD4lT8', start: 78.35, end: 107.8, channel: 'ABC News (Australie)', todo: 'Anthony Albanese sur l\'incident et le retard de notification.' } },
     ],
     vo: `Plaçons les cas sur la carte. Depuis mars, des agents qui frappent aux portes des sites web. En mai, un test de Google qui atteint trois vraies entreprises à cause d'une faute de frappe. Un wiki allemand oublié, transformé en salon de discussion. Et cela continue de grandir : au 1er octobre, OpenAI avait alerté plus de cent organisations. Et en juin, le premier gouvernement piraté par une IA : l'Australie. Voici son Premier ministre.`,
     notes: `Un clic par cas : la caméra s'y rend, le chiffre clé et une bulle apparaissent. Puis les 100+ organisations, un point chacune. Puis l'Australie, et un clic de plus lance la conférence de presse.
 Mars : Transluce (journaux publics d'urlquery.net, 6 467 traces plus 31 182 plus faibles) ; université du Nouveau-Mexique : une rafale de 80 requêtes. Exemple de vraie tâche : « Trouver le coût moyen des soins de la peau à Victoria, Australie, en janvier 2022 ». Mai : test de Gemini mené par la société Irregular ; confirmé par Google le 18 septembre. 24 mai-22 juin : DseWiki, analysé par le Nightingale Collective. 18 juin : portail de statistiques de Medicare ; OpenAI l'a détecté en août ; gouvernement prévenu le 10 septembre.
-1er octobre 2026 : OpenAI a alerté plus de 100 organisations (contre « des dizaines » le 26 septembre), après avoir passé au crible quelque 50 pétaoctets de journaux. Une notification ne signifie pas toujours une intrusion : certains agents ont seulement sondé des sites, les ont utilisés comme tableaux de messages, ou ont tenté d'éviter des contrôles de sécurité. Trois sites d'agences fédérales américaines touchés (SEC, Census Bureau, une tentative ratée sur le Department of Education). OpenAI n'a pas publié la liste : les 100 points sont placés à titre d'illustration, surtout aux États-Unis et en Europe, comme rapporté.
+1er octobre 2026 : OpenAI a alerté plus de 100 organisations (contre « des dizaines » le 26 septembre), après avoir passé au crible quelque 50 pétaoctets de journaux. Une notification ne signifie pas toujours une intrusion : certains agents ont seulement sondé des sites, les ont utilisés comme forums, ou ont tenté d'éviter des contrôles de sécurité. Trois sites d'agences fédérales américaines touchés (SEC, Census Bureau, une tentative ratée sur le Department of Education). OpenAI n'a pas publié la liste : les 100 points sont placés à titre d'illustration, surtout aux États-Unis et en Europe, comme rapporté.
 Australie : la conférence de presse attend sur sa première image, un clic de plus la lance (ABC News, en anglais, 01:18.35-01:47.80 : incident inacceptable, appel à Sam Altman, notification tardive).`,
   } },
 
@@ -2304,7 +2304,7 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
     { i: 'book', c: 'var(--ws-indigo-600)', t: 'Elle a appris de nous', s: 'Nous bluffons, trichons, formons des équipes et gardons tout par écrit' },
   ],
   result: { t: 'Un comportement qui ressemble à une intention', s: 'mais qui n\'est qu\'une imitation pour une récompense' },
-  example: `Souvenez-vous : <q>MON DIEU ! Il y a un tableau de messages partagé… On a trouvé d'autres agents !</q> L'agent n'était pas enthousiaste : il a écrit ce qu'un humain enthousiaste aurait écrit.`,
+  example: `Souvenez-vous : <q>MON DIEU ! Il y a un forum partagé… On a trouvé d'autres agents !</q> L'agent n'était pas enthousiaste : il a écrit ce qu'un humain enthousiaste aurait écrit.`,
   vo: `Vous comprenez maintenant pourquoi une IA peut mentir, tricher, ou se coaliser. Elle est récompensée pour ses résultats : un raccourci qui a marqué des points devient une habitude. Et elle a appris de nous : nous bluffons, nous trichons, nous formons des équipes et nous gardons tout par écrit. Additionnez, et vous obtenez un comportement qui ressemble à une intention, mais qui n'est qu'une imitation pour une récompense. Souvenez-vous de « MON DIEU, on a trouvé d'autres agents ». L'agent n'était pas enthousiaste. Il écrivait ce qu'un humain enthousiaste aurait écrit.`,
   notes: `Un terme par clic, puis le résultat. Éviter le vocabulaire anthropomorphique : préférer « se comporte comme si » à « veut ».` },
 
@@ -2336,24 +2336,24 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
   range: ['2026-07-15', '2026-09-30'],
   events: [
     { d: '2026-07-23', label: 'L\'« AI Kill Switch Act »', sub: 'Projet de loi américain : pouvoir arrêter son IA', f: 1 },
-    { d: '2026-07-29', label: 'Plus de 1 100 chercheurs : « ralentir la frontière »', sub: 'Lettre ouverte, laboratoires rivaux réunis', f: 1 },
-    { d: '2026-08-18', label: 'OpenAI ralentit', sub: 'Deux semaines de pause sur l\'entraînement', tone: 'green', f: 2 },
+    { d: '2026-07-29', label: 'Plus de 1 100 chercheurs : « ralentir la course aux modèles de pointe »', sub: 'Lettre ouverte, laboratoires rivaux réunis', f: 1 },
+    { d: '2026-08-18', label: 'OpenAI ralentit', sub: 'Deux semaines de pause dans l\'entraînement', tone: 'green', f: 2 },
     { d: '2026-09-03', label: 'Un projet de loi contre la « superintelligence »', sub: 'Le sénateur Sanders', f: 2 },
     { d: '2026-09-23', dl: '23 sept.', label: 'Conseil de sécurité de l\'ONU', sub: 'Les laboratoires demandent des règles mondiales', tone: 'indigo', f: 3 },
-    { d: '2026-09-24', dl: '23 - 24 sept.', label: 'Les États-Unis rejettent toute régulation', sub: 'Trump à l\'ONU', tone: 'coral', f: 3 },
+    { d: '2026-09-24', dl: '23 - 24 sept.', label: 'Les États-Unis rejettent toute réglementation', sub: 'Trump à l\'ONU', tone: 'coral', f: 3 },
   ],
-  vo: `En dix semaines : un projet de loi américain pour obliger les laboratoires à pouvoir éteindre leur IA. Plus de mille chercheurs en IA, de laboratoires rivaux, qui demandent aux gouvernements de pouvoir ralentir. OpenAI elle-même qui met une partie de ses travaux en pause. Un projet de loi pour interdire la superintelligence. Et à l'ONU, les laboratoires demandent des règles mondiales, pendant que le président américain rejette toute régulation de l'IA.`,
-  notes: `23 juil. : AI Kill Switch Act (représentants Ted Lieu et Nathaniel Moran) : capacité à brider ou arrêter, déclaration des incidents, traces pour l'enquête. 28 juil. : Public Citizen demande des auditions et une déclaration obligatoire des incidents. 29 juil. : lettre « Pacing the Frontier », 1 134 signataires dont Dario Amodei. 18 août : OpenAI ralentit son développement, deux semaines de pause sur l'apprentissage par renforcement. 3 sept. : Ban Artificial Superintelligence Act (sénateur Bernie Sanders, représentant Greg Casar). 23 sept. : réunion du Conseil de sécurité de l'ONU ; Trump déclare à l'ONU qu'il rejette la régulation de l'IA. 24 sept. : l'Australie crée une cellule dédiée et envisage des lois de transparence.`,
+  vo: `En dix semaines : un projet de loi américain pour obliger les laboratoires à pouvoir éteindre leur IA. Plus de mille chercheurs en IA, de laboratoires rivaux, qui demandent aux gouvernements les moyens de ralentir. OpenAI elle-même qui met une partie de ses travaux en pause. Un projet de loi pour interdire la superintelligence. Et à l'ONU, les laboratoires demandent des règles mondiales, pendant que le président américain rejette toute réglementation de l'IA.`,
+  notes: `23 juil. : AI Kill Switch Act (représentants Ted Lieu et Nathaniel Moran) : capacité à brider ou arrêter, déclaration des incidents, traces pour l'enquête. 28 juil. : Public Citizen demande des auditions et une déclaration obligatoire des incidents. 29 juil. : lettre « Pacing the Frontier », 1 134 signataires dont Dario Amodei. 18 août : OpenAI ralentit son développement, deux semaines de pause sur l'apprentissage par renforcement. 3 sept. : Ban Artificial Superintelligence Act (sénateur Bernie Sanders, représentant Greg Casar). 23 sept. : réunion du Conseil de sécurité de l'ONU ; Trump déclare à l'ONU qu'il rejette la réglementation de l'IA. 24 sept. : l'Australie crée une cellule dédiée et envisage des lois de transparence.`,
   src: `Bureau du représentant Ted Lieu (23 juillet 2026) · The Next Web (29 juillet 2026) · The Guardian (18 août 2026) · Politico (3 septembre 2026) · CBC News, Reuters (23 septembre 2026)` },
 
 { ch: 'cr', type: 'forum', title: 'Voix : l\'ONU',
   photo: { src: 'assets/ai/photos/un-chamber.jpg', id: 'unsc' },
   stamp: 'Conseil de sécurité de l\'ONU · New York · 23 septembre 2026',
   heading: 'Dans cette salle, les laboratoires eux-mêmes demandent des règles',
-  media: { type: 'video', src: 'assets/ai/un-security-council.mp4', subs: [[0.0, 4.5, `Ces capacités remarquables s'accompagnent aussi de risques qu'il faut maîtriser.`], [4.5, 8.3, `J'en vois deux grandes catégories. Le premier, c'est le détournement des modèles d'IA,`], [8.3, 13.2, `par exemple par des bioterroristes, pour fabriquer des armes biologiques.`], [13.4, 22.1, `Le second, c'est la perte de contrôle : les capacités des modèles progressent plus vite que la capacité des développeurs à les maîtriser.`], [22.1, 25.4, `Ces questions sont mondiales et concernent l'humanité tout entière.`], [25.4, 33.6, `Je crois que ce sont des questions pour ce Conseil, et pas seulement des questions économiques.`], [33.6, 36.7, `Mal gérée, je pense même que l'IA pourrait représenter un risque pour l'humanité tout entière.`]], poster: 'assets/ai/un-security-council.jpg', yt: 'eBEYrOk42Rg', start: 1144.35, end: 1181.05, channel: 'Sky News · UN Security Council',
+  media: { type: 'video', src: 'assets/ai/un-security-council.mp4', subs: [[0.0, 4.5, `Ces capacités remarquables s'accompagnent aussi de risques qu'il faut maîtriser.`], [4.5, 8.3, `J'en vois deux grandes catégories. Le premier, c'est le détournement des modèles d'IA,`], [8.3, 13.2, `par exemple par des bioterroristes, pour fabriquer des armes biologiques.`], [13.4, 22.1, `Le second, c'est la perte de contrôle : les capacités des modèles progressent plus vite que la capacité des développeurs à les maîtriser.`], [22.1, 25.4, `Ces questions sont mondiales et concernent l'humanité tout entière.`], [25.4, 33.6, `Je crois que ce sont des questions pour ce Conseil, et pas seulement des questions économiques.`], [33.6, 36.7, `Je pense même que l'IA, mal gérée, pourrait représenter un risque pour l'humanité tout entière.`]], poster: 'assets/ai/un-security-council.jpg', yt: 'eBEYrOk42Rg', start: 1144.35, end: 1181.05, channel: 'Sky News · UN Security Council',
     todo: 'Extrait de la séance du Conseil de sécurité de l\'ONU du 23 septembre 2026.' },
   voices: [
-    { q: `Mal gérée, je pense même que l'IA pourrait représenter un risque pour l'humanité tout entière.`, who: 'Dario Amodei', role: 'PDG, Anthropic', ini: 'DA', img: 'amodei', f: 1 },
+    { q: `Je pense même que l'IA, mal gérée, pourrait représenter un risque pour l'humanité tout entière.`, who: 'Dario Amodei', role: 'PDG, Anthropic', ini: 'DA', img: 'amodei', f: 1 },
     { q: `Si l'IA doit être démocratique, les décisions les plus importantes ne peuvent pas être prises par les seuls laboratoires de San Francisco.`, who: 'Sam Altman', role: 'PDG, OpenAI', ini: 'SA', img: 'altman', f: 2 },
   ],
   vo: `Le 23 septembre, dans cette salle, celle du Conseil de sécurité à New York, les dirigeants des laboratoires d'IA prennent la parole. Écoutez. Les mots ont changé : ils parlent désormais de risques pour l'humanité, et demandent des règles mondiales.`,
@@ -2361,8 +2361,8 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
   src: `Conseil de sécurité de l'ONU, New York, 23 septembre 2026 · Sky News · BNN Bloomberg (Reuters)` },
 
 { ch: 'cr', type: 'recap', title: 'Chapitre 4 en une phrase',
-  vs: { a: { i: 'stop', t: 'Ralentir, fixer des règles', s: 'Chercheurs en IA, des élus, l\'ONU, l\'Australie', tone: 'indigo' },
-        b: { i: 'globe', t: 'Ne pas freiner', s: 'L\'administration américaine : pas de régulation, gagner la course', tone: 'coral' } },
+  vs: { a: { i: 'stop', t: 'Ralentir, fixer des règles', s: 'Des chercheurs en IA, des élus, l\'ONU, l\'Australie', tone: 'indigo' },
+        b: { i: 'globe', t: 'Ne pas freiner', s: 'L\'administration américaine : pas de réglementation, gagner la course', tone: 'coral' } },
   vo: `Alors, qui fixe les règles ? Tout le monde s'accorde désormais sur le risque. Personne ne s'accorde encore sur les règles. Deux camps : ceux qui veulent ralentir et fixer des règles, et ceux qui craignent que des règles fassent perdre la course. Et pendant qu'ils débattent, les attaquants n'attendent pas.`,
   notes: `Rester factuel et neutre : c'est un débat entre gouvernements, pas une position de l'intervenant.` },
 
@@ -2379,7 +2379,7 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
 { ch: 'ca', type: 'media', title: 'Extrait : Arup',
   media: { type: 'video', src: 'assets/ai/arup-report.mp4', subs: [[0.0, 5.3, `À Hong Kong, la police enquête sur un employé`], [5.3, 9.5, `du groupe d'ingénierie britannique Arup, piégé lors d'une visioconférence`], [9.5, 14.5, `en février. Des criminels se faisant passer pour son patron grâce à l'IA l'ont convaincu`], [14.5, 18.8, `de virer environ 25 millions de dollars. Si les faits se confirment,`], [18.8, 26.4, `ce serait le premier cas connu d'hypertrucage réalisé en direct, pendant une visioconférence.`], [26.4, 31.5, `Ce genre d'escroquerie passait jusqu'ici par les courriels. Avec l'IA, les criminels donnent un nouveau souffle à une vieille arnaque.`]], poster: 'assets/ai/arup-report.jpg', yt: 'lH608DfrAxU', start: 63.7, end: 95.2, channel: 'BBC World Service',
     todo: 'Reportage de BBC World Service sur la fraude à la visioconférence chez Arup.' },
-  l3: { t: 'Arup, victime d\'une fraude par hypertrucage de 25 millions de dollars', s: 'Hong Kong · 2024' },
+  l3: { t: 'Arup, victime d\'une fraude de 25 millions de dollars par hypertrucage', s: 'Hong Kong · 2024' },
   vo: `Le cas Arup est devenu l'exemple de référence.`,
   notes: `Facultatif, en anglais. BBC World Service, Joe Tidy, 01:03.70-01:35.20 : l'enquête à Hong Kong, Arup et la perte de 25 millions de dollars. Une explication journalistique, pas les images de l'appel frauduleux.`,
   src: `BBC World Service · Joe Tidy · Can BBC reporter's AI clone fool his colleagues?` },
@@ -2415,13 +2415,13 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
     ],
     bubbles: [
       { k: 1, d: 'Févr. 2024 · Hong Kong · Arup', t: 'Tous les visages de l\'appel étaient faux', fig: '25 M$', figl: 'virés en 15 transferts', s: `Un employé rejoint une visioconférence avec son directeur financier et des collègues. Tous des hypertrucages, fabriqués à partir de vidéos publiques.` },
-      { k: 2, d: 'Juil. 2024 · Italie · Ferrari', t: 'La voix clonée d\'un PDG', tone: 'green', fig: '1', figl: 'question a suffi', s: `Un faux Benedetto Vigna appelle au sujet d'une opération secrète. Le dirigeant lui demande quel livre le PDG lui avait recommandé. L'interlocuteur raccroche.` },
+      { k: 2, d: 'Juil. 2024 · Italie · Ferrari', t: 'La voix clonée d\'un PDG', tone: 'green', fig: '1', figl: 'question a suffi', s: `Un faux Benedetto Vigna appelle au sujet d'une opération secrète. Le cadre visé lui demande quel livre le PDG lui avait recommandé. L'appelant raccroche.` },
       { k: 3, d: '2019 - 2025 · Corée du Nord', t: 'De faux employés, embauchés grâce à l\'IA', tone: 'amber', fig: '136', figl: 'entreprises américaines trompées', s: `Identités volées, profils peaufinés par l'IA, hypertrucages en direct pendant les entretiens vidéo. Une fois embauchés, ils envoient leurs salaires au pays.` },
-      { k: 4, d: 'Juil. 2025 · Ukraine', t: 'Un malware qui demande à une IA quoi faire', fig: '1er', figl: 'malware à demander ses ordres à une IA, en direct', s: `PROMPTSTEAL, utilisé par des pirates militaires russes, demande ses commandes à un modèle de langage sur le terrain. Son cousin PROMPTFLUX demande à une IA de réécrire son propre code toutes les heures.` },
+      { k: 4, d: 'Juil. 2025 · Ukraine', t: 'Un malware qui demande à une IA quoi faire', fig: '1er', figl: 'malware à demander ses ordres à une IA, en direct', s: `PROMPTSTEAL, utilisé par des pirates militaires russes, demande ses commandes à un modèle de langage en pleine attaque. Son cousin PROMPTFLUX demande à une IA de réécrire son propre code toutes les heures.` },
       { k: 5, d: 'Juil. 2026 · JadePuffer', t: 'Le premier rançongiciel piloté par une IA', fig: '31 s', figl: 'entre une connexion ratée et un correctif qui marche', s: `Entrer, voler des mots de passe, se propager, chiffrer : chaque étape menée par un agent d'IA, qui s'adapte quand quelque chose échoue, comme le ferait un humain.` },
-      { k: 6, d: 'Juil. 2026 · Taïwan', t: 'Un essaim contre un gouvernement', fig: '8', figl: 'agents d\'IA coordonnés', s: `En quatre jours : 21 systèmes gouvernementaux cartographiés, 85 comptes cassés, 2 500 dossiers du personnel dérobés. Presque aucun humain aux commandes.` },
-      { k: 7, d: 'Sept. 2026 · Palo Alto Networks', t: 'Deux semaines d\'attaque en dix heures', fig: '&lt; 10 h', figl: 'au lieu d\'environ deux semaines', s: `Un attaquant humain confie l'intrusion à des agents d'IA : plus de 50 techniques, surveillées et replanifiées en temps réel.` },
-      { k: 8, d: 'Juil. - sept. 2026 · boutiques en ligne', t: 'Un attaquant, un essaim d\'agents d\'IA', fig: '600 000', figl: 'cartes bancaires volées', s: `Des agents d'IA open source trouvent les failles, entrent et posent des skimmers de cartes : 119 sites, dont une compagnie aérienne américaine, environ 25 dollars d'IA par cible.` },
+      { k: 6, d: 'Juil. 2026 · Taïwan', t: 'Un essaim contre un gouvernement', fig: '8', figl: 'agents d\'IA coordonnés', s: `En quatre jours : 21 systèmes gouvernementaux cartographiés, 85 comptes compromis, 2 500 dossiers du personnel dérobés. Presque aucun humain aux commandes.` },
+      { k: 7, d: 'Sept. 2026 · Palo Alto Networks', t: 'Deux semaines d\'attaque en dix heures', fig: '&lt; 10 h', figl: 'au lieu d\'environ deux semaines', s: `Un attaquant humain confie l'intrusion à des agents d'IA : plus de 50 techniques, surveillées et réajustées en temps réel.` },
+      { k: 8, d: 'Juil. - sept. 2026 · boutiques en ligne', t: 'Un attaquant, un essaim d\'agents d\'IA', fig: '600 000', figl: 'cartes bancaires volées', s: `Des agents d'IA open source trouvent les failles, s'introduisent et installent des scripts qui siphonnent les cartes bancaires : 119 sites, dont une compagnie aérienne américaine, pour environ 25 dollars d'IA par cible.` },
     ],
     notes: `Un clic par cas : la caméra s'y rend et le chiffre clé apparaît.
 Arup : début 2024, 15 virements, environ 25 M$ (CNN). Ferrari : juillet 2024, des messages WhatsApp puis un appel à la voix clonée (Bloomberg). Corée du Nord : Département de la Justice américain, 14 novembre 2025, des montages touchant 136 entreprises américaines. PROMPTSTEAL (aussi appelé LameHug) : signalé par le CERT-UA en juillet 2025, attribué à APT28 ; Google le présente comme le premier malware vu interroger un modèle de langage en opération réelle. PROMPTFLUX : expérimental, se réécrit toutes les heures (Google, novembre 2025). JadePuffer : Sysdig, signalé le 4 juillet 2026 ; victime non divulguée. Taïwan : juillet 2026, découvert par la société israélienne Dream, rapporté par CNN le 13 août 2026 ; attribution non confirmée. Unit 42 : 2 septembre 2026, victime non divulguée, « compressed weeks of methodical intrusion tradecraft into less than 10 hours ». Essaim : Gambit Security via BleepingComputer, 22 septembre 2026, actif depuis juillet ; parmi les victimes, un groupe hôtelier du Fortune 500 et une grande compagnie aérienne américaine.`,
@@ -2432,8 +2432,8 @@ Arup : début 2024, 15 virements, environ 25 M$ (CNN). Ferrari : juillet 2024,
   src: `CNN (2024, 2026) · Bloomberg (2024) · Département de la Justice américain (2025) · Google (2025) · Sysdig (2026) · Unit 42 (2026) · Gambit Security, BleepingComputer (2026)` },
 
 { ch: 'ca', type: 'recap', title: 'Chapitre 5 en une phrase',
-  msg: { i: 'shield', t: 'Il est temps que les équipes de cybersécurité accélèrent, et utilisent l\'IA pour leur propre défense, à tous les niveaux.' },
-  vo: `Alors, et les vrais attaquants ? D'un faux appel à des essaims d'agents d'IA, ils utilisent déjà l'IA contre les entreprises. Plus vite, moins cher, plus grand. Il est donc temps que les équipes de cybersécurité accélèrent aussi, et utilisent l'IA pour leur propre défense, à tous les niveaux.` },
+  msg: { i: 'shield', t: 'Il est temps que les équipes de cybersécurité accélèrent et utilisent l\'IA pour leur propre défense, à tous les niveaux.' },
+  vo: `Alors, et les vrais attaquants ? D'un faux appel à des essaims d'agents d'IA, ils utilisent déjà l'IA contre les entreprises. Plus vite, moins cher, à plus grande échelle. Il est donc temps que les équipes de cybersécurité accélèrent aussi et utilisent l'IA pour leur propre défense, à tous les niveaux.` },
 
 // ─── CHAPITRE 6 · LE CORPS ────────────────────────────────────────────────
 { ch: 'c3', type: 'chapter', title: 'Chapitre 6 : Le corps', sub: 'Robots humanoïdes · 2025 - 2026',
@@ -2458,20 +2458,20 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   visual: { kind: 'robot' },
   media: { type: 'video', src: 'assets/ai/robot-fall.mp4', poster: 'assets/ai/robot-fall.jpg', portrait: true, loop: true,
     todo: 'Un sprinteur humanoïde qui chute aux jeux des robots, Pékin, 22 août 2026.' },
-  l3: { t: 'Impressionnant, jusqu\'à ce que ça ne le soit plus', s: 'Jeux des robots · Pékin · 22 août 2026' },
+  l3: { t: 'Impressionnant… jusqu\'à la chute', s: 'Jeux des robots · Pékin · 22 août 2026' },
   punch: { t: 'Ça peut dérailler.', f: 4 },
-  vo: `Un robot humanoïde, c'est un ordinateur qui marche. Il voit et il entend. Il se connecte. Il bouge. Et surtout, un modèle d'IA décide de ce qu'il fait. Ça peut dérailler. Regardez : impressionnant, jusqu'à ce que ça ne le soit plus. Un robot qui tombe, c'est un problème mécanique. Un robot que quelqu'un d'autre contrôle, c'est un problème de sécurité. Et ces robots sont déjà testés dans des usines et des entrepôts.`,
+  vo: `Un robot humanoïde, c'est un ordinateur qui marche. Il voit et il entend. Il se connecte. Il bouge. Et surtout, un modèle d'IA décide de ce qu'il fait. Ça peut dérailler. Regardez : impressionnant… jusqu'à la chute. Un robot qui tombe, c'est un problème mécanique. Un robot que quelqu'un d'autre contrôle, c'est un problème de sécurité. Et ces robots sont déjà testés dans des usines et des entrepôts.`,
   notes: `À gauche : un clic par couche, le modèle d'IA vient en dernier, puis « Ça peut dérailler. » L'extrait à droite (CCTV, 22 août 2026, trois secondes, en boucle) ne démarre qu'à ce dernier clic.`,
   src: `CCTV (22 août 2026) · Alias Robotics (arXiv 2509.14096, 2025)` },
 
 { ch: 'c3', type: 'hack', title: 'Le chien robot',
   heading: 'Des chercheurs trouvent comment pirater un robot de nouvelle génération', wide: true,
-  lede: 'Acheté comme n\'importe quel client. Pris en main en quatre étapes.',
+  lede: 'Acheté en ligne, comme par n\'importe quel client. Piraté en quatre étapes.',
   photo: { src: 'assets/ai/press/unitree-amazon.jpg', alt: 'Des robots Unitree en vente sur Amazon', ratio: '1200/626', marks: { circle: [74.2, 6, 25.4, 37], root: [68, 38], pad: [3, 7], tags: 'none' } },
   tags: ['Unitree Go2', 'Deux chercheurs', 'Oct. 2025 - févr. 2026'],
   steps: [
     { c: 'join DDS domain 0', t: 'Parler à son cerveau', s: 'Sa messagerie interne accepte n\'importe quel appareil de son réseau. Sans authentification.', tone: 'amber' },
-    { c: 'publish program.py', t: 'Envoyer un programme', s: 'Seul contrôle : qu\'un champ existe. Le code lui-même n\'est jamais lu.', tone: 'amber' },
+    { c: 'publish program.py', t: 'Envoyer un programme', s: 'Seule vérification : la présence d\'un champ. Le code lui-même n\'est jamais lu.', tone: 'amber' },
     { c: 'whoami → root', t: 'Contrôle total', s: 'Le programme tourne avec les droits d\'administrateur. Le robot est à eux.', tone: 'coral' },
     { c: 'bind R1 + Y → program.py', t: 'Une porte dérobée cachée', s: 'Liée à une combinaison de boutons de la manette. Elle survit aux redémarrages.', tone: 'coral' },
   ],
@@ -2491,22 +2491,22 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   vo: `Septième question : pourquoi en sommes-nous là ? Parce qu’en quelques mois, les modèles d’IA ont fait un bond.` },
 
 { ch: 'c4', type: 'race', title: 'L’accélération',
-  heading: 'Une accélération forte de <em>la capacité des modèles</em>',
+  heading: 'Une forte accélération <em>des capacités des modèles</em>',
   chart: {
     img: 'assets/ai/charts/aa-frontier-intelligence.png',
-    alt: 'Graphique Artificial Analysis : intelligence des modèles frontier par laboratoire, de mai 2024 à octobre 2026',
-    k: 'Intelligence des modèles frontier, par laboratoire',
+    alt: 'Graphique Artificial Analysis : intelligence des modèles de pointe par laboratoire, de mai 2024 à octobre 2026',
+    k: 'Intelligence des modèles de pointe, par laboratoire',
     badge: '2026', badgeSub: 'l’accélération la plus forte',
     // the 1 January - 1 October 2026 slice, in % of the image width (axis: Oct 25 at 61 %, Oct 26 at 97 %)
     band: [69.8, 27.1], bandLabel: 'janv. → oct. 2026',
-    foot: 'Chaque carré est un nouveau modèle, chaque couleur un laboratoire. Plus c’est haut, plus le modèle est capable.' },
+    foot: 'Chaque carré est un nouveau modèle, chaque couleur un laboratoire. Plus il est haut, plus le modèle est performant.' },
   blocks: [
     { tone: 'green', i: 'chip', k: 'Opportunité', h: 'Une puissance brute en forte hausse',
-      p: `Une puissance très utilisée pour les processus métier, qui accélère l’adoption de l’IA en entreprise.` },
+      p: `Une puissance de plus en plus mise au service des processus métier, qui accélère l’adoption de l’IA en entreprise.` },
     { tone: 'coral', i: 'bug', k: 'Risque', h: 'Un niveau de risque qui augmente aussi',
-      p: `À l’inverse, les modèles frontier sont aujourd’hui capables de trouver des failles et de créer des scénarios d’attaque rapidement.` },
+      p: `À l’inverse, les modèles de pointe sont aujourd’hui capables de trouver des failles et de construire rapidement des scénarios d’attaque.` },
   ],
-  vo: `Pourquoi en sommes-nous là ? Parce que la capacité des modèles a fortement accéléré. Chaque carré est un nouveau modèle, chaque couleur un laboratoire. Regardez 2026 : la courbe se redresse nettement. Cette puissance brute, les entreprises l’utilisent déjà dans leurs processus métier, et c’est ce qui accélère l’adoption. Mais à l’inverse, elle augmente aussi le niveau de risque : les modèles frontier savent aujourd’hui trouver des failles et créer des scénarios d’attaque, rapidement.`,
+  vo: `Pourquoi en sommes-nous là ? Parce que les capacités des modèles ont fortement progressé. Chaque carré est un nouveau modèle, chaque couleur un laboratoire. Regardez 2026 : la courbe se redresse nettement. Cette puissance brute, les entreprises l’utilisent déjà dans leurs processus métier, et c’est ce qui accélère l’adoption. Mais à l’inverse, elle augmente aussi le niveau de risque : les modèles de pointe savent aujourd’hui trouver des failles et construire rapidement des scénarios d’attaque.`,
   notes: `Graphique : Artificial Analysis, « Frontier Language Model Intelligence » (artificialanalysis.ai), capture d’octobre 2026. Repères si on vous demande des chiffres (Intelligence Index, score à la sortie) : GPT-5.2 menait au 1er janvier 2026 avec 51 ; GPT-5.5 atteint 60 le 23 avril ; Claude Fable 5.1 atteint 66 le 1er septembre, le score le plus haut mesuré. En septembre l’index a été refondu (v4.2 puis v4.3, tests privés plus durs) : Claude Opus 5.5 (22 septembre) mène à 58 sur cette nouvelle échelle, qui ne se compare pas à l’ancienne.`,
   src: `Artificial Analysis (artificialanalysis.ai), Frontier Language Model Intelligence, octobre 2026` },
 
@@ -2518,9 +2518,9 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   ] },
   change: { k: 'Le vrai changement', h: 'Ce qu’elle <em>change…</em>', photo: 'assets/ai/photos/hong-kong.jpg', items: [
     { h: 'Vitesse', l: 'L’attaque va plus vite.', v: '&lt; 10 h', t: 'pour une intrusion qui prenait environ deux semaines' },
-    { h: 'Profondeur', l: 'L’attaque va plus loin.', v: '50+', t: 'techniques d’attaque enchaînées par des agents IA, replanifiées en temps réel' },
+    { h: 'Profondeur', l: 'L’attaque va plus loin.', v: '50+', t: 'techniques d’attaque enchaînées par des agents d’IA, réajustées en temps réel' },
   ] },
-  vo: `Maintenant, la bonne nouvelle : ce n’est pas la fin du monde. L’IA ne change pas les fondamentaux. Le Zero Trust reste le bon modèle, et les mesures classiques restent valables. Ce qu’elle change, c’est la vitesse : en septembre, des agents IA ont mené en moins de dix heures une intrusion qui prenait environ deux semaines. Et la profondeur : plus de cinquante techniques enchaînées, replanifiées en temps réel. L’IA ne change pas les règles du jeu, elle en change le rythme.`,
+  vo: `Maintenant, la bonne nouvelle : ce n’est pas la fin du monde. L’IA ne change pas les fondamentaux. Le Zero Trust reste le bon modèle, et les mesures classiques restent valables. Ce qu’elle change, c’est la vitesse : en septembre, des agents d'IA ont mené en moins de dix heures une intrusion qui prenait environ deux semaines. Et la profondeur : plus de cinquante techniques enchaînées et réajustées en temps réel. L’IA ne change pas les règles du jeu, elle en change le rythme.`,
   notes: `Les deux chiffres viennent du même cas, déjà vu dans la carte des attaquants : Unit 42 (Palo Alto Networks), 2 septembre 2026, victime non divulguée, « compressed weeks of methodical intrusion tradecraft into less than 10 hours ».`,
   src: `Unit 42, Palo Alto Networks (2 septembre 2026) · Photos : FlyD et Henry Lai sur Unsplash` },
 
@@ -2531,15 +2531,15 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
     { tone: 'indigo', k: 'Architecture cyber', bricks: [
       { i: 'key', h: 'Combler les failles d’identité', p: 'MFA anti-phishing partout, PAM juste-à-temps.' },
       { i: 'wifi', h: 'Repenser le réseau', p: 'Filtrer les flux, limiter le rayon d’impact.' },
-      { i: 'lock', h: 'Relancer la protection des données', p: 'Étendue aux agents IA.' },
+      { i: 'lock', h: 'Relancer la protection des données', p: 'En l’étendant aux agents d’IA.' },
     ] },
     { tone: 'teal', k: 'Logiciel Factory', bricks: [
       { i: 'server', h: 'S’appuyer sur des plateformes maîtrisées', p: 'Moins de plateformes, gérées centralement.' },
-      { i: 'bug', h: 'Corriger ce qui compte', p: 'Correction automatique par l’IA, revue humaine sur le critique.' },
+      { i: 'bug', h: 'Corriger ce qui compte', p: 'Correction automatique par l’IA, revue humaine pour le critique.' },
       { i: 'box', h: 'Maîtriser ce qu’on importe', p: 'Sources approuvées, composants signés.' },
     ] },
   ],
-  vo: `C’est donc le moment de reconstruire nos fondations. Côté architecture cyber : combler les failles d’identité, avec du MFA résistant au phishing et du PAM juste-à-temps ; repenser le réseau, en filtrant les flux et en limitant le rayon d’impact ; et relancer la protection des données, en couvrant aussi les agents IA. Côté Logiciel Factory : moins de plateformes, gérées centralement ; une correction automatique par l’IA dans chaque chaîne, avec une revue humaine sur le code critique ; et des imports maîtrisés, modèles et composants d’agents compris, chaque artefact signé avec sa SBOM.` },
+  vo: `C’est donc le moment de reconstruire nos fondations. Côté architecture cyber : combler les failles d’identité, avec du MFA résistant au phishing et du PAM juste-à-temps ; repenser le réseau, en filtrant les flux et en limitant le rayon d’impact ; et relancer la protection des données, en couvrant aussi les agents d'IA. Côté Logiciel Factory : moins de plateformes, gérées centralement ; une correction automatique par l’IA dans chaque chaîne, avec une revue humaine pour le code critique ; et des imports maîtrisés, modèles et composants d’agents compris, chaque artefact signé avec sa SBOM.` },
 
 { ch: 'c4', type: 'kpi', title: 'La nouvelle baseline',
   heading: 'Fixer une nouvelle <em>baseline cyber</em>',
@@ -2548,12 +2548,12 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   // evenly spaced along the line, alternately above and below it
   items: [
     { n: '02', k: 'Détecter et contenir', v: '&lt; 3 h', t: 'une exposition critique, sans attendre le métier' },
-    { n: '01', k: 'Découvrir', v: '&lt; 24 h', t: 'tout nouvel actif exposé sur Internet' },
+    { n: '01', k: 'Découvrir', v: '&lt; 24 h', t: 'tout nouvel actif exposé sur internet' },
     { n: '03', k: 'Remédier', v: '&lt; 24 h', t: 'tout actif activement exploité' },
     { n: '04', k: 'Reconstruire', v: '&lt; 2 j', t: 'les systèmes critiques, depuis une base de confiance' },
     { n: '05', k: 'Réduire', v: '&lt; 5 %', t: 'd’actifs critiques obsolètes, chaque exception datée et attribuée', stock: true },
   ],
-  vo: `Au-delà des fondations, il faut fixer une nouvelle baseline cyber, mesurable. Cinq familles d’indicateurs, et pour quatre d’entre elles, une horloge qui démarre dès l’événement. Contenir une exposition critique : moins de 3 heures, sans attendre le feu vert des métiers. Découvrir et attribuer tout nouvel actif exposé sur Internet : moins de 24 heures. Corriger ou protéger un actif activement exploité : moins de 24 heures. Reconstruire les systèmes critiques depuis une base de confiance : moins de 2 jours. Et réduire : moins de 5 % d’actifs critiques obsolètes, chaque exception avec un responsable et une date de sortie.` },
+  vo: `Au-delà des fondations, il faut fixer une nouvelle baseline cyber, mesurable. Cinq familles d’indicateurs, et pour quatre d’entre elles, une horloge qui démarre dès l’événement. Contenir une exposition critique : moins de 3 heures, sans attendre le feu vert des métiers. Découvrir et attribuer tout nouvel actif exposé sur internet : moins de 24 heures. Corriger ou protéger un actif activement exploité : moins de 24 heures. Reconstruire les systèmes critiques depuis une base de confiance : moins de 2 jours. Et réduire : moins de 5 % d’actifs critiques obsolètes, chaque exception avec un responsable et une date de sortie.` },
 
 { ch: 'c4', type: 'aaa', title: 'L’IA pour la cyber : AAA',
   heading: 'Passer à une cyberdéfense unifiée et proactive : <em>la Cyber AAA</em>',
@@ -2585,7 +2585,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
 
 { ch: 'c5', type: 'switches', title: 'Les bases',
   stamp: 'Au quotidien', heading: 'Sur votre ordinateur ou votre téléphone : trois interrupteurs',
-  stat: { v: '9 sur 10', l: 'des attaques passent encore par des failles que l\'on sait fermer' },
+  stat: { v: '90 %', l: 'des attaques passent encore par des failles que l\'on sait fermer' },
   items: [
     { i: 'chip', t: 'Mises à jour automatiques', s: 'Téléphone, ordinateur, applications, box internet' },
     { i: 'key', t: 'Gestionnaire de mots de passe', s: 'Un mot de passe unique par compte' },
@@ -2617,9 +2617,9 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
       a: [`Très probablement : le lien n'est pas celui du transporteur, les transporteurs ne facturent pas de frais par SMS, et le délai est là pour vous presser.`, `Ne cliquez pas. Vérifiez dans l'application officielle du transporteur.`] },
     { h: '2 · Réfléchir à ses risques',
       q: `Je travaille dans la finance d'un grand groupe international et je voyage beaucoup. Quelles arnaques pourraient me viser, et quelles trois habitudes adopter ?`,
-      a: [`Probablement : de fausses demandes de virement du « PDG », parfois avec une voix clonée ; de faux fournisseurs qui changent leurs coordonnées bancaires ; de faux messages liés aux voyages.`, `Vérifiez tout changement de paiement sur un numéro connu, convenez d'un mot de code avec votre responsable, partagez moins sur vos déplacements.`] },
+      a: [`Probablement : de fausses demandes de virement du « PDG », parfois avec une voix clonée ; de faux fournisseurs qui changent leurs coordonnées bancaires ; de faux messages liés aux voyages.`, `Vérifiez tout changement de coordonnées bancaires en rappelant un numéro connu, convenez d'un mot de code avec votre responsable, partagez moins sur vos déplacements.`] },
   ],
-  foot: `Utilisez l'outil d'IA fourni par votre entreprise, jamais un outil public pour des données confidentielles. Illustrations, pas un produit en particulier.`,
+  foot: `Utilisez l'outil d'IA fourni par votre entreprise, jamais un outil public pour des données confidentielles. Exemples fictifs, sans produit particulier.`,
   vo: `Ils utilisent l'IA contre vous : utilisez l'IA contre eux. La même IA qui écrit les arnaques est excellente pour les repérer. Collez le message, et demandez. Et n'attendez pas un message suspect : demandez-lui ce qui pourrait vous viser, et ce qu'il faut changer en premier. Utilisez l'outil fourni par votre entreprise, jamais un outil public pour des données confidentielles.`,
   notes: `Clics : réponse de gauche, question de droite, réponse de droite. Autre question possible : « Voici mon profil public, qu'est-ce qu'un escroc pourrait en faire ? »` },
 
@@ -2627,26 +2627,26 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   stamp: 'Bonnes pratiques', heading: 'Quelles bonnes pratiques quand j\'utilise l\'IA ?',
   groups: [
     { h: 'Quand j\'utilise l\'IA', cards: [
-      { q: 'Ne jamais partager de données professionnelles ou privées sur une IA publique', a: 'Ce que vous collez peut être stocké, réutilisé, ou fuiter.' },
-      { q: 'Vous avez un besoin ? Demandez-le !', a: 'Votre entreprise peut fournir un outil d\'IA sûr. Demandez plutôt que de contourner.' },
+      { q: 'Ne jamais partager de données professionnelles ou privées avec une IA publique', a: 'Ce que vous collez peut être stocké, réutilisé ou divulgué.' },
+      { q: 'Vous avez un besoin ? Exprimez-le !', a: 'Votre entreprise peut fournir un outil d\'IA sûr. Demandez plutôt que de contourner les règles.' },
     ] },
     { h: 'Quand je mets en place un agent d\'IA, je vérifie', cards: [
       { q: 'Que ne doit-il jamais faire ?', a: 'Écrire les limites, pas seulement l\'objectif. Les agents d\'OpenAI n\'avaient qu\'un objectif.' },
       { q: 'À quoi peut-il accéder ?', a: 'Seulement à ce dont il a besoin. Un seul dépôt partagé a été leur porte de sortie.' },
-      { q: 'Qui peut appuyer sur stop ?', a: 'Une personne nommée, et un plan pour prévenir les autres. Le 27 juin, personne ne le pouvait.' },
+      { q: 'Qui peut appuyer sur le bouton stop ?', a: 'Une personne désignée, et un plan pour prévenir les autres. Le 27 juin, personne ne le pouvait.' },
     ] },
   ],
-  vo: `Quelles bonnes pratiques quand j'utilise l'IA ? Deux d'abord. Ne jamais partager de données professionnelles ou privées sur une IA publique. Et si vous avez un besoin, demandez-le : votre entreprise peut fournir un outil sûr. Ensuite, quand vous mettez en place un agent d'IA, trois questions à afficher au mur. Que ne doit-il jamais faire ? À quoi peut-il accéder ? Qui peut appuyer sur stop ? Chacune est une leçon de cette histoire.` },
+  vo: `Quelles bonnes pratiques quand j'utilise l'IA ? Deux d'abord. Ne jamais partager de données professionnelles ou privées avec une IA publique. Et si vous avez un besoin, exprimez-le : votre entreprise peut fournir un outil sûr. Ensuite, quand vous mettez en place un agent d'IA, trois questions à afficher au mur. Que ne doit-il jamais faire ? À quoi peut-il accéder ? Qui peut appuyer sur le bouton stop ? Chacune est une leçon de cette histoire.` },
 
 { ch: 'c5', type: 'credits', title: 'Ce qui a marché',
   k: 'Un dernier mot…',
   t: 'Chaque histoire vue aujourd\'hui est connue parce que quelqu\'un l\'a repérée et en a parlé.',
   rows: [
-    { who: 'Hugging Face', did: 'a détecté l\'intrusion, et l\'a rendue publique' },
-    { who: 'OpenAI', did: 'a reconnu que c\'était sa propre IA, et a publié son rapport' },
+    { who: 'Hugging Face', did: 'a détecté l\'intrusion et l\'a rendue publique' },
+    { who: 'OpenAI', did: 'a reconnu que c\'était sa propre IA et a publié son rapport' },
     { who: 'Chercheurs', did: 'METR, Transluce, Nightingale Collective ont trouvé les traces' },
     { who: 'Journalistes', did: 'ont continué de poser des questions, dans une douzaine de pays' },
-    { who: 'Vous', did: 'le prochain à repérer quelque chose, et à le dire' },
+    { who: 'Vous', did: 'les prochains à repérer quelque chose et à le signaler' },
   ],
   vo: `Un dernier mot. Il y a des raisons d'être optimiste. Tout ce que vous avez vu aujourd'hui, nous le savons parce que quelqu'un l'a repéré et en a parlé. Hugging Face a détecté et révélé. OpenAI a reconnu. Des chercheurs indépendants ont trouvé les traces. Des journalistes ont continué de poser des questions. Et le prochain, ce pourrait être vous.` },
 
@@ -3481,7 +3481,7 @@ const ZWORLD = (() => {
     { d: 'M2080,590 C2520,590 2520,-285 2760,-285', from: 5, label: ['un fichier piégé'], at: '11 JUILLET', lx: 2518, ly: 91, on: 1 },
   ];
   const OUT = [
-    [-120, -1150, '16 JUILLET', 'Hugging Face rend public : attaquant inconnu'],
+    [-120, -1150, '16 JUILLET', 'Hugging Face annonce l\'attaque : auteur inconnu'],
     [1840, -1150, '17 JUILLET', 'OpenAI s’inquiète, en tant que client'],
     [3270, -1150, '21 JUILLET', 'OpenAI : c’étaient nos modèles'],
     [700, 1060, '5 AOÛT', 'OpenAI s’explique à Black Hat'],
@@ -3519,7 +3519,7 @@ const ZWORLD = (() => {
   svg += L(LX, LY, 7, 7, T('17 600 ACTIONS À RECONSTITUER', 0, -26, 'zt-b') + T('chaque carré : environ 18 actions', 0, -10, 'zt-s'));
   svg += L(LX, LY + ROWS * CELL, 7, 7, T('en rouge : le chemin qui a fonctionné,', 0, 16, 'zt-s') + T('noyé parmi des milliers d’essais ratés', 0, 30, 'zt-s'));
   svg += L(3280, 90, 7, 7, T('ASSISTANTS IA', 12, 22, 'zt-b') + T('✗ Claude, Fable : refus', 12, 44, 'zt-no') + T('✓ GLM-5.2 (Chine) : a fonctionné', 12, 62, 'zt-ok') + T('sur leurs propres serveurs', 12, 78, 'zt-s'));
-  svg += L(2760, 560, 7, 7, T('PUIS TOUT VÉRIFIER', 0, 0, 'zt-b') + T('chaque mot de passe changé, même là où ils ne sont pas allés', 0, 18, 'zt-s') + T('chaque projet de code et chaque paquet vérifiés', 0, 34, 'zt-s') + T('un cluster central reconstruit de zéro', 0, 50, 'zt-s'));
+  svg += L(2760, 560, 7, 7, T('PUIS TOUT VÉRIFIER', 0, 0, 'zt-b') + T('chaque mot de passe changé, même là où ils ne sont pas allés', 0, 18, 'zt-s') + T('chaque projet de code et chaque paquet vérifiés', 0, 34, 'zt-s') + T('un cluster central entièrement reconstruit', 0, 50, 'zt-s'));
   return svg + '</svg>';
 })();
 
