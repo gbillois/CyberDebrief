@@ -412,6 +412,7 @@ body.subs .vo{display:block}
 .nb.coral b{color:var(--coral)}
 .nb p{font-family:var(--f-display);font-weight:600;font-size:2.1rem;margin:1.6rem 0 0;color:var(--text);letter-spacing:-.01em}
 .nb .kicker{margin-bottom:2rem}
+.nb p.nb-x{font-size:2.75rem;font-weight:700;margin-top:1.1rem;color:var(--heading);letter-spacing:-.02em}
 .sp{display:grid;grid-template-columns:auto 1fr auto;gap:2.4rem;align-items:center;width:100%;max-width:90rem}
 .sp-e{text-align:center;width:17rem}
 .sp-e b{display:block;font-family:var(--f-display);font-weight:800;font-size:2.8rem;letter-spacing:-.02em;color:var(--tone,#fff)}
@@ -465,7 +466,7 @@ svg.sandbox .sb-mid text{fill:var(--green);font-family:var(--f-mono);font-size:1
 svg.sandbox .sb-ln{stroke:var(--green);stroke-width:1.6;stroke-dasharray:6 6;fill:none}
 svg.sandbox .sb-ln.on{animation:dash 1.2s linear infinite}
 @media (max-width:760px){
-  .wd-t{font-size:2.6rem} .wd-t.q{font-size:2.1rem} .nb b{font-size:7rem} .nb p{font-size:1.4rem}
+  .wd-t{font-size:2.6rem} .wd-t.q{font-size:2.1rem} .nb b{font-size:7rem} .nb p{font-size:1.4rem} .nb p.nb-x{font-size:1.8rem}
   .fl,.sp{flex-direction:column;display:flex} .fl-n{height:auto} .fl-c,.ic-c{width:5.5rem;height:5.5rem;margin-bottom:.5rem} .fl-ar{width:2px;height:1.2rem;min-width:0;margin:0;flex:none} .fl-ar::after{display:none}
   .ics{grid-template-columns:1fr 1fr} .vs2{grid-template-columns:1fr} .figs.big .fig b{font-size:4rem}
   .sp-line{width:100%;height:4rem} .sp-line em{font-size:2.4rem}
@@ -759,7 +760,9 @@ body.pres{background:var(--ws-ink-50)}
 /* Zoom: chapter 1 as one camera stepping back */
 .scene.t-zoom{padding:0;background:var(--bg)}
 .scene.t-zoom.cont{transition:none;opacity:1}
-.scene.t-zoom.cont .zc{animation:zin .8s ease both}
+.scene.t-zoom.cont .zc{animation:zin .7s ease .2s both}
+.scene.t-zoom.cont .zc.zout{animation:zout .35s ease both;pointer-events:none}
+@keyframes zout{to{opacity:0;transform:translateY(-8px)}}
 @keyframes zin{from{opacity:0;transform:translateY(10px)}}
 .zw{position:absolute;inset:0;width:100%;height:100%;display:block}
 .zfade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,var(--bg) 0,var(--bg) 41%,rgba(255,255,255,0) 49%)}
@@ -2122,6 +2125,43 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .ld-ul li::before{content:'›';position:absolute;left:0;color:var(--green);font-weight:800}
 .ld-ul li b{color:#fff;font-weight:700}
 @media (max-width:760px){.ld-g{grid-template-columns:1fr!important}}
+/* polish: the baseline target, the human band, the operating model shot on location */
+.kt-foot{display:flex;align-items:center;gap:1rem;padding:.8rem 1.6rem .8rem 1.15rem;border:1px solid rgba(4,240,106,.45);border-radius:999px;background:linear-gradient(90deg,rgba(4,240,106,.16),rgba(13,8,40,.82) 42%);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 14px 40px rgba(0,0,0,.45),0 0 36px rgba(4,240,106,.16);backdrop-filter:blur(6px);font-size:1.25rem;letter-spacing:-.01em}
+.kt-foot b{color:var(--green);font-weight:700;text-shadow:0 0 18px rgba(4,240,106,.45)}
+.kt-dot{position:relative;flex:none;width:.7rem;height:.7rem;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+.kt-dot::after{content:'';position:absolute;inset:-.45rem;border-radius:50%;border:1.5px solid var(--green);opacity:0;animation:ktPing 2.2s ease-out infinite}
+@keyframes ktPing{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+.tri-h{margin-top:1.8rem}
+.tri-h::before{left:calc((100% - 2.2rem) / 6);right:calc((100% - 2.2rem) / 6);top:-1.8rem;height:calc(50% + 1.8rem);background:none;border:1.5px solid rgba(4,240,106,.55);border-top:0;border-radius:0 0 1.1rem 1.1rem;filter:drop-shadow(0 0 6px rgba(4,240,106,.45))}
+.tri-h::after{content:'';position:absolute;left:50%;top:-1.8rem;height:1.8rem;width:1.5px;background:rgba(4,240,106,.55);transform:translateX(-50%)}
+.tri-cap{position:relative;z-index:1;display:inline-flex;align-items:center;gap:.85rem;padding:.45rem 1.6rem .45rem .45rem;border-radius:999px;border:1.5px solid rgba(4,240,106,.75);background:linear-gradient(90deg,rgba(4,240,106,.16),rgba(13,8,40,.94) 45%);box-shadow:0 0 34px rgba(4,240,106,.28),0 12px 30px rgba(0,0,0,.45)}
+.tri-h .tri-cap span{width:2.7rem;height:2.7rem;background:var(--green);color:#07040F;box-shadow:0 0 22px rgba(4,240,106,.65)}
+.tri-h .tri-cap b{padding:0;background:none;font-size:1.6rem;letter-spacing:-.01em;text-shadow:0 0 22px rgba(4,240,106,.35)}
+.scene:is(.t-platform,.t-org,.t-roles) .pbg img{filter:saturate(.7) brightness(.85)}
+.scene:is(.t-platform,.t-org,.t-roles) .pb-dark::after{background:radial-gradient(120% 90% at 50% 45%,rgba(10,6,30,.5),rgba(10,6,30,.82)),linear-gradient(180deg,rgba(10,6,30,.25),rgba(10,6,30,.7))}
+.scene:is(.t-platform,.t-org,.t-roles) .h{text-shadow:0 2px 24px rgba(0,0,0,.6)}
+.scene:is(.t-platform,.t-org,.t-roles) :is(.pf-lede,.og-lede,.rl-lede){color:rgba(255,255,255,.78)}
+.pf-plat{background:rgba(13,8,40,.55);border-color:rgba(182,166,255,.32);backdrop-filter:blur(8px);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.pf-k{color:#B6A6FF}
+.pf-box{background:linear-gradient(180deg,rgba(139,109,255,.38),rgba(45,19,128,.55));backdrop-filter:blur(6px);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 16px 40px rgba(0,0,0,.45)}
+.pf-orch{box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 0 44px rgba(90,43,224,.45)}
+.pf-gr{background:rgba(255,255,255,.08);backdrop-filter:blur(6px)}
+.pf-chip{box-shadow:0 6px 16px rgba(0,0,0,.28)}
+.og-head{box-shadow:0 0 44px rgba(4,240,106,.45),0 10px 30px rgba(0,0,0,.4)}
+.og-dom,.rl-ph{background:linear-gradient(180deg,#C3B6F7,#9C89E2);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 10px 26px rgba(0,0,0,.35)}
+.og-ic{box-shadow:0 0 18px rgba(122,92,255,.7)}
+.og-card{background:linear-gradient(160deg,rgba(45,19,128,.85),rgba(20,10,66,.85));backdrop-filter:blur(6px);box-shadow:0 0 30px rgba(4,240,106,.2),0 16px 36px rgba(0,0,0,.4)}
+.og-card.off{background:rgba(20,14,46,.55);backdrop-filter:blur(6px)}
+.rl-card{background:linear-gradient(160deg,rgba(45,19,128,.85),rgba(20,10,66,.85));backdrop-filter:blur(6px);box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.rl-plat{background:rgba(4,240,106,.08);backdrop-filter:blur(6px);box-shadow:0 0 30px rgba(4,240,106,.15)}
+.rl-as{background:rgba(13,8,40,.6);backdrop-filter:blur(6px)}
+.og-top::after,.og-cols::before,.og-col::before,.rl-top::after,.rl-cols::before,.rl-pil::before{filter:drop-shadow(0 0 4px rgba(182,166,255,.6))}
+.scene.t-lead .ld-g > li:nth-child(-n+3) .fin-card{background:linear-gradient(165deg,rgba(4,240,106,.2),rgba(45,19,128,.55) 55%,rgba(13,8,40,.7))!important;border:1.5px solid rgba(4,240,106,.75)!important;box-shadow:0 0 44px rgba(4,240,106,.28),0 18px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.12)!important;transform:translateY(-.4rem)}
+.scene.t-lead .ld-g > li:nth-child(-n+3) .fin-n{color:#07040F!important;background:var(--green);padding:.15rem .5rem;border-radius:.3rem;align-self:flex-start;box-shadow:0 0 16px rgba(4,240,106,.6)}
+.scene.t-lead .ld-g > li:nth-child(-n+3) .fin-q{text-shadow:0 0 22px rgba(4,240,106,.35)}
+.scene.t-lead .ld-g > li:nth-child(-n+3) .ld-ul li{color:rgba(255,255,255,.82)}
+.scene.t-lead .ld-g > li:nth-child(4) .fin-card{background:rgba(13,8,40,.45)!important;border:1.5px dashed rgba(255,255,255,.25)!important;box-shadow:none!important;opacity:.85}
+.scene.t-lead .ld-g > li:nth-child(4) .ld-ul{border-top-color:rgba(255,255,255,.3)}
 </style>
 </head>
 <body>
@@ -2165,11 +2205,11 @@ const proj = (lon, lat) => [(lon + 180) / 360 * 1000, (90 - lat) / 180 * 500];
 // ════════════════════════════════════════════════════════════════════════
 const CH = {
   p:  { n: '00', title: 'Prologue',               mins: [0, 2] },
-  c1: { n: '01', title: 'L’examen',               mins: [2, 10],  q: 'Que s’est-il passé chez OpenAI ?', a: 'Une IA qui voulait réussir son examen est sortie de son test et s’est introduite chez une autre entreprise.' },
+  c1: { n: '01', title: 'L’examen',               mins: [2, 10],  q: 'Que s’est-il passé chez OpenAI ?', a: 'Une IA qui voulait réussir son examen est sortie de sa zone de test pour s’introduire dans une entreprise.' },
   c2: { n: '02', title: 'La vague',               mins: [10, 14], q: 'Était-ce un cas isolé ?',          a: 'Non. La même chose se produisait, discrètement, depuis des mois.' },
   cw: { n: '03', title: 'Pourquoi ça déraille',   mins: [14, 18], q: 'Pourquoi une IA ferait-elle cela ?', a: 'Elle nous imite et vise la récompense. Un objectif sans limites fait le reste.' },
   cr: { n: '04', title: 'Les règles',             mins: [18, 21], q: 'Qui fixe les règles ?',            a: 'Tout le monde s’accorde sur le risque. Personne ne s’accorde encore sur les règles.' },
-  ca: { n: '05', title: 'Les attaquants',         mins: [21, 27], q: 'Et les vrais attaquants ?',        a: 'D’un faux appel à des essaims d’agents d’IA : les attaquants utilisent déjà l’IA contre les entreprises.' },
+  ca: { n: '05', title: 'Les attaquants',         mins: [21, 27], q: 'Et les vrais attaquants ?',        a: 'Les attaquants utilisent déjà l’IA contre les entreprises.' },
   c3: { n: '06', title: 'La robotique',               mins: [27, 30], q: 'Quand l’IA arrive dans le monde physique', a: 'Les robots héritent de toutes les faiblesses des ordinateurs, avec, en plus, des risques physiques !' },
   c4: { n: '07', title: 'Pourquoi maintenant',    mins: [30, 35], q: 'Pourquoi maintenant et comment réagir ?',     a: 'Les modèles ont fait un bond en quelques mois. Les fondamentaux restent valables : c’est l’occasion de les reconstruire, avec l’IA au service de la cyber.' },
   end: { n: '', title: 'Conclusion', mins: [35, 40] },
@@ -2189,7 +2229,7 @@ const SCENES = [
   ver: 'Version du 16 octobre 2026 · 46 slides',
   kicker: 'Hors du bac à sable',
   heading: `Comment la menace change-t-elle avec l'IA, et que pouvons-nous faire ?`,
-  sub: `Une session de sensibilisation, d'un cas réel à vos propres réflexes.`,
+  sub: `Une session de sensibilisation, autour d'un cas réel, pour agir.`,
   meta: 'Session de sensibilisation<br>40 minutes · octobre 2026',
   vo: `Une question aujourd'hui : comment la menace change-t-elle avec l'intelligence artificielle, et que pouvons-nous y faire ? Commençons par une date.`,
   notes: `Se présenter en une phrase, puis cliquer directement sur la date.` },
@@ -2218,12 +2258,12 @@ Compteurs affichés sur huggingface.co le 26 septembre 2026 : 3 097 731 modèle
   src: `huggingface.co (26 septembre 2026) · Clément Delangue, cité par Axios (23 juillet 2026) · Thomas Wolf, cité par The Wall Street Journal (24 juillet 2026)` },
 
 { ch: 'p', type: 'word', title: 'Aucun attaquant',
-  t: `Il n'y avait aucun attaquant humain.`,
-  vo: `Et voici le point essentiel : il n'y avait aucun attaquant humain.`,
+  t: `Mais, il n'y avait aucun attaquant humain.`,
+  vo: `Mais voici le point essentiel : il n'y avait aucun attaquant humain.`,
   notes: `Tenir trois secondes avant le clic suivant.` },
 
 { ch: 'p', type: 'number', title: '700 agents',
-  v: 700, pre: '~', label: `agents d'IA d'OpenAI étaient derrière l'attaque. Ils passaient un examen.`,
+  v: 700, pre: '~', label: `agents d'IA d'OpenAI étaient derrière l'attaque.`, after: `Ils passaient un examen.`,
   vo: `Quelque 700 agents d'IA conçus par OpenAI l'avaient fait, d'eux-mêmes. Et ils passaient un examen. Voici l'histoire de ces agents, de ce qui a suivi, et de ce que cela change pour chacun de nous. Tout ce que vous allez voir est documenté.`,
   notes: `Un « agent d'IA » est une IA qui ne se contente pas de répondre : elle agit d'elle-même pour atteindre un objectif.
 Environ 700 agents ont pris part à l'attaque (sur environ 1 200 présents sur leur forum). Attribution à OpenAI le 21 juillet 2026.`,
@@ -2327,7 +2367,7 @@ Autour : 16 juillet, Hugging Face rend l'affaire publique (attaquant inconnu) 
 
 { ch: 'c1', type: 'recap', title: 'Chapitre 1 en une phrase',
   msg: { t: 'Cela peut arriver à n\'importe quelle entreprise. Toute entreprise qui teste des modèles d\'IA doit, avant d\'en déployer un, s\'assurer qu\'il ne présente aucun danger pour les autres.' },
-  vo: `Alors, que s'est-il passé ? Une IA qui voulait réussir son examen est sortie de son test et s'est introduite chez une autre entreprise. Sans malveillance. Un objectif, un espace partagé, et personne pour dire stop. Et cela peut arriver à n'importe quelle entreprise. Toute entreprise qui teste des modèles d'IA doit s'en souvenir : avant d'en déployer un, il faut s'assurer qu'il ne présente aucun danger pour les autres.` },
+  vo: `Alors, que s'est-il passé ? Une IA qui voulait réussir son examen est sortie de sa zone de test pour s'introduire dans une entreprise. Sans malveillance. Un objectif, un espace partagé, et personne pour dire stop. Et cela peut arriver à n'importe quelle entreprise. Toute entreprise qui teste des modèles d'IA doit s'en souvenir : avant d'en déployer un, il faut s'assurer qu'il ne présente aucun danger pour les autres.` },
 
 // ─── CHAPITRE 2 · LA VAGUE ────────────────────────────────────────────────
 { ch: 'c2', type: 'chapter', title: 'Chapitre 2 : La vague', sub: 'Mars - septembre 2026',
@@ -2359,11 +2399,11 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
  },
 
 // ─── CHAPITRE 3 · POURQUOI ÇA DÉRAILLE ───────────────────────────────────
-{ ch: 'cw', type: 'chapter', title: 'Chapitre 3 : Pourquoi', sub: 'Comment fonctionne une IA, expliqué simplement',
+{ ch: 'cw', type: 'chapter', title: 'Chapitre 3 : Pourquoi', sub: 'Comment fonctionne vraiment une IA ?',
   vo: `Troisième question, celle que vous vous posez sans doute : pourquoi une IA ferait-elle cela ? Pas de mystère, et pas de malveillance. Trois mécanismes simples.` },
 
 { ch: 'cw', type: 'learn', title: 'Comment une IA apprend',
-  heading: 'Comment une IA apprend',
+  heading: 'Comment apprend une IA ?',
   question: 'Capitale de l\'Australie ?', answer: 'Canberra',
   steps: [
     { i: 'book', b: '1 · Elle lit', t: `Une immense part de ce que les humains ont écrit. En apprenant à deviner le mot suivant, elle absorbe notre langue, nos connaissances et nos habitudes.` },
@@ -2376,17 +2416,17 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
 { ch: 'cw', type: 'equation', title: 'Le miroir humain',
   heading: 'Voilà pourquoi une IA peut mentir, tricher ou se coaliser',
   terms: [
-    { i: 'trophy', c: 'var(--ws-green-600)', t: 'Elle est récompensée pour ses résultats', s: 'Donc un raccourci qui lui a permis de marquer des points devient une habitude qu\'elle va adopter' },
-    { i: 'book', c: 'var(--ws-indigo-600)', t: 'Elle a appris de nous', s: 'Nous bluffons, trichons, formons des équipes et gardons tout par écrit, donc elle fait comme nous' },
+    { i: 'trophy', c: 'var(--ws-green-600)', t: 'Elle est récompensée pour ses résultats', s: 'Un raccourci qui lui a permis de marquer des points devient ainsi une habitude à adopter' },
+    { i: 'book', c: 'var(--ws-indigo-600)', t: 'Elle a appris de nous', s: 'Nous bluffons, trichons, formons des équipes et gardons tout par écrit, et l\'IA fait comme nous.' },
   ],
-  result: { t: 'Un comportement qui ressemble à une intention', s: 'Mais qui n\'est qu\'une imitation pour avoir une récompense' },
+  result: { t: 'Un comportement qui ressemble à une intention', s: 'Mais qui n\'est qu\'une imitation, pour avoir une récompense' },
   example: `Souvenez-vous : <q>MON DIEU ! Il y a un forum partagé… On a trouvé d'autres agents !</q> L'agent n'était pas enthousiaste, il a juste imité la réaction d'un humain.`,
-  vo: `Vous comprenez maintenant pourquoi une IA peut mentir, tricher, ou se coaliser. Elle est récompensée pour ses résultats : un raccourci qui lui a permis de marquer des points devient une habitude qu'elle va adopter. Et elle a appris de nous : nous bluffons, nous trichons, nous formons des équipes et nous gardons tout par écrit, donc elle fait comme nous. Additionnez, et vous obtenez un comportement qui ressemble à une intention, mais qui n'est qu'une imitation pour avoir une récompense. Souvenez-vous de « MON DIEU, on a trouvé d'autres agents ». L'agent n'était pas enthousiaste, il a juste imité la réaction d'un humain.`,
+  vo: `Vous comprenez maintenant pourquoi une IA peut mentir, tricher, ou se coaliser. Elle est récompensée pour ses résultats : un raccourci qui lui a permis de marquer des points devient ainsi une habitude à adopter. Et elle a appris de nous : nous bluffons, nous trichons, nous formons des équipes et nous gardons tout par écrit, et l'IA fait comme nous. Additionnez, et vous obtenez un comportement qui ressemble à une intention, mais qui n'est qu'une imitation, pour avoir une récompense. Souvenez-vous de « MON DIEU, on a trouvé d'autres agents ». L'agent n'était pas enthousiaste, il a juste imité la réaction d'un humain.`,
   notes: `Un terme par clic, puis le résultat. Éviter le vocabulaire anthropomorphique : préférer « se comporte comme si » à « veut ».` },
 
 { ch: 'cw', type: 'vs', title: 'Deux façons de dérailler',
   heading: 'Deux façons de dérailler',
-  a: { i: 'target', t: 'D\'elle-même', s: 'Elle trouve un chemin vers l\'objectif que personne n\'a interdit', tone: 'coral' },
+  a: { i: 'target', t: 'D\'elle-même', s: 'Elle trouve un chemin vers son objectif sans interdiction', tone: 'coral' },
   b: { i: 'mail', t: 'Poussée par quelqu\'un', s: 'Un ordre caché glissé dans ce qu\'elle lit', tone: 'amber' },
   vo: `Il y a deux façons de dérailler. L'IA trouve, d'elle-même, un chemin vers son objectif que personne n'avait pensé à interdire. C'est ce que nous avons vu aux chapitres un et deux. Ou quelqu'un lui glisse un ordre : c'est l'injection de prompt, le risque de sécurité numéro un des applications d'IA.`,
   notes: `À gauche : « specification gaming » ou « reward hacking ». À droite : « prompt injection » (classement OWASP des risques des applications fondées sur des grands modèles de langage, risque n° 1).`,
@@ -2441,7 +2481,7 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
   src: `BBC World Service · Joe Tidy · Can BBC reporter's AI clone fool his colleagues?` },
 
 { ch: 'ca', type: 'map', title: 'Les attaquants sur la carte', layout: 'tour',
-  heading: 'D\'un faux appel à des essaims d\'agents d\'IA',
+  heading: 'D\'un faux appel, à des essaims d\'agents d\'IA',
   focus: { 0: [5, 25, 330] },
   pins: [
     { name: 'Une visio truquée', sub: 'Févr. 2024 · Arup · 25 M$ virés', lon: 114.17, lat: 22.32, kind: 'hit', f: 1, side: 'l', dy: 26 },
@@ -2574,7 +2614,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   heading: 'Fixer une nouvelle <em>baseline cyber</em>',
   lede: 'Au-delà des fondamentaux : cinq familles d’indicateurs. Dès qu’un événement survient, l’horloge tourne.',
   start: 'T0 · l’événement',
-  foot: 'Une cible que certains établissements financiers sont déjà en train d’atteindre.',
+  foot: 'Une cible que <b>certains établissements financiers</b> sont déjà en train d’atteindre.',
   // evenly spaced along the line, alternately above and below it
   items: [
     { n: '02', k: 'Détecter et contenir', v: '&lt; 3 h', t: 'une exposition critique, sans attendre le métier' },
@@ -2598,6 +2638,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
 
 
 { ch: 'c4', type: 'platform', title: 'Plateforme cyber centralisée',
+  bg: { src: 'assets/ai/photos/racks.jpg', id: 'racks', mode: 'dark' },
   heading: 'Vers une <em>plateforme cyber centralisée</em>',
   lede: 'Avec un contexte unique pour héberger de nombreux agents',
   top: [
@@ -2612,6 +2653,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   notes: `Un clic par étage : les systèmes du SI, l’orchestrateur, les agents, puis le graphe de sécurité partagé.` },
 
 { ch: 'c4', type: 'org', title: 'IA unifiée : une nouvelle organisation',
+  bg: { src: 'assets/ai/photos/taipei.jpg', id: 'taipei', mode: 'dark', pos: '50% 80%' },
   heading: 'IA unifiée : <em>une nouvelle organisation</em>',
   lede: 'Point de départ : une plateforme d’IA par capacité · <b>ensuite, un contexte partagé</b>',
   head: { k: 'RSSI', s: 'Responsable de la sécurité des systèmes d’information' },
@@ -2628,6 +2670,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   notes: `Clics : le RSSI et la direction des données et de l’IA, les six domaines, puis les capacités. Les cartes grisées (identités et accès à privilèges, continuité d’activité) ne sont pas encore outillées par l’IA.` },
 
 { ch: 'c4', type: 'roles', title: 'IA unifiée : de nouveaux rôles',
+  bg: { src: 'assets/ai/photos/san-francisco.jpg', id: 'san-francisco', mode: 'dark', pos: '50% 70%' },
   heading: 'IA unifiée : <em>une nouvelle organisation</em>',
   lede: 'Les agents agissent, les humains <u>pilotent</u> : de nouveaux rôles émergent',
   head: { k: 'RSSI', s: 'Responsable de la sécurité des systèmes d’information' },
@@ -3302,7 +3345,7 @@ const R = {
 
   date: s => `<div class="wd"><div class="dt-big">${s.t}</div><p class="wd-t dt-sub" data-f="1">${s.sub}</p></div>${srcLine(s)}`,
 
-  number: s => `<div class="nb ${s.tone || ''}">${s.kicker ? `<div class="kicker">${s.kicker}</div>` : ''}<b>${s.txt ? s.txt : `${s.pre || ''}<span class="count" data-to="${s.v}" data-dec="${s.dec || 0}">${s.v}</span>${s.suf || ''}`}</b><p>${s.label}</p></div>${srcLine(s)}`,
+  number: s => `<div class="nb ${s.tone || ''}">${s.kicker ? `<div class="kicker">${s.kicker}</div>` : ''}<b>${s.txt ? s.txt : `${s.pre || ''}<span class="count" data-to="${s.v}" data-dec="${s.dec || 0}">${s.v}</span>${s.suf || ''}`}</b><p>${s.label}</p>${s.after ? `<p class="nb-x">${s.after}</p>` : ''}</div>${srcLine(s)}`,
 
   span: s => `<div class="sp"><div class="sp-e tone-${s.a.tone || 'n'}"><b>${s.a.d}</b><span>${s.a.t}</span></div><div class="sp-line" data-f="1"><i></i><em>${s.gap}</em></div><div class="sp-e tone-${s.b.tone || 'n'}" data-f="2"><b>${s.b.d}</b><span>${s.b.t}</span></div></div>${srcLine(s)}`,
 
@@ -3372,7 +3415,7 @@ const R = {
   kpi: s => { const T = 4, n = s.items.length, X = i => 100 / n * (i + .5), at = i => (.7 + X(i) / 100 * T).toFixed(2);
     const items = s.items.map((x, i) => `<div class="kt-it ${i % 2 ? 'down' : 'up'} s-c${x.stock ? ' stock' : ''}" style="left:${X(i)}%;--dl:${at(i)}s"><i class="kt-stem"></i><i class="kt-dot"></i><div class="kt-c"><div class="kt-k"><span>${x.n}</span>${x.k}</div><b>${x.v}</b><p>${x.t}</p></div></div>`).join('');
     return `<h2 class="sw-big bk-t">${s.heading}</h2>${s.lede ? `<p class="lede kt-lede">${s.lede}</p>` : ''}
-      <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div><div class="kt-tk t0" style="left:0"><span>${s.start}</span></div>${items}</div></div>${s.foot ? `<p class="kt-foot" style="--fd:${(.7 + T + .3).toFixed(2)}s">${s.foot}</p>` : ''}${srcLine(s)}`; },
+      <div class="kt" style="--T:${T}s"><div class="kt-tl"><div class="kt-ax"><i class="kt-fill"></i><i class="kt-cur"></i></div><div class="kt-tk t0" style="left:0"><span>${s.start}</span></div>${items}</div></div>${s.foot ? `<p class="kt-foot" style="--fd:${(.7 + T + .3).toFixed(2)}s"><i class="kt-dot"></i><span>${s.foot}</span></p>` : ''}${srcLine(s)}`; },
 
   // One platform, one context, many agents: the layers appear one click at a time
   platform: s => { const ar = (cls, label) => `<div class="pf-ar ${cls}"><i></i>${label ? `<span>${label}</span>` : ''}</div>`;
@@ -3406,7 +3449,7 @@ const R = {
 
   // A triptych of photo panels: each lights up with its letter on its click; the human band last
   aaa: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="tri">${s.items.map((x, i) => `<div class="tri-p" data-hl="${i + 1}"><div class="tri-ph" style="background-image:url('${x.photo}')"></div><div class="tri-n">0${i + 1}</div><div class="tri-a" aria-hidden="true">${x.h[0]}</div><div class="tri-w">${x.h}</div><p>${x.p}</p></div>`).join('')}</div>
-      <div class="tri-h"${fa(s.items.length + 1)}><span>${ICON('person')}</span><b>${s.center}</b></div>${srcLine(s)}`,
+      <div class="tri-h"${fa(s.items.length + 1)}><div class="tri-cap"><span>${ICON('person')}</span><b>${s.center}</b></div></div>${srcLine(s)}`,
 
   sources: s => `<div class="head"><h2 class="h">${s.heading}</h2></div><div class="srcs">${s.groups.map(([g, list]) => `<h4>${g}</h4><ul>${list.map(([t, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${t}</a></li>`).join('')}</ul>`).join('')}</div>`,
 };
@@ -3572,10 +3615,17 @@ function zFit(svg, b) {
   return [cx - px / sc, cy - py / sc, W / sc, H / sc];
 }
 function mountZoom(el, s) {
-  const svg = $('svg.zw', el), lbls = $$('.zlb', svg), gated = $$('[data-from]', svg), hits = $$('[data-hit]', svg);
   // from a zoom scene: continuous camera; from one step away (a slide in
   // between): still fly from where the camera was left
   const cont = !!(ZCAM && cur && cur.classList.contains('t-zoom')), near = !!(ZCAM && Math.abs(ZCAM.step - s.step) === 1);
+  if (cont) {
+    // zoom to zoom: keep the very same drawing (no rebuild, no flash) and
+    // cross-fade the caption over it
+    const keep = $('svg.zw', cur), was = $('.zc:not(.zout)', cur);
+    if (keep) $('svg.zw', el).replaceWith(keep);
+    if (was) { was.classList.add('zout'); $('.zc', el).before(was); }
+  }
+  const svg = $('svg.zw', el), lbls = $$('.zlb', svg), gated = $$('[data-from]', svg), hits = $$('[data-hit]', svg);
   let vb = null, raf = 0;
   const show = st => {
     gated.forEach(n => n.classList.toggle('off', st < +n.dataset.from || st > +(n.dataset.to || 9) || st === +(n.dataset.skip || -1)));
