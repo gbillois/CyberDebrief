@@ -2208,6 +2208,29 @@ sup{text-transform:none}
 .scene.t-bricks .bk-b::after{content:'';position:absolute;left:1.4rem;right:1.4rem;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--tone),transparent);opacity:.7}
 .scene.t-bricks .bk-row.on .bk-b::after{animation:bkLine 1.2s ease backwards;animation-delay:calc(var(--d) * .14s + .6s)}
 @keyframes bkLine{from{transform:scaleX(0);opacity:0}}
+/* rebuilding, final pass: layer emblems, living borders, a glowing foundation line */
+@property --bka{syntax:'<angle>';inherits:false;initial-value:0deg}
+.scene.t-bricks .bk{border:0;background:radial-gradient(70% 60% at 50% 105%,rgba(122,92,255,.28),transparent 70%),linear-gradient(rgba(122,92,255,.06) 1px,transparent 1px) 0 0/2.2rem 2.2rem,linear-gradient(90deg,rgba(122,92,255,.06) 1px,transparent 1px) 0 0/2.2rem 2.2rem,rgba(10,6,30,.4);box-shadow:inset 0 0 0 1px rgba(182,166,255,.14),0 40px 90px rgba(0,0,0,.5);gap:1.6rem}
+.scene.t-bricks .bk::after{content:'';position:absolute;left:8%;right:8%;bottom:1.1rem;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#7A5CFF 20%,#3E9FA6 50%,#04F06A 80%,transparent);box-shadow:0 0 18px rgba(122,92,255,.7),0 0 40px rgba(4,240,106,.35)}
+.scene.t-bricks .bk-row{grid-template-columns:15rem 1fr;gap:1.4rem}
+.scene.t-bricks .bk-k{flex-direction:column;align-items:flex-start;justify-content:center;gap:.9rem;padding-left:1.3rem;border-left:3px solid var(--tone);box-shadow:-12px 0 30px -16px var(--tone);font-size:1.9rem}
+.bk-ki{display:grid;place-items:center;width:3.4rem;height:3.4rem;border-radius:50%;color:#fff;background:radial-gradient(circle at 30% 25%,color-mix(in srgb,var(--tone) 75%,transparent),color-mix(in srgb,var(--tone) 15%,transparent) 75%);box-shadow:0 0 0 1px color-mix(in srgb,var(--tone) 70%,transparent),0 0 0 6px color-mix(in srgb,var(--tone) 12%,transparent),0 0 30px color-mix(in srgb,var(--tone) 55%,transparent)}
+.bk-ki .ic{width:1.8rem;height:1.8rem;stroke-width:1.8}
+.scene.t-bricks .bk-bs{gap:1.1rem}
+.scene.t-bricks .bk-b{border:1px solid transparent;border-radius:.9rem;padding:1.4rem 1.5rem 1.5rem;
+  background:linear-gradient(165deg,color-mix(in srgb,var(--tone) 20%,rgba(14,8,34,.94)),rgba(9,6,24,.94) 65%) padding-box,
+    conic-gradient(from var(--bka),color-mix(in srgb,var(--tone) 90%,#fff),transparent 25%,color-mix(in srgb,var(--tone) 35%,transparent) 50%,transparent 75%,color-mix(in srgb,var(--tone) 90%,#fff)) border-box;
+  box-shadow:0 22px 50px rgba(0,0,0,.5),0 0 40px -14px color-mix(in srgb,var(--tone) 70%,transparent);animation:bkSpin 9s linear infinite;animation-delay:calc(var(--d) * -1.5s)}
+@keyframes bkSpin{to{--bka:360deg}}
+.scene.t-bricks .bk-row.on .bk-b{animation:bkDrop .8s var(--sk-ease) backwards,bkSpin 9s linear infinite;animation-delay:calc(var(--d) * .14s),calc(var(--d) * -1.5s)}
+.scene.t-bricks .bk-b::after{left:0;right:0;top:0;bottom:auto;height:100%;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.09) 50%,transparent 65%);opacity:1;transform:translateX(-120%);border-radius:inherit}
+.scene.t-bricks .bk-row.on .bk-b::after{animation:bkSheen 1.4s ease forwards;animation-delay:calc(var(--d) * .14s + .7s)}
+@keyframes bkSheen{to{transform:translateX(120%)}}
+.scene.t-bricks .bk-i{width:3.6rem;height:3.6rem;border-radius:50%;margin-bottom:1.1rem}
+.scene.t-bricks .bk-i::after{inset:-6px;border-radius:50%;border:1px dashed color-mix(in srgb,var(--tone) 55%,transparent);animation:bkRot 18s linear infinite}
+@keyframes bkRot{to{transform:rotate(360deg)}}
+.scene.t-bricks .bk-b b{font-size:1.42rem;letter-spacing:-.01em}
+.scene.t-bricks .bk-b > span{color:rgba(255,255,255,.66)}
 </style>
 </head>
 <body>
@@ -2641,15 +2664,15 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   src: `Unit 42, Palo Alto Networks (2 septembre 2026) · Photos : FlyD et Henry Lai sur Unsplash` },
 
 { ch: 'c4', type: 'bricks', title: 'Reconstruire les fondations',
-  bg: { src: 'assets/ai/photos/padlock.jpg', id: 'padlock', mode: 'dark' }, layerK: 'Couche',
+  bg: { src: 'assets/ai/photos/padlock.jpg', id: 'padlock', mode: 'dark' },
   heading: 'L’occasion de solidifier <em>nos fondamentaux</em>',
   layers: [
-    { tone: 'indigo', k: 'Architecture cyber', bricks: [
+    { tone: 'indigo', k: 'Architecture cyber', i: 'shield', bricks: [
       { i: 'key', h: 'Combler les failles d’identité', p: 'Authentification multifacteur résistante au hameçonnage partout, accès à privilèges juste-à-temps…' },
       { i: 'wifi', h: 'Repenser le réseau', p: 'Filtrer les flux, dont les flux sortants, limiter le rayon d’impact…' },
       { i: 'lock', h: 'Relancer la protection des données', p: 'En l’étendant aux agents d’IA…' },
     ] },
-    { tone: 'teal', k: 'Logiciel Factory', bricks: [
+    { tone: 'teal', k: 'Logiciel Factory', i: 'code', bricks: [
       { i: 'server', h: 'S’appuyer sur des plateformes maîtrisées', p: 'Moins de plateformes, gérées centralement…' },
       { i: 'bug', h: 'Corriger ce qui compte', p: 'Correction automatique par l’IA, revue humaine pour le critique…' },
       { i: 'box', h: 'Maîtriser ce qu’on importe', p: 'Sources approuvées, composants signés…' },
@@ -3400,7 +3423,7 @@ const R = {
 
   // Bricks laid on a blueprint, one row per click
   bricks: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="bk">${s.plan ? `<div class="bk-plan">${s.plan}</div>` : ''}
-      ${s.layers.map((l, i) => `<div class="bk-row tone-${l.tone}"${fa(i)}><div class="bk-k">${s.layerK ? `<span class="bk-lk"><i></i>${s.layerK} ${i + 1}</span>` : ''}<span>${l.k}</span></div><div class="bk-bs">${l.bricks.map((b, j) => `<div class="bk-b" style="--d:${j}"><span class="bk-n">${String(i * l.bricks.length + j + 1).padStart(2, '0')}</span>${b.i ? `<div class="bk-i">${ICON(b.i)}</div>` : ''}<b>${b.h}</b><span>${b.p}</span></div>`).join('')}</div></div>`).join('')}
+      ${s.layers.map((l, i) => `<div class="bk-row tone-${l.tone}"${fa(i)}><div class="bk-k">${l.i ? `<span class="bk-ki">${ICON(l.i)}</span>` : ''}<span>${l.k}</span></div><div class="bk-bs">${l.bricks.map((b, j) => `<div class="bk-b" style="--d:${j}">${b.i ? `<div class="bk-i">${ICON(b.i)}</div>` : ''}<b>${b.h}</b><span>${b.p}</span></div>`).join('')}</div></div>`).join('')}
       </div>${srcLine(s)}`,
 
   // A clock that starts at the event: each deadline lights up as the cursor reaches it; the stock indicator on the side
