@@ -2245,11 +2245,11 @@ const SCENES = [
 
 // ─── PROLOGUE ─────────────────────────────────────────────────────────────
 { ch: 'p', type: 'title', title: 'Titre', noCh: true,
-  ver: 'Version du 20 octobre 2026 · 43 slides',
+  ver: 'Version du {date} · {n} slides',
   kicker: 'Hors du bac à sable',
   heading: `Comment la menace change-t-elle avec l'IA, et que pouvons-nous faire ?`,
   sub: `Une session de sensibilisation, autour d'un cas réel, pour agir.`,
-  meta: 'Session de sensibilisation<br>40 minutes · octobre 2026',
+  meta: 'Session de sensibilisation<br>40 minutes · {month}',
   vo: `Une question aujourd'hui : comment la menace change-t-elle avec l'intelligence artificielle, et que pouvons-nous y faire ? Commençons par une date.`,
   notes: `Se présenter en une phrase, puis cliquer directement sur la date.` },
 
@@ -3005,6 +3005,14 @@ const PHOTO = {
 const photoCredits = s => { const ids = [s.img, s.photo && s.photo.id, ...(s.nodes || []).map(n => n.photo && n.photo.id), ...(s.people || []).map(p => p.img), ...(s.voices || []).map(p => p.img)].filter(k => k && PHOTO[k]);
   return ids.length ? `Photo${ids.length > 1 ? 's' : ''}${NB}: ${[...new Set(ids)].map(k => PHOTO[k]).join(' · ')}, via Wikimedia Commons` : ''; };
 // Photo edition: a full-bleed or side photo behind a scene, and photos in map bubbles
+// the date on the title slide is always the day the deck is opened
+function today(str) {
+  const d = new Date(), loc = LANG === 'fr' ? 'fr-FR' : 'en-GB';
+  let date = d.toLocaleDateString(loc, { day: 'numeric', month: 'long', year: 'numeric' });
+  if (LANG === 'fr' && d.getDate() === 1) date = date.replace(/^1 /, '1er ');
+  const month = d.toLocaleDateString(loc, { month: 'long', year: 'numeric' });
+  return str.replace('{date}', date).replace('{month}', month).replace('{n}', SCENES.length);
+}
 const photoLayer = b => `<div class="pbg pb-${b.mode || 'dark'}"><img src="${b.src}" alt="" style="object-position:${b.pos || '50% 50%'}" onerror="photoMissing(this)">${PHOTO[b.id] ? `<span class="pbg-c">Photo${NB}: ${PHOTO[b.id]}</span>` : ''}</div>`;
 window.photoMissing = img => { const sc = img.closest('.scene'); if (sc) sc.classList.remove('has-bg', 'bgm-dark', 'bgm-side', 'bgm-brand'); img.parentNode.remove(); };
 const bubblePhoto = b => b ? `<div class="mb-ph"><img src="${b.src}" alt="" style="object-position:${b.pos || '50% 50%'}" onerror="this.parentNode.remove()">${PHOTO[b.id] ? `<span>${PHOTO[b.id]}</span>` : ''}</div>` : '';
@@ -3018,7 +3026,7 @@ const R = {
   cold: s => `<div class="cold">${s.lines.map((l, i) => { const o = typeof l === 'string' ? { t: l } : l; return `<p class="cold-l ${o.cls || ''}"${fa(i)}>${o.t}</p>`; }).join('')}</div>${srcLine(s)}`,
 
   title: s => `${bgMap([[-122.4, 37.8], [-74, 40.7], [149.1, -35.3], [10, 51], [2.35, 48.86], [114.2, 22.3], [104, 35]])}
-    <div class="tt"><div class="doc-meta">${s.meta}${s.ver ? `<span class="doc-ver">${s.ver}</span>` : ''}</div>
+    <div class="tt"><div class="doc-meta">${today(s.meta)}${s.ver ? `<span class="doc-ver">${today(s.ver)}</span>` : ''}</div>
       <div class="kicker">${s.kicker}</div>
       <h1 class="doc-title">${s.heading}</h1>
       <p class="doc-sub">${s.sub}</p>
