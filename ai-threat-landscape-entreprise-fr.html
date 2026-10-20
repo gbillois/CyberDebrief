@@ -2162,6 +2162,10 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .scene.t-lead .ld-g > li:nth-child(-n+3) .ld-ul li{color:rgba(255,255,255,.82)}
 .scene.t-lead .ld-g > li:nth-child(4) .fin-card{background:rgba(13,8,40,.45)!important;border:1.5px dashed rgba(255,255,255,.25)!important;box-shadow:none!important;opacity:.85}
 .scene.t-lead .ld-g > li:nth-child(4) .ld-ul{border-top-color:rgba(255,255,255,.3)}
+.scene.t-finale .fin-take .fin-card{background:linear-gradient(160deg,rgba(4,240,106,.22),rgba(45,19,128,.6) 60%,rgba(13,8,40,.75))!important;border:1.5px solid rgba(4,240,106,.75)!important;box-shadow:0 0 44px rgba(4,240,106,.28),0 18px 40px rgba(0,0,0,.5)!important;cursor:default;justify-content:center}
+.scene.t-finale .fin-take .fin-n{align-self:flex-start;padding:.15rem .5rem;border-radius:.3rem;background:var(--green);color:#07040F!important;box-shadow:0 0 16px rgba(4,240,106,.6)}
+.scene.t-finale .fin-take .fin-q{font-size:1.25rem!important;line-height:1.25;text-shadow:0 0 22px rgba(4,240,106,.35)}
+.scene.t-finale .fin-take .fin-card:hover{transform:none}
 </style>
 </head>
 <body>
@@ -2226,7 +2230,7 @@ const SCENES = [
 
 // ─── PROLOGUE ─────────────────────────────────────────────────────────────
 { ch: 'p', type: 'title', title: 'Titre', noCh: true,
-  ver: 'Version du 16 octobre 2026 · 46 slides',
+  ver: 'Version du 20 octobre 2026 · 43 slides',
   kicker: 'Hors du bac à sable',
   heading: `Comment la menace change-t-elle avec l'IA, et que pouvons-nous faire ?`,
   sub: `Une session de sensibilisation, autour d'un cas réel, pour agir.`,
@@ -2637,83 +2641,14 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   src: `Photos : NASA, Taylor Vick et Henry Lai sur Unsplash` },
 
 
-{ ch: 'c4', type: 'platform', title: 'Plateforme cyber centralisée',
-  bg: { src: 'assets/ai/photos/racks.jpg', id: 'racks', mode: 'dark' },
-  heading: 'Vers une <em>plateforme cyber centralisée</em>',
-  lede: 'Avec un contexte unique pour héberger de nombreux agents',
-  top: [
-    { k: 'Outils et systèmes cyber', s: 'Détection sur les postes, pare-feu, proxy, gestion des identités…', down: 'données et événements (interfaces logicielles…)', up: 'ordres déterministes' },
-    { k: 'Systèmes informatiques et applications métier', s: 'Base des configurations, annuaires, lac de données…' },
-  ],
-  box: 'Plateforme cyber IA',
-  orch: { k: 'Orchestrateur cyber IA', s: 'et couche d’intégration', t: 'Distribue le travail, applique les droits de décision, assure l’escalade', pills: ['Les humains décident<small>au-delà d’un seuil</small>', 'Bac à sable, arrêt d’urgence et retour arrière'] },
-  agents: { k: 'Agents spécialisés', s: 'Un ou plusieurs par domaine, qui agissent', list: ['Gouvernance et risques', 'Sécurité applicative', 'Données', 'Identités', 'Supervision', 'Et bien d’autres…'] },
-  graph: { k: 'Graphe de sécurité cyber', t: 'Contexte partagé : actifs, identités, expositions et relations', lake: 'Lac de données cyber', lakeS: 'mémoire à long terme' },
-  vo: `Concrètement, cela mène vers une plateforme cyber centralisée, avec un contexte unique pour héberger de nombreux agents. En haut, les outils et systèmes cyber, l’informatique et les applications métier : ils envoient leurs données et leurs événements, et reçoivent des ordres déterministes. Au cœur, un orchestrateur distribue le travail, applique les droits de décision et assure l’escalade : au-delà d’un seuil, ce sont les humains qui décident, avec bac à sable, arrêt d’urgence et retour arrière. Il pilote des agents spécialisés, un ou plusieurs par domaine. Et tous partagent le même contexte : un graphe de sécurité qui relie actifs, identités, expositions et relations, adossé à un lac de données cyber qui sert de mémoire à long terme.`,
-  notes: `Un clic par étage : les systèmes du SI, l’orchestrateur, les agents, puis le graphe de sécurité partagé.` },
-
-{ ch: 'c4', type: 'org', title: 'IA unifiée : une nouvelle organisation',
-  bg: { src: 'assets/ai/photos/taipei.jpg', id: 'taipei', mode: 'dark', pos: '50% 80%' },
-  heading: 'IA unifiée : <em>une nouvelle organisation</em>',
-  lede: 'Point de départ : une plateforme d’IA par capacité · <b>ensuite, un contexte partagé</b>',
-  head: { k: 'RSSI', s: 'Responsable de la sécurité des systèmes d’information' },
-  side: 'Direction des données et de l’IA',
-  cols: [
-    { i: 'check', k: 'Gouvernance et conformité', cards: [{ h: 'Gouvernance native IA', s: 'Contrôles et risque fournisseurs' }] },
-    { i: 'code', k: 'Sécurité applicative', cards: [{ h: 'Sécurité des applications', s: 'Posture, code et chaînes de déploiement' }] },
-    { i: 'server', k: 'Sécurité des infrastructures', cards: [{ h: 'Protection des données', s: 'Prévention des fuites, posture et risque sur les données' }] },
-    { i: 'person', k: 'Identités et accès', cards: [{ h: 'Identités et accès à privilèges', s: 'Humains, machines et agents', off: true }] },
-    { i: 'search', k: 'Défense', cards: [{ h: 'Centre de sécurité IA', s: 'Détecter et répondre' }, { h: 'Tests d’intrusion IA', s: 'Valider l’exposition' }] },
-    { i: 'target', k: 'Résilience', cards: [{ h: 'Continuité d’activité', s: 'Analyse d’impact et reprise', off: true }] },
-  ],
-  vo: `Cette IA unifiée appelle une nouvelle organisation. Point de départ : une plateforme d’IA par capacité, sous la responsabilité du RSSI, en lien avec la direction des données et de l’IA. Gouvernance et conformité, sécurité applicative, sécurité des infrastructures, identités, défense, résilience : certaines capacités sont déjà outillées, comme le centre de sécurité ou les tests d’intrusion par l’IA, d’autres pas encore. L’étape suivante : que toutes partagent le même contexte.`,
-  notes: `Clics : le RSSI et la direction des données et de l’IA, les six domaines, puis les capacités. Les cartes grisées (identités et accès à privilèges, continuité d’activité) ne sont pas encore outillées par l’IA.` },
-
-{ ch: 'c4', type: 'roles', title: 'IA unifiée : de nouveaux rôles',
-  bg: { src: 'assets/ai/photos/san-francisco.jpg', id: 'san-francisco', mode: 'dark', pos: '50% 70%' },
-  heading: 'IA unifiée : <em>une nouvelle organisation</em>',
-  lede: 'Les agents agissent, les humains <u>pilotent</u> : de nouveaux rôles émergent',
-  head: { k: 'RSSI', s: 'Responsable de la sécurité des systèmes d’information' },
-  pillars: [
-    { i: 'person', k: 'Engager', s: 'Porter la voix de la cyber hors de l’organisation du RSSI', groups: [
-      { items: [
-        { h: 'Stratégie, anticipation et politique', s: 'Cadre de référence, anticipation des menaces' },
-        { h: 'RSSI métier et politique', s: 'RSSI rattachés aux métiers, sécurité dès la conception avec la DSI' },
-        { h: 'Gestion de crise et d’incident', s: 'Préparer, piloter, tirer les leçons' },
-        { h: 'Conformité et régulateurs', s: 'Risque fournisseurs, réglementations européennes sur la cyber, la résilience et l’IA' },
-        { h: 'Culture et engagement', s: 'Sensibilisation, formation' },
-      ] } ] },
-    { i: 'server', k: 'Opérations de la plateforme', s: 'Anticiper les menaces, faire évoluer la plateforme et les produits cyber, les exploiter efficacement', groups: [
-      { k: 'Construire', tone: 'g', items: [
-        { h: 'Responsables produit des agents', s: 'Par domaine' },
-        { h: 'Développeurs d’agents', s: 'Par domaine' },
-        { h: 'Responsable programme et plateforme', s: 'Produits de sécurité et plateforme' },
-      ] },
-      { k: 'Exploiter', tone: 'g', items: [
-        { h: 'Superviseurs d’agents', s: 'Par domaine' },
-        { h: 'Responsable qualité de la plateforme', s: 'Recette, investigations avancées, sécurité de la plateforme' },
-        { h: 'Responsable de la performance', s: 'Coûts de l’IA, efficacité et retour sur investissement' },
-      ] } ] },
-    { i: 'shield', k: 'Confiance et contradiction', s: 'Vérifier en continu la confiance et l’efficacité', groups: [
-      { k: 'Assurance IA', s: 'Experts en données', tone: 'l', items: [{ h: 'Évaluation des modèles' }, { h: 'Traque des dérives' }] },
-      { k: 'Offensif', s: 'Attaquer le SI et la plateforme', tone: 'l', items: [{ h: 'Équipe d’attaque' }, { h: 'Laboratoire adverse' }] } ] },
-  ],
-  plat: { k: 'Plateforme cyber IA', chips: ['Gouvernance', 'Supervision', 'Renseignement', 'Applications', 'Données', 'Identités…'], ctx: 'un contexte partagé' },
-  assure: 'Plateforme d’assurance cyber · deuxième ligne de défense',
-  vo: `À terme, les agents agissent et les humains pilotent : de nouveaux rôles émergent autour du RSSI. Un premier pôle porte la voix de la cyber hors de son organisation : stratégie, RSSI métier, gestion de crise, conformité, culture. Au centre, les opérations de la plateforme : construire les agents, avec des responsables produit et des développeurs par domaine, et les exploiter, avec des superviseurs d’agents, un responsable qualité et un responsable de la performance qui suit les coûts et le retour sur investissement. Enfin, un pôle de confiance et de contradiction vérifie en continu : il évalue les modèles, traque les dérives, et attaque le système d’information comme la plateforme. Le tout s’appuie sur la plateforme cyber IA et son contexte partagé, contrôlée par une plateforme d’assurance de deuxième ligne.`,
-  notes: `Clics : le RSSI et les trois pôles, puis Engager, puis les opérations de la plateforme (construire et exploiter), puis confiance et contradiction, enfin les deux plateformes. Réglementations citées : directive NIS 2, règlement DORA, règlement européen sur l’IA. Deuxième ligne de défense : le contrôle indépendant des risques.` },
-// ─── CHAPITRE 8 · CE QUI MARCHE ───────────────────────────────────────────
-{ ch: 'end', type: 'lead', title: 'Piloter le virage de l’IA',
+{ ch: 'end', type: 'finale', title: 'Conclusion',
   bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
-  heading: 'Comment <em>piloter le virage</em> de l’IA ?',
-  cols: [
-    { k: 'Cyber pour l’IA', items: ['<b>Découvrir</b> chaque agent', '<b>Protéger</b> vos plateformes', '<b>Construire</b> l’identité de vos agents'] },
-    { k: 'Cyber contre l’IA', items: ['Reconstruire vos <b>fondations</b>', 'Adopter une <b>nouvelle baseline défensive</b>', 'Disposer d’un <b>droit d’action d’urgence</b>'] },
-    { k: 'Cyber avec l’IA', items: ['Commencer par des <b>cas d’usage dans chaque équipe</b>', 'Créer la <b>direction des données et de l’IA</b>', '<b>Connecter les plateformes d’IA</b> en maillage', 'Lancer la construction de la <b>plateforme IA Cyber AAA</b>'] },
-  ],
-  human: { k: 'Mener la transformation humaine', items: ['<b>Repenser</b> l’organisation et les parcours de carrière', '<b>Former</b> en profondeur et en continu'] },
-  vo: `Alors, comment piloter ce virage ? Sur trois voies à la fois. La cyber pour l’IA : découvrir chaque agent, protéger vos plateformes, construire l’identité de vos agents. La cyber contre l’IA : reconstruire vos fondations, adopter une nouvelle baseline défensive, et disposer d’un droit d’action d’urgence. La cyber avec l’IA : commencer par des cas d’usage dans chaque équipe, créer la direction des données et de l’IA, connecter les plateformes d’IA entre elles, et lancer la construction de la plateforme Cyber AAA. Et surtout, mener la transformation humaine : repenser l’organisation et les parcours de carrière, et former, en profondeur et en continu. Merci. Je suis à votre disposition pour vos questions.`,
-  notes: `Un clic par voie, puis la transformation humaine. Laisser cet écran pendant les questions.` },
+  a: `L'IA a changé d'échelle, la menace aussi.`,
+  b: `Elle ne se contente plus de répondre : elle agit. Les attaquants s'en servent déjà ; notre défense doit suivre, sous contrôle humain.`,
+  c: 'Merci. Vos questions ?',
+  take: { k: 'À retenir', t: `Reconstruire les fondamentaux, utiliser l'IA pour se défendre, et garder l'humain aux commandes.` },
+  vo: `Pour conclure. Sept questions, sept réponses. Une IA qui voulait réussir son examen est sortie de sa zone de test, et ce n'était pas un cas isolé. Elle nous imite et vise la récompense, les règles se cherchent encore, et les attaquants utilisent déjà l'IA, jusque dans le monde physique. Les modèles ont fait un bond : c'est le moment de reconstruire nos fondamentaux, d'utiliser l'IA pour nous défendre, et de garder l'humain aux commandes. Merci. Je suis à votre disposition pour vos questions.`,
+  notes: `Laisser cet écran pendant les questions : la question et la réponse de chaque partie y figurent. Cliquer sur une carte pour revenir à la partie correspondante.` },
 
 { ch: 'end', type: 'sources', title: 'Sources',
   heading: 'Sources',
@@ -3225,7 +3160,7 @@ const R = {
   finale: s => { const keys = Object.keys(CH).filter(k => CH[k].q);
     return `${s.bg ? '' : '<div class="fin-bg"></div>'}<div class="fin"><div class="fin-top"><div><h2 class="fin-a">${s.a}</h2><p class="fin-b">${s.b}</p></div><div class="fin-c">${s.c}</div></div>
       <ol class="fin-g">${keys.map((k, j) => { const i = SCENES.findIndex(x => x.ch === k && x.type === 'chapter');
-        return `<li><button class="fin-card" onclick="event.stopPropagation();go(${i})"><span class="fin-n">${String(j + 1).padStart(2, '0')} · ${CH[k].title}</span><b class="fin-q">${CH[k].q}</b><p>${CH[k].a}</p></button></li>`; }).join('')}</ol></div>`; },
+        return `<li><button class="fin-card" onclick="event.stopPropagation();go(${i})"><span class="fin-n">${String(j + 1).padStart(2, '0')} · ${CH[k].title}</span><b class="fin-q">${CH[k].q}</b><p>${CH[k].a}</p></button></li>`; }).join('')}${s.take ? `<li class="fin-take"><div class="fin-card"><span class="fin-n">${s.take.k}</span><b class="fin-q">${s.take.t}</b></div></li>` : ''}</ol></div>`; },
 
   // End credits: the people who made these stories known
   credits: s => `<div class="cr2"><div>${s.k ? `<div class="cr2-k">${s.k}</div>` : ''}<p class="cr2-h">${s.t}</p></div><dl>${s.rows.map((r, i) => `<div${fa(i + 1)}><dt>${r.who}</dt><dd>${r.did}</dd></div>`).join('')}</dl></div>${srcLine(s)}`,

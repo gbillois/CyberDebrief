@@ -2162,6 +2162,10 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .scene.t-lead .ld-g > li:nth-child(-n+3) .ld-ul li{color:rgba(255,255,255,.82)}
 .scene.t-lead .ld-g > li:nth-child(4) .fin-card{background:rgba(13,8,40,.45)!important;border:1.5px dashed rgba(255,255,255,.25)!important;box-shadow:none!important;opacity:.85}
 .scene.t-lead .ld-g > li:nth-child(4) .ld-ul{border-top-color:rgba(255,255,255,.3)}
+.scene.t-finale .fin-take .fin-card{background:linear-gradient(160deg,rgba(4,240,106,.22),rgba(45,19,128,.6) 60%,rgba(13,8,40,.75))!important;border:1.5px solid rgba(4,240,106,.75)!important;box-shadow:0 0 44px rgba(4,240,106,.28),0 18px 40px rgba(0,0,0,.5)!important;cursor:default;justify-content:center}
+.scene.t-finale .fin-take .fin-n{align-self:flex-start;padding:.15rem .5rem;border-radius:.3rem;background:var(--green);color:#07040F!important;box-shadow:0 0 16px rgba(4,240,106,.6)}
+.scene.t-finale .fin-take .fin-q{font-size:1.25rem!important;line-height:1.25;text-shadow:0 0 22px rgba(4,240,106,.35)}
+.scene.t-finale .fin-take .fin-card:hover{transform:none}
 </style>
 </head>
 <body>
@@ -2226,7 +2230,7 @@ const SCENES = [
 
 // ─── PROLOGUE ─────────────────────────────────────────────────────────────
 { ch: 'p', type: 'title', title: 'Title', noCh: true,
-  ver: 'Version of 16 October 2026 · 46 slides',
+  ver: 'Version of 20 October 2026 · 43 slides',
   kicker: 'Out of the Sandbox',
   heading: `How is the threat changing with AI, and what can we do?`,
   sub: `An awareness session, built around a real case, to take action.`,
@@ -2637,83 +2641,14 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   src: `Photos: NASA, Taylor Vick and Henry Lai on Unsplash` },
 
 
-{ ch: 'c4', type: 'platform', title: 'Centralised cyber platform',
-  bg: { src: 'assets/ai/photos/racks.jpg', id: 'racks', mode: 'dark' },
-  heading: 'Toward one <em>centralised cyber platform</em>',
-  lede: 'With one context to host many agents',
-  top: [
-    { k: 'Cyber systems & tools', s: 'EDR, FW, Proxy, WAF, IAM…', down: 'data & events (API/MCP…)', up: 'deterministic orders' },
-    { k: 'IT systems & business apps', s: 'CMDB, AD/Entra, Data Lake…' },
-  ],
-  box: 'Cyber AI platform',
-  orch: { k: 'AI cyber orchestrator', s: '& integration layer', t: 'Assigns the work, enforces decision rights, escalates', pills: ['Humans decide<small>above threshold</small>', 'Sandbox, kill switch & rollback'] },
-  agents: { k: 'Specialised agents', s: 'One or many per domain, that act', list: ['GRC', 'AppSec', 'Data', 'IAM', 'SOC', 'Many more…'] },
-  graph: { k: 'Cyber security graph', t: 'Shared context: assets, identities, exposures and relationships', lake: 'Cyber data lake', lakeS: 'long-term memory' },
-  vo: `In practice, this leads to one centralised cyber platform, with one context to host many agents. At the top, the cyber systems and tools, IT and business applications: they send their data and events, and receive deterministic orders. At the core, an orchestrator assigns the work, enforces decision rights and escalates: above a threshold, humans decide, with a sandbox, a kill switch and rollback. It drives specialised agents, one or many per domain. And they all share the same context: a security graph linking assets, identities, exposures and relationships, backed by a cyber data lake as long-term memory.`,
-  notes: `One click per layer: the IT and security systems, the orchestrator, the agents, then the shared security graph.` },
-
-{ ch: 'c4', type: 'org', title: 'Unified AI: a new organisation',
-  bg: { src: 'assets/ai/photos/taipei.jpg', id: 'taipei', mode: 'dark', pos: '50% 80%' },
-  heading: 'Unified AI: <em>a new organisation</em>',
-  lede: 'Starting point: one AI platform per capability · <b>next, one shared context</b>',
-  head: { k: 'CISO', s: 'Chief Information Security Officer' },
-  side: 'Data & AI Office',
-  cols: [
-    { i: 'check', k: 'GRC', cards: [{ h: 'AI-native GRC', s: 'Controls & TPRM' }] },
-    { i: 'code', k: 'App sec', cards: [{ h: 'App security', s: 'Posture, code & pipelines' }] },
-    { i: 'server', k: 'Infra sec', cards: [{ h: 'Data protection', s: 'DLP, DSPM & data risk' }] },
-    { i: 'person', k: 'IAM', cards: [{ h: 'IGA / PAM', s: 'Humans, machines & agents', off: true }] },
-    { i: 'search', k: 'Defence', cards: [{ h: 'AI SOC', s: 'Detect & respond' }, { h: 'AI pentest', s: 'Exposure validation' }] },
-    { i: 'target', k: 'Resilience', cards: [{ h: 'Business continuity', s: 'Impact analysis & recovery', off: true }] },
-  ],
-  vo: `This unified AI calls for a new organisation. The starting point: one AI platform per capability, under the CISO, working with the Data and AI office. GRC, application security, infrastructure security, identities, defence, resilience: some capabilities already have their AI platform, like the SOC or AI pentesting, others not yet. The next step: one shared context for all of them.`,
-  notes: `Clicks: the CISO and the Data & AI office, the six domains, then the capabilities. The greyed cards (IGA / PAM, business continuity) are not AI-enabled yet.` },
-
-{ ch: 'c4', type: 'roles', title: 'Unified AI: new roles',
-  bg: { src: 'assets/ai/photos/san-francisco.jpg', id: 'san-francisco', mode: 'dark', pos: '50% 70%' },
-  heading: 'Unified AI: <em>a new organisation</em>',
-  lede: 'Agents act, humans <u>steer</u>: new roles emerge',
-  head: { k: 'CISO', s: 'Chief Information Security Officer' },
-  pillars: [
-    { i: 'person', k: 'Engage', s: 'Speak for cyber outside the CISO org', groups: [
-      { items: [
-        { h: 'Strategy, Anticipation & Policy', s: 'Framework, threat anticipation' },
-        { h: 'Business CISO & Policy', s: 'BISOs, security by design with IT' },
-        { h: 'Crisis & incident management', s: 'Prepare, run, learn' },
-        { h: 'Compliance & Regulator', s: 'Incl. TPRM, NIS2, DORA, AI Act' },
-        { h: 'Culture & Engagement', s: 'Awareness, training' },
-      ] } ] },
-    { i: 'server', k: 'Platform operations', s: 'Anticipate threats, evolve the platform & the cyber products and run them efficiently', groups: [
-      { k: 'Build', tone: 'g', items: [
-        { h: 'Agent product owners', s: 'Per domain' },
-        { h: 'Agent developers', s: 'Per domain' },
-        { h: 'Program & Platform manager', s: 'Security products & platform' },
-      ] },
-      { k: 'Run', tone: 'g', items: [
-        { h: 'Agent supervisors', s: 'Per domain' },
-        { h: 'Platform quality manager', s: 'QA, advanced investigation, platform security' },
-        { h: 'Performance manager', s: 'AI costs, efficiency & ROI' },
-      ] } ] },
-    { i: 'shield', k: 'Trust & challenge', s: 'Constantly check trust & efficiency', groups: [
-      { k: 'AI assurance', s: 'Data scientists', tone: 'l', items: [{ h: 'Model evals' }, { h: 'Deviation hunt' }] },
-      { k: 'Offensive', s: 'Attack IS & platform', tone: 'l', items: [{ h: 'Red team' }, { h: 'Adversary lab' }] } ] },
-  ],
-  plat: { k: 'Cyber AI platform', chips: ['GRC', 'SOC / VulnOps', 'CTI', 'App Sec', 'Data', 'IAM…'], ctx: 'one shared context' },
-  assure: 'Cyber assurance / LOD2 platform',
-  vo: `In the end, agents act and humans steer: new roles emerge around the CISO. A first pillar speaks for cyber outside the CISO organisation: strategy, business CISOs, crisis management, compliance, culture. At the centre, platform operations: building the agents, with product owners and developers per domain, and running them, with agent supervisors, a platform quality manager and a performance manager who tracks costs and return on investment. Finally, a trust and challenge pillar checks constantly: it evaluates the models, hunts for deviations, and attacks both the information system and the platform. All of it rests on the cyber AI platform and its shared context, overseen by a second-line assurance platform.`,
-  notes: `Clicks: the CISO and the three pillars, then Engage, then platform operations (build and run), then trust and challenge, and finally the two platforms. BISO: a security officer embedded in a business line. LOD2: the second line of defence, independent risk oversight.` },
-// ─── CHAPTER 8 · WHAT WORKS ───────────────────────────────────────────────
-{ ch: 'end', type: 'lead', title: 'Leading the shift to AI',
+{ ch: 'end', type: 'finale', title: 'Conclusion',
   bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
-  heading: 'How do you <em>lead the shift</em> to AI?',
-  cols: [
-    { k: 'Cyber for AI', items: ['<b>Discover</b> every agent', '<b>Protect</b> your platforms', '<b>Build</b> your agentic identity'] },
-    { k: 'Cyber against AI', items: ['Rebuild your <b>foundation</b>', 'Adopt a <b>new defensive baseline</b>', 'Have your emergency <b>right of action</b>'] },
-    { k: 'Cyber with AI', items: ['Start with <b>use cases in every team</b>', 'Create the <b>Data & AI Office</b>', '<b>Connect AI platforms</b> in a mesh', 'Start building the <b>Cyber AAA AI platform</b>'] },
-  ],
-  human: { k: 'Lead the human shift', items: ['<b>Redesign</b> the organisation and the career paths', '<b>Train</b> in depth and continuously'] },
-  vo: `So how do you lead this shift? On three tracks at once. Cyber for AI: discover every agent, protect your platforms, build your agentic identity. Cyber against AI: rebuild your foundation, adopt a new defensive baseline, and have your emergency right of action. Cyber with AI: start with use cases in every team, create the Data and AI office, connect AI platforms in a mesh, and start building the Cyber AAA AI platform. And above all, lead the human shift: redesign the organisation and the career paths, and train, in depth and continuously. Thank you. I am happy to take your questions.`,
-  notes: `One click per track, then the human shift. Leave this screen up during the questions.` },
+  a: `AI has changed scale, and so has the threat.`,
+  b: `It no longer just answers: it acts. Attackers already use it; our defence has to keep up, under human control.`,
+  c: 'Thank you. Questions?',
+  take: { k: 'Key takeaway', t: `Rebuild the fundamentals, use AI to defend, and keep humans in control.` },
+  vo: `To conclude. Seven questions, seven answers. An AI that wanted to pass its exam left its test zone, and it was not an isolated case. It imitates us and chases the reward, the rules are still being written, and attackers already use AI, even in the physical world. Models have leapt ahead: now is the time to rebuild our fundamentals, use AI to defend ourselves, and keep humans in control. Thank you. I'm happy to take your questions.`,
+  notes: `Leave this screen up during questions: each part's question and answer is shown. Click a card to jump back to that part.` },
 
 { ch: 'end', type: 'sources', title: 'Sources',
   heading: 'Sources',
@@ -3225,7 +3160,7 @@ const R = {
   finale: s => { const keys = Object.keys(CH).filter(k => CH[k].q);
     return `${s.bg ? '' : '<div class="fin-bg"></div>'}<div class="fin"><div class="fin-top"><div><h2 class="fin-a">${s.a}</h2><p class="fin-b">${s.b}</p></div><div class="fin-c">${s.c}</div></div>
       <ol class="fin-g">${keys.map((k, j) => { const i = SCENES.findIndex(x => x.ch === k && x.type === 'chapter');
-        return `<li><button class="fin-card" onclick="event.stopPropagation();go(${i})"><span class="fin-n">${String(j + 1).padStart(2, '0')} · ${CH[k].title}</span><b class="fin-q">${CH[k].q}</b><p>${CH[k].a}</p></button></li>`; }).join('')}</ol></div>`; },
+        return `<li><button class="fin-card" onclick="event.stopPropagation();go(${i})"><span class="fin-n">${String(j + 1).padStart(2, '0')} · ${CH[k].title}</span><b class="fin-q">${CH[k].q}</b><p>${CH[k].a}</p></button></li>`; }).join('')}${s.take ? `<li class="fin-take"><div class="fin-card"><span class="fin-n">${s.take.k}</span><b class="fin-q">${s.take.t}</b></div></li>` : ''}</ol></div>`; },
 
   // End credits: the people who made these stories known
   credits: s => `<div class="cr2"><div>${s.k ? `<div class="cr2-k">${s.k}</div>` : ''}<p class="cr2-h">${s.t}</p></div><dl>${s.rows.map((r, i) => `<div${fa(i + 1)}><dt>${r.who}</dt><dd>${r.did}</dd></div>`).join('')}</dl></div>${srcLine(s)}`,
