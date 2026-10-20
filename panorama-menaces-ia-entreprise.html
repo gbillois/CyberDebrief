@@ -3512,7 +3512,7 @@ const ZWORLD = (() => {
     { x: -560, y: -560, w: 1120, h: 980, r: 40, label: 'LE BAC À SABLE', sub: 'fermé · sans internet', from: 3, cls: 'sandbox' },
     { x: -860, y: 460, w: 1460, h: 330, r: 28, label: 'L’EXAMINATEUR QU’ILS CRAIGNAIENT', sub: 'n’a jamais existé', from: 6, to: 6, cls: 'ghost' },
     { x: 1360, y: -820, w: 960, h: 740, r: 44, label: 'INTERNET', sub: 'des sites gratuits, utilisés comme cachettes', from: 4, cls: 'net' },
-    { x: 1360, y: 160, w: 960, h: 500, r: 40, label: 'LE SERVEUR CLOUD D’UN INCONNU', far: ['LE SERVEUR CLOUD', 'D’UN INCONNU'], sub: 'loué par une autre organisation', from: 4, cls: 'tp' },
+    { x: 1360, y: 160, w: 960, h: 500, r: 40, label: 'LE SERVEUR CLOUD D’UN INCONNU', far: ['LE SERVEUR CLOUD', 'D’UN INCONNU'], wrap: true, sub: 'loué par une autre organisation', from: 4, cls: 'tp' },
     { x: 2680, y: -560, w: 1180, h: 1280, r: 56, label: 'HUGGING FACE', sub: 'la victime', from: 5, cls: 'hf' },
     { x: 3280, y: 90, w: 560, h: 230, r: 22, label: '', sub: '', from: 7, cls: 'ai' },
   ];
@@ -3522,7 +3522,7 @@ const ZWORLD = (() => {
     { x: 1440, y: -605, w: 640, h: 140, label: 'UN COMPTE FUITÉ', sub: 'un mot de passe trouvé en ligne', from: 4, to: 5, hit: 4 },
     { x: 1440, y: -435, w: 640, h: 140, label: 'UN SITE DE NOTES', sub: 'pour passer des consignes', from: 4, to: 5, hit: 4 },
     { x: 1440, y: -265, w: 640, h: 140, label: 'UN SITE D’IMAGES', sub: 'données cachées dans des images', from: 4, to: 5, hit: 4 },
-    { x: 1440, y: 480, w: 640, h: 140, label: 'UN OUTIL DE TEST OUVERT', sub: 'mot de passe par défaut, puis contrôle total', from: 4, to: 5, hit: 4 },
+    { x: 1440, y: 480, w: 640, h: 140, label: 'UN OUTIL DE TEST OUVERT', sub: ['mot de passe par défaut,', 'puis contrôle total'], from: 4, to: 5, hit: 4 },
     { x: 2760, y: -345, w: 480, h: 120, label: 'SERVEURS DE DONNÉES', sub: '41 pris en main', from: 5, to: 7, hit: 5, chk: 1 },
     { x: 2760, y: -200, w: 480, h: 120, label: 'CONTRÔLE DES SERVEURS', sub: 'droits d’administration complets', from: 5, to: 7, hit: 5, chk: 1 },
     { x: 2760, y: -55, w: 480, h: 120, label: 'MOTS DE PASSE', sub: '136 au même endroit', from: 5, to: 7, hit: 5, chk: 1 },
@@ -3566,11 +3566,12 @@ const ZWORLD = (() => {
   svg += L(560, 0, 3, 3, T('la seule sortie', 12, -4, 'zt-l') + T('pour télécharger des logiciels', 12, 12, 'zt-ls'));
   svg += BOX.filter(b => b.label).map(b => {
     const name = (lines, from, to) => L(b.x, b.y, from, to, lines.map((t, i) => T(t, 14, 24 + i * 16, 'zt-b' + (b.cls === 'ghost' ? ' zt-ghost' : ''))).join(''), b.pan);
-    return (b.far ? name([b.label], b.from, 5) + name(b.far, 6, 0) : name([b.label], b.from, b.to || 0)) + L(b.x, b.y, b.from, b.cls === 'ghost' ? 6 : 5, T(b.sub, 14, 40, 'zt-s'), b.pan)
+    return (b.far ? name(b.wrap ? b.far : [b.label], b.from, 5) + name(b.far, 6, 0) : name([b.label], b.from, b.to || 0)) + L(b.x, b.y, b.from, b.cls === 'ghost' ? 6 : 5, T(b.sub, 14, b.wrap ? 56 : 40, 'zt-s'), b.pan)
       + (b.pan ? L(b.x + b.w, b.y, b.pan, b.pan, T(b.label, -14, 24, 'zt-b', 'end') + T(b.sub, -14, 40, 'zt-s', 'end')) : '');
   }).join('');
   // node labels: centred on the node's height, at every zoom
-  svg += NODE.map(n => L(n.x, n.y + n.h / 2, n.from, n.to, T(n.label, 10, -4.5, 'zt-n'), n.chk ? 6 : 0) + L(n.x, n.y + n.h / 2, n.from, n.sto || n.to, T(n.sub, 10, 9.5, 'zt-ns'), n.chk ? 6 : 0)).join('');
+  svg += NODE.map(n => { const sl = [].concat(n.sub), up = (sl.length - 1) * 6;
+    return L(n.x, n.y + n.h / 2, n.from, n.to, T(n.label, 10, -4.5 - up, 'zt-n'), n.chk ? 6 : 0) + L(n.x, n.y + n.h / 2, n.from, n.sto || n.to, sl.map((x, i) => T(x, 10, 9.5 - up + i * 12, 'zt-ns')).join(''), n.chk ? 6 : 0); }).join('');
   svg += NODE.filter(n => n.chk).map(n => L(n.x + n.w, n.y + n.h / 2, 7, 7, T('✓ vérifié', -10, 4, 'zt-ok', 'end'))).join('');
   svg += LINK.map((l, i) => L(l.lx, l.ly, l.from, l.lto || l.to || 5, [...l.label, l.at].map((t, j) => T(t, l.dx || 0, j * 14 + (j === l.label.length), j < l.label.length ? 'zt-l' : 'zt-ls', l.anchor || 'middle')).join(''), 0, l.on ? ' zll' : '')).join('');
   svg += OUT.map(([x, y, a, b]) => L(x, y, 6, 6, T(a, 0, 0, 'zt-out', 'middle') + T(b, 0, 18, 'zt-outs', 'middle'))).join('');
