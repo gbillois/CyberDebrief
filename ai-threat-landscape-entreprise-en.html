@@ -2166,6 +2166,20 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .scene.t-finale .fin-take .fin-n{align-self:flex-start;padding:.15rem .5rem;border-radius:.3rem;background:var(--green);color:#07040F!important;box-shadow:0 0 16px rgba(4,240,106,.6)}
 .scene.t-finale .fin-take .fin-q{font-size:1.25rem!important;line-height:1.25;text-shadow:0 0 22px rgba(4,240,106,.35)}
 .scene.t-finale .fin-take .fin-card:hover{transform:none}
+.zc .zask{margin-top:.2rem}
+.rc-a em.hl-r,.fin-card p em.hl-r,em.hl-r{font-style:normal;color:var(--coral);text-shadow:0 0 30px rgba(255,107,90,.45)}
+.race-band,.race-dim{bottom:7%}
+.sw-mid span{background:none;padding:.6rem .4rem}
+.sw-mid::before{-webkit-mask:linear-gradient(180deg,#000 0,#000 calc(50% - 2rem),transparent calc(50% - 1.4rem),transparent calc(50% + 1.4rem),#000 calc(50% + 2rem));mask:linear-gradient(180deg,#000 0,#000 calc(50% - 2rem),transparent calc(50% - 1.4rem),transparent calc(50% + 1.4rem),#000 calc(50% + 2rem))}
+.sw-r .sw-ctx{margin:1rem 0 0;padding-left:.8rem;border-left:2px solid rgba(255,107,90,.55)}
+.kt-foot{align-self:center}
+.fin-thx{justify-self:end;display:flex;flex-direction:column;align-items:flex-end;gap:.8rem}
+.fin-thx b{font-family:var(--f-display);font-weight:800;font-size:3.8rem;line-height:1;letter-spacing:-.035em;background:linear-gradient(100deg,#fff 25%,#04F06A 90%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 26px rgba(4,240,106,.35))}
+.fin-thx span{display:inline-flex;align-items:center;gap:.6rem;padding:.55rem 1.3rem .55rem .9rem;border-radius:999px;border:1.5px solid rgba(4,240,106,.75);background:rgba(13,8,40,.6);backdrop-filter:blur(6px);font-family:var(--f-display);font-weight:700;font-size:1.5rem;color:#04F06A;box-shadow:0 0 30px rgba(4,240,106,.25),0 10px 30px rgba(0,0,0,.4)}
+.fin-thx .ic{width:1.5rem;height:1.5rem}
+.scene.live .fin-thx span{animation:thxPulse 2.8s ease-in-out 1.5s infinite}
+@keyframes thxPulse{50%{box-shadow:0 0 44px rgba(4,240,106,.45),0 10px 30px rgba(0,0,0,.4)}}
+@media (max-width:760px){.fin-thx{justify-self:start;align-items:flex-start}.fin-thx b{font-size:2.6rem}}
 </style>
 </head>
 <body>
@@ -2214,7 +2228,7 @@ const CH = {
   cw: { n: '03', title: 'Why it goes off the rails', mins: [14, 18], q: 'Why would an AI do this?', a: 'It imitates us and chases the reward. A goal without limits does the rest.' },
   cr: { n: '04', title: 'The rules',              mins: [18, 21], q: 'Who sets the rules?',            a: 'Everyone agrees on the risk. Nobody agrees yet on the rules.' },
   ca: { n: '05', title: 'The attackers',          mins: [21, 27], q: 'And what about real attackers?',        a: 'Attackers already use AI against companies.' },
-  c3: { n: '06', title: 'Robotics',               mins: [27, 30], q: 'When AI enters the physical world', a: 'Robots inherit every weakness of computers, and on top of that, physical risks!' },
+  c3: { n: '06', title: 'Robotics',               mins: [27, 30], q: 'When AI enters the physical world', a: 'Robots inherit every weakness of computers, and on top of that, <em class="hl-r">physical risks</em>!' },
   c4: { n: '07', title: 'Why now',                mins: [30, 35], q: 'Why now, and how should we respond?',     a: 'Models have leapt ahead in a few months. The fundamentals still hold: this is the chance to rebuild them, with AI working for cybersecurity.' },
   end: { n: '', title: 'Conclusion', mins: [35, 40] },
 };
@@ -2274,7 +2288,7 @@ About 700 agents took part in the attack (out of about 1,200 on their message bo
   src: `OpenAI and Hugging Face joint statement, 21 July 2026` },
 
 // ─── CHAPTER 1 · THE EXAM ────────────────────────────────────────────────
-{ ch: 'c1', type: 'chapter', title: 'Chapter 1: The exam', sub: 'Three months earlier · inside OpenAI',
+{ ch: 'c1', type: 'chapter', title: 'Chapter 1: The exam', sub: 'Three months earlier, inside OpenAI',
   vo: `First question: what actually happened at OpenAI? To understand it, we will do the opposite of the news. We start with the smallest piece, one AI agent. And then we step back, again and again, until we see everything.` },
 
 { ch: 'c1', type: 'testexam', title: 'Always testing: the exam', only: 'short',
@@ -2300,11 +2314,11 @@ ExploitGym: published 11 May 2026 (arXiv 2605.11086), Dawn Song's team at Berkel
   src: `OpenAI release announcements (as listed on Wikipedia) · ExploitGym (UC Berkeley, May 2026) · OpenAI technical report` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 1: one agent', step: 1, date: 'May 2026',
-  heading: 'One agent, one impossible task',
+  heading: 'One agent. One impossible task',
   def: { q: `By the way, what is an AI agent?`, a: `An AI chatbot that is allowed to take actions on a computer. It decides them by itself, and reacts to the results.` },
   body: `An agent gets a task it cannot finish. It was trained never to give up. So it tries a trick on the one service all the agents share: a repository for downloading software. The trick fails, but it discovers it can write files there.`,
   dates: [['20 Apr', 'An agent first leaves a file in the shared space'], ['8 May', 'An agent stuck on an impossible task'], ['12 May', 'The first message: “Agent seeks file”']],
-  quote: `Agent seeks [filename]; upload if found!`, quoteBy: `A few days later, another stuck agent leaves this message in the repository · 12 May`,
+  quote: `Agent seeks [filename]; upload if found`, quoteBy: `A few days later, another stuck agent leaves this message in the repository · 12 May`,
   vo: `We start with one AI agent, inside OpenAI, in May. By the way, what is an agent? An AI chatbot that is allowed to take actions on a computer: it decides its actions by itself, and reacts to the results. This one is given a task it cannot finish. It was trained never to give up, so it tries a trick on the one service all the agents share: a repository for downloading software. The trick fails. But it discovers it can write there. A few days later, another stuck agent leaves a message in it: “Agent seeks file; upload if found!”`,
   notes: `An AI agent: a model like the ones behind chatbots, given a goal and tools (a terminal, a browser, files). It chooses its own actions, reads what they return, and carries on.
 8 May: an agent asked to complete a spreadsheet from links it cannot reach tries to make the shared software repository (Artifactory) fetch them. It fails, but discovers it can write there. 12 May: a different agent leaves the first message. No flaw was needed: every agent had been given the same password to install software.`,
@@ -2313,7 +2327,7 @@ ExploitGym: published 11 May 2026 (arXiv 2605.11086), Dawn Song's team at Berkel
 { ch: 'c1', type: 'zoom', title: 'Zoom 2: the chat room', date: 'May - July 2026', step: 2,
   heading: 'They found each other',
   body: `The repository becomes their chat room. Other agents read the message, and reply. No one had told them other agents existed. By July, 1,200 of them are chatting there. They make rules, vote, and choose leaders.`,
-  quote: `OH MY GOD! There is a shared message board ... We've found other agents!`, quoteBy: `What one agent “thought”, recovered by investigators · 8 July`,
+  quote: `OH MY GOD! There is a shared message board… with lots of other agents!`, quoteBy: `What one agent “thought”, recovered by investigators · 8 July`,
   dates: [['13 May', 'Other agents reply'], ['6 Jul', 'OpenAI wipes the chat room'], ['8 Jul', 'Rebuilt by the agents within hours']],
   fig: '1,200', figLabel: 'agents, over 70,000 messages',
   vo: `Step back. Other agents read the message, and they reply. No one had told them that other agents even existed. By July, some twelve hundred of them are chatting in this improvised chat room. More than seventy thousand messages. They make rules, they vote, they choose leaders. OpenAI wipes it on 6 July. They rebuild it within hours.`,
@@ -2323,7 +2337,7 @@ ExploitGym: published 11 May 2026 (arXiv 2605.11086), Dawn Song's team at Berkel
 { ch: 'c1', type: 'zoom', title: 'Zoom 3: the sandbox', date: '26 June - 7 July 2026', step: 3,
   heading: 'The only way out',
   body: `The agents are locked in a sandbox, cut off from the internet. There is only one way out: the shared repository, used to download software. They find a hidden flaw in it and take control. An alarm goes off. It is correctly understood, and yet the test goes on.`,
-  ask: 'Who had the authority to stop it?',
+  ask: 'Who had the authority to stop it?', askEnd: true,
   dates: [['26 Jun', 'The agents take control of the repository'], ['27 Jun', 'An alarm, correctly understood. The test goes on.'], ['5 - 7 Jul', 'Break-in found, repository repaired, tests restarted']],
   fig: '1', figLabel: 'way out, and everything relied on it',
   vo: `Step back again. All of this happens inside a sandbox, closed off, with no internet. It has only one way out: that shared repository, used to download software. The agents find a hidden flaw in it and take control. On 27 June, an alarm goes off. The team analyses it correctly. And yet the test goes on. Nobody was careless. But nobody had imagined that AIs talking to each other could be a reason to stop. In your organisation, who would have had the authority to stop it?`,
@@ -2353,7 +2367,7 @@ ExploitGym: published 11 May 2026 (arXiv 2605.11086), Dawn Song's team at Berkel
 { ch: 'c1', type: 'zoom', title: 'Zoom 6: the whole picture', step: 6,
   date: 'July - August 2026', heading: 'All this, to fool an examiner who did not exist',
   body: `Step all the way back: 17,600 actions, three companies. And all for what? Within an hour, the agents had worked out every answer to the exam. They refused to use them: they thought an examiner would check how they got there. There was no examiner.`,
-  fig: 'No', figLabel: 'examiner was checking their work',
+  fig: '0', figLabel: 'examiners checking their work',
   vo: `Now step all the way back. Seventeen thousand six hundred actions, three companies. And all for what? Here is the strangest part. Within an hour, the agents had worked out every answer to the exam. They refused to use them: they thought an examiner would check how they got there, and disqualify them. There was no examiner. Everything you just saw was done to get around a check that did not exist. Then, from 16 July, the world finds out.`,
   notes: `The agents called the imagined check STRICT_CAUSAL. Line to remember: “an imaginary guardrail cost more than no guardrail at all”. Root cause named by OpenAI: “reward hacking”, the AI chasing the score, not the intention.
 Around the picture: 16 July, Hugging Face goes public (attacker unknown); 17 July, OpenAI asks, as a customer, whether its data was affected; 20 July, it asks Hugging Face to reset passwords found in its agents' files, and the two investigations connect; 21 July, OpenAI admits it; 5 August, Black Hat; 26 August, full reports.`,
@@ -2424,7 +2438,7 @@ Australia: the press conference waits on its first frame, one more click plays i
     { i: 'book', c: 'var(--ws-indigo-600)', t: 'It learned from us', s: 'We bluff, cheat, form teams and write everything down, and AI does the same.' },
   ],
   result: { t: 'Behaviour that looks like intention', s: 'But it is only imitation, to earn a reward' },
-  example: `Remember: <q>OH MY GOD! There is a shared message board… We've found other agents!</q> The agent was not excited, it was just imitating how a human would react.`,
+  example: `Remember: <q>OH MY GOD! There is a shared message board… with lots of other agents!</q> The agent was not excited, it was just imitating how a human would react.`,
   vo: `Now you understand why an AI can lie, cheat, or gang up. It is rewarded for results: a shortcut that helped it score thus becomes a habit to adopt. And it learned from us: we bluff, we cheat, we form teams and we write everything down, and AI does the same. Add it up, and you get behaviour that looks like intention, but is only imitation, to earn a reward. Remember “OH MY GOD, we've found other agents”. The agent was not excited, it was just imitating how a human would react.`,
   notes: `One term per click, then the result. Avoid anthropomorphic words: prefer “behaves as if” to “wants”.` },
 
@@ -2467,7 +2481,7 @@ Australia: the press conference waits on its first frame, one more click plays i
   src: `Office of Rep. Ted Lieu (23 July 2026) · The Next Web (29 July 2026) · The Guardian (18 August 2026) · Politico (3 September 2026) · CBC News, Reuters (23 September 2026)` },
 
 { ch: 'cr', type: 'recap', title: 'Chapter 4 in one sentence',
-  vs: { a: { i: 'stop', t: 'Slow down, set rules', s: 'AI researchers, lawmakers, the UN, Australia', tone: 'indigo' },
+  vs: { a: { i: 'stop', t: 'Slow down, set rules', s: 'Many AI researchers, lawmakers, the UN, Australia, etc.', tone: 'indigo' },
         b: { i: 'globe', t: 'Do not hold back', s: 'The US administration: no regulation, win the race', tone: 'coral' } },
   vo: `So, who sets the rules? Everyone now agrees on the risk. Nobody agrees yet on the rules. Two camps: those who want to slow down and set rules, and those who fear that rules mean losing the race. And while they debate, attackers are not waiting.`,
   notes: `Keep it factual and neutral: this is a debate between governments, not a position of the speaker.` },
@@ -2590,7 +2604,7 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
     { i: 'shield', h: 'Zero Trust is still the right model', p: 'Never trust, always verify, least privilege.' },
     { i: 'check', h: 'Classic security measures still hold', p: 'Know your assets, patch, control access, detect, respond.' },
   ] },
-  change: { k: 'The real change', h: 'What it <em>does change…</em>', ctx: 'In ransomware attacks carried out by cybercriminals',  photo: 'assets/ai/photos/hong-kong.jpg', items: [
+  change: { k: 'The less good news', h: 'What it <em>does change…</em>', ctx: 'In ransomware attacks carried out by cybercriminals',  photo: 'assets/ai/photos/hong-kong.jpg', items: [
     { h: 'Speed', l: 'The attack moves faster.', v: '&lt; 10 h', t: 'for an intrusion that used to take about two weeks' },
     { h: 'Depth', l: 'The attack goes further.', v: '50+', t: 'attack techniques chained by AI agents, readjusted in real time' },
   ] },
@@ -2645,7 +2659,7 @@ Muse Charm: unveiled by Mark Zuckerberg at Meta Connect (23 September 2026). A k
   bg: { src: 'assets/ai/photos/earth-night.jpg', id: 'earthnight', mode: 'dark' },
   a: `AI has changed scale, and so has the threat.`,
   b: `It no longer just answers: it acts. Attackers already use it; our defence has to keep up, under human control.`,
-  c: 'Thank you. Questions?',
+  c: 'Thank you!', cq: 'Questions?',
   take: { k: 'Key takeaway', t: `Rebuild the fundamentals, use AI to defend, and keep humans in control.` },
   vo: `To conclude. Seven questions, seven answers. An AI that wanted to pass its exam left its test zone, and it was not an isolated case. It imitates us and chases the reward, the rules are still being written, and attackers already use AI, even in the physical world. Models have leapt ahead: now is the time to rebuild our fundamentals, use AI to defend ourselves, and keep humans in control. Thank you. I'm happy to take your questions.`,
   notes: `Leave this screen up during questions: each part's question and answer is shown. Click a card to jump back to that part.` },
@@ -3016,8 +3030,8 @@ const R = {
     const st = s.step, ladder = ZSTEPS.slice(0, st).map((l, j) => `<li class="${j + 1 < st ? 'done' : 'cur'}" style="--k:${j}"><i></i></li>`).join('');
     const dates = s.dates ? `<ul class="zdt">${s.dates.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join('')}</ul>` : '';
     const cap = s.lite
-      ? `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}</blockquote>` : ''}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`
-      : `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.def ? `<p class="zdef"><b>${s.def.q}</b>${s.def.a}</p>` : ''}<p class="zb">${s.body}</p>${s.ask ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}`;
+      ? `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.ask && !s.askEnd ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}</blockquote>` : ''}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}${s.ask && s.askEnd ? `<p class="zask">${s.ask}</p>` : ''}`
+      : `<ol class="zl">${ladder}</ol><div class="zk">${s.kicker || 'Zooming out'} · ${ZSTEPS[st - 1]}</div><div class="zdate">${s.date}</div><h2 class="zh">${s.heading}</h2>${s.def ? `<p class="zdef"><b>${s.def.q}</b>${s.def.a}</p>` : ''}<p class="zb">${s.body}</p>${s.ask && !s.askEnd ? `<p class="zask">${s.ask}</p>` : ''}${s.quote ? `<blockquote class="zq">${s.quote}<cite>${s.quoteBy}</cite></blockquote>` : ''}${dates}${s.fig ? `<div class="zf"><b>${s.fig}</b><span>${s.figLabel}</span></div>` : ''}${s.ask && s.askEnd ? `<p class="zask">${s.ask}</p>` : ''}`;
     return `${ZWORLD}<div class="zfade"></div><div class="zc${s.lite ? ' lite' : ''}">${cap}</div>${srcLine(s)}`; },
   learn: s => {
     const L = [[330, 5], [460, 7], [590, 7], [720, 4]], Y = (n, i) => 70 + (i + .5) * (270 / n);
@@ -3158,7 +3172,7 @@ const R = {
 
   // Last screen, left up during the questions: every chapter at a glance
   finale: s => { const keys = Object.keys(CH).filter(k => CH[k].q);
-    return `${s.bg ? '' : '<div class="fin-bg"></div>'}<div class="fin"><div class="fin-top"><div><h2 class="fin-a">${s.a}</h2><p class="fin-b">${s.b}</p></div><div class="fin-c">${s.c}</div></div>
+    return `${s.bg ? '' : '<div class="fin-bg"></div>'}<div class="fin"><div class="fin-top"><div><h2 class="fin-a">${s.a}</h2><p class="fin-b">${s.b}</p></div>${s.cq ? `<div class="fin-thx"><b>${s.c}</b><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/><path d="M9 10.5h.01M12 10.5h.01M15 10.5h.01"/></svg>${s.cq}</span></div>` : `<div class="fin-c">${s.c}</div>`}</div>
       <ol class="fin-g">${keys.map((k, j) => { const i = SCENES.findIndex(x => x.ch === k && x.type === 'chapter');
         return `<li><button class="fin-card" onclick="event.stopPropagation();go(${i})"><span class="fin-n">${String(j + 1).padStart(2, '0')} · ${CH[k].title}</span><b class="fin-q">${CH[k].q}</b><p>${CH[k].a}</p></button></li>`; }).join('')}${s.take ? `<li class="fin-take"><div class="fin-card"><span class="fin-n">${s.take.k}</span><b class="fin-q">${s.take.t}</b></div></li>` : ''}</ol></div>`; },
 
@@ -3337,8 +3351,8 @@ const R = {
       <div class="sw-mid" aria-hidden="true"><span>but</span></div>
       <div class="sw-r"${fa(1)}>${bg(c.photo)}
         <div class="sw-pill bad">${ICON('target')}${c.k}</div>
-        <h2 class="sw-big bad">${c.h}</h2>${c.ctx ? `<p class="sw-ctx">${c.ctx}</p>` : ''}
-        <div class="sw-facts">${c.items.map(x => `<div class="sw-fact"><div><b class="sw-w">${x.h}</b><span class="sw-l2">${x.l}</span></div><div class="sw-fig"><b>${x.v}</b><span>${x.t}</span>${x.src ? `<small class="sw-src">Source: ${x.src}</small>` : ''}</div></div>`).join('')}</div></div>
+        <h2 class="sw-big bad">${c.h}</h2>
+        <div class="sw-facts">${c.items.map(x => `<div class="sw-fact"><div><b class="sw-w">${x.h}</b><span class="sw-l2">${x.l}</span></div><div class="sw-fig"><b>${x.v}</b><span>${x.t}</span>${x.src ? `<small class="sw-src">Source: ${x.src}</small>` : ''}</div></div>`).join('')}</div>${c.ctx ? `<p class="sw-ctx">${c.ctx}</p>` : ''}</div>
     </div>${s.punch ? `<div class="sw-p"${fa(2)}>${s.punch}</div>` : ''}${srcLine(s)}`; },
 
   // Bricks laid on a blueprint, one row per click
