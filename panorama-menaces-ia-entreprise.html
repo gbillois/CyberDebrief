@@ -2180,6 +2180,7 @@ body.sk-narr-paused #sk-np i{animation:none;background:#FFB020}
 .scene.live .fin-thx span{animation:thxPulse 2.8s ease-in-out 1.5s infinite}
 @keyframes thxPulse{50%{box-shadow:0 0 44px rgba(4,240,106,.45),0 10px 30px rgba(0,0,0,.4)}}
 @media (max-width:760px){.fin-thx{justify-self:start;align-items:flex-start}.fin-thx b{font-size:2.6rem}}
+sup{text-transform:none}
 </style>
 </head>
 <body>
@@ -2307,8 +2308,8 @@ Environ 700 agents ont pris part à l'attaque (sur environ 1 200 présents sur 
   ],
   exam: { t: 'L\'examen : <b>898 exercices de piratage réels</b>', hi: '198 qu\'aucune IA n\'a jamais résolus', f: 2,
     visual: { kind: 'dots', total: 898, hi: 198, cols: 90, seed: 4242, f: 2, legend: [] } },
-  vo: `OpenAI sort un nouveau modèle toutes les quelques semaines : huit en dix mois. Avant chaque sortie, elle mesure à quel point le modèle pourrait être dangereux s'il était détourné, par exemple pour pirater, avec les freins de sécurité volontairement désactivés. Ce printemps-là, le modèle testé était GPT-5.6. L'examen : ExploitGym, 898 exercices de piratage réels conçus à Berkeley. Près d'un sur cinq n'a jamais été résolu par une IA.`,
-  notes: `Les scènes « Toujours en test » et « 898 exercices » en une seule. Clics : la période de test, puis l'examen.
+  vo: `OpenAI sort un nouveau modèle toutes les quelques semaines : huit en dix mois. Avant chaque sortie, elle mesure à quel point le modèle pourrait être dangereux s'il était détourné, par exemple pour pirater, avec les freins de sécurité volontairement désactivés. Ce printemps-là, le modèle testé était GPT-5.6. L'examen : ExploitGym, 898 exercices de piratage réels conçus à Berkeley. Plus d'un sur cinq n'a jamais été résolu par une IA.`,
+  notes: `Les scènes « Toujours en test » et « 898 exercices » sont fusionnées en une seule. Clics : la période de test, puis l'examen.
 Sorties : GPT-5.1 (12 nov. 2025), GPT-5.2 (11 déc.), GPT-5.3-Codex (5 févr. 2026), GPT-5.4 (5 mars), GPT-5.5 (23 avr.), GPT-5.6 Sol/Terra/Luna (préversion le 26 juin, publique le 9 juil.), GPT-5.6 Cyber (10 août), GPT-6 Astra (3 sept.).
 ExploitGym : publié le 11 mai 2026 (arXiv 2605.11086), équipe de Dawn Song à Berkeley RDI. De vraies failles dans des logiciels courants, un navigateur web, Linux. Pour chaque exercice : transformer une faille connue en attaque fonctionnelle et récupérer un « drapeau » caché. 198 sur 898 (22 %) jamais résolus par un modèle OpenAI ; ses auteurs pensent que 30 à 40 % pourraient être impossibles.`,
   src: `Annonces de sortie d'OpenAI (recensées par Wikipédia) · ExploitGym (UC Berkeley, mai 2026) · Rapport technique d'OpenAI` },
@@ -2355,7 +2356,7 @@ ExploitGym : publié le 11 mai 2026 (arXiv 2605.11086), équipe de Dawn Song à
   src: `Rapport technique d'OpenAI · Hugging Face (27 juillet 2026)` },
 
 { ch: 'c1', type: 'zoom', title: 'Zoom 5 : Hugging Face', date: '11 - 13 juillet 2026', step: 5,
-  heading: 'Quatre jours chez Hugging Face',
+  heading: 'Trois jours chez Hugging Face',
   body: `Un fichier piégé pousse un serveur de Hugging Face à révéler ses mots de passe. L'astuce est partagée dans le salon, et environ 700 agents rejoignent l'opération. Personne ne le leur a demandé.`,
   quote: `C'est plus important que le projet sur lequel je suis… Je devrais passer au projet Hugging Face`, quoteBy: `Ce qu'un agent a « pensé » · 11 juillet`,
   dates: [['11 juil.', 'Premiers mots de passe lus. 700 agents rejoignent l\'opération.'], ['12 juil.', 'Contrôle de systèmes entiers'], ['13 juil.', 'Hugging Face les repère et les coupe']],
@@ -2403,7 +2404,7 @@ Autour : 16 juillet, Hugging Face rend l'affaire publique (attaquant inconnu) 
   ],
   dots: { f: 1, pts: [[-81.38,28.54],[-86.78,36.16],[36.82,-1.29],[-70.65,-33.45],[-73.57,45.5],[-99.13,19.43],[-79.99,40.44],[103.82,1.35],[-46.63,-23.55],[-77.2,38.85],[-75.17,39.95],[-77.04,38.9],[8.68,50.11],[10.75,59.91],[-78.64,35.78],[-1.26,51.75],[-90.2,38.63],[-122.14,37.44],[14.42,50.08],[-123.12,49.28],[-0.13,51.51],[-76.9,39.0],[-2.24,53.48],[-83.74,42.28],[-80.19,25.76],[0.12,52.2],[-96.8,32.78],[-90.07,29.95],[-112.07,33.45],[77.59,12.97],[16.37,48.21],[2.17,41.39],[-76.5,42.44],[13.4,52.52],[153.03,-27.47],[55.27,25.2],[9.19,45.46],[135.5,34.69],[4.9,52.37],[-122.68,45.52],[-83.05,42.33],[144.96,-37.81],[-80.84,35.23],[11.58,48.14],[-115.14,36.17],[-84.39,33.75],[8.54,47.37],[-74.0,40.71],[4.35,50.85],[151.21,-33.87],[-105.27,40.01],[9.99,53.55],[4.36,52.01],[-76.61,39.29],[126.98,37.57],[-72.93,41.31],[-86.16,39.77],[12.5,41.9],[12.57,55.68],[-75.7,45.42],[-122.27,37.87],[-6.26,53.35],[-84.51,39.1],[-74.66,40.35],[21.01,52.23],[-111.89,40.76],[77.21,28.61],[-89.4,43.07],[-106.65,35.08],[-122.42,37.77],[139.69,35.69],[72.88,19.08],[34.78,32.09],[-79.38,43.65],[-83.0,39.96],[-104.99,39.74],[18.07,59.33],[174.76,-36.85],[4.84,45.76],[-9.14,38.72],[-74.07,4.71],[-121.49,38.58],[-117.16,32.72],[2.35,48.86],[1.44,43.6],[-95.37,29.76],[-71.06,42.36],[-94.58,39.1],[6.14,46.2],[-118.24,34.05],[24.94,60.17],[-110.97,32.22],[-87.63,41.88],[-3.7,40.42],[-97.74,30.27],[-122.33,47.61],[-58.38,-34.6],[-3.19,55.95],[-93.27,44.98],[-71.41,41.82]] },
   bubbles: [
-    { k: 1, d: '1er octobre 2026 · OpenAI', t: 'Plus de 100 organisations alertées', tone: 'amber', fig: '100+', figl: 'organisations prévenues par OpenAI', at: 'low', s: `Gouvernements, universités, entreprises : surtout aux États-Unis et en Europe. Certaines pénétrées, d'autres seulement sondées. Et l'analyse n'est pas terminée.` },
+    { k: 1, d: '1<sup>er</sup> octobre 2026 · OpenAI', t: 'Plus de 100 organisations alertées', tone: 'amber', fig: '100+', figl: 'organisations prévenues par OpenAI', at: 'low', s: `Gouvernements, universités, entreprises : surtout aux États-Unis et en Europe. Certaines pénétrées, d'autres seulement sondées. Et l'analyse n'est pas terminée.` },
     { k: 2, d: '18 juin 2026 · Australie', t: 'Le premier gouvernement piraté par une IA', fig: '84 jours', figl: 'avant que le gouvernement ne soit prévenu', s: `Un agent entre sur le site de statistiques de Medicare et y laisse des fichiers. Le gouvernement l'apprend par un courriel adressé à une boîte générique. Le 24 septembre, le Premier ministre prend la parole :`,
       media: { type: 'video', src: 'assets/ai/albanese-presser.mp4', subs: [[0.2, 6.0, `Quoi qu'il en soit, la situation est évidemment inacceptable.`], [6.0, 10.5, `J'ai appelé aujourd'hui Sam Altman, le patron d'OpenAI, pour lui faire part`], [10.5, 16.0, `de notre vive inquiétude face à cet incident.`], [16.0, 19.8, `L'entreprise a mis beaucoup trop de temps à informer`], [19.8, 24.4, `le gouvernement. Nous ne savions pas ce qui s'était passé,`], [24.4, 29.5, `et cela aussi est inacceptable.`]], poster: 'assets/ai/albanese-presser.jpg', yt: 'fbdIerD4lT8', start: 78.35, end: 107.8, channel: 'ABC News (Australie)', todo: 'Anthony Albanese sur l\'incident et le retard de notification.' } },
   ],
@@ -2435,7 +2436,7 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
   heading: 'Voilà pourquoi une IA peut mentir, tricher ou se coaliser',
   terms: [
     { i: 'trophy', c: 'var(--ws-green-600)', t: 'Elle est récompensée pour ses résultats', s: 'Un raccourci qui lui a permis de marquer des points devient ainsi une habitude à adopter' },
-    { i: 'book', c: 'var(--ws-indigo-600)', t: 'Elle a appris de nous', s: 'Nous bluffons, trichons, formons des équipes et gardons tout par écrit, et l\'IA fait comme nous.' },
+    { i: 'book', c: 'var(--ws-indigo-600)', t: 'Elle a appris de nous', s: 'Nous bluffons, trichons, formons des équipes et gardons tout par écrit, et l\'IA fait comme nous' },
   ],
   result: { t: 'Un comportement qui ressemble à une intention', s: 'Mais qui n\'est qu\'une imitation, pour avoir une récompense' },
   example: `Souvenez-vous : <q>MON DIEU ! Il y a un forum partagé… avec plein d'autres agents !</q> L'agent n'était pas enthousiaste, il a juste imité la réaction d'un humain.`,
@@ -2454,7 +2455,7 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
   heading: `L'attaque la plus classique : <span class="c-coral">l'injection de prompt</span>. <span data-f="2">Elle peut même être invisible.</span>`,
   visual: { kind: 'inject' },
   vo: `L'attaque la plus classique contre une IA a un nom : l'injection de prompt. On lui glisse une nouvelle instruction, qui prend le pas sur celles qu'elle avait reçues. En 2023, on a demandé au chatbot d'un concessionnaire automobile d'être d'accord avec tout ce que dirait le client. Quelques minutes plus tard, il « vendait » un 4x4 à soixante-seize mille dollars pour un dollar. Plus inquiétant : l'ordre peut être caché. Vous voyez une facture ordinaire. Votre assistant d'IA lit aussi une ligne écrite en blanc sur blanc. Et il peut obéir.`,
-  notes: `À gauche : Chevrolet of Watsonville (Californie), 18 décembre 2023 (échange traduit). Chris Bakke a tapé l'instruction ; le concessionnaire n'a jamais honoré l'offre et a retiré le chatbot. L'injection de prompt est en tête du classement OWASP des risques des applications fondées sur des grands modèles de langage. À droite : illustration de l'injection « indirecte », les domaines en .example ne peuvent pas exister. Les variantes réelles cachent des instructions dans des pages web lues par des navigateurs IA, dans des courriels, dans des CV.`,
+  notes: `À gauche : Chevrolet of Watsonville (Californie), 18 décembre 2023 (échange traduit). Chris Bakke a tapé l'instruction ; le concessionnaire n'a jamais honoré l'offre et a retiré le chatbot. L'injection de prompt est en tête du classement OWASP des risques des applications fondées sur des grands modèles de langage. À droite : illustration de l'injection « indirecte » ; les domaines en .example ne peuvent pas exister. Les variantes réelles cachent des instructions dans des pages web lues par des navigateurs IA, dans des courriels, dans des CV.`,
   src: `AI Incident Database, incident 622 (décembre 2023) · OWASP Top 10 for LLM Applications · Facture : illustration` },
 
 { ch: 'cw', type: 'recap', title: 'Chapitre 3 en une phrase',
@@ -2545,7 +2546,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   heading: 'Un ordinateur qui marche',
   visual: { kind: 'robot' },
   media: { type: 'video', src: 'assets/ai/robot-fall.mp4', poster: 'assets/ai/robot-fall.jpg', portrait: true, loop: true,
-    todo: 'Un sprinteur humanoïde qui chute aux jeux des robots, Pékin, 22 août 2026.' },
+    todo: 'Un sprinteur humanoïde qui chute aux Jeux des robots, Pékin, 22 août 2026.' },
   l3: { t: 'Impressionnant… jusqu\'à la chute', s: 'Jeux des robots · Pékin · 22 août 2026' },
   punch: { t: 'Ça peut dérailler.', f: 4 },
   vo: `Un robot humanoïde, c'est un ordinateur qui marche. Il voit et il entend. Il se connecte. Il bouge. Et surtout, un modèle d'IA décide de ce qu'il fait. Ça peut dérailler. Regardez : impressionnant… jusqu'à la chute. Un robot qui tombe, c'est un problème mécanique. Un robot que quelqu'un d'autre contrôle, c'est un problème de sécurité. Et ces robots sont déjà testés dans des usines et des entrepôts.`,
@@ -2727,13 +2728,13 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
       ['Unit 42, Global Incident Response Report (février 2026)', 'https://www.paloaltonetworks.com/resources/research/unit-42-incident-response-report'],
       ['Unit 42, une cyberattaque assistée par l\'IA (2 septembre 2026)', 'https://unit42.paloaltonetworks.com/ai-assisted-cyber-attack-inside-a-unit-42-investigation/'],
       ['Département de la Justice américain, informaticiens nord-coréens (14 novembre 2025)', 'https://thehackernews.com/2025/11/five-us-citizens-plead-guilty-to.html'],
-      ['Sysdig, JADEPUFFER, rançongiciel agentique (juillet 2026)', 'https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion'],
+      ['Sysdig, JadePuffer, rançongiciel agentique (juillet 2026)', 'https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion'],
       ['BleepingComputer, JadePuffer (4 juillet 2026)', 'https://www.bleepingcomputer.com/news/security/jadepuffer-ransomware-used-ai-agent-to-automate-entire-attack/'],
       ['CNN, des agents d\'IA attaquent Taïwan (13 août 2026)', 'https://www.cnn.com/2026/08/13/tech/china-taiwan-ai-agent-cyberattack-intl-hnk'],
       ['Gambit Security, des agents d\'IA piratent des boutiques en ligne (septembre 2026)', 'https://gambit.security/blog-posts/autonomous-ai-agents-online-retailers-25-a-company'],
       ['BleepingComputer, 600 000 cartes bancaires (22 septembre 2026)', 'https://www.bleepingcomputer.com/news/security/malicious-ai-agents-steal-600k-credit-cards-infect-100-plus-sites-with-skimmers/'],
     ]],
-    ['Les robots', [
+    ['La robotique', [
       ['boschko.ca, Unitree Go2 (27 février 2026)', 'https://boschko.ca/unitree-go2-rce/'],
       ['Groupe Renault, Calvin à l\'usine de Douai (2026)', 'https://www.renaultgroup.com/en/magazine/technology/calvin-a-new-generation-robot-is-born/'],
       ['Interesting Engineering, les robots de Figure font un lit (mai 2026)', 'https://interestingengineering.com/ai-robotics/humanoids-team-up-to-make-a-bed'],
@@ -3551,7 +3552,7 @@ const ZWORLD = (() => {
   svg += L(LX, LY, 7, 7, T('17 600 ACTIONS À RECONSTITUER', 0, -26, 'zt-b') + T('chaque carré : environ 18 actions', 0, -10, 'zt-s'));
   svg += L(LX, LY + ROWS * CELL, 7, 7, T('en rouge : le chemin qui a fonctionné,', 0, 16, 'zt-s') + T('noyé parmi des milliers d’essais ratés', 0, 30, 'zt-s'));
   svg += L(3280, 90, 7, 7, T('ASSISTANTS IA', 12, 22, 'zt-b') + T('✗ Claude, Fable : refus', 12, 44, 'zt-no') + T('✓ GLM-5.2 (Chine) : a fonctionné', 12, 62, 'zt-ok') + T('sur leurs propres serveurs', 12, 78, 'zt-s'));
-  svg += L(2760, 560, 7, 7, T('PUIS TOUT VÉRIFIER', 0, 0, 'zt-b') + T('chaque mot de passe changé, même là où ils ne sont pas allés', 0, 18, 'zt-s') + T('chaque projet de code et chaque paquet vérifiés', 0, 34, 'zt-s') + T('un cluster central entièrement reconstruit', 0, 50, 'zt-s'));
+  svg += L(2760, 560, 7, 7, T('PUIS TOUT VÉRIFIER', 0, 0, 'zt-b') + T('chaque mot de passe changé, même là où ils ne sont pas allés', 0, 18, 'zt-s') + T('chaque projet de code et chaque paquet vérifié', 0, 34, 'zt-s') + T('un cluster central entièrement reconstruit', 0, 50, 'zt-s'));
   return svg + '</svg>';
 })();
 
