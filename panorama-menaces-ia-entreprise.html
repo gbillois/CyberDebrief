@@ -2192,6 +2192,22 @@ sup{text-transform:none}
 @keyframes bkPop{from{opacity:0;transform:scale(.4) rotate(-12deg)}}
 .bk-b b{font-size:1.4rem}
 .bk-k{font-size:2.1rem}
+/* rebuilding, documentary pass: photo behind a glass blueprint, numbered bricks, layer tags */
+.scene.t-bricks .pb-dark img{filter:saturate(.5) brightness(.75)}
+.scene.t-bricks .pb-dark::after{background:radial-gradient(110% 90% at 50% 40%,rgba(10,6,30,.55),rgba(10,6,30,.9)),linear-gradient(180deg,rgba(10,6,30,.3),rgba(10,6,30,.8))}
+.scene.t-bricks .bk{justify-content:center;gap:1.3rem;padding:2.2rem 2.4rem;background:linear-gradient(rgba(122,92,255,.07) 1px,transparent 1px) 0 0/2.2rem 2.2rem,linear-gradient(90deg,rgba(122,92,255,.07) 1px,transparent 1px) 0 0/2.2rem 2.2rem,rgba(13,8,40,.45);backdrop-filter:blur(6px);box-shadow:0 30px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06)}
+.scene.t-bricks .bk-row{flex:0 1 auto;max-height:none;min-height:13rem}
+.scene.t-bricks .bk-k{flex-direction:column;align-items:flex-start;justify-content:center;gap:.5rem}
+.bk-lk{display:inline-flex;align-items:center;gap:.45rem;padding:.2rem .6rem;border-radius:999px;border:1px solid color-mix(in srgb,var(--tone) 60%,transparent);background:color-mix(in srgb,var(--tone) 14%,transparent);font-family:var(--f-mono);font-weight:600;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-shadow:none}
+.bk-lk i{width:.45rem;height:.45rem;border-radius:50%;background:var(--tone);box-shadow:0 0 10px var(--tone)}
+.bk-b .bk-n{position:absolute;margin:0;line-height:1;top:1rem;right:1.1rem;font-family:var(--f-mono);font-weight:600;font-size:.78rem;letter-spacing:.12em;color:color-mix(in srgb,var(--tone) 80%,#fff);opacity:.85}
+.scene.t-bricks .bk-i{width:3.8rem;height:3.8rem;border-radius:1rem}
+.scene.t-bricks .bk-i::after{content:'';position:absolute;inset:-5px;border-radius:1.25rem;border:1px solid color-mix(in srgb,var(--tone) 40%,transparent);opacity:.7}
+.scene.t-bricks .bk-i .ic{width:2rem;height:2rem}
+.scene.t-bricks .bk-b{transition:transform .3s,box-shadow .3s}
+.scene.t-bricks .bk-b::after{content:'';position:absolute;left:1.4rem;right:1.4rem;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--tone),transparent);opacity:.7}
+.scene.t-bricks .bk-row.on .bk-b::after{animation:bkLine 1.2s ease backwards;animation-delay:calc(var(--d) * .14s + .6s)}
+@keyframes bkLine{from{transform:scaleX(0);opacity:0}}
 </style>
 </head>
 <body>
@@ -2625,6 +2641,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   src: `Unit 42, Palo Alto Networks (2 septembre 2026) · Photos : FlyD et Henry Lai sur Unsplash` },
 
 { ch: 'c4', type: 'bricks', title: 'Reconstruire les fondations',
+  bg: { src: 'assets/ai/photos/padlock.jpg', id: 'padlock', mode: 'dark' }, layerK: 'Couche',
   heading: 'L’occasion de solidifier <em>nos fondamentaux</em>',
   layers: [
     { tone: 'indigo', k: 'Architecture cyber', bricks: [
@@ -2656,7 +2673,7 @@ Muse Charm : présenté par Mark Zuckerberg à Meta Connect (23 septembre 2026)
   vo: `Au-delà des fondamentaux, il faut fixer une nouvelle baseline cyber, mesurable. Cinq familles d’indicateurs, et pour quatre d’entre elles, une horloge qui démarre dès l’événement. Contenir une exposition critique : moins de 3 heures, sans attendre le feu vert des métiers. Découvrir et attribuer tout nouvel actif exposé sur internet : moins de 24 heures. Corriger ou protéger un actif activement exploité : moins de 24 heures. Reconstruire les systèmes critiques depuis une base de confiance : moins de 2 jours. Et réduire : moins de 5 % d’actifs critiques obsolètes, chaque exception avec un responsable et une date de sortie. Une cible que certains établissements financiers sont déjà en train d’atteindre.` },
 
 { ch: 'c4', type: 'aaa', title: 'L’IA pour la cyber : AAA',
-  heading: 'Demain, passer à une cyberdéfense unifiée et proactive : <em>la Cyber AAA</em>',
+  heading: 'Demain, cap sur une cyberdéfense unifiée et proactive : <em>la Cyber AAA</em>',
   center: 'Sous contrôle humain',
   items: [
     { h: 'Anticiper', p: 'Fermer les expositions avant qu’elles ne soient exploitées.', photo: 'assets/ai/photos/earth-night.jpg' },
@@ -3383,7 +3400,7 @@ const R = {
 
   // Bricks laid on a blueprint, one row per click
   bricks: s => `<h2 class="sw-big bk-t">${s.heading}</h2><div class="bk">${s.plan ? `<div class="bk-plan">${s.plan}</div>` : ''}
-      ${s.layers.map((l, i) => `<div class="bk-row tone-${l.tone}"${fa(i)}><div class="bk-k">${l.k}</div><div class="bk-bs">${l.bricks.map((b, j) => `<div class="bk-b" style="--d:${j}">${b.i ? `<div class="bk-i">${ICON(b.i)}</div>` : ''}<b>${b.h}</b><span>${b.p}</span></div>`).join('')}</div></div>`).join('')}
+      ${s.layers.map((l, i) => `<div class="bk-row tone-${l.tone}"${fa(i)}><div class="bk-k">${s.layerK ? `<span class="bk-lk"><i></i>${s.layerK} ${i + 1}</span>` : ''}<span>${l.k}</span></div><div class="bk-bs">${l.bricks.map((b, j) => `<div class="bk-b" style="--d:${j}"><span class="bk-n">${String(i * l.bricks.length + j + 1).padStart(2, '0')}</span>${b.i ? `<div class="bk-i">${ICON(b.i)}</div>` : ''}<b>${b.h}</b><span>${b.p}</span></div>`).join('')}</div></div>`).join('')}
       </div>${srcLine(s)}`,
 
   // A clock that starts at the event: each deadline lights up as the cursor reaches it; the stock indicator on the side
@@ -3510,7 +3527,7 @@ const ZWORLD = (() => {
   const BOX = [
     { x: -900, y: -780, w: 1900, h: 1610, r: 56, label: 'LE RÉSEAU D’OPENAI', sub: 'ses ordinateurs de recherche', from: 3, cls: 'estate', pan: 4 },
     { x: -560, y: -560, w: 1120, h: 980, r: 40, label: 'LE BAC À SABLE', sub: 'fermé · sans internet', from: 3, cls: 'sandbox' },
-    { x: -860, y: 460, w: 1460, h: 330, r: 28, label: 'L’EXAMINATEUR QU’ILS CRAIGNAIENT', sub: 'n’a jamais existé', from: 6, to: 6, cls: 'ghost' },
+    { x: -880, y: 450, w: 1860, h: 350, r: 28, center: true, label: 'L’EXAMINATEUR QU’ILS CRAIGNAIENT', sub: 'n’a jamais existé', from: 6, to: 6, cls: 'ghost' },
     { x: 1360, y: -820, w: 960, h: 740, r: 44, label: 'INTERNET', sub: 'des sites gratuits, utilisés comme cachettes', from: 4, cls: 'net' },
     { x: 1360, y: 160, w: 960, h: 500, r: 40, label: 'LE SERVEUR CLOUD D’UN INCONNU', far: ['LE SERVEUR CLOUD', 'D’UN INCONNU'], wrap: true, sub: 'loué par une autre organisation', from: 4, cls: 'tp' },
     { x: 2680, y: -560, w: 1180, h: 1280, r: 56, label: 'HUGGING FACE', sub: 'la victime', from: 5, cls: 'hf' },
@@ -3565,6 +3582,7 @@ const ZWORLD = (() => {
   svg += L(0, -346, 2, 2, T('LE SALON · 1 200 AGENTS · chaque message passe par le dépôt', 0, -12, 'zt-ring', 'middle'));
   svg += L(560, 0, 3, 3, T('la seule sortie', 12, -4, 'zt-l') + T('pour télécharger des logiciels', 12, 12, 'zt-ls'));
   svg += BOX.filter(b => b.label).map(b => {
+    if (b.center) return L(b.x + b.w / 2, b.y + b.h / 2, b.from, b.to || 0, T(b.label, 0, -3, 'zt-b' + (b.cls === 'ghost' ? ' zt-ghost' : ''), 'middle') + T(b.sub, 0, 14, 'zt-s', 'middle'));
     const name = (lines, from, to) => L(b.x, b.y, from, to, lines.map((t, i) => T(t, 14, 24 + i * 16, 'zt-b' + (b.cls === 'ghost' ? ' zt-ghost' : ''))).join(''), b.pan);
     return (b.far ? name(b.wrap ? b.far : [b.label], b.from, 5) + name(b.far, 6, 0) : name([b.label], b.from, b.to || 0)) + L(b.x, b.y, b.from, b.cls === 'ghost' ? 6 : 5, T(b.sub, 14, b.wrap ? 56 : 40, 'zt-s'), b.pan)
       + (b.pan ? L(b.x + b.w, b.y, b.pan, b.pan, T(b.label, -14, 24, 'zt-b', 'end') + T(b.sub, -14, 40, 'zt-s', 'end')) : '');
