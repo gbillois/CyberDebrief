@@ -5,3 +5,5 @@
   Cache-Control: no-cache
 /Panorama-menaces-IA-*
   Cache-Control: no-cache
+/PBR-*
+  Cache-Control: no-cache
