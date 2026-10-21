@@ -3,3 +3,5 @@
   Cache-Control: no-cache
 /panorama-menaces-ia-*
   Cache-Control: no-cache
+/Panorama-menaces-IA-*
+  Cache-Control: no-cache
