@@ -527,6 +527,9 @@ body.black #black{display:block}
 .keys{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1.4rem;font-size:.95rem;max-width:40rem}
 .keys kbd{font-family:var(--f-mono);font-size:.8rem;background:var(--panel2);border:1px solid var(--line2);border-radius:.3rem;padding:.1rem .45rem;color:var(--text)}
 #hint{position:fixed;right:5.5rem;top:2rem;z-index:60;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;color:var(--subtle);transition:opacity 1s}
+/* Wavestone logo, top left of every slide (the intro screen sits above it) */
+#logo{position:fixed;left:5.5rem;top:1.25rem;z-index:60;height:1.35rem;color:#fff;opacity:.92;pointer-events:none}
+#logo svg{display:block;height:100%;width:auto;fill:currentColor}
 
 /* ── presenter view ─────────────────────────────────────────────────── */
 body.pres{overflow:auto;height:auto;min-height:100vh}
@@ -570,7 +573,7 @@ body.pres::before,body.pres::after{display:none}
   .t-map .src{display:none}
   .qt{grid-template-columns:1fr} .qt .fr{font-size:1.7rem} .face{width:7rem;height:7rem}
   .src{position:static;margin-top:1.5rem;max-width:none}
-  #hud{padding:0 16px 1rem} #hint{display:none}
+  #hud{padding:0 16px 1rem} #hint{display:none} #logo{left:16px;top:1rem;height:1.2rem}
   .phone{height:32rem}
   .pv{grid-template-columns:1fr}
 }
@@ -2580,7 +2583,7 @@ sup{text-transform:none}
 .pr-cav .ic{width:1.5rem;height:1.5rem;color:var(--coral);flex:none}
 .pr-cav p{margin:0;font-size:1.15rem;color:#fff} .pr-cav b{color:var(--coral)}
 /* a video with a headline over it */
-.m-head{position:absolute;left:5.5rem;top:2.6rem;z-index:3;margin:0;max-width:80rem;font-family:var(--f-display);font-weight:800;font-size:3rem;line-height:1.05;letter-spacing:-.03em;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.85)}
+.m-head{position:absolute;left:5.5rem;top:3.7rem;z-index:3;margin:0;max-width:80rem;font-family:var(--f-display);font-weight:800;font-size:3rem;line-height:1.05;letter-spacing:-.03em;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.85)}
 .scene:has(.m-head) figure.media{margin-top:5.5rem;max-height:calc(100% - 5.5rem)}
 /* what AI changes: the right-hand panel alone */
 .sw2.solo{grid-template-columns:minmax(0,1fr)}
@@ -2967,6 +2970,7 @@ sup{text-transform:none}
 <div id="stage" aria-live="polite"></div>
 <div id="hud"><span class="ch" id="hud-ch"></span><div id="prog"></div><span class="ct" id="hud-ct"></span></div>
 <div id="hint">→ suivant · ← retour · ? aide</div>
+<div id="logo"><svg viewBox="195 79 946 129" role="img" aria-label="Wavestone" xmlns="http://www.w3.org/2000/svg"><path d="M195.542 115.576 245.384 206.864 258.52 182.792 221.693 115.576 195.542 115.576Z"/><path d="M878.921 113.347C848.551 113.347 824.53 131.25 824.53 160.5 824.53 189.75 848.551 207.653 878.921 207.653 909.29 207.653 933.311 189.75 933.311 160.5 933.311 131.25 909.29 113.347 878.921 113.347ZM878.921 197.697C856.349 197.697 846.022 181.183 846.022 160.5 846.022 139.817 856.349 123.303 878.921 123.303 901.492 123.303 911.819 139.817 911.819 160.5 911.819 181.183 901.492 197.697 878.921 197.697Z"/><path d="M730.763 127.942 763.641 127.942 763.641 205.314 784.144 205.314 784.144 127.942 817.022 127.942 817.022 115.556 730.763 115.556 730.763 127.942Z"/><path d="M678.881 149.854C665.786 146.435 653.42 143.216 653.42 135.129 653.42 127.042 664.796 123.333 676.072 123.333 687.348 123.333 697.914 126.132 708.571 131.9L711.16 133.3 711.16 121.434 710.14 120.934C700.524 116.156 687.838 113.307 676.232 113.307 656.759 113.307 635.956 120.484 635.956 140.627 635.956 160.77 655.949 165.338 673.593 170.007 686.868 173.525 699.414 176.844 699.414 185.461 699.414 194.078 687.548 197.657 676.522 197.657 663.477 197.657 650.531 193.568 638.046 185.601L636.646 184.711 630.848 193.128 632.418 194.188C644.843 202.605 661.847 207.623 677.892 207.623 702.183 207.623 717.877 196.807 717.877 180.283 717.877 160.01 696.255 154.372 678.871 149.834Z"/><path d="M557.464 166.538 608.306 166.538 608.336 154.122 557.464 154.122 557.464 127.942 612.285 127.942 612.325 115.526 536.961 115.526 536.961 205.224 613.094 205.224 613.134 192.809 557.464 192.809 557.464 166.538Z"/><path d="M1084.79 192.809 1084.79 166.538 1135.63 166.538 1135.67 154.122 1084.79 154.122 1084.79 127.942 1139.62 127.942 1139.65 115.526 1064.29 115.526 1064.29 205.224 1140.42 205.224 1140.46 192.809 1084.79 192.809Z"/><path d="M334.483 205.224 348.818 205.244 357.515 189.07 401.989 189.07 410.846 205.224 434.148 205.224 384.305 113.936 334.493 205.224ZM364.182 176.654 379.527 148.074 395.181 176.654 364.172 176.654Z"/><path d="M474.663 172.726 443.354 115.576 420.053 115.576 469.895 206.864 519.707 115.576 505.362 115.556 474.663 172.726Z"/><path d="M1027.63 115.526 1027.65 171.386 953.444 113.916 953.444 205.254 965.84 205.254 965.93 149.444 1040.02 206.884 1040.04 115.526 1040.02 115.526 1027.63 115.526Z"/><path d="M381.456 80.1284 365.122 80.1284C347.288 98.8218 330.744 118.615 317.879 139.397 312.561 147.994 307.732 156.701 303.374 165.488L276.023 115.566 249.873 115.566 299.715 206.854 299.715 206.804C315.09 160.65 343.22 117.815 381.456 80.1284Z"/></svg></div>
 <div id="black"></div>
 <div id="notes"></div>
 <div class="ov" id="ov"></div>
