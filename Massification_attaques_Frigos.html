@@ -1,11 +1,11 @@
 <!doctype html>
-<!-- Support_PBR: European Cyber Week 2026 edition, derived from PBR-Panorama-menaces-IA-entreprises-FR (itself a copy of ai-talk-photo-sleek.html). Version of 29 October 2026, 37 slides. Edited by hand, not overwritten by the build. -->
+<!-- Support_PBR: massification talk edition, derived from PBR-Panorama-menaces-IA-entreprises-FR (itself a copy of ai-talk-photo-sleek.html). Version of 29 October 2026, 37 slides. Edited by hand, not overwritten by the build. -->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Massification attaques Frigos</title>
-<meta name="description" content="European Cyber Week 2026 (Rennes, 17 novembre), session « Villes et territoires numériques de confiance face à la menace cyber ». D’une faille à mille cibles : comprendre la massification des attaques, et l’IA comme accélérateur. 40 minutes, 37 slides. Version du 29 octobre 2026.">
+<meta name="description" content="Session « Villes et territoires numériques de confiance face à la menace cyber », 17 novembre 2026. D’une faille à mille cibles : comprendre la massification des attaques, et l’IA comme accélérateur. 40 minutes, 37 slides. Version du 29 octobre 2026.">
 <style>
 /* Embedded fonts (SIL Open Font License): Poppins, Inter, IBM Plex Mono,
    Newsreader, latin subset, via Fontsource. No network request. */
@@ -2233,7 +2233,7 @@ sup{text-transform:none}
 .scene.t-bricks .bk-b > span{color:rgba(255,255,255,.66)}
 
 /* ════════════════════════════════════════════════════════════════════════
-   EUROPEAN CYBER WEEK 2026 · « D’une faille à mille cibles »
+   MASSIFICATION TALK · « D’une faille à mille cibles »
    New screens for the massification talk, drawn on the same dark stage:
    coral for what breaks, teal for the cold, green for what holds.
    ════════════════════════════════════════════════════════════════════════ */
@@ -3000,7 +3000,7 @@ const proj = (lon, lat) => [(lon + 180) / 360 * 1000, (90 - lat) / 180 * 500];
 
 // ════════════════════════════════════════════════════════════════════════
 // LES PARTIES : une question par partie, une réponse en une phrase.
-// European Cyber Week 2026 · 40 minutes · « D’une faille à mille cibles »
+// 40 minutes · « D’une faille à mille cibles »
 // ════════════════════════════════════════════════════════════════════════
 const CH = {
   p:   { n: '00', title: 'Ouverture',                 mins: [0, 1] },
@@ -3031,11 +3031,10 @@ const SCENES = [
 
 // ─── OUVERTURE ────────────────────────────────────────────────────────────
 { ch: 'p', type: 'title', title: 'Titre', noCh: true,
-  kicker: 'European Cyber Week 2026 · Rennes',
   heading: `D’une faille à mille cibles`,
   meta: 'Villes et territoires numériques<br>de confiance face à la menace cyber<br>40 minutes · 17 novembre 2026',
   vo: `Une nuit d’octobre, une même faiblesse a suffi à toucher plus de sept cents supermarchés en France. Je vous propose de comprendre comment une faille devient mille cibles, ce que cela veut dire pour nos territoires, et pourquoi l’intelligence artificielle va accélérer le mouvement.`,
-  notes: `Se présenter en une phrase. Rappeler le cadre : European Cyber Week, 17 novembre, session « Villes et territoires numériques de confiance face à la menace cyber ». Puis cliquer directement : « Une vague de chaleur ».
+  notes: `Se présenter en une phrase. Rappeler le cadre : session « Villes et territoires numériques de confiance face à la menace cyber », 17 novembre. Puis cliquer directement : « Une vague de chaleur ».
 Fond : la carte du monde ; les points rouges marquent les cas présentés dans le support : une attaque, des cibles partout.` },
 
 // ─── PARTIE 1 · LE CAS : UNE NUIT, 700 SUPERMARCHÉS ──────────────────────
@@ -3965,7 +3964,7 @@ const R = {
 
   title: s => `${bgMap([[1.0, 49.36], [7.79, 48.82], [-1.68, 48.11], [19.1, 52.2], [12.18, 55.46], [5.2, 61.85], [13.4, 52.52], [-95, 38], [4.82, 52.44]])}
     <div class="tt"><div class="doc-meta">${today(s.meta)}${s.ver ? `<span class="doc-ver">${today(s.ver)}</span>` : ''}</div>
-      <div class="kicker">${s.kicker}</div>
+      ${s.kicker ? `<div class="kicker">${s.kicker}</div>` : ''}
       <h1 class="doc-title">${s.heading}</h1>
       ${s.sub ? `<p class="doc-sub">${s.sub}</p>` : ''}
       <div class="mode-sw" role="group" aria-label="Langue / Language">${Object.keys(LANGS).map(l => `<button data-lang="${l}" aria-pressed="${LANG === l}"><b>${LANGS[l].name}</b><small>${LANGS[l].sub}</small></button>`).join('')}</div>
@@ -4367,7 +4366,7 @@ const R = {
 };
 
 // ════════════════════════════════════════════════════════════════════════
-// EUROPEAN CYBER WEEK 2026 · new screens for « D’une faille à mille cibles »
+// Massification talk · new screens for « D’une faille à mille cibles »
 // Same stage, same steps (data-f) and highlights (data-hl) as the rest.
 // ════════════════════════════════════════════════════════════════════════
 Object.assign(ICONS, {
@@ -5057,7 +5056,7 @@ const ON_SITE = /(^|\.)cybersecwatcher\.com$/.test(location.hostname);
 const fixAssets = h => h.replace(/(?:https:\/\/debrief\.cybersecwatcher\.com\/)?(assets\/ai\/[\w\/.-]+\.(?:jpg|png))/g, (m, p) => EMBED_PATH[p] || m).replace(/(?:https:\/\/debrief\.cybersecwatcher\.com\/|\.\.\/)?assets\/ai\/photos\/(ecw-[\w-]+)\.(?:jpg|webp)/g, (m, id) => EMBED[id] || m)
   .replace(/(["'(])assets\/ai\//g, (m, q) => ON_SITE ? m : q + ONLINE);const PH = (id, mode, pos, fb) => ({ src: `assets/ai/photos/${FILE[id] || id + '.jpg'}`, id, mode, pos, fb: fb ? { src: `assets/ai/photos/${FILE[fb] || fb + '.jpg'}`, id: fb } : null });
 const FILE = { unsc: 'un-chamber.jpg', 'ecw-rayon-isole': 'ecw-rayon-isole.webp', 'ecw-rayons-nuit': 'ecw-rayons-nuit.webp' };
-// European Cyber Week edition: the ecw-* photos are expected in assets/ai/photos/ (see assets/ai/README.md)
+// Massification talk edition: the ecw-* photos are expected in assets/ai/photos/ (see assets/ai/README.md)
 const PHOTOSET = {
   'Une vague de chaleur':               { bg: PH('ecw-rayons-nuit', 'dark', '50% 50%') },
   'Quelques chiffres pour comprendre l’ampleur': { bg: PH('ecw-une-vague', 'dark', '50% 45%') },
@@ -5241,7 +5240,7 @@ function skIntro(then) {
   const title = 'D’UNE FAILLE À MILLE CIBLES'.split(' ').map(w => `<span class="w">${w.split('').map(c => `<i style="--d:${(Math.random() * (SK_T.hit - SK_T.letters - 0.5)).toFixed(2)}s">${c}</i>`).join('')}</span>`).join(' ');
   box.innerHTML = `<div class="ski-scan"></div>
     <div class="ski-log">${SK_INTRO.map(([l, at]) => `<p style="--at:${at}s;--n:${l.replace(/<[^>]+>/g, '').length}"><span>${l}</span></p>`).join('')}</div>
-    <div class="ski-pres"><span>Wavestone</span><em>présente</em><small>European Cyber Week 2026 · Rennes</small></div>
+    <div class="ski-pres"><span>Wavestone</span><em>présente</em></div>
     <h1 class="ski-t">${title}</h1>
     <p class="ski-sub">Une faille. Mille cibles. Et l’IA comme accélérateur.</p>
     <div class="ski-flash"></div>`;
