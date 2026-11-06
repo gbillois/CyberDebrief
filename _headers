@@ -7,3 +7,5 @@
   Cache-Control: no-cache
 /PBR-*
   Cache-Control: no-cache
+/Massification_*
+  Cache-Control: no-cache
