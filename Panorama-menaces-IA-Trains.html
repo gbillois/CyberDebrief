@@ -2232,59 +2232,44 @@ sup{text-transform:none}
 .scene.t-bricks .bk-b b{font-size:1.42rem;letter-spacing:-.01em}
 .scene.t-bricks .bk-b > span{color:rgba(255,255,255,.66)}
 
-/* Map bubble told as a picture (Renfe): key figures, the path of the attack, what was and was not reached */
-.mb.mb-flow{width:min(47rem,57vw);padding:1.2rem 1.5rem 1.35rem}
+/* Map bubble told as a picture (Renfe): two key figures, the path of the attack, one reassuring line */
+.mb.mb-flow{width:min(42rem,52vw);padding:1.3rem 1.6rem 1.4rem}
 .mb.mb-flow .mb-body{width:100%}
-.mb.mb-flow .mb-t{font-size:1.45rem;margin-bottom:.9rem}
-.rf{display:grid;gap:1rem}
-.rf-st{display:grid;grid-template-columns:.8fr 1.2fr 1.2fr;gap:.7rem}
-.rf-s{display:grid;align-content:start;gap:.3rem;padding:.7rem .85rem;border-radius:.55rem;background:rgba(255,122,107,.09);border:1px solid rgba(255,122,107,.28)}
-.rf-s b{font-family:var(--f-display);font-weight:800;font-size:1.75rem;line-height:1;letter-spacing:-.02em;color:var(--coral);text-shadow:0 0 26px rgba(255,122,107,.5)}
-.rf-s span{font-size:.78rem;line-height:1.3;color:var(--muted)}
-.rf-ch{display:grid;grid-template-columns:1fr 2.4rem 1fr 2.4rem 1fr;align-items:stretch}
-.rf-ch .rf-ar{align-self:center}
-.rf-n{display:grid;justify-items:center;align-content:center;text-align:center;gap:.2rem;padding:.6rem .4rem .7rem;border-radius:.55rem;background:rgba(255,255,255,.05);border:1px solid var(--line)}
-.rf-n.end{border-color:rgba(255,122,107,.6);background:rgba(255,122,107,.1);box-shadow:0 0 0 0 rgba(255,122,107,.5)}
-.rf-n b{font-family:var(--f-display);font-weight:700;font-size:.95rem;line-height:1.15;color:var(--text)}
-.rf-n em{font-style:normal;font-family:var(--f-mono);font-size:.62rem;line-height:1.3;letter-spacing:.04em;color:var(--subtle)}
-.rf-ic{display:grid;place-items:center;width:2.3rem;height:2.3rem;border-radius:50%;background:rgba(122,92,255,.18);color:#B6A4FF;flex:none}
-.rf-ic .ic{width:1.3rem;height:1.3rem}
-.rf-n.end .rf-ic{background:rgba(255,122,107,.18);color:var(--coral)}
-.rf-ar{width:100%;height:.8rem;overflow:visible}
-.rf-ar path{fill:none;stroke:var(--coral);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.rf-ar path:first-child{stroke-dasharray:4 4}
-.rf-out{display:grid;grid-template-columns:1fr 1.55fr;gap:.7rem}
-.rf-hit{display:flex;gap:.7rem;align-items:center;padding:.75rem .85rem;border-radius:.55rem;background:rgba(255,122,107,.09);border:1px solid rgba(255,122,107,.28)}
-.rf-hit .rf-ic{background:rgba(255,122,107,.18);color:var(--coral)}
-.rf-hit b,.rf-sk b{display:block;font-family:var(--f-mono);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
-.rf-hit b{color:var(--coral)}
-.rf-hit p{margin:.2rem 0 0;font-size:.92rem;line-height:1.3;color:var(--text)}
-.rf-safe{padding:.7rem .85rem;border-radius:.55rem;background:rgba(4,240,106,.07);border:1px solid rgba(4,240,106,.3)}
-.rf-sk{display:flex;align-items:center;gap:.55rem;margin-bottom:.45rem}
-.rf-sk .rf-ic{width:1.8rem;height:1.8rem;background:rgba(4,240,106,.16);color:#04F06A}
-.rf-sk .rf-ic .ic{width:1.05rem;height:1.05rem}
-.rf-sk b{color:#04F06A}
-.rf-safe ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.3rem .8rem}
-.rf-safe li{display:flex;gap:.4rem;align-items:flex-start;font-size:.8rem;line-height:1.25;color:var(--muted)}
-.rf-safe li span{flex:none;color:#04F06A;margin-top:.05rem}
-.rf-safe li .ic{width:.85rem;height:.85rem}
-/* the story plays once the bubble is up: figures, then the path step by step, then the outcome */
-.mb-flow .rf-s,.mb-flow .rf-n,.mb-flow .rf-ar,.mb-flow .rf-hit,.mb-flow .rf-safe{opacity:0;transform:translateY(6px)}
-.mb-flow.cur .rf-s{animation:rfIn .45s calc(1.3s + var(--i) * .15s) both}
-.mb-flow.cur .rf-n{animation:rfIn .45s calc(1.9s + var(--i) * .45s) both}
-.mb-flow.cur .rf-ar{animation:rfIn .35s calc(1.75s + var(--i) * .45s) both}
-.mb-flow.cur .rf-ar path:first-child{animation:rfDash .9s linear infinite}
-.mb-flow.cur .rf-n.end{animation:rfIn .45s calc(1.9s + var(--i) * .45s) both,rfHit 2.2s 3.1s ease-out infinite}
-.mb-flow.cur .rf-hit{animation:rfIn .45s 3.2s both}
-.mb-flow.cur .rf-safe{animation:rfIn .45s 3.5s both}
+.mb.mb-flow .mb-t{font-size:1.15rem;font-weight:600;color:var(--muted)!important;margin:.25rem 0 1rem}
+.rf{display:grid;gap:1.3rem}
+.rf-st{display:grid;grid-template-columns:1.3fr 1fr;align-items:end}
+.rf-s{display:grid;gap:.35rem;padding-right:1.3rem}
+.rf-s + .rf-s{padding:0 0 0 1.3rem;border-left:1px solid var(--line)}
+.rf-s b{font-family:var(--f-display);font-weight:800;font-size:3.3rem;line-height:.9;letter-spacing:-.03em;color:var(--coral);text-shadow:0 0 34px rgba(255,122,107,.55)}
+.rf-s + .rf-s b{font-size:2rem;white-space:nowrap;padding-bottom:.25rem}
+.rf-s span{font-size:1rem;line-height:1.3;color:var(--text)}
+.rf-ch{display:flex;align-items:flex-start;padding:.2rem 0}
+.rf-n{flex:none;width:8.5rem;display:grid;justify-items:center;text-align:center;gap:.3rem}
+.rf-n b{font-family:var(--f-display);font-weight:600;font-size:.9rem;line-height:1.2;color:var(--text)}
+.rf-n em{font-style:normal;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.04em;color:var(--subtle);margin-top:-.15rem}
+.rf-ic{display:grid;place-items:center;width:2.5rem;height:2.5rem;border-radius:50%;background:rgba(122,92,255,.16);border:1px solid rgba(122,92,255,.45);color:#B6A4FF;flex:none}
+.rf-ic .ic{width:1.25rem;height:1.25rem}
+.rf-n.end .rf-ic{background:rgba(255,122,107,.16);border-color:var(--coral);color:var(--coral)}
+.rf-ar{flex:1;height:2px;margin-top:1.25rem;background:repeating-linear-gradient(90deg,var(--coral) 0 6px,transparent 6px 11px);background-size:11px 2px;position:relative}
+.rf-ar::after{content:'';position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--coral);border-right:0}
+.rf-safe{display:flex;gap:.85rem;align-items:flex-start;padding:.9rem 1rem;border-radius:.6rem;background:rgba(4,240,106,.08);border:1px solid rgba(4,240,106,.35)}
+.rf-safe .rf-ic{background:rgba(4,240,106,.14);border-color:rgba(4,240,106,.5);color:#04F06A}
+.rf-safe b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.05rem;color:#04F06A}
+.rf-safe p{margin:.15rem 0 0;font-size:.95rem;line-height:1.4;color:var(--text)}
+.rf-safe small{display:block;margin-top:.45rem;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.04em;color:var(--subtle)}
+/* the story plays once the bubble is up: the figures, the path step by step, then the reassurance */
+.mb-flow .rf-s,.mb-flow .rf-n,.mb-flow .rf-ar,.mb-flow .rf-safe{opacity:0;transform:translateY(6px)}
+.mb-flow.cur .rf-s{animation:rfIn .5s calc(1.3s + var(--i) * .35s) both}
+.mb-flow.cur .rf-n{animation:rfIn .4s calc(2.1s + var(--i) * .4s) both}
+.mb-flow.cur .rf-ar{animation:rfIn .3s calc(1.95s + var(--i) * .4s) both,rfDash .8s linear infinite}
+.mb-flow.cur .rf-n.end .rf-ic{animation:rfHit 2.2s 3.1s ease-out infinite}
+.mb-flow.cur .rf-safe{animation:rfIn .5s 3.3s both}
 @keyframes rfIn{to{opacity:1;transform:none}}
-@keyframes rfDash{to{stroke-dashoffset:-8}}
-@keyframes rfHit{0%{box-shadow:0 0 0 0 rgba(255,122,107,.55)}70%,100%{box-shadow:0 0 0 .7rem rgba(255,122,107,0)}}
-@media (prefers-reduced-motion:reduce){.mb-flow .rf-s,.mb-flow .rf-n,.mb-flow .rf-ar,.mb-flow .rf-hit,.mb-flow .rf-safe{opacity:1;transform:none;animation:none!important}}
-@media (max-width:760px){.mb.mb-flow{width:auto;padding:.9rem 1rem}.rf-st{grid-template-columns:1fr 1fr 1fr;gap:.4rem}.rf-s{padding:.5rem}.rf-s b{font-size:1.1rem}.rf-s span{font-size:.62rem}
-  .rf-ch{grid-template-columns:1fr 1.2rem 1fr 1.2rem 1fr}.rf-n{padding:.4rem .2rem}.rf-n b{font-size:.7rem}.rf-n em{display:none}.rf-ic{width:1.7rem;height:1.7rem}
-  .rf-out{grid-template-columns:1fr}.rf-safe ul{grid-template-columns:1fr}}
-
+@keyframes rfDash{to{background-position:11px 0}}
+@keyframes rfHit{0%{box-shadow:0 0 0 0 rgba(255,122,107,.6)}70%,100%{box-shadow:0 0 0 .65rem rgba(255,122,107,0)}}
+@media (prefers-reduced-motion:reduce){.mb-flow .rf-s,.mb-flow .rf-n,.mb-flow .rf-ar,.mb-flow .rf-safe{opacity:1;transform:none;animation:none!important}}
+@media (max-width:760px){.mb.mb-flow{width:auto;padding:.9rem 1rem}.rf{gap:.9rem}.rf-s b{font-size:2.2rem}.rf-s + .rf-s b{font-size:1.2rem}.rf-s span{font-size:.78rem}
+  .rf-n{width:5.6rem}.rf-n b{font-size:.72rem}.rf-n em{display:none}.rf-ic{width:2rem;height:2rem}.rf-ar{margin-top:1rem}.rf-safe p{font-size:.8rem}}
 /* Wavestone branding: logo on the first and last slide, copyright on every slide */
 #ws-copy{position:fixed;right:2rem;bottom:.55rem;z-index:61;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.08em;color:rgba(255,255,255,.6);pointer-events:none;white-space:nowrap}
 #hud{padding-bottom:1.8rem}
@@ -2631,20 +2616,18 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
   ],
   arcs: [{ from: 4, to: 3, f: 4 }],
   bubbles: [
-    { k: 9, d: '25 septembre 2026 · Espagne · Renfe', t: 'La Renfe, compagnie ferroviaire publique, visée par une IA',
+    { k: 9, d: '25 septembre 2026 · Espagne · Renfe', t: 'La compagnie ferroviaire publique visée par une IA',
       flow: {
         stats: [
           { v: '1<sup>re</sup>', l: 'cyberattaque par IA visant le site Internet d\'une entreprise publique espagnole' },
-          { v: 'Plusieurs jours', l: 'd\'incident, selon El Mundo' },
-          { v: 'Des semaines', l: 'de tentatives détectées et bloquées avant' },
+          { v: 'Plusieurs jours', l: 'd\'incident' },
         ],
         chain: [
-          { i: 'robot', k: 'Un outil d\'IA', s: 'aux mains des attaquants' },
-          { i: 'server', k: 'Les serveurs d\'Adif', s: 'gestionnaire public du réseau ferré' },
-          { i: 'globe', k: 'Le site de la Renfe', s: 'et ses systèmes, reliés à Adif' },
+          { i: 'robot', k: 'Un outil d\'IA' },
+          { i: 'server', k: 'Les serveurs d\'Adif', s: 'gestionnaire du réseau ferré' },
+          { i: 'globe', k: 'Le site de la Renfe' },
         ],
-        hit: { i: 'mail', k: 'Exposé', t: 'Des noms et adresses e&#8209;mail de clients' },
-        safe: { k: 'Heureusement, aucun accès constaté', list: ['Données bancaires ou financières', 'Moyens de paiement', 'Documents d\'identité', 'Autres informations particulièrement sensibles'] },
+        safe: { k: 'Heureusement', t: 'Aucun accès constaté à des données bancaires ou financières, à des moyens de paiement, à des documents d\'identité ou à d\'autres informations particulièrement sensibles.', note: 'Exposés : surtout des noms et adresses e&#8209;mail de clients.' },
       } },
   ],
   legend: ['hit', 'attempt', 'weapon', 'org'],
@@ -3367,9 +3350,8 @@ const R = {
     // bubble with a video takes one more click, which plays it
     const flow = w => `<div class="rf">
         <div class="rf-st">${w.stats.map((x, i) => `<div class="rf-s" style="--i:${i}"><b>${x.v}</b><span>${x.l}</span></div>`).join('')}</div>
-        <div class="rf-ch">${w.chain.map((x, i) => `${i ? `<svg class="rf-ar" style="--i:${i}" viewBox="0 0 40 12" aria-hidden="true"><path d="M2 6H34"/><path class="rf-hd" d="M30 2l6 4-6 4"/></svg>` : ''}<div class="rf-n${i === w.chain.length - 1 ? ' end' : ''}" style="--i:${i}"><span class="rf-ic">${ICON(x.i)}</span><b>${x.k}</b><em>${x.s}</em></div>`).join('')}</div>
-        <div class="rf-out"><div class="rf-hit"><span class="rf-ic">${ICON(w.hit.i)}</span><div><b>${w.hit.k}</b><p>${w.hit.t}</p></div></div>
-          <div class="rf-safe"><div class="rf-sk"><span class="rf-ic">${ICON('shield')}</span><b>${w.safe.k}</b></div><ul>${w.safe.list.map(t => `<li><span>${ICON('lock')}</span>${t}</li>`).join('')}</ul></div></div>
+        <div class="rf-ch">${w.chain.map((x, i) => `${i ? `<i class="rf-ar" style="--i:${i}"></i>` : ''}<div class="rf-n${i === w.chain.length - 1 ? ' end' : ''}" style="--i:${i}"><span class="rf-ic">${ICON(x.i)}</span><b>${x.k}</b>${x.s ? `<em>${x.s}</em>` : ''}</div>`).join('')}</div>
+        <div class="rf-safe"><span class="rf-ic">${ICON('shield')}</span><div><b>${w.safe.k}</b><p>${w.safe.t}</p>${w.safe.note ? `<small>${w.safe.note}</small>` : ''}</div></div>
       </div>`;
     const bubbles = (s.bubbles || []).map(b => `<div class="mb t-${b.tone || 'coral'}${b.media ? ' mb-big' : ''}${b.flow ? ' mb-flow' : ''}${b.at ? ' mb-' + b.at : ''}" data-f="${b.k}" data-k="${b.k}">${b.fig ? `<div class="mb-fig${b.fig.length > 6 ? ' long' : ''}"><b>${b.fig}</b><span>${b.figl}</span></div>` : ''}<div class="mb-body">${bubblePhoto(b.photo)}<div class="mb-d">${b.d}</div><div class="mb-t">${b.t}</div>${b.s ? `<div class="mb-s">${b.s}</div>` : ''}${b.flow ? flow(b.flow) : ''}${b.media ? media(b.media) : ''}${b.media && b.media.type === 'video' ? `<i class="mb-go" data-f="${b.k + 1}"></i>` : ''}</div></div>`).join('');
     return `<svg class="map" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" aria-label="Carte"><path class="grat" d="${g}"/>${land}${dots}${arcs}${pins}</svg>
