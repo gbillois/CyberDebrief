@@ -2255,9 +2255,13 @@ sup{text-transform:none}
 .rf-safe .rf-ic{background:rgba(4,240,106,.14);border-color:rgba(4,240,106,.5);color:#04F06A}
 .rf-safe b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.05rem;color:#04F06A}
 .rf-safe p{margin:.15rem 0 0;font-size:.95rem;line-height:1.4;color:var(--text)}
+.rf-risk{display:flex;gap:.85rem;align-items:center;margin-top:-.55rem;padding:.75rem 1rem;border-radius:.6rem;background:rgba(242,184,75,.09);border:1px solid rgba(242,184,75,.4)}
+.rf-risk .rf-ic{background:rgba(242,184,75,.15);border-color:rgba(242,184,75,.55);color:var(--amber)}
+.rf-risk p{margin:0;font-family:var(--f-display);font-weight:600;font-size:1rem;line-height:1.3;color:var(--amber)}
 .rf-safe small{display:block;margin-top:.45rem;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.04em;color:var(--subtle)}
 /* the story plays once the bubble is up: the figures, the path step by step, then the reassurance */
-.mb-flow .rf-lead,.mb-flow .rf-n,.mb-flow .rf-ar,.mb-flow .rf-dur,.mb-flow .rf-safe{opacity:0;transform:translateY(6px)}
+.mb-flow .rf-lead,.mb-flow .rf-n,.mb-flow .rf-ar,.mb-flow .rf-dur,.mb-flow .rf-safe,.mb-flow .rf-risk{opacity:0;transform:translateY(6px)}
+.mb-flow.cur .rf-risk{animation:rfIn .5s 3.9s both}
 .mb-flow.cur .rf-lead{animation:rfIn .5s 1.4s both}
 .mb-flow.cur .rf-dur{animation:rfIn .4s 3s both}
 .mb-flow.cur .rf-n{animation:rfIn .4s calc(2.1s + var(--i) * .4s) both}
@@ -2267,9 +2271,9 @@ sup{text-transform:none}
 @keyframes rfIn{to{opacity:1;transform:none}}
 @keyframes rfDash{to{background-position:11px 0}}
 @keyframes rfHit{0%{box-shadow:0 0 0 0 rgba(255,122,107,.6)}70%,100%{box-shadow:0 0 0 .65rem rgba(255,122,107,0)}}
-@media (prefers-reduced-motion:reduce){.mb-flow .rf-lead,.mb-flow .rf-dur,.mb-flow .rf-n,.mb-flow .rf-ar,.mb-flow .rf-safe{opacity:1;transform:none;animation:none!important}}
+@media (prefers-reduced-motion:reduce){.mb-flow .rf-risk,.mb-flow .rf-lead,.mb-flow .rf-dur,.mb-flow .rf-n,.mb-flow .rf-ar,.mb-flow .rf-safe{opacity:1;transform:none;animation:none!important}}
 @media (max-width:760px){.mb.mb-flow{width:auto;padding:.9rem 1rem}.rf{gap:.9rem}.mb.mb-flow .mb-t{font-size:1.3rem}.rf-lead b{font-size:1rem}.rf-lead span{font-size:.85rem}
-  .rf-n{width:5.6rem}.rf-n b{font-size:.72rem}.rf-n em{display:none}.rf-ic{width:2rem;height:2rem}.rf-ar{margin-top:1rem}.rf-safe p{font-size:.8rem}}
+  .rf-n{width:5.6rem}.rf-n b{font-size:.72rem}.rf-n em{display:none}.rf-ic{width:2rem;height:2rem}.rf-ar{margin-top:1rem}.rf-safe p{font-size:.8rem}.rf-risk{margin-top:-.3rem;padding:.6rem .8rem}.rf-risk p{font-size:.8rem}}
 /* Wavestone branding: logo on the first and last slide, copyright on every slide */
 #ws-copy{position:fixed;right:2rem;bottom:.55rem;z-index:61;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.08em;color:rgba(255,255,255,.6);pointer-events:none;white-space:nowrap}
 #hud{padding-bottom:1.8rem}
@@ -2616,7 +2620,7 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
   ],
   arcs: [{ from: 4, to: 3, f: 4 }],
   bubbles: [
-    { k: 9, d: '25 septembre 2026 · Espagne · Renfe', t: 'La Renfe, compagnie ferroviaire publique, visée par une IA',
+    { k: 9, d: '25 septembre 2026 · Espagne · Renfe', t: 'Une IA s\'attaque à la Renfe',
       flow: {
         lead: { v: '1<sup>re</sup>', t: 'cyberattaque par IA visant le site Internet d\'une entreprise publique espagnole' },
         dur: 'Un incident qui a duré « plusieurs jours »',
@@ -2625,11 +2629,12 @@ Australie : la conférence de presse attend sur sa première image, un clic de 
           { i: 'server', k: 'Les serveurs d\'Adif', s: 'gestionnaire du réseau ferré' },
           { i: 'globe', k: 'Le site de la Renfe' },
         ],
-        safe: { k: 'Heureusement', t: 'Aucun accès constaté à des données bancaires ou financières, à des moyens de paiement, à des documents d\'identité ou à d\'autres informations particulièrement sensibles.', note: 'Exposés : surtout des noms et adresses e&#8209;mail de clients.' },
+        safe: { k: 'Heureusement, seules des données ont été touchées', t: 'Aucun accès constaté à des données bancaires ou financières, à des moyens de paiement, à des documents d\'identité ou à d\'autres informations particulièrement sensibles.', note: 'Exposés : surtout des noms et adresses e&#8209;mail de clients.' },
+        risk: 'Mais une telle attaque aurait pu toucher les systèmes qui font circuler les trains.',
       } },
   ],
   legend: ['hit', 'attempt', 'weapon', 'org'],
-  vo: `Plaçons les attaquants sur la carte, du plus simple au plus avancé. Hong Kong : une fausse visioconférence, vingt-cinq millions de dollars. Italie : une voix clonée chez Ferrari, déjouée par une simple question personnelle. Retenez celle-là. Corée du Nord : de faux employés, embauchés par 136 organisations américaines. Ukraine : un malware qui demande à une IA quoi faire ensuite. Puis cet été : le premier rançongiciel mené de bout en bout par une IA. Huit agents d'IA contre le gouvernement taïwanais. Deux semaines d'attaque compressées en dix heures. Et un essaim d'agents qui vole six cent mille cartes bancaires. Et tout près de nous, en Espagne, fin septembre : la Renfe, la compagnie ferroviaire publique. La première cyberattaque par IA visant le site Internet d'une entreprise publique espagnole, et un incident qui a duré plusieurs jours. Heureusement, rien ne montre que des données bancaires, des moyens de paiement ou des documents d'identité aient été touchés. Plus vite, moins cher, partout.`,
+  vo: `Plaçons les attaquants sur la carte, du plus simple au plus avancé. Hong Kong : une fausse visioconférence, vingt-cinq millions de dollars. Italie : une voix clonée chez Ferrari, déjouée par une simple question personnelle. Retenez celle-là. Corée du Nord : de faux employés, embauchés par 136 organisations américaines. Ukraine : un malware qui demande à une IA quoi faire ensuite. Puis cet été : le premier rançongiciel mené de bout en bout par une IA. Huit agents d'IA contre le gouvernement taïwanais. Deux semaines d'attaque compressées en dix heures. Et un essaim d'agents qui vole six cent mille cartes bancaires. Et tout près de nous, en Espagne, fin septembre : la Renfe, la compagnie ferroviaire publique. La première cyberattaque par IA visant le site Internet d'une entreprise publique espagnole, et un incident qui a duré plusieurs jours. Heureusement, seules des données ont été touchées, et rien ne montre que des données bancaires, des moyens de paiement ou des documents d'identité l'aient été. Mais une telle attaque aurait pu toucher les systèmes qui font circuler les trains. Plus vite, moins cher, partout.`,
   notes: `Un clic par cas : le cas apparaît sur la carte du monde, quelques mots et son chiffre clé à côté du repère.
 Arup : début 2024, 15 virements, environ 25 M$ (CNN). Ferrari : juillet 2024, des messages WhatsApp puis un appel à la voix clonée (Bloomberg). Corée du Nord : Département de la Justice américain, 14 novembre 2025, des montages touchant 136 organisations américaines. PROMPTSTEAL (aussi appelé LameHug) : signalé par le CERT-UA en juillet 2025, attribué à APT28 ; Google le présente comme le premier malware vu interroger un modèle de langage en opération réelle. PROMPTFLUX : expérimental, se réécrit toutes les heures (Google, novembre 2025). JadePuffer : Sysdig, signalé le 4 juillet 2026 ; victime non divulguée. Taïwan : juillet 2026, découvert par la société israélienne Dream, rapporté par CNN le 13 août 2026 ; attribution non confirmée. Unit 42 : 2 septembre 2026, victime non divulguée, « compressed weeks of methodical intrusion tradecraft into less than 10 hours ». Essaim : Gambit Security via BleepingComputer, 22 septembre 2026, actif depuis juillet ; parmi les victimes, un groupe hôtelier du Fortune 500 et une grande compagnie aérienne américaine.
 Clic 9 : zoom sur l'Espagne, la Renfe. Incident confirmé par la Renfe le 25 septembre 2026 : les attaquants ont compromis des serveurs d'Adif (gestionnaire public des infrastructures ferroviaires), interconnectés avec les systèmes de la Renfe, après « plusieurs semaines » de tentatives détectées et bloquées. Données exposées selon la Renfe : surtout des noms et adresses e-mail. Le recours à l'IA (« un système similaire » à celui d'Anthropic), le caractère de « première cyberattaque par IA » contre une entreprise publique espagnole et la durée de « plusieurs jours » viennent d'El Mundo, citant des sources proches de l'enquête : ni la Renfe ni Adif ne l'ont confirmé. Ne pas reprendre les 500 Go ou les 150 millions de données évoqués ailleurs : non confirmés. Adif a mis ses sites hors ligne par précaution, porté plainte et prévenu le CCN.`,
@@ -2926,6 +2931,7 @@ const ICONS = {
   people: '<circle cx="9" cy="8" r="3"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.3A5 5 0 0 1 22 19"/>',
   target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/>',
   stop: '<path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"/><path d="M8 12h8"/>',
+  train: '<rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 10h14M9 17l-2 4M15 17l2 4"/><circle cx="9" cy="13.5" r=".8"/><circle cx="15" cy="13.5" r=".8"/>',
   search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/>',
   shield: '<path d="M12 3l8 3v6c0 4.5-3.5 7.5-8 9-4.5-1.5-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
   spy: '<path d="M4 10h16M7 10l1.5-5h7L17 10"/><circle cx="8.5" cy="15" r="2.5"/><circle cx="15.5" cy="15" r="2.5"/><path d="M11 15h2"/>',
@@ -3351,6 +3357,7 @@ const R = {
         <div class="rf-ch">${w.chain.map((x, i) => `${i ? `<i class="rf-ar" style="--i:${i}"></i>` : ''}<div class="rf-n${i === w.chain.length - 1 ? ' end' : ''}" style="--i:${i}"><span class="rf-ic">${ICON(x.i)}</span><b>${x.k}</b>${x.s ? `<em>${x.s}</em>` : ''}</div>`).join('')}</div>
         ${w.dur ? `<div class="rf-dur">${w.dur}</div>` : ''}
         <div class="rf-safe"><span class="rf-ic">${ICON('shield')}</span><div><b>${w.safe.k}</b><p>${w.safe.t}</p>${w.safe.note ? `<small>${w.safe.note}</small>` : ''}</div></div>
+        ${w.risk ? `<div class="rf-risk"><span class="rf-ic">${ICON('train')}</span><p>${w.risk}</p></div>` : ''}
       </div>`;
     const bubbles = (s.bubbles || []).map(b => `<div class="mb t-${b.tone || 'coral'}${b.media ? ' mb-big' : ''}${b.flow ? ' mb-flow' : ''}${b.at ? ' mb-' + b.at : ''}" data-f="${b.k}" data-k="${b.k}">${b.fig ? `<div class="mb-fig${b.fig.length > 6 ? ' long' : ''}"><b>${b.fig}</b><span>${b.figl}</span></div>` : ''}<div class="mb-body">${bubblePhoto(b.photo)}<div class="mb-d">${b.d}</div><div class="mb-t">${b.t}</div>${b.s ? `<div class="mb-s">${b.s}</div>` : ''}${b.flow ? flow(b.flow) : ''}${b.media ? media(b.media) : ''}${b.media && b.media.type === 'video' ? `<i class="mb-go" data-f="${b.k + 1}"></i>` : ''}</div></div>`).join('');
     return `<svg class="map" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" aria-label="Carte"><path class="grat" d="${g}"/>${land}${dots}${arcs}${pins}</svg>
